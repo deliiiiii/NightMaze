@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// A copy of StablePriorityQueue which also has generic priority-type
-/// </summary>
-/// <typeparam name="TItem">The values in the queue.  Must extend the GenericPriorityQueueNode class</typeparam>
-/// <typeparam name="TPriority">The priority-type.  Must extend IComparable&lt;TPriority&gt;</typeparam>
-public sealed class GenericPriorityQueue<TItem, TPriority> : IFixedSizePriorityQueue<TItem, TPriority>
+namespace General.PriorityQueue
+{
+    /// <summary>
+    /// A copy of StablePriorityQueue which also has generic priority-type
+    /// </summary>
+    /// <typeparam name="TItem">The values in the queue.  Must extend the GenericPriorityQueueNode class</typeparam>
+    /// <typeparam name="TPriority">The priority-type.  Must extend IComparable&lt;TPriority&gt;</typeparam>
+    public sealed class GenericPriorityQueue<TItem, TPriority> : IFixedSizePriorityQueue<TItem, TPriority>
         where TItem : GenericPriorityQueueNode<TPriority>
     {
         private int _numNodes;
@@ -595,3 +597,4 @@ public sealed class GenericPriorityQueue<TItem, TPriority> : IFixedSizePriorityQ
             return true;
         }
     }
+}

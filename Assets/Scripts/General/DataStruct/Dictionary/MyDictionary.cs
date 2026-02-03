@@ -3,38 +3,41 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 
-[Serializable]
-public class MyDictionary<TKey, TValue> : Dictionary<TKey, TValue>
+namespace General.Dictionary
 {
-    [CanBeNull] public event Action<TValue> OnAdd;
-    [CanBeNull] public event Func<TValue, Task> OnAddAsync;
-    [CanBeNull] public event Action<TValue> OnRemove;
-
-    public new async Task Add(TKey key, TValue value)
+    [Serializable]
+    public class MyDictionary<TKey, TValue> : Dictionary<TKey, TValue>
     {
-        base.Add(key, value);
-        OnAdd?.Invoke(value);
-        if(OnAddAsync != null)
-            await OnAddAsync.Invoke(value);
-    }
+        [CanBeNull] public event Action<TValue> OnAdd;
+        [CanBeNull] public event Func<TValue, Task> OnAddAsync;
+        [CanBeNull] public event Action<TValue> OnRemove;
 
-    public new bool Remove(TKey key)
-    {
-        if (ContainsKey(key))
+        public new async Task Add(TKey key, TValue value)
         {
-            OnRemove?.Invoke(base[key]);
-            base.Remove(key);
-            return true;
+            base.Add(key, value);
+            OnAdd?.Invoke(value);
+            if(OnAddAsync != null)
+                await OnAddAsync.Invoke(value);
         }
-        return false;
-    }
+
+        public new bool Remove(TKey key)
+        {
+            if (ContainsKey(key))
+            {
+                OnRemove?.Invoke(base[key]);
+                base.Remove(key);
+                return true;
+            }
+            return false;
+        }
     
-    public new void Clear()
-    {
-        foreach (var value in Values)
+        public new void Clear()
         {
-            OnRemove?.Invoke(value);
+            foreach (var value in Values)
+            {
+                OnRemove?.Invoke(value);
+            }
+            base.Clear();
         }
-        base.Clear();
     }
 }

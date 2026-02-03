@@ -1,13 +1,16 @@
 ﻿using System;
 
-[Serializable]
-public class Buff
+namespace General
 {
-    public Buff(float value, string desc = "")
+    [Serializable]
+    public class Buff
     {
-        Value = value;
-        Desc = desc;
+        public Buff(float value, string desc = "")
+        {
+            Value = value;
+            Desc = desc;
+        }
+        public readonly float Value;
+        public readonly string Desc;
     }
-    public readonly float Value;
-    public readonly string Desc;
 }

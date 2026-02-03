@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using General;
+using General.BindData;
 using Newtonsoft.Json;
+using UnityEngine;
 
-namespace RSTS;
-
-public abstract class FSM2<TThis>
-    where TThis : FSM2<TThis>
+namespace GeneralPreview;
+[Serializable]
+public abstract class FSM<TThis>
+    where TThis : FSM<TThis>
 {
     public event Action<IState>? OnStateEnter;
     public event Action<IState>? OnStateExit;
-    protected IState? CurState;
+    [SerializeReference] protected IState? CurState;
     bool isLaunched;
     [JsonIgnore] BindDataUpdate? selfTickBind;
 
@@ -71,17 +74,17 @@ public abstract class FSM2<TThis>
     public interface IState
     {
         public TThis BelongFSM { get; set; }
-        public void OnEnter();
-        public void OnExit();
-        public void OnUpdate(float dt);
+        public virtual void OnEnter(){}
+        public void OnExit(){}
+        public void OnUpdate(float dt){}
     }
 }
-
+[Serializable]
 public abstract class FSMState<TBelong, TThis> : 
-    FSM2<TThis>, 
-    FSM2<TBelong>.IState
-    where TThis : FSM2<TThis>
-    where TBelong : FSM2<TBelong>
+    FSM<TThis>, 
+    FSM<TBelong>.IState
+    where TThis : FSM<TThis>
+    where TBelong : FSM<TBelong>
 {
     public required TBelong BelongFSM { get; set; }
     public virtual void OnEnter(){}

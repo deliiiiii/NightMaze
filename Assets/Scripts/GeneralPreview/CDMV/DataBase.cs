@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.Utilities;
 
-namespace GeneralPreview.CDMV;
+namespace GeneralPreview;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class IDAttribute(int id) : Attribute

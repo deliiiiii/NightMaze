@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-public static class ColorExt
+namespace General
 {
-    public static Color SetAlpha(this Color self, float a)
+    public static class ColorExt
     {
-        self.a = a;
-        return self;
+        public static Color SetAlpha(this Color self, float a)
+        {
+            self.a = a;
+            return self;
+        }
     }
 }

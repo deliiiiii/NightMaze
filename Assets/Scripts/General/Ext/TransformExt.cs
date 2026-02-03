@@ -1,28 +1,31 @@
 ﻿using System;
 using UnityEngine;
 
-public static class TransformExt
+namespace General
 {
-    public static Transform DestroyActiveChildren(this Transform t)
+    public static class TransformExt
     {
-        for(int i = 0; i < t.childCount; i++)
+        public static Transform DestroyActiveChildren(this Transform t)
         {
-            if (!t.GetChild(i).gameObject.activeSelf)
-                continue;
-            GameObject.Destroy(t.GetChild(i).gameObject);
+            for(int i = 0; i < t.childCount; i++)
+            {
+                if (!t.GetChild(i).gameObject.activeSelf)
+                    continue;
+                GameObject.Destroy(t.GetChild(i).gameObject);
+            }
+            return t;
         }
-        return t;
-    }
 
-    public static Transform DestroyChild(this Transform t, Predicate<Transform> filter)
-    {
-        for(int i = 0; i < t.childCount; i++)
+        public static Transform DestroyChild(this Transform t, Predicate<Transform> filter)
         {
-            var child = t.GetChild(i);
-            if (!filter(child))
-                continue;
-            GameObject.Destroy(child.gameObject);
+            for(int i = 0; i < t.childCount; i++)
+            {
+                var child = t.GetChild(i);
+                if (!filter(child))
+                    continue;
+                GameObject.Destroy(child.gameObject);
+            }
+            return t;
         }
-        return t;
     }
 }

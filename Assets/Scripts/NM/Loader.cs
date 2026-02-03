@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using GeneralPreview.CDMV;
-using RSTS.Static;
+using General;
+using GeneralPreview;
+
+namespace GeneralProj;
 
 public static class Loader
 {

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using General;
 
-namespace GeneralPreview.CDMV;
+namespace GeneralPreview;
 
 public interface IRefSingle;
 public interface IRefMulti;

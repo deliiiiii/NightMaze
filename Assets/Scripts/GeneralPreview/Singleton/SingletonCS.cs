@@ -1,13 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
-using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor;
-#endif
+using UnityEngine;
 
 //C#单例
 //需要被继承 xxx : SingletonCS<xxx>
 //获取单例 xxx.Instance
 // ReSharper disable once InconsistentNaming
+namespace GeneralPreview;
+
 public class SingletonCS<T> where T : SingletonCS<T>, new()
 {
     protected GameObject go = null!;
@@ -45,5 +45,3 @@ public class SingletonCS<T> where T : SingletonCS<T>, new()
 #endif
     }
 }
-
-

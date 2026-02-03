@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GeneralPreview.CDMV;
+namespace GeneralPreview;
 
 public abstract class ViewBase : MonoBehaviour
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using RSTS.Static;
+using GeneralProj;
 using Sirenix.Utilities;
 using UnityEditor;
 using UnityEditor.AddressableAssets;

@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class SimplePriorityQueue<TItem, TPriority> : IPriorityQueue<TItem, TPriority>
+namespace General.PriorityQueue
+{
+    public class SimplePriorityQueue<TItem, TPriority> : IPriorityQueue<TItem, TPriority>
     {
         private class SimpleNode : GenericPriorityQueueNode<TPriority>
         {
@@ -577,46 +579,47 @@ public class SimplePriorityQueue<TItem, TPriority> : IPriorityQueue<TItem, TPrio
     }
 
     public static class SimplePriorityQueueExtension
-{
-    public static void Enqueue<T,P>(this SimplePriorityQueue<T,P> queue, T item, P priority, out T[] items)
     {
-        queue.Enqueue(item, priority);
-        items = new T[queue.Count];
-        int index = 0;
-        SimplePriorityQueue<T,P> copyQueue = new SimplePriorityQueue<T,P>();
-        while (queue.TryFirst(out var first))
+        public static void Enqueue<T,P>(this SimplePriorityQueue<T,P> queue, T item, P priority, out T[] items)
         {
-            copyQueue.Enqueue(first, queue.GetPriority(first));
-            queue.Dequeue();
-        }
-        foreach (var copyUpdate in copyQueue)
-        {
-            items[index++] = copyUpdate;
-        }
-        foreach (var it in copyQueue)
-        {
-            queue.Enqueue(it, copyQueue.GetPriority(it));
-        }
+            queue.Enqueue(item, priority);
+            items = new T[queue.Count];
+            int index = 0;
+            SimplePriorityQueue<T,P> copyQueue = new SimplePriorityQueue<T,P>();
+            while (queue.TryFirst(out var first))
+            {
+                copyQueue.Enqueue(first, queue.GetPriority(first));
+                queue.Dequeue();
+            }
+            foreach (var copyUpdate in copyQueue)
+            {
+                items[index++] = copyUpdate;
+            }
+            foreach (var it in copyQueue)
+            {
+                queue.Enqueue(it, copyQueue.GetPriority(it));
+            }
 
-    }
-    public static void Remove<T,P>(this SimplePriorityQueue<T,P> queue, T item, out T[] items)
-    {
-        queue.Remove(item);
-        items = new T[queue.Count];
-        int index = 0;
-        SimplePriorityQueue<T,P> copyQueue = new SimplePriorityQueue<T,P>();
-        while (queue.TryFirst(out var first))
-        {
-            copyQueue.Enqueue(first, queue.GetPriority(first));
-            queue.Dequeue();
         }
-        foreach (var copyUpdate in copyQueue)
+        public static void Remove<T,P>(this SimplePriorityQueue<T,P> queue, T item, out T[] items)
         {
-            items[index++] = copyUpdate;
-        }
-        foreach (var it in copyQueue)
-        {
-            queue.Enqueue(it, copyQueue.GetPriority(it));
+            queue.Remove(item);
+            items = new T[queue.Count];
+            int index = 0;
+            SimplePriorityQueue<T,P> copyQueue = new SimplePriorityQueue<T,P>();
+            while (queue.TryFirst(out var first))
+            {
+                copyQueue.Enqueue(first, queue.GetPriority(first));
+                queue.Dequeue();
+            }
+            foreach (var copyUpdate in copyQueue)
+            {
+                items[index++] = copyUpdate;
+            }
+            foreach (var it in copyQueue)
+            {
+                queue.Enqueue(it, copyQueue.GetPriority(it));
+            }
         }
     }
 }

@@ -2,101 +2,103 @@
 using System;
 using System.Linq;
 using Newtonsoft.Json;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
-public class Observable<T> where T : struct
+namespace General
 {
-    [SerializeField] T value;
-    bool invokeEvenEqual;
-    bool acceptDuplicateEvent;
-    public T Value
+    [Serializable]
+    public class Observable<T> where T : struct
     {
-        get => value;
-        set
+        [SerializeField] T value;
+        bool invokeEvenEqual;
+        bool acceptDuplicateEvent;
+        public T Value
         {
-            var oldV = this.value;
-            if (value is IComparable com)
+            get => value;
+            set
             {
-                if (com.CompareTo(oldV) == 0 && !invokeEvenEqual)
+                var oldV = this.value;
+                if (value is IComparable com)
                 {
+                    if (com.CompareTo(oldV) == 0 && !invokeEvenEqual)
+                    {
+                        return;
+                    }
+                }
+                else if (value.Equals(oldV) && !invokeEvenEqual)
                     return;
+                this.value = value;
+                onValueChangedAfter?.Invoke(this.value);
+                onValueChangedFull?.Invoke(oldV, value);
+            }
+        }
+        [JsonIgnore] UnityAction<T>? onValueChangedAfter;
+        public event UnityAction<T>? OnValueChangedAfter
+        {
+            add
+            {
+                if (!acceptDuplicateEvent || (!onValueChangedAfter?.GetInvocationList().Contains(value) ?? true))
+                {
+                    onValueChangedAfter += value;
                 }
             }
-            else if (value.Equals(oldV) && !invokeEvenEqual)
-                return;
-            this.value = value;
-            onValueChangedAfter?.Invoke(this.value);
-            onValueChangedFull?.Invoke(oldV, value);
+            remove => onValueChangedAfter -= value;
         }
-    }
-    [JsonIgnore] UnityAction<T>? onValueChangedAfter;
-    public event UnityAction<T>? OnValueChangedAfter
-    {
-        add
+        [JsonIgnore] UnityAction<T, T>? onValueChangedFull;
+        public event UnityAction<T, T>? OnValueChangedFull
         {
-            if (!acceptDuplicateEvent || (!onValueChangedAfter?.GetInvocationList().Contains(value) ?? true))
+            add
             {
-                onValueChangedAfter += value;
+                if (!acceptDuplicateEvent || (!onValueChangedFull?.GetInvocationList().Contains(value) ?? true))
+                {
+                    onValueChangedFull += value;
+                }
             }
+            remove => onValueChangedFull -= value;
         }
-        remove => onValueChangedAfter -= value;
-    }
-    [JsonIgnore] UnityAction<T, T>? onValueChangedFull;
-    public event UnityAction<T, T>? OnValueChangedFull
-    {
-        add
+        [JsonConstructor]
+        public Observable(T initValue)
         {
-            if (!acceptDuplicateEvent || (!onValueChangedFull?.GetInvocationList().Contains(value) ?? true))
-            {
-                onValueChangedFull += value;
-            }
+            value = initValue;
         }
-        remove => onValueChangedFull -= value;
-    }
-    [JsonConstructor]
-    public Observable(T initValue)
-    {
-        value = initValue;
-    }
-    public Observable(T initValue, 
-        UnityAction<T>? before = null, 
-        UnityAction<T>? after = null,
-        bool invokeEvenEqual = false,
-        bool acceptDuplicateEvent = false
+        public Observable(T initValue, 
+            UnityAction<T>? before = null, 
+            UnityAction<T>? after = null,
+            bool invokeEvenEqual = false,
+            bool acceptDuplicateEvent = false
         )
-    {
-        value = initValue;
-        onValueChangedAfter += after;
-        this.invokeEvenEqual = invokeEvenEqual;
-        this.acceptDuplicateEvent = acceptDuplicateEvent;
-    }
-    public static implicit operator T(Observable<T> v)
-    {
-        return v.Value;
-    }
-    
-    public static implicit operator float(Observable<T> v)
-    {
-        return v.Value switch
         {
-            int i => i,
-            float f => f,
-            double d => (float)d,
-            char c => c,
-            _ => throw new InvalidCastException($"Cannot convert {v.value} (Type: {typeof(T)}) to float")
-        };
-    }
-
-
-    public override string ToString()
-    {
-        return Value.ToString();
-    }
+            value = initValue;
+            onValueChangedAfter += after;
+            this.invokeEvenEqual = invokeEvenEqual;
+            this.acceptDuplicateEvent = acceptDuplicateEvent;
+        }
+        public static implicit operator T(Observable<T> v)
+        {
+            return v.Value;
+        }
     
-    public const string NameOfValue = nameof(value); 
+        public static implicit operator float(Observable<T> v)
+        {
+            return v.Value switch
+            {
+                int i => i,
+                float f => f,
+                double d => (float)d,
+                char c => c,
+                _ => throw new InvalidCastException($"Cannot convert {v.value} (Type: {typeof(T)}) to float")
+            };
+        }
+
+
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
+    
+        public const string NameOfValue = nameof(value); 
+    }
 }
 
 

@@ -9,7 +9,9 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
 using Object = UnityEngine.Object;
 
-public static class Resourcer
+namespace General
+{
+    public static class Resourcer
     {
         static Dictionary<string, AsyncOperationHandle<Object>> _assetHandleCache = new();
         static Dictionary<string, IList<IResourceLocation>> _labelLocationsCache = new();
@@ -148,18 +150,19 @@ public static class Resourcer
         {
             IList<IResourceLocation> resourceLocations = null;
             // 先试图从缓存中获取Locations
-            if (!_labelLocationsCache.ContainsKey(label))
+            if (!_labelLocationsCache.TryGetValue(label, out var value))
             {
                 resourceLocations = await LoadResourceLocationsAsync(label);
             }
             else
             {
-                resourceLocations = _labelLocationsCache[label];
+                resourceLocations = value;
             }
 
             if (resourceLocations.Count == 0)
             {
-                throw new Exception($"标签[{label}]定位到的资源地址数量为0");
+                MyDebug.LogWarning($"标签[{label}]定位到的资源地址数量为0");
+                return new List<T>();
             }
 
             Stopwatch st = new Stopwatch();
@@ -171,16 +174,16 @@ public static class Resourcer
                 foreach (var location in resourceLocations)
                 {
                     
-                        if (!parallel)
+                    if (!parallel)
+                    {
+                        var asset = await LoadAssetAsync<T>(location.PrimaryKey);
+                        if (asset != null)
                         {
-                            var asset = await LoadAssetAsync<T>(location.PrimaryKey);
-                            if (asset != null)
-                            {
-                                loadedAssets.Add(asset);
-                            }
-                            continue;
+                            loadedAssets.Add(asset);
                         }
-                        tasks.Add(LoadAssetAsync<T>(location.PrimaryKey));
+                        continue;
+                    }
+                    tasks.Add(LoadAssetAsync<T>(location.PrimaryKey));
                     
                 }
 
@@ -323,4 +326,5 @@ public static class Resourcer
         
         
     }
+}
 

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using General;
 using Newtonsoft.Json;
 using Sirenix.Utilities;
-using UnityEngine.Events;
 
+namespace GeneralPreview;
 
 [Serializable]
 public class MyList<T>(IEnumerable<T> ie)

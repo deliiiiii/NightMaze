@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+
+namespace GeneralPreview;
 // ReSharper disable AssignNullToNotNullAttribute
 
 /// <summary>
@@ -301,12 +303,12 @@ public static class DeepCopyExt
         var lengthVariable = Expression.Variable(typeof(int));
         var endLabelForThisLoop = Expression.Label();
         var newLoop =
-           Expression.Loop(Expression.Block([],
-                                               Expression.IfThen(Expression.GreaterThanOrEqual(indexVariable, lengthVariable),
-                                                                       Expression.Break(endLabelForThisLoop)),
-                                               loopToEncapsulate,
-                                               Expression.PostIncrementAssign(indexVariable)),
-                           endLabelForThisLoop);
+            Expression.Loop(Expression.Block([],
+                    Expression.IfThen(Expression.GreaterThanOrEqual(indexVariable, lengthVariable),
+                        Expression.Break(endLabelForThisLoop)),
+                    loopToEncapsulate,
+                    Expression.PostIncrementAssign(indexVariable)),
+                endLabelForThisLoop);
 
         var lengthAssignment = GetLengthForDimensionExpression(lengthVariable, inputParameter, dimension);
         var indexAssignment = Expression.Assign(indexVariable, Expression.Constant(0));
@@ -322,7 +324,7 @@ public static class DeepCopyExt
         var dimensionConstant = Expression.Constant(i);
 
         return Expression.Assign(lengthVariable, Expression.Call(Expression.Convert(inputParameter, typeof(Array)),
-                getLengthMethod!, new Expression[] { dimensionConstant }));
+            getLengthMethod!, new Expression[] { dimensionConstant }));
     }
 
     static void FieldsCopyExpressions(Type type, ParameterExpression inputParameter, ParameterExpression inputDictionary, ParameterExpression outputVariable, ParameterExpression boxingVariable, List<Expression> expressions)
@@ -374,7 +376,7 @@ public static class DeepCopyExt
         while (typeCache != null)
         {
             fieldsList.AddRange(typeCache.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy)
-                    .Where(field => forceAllFields || IsTypeToDeepCopy(field.FieldType)));
+                .Where(field => forceAllFields || IsTypeToDeepCopy(field.FieldType)));
             typeCache = typeCache.BaseType;
         }
         return fieldsList.ToArray();
@@ -394,11 +396,11 @@ public static class DeepCopyExt
         /////
         ///// fieldInfo.SetValue(boxing, <fieldtype>null);
         var fieldToNullExpression =
-                Expression.Call(
-                    Expression.Constant(field),
-                    setValueMethod,
-                    boxingVariable,
-                    Expression.Constant(null, field.FieldType));
+            Expression.Call(
+                Expression.Constant(field),
+                setValueMethod,
+                boxingVariable,
+                Expression.Constant(null, field.FieldType));
 
         expressions.Add(fieldToNullExpression);
     }

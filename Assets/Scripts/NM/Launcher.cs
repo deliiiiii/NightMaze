@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using GeneralPreview.CDMV;
+using General;
+using GeneralPreview;
+using GeneralProj;
+using UnityEngine;
+
+namespace NM;
 
 public class Launcher : Singleton<Launcher>
 {
     public List<ViewBase> ViewList = [];
-    // [SerializeField]
-    // public static GameFSM GameFSM = null!;
+    [SerializeReference] GameFSM gameFSM = null!;
+    public static GameFSM GameFSM => Instance.gameFSM;
     // ReSharper disable once Unity.IncorrectMethodSignature
     // ReSharper disable once UnusedMember.Local
     async UniTask Start()
@@ -16,7 +21,7 @@ public class Launcher : Singleton<Launcher>
         {
             await Loader.LoadAll();
             ViewList.ForEach(v => v.Bind());
-            // GameFSM = new();
+            gameFSM = new();
         }
         catch (Exception e)
         {

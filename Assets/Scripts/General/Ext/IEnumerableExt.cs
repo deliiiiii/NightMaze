@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public static class IEnumerableExt
+namespace General
 {
-    public static IEnumerable<T> DistinctBy<T, TKey>(this IEnumerable<T> items, Func<T, TKey> property)
+    public static class IEnumerableExt
     {
-        return items.GroupBy(property).Select(x => x.First());
-    }
+        public static IEnumerable<T> DistinctBy<T, TKey>(this IEnumerable<T> items, Func<T, TKey> property)
+        {
+            return items.GroupBy(property).Select(x => x.First());
+        }
     
-    public static bool AnyType<T>(this IEnumerable self)
-        => self.OfType<T>().Any();
+        public static bool AnyType<T>(this IEnumerable self)
+            => self.OfType<T>().Any();
+    }
 }

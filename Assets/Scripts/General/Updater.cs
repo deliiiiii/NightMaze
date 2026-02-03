@@ -1,23 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
+using General.BindData;
 using Sirenix.Utilities;
 using UnityEngine;
 
-public class Updater : Singleton<Updater>
+namespace General
 {
-    readonly SortedDictionary<int, HashSet<BindDataUpdate>> updateDic = new();
-    public static SortedDictionary<int, HashSet<BindDataUpdate>> UpdateDic => Instance.updateDic;
-    void Update()
+    public class Updater : Singleton<Updater>
     {
-        UpdateDic.Values.ForEach(set =>
+        readonly SortedDictionary<int, HashSet<BindDataUpdate>> updateDic = new();
+        public static SortedDictionary<int, HashSet<BindDataUpdate>> UpdateDic => Instance.updateDic;
+        void Update()
         {
-            set.ForEach(v =>
+            UpdateDic.Values.ForEach(set =>
             {
-                // if(v.GuardSet.All(guard => guard()))
+                set.ForEach(v =>
+                {
+                    // if(v.GuardSet.All(guard => guard()))
                     v.Act(Time.deltaTime);
+                });
             });
-        });
+        }
     }
 }
