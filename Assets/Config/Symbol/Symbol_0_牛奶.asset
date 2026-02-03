@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b827516ad06946f793ec88e85004fa31, type: 3}
-  m_Name: "Symbol_9_\u8461\u8404\u9152"
+  m_Name: "Symbol_0_\u725B\u5976"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,24 +21,25 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  Name: "\u8461\u8404\u9152"
-  ID: 9
+  Name: "\u725B\u5976"
+  ID: 0
   Payout: 1
   Eff:
-    rid: 232189454089453568
+    rid: 232189446185812004
   references:
     version: 2
     RefIds:
-    - rid: 232189454089453568
+    - rid: 232189446185812004
       type: {class: EffectNone, ns: NM, asm: NM}
       data:
         Evt:
-          rid: 232189454089453569
+          rid: 232189446185812005
         EffectCount:
-          rid: 232189454089453570
-    - rid: 232189454089453569
-      type: {class: EvtImmediate, ns: NM, asm: NM}
+          rid: 232189446185812006
+        EffList: []
+    - rid: 232189446185812005
+      type: {class: EventImmediate, ns: NM, asm: NM}
       data: 
-    - rid: 232189454089453570
+    - rid: 232189446185812006
       type: {class: EffectCountInfinite, ns: NM, asm: NM}
       data: 

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using GeneralProj;
+using NM;
 using Sirenix.Utilities;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
@@ -91,16 +92,17 @@ namespace RSTS.Editor
 
     public static class ScriptableObjectOModifier
     {
-        const string TargetFolderPath = "Assets/Config/RSTS/Cards";
+        const string TargetFolderPath = "Assets/Config/Symbol";
 
         static void FilterAndDo(IEnumerable<ScriptableObject> sos, out List<ScriptableObject> modified)
         {
             var tar = sos
-                // .OfType<CardConfigMulti>()
+                .OfType<SymbolConfig>()
                 // .Where(x => x.Color == ECardColor.Green)
                 .ToList();
             tar.ForEach(x =>
             {
+                // x.DesList = x.EffList;
                 // x.Upgrades.ForEach(upgrade =>
                 // {
                 //     upgrade.Des.EmbedTypes
