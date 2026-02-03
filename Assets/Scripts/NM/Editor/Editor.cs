@@ -12,7 +12,7 @@ namespace RSTS.Editor
 {
     public static class AddressableBatchProcessor
     {
-        const string TargetFolderPath = "Assets/Config/" + NameC.Name;
+        const string TargetFolderPath = "Assets/Config/"; // + NameC.Name;
         const string LabelName = NameC.ConfigTag;
 
         [MenuItem("Tools/" + NameC.Name + "/Mark Folder as Addressable with \"" + LabelName + "\" Label")]
@@ -116,7 +116,7 @@ namespace RSTS.Editor
         }
     
     
-        [MenuItem("Tools" + NameC.Name + "/Modify ScriptableObjects in Folder: ")]
+        [MenuItem("Tools/" + NameC.Name + "/Modify ScriptableObjects in Folder: ")]
         public static void ModifyScriptableObjectsInFolder()
         {
             if (!Directory.Exists(TargetFolderPath))

@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using General;
 using General.BindData;
 using Newtonsoft.Json;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace GeneralPreview;
@@ -12,7 +13,8 @@ public abstract class FSM<TThis>
 {
     public event Action<IState>? OnStateEnter;
     public event Action<IState>? OnStateExit;
-    [SerializeReference] protected IState? CurState;
+    [ShowInInspector][PropertyOrder(0)] public string CurStateName => CurState?.GetType().Name ?? "Null";
+    [SerializeReference][ReadOnly][PropertyOrder(1)] protected IState? CurState;
     bool isLaunched;
     [JsonIgnore] BindDataUpdate? selfTickBind;
 

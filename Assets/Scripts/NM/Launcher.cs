@@ -17,6 +17,7 @@ public class Launcher : Singleton<Launcher>
     // ReSharper disable once UnusedMember.Local
     async UniTask Start()
     {
+        Binder.FromTick(_ => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint()).Bind();
         try
         {
             await Loader.LoadAll();
@@ -28,9 +29,4 @@ public class Launcher : Singleton<Launcher>
             MyDebug.LogError(e);
         }
     }
-    
-    // void Update()
-    // {
-    //     // Sirenix.Utilities.Editor.GUIHelper.RequestRepaint();
-    // }
 }
