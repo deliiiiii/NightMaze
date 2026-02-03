@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    // public int Pro => field;
+    public int Pro => field;
     async void Start()
     {
         try

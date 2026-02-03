@@ -1,0 +1,16 @@
+{
+    "name": "GeneralPreview",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d7cd482536f444347ae1515d520f0e9b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1696,7 +1696,7 @@ namespace Sirenix.OdinInspector.Modules.Addressables.Editor
     public static class OdinAddressableUtility
     {
         private readonly static Action openAddressableWindowAction;
-        private static bool hasLoggedPackablesMissingError = false;
+        // private static bool hasLoggedPackablesMissingError = false;
         
         static OdinAddressableUtility()
         {
