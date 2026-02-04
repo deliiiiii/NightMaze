@@ -1,2 +1,2 @@
 # NightMaze
-Target is making a Puzzle&Strategy game.
+Target is making a LogicPuzzle&Strategy game.
