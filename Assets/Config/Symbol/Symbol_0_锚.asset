@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b827516ad06946f793ec88e85004fa31, type: 3}
-  m_Name: "Symbol_1_\u732B"
+  m_Name: "Symbol_0_\u951A"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -23,31 +23,39 @@ MonoBehaviour:
     SerializationNodes:
     - Name: Eff
       Entry: 7
-      Data: 0|NM.EffectNone, NM
-    - Name: Evt
+      Data: 0|NM.EffOnSymbol, NM
+    - Name: Selector
       Entry: 7
-      Data: 1|NM.EvtImmediate, NM
+      Data: 1|NM.SelectSymbolSelf, NM
     - Name: 
       Entry: 8
       Data: 
-    - Name: EffectCount
+    - Name: Filter
       Entry: 7
-      Data: 2|NM.EffectCountInfinite, NM
+      Data: 2|NM.FilterSymbolInCorner, NM
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DoCount
+      Entry: 7
+      Data: 3|NM.DoCountInfinite, NM
     - Name: 
       Entry: 8
       Data: 
     - Name: DoList
       Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[NM.DoBase, NM]], mscorlib
+      Data: 4|System.Collections.Generic.List`1[[NM.DoBase`1[[NM.SymbolConfig, NM]],
+        NM]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 4|NM.DoAddGivePermanent, NM
-    - Name: ThenEffList
+      Data: 5|NM.DoSymbolGiveAddTemp, NM
+    - Name: EffList
       Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[NM.EffectBase, NM]], mscorlib
+      Data: 6|System.Collections.Generic.List`1[[NM.EffOnDo`2[[NM.SymbolConfig, NM],[NM.DoBase`1[[NM.SymbolConfig,
+        NM]], NM]], NM]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -57,9 +65,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: Add
+    - Name: AddTemp
       Entry: 3
-      Data: 0
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -72,6 +80,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  Name: "\u732B"
-  ID: 1
+  Name: "\u951A"
+  ID: 0
   Payout: 1
