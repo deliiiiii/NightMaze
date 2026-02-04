@@ -32,7 +32,7 @@ public abstract class ConfigMulti: ConfigBase, IRefMulti
 
     [OnValueChanged(nameof(OnNameAndIdChanged))]
     [ValidateInput(nameof(CheckId), "ID不能为空且不能为负数")]
-    [ValidateInput(nameof(CheckNameAndIdIdentical), "ID在当前文件夹(配置类相同)有重复")]
+    [ValidateInput(nameof(CheckNameAndIdIdentical), "名称为空，或ID在当前文件夹(配置类相同)有重复")]
     public int ID;
     
     protected abstract string PrefixName { get; }
@@ -47,8 +47,8 @@ public abstract class ConfigMulti: ConfigBase, IRefMulti
     bool CheckNameAndIdIdentical()
     {
 #if UNITY_EDITOR
-        // if (!CheckName())
-        //     return false;
+        if (!CheckName())
+            return false;
         var thisPath = UnityEditor.AssetDatabase.GetAssetPath(this);
         var directoryName = Path.GetDirectoryName(thisPath);
         // 获取该目录下所有ScriptableObject

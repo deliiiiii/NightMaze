@@ -1,99 +1,115 @@
-﻿using System;
-using System.Collections.Generic;
-using Sirenix.OdinInspector;
+﻿// using System.Collections.Generic;
+// using Sirenix.OdinInspector;
+// using Sirenix.Serialization;
+// using Sirenix.Utilities;
+// using UnityEngine;
 
-namespace NM;
-public abstract class EffBase;
-public class EffNone : EffBase;
-public abstract class EffOn<T> : EffBase
-{
-    [Required] public required SelectDiscardSymbol<T> Selector;
-    [Required] public required FilterBase<T> Filter;
-    [Required] public required DoCountBase DoCount = new DoCountInfinite();
-    [Required] public List<DoBase<T>> DoList = [];
-}
-public class EffOnSymbol : EffOn<SymbolConfig>
-{
-    public EffOnSymbol()
-    {
-        Selector = new SelectSymbolSelf();
-        Filter = new FilterTrue<SymbolConfig>();
-    }
-}
-public class EffOnDo<T, TDo> : EffBase where TDo : DoBase<T>
-{
-    [Required] public FilterBase<TDo> Filter = new FilterTrue<TDo>();
-    [Required] public List<DoBase<TDo>> DoList = [];
-}
+// namespace NM;
 
-public abstract class SelectorBase<TIn, TOut>;
-public class SelectFilteredSymbol : SelectorBase<SymbolConfig, SymbolConfig>;
-public abstract class SelectDiscardSymbol<TOut> : SelectorBase<SymbolConfig, TOut>;
-
-public class SelectSymbolAll : SelectDiscardSymbol<SymbolConfig>;
-public class SelectSymbolSelf : SelectDiscardSymbol<SymbolConfig>;
-public class SelectSymbolOne : SelectDiscardSymbol<SymbolConfig>
-{
-    [Required] public SymbolConfig One = null!;
-}
-public class SelectSymbolSet : SelectDiscardSymbol<SymbolConfig>
-{
-    [Required] public SymbolConfigSet Set = null!;
-}
-
-
-public abstract class FilterBase<T>;
-public class FilterTrue<T> : FilterBase<T>;
-public abstract class FilterSymbolBase : FilterBase<SymbolConfig>;
-public class FilterSymbolAdjacent : FilterSymbolBase;
-public class FilterSymbolEveryNSpin : FilterSymbolBase
-{
-    [MinValue(1)]public int N = 1;
-}
-public class FilterSymbolInCorner : FilterSymbolBase;
-public class FilterSymbolDestroyed : FilterSymbolBase;
-public class FilterSymbolRemoved : FilterSymbolBase;
-
-
-#region DoCount
-[Serializable]
-public abstract class DoCountBase;
-public class DoCountInfinite : DoCountBase;
-public class DoCountNumber : DoCountBase
-{
-    [MinValue(1)]public int N = 1;
-}
-#endregion
-
-
-public abstract class DoBase<T>
-{
-    [PropertyOrder(999), Required] public List<EffOnDo<T, DoBase<T>>> EffList = [];
-}
-public class DoSymbolGiveAddTemp : DoBase<SymbolConfig>
-{
-    [MinValue(1)]public int AddTemp = 1;
-}
-public class DoSymbolGiveAddPermanent : DoBase<SymbolConfig>
-{
-    [MinValue(1)]public int AddPermanent = 1;
-}
-public class DoSymbolStock : DoBase<SymbolConfig>
-{
-    [MinValue(1)]public int N = 1;
-}
-public class DoSymbolAddSymbol : DoBase<SymbolConfig>
-{
-    [Required] public SelectorBase<SymbolConfig, SymbolConfig> ToAddSelector = null!;
-}
-public class DoSymbolDestroySymbol : DoBase<SymbolConfig>
-{
-    [Required] public SelectorBase<SymbolConfig, SymbolConfig> ToAddSelector = null!;
-}
-// void Test()
+// #region DoCount
+// public abstract class DoCountBase;
+// public class DoCountInfinite : DoCountBase;
+// public class DoCountNumber : DoCountBase
 // {
-//     global
-//         .Select(() => selfSymbol)
-//         .Where()
-//         .Do(s => addSymbol(s => sa));
+//     [MinValue(1)]public int N = 1;
 // }
+// #endregion
+
+// public abstract class DoBase;
+// public abstract class DoSome : DoBase
+// {
+//     [LabelText("可执行次数"),Required] public required DoCountBase DoCount = new DoCountInfinite();
+//     [LabelText("当变量..."), Required] public required ISelector Selector;
+//
+//     public interface ISelector;
+//     public abstract class SelectBase<T> : ITransformBase<T>, ISelector
+//     {
+//         public abstract class FilterBase;
+//         [LabelText("且满足...时"), Required, PropertyOrder(999)] public List<FilterBase> FilterList = [];
+//     }
+//
+//     public abstract class ITransformBase<TRet>;
+//     public class DirectInt(int value) : ITransformBase<int>
+//     {
+//         [LabelText("值")] public int Value = value;
+//     }
+// }
+// public class DoNone : DoBase;
+
+// public abstract class DoSymbolBase : DoSome
+// {
+//     [LabelText("主语"), Required] public ITransformBase<SymbolConfig> OnSymbol = new TransformSymbolFromSelect();
+// }
+// public abstract class SelectSymbolBase : DoSymbolBase.SelectBase<SymbolConfig>;
+// public class SelectSymbolShown : SelectSymbolBase;
+// public class SelectSymbolSelf : SelectSymbolBase;
+// public class SelectSymbolOne : SelectSymbolBase
+// {
+//     [LabelText("符号"), Required] public SymbolConfig One = null!;
+// }
+// public class SelectSymbolSet : SelectSymbolBase
+// {
+//     [LabelText("符号组"), Required] public SymbolConfigSet Set = null!;
+// }
+// public abstract class FilterSymbolBase : SelectSymbolBase.FilterBase;
+// public class FilterSymbolAdjacent : FilterSymbolBase;
+// public class FilterSymbolEveryNSpin : FilterSymbolBase
+// {
+//     [Required] public int N = 1;
+// }
+// public class FilterSymbolInCorner : FilterSymbolBase;
+// public class FilterSymbolDestroyed : FilterSymbolBase;
+// public class FilterSymbolRemoved : FilterSymbolBase;
+// public class FilterSymbolRemoveSymbol : FilterSymbolBase
+// {
+    // [LabelText("已移除的符号"), Required] public DoSymbolDestroySymbol.ITransformBase<SymbolConfig> SymbolRemoved = new TransformSymbolFromSelect();
+// }
+// public class TransformSymbolFromSelect : DoSymbolBase.ITransformBase<SymbolConfig>;
+//
+// public class DoSymbolGiveAddTemp : DoSymbolBase
+// {
+//     [LabelText("临时加成值"), Required] public ITransformBase<int> AddTemp = new DirectInt(1);
+// }
+// public class DoSymbolGiveAddPermanent : DoSymbolBase
+// {
+//     [LabelText("永久加成值"), Required] public ITransformBase<int> AddPermanent = new DirectInt(1);
+// }
+// public class DoSymbolStock : DoSymbolBase
+// {
+//     [Required] public ITransformBase<int> N = new DirectInt(1);
+// }
+// public class DoSymbolAddSymbol : DoSymbolBase
+// {
+//     [LabelText("欲添加的符号"), Required] public ITransformBase<SymbolConfig> SymbolToAdd = new TransformSymbolFromSelect();
+// }
+// public class DoSymbolDestroySymbol : DoSymbolBase
+// {
+//     [LabelText("欲消除的符号"), Required] public ITransformBase<SymbolConfig> SymbolToDestroy = new TransformSymbolFromSelect();
+// }
+
+// public abstract class DoDeckBase : DoSome;
+// public class SelectDeck : DoDeckBase.SelectBase<Deck>;
+// public abstract class FilterDeckBase : SelectDeck.FilterBase;
+// public class FilterDeckCoinOverX : FilterDeckBase
+// {
+//     public int X;
+// }
+// public class FilterDeckHasEssence : FilterDeckBase;
+// public class DoDeckAddCoinX : DoDeckBase
+// {
+//     public int X;
+// }
+//
+// public class Deck
+// {
+//     public int Remove;
+//     public int Refresh;
+//     public int Essence;
+// }
+
+
+// Banana Peel:
+// global.Select(() => s["thief"])
+//        .Where(isAdjacent)
+//        .Do(s => Destroy(this, s))
+//        .NextDo(destroy(t, s) => Remove(t, t))

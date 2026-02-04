@@ -15,50 +15,72 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 94a10ba91e45c4e4eb015a9d44ceb3a3, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: Eff
-      Entry: 7
-      Data: 0|NM.EffOnSymbol, NM
-    - Name: Selector
-      Entry: 7
-      Data: 1|NM.SelectSymbolSelf, NM
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Filter
-      Entry: 7
-      Data: 2|NM.FilterSymbolDestroyed, NM
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: DoCount
-      Entry: 7
-      Data: 3|NM.DoCountNumber, NM
-    - Name: Count
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: DoList
       Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[NM.DoBase`1[[NM.SymbolConfig, NM]],
-        NM]], mscorlib
+      Data: 0|System.Collections.Generic.List`1[[NM.DoBase, NM]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 5|NM.DoSymbolAddSymbol, NM
-    - Name: EffList
+      Data: 1|NM.DoSymbolAddSymbol, NM
+    - Name: DoCount
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[NM.EffOnDo`2[[NM.SymbolConfig, NM],[NM.DoBase`1[[NM.SymbolConfig,
-        NM]], NM]], NM]], mscorlib
+      Data: 2|NM.DoCountNumber, NM
+    - Name: N
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Selector
+      Entry: 7
+      Data: 3|NM.SelectSymbolSelf, NM
+    - Name: FilterList
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[NM.DoSome+SelectBase`1+FilterBase[[NM.SymbolConfig,
+        NM]], NM]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 5|NM.FilterSymbolDestroyed, NM
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: NextDo
+      Entry: 6
+      Data: 
+    - Name: OnSymbol
+      Entry: 7
+      Data: 6|NM.TransformSymbolFromSelect, NM
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SymbolToAdd
+      Entry: 7
+      Data: 7|NM.SelectSymbolOne, NM
+    - Name: FilterList
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[NM.DoSome+SelectBase`1+FilterBase[[NM.SymbolConfig,
+        NM]], NM]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -68,9 +90,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: ToAddSelector
-      Entry: 7
-      Data: 7|NM.SelectFilteredSymbol, NM
+    - Name: One
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -83,9 +105,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 8
-      Data: 
   Name: "\u9999\u8549"
   ID: 1
+  Rarity: 0
   Payout: 1
