@@ -11,5 +11,7 @@ public class SymbolConfig : ConfigMulti<SymbolConfig>
     protected override string PrefixName => "Symbol";
     [LabelText("稀有度")] public ERarity Rarity;
     [LabelText("白值")]public int Payout = 1;
-    [LabelText("旋转后, 自发根据事件的行为"), Required] public List<IEvtReceiver> EvtList = [];
+    [InfoBox("下面的列表元素各自有各自的触发条件, 可触发任意多个, 多个同时触发时按列表顺序执行")]
+    [LabelText("旋转: 事件列表"), Required]
+    public List<EvtReceiverBase> EvtList = [];
 }

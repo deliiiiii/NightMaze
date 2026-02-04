@@ -15,89 +15,20 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 94a10ba91e45c4e4eb015a9d44ceb3a3, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: DoList
+    - Name: EvtList
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[NM.DoBase, NM]], mscorlib
+      Data: 0|System.Collections.Generic.List`1[[NM.IEvtReceiver, NM]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
-      Entry: 7
-      Data: 1|NM.DoSymbolAddSymbol, NM
-    - Name: DoCount
-      Entry: 7
-      Data: 2|NM.DoCountNumber, NM
-    - Name: N
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Selector
-      Entry: 7
-      Data: 3|NM.SelectSymbolSelf, NM
-    - Name: FilterList
-      Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[NM.DoSome+SelectBase`1+FilterBase[[NM.SymbolConfig,
-        NM]], NM]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 5|NM.FilterSymbolDestroyed, NM
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: NextDo
       Entry: 6
-      Data: 
-    - Name: OnSymbol
-      Entry: 7
-      Data: 6|NM.TransformSymbolFromSelect, NM
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: SymbolToAdd
-      Entry: 7
-      Data: 7|NM.SelectSymbolOne, NM
-    - Name: FilterList
-      Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[NM.DoSome+SelectBase`1+FilterBase[[NM.SymbolConfig,
-        NM]], NM]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: One
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
       Data: 
     - Name: 
       Entry: 13
