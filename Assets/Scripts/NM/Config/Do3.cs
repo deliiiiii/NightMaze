@@ -27,30 +27,34 @@ public abstract class EvtReceiverBase
 }
 public abstract class EvtReceiver1<T1> : EvtReceiverBase
 {
-    [LabelText("且事件的参数1满足任一.."), Required, PropertyOrder(-1)] public List<FilterBase<T1>> Filter1OrList = [];
+    [LabelText("且事件的参数1满足任一.."), PropertyOrder(-1)] public List<FilterBase<T1>>? Filter1OrList = [];
 }
 public abstract class EvtReceiver2<T1, T2> : EvtReceiverBase
 {   
-    [LabelText("且事件的参数1满足任一..(空列表视为直接满足)"), Required, PropertyOrder(-2)] public List<FilterBase<T1>> Filter1OrList = [];
-    [LabelText("且事件的参数2满足任一..(空列表视为直接满足)"), Required, PropertyOrder(-1)] public List<FilterBase<T2>> Filter2OrList = [];
+    [LabelText("且事件的参数1满足任一..(空列表/None视为直接满足)"), PropertyOrder(-2)] public List<FilterBase<T1>>? Filter1OrList = [];
+    [LabelText("且事件的参数2满足任一..(空列表/None视为直接满足)"), PropertyOrder(-1)] public List<FilterBase<T2>>? Filter2OrList = [];
 }
-[TypeRegistryItem("旋转后的审视自身\t(SymbolConfig)")]
-public class REvtCheckSelf : EvtReceiver1<SymbolConfig>;
-[TypeRegistryItem("符号每旋转N次\t(SymbolConfig, Int)")]
+[TypeRegistryItem("直接审视某符号\t(SymbolConfig)")]
+public class REvtCheckSymbol : EvtReceiver1<SymbolConfig>;
+[TypeRegistryItem("某符号与某符号相邻时\t(SymbolConfig, SymbolConfig)")]
+public class REvtAdjacentToSymbol : EvtReceiver2<SymbolConfig, SymbolConfig>;
+[TypeRegistryItem("某符号每旋转N次\t(SymbolConfig, Int)")]
 public class REvtSymbolEverySpinN : EvtReceiver2<SymbolConfig, int>;
-[TypeRegistryItem("符号添加符号时\t(SymbolConfig, SymbolConfig)")]
+[TypeRegistryItem("某符号添加某符号时\t(SymbolConfig, SymbolConfig)")]
 public class REvtSymbolAddSymbol : EvtReceiver2<SymbolConfig, SymbolConfig>;
-[TypeRegistryItem("符号消除符号时\t(SymbolConfig, SymbolConfig)")]
+[TypeRegistryItem("某符号消除某符号时\t(SymbolConfig, SymbolConfig)")]
 public class REvtSymbolDestroySymbol : EvtReceiver2<SymbolConfig, SymbolConfig>;
-[TypeRegistryItem("符号移除符号时\t(SymbolConfig, SymbolConfig)")]
+[TypeRegistryItem("某符号移除某符号时\t(SymbolConfig, SymbolConfig)")]
 public class REvtSymbolRemoveSymbol : EvtReceiver2<SymbolConfig, SymbolConfig>;
-[TypeRegistryItem("符号临时加成时\t(SymbolConfig, int)")]
+[TypeRegistryItem("某符号临时加算时\t(SymbolConfig, int)")]
 public class REvtSymbolPayoutAddTemp : EvtReceiver2<SymbolConfig, int>;
-[TypeRegistryItem("符号永久加成时\t(SymbolConfig, int)")]
+[TypeRegistryItem("某符号临时乘算时\t(SymbolConfig, int)")]
+public class REvtSymbolPayoutMulTemp : EvtReceiver2<SymbolConfig, int>;
+[TypeRegistryItem("某符号永久加算时\t(SymbolConfig, int)")]
 public class REvtSymbolPayoutAddPermanent : EvtReceiver2<SymbolConfig, int>;
-[TypeRegistryItem("符号积攒X时\t(SymbolConfig, int)")]
+[TypeRegistryItem("某符号积攒X时\t(SymbolConfig, int)")]
 public class REvtSymbolStock : EvtReceiver2<SymbolConfig, int>;
-[TypeRegistryItem("玩家移除符号时\t(SymbolConfig)")]
+[TypeRegistryItem("玩家移除某符号时\t(SymbolConfig)")]
 public class REvtPlayerRemoveSymbol : EvtReceiver1<SymbolConfig>;
 public abstract class EvtSenderBase
 {
@@ -84,7 +88,20 @@ public abstract class EvtSenderBase
     
     protected static List<ValueDropdownItem<SelectBase<T>>> GetSelectorList<T>(InspectorProperty property)
     {
+        var sourceTypes = GetSourceTypes(property);
         var ret = typeof(SelectBase<T>).GetSubTypes()
+            .Where(t =>
+            {
+                if (!t.ImplementsOpenGenericClass(typeof(SelectCustomBase<>)))
+                    return true;
+                return sourceTypes.Count switch
+                {
+                    1 => t.GetArgumentsOfInheritedOpenGenericClass(typeof(SelectCustomBase<,>))[0] == sourceTypes[0],
+                    2 => t.GetArgumentsOfInheritedOpenGenericClass(typeof(SelectCustomBase<,,>))[0] == sourceTypes[0]
+                         && t.GetArgumentsOfInheritedOpenGenericClass(typeof(SelectCustomBase<,,>))[1] == sourceTypes[1],
+                    _ => true
+                };
+            })
             .Select(t =>
             {
                 var instance = (SelectBase<T>)Activator.CreateInstance(t);
@@ -92,14 +109,14 @@ public abstract class EvtSenderBase
                 return new ValueDropdownItem<SelectBase<T>>() { Text = label, Value = instance };
             })
             .ToList();
-        GetSourceTypes(property).ForEach(kv =>
+        sourceTypes.ForEach(kv =>
         {
             var nth = kv.Key + 1;
             if (kv.Value == typeof(T))
             {
                 ret.Add(new ValueDropdownItem<SelectBase<T>>()
                 {
-                    Text = $"选择第{nth}个事件参数", 
+                    Text = $"选择第{nth}个事件参数",
                     Value = new SelectFromEvtArgNth<T>(nth)
                 });
             }
@@ -133,16 +150,27 @@ public abstract class EvtSender2<T1, T2, TEvt2> : EvtSenderBase where TEvt2 : Ev
     List<ValueDropdownItem<SelectBase<T2>>> GetSelectorsT2(InspectorProperty property) => GetSelectorList<T2>(property);
 #endif
 }
-[TypeRegistryItem("使符号临时加成\t(SymbolConfig, Int)")]
+[TypeRegistryItem("使某符号临时加算若干\t(SymbolConfig, Int)")]
 public class SEvtSymbolPayoutAddTemp : EvtSender2<SymbolConfig, int, REvtSymbolPayoutAddTemp>;
-
+[TypeRegistryItem("使某符号临时乘算若干\t(SymbolConfig, Int)")]
+public class SEvtSymbolPayoutMulTemp : EvtSender2<SymbolConfig, int, REvtSymbolPayoutMulTemp>;
+[TypeRegistryItem("使某符号添加某符号\t(SymbolConfig, SymbolConfig)")]
+public class SEvtSymbolAddSymbol : EvtSender2<SymbolConfig, SymbolConfig, REvtSymbolAddSymbol>;
+[TypeRegistryItem("使某符号消除某符号\t(SymbolConfig, SymbolConfig)")]
+public class SEvtSymbolDestroySymbol : EvtSender2<SymbolConfig, SymbolConfig, REvtSymbolDestroySymbol>;
+[TypeRegistryItem("使某符号积攒N\t(SymbolConfig, int)")]
+public class SEvtSymbolStock : EvtSender2<SymbolConfig, int, REvtSymbolStock>;
 
 public abstract class FilterBase<T>
 {
-    [InfoBox("下面的\"且\"可为None, None代表本行的\"且\"逻辑结束")]
+    // [InfoBox("下面的\"且\"可为None, None代表本行的\"且\"逻辑结束")]
     [LabelText("且")] public FilterBase<T>? And;
 }
 public abstract class FilterSymbolBase : FilterBase<SymbolConfig>;
+[TypeRegistryItem("符号为自身")]
+public class FilterSymbolIsSelf : FilterSymbolBase;
+[TypeRegistryItem("符号在老虎机中出现")]
+public class FilterSymbolShown : FilterSymbolBase;
 [TypeRegistryItem("符号在角落")]
 public class FilterSymbolInCorner : FilterSymbolBase;
 [TypeRegistryItem("符号属于指定一个")]
@@ -153,7 +181,7 @@ public class FilterSymbolIsOne : FilterSymbolBase
 [TypeRegistryItem("符号属于指定一组")]
 public class FilterSymbolIsOfList : FilterSymbolBase
 {
-    [LabelText("选择符号组"), Required]public SelectBase<List<SymbolConfig>> ListSymbolSelector = new SelectDirectSetSymbol();
+    [LabelText("选择一组符号"), Required]public SelectBase<List<SymbolConfig>> ListSymbolSelector = new SelectDirectSetSymbol();
 }
 
 public abstract class SelectBase<T>
@@ -163,36 +191,44 @@ public abstract class SelectBase<T>
         return GetType().GetAttribute<SelectorAttribute>()?.Text ?? GetType().Name;
     }
 }
-public class SelectFromEvtArgNth<T>(int n) : SelectBase<T>
+
+public abstract class SelectCustomBase<T> : SelectBase<T>;
+public abstract class SelectCustomBase<T1, T> : SelectCustomBase<T>;
+public abstract class SelectCustomBase<T1, T2, T> : SelectCustomBase<T>;
+[TypeRegistryItem("xjbs")]
+public class SelectXxx : SelectCustomBase<SymbolConfig, SymbolConfig, int>;
+public abstract class SelectNotDirectBase<T> : SelectBase<T>
+{
+    [LabelText("且满足任一..(空列表/None视为直接满足)"), PropertyOrder(-1)] public List<FilterBase<T>>? FilterOrList = [];
+}
+public abstract class SelectDirectBase<T> : SelectBase<T>;
+
+public class SelectFromEvtArgNth<T>(int n) : SelectNotDirectBase<T>
 {
     [HideInInspector]public int N = n;
     public override string ToString() => $"选择第{N}个事件参数";
 }
-// public class SelectSymbolFromEvtArg : SelectFromEvtArg<SymbolConfig>;
-// public class SelectIntFromEvtArg : SelectFromEvtArg<int>;
 [Selector("直接Int")]
-public class SelectDirectInt : SelectBase<int>
+public class SelectDirectInt : SelectDirectBase<int>
 {
     public int Value = 1;
 }
-
-[Selector("老虎机中已出现符号")]
-public class SelectSymbolShown : SelectBase<List<SymbolConfig>>;
+public interface ISelectSymbol;
 [Selector("符号自身")]
-public class SelectSymbolSelf : SelectBase<SymbolConfig>;
+public class SelectSymbolSelf : SelectNotDirectBase<SymbolConfig>, ISelectSymbol;
 [Selector("指定一个符号")]
-public class SelectDirectOneSymbol : SelectBase<SymbolConfig>
+public class SelectDirectOneSymbol : SelectDirectBase<SymbolConfig>, ISelectSymbol
 {
     [LabelText("符号"), Required] public SymbolConfig One = null!;
 }
 [Selector("指定一组符号")]
-public class SelectDirectSetSymbol : SelectBase<List<SymbolConfig>>
+public class SelectDirectSetSymbol : SelectDirectBase<List<SymbolConfig>>, ISelectSymbol
 {
     [LabelText("符号组"), Required] public SymbolConfigSet Set = null!;
 }
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class SelectorAttribute(string text) : Attribute
+public sealed class SelectorAttribute(string text) : TypeRegistryItemAttribute(text)
 {
     public readonly string Text = text;
 }

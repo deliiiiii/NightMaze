@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 94a10ba91e45c4e4eb015a9d44ceb3a3, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -23,12 +24,98 @@ MonoBehaviour:
     SerializationNodes:
     - Name: EvtList
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[NM.IEvtReceiver, NM]], mscorlib
+      Data: 0|System.Collections.Generic.List`1[[NM.EvtReceiverBase, NM]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
+      Entry: 7
+      Data: 1|NM.REvtSymbolDestroySymbol, NM
+    - Name: DoCount
+      Entry: 7
+      Data: 2|NM.DoCountNumber, NM
+    - Name: N
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EvtList
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[NM.EvtSenderBase, NM]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 4|NM.SEvtSymbolAddSymbol, NM
+    - Name: Arg1Selector
+      Entry: 7
+      Data: 5|NM.SelectSymbolSelf, NM
+    - Name: FilterOrList
       Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Arg2Selector
+      Entry: 7
+      Data: 6|NM.SelectDirectOneSymbol, NM
+    - Name: FilterOrList
+      Entry: 6
+      Data: 
+    - Name: One
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Filter1OrList
+      Entry: 7
+      Data: 7|System.Collections.Generic.List`1[[NM.FilterBase`1[[NM.SymbolConfig,
+        NM]], NM]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Filter2OrList
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[NM.FilterBase`1[[NM.SymbolConfig,
+        NM]], NM]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 9|NM.FilterSymbolIsSelf, NM
+    - Name: And
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 13

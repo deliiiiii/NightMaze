@@ -29,13 +29,10 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|NM.REvtSymbolDestroySymbol, NM
+      Data: 1|NM.REvtCheckSymbol, NM
     - Name: DoCount
       Entry: 7
-      Data: 2|NM.DoCountNumber, NM
-    - Name: N
-      Entry: 3
-      Data: 1
+      Data: 2|NM.DoCountInfinite, NM
     - Name: 
       Entry: 8
       Data: 
@@ -51,11 +48,30 @@ MonoBehaviour:
     - Name: Arg1Selector
       Entry: 7
       Data: 5|NM.SelectSymbolSelf, NM
+    - Name: FilterOrList
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[NM.FilterBase`1[[NM.SymbolConfig,
+        NM]], NM]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: Arg2Selector
-      Entry: 6
+      Entry: 7
+      Data: 7|NM.SelectDirectInt, NM
+    - Name: Value
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 8
@@ -68,14 +84,17 @@ MonoBehaviour:
       Data: 
     - Name: Filter1OrList
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[NM.FilterBase`1[[NM.SymbolConfig,
+      Data: 8|System.Collections.Generic.List`1[[NM.FilterBase`1[[NM.SymbolConfig,
         NM]], NM]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 7|NM.FilterSymbolInCorner, NM
+      Data: 9|NM.FilterSymbolIsSelf, NM
+    - Name: And
+      Entry: 7
+      Data: 10|NM.FilterSymbolInCorner, NM
     - Name: And
       Entry: 6
       Data: 
@@ -83,18 +102,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
       Entry: 8
       Data: 
-    - Name: Filter2OrList
-      Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[NM.FilterBase`1[[NM.SymbolConfig,
-        NM]], NM]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
     - Name: 
       Entry: 13
       Data: 

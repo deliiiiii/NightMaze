@@ -21,12 +21,96 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: Eff
+    - Name: EvtList
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[NM.EffBase, NM]], mscorlib
+      Data: 0|System.Collections.Generic.List`1[[NM.EvtReceiverBase, NM]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|NM.REvtSymbolEverySpinN, NM
+    - Name: DoCount
+      Entry: 7
+      Data: 2|NM.DoCountInfinite, NM
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EvtList
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[NM.EvtSenderBase, NM]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 4|NM.SEvtSymbolStock, NM
+    - Name: Arg1Selector
+      Entry: 7
+      Data: 5|NM.SelectSymbolSelf, NM
+    - Name: FilterOrList
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[NM.FilterBase`1[[NM.SymbolConfig,
+        NM]], NM]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Arg2Selector
+      Entry: 7
+      Data: 7|NM.SelectDirectInt, NM
+    - Name: Value
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Filter1OrList
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[NM.FilterBase`1[[NM.SymbolConfig,
+        NM]], NM]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Filter2OrList
+      Entry: 7
+      Data: 9|System.Collections.Generic.List`1[[NM.FilterBase`1[[System.Int32, mscorlib]],
+        NM]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
