@@ -185,6 +185,11 @@ public class FilterSymbolIsOfList : FilterSymbolBase
 {
     [LabelText("选择一组符号"), Required]public SelectBase<List<SymbolConfig>> ListSymbolSelector = new SelectDirectSetSymbol();
 }
+[TypeRegistryItem("N等于")]
+public class FilterNEqual : FilterBase<int>
+{
+    [LabelText("输入目标值"), Required]public SelectBase<int> IntSelector = new SelectDirectInt();
+}
 
 public abstract class SelectBase<T>
 {
@@ -234,3 +239,4 @@ public sealed class SelectorAttribute(string text) : TypeRegistryItemAttribute(t
 {
     public readonly string Text = text;
 }
+
