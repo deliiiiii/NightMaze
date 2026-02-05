@@ -96,9 +96,11 @@ public abstract class EvtSenderBase
                     return true;
                 return sourceTypes.Count switch
                 {
-                    1 => t.GetArgumentsOfInheritedOpenGenericClass(typeof(SelectCustomBase<,>))[0] == sourceTypes[0],
-                    2 => t.GetArgumentsOfInheritedOpenGenericClass(typeof(SelectCustomBase<,,>))[0] == sourceTypes[0]
-                         && t.GetArgumentsOfInheritedOpenGenericClass(typeof(SelectCustomBase<,,>))[1] == sourceTypes[1],
+                    1 => t.ImplementsOpenGenericClass(typeof(SelectCustomBase<,>))
+                            && t.GetArgumentsOfInheritedOpenGenericClass(typeof(SelectCustomBase<,>))[0] == sourceTypes[0],
+                    2 => t.ImplementsOpenGenericClass(typeof(SelectCustomBase<,,>))
+                            && t.GetArgumentsOfInheritedOpenGenericClass(typeof(SelectCustomBase<,,>))[0] == sourceTypes[0]
+                            && t.GetArgumentsOfInheritedOpenGenericClass(typeof(SelectCustomBase<,,>))[1] == sourceTypes[1],
                     _ => true
                 };
             })

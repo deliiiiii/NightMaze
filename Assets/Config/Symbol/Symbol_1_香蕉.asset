@@ -61,9 +61,6 @@ MonoBehaviour:
     - Name: Arg2Selector
       Entry: 7
       Data: 6|NM.SelectDirectOneSymbol, NM
-    - Name: FilterOrList
-      Entry: 6
-      Data: 
     - Name: One
       Entry: 10
       Data: 0
