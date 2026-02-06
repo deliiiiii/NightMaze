@@ -3,7 +3,7 @@ using General;
 using Sirenix.OdinInspector.Editor;
 using UnityEngine;
 
-namespace RSTS.Editor
+namespace NM.Editor
 {
     public class ObservableDrawer<T> : OdinValueDrawer<Observable<T>> where T : struct
     {

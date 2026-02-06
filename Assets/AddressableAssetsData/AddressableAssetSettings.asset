@@ -88,6 +88,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - NMConfig
+    - NMArt
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 7f20eaf2a4350ba4da9d71d358f9f8a2, type: 2}
