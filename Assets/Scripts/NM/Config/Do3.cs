@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using UnityEngine;
-#if UNITY_EDITOR
-using Sirenix.OdinInspector.Editor;
-#endif
 
-namespace NM;
+namespace NM.Config;
 
 #region DoCount
 public abstract class DoCountBase;

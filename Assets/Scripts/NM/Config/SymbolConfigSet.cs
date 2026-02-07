@@ -3,7 +3,7 @@ using GeneralPreview;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace NM;
+namespace NM.Config;
 
 [CreateAssetMenu(fileName = "NewSymbolSet", menuName = "NM/" + nameof(SymbolConfigSet))]
 public class SymbolConfigSet : ConfigMulti<SymbolConfigSet>

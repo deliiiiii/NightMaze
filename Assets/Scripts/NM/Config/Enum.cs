@@ -1,7 +1,6 @@
 ﻿using Sirenix.OdinInspector;
-using UnityEngine;
 
-namespace NM;
+namespace NM.Config;
 
 public enum ERarity
 {

@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using GeneralProj;
+using NM.Data;
 using UnityEngine;
 
 namespace NM;
@@ -12,7 +13,6 @@ public class Launcher : Singleton<Launcher>
 {
     public List<ViewBase> ViewList = [];
     [SerializeReference] GameFSM gameFSM = null!;
-    public static GameFSM GameFSM => Instance.gameFSM;
     // ReSharper disable once Unity.IncorrectMethodSignature
     // ReSharper disable once UnusedMember.Local
     async UniTask Start()
@@ -24,7 +24,7 @@ public class Launcher : Singleton<Launcher>
         {
             await Loader.LoadAll();
             ViewList.ForEach(v => v.Bind());
-            gameFSM = new();
+            gameFSM = new GameFSM();
         }
         catch (Exception e)
         {
