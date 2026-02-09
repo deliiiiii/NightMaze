@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using General;
 using General.BindData;
 using Newtonsoft.Json;
@@ -27,8 +26,8 @@ public abstract class FSM<TThis>
         }
         isLaunched = true;
         EnterState<TSubState>();
-        selfTickBind = Binder.FromTick(Tick);
-        selfTickBind.Bind();
+        // selfTickBind = Binder.FromTick(Tick);
+        // selfTickBind.Bind();
     }
     public void Release()
     {
@@ -40,56 +39,54 @@ public abstract class FSM<TThis>
         isLaunched = false;
         CurState?.OnExit();
         CurState = null;
-        selfTickBind?.UnBind();
-        selfTickBind = null;
+        // selfTickBind?.UnBind();
+        // selfTickBind = null;
     }
-    public void EnterState<TSubState>(Action<TSubState>? act = null) where TSubState : class, IState
+    public TSubState EnterState<TSubState>() where TSubState : class, IState
     {
         if (!isLaunched)
         {
             MyDebug.LogError($"FSM {GetType().Name} Enter State But NOT Launched");
-            return;
+            return null!;
         }
         if (CurState != null)
         {
+            if(CurState.GetType() == typeof(TSubState) && !CurState.EnableReEnter)
+                return (TSubState)CurState;
             OnStateExit?.Invoke(CurState);
             CurState.OnExit();
         }
         var subState = Activator.CreateInstance<TSubState>()!;
         CurState = subState;
         CurState.BelongFSM = (TThis)this;
-        act?.Invoke(subState);
         CurState.OnEnter();
         OnStateEnter?.Invoke(CurState);
+        return subState;
     }
-    public bool IsState<TSubState>([NotNullWhen(true)] out TSubState subState) where TSubState : class, IState
-    {
-        subState = null!;
-        if (CurState is TSubState state)
-        {
-            subState = state;
-            return true;
-        }
-        return false;
-    }
+    // public MyOption<TSubState> InState<TSubState>() where TSubState : class, IState
+    // {
+    //     if (CurState is TSubState state)
+    //     {
+    //         return state;
+    //     }
+    //     return None;
+    // }
     void Tick(float dt) => CurState?.OnUpdate(dt);
     public interface IState
     {
         public TThis BelongFSM { get; set; }
-        public virtual void OnEnter(){}
+        public void OnEnter(){}
         public void OnExit(){}
         public void OnUpdate(float dt){}
+        public bool EnableReEnter => false;
     }
-}
-[Serializable]
-public abstract class FSMState<TBelong, TThis> : 
-    FSM<TThis>, 
-    FSM<TBelong>.IState
-    where TThis : FSM<TThis>
-    where TBelong : FSM<TBelong>
-{
-    public required TBelong BelongFSM { get; set; }
-    public virtual void OnEnter(){}
-    public virtual void OnExit(){}
-    public virtual void OnUpdate(float dt){}
+    [Serializable]
+    public abstract class StateFSM<TSub> : FSM<TSub>, IState
+        where TSub : FSM<TSub>
+    {
+        public required TThis BelongFSM { get; set; }
+        public virtual void OnEnter(){}
+        public virtual void OnExit(){}
+        public virtual void OnUpdate(float dt){}
+    }
 }
