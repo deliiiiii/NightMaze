@@ -7,17 +7,9 @@ namespace NM.Data;
 [Serializable]
 public class GameFSM : FSM<GameFSM>
 {
-    class GameEvtBus : EvtBus;
-    
-    class EvtViewOnClickStart : GameEvtBus.EvtBase;
     public GameFSM()
     {
         Launch<GameTitle>();
-    }
-
-    void BindEvent()
-    {
-        GameEvtBus.Register<EvtViewOnClickStart>(e => {}, 42);
     }
 }
 [Serializable]
