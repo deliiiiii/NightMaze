@@ -5,7 +5,7 @@ namespace General.BindData
     public class BindDataObs<T> : BindDataBase
         where T : struct
     {
-        protected Observable<T> osv;
+        protected MyProperty<T> osv;
         protected UnityAction<T> act;
         // bool isImmediate = true;
 
@@ -34,7 +34,7 @@ namespace General.BindData
         // }
 
     
-        public BindDataObs(Observable<T> osv)
+        public BindDataObs(MyProperty<T> osv)
         {
             this.osv = osv;
         }

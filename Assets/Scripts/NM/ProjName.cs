@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
-namespace GeneralProj;
+
+namespace NM;
 [PublicAPI]
 public class NameC
 {

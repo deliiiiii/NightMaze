@@ -8,7 +8,7 @@ using UnityEngine.Events;
 namespace General
 {
     [Serializable]
-    public class Observable<T> where T : struct
+    public class MyProperty<T> where T : struct
     {
         [SerializeField] T value;
         bool invokeEvenEqual;
@@ -58,11 +58,11 @@ namespace General
             remove => onValueChangedFull -= value;
         }
         [JsonConstructor]
-        public Observable(T initValue)
+        public MyProperty(T initValue)
         {
             value = initValue;
         }
-        public Observable(T initValue, 
+        public MyProperty(T initValue, 
             UnityAction<T>? before = null, 
             UnityAction<T>? after = null,
             bool invokeEvenEqual = false,
@@ -74,12 +74,12 @@ namespace General
             this.invokeEvenEqual = invokeEvenEqual;
             this.acceptDuplicateEvent = acceptDuplicateEvent;
         }
-        public static implicit operator T(Observable<T> v)
+        public static implicit operator T(MyProperty<T> v)
         {
             return v.Value;
         }
     
-        public static implicit operator float(Observable<T> v)
+        public static implicit operator float(MyProperty<T> v)
         {
             return v.Value switch
             {

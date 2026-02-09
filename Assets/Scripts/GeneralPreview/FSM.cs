@@ -85,8 +85,9 @@ public abstract class FSM<TThis>
         where TSub : FSM<TSub>
     {
         public required TThis BelongFSM { get; set; }
-        public virtual void OnEnter(){}
-        public virtual void OnExit(){}
+        public abstract void OnEnter();
+        public abstract void OnExit();
         public virtual void OnUpdate(float dt){}
+        public virtual bool EnableReEnter => false;
     }
 }

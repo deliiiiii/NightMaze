@@ -6,7 +6,7 @@ namespace General
 {
     public static class Binder
     {
-        public static BindDataObs<T> FromObs<T>(Observable<T> osv)
+        public static BindDataObs<T> FromObs<T>(MyProperty<T> osv)
             where T : struct
         {
             return new BindDataObs<T>(osv);

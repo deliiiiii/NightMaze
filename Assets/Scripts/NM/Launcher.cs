@@ -5,14 +5,16 @@ using General;
 using GeneralPreview;
 using GeneralProj;
 using NM.Data;
+using R3;
 using UnityEngine;
 
 namespace NM;
 
-public class Launcher : Singleton<Launcher>
+public class Launcher : Singleton<Launcher>, IDisposable
 {
     public List<ViewBase> ViewList = [];
     [SerializeReference] GameFSM gameFSM = null!;
+    readonly CompositeDisposable disposables = new();
     // ReSharper disable once Unity.IncorrectMethodSignature
     // ReSharper disable once UnusedMember.Local
     async UniTask Start()
@@ -25,10 +27,16 @@ public class Launcher : Singleton<Launcher>
             await Loader.LoadAll();
             ViewList.ForEach(v => v.Bind());
             gameFSM = new GameFSM();
+            Observable.EveryUpdate().Subscribe().AddTo(disposables);
         }
         catch (Exception e)
         {
             MyDebug.LogError(e);
         }
+    }
+
+    public void Dispose()
+    {
+        disposables.Dispose();
     }
 }
