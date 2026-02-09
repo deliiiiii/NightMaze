@@ -23,34 +23,35 @@ MonoBehaviour:
     SerializationNodes:
     - Name: EvtList
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[NM.EvtReceiverBase, NM]], mscorlib
+      Data: 0|System.Collections.Generic.List`1[[NM.Config.EvtReceiverBase, NM]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|NM.REvtSymbolEverySpinN, NM
+      Data: 1|NM.Config.REvtSymbolEverySpinN, NM
     - Name: DoCount
       Entry: 7
-      Data: 2|NM.DoCountInfinite, NM
+      Data: 2|NM.Config.DoCountInfinite, NM
     - Name: 
       Entry: 8
       Data: 
     - Name: EvtList
       Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[NM.EvtSenderBase, NM]], mscorlib
+      Data: 3|System.Collections.Generic.List`1[[NM.Config.EvtSenderBase, NM]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 4|NM.SEvtSymbolStock, NM
+      Data: 4|NM.Config.SEvtSymbolStock, NM
     - Name: Arg1Selector
       Entry: 7
-      Data: 5|NM.SelectSymbolSelf, NM
+      Data: 5|NM.Config.SelectSymbolSelf, NM
     - Name: FilterOrList
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[NM.FilterBase`1[[NM.SymbolConfig,
+      Data: 6|System.Collections.Generic.List`1[[NM.Config.FilterBase`1[[NM.Config.SymbolConfig,
         NM]], NM]], mscorlib
     - Name: 
       Entry: 12
@@ -66,7 +67,7 @@ MonoBehaviour:
       Data: 
     - Name: Arg2Selector
       Entry: 7
-      Data: 7|NM.SelectDirectInt, NM
+      Data: 7|NM.Config.SelectDirectInt, NM
     - Name: Value
       Entry: 3
       Data: 4
@@ -84,11 +85,20 @@ MonoBehaviour:
       Data: 
     - Name: Filter1OrList
       Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[NM.FilterBase`1[[NM.SymbolConfig,
+      Data: 8|System.Collections.Generic.List`1[[NM.Config.FilterBase`1[[NM.Config.SymbolConfig,
         NM]], NM]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 9|NM.Config.FilterSymbolIsSelf, NM
+    - Name: And
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -97,11 +107,29 @@ MonoBehaviour:
       Data: 
     - Name: Filter2OrList
       Entry: 7
-      Data: 9|System.Collections.Generic.List`1[[NM.FilterBase`1[[System.Int32, mscorlib]],
-        NM]], mscorlib
+      Data: 10|System.Collections.Generic.List`1[[NM.Config.FilterBase`1[[System.Int32,
+        mscorlib]], NM]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 11|NM.Config.FilterNEqual, NM
+    - Name: And
+      Entry: 6
+      Data: 
+    - Name: IntSelector
+      Entry: 7
+      Data: 12|NM.Config.SelectDirectInt, NM
+    - Name: Value
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
