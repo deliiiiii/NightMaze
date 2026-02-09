@@ -21,15 +21,17 @@ public abstract class EvtReceiverBase
 {
     [LabelText("可执行次数"),Required] public required DoCountBase DoCount = new DoCountInfinite();
     [LabelText("就依次执行"), Required] public List<EvtSenderBase> EvtList = [];
+    protected const string BesidesArg1SatisfyInfo = "且事件的参数1满足..(空列表/None视为直接满足)";
+    protected const string BesidesArg2SatisfyInfo = "且事件的参数2满足..(空列表/None视为直接满足)";
 }
 public abstract class EvtReceiver1<T1> : EvtReceiverBase
 {
-    [LabelText("且事件的参数1满足任一.."), PropertyOrder(-1)] public List<FilterBase<T1>>? Filter1OrList = [];
+    [LabelText(BesidesArg1SatisfyInfo), PropertyOrder(-1)] public List<FilterBase<T1>>? Filter1OrList = [];
 }
 public abstract class EvtReceiver2<T1, T2> : EvtReceiverBase
 {   
-    [LabelText("且事件的参数1满足任一..(空列表/None视为直接满足)"), PropertyOrder(-2)] public List<FilterBase<T1>>? Filter1OrList = [];
-    [LabelText("且事件的参数2满足任一..(空列表/None视为直接满足)"), PropertyOrder(-1)] public List<FilterBase<T2>>? Filter2OrList = [];
+    [LabelText(BesidesArg1SatisfyInfo), PropertyOrder(-2)] public List<FilterBase<T1>>? Filter1OrList = [];
+    [LabelText(BesidesArg2SatisfyInfo), PropertyOrder(-1)] public List<FilterBase<T2>>? Filter2OrList = [];
 }
 [TypeRegistryItem("直接审视某符号\t(SymbolConfig)")]
 public class REvtCheckSymbol : EvtReceiver1<SymbolConfig>;
@@ -172,12 +174,12 @@ public class FilterSymbolIsSelf : FilterSymbolBase;
 public class FilterSymbolShown : FilterSymbolBase;
 [TypeRegistryItem("符号在角落")]
 public class FilterSymbolInCorner : FilterSymbolBase;
-[TypeRegistryItem("符号属于指定一个")]
+[TypeRegistryItem("符号种类为指定某一个")]
 public class FilterSymbolIsOne : FilterSymbolBase
 {
     [LabelText("选择单个符号"), Required]public SelectBase<SymbolConfig> OneSymbolSelector = new SelectDirectOneSymbol();
 }
-[TypeRegistryItem("符号属于指定一组")]
+[TypeRegistryItem("符号种类属于指定一组")]
 public class FilterSymbolIsOfList : FilterSymbolBase
 {
     [LabelText("选择一组符号"), Required]public SelectBase<List<SymbolConfig>> ListSymbolSelector = new SelectDirectSetSymbol();
