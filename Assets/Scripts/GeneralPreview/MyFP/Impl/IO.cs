@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace MyFP;
+namespace GeneralPreview;
 
 [DebuggerStepThrough]
 public record MyIO<T1>(Func<T1> Run)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyFP;
+namespace GeneralPreview;
 //
 // // public record MyList<T>(List<T> Items) : K1<MyList, T>;
 // // public abstract class MyList : IMonad1<MyList>

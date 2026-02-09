@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace MyFP;
+namespace GeneralPreview;
 
 [DebuggerStepThrough]
 public record MyEnv<TEnv, T1>(Func<TEnv, T1> RunEnv)

@@ -1,7 +1,7 @@
-﻿global using static MyFP.MyPrelude;
+﻿global using static GeneralPreview.MyPrelude;
 using System;
 
-namespace MyFP;
+namespace GeneralPreview;
 public record NoneClass;
 public static class MyPrelude 
 {

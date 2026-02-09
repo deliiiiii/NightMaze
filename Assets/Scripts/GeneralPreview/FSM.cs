@@ -63,14 +63,14 @@ public abstract class FSM<TThis>
         OnStateEnter?.Invoke(CurState);
         return subState;
     }
-    // public MyOption<TSubState> InState<TSubState>() where TSubState : class, IState
-    // {
-    //     if (CurState is TSubState state)
-    //     {
-    //         return state;
-    //     }
-    //     return None;
-    // }
+    public MyOption<TSubState> InState<TSubState>() where TSubState : class, IState
+    {
+        if (CurState is TSubState state)
+        {
+            return state;
+        }
+        return None;
+    }
     void Tick(float dt) => CurState?.OnUpdate(dt);
     public interface IState
     {

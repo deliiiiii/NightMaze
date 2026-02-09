@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace MyFP;
+namespace GeneralPreview;
 
 public abstract record MyOption<T1>
 {

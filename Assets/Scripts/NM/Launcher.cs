@@ -12,7 +12,7 @@ namespace NM;
 public class Launcher : Singleton<Launcher>
 {
     public List<ViewBase> ViewList = [];
-    // [SerializeReference] GameFSM gameFSM = null!;
+    [SerializeReference] GameFSM gameFSM = null!;
     // ReSharper disable once Unity.IncorrectMethodSignature
     // ReSharper disable once UnusedMember.Local
     async UniTask Start()
@@ -24,7 +24,7 @@ public class Launcher : Singleton<Launcher>
         {
             await Loader.LoadAll();
             ViewList.ForEach(v => v.Bind());
-            // gameFSM = new GameFSM();
+            gameFSM = new GameFSM();
         }
         catch (Exception e)
         {
