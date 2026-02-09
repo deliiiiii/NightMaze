@@ -51,4 +51,6 @@ public static class EvtBus
 
 public abstract record EvtBase;
 
-
+public abstract record EvtBase<TCtx>(TCtx Ctx) : EvtBase
+    where TCtx : IEvtCtx;
+public interface IEvtCtx;

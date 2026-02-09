@@ -1,36 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
-using R3;
+using NM.Config;
+using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 
 namespace NM.Data;
 [Serializable]
 public partial class GamePlaying
 {
-    List<SymbolEtt> symbolDeckList = [];
+    [ShowInInspector] List<SymbolEtt> symbolDeckList = [];
+    public IEnumerable<SymbolEtt> Deck => symbolDeckList;
+    public void ClearDeck()
+    {
+        
+    }
+    public static SymbolEtt CreateEmptySymbol()
+        => new(RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == -1));
+    public static SymbolEtt CreateSymbol(int id) 
+        => new(RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == id));
+
+    public void AddSymbol(SymbolEtt toAdd)
+    {
+        toAdd.EvtList().ForEach(evt => EvtBus.Register(evt));
+        symbolDeckList.Add(toAdd);
+    }
+    public void RemoveSymbol(SymbolEtt toRemove)
+    {
+    }
+    
     public long Coin;
     public int RemoveToken;
     public int RefreshToken;
     public int NextRentCount;
     public int SpinCount;
-
-    public void ClearDeck()
-    {
-        
-    }
-
-    public void AddSymbol(SymbolEtt toAdd)
-    {
-        
-    }
-
-    public void RemoveSymbol(SymbolEtt toRemove)
-    {
-        
-    }
     
     public override void OnEnter()
     {
@@ -42,15 +49,45 @@ public partial class GamePlaying
     }
 }
 [Serializable]
-public class PlayingInit : GamePlaying.StateFSM<PlayingInit>
+public class PlayingIdle : GamePlaying.StateFSM<PlayingIdle>
 {
     public override void OnEnter()
     {
+    }
+    public override void OnExit()
+    {
+    }
+}
+[Serializable]
+public class PlayingInit : GamePlaying.StateFSM<PlayingInit>
+{
+    [Button]
+    public void EnterSpin () => BelongFSM.EnterState<PlayingSpin>();
+    
+    IEnumerable<SymbolEtt> Deck => BelongFSM.Deck;
+    public override void OnEnter()
+    {
         MyDebug.Log($"{nameof(PlayingInit)} OnEnter");
+        FillDeckWithInitSymbols();
+        FillDeckWithEmpty();
     }
     public override void OnExit()
     {
         BelongFSM.ClearDeck();
+    }
+
+    void FillDeckWithInitSymbols()
+    {
+        BelongFSM.AddSymbol(GamePlaying.CreateSymbol(0));
+        BelongFSM.AddSymbol(GamePlaying.CreateSymbol(1));
+        BelongFSM.AddSymbol(GamePlaying.CreateSymbol(2));
+    }
+    void FillDeckWithEmpty()
+    {
+        while (Deck.Count() < Const.DeckMax)
+        {
+            BelongFSM.AddSymbol(GamePlaying.CreateEmptySymbol());
+        }
     }
 }
 [Serializable]
@@ -64,44 +101,66 @@ public class PlayingBeforeSpin : GamePlaying.StateFSM<PlayingBeforeSpin>
     }
 }
 [Serializable]
-public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
+public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>, IEvtCtx
 {
     IEnumerable<SymbolEtt> GetAdjacent(SymbolEtt symbolEtt)
     {
-        var cx = symbolEtt.Pos.x;
-        var cy = symbolEtt.Pos.y;
+        var symbolInSpin = symbolEtt.In(this).As<SymbolInSpin>();
+        var cx = symbolInSpin.Pos.X;
+        var cy = symbolInSpin.Pos.Y;
         List<int> xRange = [cx - 1, cx, cx + 1];
         List<int> yRange = [cy - 1, cy, cy + 1];
         return
             from x in xRange
             from y in yRange
-            where x is >= 1 and <= Const.SpinW
-            where y is >= 1 and <= Const.SpinH
-            select SymbolShownList.First(xs => xs.Pos.x == x && xs.Pos.y == y);
+            where x is >= Const.SpinFirstID and <= Const.SpinW
+            where y is >= Const.SpinFirstID and <= Const.SpinH
+            select SymbolShownList.First(xs =>
+            {
+                var xsInSpin = xs.In(this).As<SymbolInSpin>();
+                return xsInSpin.Pos.X == x && xsInSpin.Pos.Y == y;
+            });
     }
     public List<SymbolEtt> SymbolShownList = [];
     public bool TestToggle;
     List<IAction> adjacentActList = [];
     List<IAction> removeActList = [];
+    CancellationTokenSource onSpinCts = new();
     public override void OnEnter()
     {
-        OnSpin().Forget();
+        OnSpinAsync(onSpinCts.Token).Forget();
     }
     public override void OnExit()
     {
+        onSpinCts.Cancel();
         SymbolShownList.Clear();
     }
 
-    async UniTask OnSpin()
+    async UniTask OnSpinAsync(CancellationToken token)
     {
-        foreach (var (symbolEtt, adjacentSymbol) in 
-                 from symbolEtt in SymbolShownList 
-                 from adjacentSymbol in GetAdjacent(symbolEtt)
-                 select (symbolEtt, adjacentSymbol))
+        var leftList = BelongFSM.Deck.ToList();
+        while (leftList.Count > 0)
         {
-            EvtBus.Fire(new AdjacentEvent(symbolEtt, adjacentSymbol));
-            await UniTask.WaitUntil(() => TestToggle);
-            await UniTask.WaitUntil(() => adjacentActList.Count == 0);
+            var addSymbol = leftList.RandomItem();
+            var shownCount = SymbolShownList.Count;
+            var addX = shownCount / Const.SpinH + 1;
+            var addY = shownCount % Const.SpinH + 1;
+            addSymbol.AddCom(new SymbolInSpin() { Pos = new Vector2Int(addX, addY) });
+            leftList.Remove(addSymbol);
+            SymbolShownList.Add(addSymbol);
+        }
+       
+        var pairList =
+            (
+                from symbolEtt in SymbolShownList
+                from adjacentSymbol in GetAdjacent(symbolEtt)
+                select (symbolEtt, adjacentSymbol)).ToList();
+        foreach (var (symbolEtt, adjacentSymbol) in pairList)
+        {
+            EvtBus.Fire(new EvtAdjacent(symbolEtt, adjacentSymbol));
+            await UniTask.WaitUntil(() => TestToggle, cancellationToken: token);
+            TestToggle = false;
+            await UniTask.WaitUntil(() => adjacentActList.Count == 0, cancellationToken: token);
         }
     }
     public interface IAction
@@ -109,7 +168,10 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         UniTask Do();
     }
 }
-public record AdjacentEvent(SymbolEtt Symbol, SymbolEtt AdjacentSymbol) : EvtBase;
+public record EvtAdjacent(SymbolEtt Symbol, SymbolEtt AdjacentSymbol)
+    : EvtBase;
+// public record EvtAdjacent(PlayingSpin Ctx, SymbolEtt Symbol, SymbolEtt AdjacentSymbol)
+    // : EvtBase<PlayingSpin>(Ctx);
 
 
 [Serializable]

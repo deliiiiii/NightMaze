@@ -36,7 +36,7 @@ MonoBehaviour:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 45dcf5a446bc13e4cb89298a68318686
-    m_Address: NewSymbol
+    m_Address: "Symbol_-1_\u7A7A"
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig

@@ -20,14 +20,15 @@ public class Launcher : Singleton<Launcher>, IDisposable
     async UniTask Start()
     {
 #if UNITY_EDITOR
-        Binder.FromTick(_ => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint()).Bind();
+        // Binder.FromTick(_ => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint()).Bind();
 #endif
         try
         {
             await Loader.LoadAll();
             ViewList.ForEach(v => v.Bind());
             gameFSM = new GameFSM();
-            Observable.EveryUpdate().Subscribe().AddTo(disposables);
+            // ObservableSystem.DefaultFrameProvider = new R3.Unity.UnityFrameProvider(); 
+            // Observable.EveryUpdate().Subscribe().AddTo(disposables);
         }
         catch (Exception e)
         {
@@ -37,6 +38,6 @@ public class Launcher : Singleton<Launcher>, IDisposable
 
     public void Dispose()
     {
-        disposables.Dispose();
+        // disposables.Dispose();
     }
 }

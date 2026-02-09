@@ -1,14 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
 using GeneralPreview;
 using NM.Config;
-using UnityEngine;
 
 namespace NM.Data;
 [Serializable]
-public class SymbolEtt : EttBase<SymbolEtt>
+public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
 {
-    public required SymbolConfig Config;
+    public SymbolConfig Config = config;
+
+    public IEnumerable<Action<EvtBase>> EvtList()
+    {
+        yield return As<EvtAdjacent>(SymbolInSpin.OnEvtAdjacent);
+    }
+    
+    public static Action<EvtBase> As<T>(Action<T> action) where T : EvtBase
+    {
+        return evt =>
+        {
+            if (evt is T t)
+            {
+                action(t);
+            }
+        };
+    }
+}
+
+public class SymbolInSpin : SymbolEtt.ICom<PlayingSpin>
+{
     public Vector2Int Pos;
+    
+    public static void OnEvtAdjacent(EvtAdjacent evt)
+    {
+        
+    }
 }
 
 public class SymbolComStock : SymbolEtt.ICom

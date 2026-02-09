@@ -4,7 +4,6 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
-using UnityEngine;
 
 namespace NM.Config;
 
@@ -210,7 +209,7 @@ public abstract class SelectDirectBase<T> : SelectBase<T>;
 
 public class SelectFromEvtArgNth<T>(int n) : SelectNotDirectBase<T>
 {
-    [HideInInspector]public int N = n;
+    [UnityEngine.HideInInspector]public int N = n;
     public override string ToString() => $"选择第{N}个事件参数";
 }
 [Selector("直接Int")]

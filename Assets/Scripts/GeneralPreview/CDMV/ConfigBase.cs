@@ -1,10 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using General;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
-using UnityEngine;
 
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 namespace GeneralPreview;
@@ -31,7 +28,8 @@ public abstract class ConfigMulti: ConfigBase, IRefMulti
     public string Name = string.Empty;
 
     [OnValueChanged(nameof(OnNameAndIdChanged))]
-    [ValidateInput(nameof(CheckId), "ID不能为空且不能为负数")]
+    // [ValidateInput(nameof(CheckId), "ID不能为空且不能为负数")]
+    // [ValidateInput(nameof(CheckId), "ID不能为空")]
     [ValidateInput(nameof(CheckNameAndIdIdentical), "名称为空，或ID在当前文件夹(配置类相同)有重复")]
     public int ID;
     
@@ -41,8 +39,8 @@ public abstract class ConfigMulti: ConfigBase, IRefMulti
     {
         return CheckId() && CheckName() && CheckNameAndIdIdentical();
     }
-    
-    bool CheckId() => ID >= 0;
+
+    bool CheckId() => true;// ID >= 0;
     bool CheckName() => Name != string.Empty;
     bool CheckNameAndIdIdentical()
     {

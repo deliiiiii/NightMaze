@@ -6,18 +6,17 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace GeneralPreview;
-[Serializable]
 public abstract class FSM<TThis>
     where TThis : FSM<TThis>
 {
     public event Action<IState>? OnStateEnter;
     public event Action<IState>? OnStateExit;
-    [ShowInInspector][PropertyOrder(0)] public string CurStateName => CurState?.GetType().Name ?? "Null";
-    [SerializeReference][ReadOnly][PropertyOrder(1)] protected IState? CurState;
+    [ShowInInspector, PropertyOrder(0)] public string CurStateName => curState?.GetType().Name ?? "Null";
+    [ShowInInspector, PropertyOrder(1)] IState? curState;
     bool isLaunched;
     [JsonIgnore] BindDataUpdate? selfTickBind;
 
-    public void Launch<TSubState>() where TSubState : class, IState
+    public void Launch<TState>() where TState : class, IState
     {
         if (isLaunched)
         {
@@ -25,7 +24,7 @@ public abstract class FSM<TThis>
             return;
         }
         isLaunched = true;
-        EnterState<TSubState>();
+        EnterState<TState>();
         // selfTickBind = Binder.FromTick(Tick);
         // selfTickBind.Bind();
     }
@@ -37,41 +36,41 @@ public abstract class FSM<TThis>
             return;
         }
         isLaunched = false;
-        CurState?.OnExit();
-        CurState = null;
+        curState?.OnExit();
+        curState = null;
         // selfTickBind?.UnBind();
         // selfTickBind = null;
     }
-    public TSubState EnterState<TSubState>() where TSubState : class, IState
+    public TState EnterState<TState>() where TState : class, IState
     {
         if (!isLaunched)
         {
             MyDebug.LogError($"FSM {GetType().Name} Enter State But NOT Launched");
             return null!;
         }
-        if (CurState != null)
+        if (curState != null)
         {
-            if(CurState.GetType() == typeof(TSubState) && !CurState.EnableReEnter)
-                return (TSubState)CurState;
-            OnStateExit?.Invoke(CurState);
-            CurState.OnExit();
+            if(curState.GetType() == typeof(TState) && !curState.EnableReEnter)
+                return (TState)curState;
+            OnStateExit?.Invoke(curState);
+            curState.OnExit();
         }
-        var subState = Activator.CreateInstance<TSubState>()!;
-        CurState = subState;
-        CurState.BelongFSM = (TThis)this;
-        CurState.OnEnter();
-        OnStateEnter?.Invoke(CurState);
+        var subState = Activator.CreateInstance<TState>()!;
+        curState = subState;
+        curState.BelongFSM = (TThis)this;
+        curState.OnEnter();
+        OnStateEnter?.Invoke(curState);
         return subState;
     }
-    public MyOption<TSubState> InState<TSubState>() where TSubState : class, IState
+    public MyOption<TState> InState<TState>() where TState : class, IState
     {
-        if (CurState is TSubState state)
+        if (curState is TState state)
         {
             return state;
         }
         return None;
     }
-    void Tick(float dt) => CurState?.OnUpdate(dt);
+    void Tick(float dt) => curState?.OnUpdate(dt);
     public interface IState
     {
         public TThis BelongFSM { get; set; }

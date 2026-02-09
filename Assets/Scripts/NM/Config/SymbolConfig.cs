@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using GeneralPreview;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace NM.Config;
 
-[CreateAssetMenu(fileName = "NewSymbol", menuName = "NM/" + nameof(SymbolConfig))]
+[UnityEngine.CreateAssetMenu(fileName = "NewSymbol", menuName = "NM/" + nameof(SymbolConfig))]
 public class SymbolConfig : ConfigMulti<SymbolConfig>
 {
     protected override string PrefixName => "Symbol";

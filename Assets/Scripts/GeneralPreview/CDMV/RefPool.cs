@@ -67,7 +67,7 @@ public static class RefPoolMulti<T> where T : class, IRefMulti
         }
         allInList = listDataDic[type].ToList();
     }
-    public static List<T> Acquire()
+    public static List<T> AcquireAll()
     {
         var type = typeof(T);
         if (listDataDic.TryGetValue(type, out var data))
@@ -77,6 +77,8 @@ public static class RefPoolMulti<T> where T : class, IRefMulti
         MyDebug.LogError("DataBase: AcquireList<" + typeof(T).Name + "> Not Exist");
         return [];
     }
+    public static T AcquireOne(Func<T, bool> pred) => AcquireAll().FirstOrDefault(pred)!;
+
     public static void ReleaseOne(ref T toRemove)
     {
         var type = typeof(T);
