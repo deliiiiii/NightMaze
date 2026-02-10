@@ -53,7 +53,7 @@ public abstract class EttBase<TThis>
     public interface ICom;
     public interface ICom<TCtx> : ICom;
     [DebuggerStepThrough]
-    public CtxScope<TCtx> In<TCtx>(TCtx ctx) where TCtx : IEvtCtx => new((TThis)this);
+    public CtxScope<TCtx> Ctx<TCtx>(TCtx ctx) => new((TThis)this);
     [DebuggerStepThrough]
     T GetByCtx<TCtx, T>(TCtx _) where T : ICom<TCtx>
     {

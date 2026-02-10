@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using NM.Config;
@@ -13,6 +14,16 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
     public IEnumerable<IFuncWrap> OnEvtList()
     {
         yield return EvtBus.Bind<EvtAdjacent>(SymbolInSpin.OnEvtAdjacent);
+
+        // foreach (var ectReceiver in Config.EvtList ?? [])
+        // {
+        //     yield return EvtBus.Bind<TEvtReceived>(evtObj =>
+        //     {
+        //         if (!ectReceiver.CheckArg(evtObj))
+        //             return UniTask.CompletedTask;
+        //         EvtBus.FireAsync(new TEvtSent() { args = Selectors(evtObj) });
+        //     });
+        // }
     }
     
     public static SymbolEtt CreateEmptySymbol()

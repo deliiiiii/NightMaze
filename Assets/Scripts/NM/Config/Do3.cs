@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
+using GeneralPreview;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 
 namespace NM.Config;
+
+public record EvtCheckSelf(SymbolConfig Symbol) : EvtBase1<SymbolConfig>(Symbol);
+
 
 #region DoCount
 public abstract class DoCountBase;
@@ -23,15 +28,37 @@ public abstract class EvtReceiverBase
     [LabelText("就依次执行"), Required] public List<EvtSenderBase> EvtList = [];
     protected const string BesidesArg1SatisfyInfo = "且事件的参数1满足..(空列表/None视为直接满足)";
     protected const string BesidesArg2SatisfyInfo = "且事件的参数2满足..(空列表/None视为直接满足)";
+
+    // public abstract void CreateBinding<TREvt>() where TREvt : EvtBase;
 }
 public abstract class EvtReceiver1<T1> : EvtReceiverBase
 {
     [LabelText(BesidesArg1SatisfyInfo), PropertyOrder(-1)] public List<FilterBase<T1>>? Filter1OrList = [];
+    public IEnumerable<IFuncWrap> CreateBinding<TREvt>() where TREvt : EvtBase1<T1>
+    {
+        yield return EvtBus.Bind<TREvt>(evt =>
+        {
+            if ((Filter1OrList ?? []).Any(filter1 => !filter1.FilterFunc(evt.Arg1)))
+            {
+                return UniTask.CompletedTask;
+            }
+        
+            // EvtList.ForEach(eSender =>
+            // {
+            //     EvtBus.FireAsync(eSender.)
+            // });
+            return UniTask.CompletedTask;
+        });
+    }
 }
 public abstract class EvtReceiver2<T1, T2> : EvtReceiverBase
 {   
     [LabelText(BesidesArg1SatisfyInfo), PropertyOrder(-2)] public List<FilterBase<T1>>? Filter1OrList = [];
     [LabelText(BesidesArg2SatisfyInfo), PropertyOrder(-1)] public List<FilterBase<T2>>? Filter2OrList = [];
+
+    // public override void CreateBinding<TREvt>()
+    // {
+    // }
 }
 [TypeRegistryItem("直接审视某符号\t(SymbolConfig)")]
 public class REvtCheckSymbol : EvtReceiver1<SymbolConfig>;
@@ -166,6 +193,7 @@ public abstract class FilterBase<T>
 {
     // [InfoBox("下面的\"且\"可为None, None代表本行的\"且\"逻辑结束")]
     [LabelText("且")] public FilterBase<T>? And;
+    public bool FilterFunc(T value) => true;
 }
 public abstract class FilterSymbolBase : FilterBase<SymbolConfig>;
 [TypeRegistryItem("符号为自身")]

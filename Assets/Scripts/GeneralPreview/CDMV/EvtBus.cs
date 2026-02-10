@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using General;
 
 namespace GeneralPreview;
 
@@ -8,12 +9,14 @@ public static class EvtBus
 {
     static readonly Dictionary<Type, List<Delegate>> evtDic = new();
 
-    public static async UniTask FireAsync<T>(T evt) where T : EvtBase
+    public static async UniTask FireAsync<T>(T evt, bool withDebug = false) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list)) 
             return;
         foreach (var dele in list)
         {
+            if(withDebug)
+                MyDebug.Log($"EvtBus Fire {dele}");
             await ((dele as Func<T, UniTask>)?.Invoke(evt) ?? UniTask.CompletedTask);
         }
     }
@@ -48,10 +51,8 @@ public static class EvtBus
 }
 
 public abstract record EvtBase;
-
-public abstract record EvtBase<TCtx>(TCtx Ctx) : EvtBase
-    where TCtx : IEvtCtx;
-public interface IEvtCtx;
+public abstract record EvtBase1<T1>(T1 Arg1) : EvtBase;
+public abstract record EvtBase2<T1, T2>(T1 Arg1, T2 Arg2) : EvtBase;
 
 public interface IFuncWrap
 {

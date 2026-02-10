@@ -9,7 +9,7 @@ namespace NM.View;
 
 public class SymbolModel : MonoBehaviour
 {
-    [field: SerializeReference]
+    [ShowInInspector, ReadOnly]
     public SymbolEtt SymbolEtt
     {
         get => field;
@@ -30,8 +30,4 @@ public class SymbolModel : MonoBehaviour
     [SerializeField] Transform tranImgBuff;
     [ShowInInspector, ReadOnly] List<ImgBuff> buffList = [];
 
-    public void SetEmpty()
-    {
-        SymbolEtt = SymbolEtt.CreateEmptySymbol();
-    }
 }

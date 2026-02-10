@@ -98,11 +98,11 @@ public class PlayingBeforeSpin : GamePlaying.StateFSM<PlayingBeforeSpin>
     }
 }
 [Serializable]
-public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>, IEvtCtx
+public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 {
     IEnumerable<SymbolEtt> GetAdjacent(SymbolEtt symbolEtt)
     {
-        var symbolInSpin = symbolEtt.In(this).As<SymbolInSpin>();
+        var symbolInSpin = symbolEtt.Ctx(this).As<SymbolInSpin>();
         var cx = symbolInSpin.Pos.X;
         var cy = symbolInSpin.Pos.Y;
         List<int> xRange = [cx - 1, cx, cx + 1];
@@ -114,7 +114,7 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>, IEvtCtx
             where y is >= Const.SpinFirstID and <= Const.SpinH
             select SymbolShownList.First(xs =>
             {
-                var xsInSpin = xs.In(this).As<SymbolInSpin>();
+                var xsInSpin = xs.Ctx(this).As<SymbolInSpin>();
                 return xsInSpin.Pos.X == x && xsInSpin.Pos.Y == y;
             });
     }
@@ -142,9 +142,11 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>, IEvtCtx
             var shownCount = SymbolShownList.Count;
             var addX = shownCount / Const.SpinH + 1;
             var addY = shownCount % Const.SpinH + 1;
-            addSymbol.AddCom(new SymbolInSpin() { Pos = new Vector2Int(addX, addY) });
+            var addPos = new Vector2Int(addX, addY);
+            addSymbol.AddCom(new SymbolInSpin() { Pos = addPos });
             leftList.Remove(addSymbol);
             SymbolShownList.Add(addSymbol);
+            await EvtBus.FireAsync(new EvtSpinSymbolAt(addSymbol, addPos));
         }
        
         var pairList =
@@ -155,9 +157,9 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>, IEvtCtx
         foreach (var (symbolEtt, adjacentSymbol) in pairList)
         {
             await EvtBus.FireAsync(new EvtAdjacent(symbolEtt, adjacentSymbol));
-            await UniTask.WaitUntil(() => TestToggle, cancellationToken: token);
-            TestToggle = false;
-            await UniTask.WaitUntil(() => adjacentActList.Count == 0, cancellationToken: token);
+            // await UniTask.WaitUntil(() => TestToggle, cancellationToken: token);
+            // TestToggle = false;
+            // await UniTask.WaitUntil(() => adjacentActList.Count == 0, cancellationToken: token);
         }
     }
     public interface IAction
