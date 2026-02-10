@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -8,17 +7,31 @@ using UnityEngine;
 
 namespace NM.View;
 
-public class SymbolView : ViewBase
+public class SymbolModel : MonoBehaviour
 {
-    [SerializeReference] public SymbolEtt SymbolEtt;
-    
+    [field: SerializeReference]
+    public SymbolEtt SymbolEtt
+    {
+        get => field;
+        set
+        {
+            field = value;
+            TxtName.text = field.Config.Name;
+            TxtAdd.text = string.Empty;
+            TxtMulti.text = string.Empty;
+            buffList.ForEach(Destroy);
+            buffList.Clear();
+        }
+    } = null!;
+
     public TextMeshProUGUI TxtName;
     public TextMeshProUGUI TxtAdd;
     public TextMeshProUGUI TxtMulti;
     [SerializeField] Transform tranImgBuff;
     [ShowInInspector, ReadOnly] List<ImgBuff> buffList = [];
 
-    protected override void Bind()
+    public void SetEmpty()
     {
+        SymbolEtt = SymbolEtt.CreateEmptySymbol();
     }
 }

@@ -19,14 +19,10 @@ public partial class GamePlaying
     {
         
     }
-    public static SymbolEtt CreateEmptySymbol()
-        => new(RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == -1));
-    public static SymbolEtt CreateSymbol(int id) 
-        => new(RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == id));
 
     public void AddSymbol(SymbolEtt toAdd)
     {
-        toAdd.OnEvtList().ForEach(evt => EvtBus.Register(evt));
+        toAdd.OnEvtList().ForEach(w => w.Register());
         symbolDeckList.Add(toAdd);
     }
     public void RemoveSymbol(SymbolEtt toRemove)
@@ -42,6 +38,8 @@ public partial class GamePlaying
     public override void OnEnter()
     {
         Launch<PlayingInit>();
+        EvtBus.Fire(new EvtOnEnterPlaying());
+        
     }
     public override void OnExit()
     {
@@ -78,15 +76,15 @@ public class PlayingInit : GamePlaying.StateFSM<PlayingInit>
 
     void FillDeckWithInitSymbols()
     {
-        BelongFSM.AddSymbol(GamePlaying.CreateSymbol(0));
-        BelongFSM.AddSymbol(GamePlaying.CreateSymbol(1));
-        BelongFSM.AddSymbol(GamePlaying.CreateSymbol(2));
+        BelongFSM.AddSymbol(SymbolEtt.CreateSymbol(0));
+        BelongFSM.AddSymbol(SymbolEtt.CreateSymbol(1));
+        BelongFSM.AddSymbol(SymbolEtt.CreateSymbol(2));
     }
     void FillDeckWithEmpty()
     {
         while (Deck.Count() < Const.DeckMax)
         {
-            BelongFSM.AddSymbol(GamePlaying.CreateEmptySymbol());
+            BelongFSM.AddSymbol(SymbolEtt.CreateEmptySymbol());
         }
     }
 }
@@ -168,10 +166,7 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>, IEvtCtx
         UniTask Do();
     }
 }
-public record EvtAdjacent(SymbolEtt Symbol, SymbolEtt AdjacentSymbol)
-    : EvtBase;
-// public record EvtAdjacent(PlayingSpin Ctx, SymbolEtt Symbol, SymbolEtt AdjacentSymbol)
-    // : EvtBase<PlayingSpin>(Ctx);
+
 
 
 [Serializable]
