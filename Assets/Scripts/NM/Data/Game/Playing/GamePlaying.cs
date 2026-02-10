@@ -38,8 +38,7 @@ public partial class GamePlaying
     public override void OnEnter()
     {
         Launch<PlayingInit>();
-        EvtBus.Fire(new EvtOnEnterPlaying());
-        
+        EvtBus.FireAsync(new EvtOnEnterPlaying()).Forget();
     }
     public override void OnExit()
     {
@@ -155,7 +154,7 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>, IEvtCtx
                 select (symbolEtt, adjacentSymbol)).ToList();
         foreach (var (symbolEtt, adjacentSymbol) in pairList)
         {
-            EvtBus.Fire(new EvtAdjacent(symbolEtt, adjacentSymbol));
+            await EvtBus.FireAsync(new EvtAdjacent(symbolEtt, adjacentSymbol));
             await UniTask.WaitUntil(() => TestToggle, cancellationToken: token);
             TestToggle = false;
             await UniTask.WaitUntil(() => adjacentActList.Count == 0, cancellationToken: token);

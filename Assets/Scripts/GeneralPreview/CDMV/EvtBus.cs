@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 namespace GeneralPreview;
 
@@ -7,17 +8,17 @@ public static class EvtBus
 {
     static readonly Dictionary<Type, List<Delegate>> evtDic = new();
 
-    public static void Fire<T>(T evt) where T : EvtBase
+    public static async UniTask FireAsync<T>(T evt) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list)) 
             return;
         foreach (var dele in list)
         {
-            (dele as Action<T>)?.Invoke(evt);
+            await ((dele as Func<T, UniTask>)?.Invoke(evt) ?? UniTask.CompletedTask);
         }
     }
 
-    public static void Register<T>(Action<T> act) where T : EvtBase
+    public static void Register<T>(Func<T, UniTask> act) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
         {
@@ -26,11 +27,11 @@ public static class EvtBus
         }
         list.Add(act);
     }
-    public static void UnRegister<T>(Action<T> act) where T : EvtBase
+    public static void UnRegister<T>(Func<T, UniTask> func) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
             return;
-        var index = list.FindIndex(h => h == (Delegate)act);
+        var index = list.FindIndex(h => h == (Delegate)func);
         if (index == -1) 
             return;
         list.RemoveAt(index);
@@ -40,9 +41,9 @@ public static class EvtBus
         }
     }
     
-    public static ActionWrap<T> Bind<T>(Action<T> action) where T : EvtBase
+    public static FuncWrap<T> Bind<T>(Func<T, UniTask> func) where T : EvtBase
     {
-        return new ActionWrap<T>(action);
+        return new FuncWrap<T>(func);
     }
 }
 
@@ -52,12 +53,12 @@ public abstract record EvtBase<TCtx>(TCtx Ctx) : EvtBase
     where TCtx : IEvtCtx;
 public interface IEvtCtx;
 
-public interface IActionWrap
+public interface IFuncWrap
 {
     void Register();
     void UnRegister();
 }
-public class ActionWrap<T>(Action<T> action) : IActionWrap
+public class FuncWrap<T>(Func<T, UniTask> action) : IFuncWrap
     where T : EvtBase
 {
     public void Register() => EvtBus.Register(action);

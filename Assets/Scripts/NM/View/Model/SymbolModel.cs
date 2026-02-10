@@ -16,7 +16,7 @@ public class SymbolModel : MonoBehaviour
         set
         {
             field = value;
-            TxtName.text = field.Config.Name;
+            TxtName.text = field.Config.ID == -1 ? string.Empty : field.Config.Name;
             TxtAdd.text = string.Empty;
             TxtMulti.text = string.Empty;
             buffList.ForEach(Destroy);

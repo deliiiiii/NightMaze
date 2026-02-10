@@ -7,7 +7,7 @@ namespace GeneralPreview;
 
 public abstract class ViewBase : MonoBehaviour
 {
-    protected virtual IEnumerable<IActionWrap> OnEvt() => [];
+    protected virtual IEnumerable<IFuncWrap> OnEvt() => [];
 
     void Awake()
     {

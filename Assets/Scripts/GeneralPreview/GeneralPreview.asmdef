@@ -2,7 +2,8 @@
     "name": "GeneralPreview",
     "rootNamespace": "",
     "references": [
-        "GUID:d7cd482536f444347ae1515d520f0e9b"
+        "GUID:d7cd482536f444347ae1515d520f0e9b",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

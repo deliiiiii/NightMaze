@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using NM.Data;
 using UnityEngine;
@@ -10,12 +11,12 @@ namespace NM.View;
 public class PlayView : ViewBase
 {
     [SerializeField] List<SymbolColumnView> symbolColumnList = [];
-    protected override IEnumerable<IActionWrap> OnEvt()
+    protected override IEnumerable<IFuncWrap> OnEvt()
     {
-        yield return EvtBus.Bind(OnEnterPlaying);
+        yield return EvtBus.Bind(OnEnterPlayingAsync);
     }
 
-    Action<EvtOnEnterPlaying> OnEnterPlaying => evt =>
+    Func<EvtOnEnterPlaying, UniTask> OnEnterPlayingAsync => evt =>
     {
         symbolColumnList.ForEach(column =>
         {
@@ -24,5 +25,6 @@ public class PlayView : ViewBase
                 symbolView.SetEmpty();
             });
         });
+        return UniTask.CompletedTask;
     };
 }
