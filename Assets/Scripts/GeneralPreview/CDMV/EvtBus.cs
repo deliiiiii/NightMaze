@@ -47,6 +47,17 @@ public static class EvtBus
             evtDic.Remove(typeof(T));
         }
     }
+    
+    public static Action<EvtBase> As<T>(Action<T> action) where T : EvtBase
+    {
+        return evt =>
+        {
+            if (evt is T t)
+            {
+                action(t);
+            }
+        };
+    }
 }
 
 public abstract record EvtBase;

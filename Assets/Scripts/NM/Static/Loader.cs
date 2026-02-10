@@ -2,9 +2,8 @@
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
-using NM;
 
-namespace GeneralProj;
+namespace NM;
 
 public static class Loader
 {
@@ -17,9 +16,5 @@ public static class Loader
         {
             config.OnLoad();
         }
-        
-        // Card.InitCtorDic();
-        // TODO Enemy跟Card一样管理好了。尝试一下基类带三个泛型参数有没有问题！
-        // EnemyDataBase.InitEnemyDic();
     }
 }

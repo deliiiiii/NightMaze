@@ -11,18 +11,7 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
 
     public IEnumerable<Action<EvtBase>> EvtList()
     {
-        yield return As<EvtAdjacent>(SymbolInSpin.OnEvtAdjacent);
-    }
-    
-    public static Action<EvtBase> As<T>(Action<T> action) where T : EvtBase
-    {
-        return evt =>
-        {
-            if (evt is T t)
-            {
-                action(t);
-            }
-        };
+        yield return EvtBus.As<EvtAdjacent>(SymbolInSpin.OnEvtAdjacent);
     }
 }
 

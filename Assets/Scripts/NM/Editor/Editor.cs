@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using General;
-using GeneralProj;
 using NM.Config;
 using UnityEditor;
 using UnityEngine;

@@ -4,5 +4,10 @@ namespace GeneralPreview;
 
 public abstract class ViewBase : MonoBehaviour
 {
-    public abstract void Bind();
+    protected abstract void Bind();
+
+    void Awake()
+    {
+        Bind();
+    }
 }

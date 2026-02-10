@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using General;
-using GeneralPreview;
-using GeneralProj;
 using NM.Data;
-using R3;
 using UnityEngine;
 
 namespace NM;
 
 public class Launcher : Singleton<Launcher>, IDisposable
 {
-    public List<ViewBase> ViewList = [];
+    // public List<ViewBase> ViewList = [];
     [SerializeReference] GameFSM gameFSM = null!;
-    readonly CompositeDisposable disposables = new();
+    // readonly CompositeDisposable disposables = new();
     // ReSharper disable once Unity.IncorrectMethodSignature
     // ReSharper disable once UnusedMember.Local
     async UniTask Start()
@@ -25,7 +21,7 @@ public class Launcher : Singleton<Launcher>, IDisposable
         try
         {
             await Loader.LoadAll();
-            ViewList.ForEach(v => v.Bind());
+            // ViewList.ForEach(v => v.Bind());
             gameFSM = new GameFSM();
             // ObservableSystem.DefaultFrameProvider = new R3.Unity.UnityFrameProvider(); 
             // Observable.EveryUpdate().Subscribe().AddTo(disposables);
