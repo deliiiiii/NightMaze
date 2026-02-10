@@ -9,7 +9,7 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
 {
     public SymbolConfig Config = config;
 
-    public IEnumerable<Action<EvtBase>> EvtList()
+    public IEnumerable<Action<EvtBase>> OnEvtList()
     {
         yield return EvtBus.As<EvtAdjacent>(SymbolInSpin.OnEvtAdjacent);
     }

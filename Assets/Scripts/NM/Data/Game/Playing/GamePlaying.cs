@@ -26,7 +26,7 @@ public partial class GamePlaying
 
     public void AddSymbol(SymbolEtt toAdd)
     {
-        toAdd.EvtList().ForEach(evt => EvtBus.Register(evt));
+        toAdd.OnEvtList().ForEach(evt => EvtBus.Register(evt));
         symbolDeckList.Add(toAdd);
     }
     public void RemoveSymbol(SymbolEtt toRemove)
