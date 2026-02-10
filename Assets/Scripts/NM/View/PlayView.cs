@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
+using NM.Config;
 using NM.Data;
 using TMPro;
 using UnityEngine;

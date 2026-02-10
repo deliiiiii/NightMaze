@@ -50,9 +50,31 @@ public static class EvtBus
     }
 }
 
-public abstract record EvtBase;
-public abstract record EvtBase1<T1>(T1 Arg1) : EvtBase;
-public abstract record EvtBase2<T1, T2>(T1 Arg1, T2 Arg2) : EvtBase;
+public abstract record EvtBase
+{
+    public virtual object? NthValue(int n) => null;
+}
+
+public abstract record EvtBase1<T1>(T1 Arg1) : EvtBase
+{
+    public override object? NthValue(int n) 
+        => n switch
+        {
+            1 => Arg1,
+            _ => null
+        };
+}
+
+public abstract record EvtBase2<T1, T2>(T1 Arg1, T2 Arg2) : EvtBase
+{
+    public override object? NthValue(int n) 
+        => n switch
+        {
+            1 => Arg1, 
+            2 => Arg2,
+            _ => null
+        };
+}
 
 public interface IFuncWrap
 {

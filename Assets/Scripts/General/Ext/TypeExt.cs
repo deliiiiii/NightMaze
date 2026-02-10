@@ -4,8 +4,10 @@ using System.Linq;
 
 public static class TypeExt
 {
-    public static IEnumerable<Type> GetSubTypes(this Type type)
+    public static IEnumerable<Type> SubTypeList(this Type type)
     {
-        return type.Assembly.GetTypes().Where(t => type.IsAssignableFrom(t) && t != type && !t.IsAbstract);
+        return AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(a => a.GetTypes())
+            .Where(t => type.IsAssignableFrom(t) && t != type && !t.IsAbstract);
     }
 }

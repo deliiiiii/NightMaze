@@ -13,7 +13,7 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
 
     public IEnumerable<IFuncWrap> OnEvtList()
     {
-        yield return EvtBus.Bind<EvtAdjacent>(SymbolInSpin.OnEvtAdjacent);
+        yield return EvtBus.Bind<EvtSymbolAdjacentSymbol>(SymbolInSpin.OnEvtAdjacent);
 
         // foreach (var ectReceiver in Config.EvtList ?? [])
         // {
@@ -36,7 +36,7 @@ public class SymbolInSpin : SymbolEtt.ICom<PlayingSpin>
 {
     public Vector2Int Pos;
     
-    public static UniTask OnEvtAdjacent(EvtAdjacent evt)
+    public static UniTask OnEvtAdjacent(EvtSymbolAdjacentSymbol evt)
     {
         return UniTask.CompletedTask;
     }

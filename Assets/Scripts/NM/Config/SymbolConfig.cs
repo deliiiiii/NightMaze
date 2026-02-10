@@ -11,6 +11,9 @@ public class SymbolConfig : ConfigMulti<SymbolConfig>
     [LabelText("稀有度")] public ERarity Rarity;
     [LabelText("白值")]public int Payout = 1;
     [InfoBox("下面的列表元素各自有各自的触发条件, 可触发任意多个, 多个同时触发时按列表顺序执行")]
-    [LabelText("旋转: 事件列表")]
-    public List<EvtReceiverBase>? EvtList = [];
+    [LabelText("旋转: 事件列表"), ListDrawerSettings(CustomAddFunction = nameof(CreateNewReceiver))]
+    [HideReferenceObjectPicker][DisableContextMenu]
+    public List<EvtReceiver>? EvtList = [];
+    
+    EvtReceiver CreateNewReceiver() => new();
 }

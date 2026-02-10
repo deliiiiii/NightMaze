@@ -156,7 +156,7 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
                 select (symbolEtt, adjacentSymbol)).ToList();
         foreach (var (symbolEtt, adjacentSymbol) in pairList)
         {
-            await EvtBus.FireAsync(new EvtAdjacent(symbolEtt, adjacentSymbol));
+            await EvtBus.FireAsync(new EvtSymbolAdjacentSymbol(symbolEtt, adjacentSymbol));
             // await UniTask.WaitUntil(() => TestToggle, cancellationToken: token);
             // TestToggle = false;
             // await UniTask.WaitUntil(() => adjacentActList.Count == 0, cancellationToken: token);
