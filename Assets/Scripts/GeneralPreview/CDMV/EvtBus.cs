@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using General;
+using R3;
 
 namespace GeneralPreview;
 
@@ -20,7 +21,6 @@ public static class EvtBus
             await ((dele as Func<T, UniTask>)?.Invoke(evt) ?? UniTask.CompletedTask);
         }
     }
-
     public static void Register<T>(Func<T, UniTask> act) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
@@ -43,38 +43,25 @@ public static class EvtBus
             evtDic.Remove(typeof(T));
         }
     }
-    
     public static FuncWrap<T> Bind<T>(Func<T, UniTask> func) where T : EvtBase
     {
         return new FuncWrap<T>(func);
     }
 }
 
-public abstract record EvtBase
+public abstract record EvtBase;
+public abstract record EvtBase1<T1> : EvtBase
 {
-    public virtual object? NthValue(int n) => null;
+    public required T1 Arg1 { get; init; }
 }
 
-public abstract record EvtBase1<T1>(T1 Arg1) : EvtBase
+public abstract record EvtBase2<T1, T2> : EvtBase
 {
-    public override object? NthValue(int n) 
-        => n switch
-        {
-            1 => Arg1,
-            _ => null
-        };
+    public required T1 Arg1 { get; init; }
+    public required T2 Arg2 { get; init; }
 }
 
-public abstract record EvtBase2<T1, T2>(T1 Arg1, T2 Arg2) : EvtBase
-{
-    public override object? NthValue(int n) 
-        => n switch
-        {
-            1 => Arg1, 
-            2 => Arg2,
-            _ => null
-        };
-}
+public record EvtUnit : EvtBase;
 
 public interface IFuncWrap
 {

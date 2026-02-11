@@ -22,7 +22,7 @@ public partial class GamePlaying
 
     public void AddSymbol(SymbolEtt toAdd)
     {
-        toAdd.OnEvtList().ForEach(w => w.Register());
+        // toAdd.OnEvtList(this).ForEach(w => w.Register());
         symbolDeckList.Add(toAdd);
     }
     public void RemoveSymbol(SymbolEtt toRemove)
@@ -120,8 +120,8 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
     }
     public List<SymbolEtt> SymbolShownList = [];
     public bool TestToggle;
-    List<IAction> adjacentActList = [];
-    List<IAction> removeActList = [];
+    List<ActionBase> adjacentActList = [];
+    List<ActionBase> removeActList = [];
     CancellationTokenSource onSpinCts = new();
     public override void OnEnter()
     {
@@ -146,7 +146,11 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
             addSymbol.AddCom(new SymbolInSpin() { Pos = addPos });
             leftList.Remove(addSymbol);
             SymbolShownList.Add(addSymbol);
-            await EvtBus.FireAsync(new EvtSpinSymbolAt(addSymbol, addPos));
+            await EvtBus.FireAsync(new EvtSpinSymbolAt()
+            {
+                Arg1 = addSymbol,
+                Arg2 = addPos
+            });
         }
        
         var pairList =
@@ -156,15 +160,15 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
                 select (symbolEtt, adjacentSymbol)).ToList();
         foreach (var (symbolEtt, adjacentSymbol) in pairList)
         {
-            await EvtBus.FireAsync(new EvtSymbolAdjacentSymbol(symbolEtt, adjacentSymbol));
+            await EvtBus.FireAsync(new EvtSymbolAdjacentSymbol()
+            {
+                Arg1 = symbolEtt,
+                Arg2 = adjacentSymbol
+            });
             // await UniTask.WaitUntil(() => TestToggle, cancellationToken: token);
             // TestToggle = false;
             // await UniTask.WaitUntil(() => adjacentActList.Count == 0, cancellationToken: token);
         }
-    }
-    public interface IAction
-    {
-        UniTask Do();
     }
 }
 

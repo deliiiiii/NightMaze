@@ -35,7 +35,7 @@ MonoBehaviour:
       Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: NM.Config.EvtSymbolAddSymbol, NM
+      Data: NM.Config.EvtSymbolEverySpinN, NM
     - Name: 
       Entry: 8
       Data: 
@@ -44,7 +44,19 @@ MonoBehaviour:
       Data: 3|System.Collections.Generic.List`1[[NM.Config.FilterBase, NM]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 4|NM.Config.FilterSymbolTypeIsOfSet, NM
+    - Name: And
+      Entry: 6
+      Data: 
+    - Name: Set
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -53,10 +65,28 @@ MonoBehaviour:
       Data: 
     - Name: Filter2OrList
       Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[NM.Config.FilterBase, NM]], mscorlib
+      Data: 5|System.Collections.Generic.List`1[[NM.Config.FilterBase, NM]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 6|NM.Config.FilterNEqual, NM
+    - Name: And
+      Entry: 6
+      Data: 
+    - Name: IntSelector
+      Entry: 7
+      Data: 7|NM.Config.SelectDirectInt, NM
+    - Name: Value
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -65,40 +95,40 @@ MonoBehaviour:
       Data: 
     - Name: DoCount
       Entry: 7
-      Data: 5|NM.Config.DoCountInfinite, NM
+      Data: 8|NM.Config.DoCountInfinite, NM
     - Name: 
       Entry: 8
       Data: 
     - Name: EvtSenderList
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[NM.Config.EvtSender, NM]], mscorlib
+      Data: 9|System.Collections.Generic.List`1[[NM.Config.EvtSender, NM]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 7|NM.Config.EvtSender, NM
+      Data: 10|NM.Config.EvtSender, NM
     - Name: SEvtType
       Entry: 7
-      Data: 8|System.RuntimeType, mscorlib
+      Data: 11|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: NM.Config.EvtSymbolPayoutAddTemp, NM
+      Data: NM.Config.EvtSymbolStock, NM
     - Name: 
       Entry: 8
       Data: 
     - Name: Arg1Selector
       Entry: 7
-      Data: 9|NM.Config.SelectFromEvtArgNth, NM
-    - Name: N
-      Entry: 3
-      Data: 1
+      Data: 12|NM.Config.SelectSymbolSelf, NM
     - Name: 
       Entry: 8
       Data: 
     - Name: Arg2Selector
       Entry: 7
-      Data: 10|NM.Config.SelectXxx, NM
+      Data: 13|NM.Config.SelectFromEvtArgNth, NM
+    - Name: N
+      Entry: 3
+      Data: 2
     - Name: 
       Entry: 8
       Data: 

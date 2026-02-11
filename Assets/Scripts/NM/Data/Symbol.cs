@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using NM.Config;
+using Sirenix.OdinInspector;
 
 namespace NM.Data;
 [Serializable]
@@ -11,20 +10,7 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
 {
     public SymbolConfig Config = config;
 
-    public IEnumerable<IFuncWrap> OnEvtList()
-    {
-        yield return EvtBus.Bind<EvtSymbolAdjacentSymbol>(SymbolInSpin.OnEvtAdjacent);
-
-        // foreach (var ectReceiver in Config.EvtList ?? [])
-        // {
-        //     yield return EvtBus.Bind<TEvtReceived>(evtObj =>
-        //     {
-        //         if (!ectReceiver.CheckArg(evtObj))
-        //             return UniTask.CompletedTask;
-        //         EvtBus.FireAsync(new TEvtSent() { args = Selectors(evtObj) });
-        //     });
-        // }
-    }
+    // public abstract IEnumerable<IFuncWrap> OnEvtList(GamePlaying ctx);
     
     public static SymbolEtt CreateEmptySymbol()
         => new(RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == -1));
@@ -32,14 +18,18 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
         => new(RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == id));
 }
 
+#region DoCount
+public abstract class DoCountBase;
+public class DoCountInfinite : DoCountBase;
+public class DoCountNumber : DoCountBase
+{
+    [MinValue(1)]public int N = 1;
+}
+#endregion
+
 public class SymbolInSpin : SymbolEtt.ICom<PlayingSpin>
 {
     public Vector2Int Pos;
-    
-    public static UniTask OnEvtAdjacent(EvtSymbolAdjacentSymbol evt)
-    {
-        return UniTask.CompletedTask;
-    }
 }
 
 public class SymbolComStock : SymbolEtt.ICom

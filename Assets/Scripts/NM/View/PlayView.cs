@@ -34,8 +34,8 @@ public class PlayView : ViewBase
     
     Func<EvtSpinSymbolAt, UniTask> OnSpinSymbolAtAsync => evt =>
     {
-        var symbolView = symbolColumnList[evt.Pos.X - 1].SymbolList[evt.Pos.Y - 1];
-        symbolView.SymbolEtt = evt.Symbol;
+        var symbolView = symbolColumnList[evt.Arg2.X - 1].SymbolList[evt.Arg2.Y - 1];
+        symbolView.SymbolEtt = evt.Arg1;
         return UniTask.CompletedTask;
     };
 }
