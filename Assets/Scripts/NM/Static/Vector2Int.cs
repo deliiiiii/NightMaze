@@ -38,4 +38,9 @@ public record struct Vector2Int(int X, int Y)
     {
         return new Vector2Int(a.X / b, a.Y / b);
     }
+
+    public override string ToString()
+    {
+        return $"({X}, {Y})";
+    }
 }

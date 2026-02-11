@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 181655921}
   - component: {fileID: 181655920}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Btn Spin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,6 +685,7 @@ MonoBehaviour:
   - {fileID: 876837805}
   - {fileID: 1884160713}
   TxtCoin: {fileID: 0}
+  BtnSpin: {fileID: 181655920}
 --- !u!1 &371595525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,7 +1945,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 92.5
+  m_fontSize: 90.85
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2083,7 +2084,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.7
+  m_fontSize: 30.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -1,21 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Cysharp.Threading.Tasks;
-using General;
-using GeneralPreview;
-using NM.Config;
 using NM.Data;
-using R3;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
-
 #if UNITY_EDITOR
-using Sirenix.OdinInspector.Editor;
 #endif
 
-namespace NM;
+namespace NM.Config;
 [DisableContextMenu]
 public abstract class FilterBase
 {

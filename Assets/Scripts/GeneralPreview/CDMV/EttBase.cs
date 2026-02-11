@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using General;
 using Sirenix.OdinInspector;
 
 namespace GeneralPreview;
@@ -19,6 +20,7 @@ public abstract class EttBase<TThis>
     {
         if (comDic.TryGetValue(typeof(T), out var existCom))
         {
+            MyDebug.LogError($"Entity {GetType().Name} AddComponent {typeof(T).Name} But Already Exists");
             return (T)existCom;
         }
         comDic.Add(typeof(T), com);
@@ -29,7 +31,8 @@ public abstract class EttBase<TThis>
     {
         if (!comDic.TryGetValue(typeof(T), out _))
         {
-            throw new Exception($"Entity {GetType().Name} RemoveComponent {typeof(T).Name} But NOT Exists");
+            MyDebug.LogError($"Entity {ToString()} RemoveComponent {typeof(T).Name} But NOT Exists");
+            return;
         }
         comDic.Remove(typeof(T));
     }
@@ -47,7 +50,6 @@ public abstract class EttBase<TThis>
             return (T)com;
         }
         return None;
-        // throw new Exception($"Entity {GetType().Name} GetComponent {typeof(T).Name} But NOT Exists");
     }
 
     public interface ICom;

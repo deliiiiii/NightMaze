@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using GeneralPreview;
+﻿using GeneralPreview;
 using Sirenix.OdinInspector;
 
 namespace NM.Config;

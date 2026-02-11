@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using General;
 using General.BindData;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace GeneralPreview;
 public abstract class FSM<TThis>
     where TThis : FSM<TThis>
 {
-    public event Action<IState>? OnStateEnter;
-    public event Action<IState>? OnStateExit;
     [ShowInInspector, PropertyOrder(0)] public string CurStateName => curState?.GetType().Name ?? "Null";
     [ShowInInspector, PropertyOrder(1)] IState? curState;
     bool isLaunched;
@@ -37,6 +37,7 @@ public abstract class FSM<TThis>
         }
         isLaunched = false;
         curState?.OnExit();
+        curState?.UnRegisterAll();
         curState = null;
         // selfTickBind?.UnBind();
         // selfTickBind = null;
@@ -52,15 +53,20 @@ public abstract class FSM<TThis>
         {
             if(curState.GetType() == typeof(TState) && !curState.EnableReEnter)
                 return (TState)curState;
-            OnStateExit?.Invoke(curState);
             curState.OnExit();
+            curState.UnRegisterAll();
         }
         var subState = Activator.CreateInstance<TState>()!;
         curState = subState;
         curState.BelongFSM = (TThis)this;
+        curState.RegisterAll();
         curState.OnEnter();
-        OnStateEnter?.Invoke(curState);
         return subState;
+    }
+
+    public TState EnterStateIfNotIn<TState>() where TState : class, IState
+    {
+        return InState<TState>().Match(some => some, EnterState<TState>);
     }
     public MyOption<TState> InState<TState>() where TState : class, IState
     {
@@ -78,6 +84,10 @@ public abstract class FSM<TThis>
         public void OnExit(){}
         public void OnUpdate(float dt){}
         public bool EnableReEnter => false;
+        
+        public IEnumerable<IFuncWrap> OnEvtList() => [];
+        void RegisterAll() => OnEvtList().ForEach(func => func.Register());
+        void UnRegisterAll() => OnEvtList().ForEach(func => func.UnRegister());
     }
     [Serializable]
     public abstract class StateFSM<TSub> : FSM<TSub>, IState
@@ -88,5 +98,6 @@ public abstract class FSM<TThis>
         public abstract void OnExit();
         public virtual void OnUpdate(float dt){}
         public virtual bool EnableReEnter => false;
+        public virtual IEnumerable<IFuncWrap> OnEvtList() => [];
     }
 }

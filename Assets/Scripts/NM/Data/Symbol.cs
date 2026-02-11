@@ -10,12 +10,28 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
 {
     public SymbolConfig Config = config;
 
-    // public abstract IEnumerable<IFuncWrap> OnEvtList(GamePlaying ctx);
-    
+    public IEnumerable<IFuncWrap> OnEvtList(GamePlaying ctx)
+    {
+        if (Config.ID == 1)
+        {
+            yield return Bus.Bind<EvtSymbolAdjacentSymbol>(async (evt, ct) =>
+            {
+                if (evt.Arg2 == this && evt.Arg1.Config.ID == 2)
+                    await ctx.DoSymbolAddSymbol.Do(this, CreateSymbol(9), ct);
+            });
+        }
+    }
+    public bool IsEmpty => Config.ID == -1;
     public static SymbolEtt CreateEmptySymbol()
         => new(RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == -1));
     public static SymbolEtt CreateSymbol(int id) 
         => new(RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == id));
+
+    public override string ToString()
+    {
+        return $"Symbol{Config.Name}({Config.ID}) {PosInfo})";
+    }
+    string PosInfo => GetCom<SymbolInSpin>().Match(some => some.Pos.ToString(), () => string.Empty);
 }
 
 #region DoCount

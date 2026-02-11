@@ -1,27 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
-using R3;
 
 namespace GeneralPreview;
 
-public static class EvtBus
+public static class Bus
 {
     static readonly Dictionary<Type, List<Delegate>> evtDic = new();
 
-    public static async UniTask FireAsync<T>(T evt, bool withDebug = false) where T : EvtBase
+    public static void FireAndForget<T>(T evt, Func<bool>? withDebug = null) where T : EvtBase
+        => FireAsync(evt, CancellationToken.None, withDebug).Forget();
+    public static async UniTask FireAsync<T>(T evt, CancellationToken ct, Func<bool>? withDebug = null) where T : EvtBase
     {
+        withDebug ??= () => true;
+        if(withDebug())
+            MyDebug.Log($"Fired - {evt}");
         if (!evtDic.TryGetValue(typeof(T), out var list)) 
             return;
         foreach (var dele in list)
         {
-            if(withDebug)
-                MyDebug.Log($"EvtBus Fire {dele}");
-            await ((dele as Func<T, UniTask>)?.Invoke(evt) ?? UniTask.CompletedTask);
+            await ((dele as Func<T, CancellationToken, UniTask>)?.Invoke(evt, ct) ?? UniTask.CompletedTask);
         }
     }
-    public static void Register<T>(Func<T, UniTask> act) where T : EvtBase
+    public static void Register<T>(Func<T, CancellationToken, UniTask> act) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
         {
@@ -30,7 +33,7 @@ public static class EvtBus
         }
         list.Add(act);
     }
-    public static void UnRegister<T>(Func<T, UniTask> func) where T : EvtBase
+    public static void UnRegister<T>(Func<T, CancellationToken, UniTask> func) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
             return;
@@ -43,7 +46,7 @@ public static class EvtBus
             evtDic.Remove(typeof(T));
         }
     }
-    public static FuncWrap<T> Bind<T>(Func<T, UniTask> func) where T : EvtBase
+    public static FuncWrap<T> Bind<T>(Func<T, CancellationToken, UniTask> func) where T : EvtBase
     {
         return new FuncWrap<T>(func);
     }
@@ -68,9 +71,9 @@ public interface IFuncWrap
     void Register();
     void UnRegister();
 }
-public class FuncWrap<T>(Func<T, UniTask> action) : IFuncWrap
+public class FuncWrap<T>(Func<T, CancellationToken, UniTask> action) : IFuncWrap
     where T : EvtBase
 {
-    public void Register() => EvtBus.Register(action);
-    public void UnRegister() => EvtBus.UnRegister(action);
+    public void Register() => Bus.Register(action);
+    public void UnRegister() => Bus.UnRegister(action);
 }
