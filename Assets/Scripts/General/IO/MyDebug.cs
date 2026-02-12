@@ -1,52 +1,50 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace General
 {
     public enum LogType
     {
+        [LabelText("默认")]
         Default,
-        Tick,
     }
     public static class MyDebug
     {
-        //设置输出严重度，输出类型，是否输出
         static bool canLogAll = true;
         static bool canLog = true;
         static bool canLogWarning = true;
         static bool canLogError = true;
-        static int logThreshold = 10;
-        static HashSet<LogType> logTypes = new()
+        static HashSet<LogType> logTypes = ((LogType[])Enum.GetValues(typeof(LogType))).ToHashSet();
+
+        [HideInCallstack][DebuggerStepThrough]
+        public static void Log(object message, LogType logType = LogType.Default)
         {
-            LogType.Default,
-        
-            LogType.Tick,
-        
-        };
-        [HideInCallstack]
-        public static void Log(object message, LogType logType = LogType.Default, int threshold = 0)
-        {
-            if (!canLog || !CheckLog(logType, threshold))
+            if (!canLog || !CheckLog(logType))
             {
                 return;
             }
             Debug.Log(message);
         
         }
-        [HideInCallstack]
+        [HideInCallstack][DebuggerStepThrough]
         public static void LogWarning(object message, LogType logType = LogType.Default, int threshold = 0)
         {
-            if (!canLogWarning || !CheckLog(logType, threshold))
+            if (!canLogWarning || !CheckLog(logType))
             {
                 return;
             }
             Debug.LogWarning(message);
 
         }
-        [HideInCallstack]
+        [HideInCallstack][DebuggerStepThrough]
         public static void LogError(object message, LogType logType = LogType.Default, int threshold = 0)
         {
-            if (!canLogError || !CheckLog(logType, threshold))
+            if (!canLogError || !CheckLog(logType))
             {
                 return;
             }
@@ -54,13 +52,18 @@ namespace General
 
         }
         [HideInCallstack]
-        static bool CheckLog(LogType logType, int threshold)
+        static bool CheckLog(LogType logType)
         {
-            if (!canLogAll || logThreshold < threshold || !logTypes.Contains(logType))
-            {
-                return false;
-            }
-            return true;
+            return canLogAll && logTypes.Contains(logType);
+        }
+        
+        public static void ApplySettings(bool all, bool log, bool warning, bool error, HashSet<LogType> activeTypes)
+        {
+            canLogAll = all;
+            canLog = log;
+            canLogWarning = warning;
+            canLogError = error;
+            logTypes = activeTypes;
         }
     }
 }

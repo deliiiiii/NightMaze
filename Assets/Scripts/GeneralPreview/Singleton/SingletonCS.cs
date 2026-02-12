@@ -26,14 +26,13 @@ public class SingletonCS<T> where T : SingletonCS<T>, new()
     } = null!;
     void OnInit()
     {
+        go = new GameObject($"{typeof(T).Name} (SingletonCS)");
+#if UNITY_EDITOR
         void DestroyAct()
         {
             Object.DestroyImmediate(go);
             go = null!;
         }
-
-        go = new GameObject($"{typeof(T).Name} (SingletonCS)");
-#if UNITY_EDITOR
         AssemblyReloadEvents.beforeAssemblyReload += DestroyAct;
         EditorApplication.playModeStateChanged += s =>
         {

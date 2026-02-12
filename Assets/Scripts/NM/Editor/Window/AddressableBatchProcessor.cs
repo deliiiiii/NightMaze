@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using General;
+using General.Editor;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
@@ -90,12 +91,12 @@ internal class AddressableBatchProcessor : EditorWindow
         GUILayout.Space(10);
         GUILayout.Label($"Total Rules: {config.RuleList.Count}", EditorStyles.miniLabel);
 
-        // GUI.backgroundColor = Color.green;
-        // if (GUILayout.Button("Process All Rules", GUILayout.Height(40)))
-        // {
-        //     ProcessAllRules();
-        // }
-        // GUI.backgroundColor = Color.white;
+        GUI.backgroundColor = Color.green;
+        if (GUILayout.Button("Process All Rules", GUILayout.Height(40)))
+        {
+            ProcessConfig(config);
+        }
+        GUI.backgroundColor = Color.white;
     }
 
     void DrawRuleItem(int index)
@@ -195,22 +196,14 @@ internal class AddressableBatchProcessor : EditorWindow
     {
         if (state == PlayModeStateChange.ExitingEditMode)
         {
-            string[] guids = AssetDatabase.FindAssets($"t:{nameof(AddressableBatchConfig)}");
-            foreach (string guid in guids)
-            {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                var cfg = AssetDatabase.LoadAssetAtPath<AddressableBatchConfig>(path);
-                if (cfg != null)
-                {
-                    ProcessConfig(cfg);
-                }
-            }
+            if(MyAsset.TryLoadFirstAsset<AddressableBatchConfig>(out var cfg))
+                ProcessConfig(cfg);
         }
     }
     static void ProcessConfig(AddressableBatchConfig configToProcess)
     {
-        if (configToProcess == null || configToProcess.RuleList.Count == 0) return;
-
+        if (configToProcess == null || configToProcess.RuleList.Count == 0) 
+            return;
         AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
         if (settings == null)
         {

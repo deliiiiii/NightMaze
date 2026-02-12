@@ -21,27 +21,27 @@ namespace General
     public static class TextExt
     {
         static Dictionary<Text, TextExtensionData> dic = new();
-        static int staticCount = 0;
-        const float UPDATE_INTERVAL = 0.02f;
+        // static int staticCount = 0;
+        const float UpdateInterval = 0.02f;
 
         public static void DoFluent(this Text txt, float tarValue, float deltaPerSecond, string format)
         {
         
 #if UNITY_EDITOR
-            if (staticCount == 0)
-            {
-                staticCount++;
-                EditorApplication.playModeStateChanged += (s) =>
-                {
-                    if (s != PlayModeStateChange.ExitingPlayMode)
-                        return;
-                    foreach (var it in dic.Keys)
-                    {
-                        dic[it].CancelTokenSource.Cancel();
-                    }
-                    dic.Clear();
-                };
-            }
+            // if (staticCount == 0)
+            // {
+            //     staticCount++;
+            //     EditorApplication.playModeStateChanged += (s) =>
+            //     {
+            //         if (s != PlayModeStateChange.ExitingPlayMode)
+            //             return;
+            //         foreach (var it in dic.Keys)
+            //         {
+            //             dic[it].CancelTokenSource.Cancel();
+            //         }
+            //         dic.Clear();
+            //     };
+            // }
 #endif
             if (!dic.ContainsKey(txt))
             {
@@ -68,18 +68,18 @@ namespace General
                 bool positive = dic[txt].TarValue - dic[txt].CurValue > 0;
                 if (positive)
                     dic[txt].CurValue = Math.Clamp(
-                        dic[txt].CurValue + UPDATE_INTERVAL * dic[txt].DeltaPerSecond,
+                        dic[txt].CurValue + UpdateInterval * dic[txt].DeltaPerSecond,
                         dic[txt].CurValue,
                         dic[txt].TarValue
                     );
                 else
                     dic[txt].CurValue = Math.Clamp(
-                        dic[txt].CurValue - UPDATE_INTERVAL * dic[txt].DeltaPerSecond,
+                        dic[txt].CurValue - UpdateInterval * dic[txt].DeltaPerSecond,
                         dic[txt].TarValue,
                         dic[txt].CurValue
                     );
                 txt.text = dic[txt].CurValue.ToString(dic[txt].Format);
-                await UniTask.WaitForSeconds(UPDATE_INTERVAL, cancellationToken: dic[txt].CancelTokenSource.Token);
+                await UniTask.WaitForSeconds(UpdateInterval, cancellationToken: dic[txt].CancelTokenSource.Token);
             }
             txt.text = dic[txt].TarValue.ToString(dic[txt].Format);
             dic.Remove(txt);

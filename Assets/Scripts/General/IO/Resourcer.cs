@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
@@ -148,7 +151,7 @@ namespace General
         /// <returns>加载的资源列表</returns>
         public static async UniTask<List<T>> LoadAssetsAsyncByLabel<T>(string label, bool parallel = true) where T : Object
         {
-            IList<IResourceLocation> resourceLocations = null;
+            IList<IResourceLocation> resourceLocations;
             // 先试图从缓存中获取Locations
             if (!_labelLocationsCache.TryGetValue(label, out var value))
             {
@@ -323,8 +326,6 @@ namespace General
             _labelLocationsCache[label] = locatorsHandle.Result;
             return locatorsHandle.Result;
         }
-        
-        
     }
 }
 
