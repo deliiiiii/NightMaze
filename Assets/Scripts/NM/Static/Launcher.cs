@@ -21,7 +21,7 @@ public class Launcher : Singleton<Launcher>, IDisposable
         try
         {
             await Loader.LoadAll();
-            // ViewList.ForEach(v => v.Bind());
+            throw new Exception("...");
             gameFSM = new GameFSM();
             // ObservableSystem.DefaultFrameProvider = new R3.Unity.UnityFrameProvider(); 
             // Observable.EveryUpdate().Subscribe().AddTo(disposables);

@@ -136,7 +136,7 @@
 //             isover = true;
 //         else
 //         {
-//             Debug.LogError(listfileinfo.Count);
+//             MyDebug.LogError(listfileinfo.Count);
 //         }
 //     }
 //
@@ -217,7 +217,7 @@
 //     {
 //         if (fileSystemInfo.Exists == false)
 //         {
-//             Debug.LogError("文件或者目录名称：" + fileSystemInfo + " 不存在，请检查");
+//             MyDebug.LogError("文件或者目录名称：" + fileSystemInfo + " 不存在，请检查");
 //             return;
 //         }
 //
