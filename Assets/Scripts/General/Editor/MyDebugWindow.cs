@@ -137,10 +137,8 @@ namespace General.Editor
 
         static void AutoApplyConfig()
         {
-             if (MyAsset.TryLoadFirstAsset<MyDebugConfig>(out var foundConfig))
-             {
+             if (MyAsset.TryLoadFirstAsset<MyDebugConfig>(out var foundConfig)) 
                  ApplySettingsToStatic(foundConfig);
-             }
         }
 
 

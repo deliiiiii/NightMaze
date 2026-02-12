@@ -2,7 +2,8 @@
     "name": "General.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:d7cd482536f444347ae1515d520f0e9b"
+        "GUID:d7cd482536f444347ae1515d520f0e9b",
+        "GUID:a57dc7227bf3a0548b59893e9cc0d3e5"
     ],
     "includePlatforms": [
         "Editor"

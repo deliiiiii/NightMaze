@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using General;
 using General.Editor;
+using NM.Config;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
@@ -32,6 +33,11 @@ internal class AddressableBatchProcessor : EditorWindow
 
     void OnEnable()
     {
+        if (config == null)
+        {
+            MyAsset.TryLoadFirstAsset(out config);
+        }
+
         var fieldInfoList = typeof(NameC)
             .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
             .Where(f => f.IsLiteral && !f.IsInitOnly && f.Name.EndsWith("Tag"))
@@ -194,12 +200,18 @@ internal class AddressableBatchProcessor : EditorWindow
 
     static void OnPlayModeStateChanged(PlayModeStateChange state)
     {
-        if (state == PlayModeStateChange.ExitingEditMode)
+        if (state == PlayModeStateChange.EnteredPlayMode)
         {
-            if(MyAsset.TryLoadFirstAsset<AddressableBatchConfig>(out var cfg))
-                ProcessConfig(cfg);
+            AutoApplyConfig();
         }
     }
+
+    static void AutoApplyConfig()
+    {
+        if(MyAsset.TryLoadFirstAsset<AddressableBatchConfig>(out var cfg))
+            ProcessConfig(cfg);
+    }
+    
     static void ProcessConfig(AddressableBatchConfig configToProcess)
     {
         if (configToProcess == null || configToProcess.RuleList.Count == 0) 
