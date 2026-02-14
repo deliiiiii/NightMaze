@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using General;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace GeneralPreview;
 
@@ -12,7 +13,7 @@ public abstract class EttBase<TThis>
     protected EttBase() => entityID = nextEntityID++;
     // ReSharper disable once StaticMemberInGenericType
     static int nextEntityID;
-    int entityID;
+    [HideInInspector]int entityID;
     [ShowInInspector] readonly Dictionary<Type, ICom> comDic = [];
     [DebuggerStepThrough]
     public T AddCom<T>(T com)

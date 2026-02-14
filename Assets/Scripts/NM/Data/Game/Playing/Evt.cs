@@ -27,7 +27,15 @@ public record EvtSymbolStock : EvtBase2<SymbolEtt, int>;
 public record EvtPlayerRemoveSymbol : EvtBase1<SymbolEtt>;
 [TypeRegistryItem("某符号与(当前)某符号相邻时\t(SymbolEtt, SymbolEtt)")]
 public record EvtSymbolAdjacentSymbol : EvtBase2<SymbolEtt, SymbolEtt>;
+
 [TypeRegistryItem("某符号旋转到某位置时\t(SymbolEtt, Vector2Int)")]
-public record EvtSpinSymbolAt : EvtBase2<SymbolEtt, Vector2Int>;
+[LabelText("LabelText -- EvtSpinSymbolAt")]
+public record EvtSpinSymbolAt : EvtBase2<SymbolEtt, Vector2Int>
+{
+    public override string ToString()
+    {
+        return "ToString -- EvtSpinSymbolAt";
+    }
+}
 
 public record EvtClickSpin : EvtBase;

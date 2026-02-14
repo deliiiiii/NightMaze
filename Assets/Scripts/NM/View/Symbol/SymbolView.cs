@@ -36,18 +36,20 @@ public class SymbolView : MonoBehaviour
 
     void Awake()
     {
-        OnEvt().BindAll();
+        OnEvt().RegAll();
     }
 
-    IEnumerable<IFuncWrap> OnEvt()
+    IEnumerable<IUniEvt> OnEvt()
     {
-        yield return Bus.Bind(OnSpinImmediateDo);
+        yield return new UniEvt<EvtSpinImmediateDoSymbol>()
+        {
+            DoAsync = async (evt, ct) =>
+            {
+                if (evt.Arg1 != SymbolEtt || SymbolEtt.IsEmpty)
+                    return;
+                await onSpinTween.PlayAsync(ct);
+            },
+            Des = $"{SymbolEtt?.Config.Name ?? ""} 放变红动画"
+        };
     }
-
-    UniFunc<EvtSpinImmediateDoSymbol> OnSpinImmediateDo => async (evt, ct) =>
-    {
-        if (evt.Arg1 != SymbolEtt || SymbolEtt.IsEmpty)
-            return;
-        await onSpinTween.PlayAsync(ct);
-    };
 }

@@ -24,31 +24,38 @@ public class PlayView : ViewBase
     {
         yield return Binder.FromEvt(BtnSpin.onClick).To(() => Bus.FireAndForget(new EvtClickSpin()));
     }
-    protected override IEnumerable<IFuncWrap> OnEvt()
+    protected override IEnumerable<IUniEvt> OnEvt()
     {
-        yield return Bus.Bind(OnEnterPlayingAsync);
-        yield return Bus.Bind(OnEnterPlayingSpinAsync);
-        yield return Bus.Bind(OnSpinSymbolAtAsync);
+        yield return new UniEvt<EvtOnEnterPlaying>()
+        {
+            DoAsync = (evt, ct) =>
+            {
+                SetAllEmpty();
+                return UniTask.CompletedTask;
+            },
+            Des = "（进入游戏状态时）清空所有格子"
+        };
+        yield return new UniEvt<EvtOnEnterSpin>()
+        {
+            DoAsync = (evt, ct) =>
+            {
+                SetAllEmpty();
+                return UniTask.CompletedTask;
+            },
+            Des = "（点击旋转时）清空所有格子"
+        };
+        yield return new UniEvt<EvtSpinSymbolAt>()
+        {
+            DoAsync = async (evt, ct) =>
+            {
+                SetSymbolAt(evt.Arg1, evt.Arg2);
+                await UniTask.Yield();
+            },
+            Des = "（某符号旋转到某位置时）在格子上显示符号"
+        };
     }
-
-    UniFunc<EvtOnEnterPlaying> OnEnterPlayingAsync => (evt, ct) =>
-    {
-        SetAllEmpty();
-        return UniTask.CompletedTask;
-    };
     
-    UniFunc<EvtOnEnterSpin> OnEnterPlayingSpinAsync => (evt, ct) =>
-    {
-        SetAllEmpty();
-        return UniTask.CompletedTask;
-    };
     
-    UniFunc<EvtSpinSymbolAt> OnSpinSymbolAtAsync => async (evt, ct) =>
-    {
-        SetSymbolAt(evt.Arg1, evt.Arg2);
-        await UniTask.Yield();
-    };
-
     void SetAllEmpty()
     {
         _ = from x in Enumerable.Range(Const.SpinFirstID, Const.SpinW)

@@ -85,9 +85,9 @@ public abstract class FSM<TThis>
         public void OnUpdate(float dt){}
         public bool EnableReEnter => false;
         
-        public IEnumerable<IFuncWrap> OnEvt() => [];
-        void RegisterAll() => OnEvt().BindAll();
-        void UnRegisterAll() => OnEvt().UnBindAll();
+        public IEnumerable<IUniEvt> OnEvt() => [];
+        void RegisterAll() => OnEvt().RegAll();
+        void UnRegisterAll() => OnEvt().UnRegAll();
     }
     [Serializable]
     public abstract class StateFSM<TSub> : FSM<TSub>, IState
@@ -98,6 +98,6 @@ public abstract class FSM<TThis>
         public abstract void OnExit();
         public virtual void OnUpdate(float dt){}
         public virtual bool EnableReEnter => false;
-        public virtual IEnumerable<IFuncWrap> OnEvt() => [];
+        public virtual IEnumerable<IUniEvt> OnEvt() => [];
     }
 }

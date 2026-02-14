@@ -11,7 +11,16 @@ namespace NM.Data;
 [Serializable]
 public partial class GamePlaying
 {
-    public DoSymbolAddSymbol DoSymbolAddSymbol => new() { Ctx = this };
+    public UniAction2<SymbolEtt, SymbolEtt> SymbolAddSymbolFunc => new()
+    {
+        DoAsync = async (arg1, arg2, ct) =>
+        {
+            AddSymbol(arg2);
+            await Bus.FireAsync(new EvtSymbolAddSymbol { Arg1 = arg1, Arg2 = arg2 }, ct);
+        }
+    };
+        
+
     [ShowInInspector] List<SymbolEtt> symbolDeckList = [];
     public IEnumerable<SymbolEtt> Deck => symbolDeckList;
     public void ClearDeck()
@@ -21,12 +30,16 @@ public partial class GamePlaying
 
     public void AddSymbol(SymbolEtt toAdd)
     {
-        toAdd.OnEvt(this).BindAll();
+        toAdd.OnEvt(this).RegAll();
         symbolDeckList.Add(toAdd);
-        InState<PlayingSpin>().MatchA(some => some.AddDelayDo(async ct =>
+        InState<PlayingSpin>().MatchA(some =>
         {
-            await some.ShowSymbolRandomlyAsync(toAdd, ct);
-        }, EInSpinTiming.AfterAdjacent));
+            some.DelayDoList.Add(new UniAction
+            {
+                DoAsync = async ct => await some.ShowSymbolRandomlyAsync(toAdd, ct),
+                Des = $"显示添加的{toAdd.Config.Name}"
+            });
+        });
         if(!toAdd.IsEmpty)
             symbolDeckList.MyFirst(s => s.IsEmpty).MatchA(some => symbolDeckList.Remove(some));
     }
@@ -43,13 +56,17 @@ public partial class GamePlaying
     CancellationTokenSource cts = new();
     
     
-    public override IEnumerable<IFuncWrap> OnEvt()
+    public override IEnumerable<IUniEvt> OnEvt()
     {
-        yield return Bus.Bind<EvtClickSpin>((evt, ct) =>
+        yield return new UniEvt<EvtClickSpin>
         {
-            EnterStateIfNotIn<PlayingSpin>();
-            return UniTask.CompletedTask;
-        });
+            DoAsync = (evt, ct) =>
+            {
+                EnterStateIfNotIn<PlayingSpin>();
+                return UniTask.CompletedTask;
+            },
+            Des = "（点击了旋转按钮）尝试进入旋转状态"
+        };
     }
     
     public override void OnEnter()
@@ -124,7 +141,7 @@ public class PlayingBeforeSpin : GamePlaying.StateFSM<PlayingBeforeSpin>
 public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 {
     public List<SymbolEtt> SymbolShownList = [];
-    List<DoDelay> delayDoList = [];
+    public List<UniAction> DelayDoList = [];
     CancellationTokenSource cts = new();
     public override void OnEnter()
     {
@@ -138,11 +155,6 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         cts.Cancel();
         SymbolShownList.ForEach(s => s.RemoveCom<SymbolInSpin>());
         SymbolShownList.Clear();
-    }
-    
-    public void AddDelayDo(UniAction doFunc, EInSpinTiming timing)
-    {
-        delayDoList.Add(new DoDelay{ DoAsync = doFunc, DelayTiming = (int)timing });
     }
     
     
@@ -216,20 +228,22 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
                     await Bus.FireAsync(new EvtSymbolAdjacentSymbol { Arg1 = adjacentSymbol, Arg2 = symbol }, ct, () => debug);
                 }
             }
-
-            foreach (var doDelay in delayDoList.Where(IsSpinTiming(EInSpinTiming.AfterAdjacent)))
+            // foreach (var doDelay in DelayDoList.Where(IsSpinTiming(InSpinTiming.AfterAdjacent)))
+            foreach (var doDelay in DelayDoList)
             {
                 await doDelay.DoAsync(ct);
             }
-
-            delayDoList.RemoveAll(IsSpinTimingP(EInSpinTiming.AfterAdjacent));
-        } while (delayDoList.Count != 0);
+            // DelayDoList.RemoveAll(IsSpinTimingP(InSpinTiming.AfterAdjacent));
+            DelayDoList.Clear();
+        } while (DelayDoList.Count != 0);
         MyDebug.Log("Spin End");
         BelongFSM.EnterState<PlayingIdle>();
     }
-    
-    Func<DoDelay, bool> IsSpinTiming(EInSpinTiming timing) => d => d.DelayTiming == (int)timing;
-    Predicate<DoDelay> IsSpinTimingP(EInSpinTiming timing) => d => d.DelayTiming == (int)timing;
+
+    static Func<UniAction, bool> IsSpinTiming(int timing)
+        => d => d.Timing.Match(some => some == timing, () => false);
+    static Predicate<UniAction> IsSpinTimingP(int timing)
+        => d => d.Timing.Match(some => some == timing, () => false);
 }
 
 

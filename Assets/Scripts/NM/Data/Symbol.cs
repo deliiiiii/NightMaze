@@ -10,15 +10,19 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
 {
     public SymbolConfig Config = config;
 
-    public IEnumerable<IFuncWrap> OnEvt(GamePlaying ctx)
+    public IEnumerable<IUniEvt> OnEvt(GamePlaying ctx)
     {
         if (Config.ID == 1)
         {
-            yield return Bus.Bind<EvtSymbolAdjacentSymbol>(async (evt, ct) =>
+            yield return new UniEvt<EvtSymbolAdjacentSymbol>
             {
-                if (evt.Arg2 == this && evt.Arg1.Config.ID == 2)
-                    await ctx.DoSymbolAddSymbol.Do(this, CreateSymbol(9), ct);
-            });
+                DoAsync = async (evt, ct) =>
+                {
+                    if (evt.Arg2 == this && evt.Arg1.Config.ID == 2)
+                        await ctx.SymbolAddSymbolFunc.DoAsync(this, CreateSymbol(9), ct);
+                },
+                Des = "（香蕉发现和香蕉皮相邻时）添加一个葡萄酒"
+            };
         }
     }
     public bool IsEmpty => Config.ID == -1;
@@ -46,6 +50,10 @@ public class DoCountNumber : DoCountBase
 public class SymbolInSpin : SymbolEtt.ICom<PlayingSpin>
 {
     public Vector2Int Pos;
+    public List<int> TempAdd = [];
+    public List<int> TempMulti = [];
+    public List<int> TowaAdd = [];
+    public List<int> TowaMulti = [];
 }
 
 public class SymbolComStock : SymbolEtt.ICom

@@ -9,7 +9,7 @@ namespace GeneralPreview;
 
 public static class Bus
 {
-    static readonly Dictionary<Type, List<Delegate>> evtDic = new();
+    static readonly Dictionary<Type, List<UniDele>> evtDic = new();
 
     public static void FireAndForget<T>(T evt, Func<bool>? withDebug = null) where T : EvtBase
         => FireAsync(evt, CancellationToken.None, withDebug).Forget();
@@ -22,10 +22,10 @@ public static class Bus
             return;
         foreach (var dele in list)
         {
-            await ((dele as UniFunc<T>)?.Invoke(evt, ct) ?? UniTask.CompletedTask);
+            await ((dele as UniEvt<T>)?.DoAsync(evt, ct) ?? UniTask.CompletedTask);
         }
     }
-    public static void Register<T>(UniFunc<T> act) where T : EvtBase
+    public static void Register<T>(UniEvt<T> act) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
         {
@@ -34,11 +34,11 @@ public static class Bus
         }
         list.Add(act);
     }
-    public static void UnRegister<T>(UniFunc<T> func) where T : EvtBase
+    public static void UnRegister<T>(UniEvt<T> func) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
             return;
-        var index = list.FindIndex(h => h == (Delegate)func);
+        var index = list.FindIndex(h => h == func);
         if (index == -1) 
             return;
         list.RemoveAt(index);
@@ -46,10 +46,6 @@ public static class Bus
         {
             evtDic.Remove(typeof(T));
         }
-    }
-    public static FuncWrap<T> Bind<T>(UniFunc<T> func) where T : EvtBase
-    {
-        return new FuncWrap<T>(func);
     }
 }
 
@@ -67,23 +63,11 @@ public abstract record EvtBase2<T1, T2> : EvtBase
 
 public record EvtUnit : EvtBase;
 
-public interface IFuncWrap
-{
-    void Register();
-    void UnRegister();
-}
-public class FuncWrap<T>(UniFunc<T> action) : IFuncWrap
-    where T : EvtBase
-{
-    public void Register() => Bus.Register(action);
-    public void UnRegister() => Bus.UnRegister(action);
-}
-
 public static class FuncWrapExt
 {
-    extension(IEnumerable<IFuncWrap> self)
+    extension(IEnumerable<IUniEvt> self)
     {
-        public void BindAll() => self.ForEach(wrap => wrap.Register());
-        public void UnBindAll() => self.ForEach(wrap => wrap.UnRegister());
+        public void RegAll() => self.ForEach(wrap => wrap.Register());
+        public void UnRegAll() => self.ForEach(wrap => wrap.UnRegister());
     }
 }
