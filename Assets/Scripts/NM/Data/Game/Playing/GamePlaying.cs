@@ -6,7 +6,6 @@ using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 
 namespace NM.Data;
 [Serializable]
@@ -22,7 +21,7 @@ public partial class GamePlaying
 
     public void AddSymbol(SymbolEtt toAdd)
     {
-        toAdd.OnEvtList(this).ForEach(w => w.Register());
+        toAdd.OnEvt(this).BindAll();
         symbolDeckList.Add(toAdd);
         InState<PlayingSpin>().MatchA(some => some.AddDelayDo(async ct =>
         {
@@ -44,7 +43,7 @@ public partial class GamePlaying
     CancellationTokenSource cts = new();
     
     
-    public override IEnumerable<IFuncWrap> OnEvtList()
+    public override IEnumerable<IFuncWrap> OnEvt()
     {
         yield return Bus.Bind<EvtClickSpin>((evt, ct) =>
         {
@@ -141,7 +140,7 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         SymbolShownList.Clear();
     }
     
-    public void AddDelayDo(Func<CancellationToken, UniTask> doFunc, EInSpinTiming timing)
+    public void AddDelayDo(UniAction doFunc, EInSpinTiming timing)
     {
         delayDoList.Add(new DoDelay{ DoAsync = doFunc, DelayTiming = (int)timing });
     }

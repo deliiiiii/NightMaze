@@ -13,13 +13,13 @@ public abstract class ViewBase : MonoBehaviour
 
     void Awake()
     {
-        OnEvt().ForEach(wrap => wrap.Register());
+        OnEvt().BindAll();
         BindList().ForEach(b => b.Bind());
     }
 
     void OnDestroy()
     {
         BindList().ForEach(b => b.UnBind());
-        OnEvt().ForEach(wrap => wrap.UnRegister());
+        OnEvt().UnBindAll();
     }
 }

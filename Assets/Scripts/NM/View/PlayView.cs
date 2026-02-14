@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using General;
 using General.BindData;
@@ -31,33 +31,35 @@ public class PlayView : ViewBase
         yield return Bus.Bind(OnSpinSymbolAtAsync);
     }
 
-    Func<EvtOnEnterPlaying, CancellationToken, UniTask> OnEnterPlayingAsync => (evt, ct) =>
+    UniFunc<EvtOnEnterPlaying> OnEnterPlayingAsync => (evt, ct) =>
     {
-        ClearAll();
+        SetAllEmpty();
         return UniTask.CompletedTask;
     };
     
-    Func<EvtOnEnterSpin, CancellationToken, UniTask> OnEnterPlayingSpinAsync => (evt, ct) =>
+    UniFunc<EvtOnEnterSpin> OnEnterPlayingSpinAsync => (evt, ct) =>
     {
-        ClearAll();
+        SetAllEmpty();
         return UniTask.CompletedTask;
     };
     
-    Func<EvtSpinSymbolAt, CancellationToken, UniTask> OnSpinSymbolAtAsync => (evt, ct) =>
+    UniFunc<EvtSpinSymbolAt> OnSpinSymbolAtAsync => async (evt, ct) =>
     {
-        var symbolView = symbolColumnList[evt.Arg2.X - 1].SymbolList[evt.Arg2.Y - 1];
-        symbolView.SymbolEtt = evt.Arg1;
-        return UniTask.CompletedTask;
+        SetSymbolAt(evt.Arg1, evt.Arg2);
+        await UniTask.Yield();
     };
 
-    void ClearAll()
+    void SetAllEmpty()
     {
-        symbolColumnList.ForEach(column =>
-        {
-            column.SymbolList.ForEach(symbolView =>
-            {
-                symbolView.SymbolEtt = SymbolEtt.CreateEmptySymbol();
-            });
-        });
+        _ = from x in Enumerable.Range(Const.SpinFirstID, Const.SpinW)
+            from y in Enumerable.Range(Const.SpinFirstID, Const.SpinH)
+            select SetSymbolAt(SymbolEtt.CreateEmptySymbol(), new Vector2Int(x, y));
+    }
+
+    ValueTuple SetSymbolAt(SymbolEtt symbolEtt, Vector2Int pos)
+    {
+        var symbolView = symbolColumnList[pos.X - 1].SymbolList[pos.Y - 1];
+        symbolView.SymbolEtt = symbolEtt;
+        return default;
     }
 }

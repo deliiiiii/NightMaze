@@ -10,7 +10,7 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
 {
     public SymbolConfig Config = config;
 
-    public IEnumerable<IFuncWrap> OnEvtList(GamePlaying ctx)
+    public IEnumerable<IFuncWrap> OnEvt(GamePlaying ctx)
     {
         if (Config.ID == 1)
         {

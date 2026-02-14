@@ -385,7 +385,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1809094619557277179}
   m_HandleRect: {fileID: 3318045065683617494}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -537,6 +537,7 @@ GameObject:
   - component: {fileID: 6968060768489599968}
   - component: {fileID: 5478366648625594156}
   - component: {fileID: 2330261515926414356}
+  - component: {fileID: 8384780125114296443}
   m_Layer: 5
   m_Name: SymbolModel
   m_TagString: Untagged
@@ -588,7 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.81270385, b: 1, a: 0.8784314}
+  m_Color: {r: 0, g: 0.8117647, b: 1, a: 0.8784314}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -617,17 +618,105 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd84f8bfe90042aaa0148a9c73ba3f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SymbolEtt>k__BackingField:
-    rid: -2
+  onSpinTween: {fileID: 8384780125114296443}
   TxtName: {fileID: 8551120694740991894}
   TxtAdd: {fileID: 1265335646654674040}
   TxtMulti: {fileID: 204746588644340653}
   tranImgBuff: {fileID: 6664671167350088884}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+--- !u!114 &8384780125114296443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6467942385010578253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11bedcccc574ab9b457558a1dd18b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mSequence:
+  - AddType: 0
+    AnimationType: 19
+    Target: {fileID: 5478366648625594156}
+    ToValue: {x: 1, y: 0, z: 0, w: 1}
+    UseToTarget: 0
+    ToTarget: {fileID: 0}
+    UseFromValue: 0
+    FromValue: {x: 0, y: 0, z: 0, w: 0}
+    SpeedBased: 0
+    DurationOrSpeed: 1
+    Delay: 0
+    UpdateType: 0
+    CustomEase: 0
+    EaseCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Ease: 1
+    Loops: 0
+    LoopType: 0
+    Snapping: 0
+    OnPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  - AddType: 0
+    AnimationType: 19
+    Target: {fileID: 5478366648625594156}
+    ToValue: {x: 0, y: 0.8117647, z: 1, w: 0.8784314}
+    UseToTarget: 0
+    ToTarget: {fileID: 0}
+    UseFromValue: 0
+    FromValue: {x: 0, y: 0, z: 0, w: 0}
+    SpeedBased: 0
+    DurationOrSpeed: 1
+    Delay: 0
+    UpdateType: 0
+    CustomEase: 0
+    EaseCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Ease: 1
+    Loops: 0
+    LoopType: 0
+    Snapping: 0
+    OnPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  mPlayOnAwake: 0
+  mResetOnAwake: 0
+  mDelay: 0
+  mEase: 6
+  mLoops: 1
+  mLoopType: 0
+  mUpdateType: 0
+  mIgnoreTimeScale: 1
+  mOnPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  mOnUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  mOnComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7730355444502488826
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,7 +1069,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.2
+  m_fontSize: 35.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

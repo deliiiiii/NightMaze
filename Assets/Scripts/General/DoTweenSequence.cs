@@ -3,10 +3,11 @@ using DG.Tweening;
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-
+[Serializable]
 public class DOTweenSequence : MonoBehaviour
 {
     [HideInInspector][SerializeField] SequenceAnimation[] mSequence;
@@ -188,6 +189,7 @@ public class DOTweenSequence : MonoBehaviour
         }
     }
 
+    [CanBeNull]
     Tween CreateTween(bool reverse = false)
     {
         if (mSequence == null || mSequence.Length == 0)
@@ -802,10 +804,9 @@ public class DOTweenSequence : MonoBehaviour
     
     public async UniTask PlayAsync(CancellationToken ct)
     {
+        mTween?.Kill();
         mTween = CreateTween();
         if (mTween == null) return;
-
-        // 如果在开始前已经请求了取消，直接清理
         if (ct.IsCancellationRequested)
         {
             mTween.Kill();

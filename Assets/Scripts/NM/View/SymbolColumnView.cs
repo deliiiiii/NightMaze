@@ -5,5 +5,5 @@ namespace NM.View;
 
 public class SymbolColumnView : MonoBehaviour
 {
-    public List<SymbolModel> SymbolList = [];
+    public List<SymbolView> SymbolList = [];
 }

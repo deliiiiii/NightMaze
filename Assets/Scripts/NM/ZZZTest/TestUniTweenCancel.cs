@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
 using Sirenix.OdinInspector;
@@ -7,7 +6,7 @@ using UnityEngine;
 
 namespace NM.ZZZTest;
 
-public class UniTasCancel : MonoBehaviour
+public class TestUniTweenCancel : MonoBehaviour
 {
     CancellationTokenSource cts => field ??= new CancellationTokenSource();
     [Button]
@@ -16,18 +15,11 @@ public class UniTasCancel : MonoBehaviour
         cts.Cancel();
     }
 
-    async UniTask Awake()
+    [Button]
+    async UniTask PlayAsync()
     {
+        MyDebug.Log("tween start...");
         await GetComponent<DOTweenSequence>().PlayAsync(cts.Token);
         MyDebug.Log("tween end...");
-        
-        try
-        {
-           
-        }
-        catch (Exception e)
-        {
-            // MyDebug.LogError(e);
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -7,12 +8,14 @@ using UnityEngine;
 
 namespace NM.View;
 
-public class SymbolModel : MonoBehaviour
+public class SymbolView : MonoBehaviour
 {
+    [SerializeField, Required] DOTweenSequence onSpinTween;
+
     [ShowInInspector, ReadOnly]
     public SymbolEtt SymbolEtt
     {
-        get => field;
+        get;
         set
         {
             field = value;
@@ -30,4 +33,21 @@ public class SymbolModel : MonoBehaviour
     [SerializeField] Transform tranImgBuff;
     [ShowInInspector, ReadOnly] List<ImgBuff> buffList = [];
 
+
+    void Awake()
+    {
+        OnEvt().BindAll();
+    }
+
+    IEnumerable<IFuncWrap> OnEvt()
+    {
+        yield return Bus.Bind(OnSpinImmediateDo);
+    }
+
+    UniFunc<EvtSpinImmediateDoSymbol> OnSpinImmediateDo => async (evt, ct) =>
+    {
+        if (evt.Arg1 != SymbolEtt || SymbolEtt.IsEmpty)
+            return;
+        await onSpinTween.PlayAsync(ct);
+    };
 }

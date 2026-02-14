@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
+using Sirenix.Utilities;
 
 namespace GeneralPreview;
 
@@ -21,10 +22,10 @@ public static class Bus
             return;
         foreach (var dele in list)
         {
-            await ((dele as Func<T, CancellationToken, UniTask>)?.Invoke(evt, ct) ?? UniTask.CompletedTask);
+            await ((dele as UniFunc<T>)?.Invoke(evt, ct) ?? UniTask.CompletedTask);
         }
     }
-    public static void Register<T>(Func<T, CancellationToken, UniTask> act) where T : EvtBase
+    public static void Register<T>(UniFunc<T> act) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
         {
@@ -33,7 +34,7 @@ public static class Bus
         }
         list.Add(act);
     }
-    public static void UnRegister<T>(Func<T, CancellationToken, UniTask> func) where T : EvtBase
+    public static void UnRegister<T>(UniFunc<T> func) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
             return;
@@ -46,7 +47,7 @@ public static class Bus
             evtDic.Remove(typeof(T));
         }
     }
-    public static FuncWrap<T> Bind<T>(Func<T, CancellationToken, UniTask> func) where T : EvtBase
+    public static FuncWrap<T> Bind<T>(UniFunc<T> func) where T : EvtBase
     {
         return new FuncWrap<T>(func);
     }
@@ -71,9 +72,18 @@ public interface IFuncWrap
     void Register();
     void UnRegister();
 }
-public class FuncWrap<T>(Func<T, CancellationToken, UniTask> action) : IFuncWrap
+public class FuncWrap<T>(UniFunc<T> action) : IFuncWrap
     where T : EvtBase
 {
     public void Register() => Bus.Register(action);
     public void UnRegister() => Bus.UnRegister(action);
+}
+
+public static class FuncWrapExt
+{
+    extension(IEnumerable<IFuncWrap> self)
+    {
+        public void BindAll() => self.ForEach(wrap => wrap.Register());
+        public void UnBindAll() => self.ForEach(wrap => wrap.UnRegister());
+    }
 }
