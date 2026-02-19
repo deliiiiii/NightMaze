@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
@@ -12,27 +13,32 @@ namespace NM.Data;
 [Serializable]
 public partial class GamePlaying
 {
-    public UniAction2<SymbolEtt, SymbolEtt> SymbolAddSymbolFunc => new()
+    public UniAction2<SymbolEtt, SymbolEtt> SymbolAddSymbolAsync => new()
     {
         DoAsync = async (arg1, arg2, ct) =>
         {
             AddSymbol(arg2);
-            await Bus.FireAsync(new EvtSymbolAddSymbol { Arg1 = arg1, Arg2 = arg2 }, ct);
+            await Bus.FireAsync(new EvtSymbolAddSymbol(arg1, arg2), ct);
         }
+    };
+    public Action<SymbolEtt> InitAddSymbol => AddSymbol;
+    public UniAction ClearDeck => new()
+    {
+        DoAsync = ct =>
+        {
+            return UniTask.CompletedTask;
+        },
+        Des = "清空符号列表"
     };
         
 
     [ShowInInspector] List<SymbolEtt> symbolDeckList = [];
     public IEnumerable<SymbolEtt> Deck => symbolDeckList;
-    public void ClearDeck()
-    {
-        
-    }
 
-    public void AddSymbol(SymbolEtt toAdd)
+    void AddSymbol(SymbolEtt toAdd)
     {
-        toAdd.OnEvt(this).RegAll();
         symbolDeckList.Add(toAdd);
+        toAdd.OnEvt(this).RegAll();
         InState<PlayingSpin>().MatchA(some =>
         {
             some.DelayDoList.Add(new UniAction
@@ -42,7 +48,7 @@ public partial class GamePlaying
             });
         });
         if(!toAdd.IsEmpty)
-            symbolDeckList.MyFirst(s => s.IsEmpty).MatchA(some => symbolDeckList.Remove(some));
+            symbolDeckList.MyFirst(s => s.IsEmpty).MatchA(RemoveSymbol);
     }
     public void RemoveSymbol(SymbolEtt toRemove)
     {
@@ -95,37 +101,25 @@ public class PlayingIdle : GamePlaying.StateFSM<PlayingIdle>
 public class PlayingInit : GamePlaying.StateFSM<PlayingInit>
 {
     [Button]
-    public void EnterSpin () => BelongFSM.EnterState<PlayingSpin>();
-    
-    IEnumerable<SymbolEtt> Deck => BelongFSM.Deck;
-
+    public void EnterSpin() => BelongFSM.EnterState<PlayingSpin>();
     public override void OnEnter()
     {
         MyDebug.Log($"{nameof(PlayingInit)} OnEnter");
-        FillDeckWithInitSymbols();
-        FillDeckWithEmpty();
+        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(0));
+        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(1));
+        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(1));
+        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(1));
+        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(1));
+        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(1));
+        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(2));
+        while (BelongFSM.Deck.Count() < Const.DeckMax)
+        {
+            BelongFSM.InitAddSymbol(SymbolEtt.CreateEmptySymbol());
+        }
     }
     public override void OnExit()
     {
-        BelongFSM.ClearDeck();
-    }
-
-    void FillDeckWithInitSymbols()
-    {
-        BelongFSM.AddSymbol(SymbolEtt.CreateSymbol(0));
-        BelongFSM.AddSymbol(SymbolEtt.CreateSymbol(1));
-        BelongFSM.AddSymbol(SymbolEtt.CreateSymbol(1));
-        BelongFSM.AddSymbol(SymbolEtt.CreateSymbol(1));
-        BelongFSM.AddSymbol(SymbolEtt.CreateSymbol(1));
-        BelongFSM.AddSymbol(SymbolEtt.CreateSymbol(1));
-        BelongFSM.AddSymbol(SymbolEtt.CreateSymbol(2));
-    }
-    void FillDeckWithEmpty()
-    {
-        while (Deck.Count() < Const.DeckMax)
-        {
-            BelongFSM.AddSymbol(SymbolEtt.CreateEmptySymbol());
-        }
+        BelongFSM.ClearDeck[CancellationToken.None].Forget();
     }
 }
 [Serializable]
@@ -146,8 +140,9 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
     CancellationTokenSource cts = new();
     public override void OnEnter()
     {
-        Bus.FireAsync(new EvtOnEnterSpin(), cts.Token).ContinueWith(async () =>
+        UniTask.Create(async () =>
         {
+            await Bus.FireAsync(new EvtOnEnterSpin(), cts.Token);
             await OnSpinAsync(cts.Token);
         }).Forget();
     }
@@ -179,7 +174,7 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
             });
     }
 
-    public async UniTask ShowSymbolRandomlyAsync(SymbolEtt symbol, CancellationToken token)
+    public async UniTask ShowSymbolRandomlyAsync(SymbolEtt symbol, CancellationToken ct)
     {
         var emptyPosList = (
             from s in SymbolShownList
@@ -189,17 +184,13 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         if (!emptyPosList.Any())
             return;
         var ranPos = emptyPosList.RandomItem();
-        await ShowSymbolAtAsync(symbol, ranPos, token);
+        await ShowSymbolAtAsync(symbol, ranPos, ct);
     }
-    async UniTask ShowSymbolAtAsync(SymbolEtt symbol, Vector2Int pos, CancellationToken token)
+    async UniTask ShowSymbolAtAsync(SymbolEtt symbol, Vector2Int pos, CancellationToken ct)
     {
         SymbolShownList.Add(symbol);
         symbol.AddCom(new SymbolInSpin() { Pos = pos });
-        await Bus.FireAsync(new EvtSpinSymbolAt()
-        {
-            Arg1 = symbol,
-            Arg2 = pos
-        }, token);
+        await Bus.FireAsync(new EvtSpinSymbolAt(symbol, pos), ct);
     }
     
     async UniTask OnSpinAsync(CancellationToken ct)
@@ -221,12 +212,11 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         {
             foreach (var symbol in SymbolShownList)
             {
-                await Bus.FireAsync(new EvtSpinImmediateDoSymbol { Arg1 = symbol }, ct);
-                var adjacentList = GetAdjacent(symbol);
-                foreach (var adjacentSymbol in adjacentList)
+                await Bus.FireAsync(new EvtSpinImmediateDoSymbol(symbol), ct);
+                foreach (var adjacentSymbol in GetAdjacent(symbol))
                 {
                     var debug = !adjacentSymbol.IsEmpty && !symbol.IsEmpty;
-                    await Bus.FireAsync(new EvtSymbolAdjacentSymbol { Arg1 = adjacentSymbol, Arg2 = symbol }, ct, () => debug);
+                    await Bus.FireAsync(new EvtSymbolAdjacentSymbol(adjacentSymbol, symbol), ct, () => debug);
                 }
             }
             // foreach (var doDelay in DelayDoList.Where(IsSpinTiming(InSpinTiming.AfterAdjacent)))

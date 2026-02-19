@@ -20,4 +20,3 @@ public class GameTitle : GameFSM.StateFSM<GameTitle>
 }
 
 public partial class GamePlaying : GameFSM.StateFSM<GamePlaying>;
-

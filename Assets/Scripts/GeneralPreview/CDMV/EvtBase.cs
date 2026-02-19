@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
@@ -11,7 +12,22 @@ namespace GeneralPreview;
 
 public static class Bus
 { 
-    [PropertyOrder(999)] static readonly Dictionary<Type, List<UniDele>> evtDic = new();
+    [HideInInspector]
+    static readonly Dictionary<Type, List<UniDele>> evtDic = new();
+    [ShowInInspector]
+    static Dictionary<string, List<EvtShower>> NonViewDic 
+        => evtDic
+            .Where(pair => !pair.Key.Namespace?.Contains("View") ?? false)
+            .ToDictionary(
+                pair => pair.Key.GetNiceName(),
+                pair => pair.Value.Select(dele =>
+                {
+                    return new EvtShower
+                    {
+                        Des = dele.Des, 
+                        NextList = dele.FireList.Select(type => type.GetNiceName()).ToList(),
+                    };
+                }).ToList());
 
     public static void FireAndForget<T>(T evt, Func<bool>? withDebug = null) where T : EvtBase
         => FireAsync(evt, CancellationToken.None, withDebug).Forget();
@@ -52,18 +68,13 @@ public static class Bus
 }
 
 public abstract record EvtBase;
-public abstract record EvtBase1<T1> : EvtBase
-{
-    public required T1 Arg1 { get; init; }
-}
 
-public abstract record EvtBase2<T1, T2> : EvtBase
+public class EvtShower
 {
-    public required T1 Arg1 { get; init; }
-    public required T2 Arg2 { get; init; }
+    public string Des = "None...";
+    [HideIf(nameof(IsEmpty))]public List<string> NextList = [];
+    [HideInInspector] bool IsEmpty => NextList.Count == 0;
 }
-
-public record EvtUnit : EvtBase;
 
 public static class FuncWrapExt
 {

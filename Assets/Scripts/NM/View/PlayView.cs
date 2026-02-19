@@ -49,7 +49,7 @@ public class PlayView : ViewBase
         {
             DoAsync = async (evt, ct) =>
             {
-                SetSymbolAt(evt.Arg1, evt.Arg2);
+                SetSymbolAt(evt.Symbol, evt.Pos);
                 await UniTask.Yield();
             },
             Des = "（某符号旋转到某位置时）在格子上显示符号"

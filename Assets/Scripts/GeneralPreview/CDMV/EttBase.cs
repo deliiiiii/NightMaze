@@ -10,25 +10,23 @@ namespace GeneralPreview;
 public abstract class EttBase<TThis>
     where TThis : EttBase<TThis>
 {
-    protected EttBase() => entityID = nextEntityID++;
-    // ReSharper disable once StaticMemberInGenericType
-    static int nextEntityID;
-    [HideInInspector]int entityID;
     [ShowInInspector] readonly Dictionary<Type, ICom> comDic = [];
     [DebuggerStepThrough]
-    public T AddCom<T>(T com)
-        where T : ICom
+    public T AddCom<T>(T? com = null)
+        where T : class, ICom, new()
     {
         if (comDic.TryGetValue(typeof(T), out var existCom))
         {
             MyDebug.LogError($"Entity {GetType().Name} AddComponent {typeof(T).Name} But Already Exists");
             return (T)existCom;
         }
+
+        com ??= new T();
         comDic.Add(typeof(T), com);
         return com;
     }
     [DebuggerStepThrough]
-    public void RemoveCom<T>() where T : ICom
+    public void RemoveCom<T>() where T : class, ICom, new()
     {
         if (!comDic.TryGetValue(typeof(T), out _))
         {
@@ -44,7 +42,7 @@ public abstract class EttBase<TThis>
     }
     
     [DebuggerStepThrough]
-    public MyOption<T> GetCom<T>() where T : ICom
+    public MyOption<T> GetCom<T>() where T : class, ICom, new()
     {
         if (comDic.TryGetValue(typeof(T), out var com))
         {
@@ -71,9 +69,4 @@ public abstract class EttBase<TThis>
             return self.GetByCtx<TCtx, TCom>(default);
         }
     }
-}
-
-public interface IEttTick
-{
-    void Tick(float dt);
 }

@@ -45,7 +45,7 @@ public class SymbolView : MonoBehaviour
         {
             DoAsync = async (evt, ct) =>
             {
-                if (evt.Arg1 != SymbolEtt || SymbolEtt.IsEmpty)
+                if (evt.Symbol != SymbolEtt || SymbolEtt.IsEmpty)
                     return;
                 await onSpinTween.PlayAsync(ct);
             },

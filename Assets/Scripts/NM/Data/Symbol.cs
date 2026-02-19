@@ -18,10 +18,11 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
             {
                 DoAsync = async (evt, ct) =>
                 {
-                    if (evt.Arg2 == this && evt.Arg1.Config.ID == 2)
-                        await ctx.SymbolAddSymbolFunc.DoAsync(this, CreateSymbol(9), ct);
+                    if (evt.Symbol == this && evt.AdjacentSymbol.Config.ID == 2)
+                        await ctx.SymbolAddSymbolAsync[this, CreateSymbol(9), ct];
                 },
-                Des = "（香蕉发现和香蕉皮相邻时）添加一个葡萄酒"
+                Des = "（香蕉发现和香蕉皮相邻时）添加一个葡萄酒",
+                FireList = [typeof(EvtSymbolAddSymbol)],
             };
         }
     }

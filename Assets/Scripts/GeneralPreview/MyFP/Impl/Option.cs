@@ -14,12 +14,12 @@ public abstract record MyOption<T1>
     public static readonly MyNone<T1> None = new ();
     public static implicit operator MyOption<T1>(NoneClass _) => None;
     
-    public void MatchA(Action<T1> some, Action? none = null)
+    public void MatchA(Action<T1>? some = null, Action? none = null)
     {
         switch (this)
         {
             case MySome<T1> s:
-                some.Invoke(s.Value);
+                some?.Invoke(s.Value);
                 break;
             case MyNone<T1>:
                 none?.Invoke();

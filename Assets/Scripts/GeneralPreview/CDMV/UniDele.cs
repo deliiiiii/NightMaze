@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
@@ -10,6 +11,7 @@ public abstract record UniDele
 {
     // public readonly MyOption<int> Timing = None;
     [ReadOnly]public string Des = "None ...";
+    [ReadOnly]public List<Type> FireList = [];
 }
 
 public interface IUniEvt
@@ -21,16 +23,19 @@ public interface IUniEvt
 public record UniAction : UniDele
 {
     [HideInInspector]public required Func<CancellationToken, UniTask> DoAsync;
+    public UniTask this[CancellationToken ct] => DoAsync(ct);
 }
 
 public record UniAction1<TArg1> : UniDele
 {
     [HideInInspector]public required Func<TArg1, CancellationToken, UniTask> DoAsync;
+    public UniTask this[TArg1 arg1, CancellationToken ct] => DoAsync(arg1, ct);
 }
 
 public record UniAction2<TArg1, TArg2> : UniDele
 {
     [HideInInspector]public required Func<TArg1, TArg2, CancellationToken, UniTask> DoAsync;
+    public UniTask this[TArg1 arg1, TArg2 arg2, CancellationToken ct] => DoAsync(arg1, arg2, ct);
 }
 
 public record UniEvt<TArg1> : UniAction1<TArg1>, IUniEvt where TArg1 : EvtBase

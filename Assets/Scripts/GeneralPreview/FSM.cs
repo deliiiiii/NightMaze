@@ -16,7 +16,7 @@ public abstract class FSM<TThis>
     bool isLaunched;
     [JsonIgnore] BindDataUpdate? selfTickBind;
 
-    public void Launch<TState>() where TState : class, IState
+    protected void Launch<TState>()
     {
         if (isLaunched)
         {
@@ -28,7 +28,8 @@ public abstract class FSM<TThis>
         // selfTickBind = Binder.FromTick(Tick);
         // selfTickBind.Bind();
     }
-    public void Release()
+
+    protected void Release()
     {
         if (!isLaunched)
         {
@@ -42,42 +43,30 @@ public abstract class FSM<TThis>
         // selfTickBind?.UnBind();
         // selfTickBind = null;
     }
-    public TState EnterState<TState>() where TState : class, IState
+    public void EnterState<TState>()
     {
         if (!isLaunched)
         {
             MyDebug.LogError($"FSM {GetType().Name} Enter State But NOT Launched");
-            return null!;
+            return;
         }
         if (curState != null)
         {
             if(curState.GetType() == typeof(TState) && !curState.EnableReEnter)
-                return (TState)curState;
+                return;
             curState.OnExit();
             curState.UnRegisterAll();
         }
-        var subState = Activator.CreateInstance<TState>()!;
-        curState = subState;
+        curState = (IState)Activator.CreateInstance<TState>()!;
         curState.BelongFSM = (TThis)this;
         curState.RegisterAll();
         curState.OnEnter();
-        return subState;
     }
 
-    public TState EnterStateIfNotIn<TState>() where TState : class, IState
-    {
-        return InState<TState>().Match(some => some, EnterState<TState>);
-    }
-    public MyOption<TState> InState<TState>() where TState : class, IState
-    {
-        if (curState is TState state)
-        {
-            return state;
-        }
-        return None;
-    }
+    public void EnterStateIfNotIn<TState>() => InState<TState>().MatchA(none: EnterState<TState>);
+    public MyOption<TState> InState<TState>() => curState is TState state ? state : None;
     void Tick(float dt) => curState?.OnUpdate(dt);
-    public interface IState
+    interface IState
     {
         public TThis BelongFSM { get; set; }
         public void OnEnter(){}
