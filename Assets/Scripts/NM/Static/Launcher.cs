@@ -18,6 +18,14 @@ public class Launcher : Singleton<Launcher>, IDisposable
     {
 #if UNITY_EDITOR
         // Binder.FromTick(_ => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint()).Bind();
+        // 退出游戏模式
+        UnityEditor.EditorApplication.playModeStateChanged += state =>
+        {
+            if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
+            {
+                gameFSM.Release();
+            }
+        };
 #endif
         try
         {
@@ -36,4 +44,5 @@ public class Launcher : Singleton<Launcher>, IDisposable
     {
         // disposables.Dispose();
     }
+    
 }

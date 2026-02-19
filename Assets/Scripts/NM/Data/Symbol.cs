@@ -22,7 +22,7 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
                         await ctx.SymbolAddSymbolAsync[this, CreateSymbol(9), ct];
                 },
                 Des = "（香蕉发现和香蕉皮相邻时）添加一个葡萄酒",
-                FireList = [typeof(EvtSymbolAddSymbol)],
+                // FireList = [nameof(EvtSymbolAddSymbol)],
             };
         }
     }

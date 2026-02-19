@@ -26,6 +26,7 @@ public partial class GamePlaying
     {
         DoAsync = ct =>
         {
+            symbolDeckList.ToList().ForEach(RemoveSymbol);
             return UniTask.CompletedTask;
         },
         Des = "清空符号列表"
@@ -50,8 +51,14 @@ public partial class GamePlaying
         if(!toAdd.IsEmpty)
             symbolDeckList.MyFirst(s => s.IsEmpty).MatchA(RemoveSymbol);
     }
-    public void RemoveSymbol(SymbolEtt toRemove)
+    void RemoveSymbol(SymbolEtt toRemove)
     {
+        toRemove.OnEvt(this).UnRegAll();
+        symbolDeckList.Remove(toRemove);
+        if (symbolDeckList.Count < DeckMax)
+        {
+            InitAddSymbol(SymbolEtt.CreateEmptySymbol());
+        }
     }
     
     public long Coin;
@@ -59,6 +66,7 @@ public partial class GamePlaying
     public int RefreshToken;
     public int NextRentCount;
     public int SpinCount;
+    public int DeckMax = 20;
     
     CancellationTokenSource cts = new();
     
@@ -78,12 +86,25 @@ public partial class GamePlaying
     
     public override void OnEnter()
     {
-        Launch<PlayingInit>();
         Bus.FireAsync(new EvtOnEnterPlaying(), cts.Token).Forget();
+        InitAddSymbol(SymbolEtt.CreateSymbol(0));
+        InitAddSymbol(SymbolEtt.CreateSymbol(1));
+        InitAddSymbol(SymbolEtt.CreateSymbol(1));
+        InitAddSymbol(SymbolEtt.CreateSymbol(1));
+        InitAddSymbol(SymbolEtt.CreateSymbol(1));
+        InitAddSymbol(SymbolEtt.CreateSymbol(1));
+        InitAddSymbol(SymbolEtt.CreateSymbol(2));
+        while (symbolDeckList.Count < DeckMax)
+        {
+            InitAddSymbol(SymbolEtt.CreateEmptySymbol());
+        }
+        Launch<PlayingIdle>();
     }
     public override void OnExit()
     {
         cts.Cancel();
+        ClearDeck[CancellationToken.None].Forget();
+        
         Release();
     }
 }
@@ -95,31 +116,6 @@ public class PlayingIdle : GamePlaying.StateFSM<PlayingIdle>
     }
     public override void OnExit()
     {
-    }
-}
-[Serializable]
-public class PlayingInit : GamePlaying.StateFSM<PlayingInit>
-{
-    [Button]
-    public void EnterSpin() => BelongFSM.EnterState<PlayingSpin>();
-    public override void OnEnter()
-    {
-        MyDebug.Log($"{nameof(PlayingInit)} OnEnter");
-        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(0));
-        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(1));
-        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(1));
-        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(1));
-        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(1));
-        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(1));
-        BelongFSM.InitAddSymbol(SymbolEtt.CreateSymbol(2));
-        while (BelongFSM.Deck.Count() < Const.DeckMax)
-        {
-            BelongFSM.InitAddSymbol(SymbolEtt.CreateEmptySymbol());
-        }
-    }
-    public override void OnExit()
-    {
-        BelongFSM.ClearDeck[CancellationToken.None].Forget();
     }
 }
 [Serializable]

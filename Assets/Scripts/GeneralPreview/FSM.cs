@@ -29,7 +29,7 @@ public abstract class FSM<TThis>
         // selfTickBind.Bind();
     }
 
-    protected void Release()
+    public void Release()
     {
         if (!isLaunched)
         {

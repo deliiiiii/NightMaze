@@ -20,13 +20,10 @@ public static class Bus
             .Where(pair => !pair.Key.Namespace?.Contains("View") ?? false)
             .ToDictionary(
                 pair => pair.Key.GetNiceName(),
-                pair => pair.Value.Select(dele =>
+                pair => pair.Value.Select(dele => new EvtShower
                 {
-                    return new EvtShower
-                    {
-                        Des = dele.Des, 
-                        NextList = dele.FireList.Select(type => type.GetNiceName()).ToList(),
-                    };
+                    Des = dele.Des, 
+                    // NextList = dele.FireList.ToList(),
                 }).ToList());
 
     public static void FireAndForget<T>(T evt, Func<bool>? withDebug = null) where T : EvtBase

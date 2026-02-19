@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;
@@ -37,6 +38,11 @@ public class SymbolView : MonoBehaviour
     void Awake()
     {
         OnEvt().RegAll();
+    }
+
+    void OnDestroy()
+    {
+        OnEvt().UnRegAll();
     }
 
     IEnumerable<IUniEvt> OnEvt()
