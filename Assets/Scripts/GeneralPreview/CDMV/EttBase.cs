@@ -58,7 +58,7 @@ public abstract class EttBase<TThis>
     [DebuggerStepThrough]
     public CtxScope<TCtx> Ctx<TCtx>(TCtx ctx) => new((TThis)this);
     [DebuggerStepThrough]
-    T GetByCtx<TCtx, T>(TCtx _) where T : ICom<TCtx>
+    T GetByCtx<TCtx, T>(TCtx? _) where T : ICom<TCtx>
     {
         if (comDic.TryGetValue(typeof(T), out var existCom))
             return (T)existCom;
@@ -68,7 +68,7 @@ public abstract class EttBase<TThis>
     {
         public TCom As<TCom>() where TCom : ICom<TCtx>
         {
-            return self.GetByCtx<TCtx, TCom>(default!);
+            return self.GetByCtx<TCtx, TCom>(default);
         }
     }
 }

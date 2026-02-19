@@ -27,7 +27,7 @@ public class PlayView : ViewBase
     }
     protected override IEnumerable<IUniEvt> OnEvt()
     {
-        yield return new UniEvt<EvtOnEnterPlaying>()
+        yield return new UniEvt<EvtOnEnterPlaying>
         {
             DoAsync = (evt, ct) =>
             {
@@ -36,7 +36,7 @@ public class PlayView : ViewBase
             },
             Des = "（进入游戏状态时）清空所有格子"
         };
-        yield return new UniEvt<EvtOnEnterSpin>()
+        yield return new UniEvt<EvtOnEnterSpin>
         {
             DoAsync = (evt, ct) =>
             {
@@ -45,7 +45,7 @@ public class PlayView : ViewBase
             },
             Des = "（点击旋转时）清空所有格子"
         };
-        yield return new UniEvt<EvtSpinSymbolAt>()
+        yield return new UniEvt<EvtSpinSymbolAt>
         {
             DoAsync = async (evt, ct) =>
             {
@@ -64,10 +64,10 @@ public class PlayView : ViewBase
             select SetSymbolAt(SymbolEtt.CreateEmptySymbol(), new Vector2Int(x, y));
     }
 
-    ValueTuple SetSymbolAt(SymbolEtt symbolEtt, Vector2Int pos)
+    ValueTuple? SetSymbolAt(SymbolEtt symbolEtt, Vector2Int pos)
     {
         var symbolView = symbolColumnList[pos.X - 1].SymbolList[pos.Y - 1];
         symbolView.SymbolEtt = symbolEtt;
-        return default;
+        return null;
     }
 }

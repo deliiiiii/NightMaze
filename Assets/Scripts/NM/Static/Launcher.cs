@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using General;
 using NM.Data;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace NM;
@@ -9,7 +10,7 @@ namespace NM;
 public class Launcher : Singleton<Launcher>, IDisposable
 {
     // public List<ViewBase> ViewList = [];
-    [SerializeReference] GameFSM gameFSM = null!;
+    [SerializeReference, ReadOnly] GameFSM gameFSM = null!;
     // readonly CompositeDisposable disposables = new();
     // ReSharper disable once Unity.IncorrectMethodSignature
     // ReSharper disable once UnusedMember.Local

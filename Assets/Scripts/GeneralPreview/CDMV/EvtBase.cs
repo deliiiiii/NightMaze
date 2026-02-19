@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
+using Sirenix.OdinInspector;
 using Sirenix.Utilities;
+using UnityEngine;
 
 namespace GeneralPreview;
 
 public static class Bus
-{
-    static readonly Dictionary<Type, List<UniDele>> evtDic = new();
+{ 
+    [PropertyOrder(999)] static readonly Dictionary<Type, List<UniDele>> evtDic = new();
 
     public static void FireAndForget<T>(T evt, Func<bool>? withDebug = null) where T : EvtBase
         => FireAsync(evt, CancellationToken.None, withDebug).Forget();
