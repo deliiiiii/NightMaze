@@ -29,13 +29,4 @@ public record EvtPlayerRemoveSymbol : EvtBase1<SymbolEtt>;
 public record EvtSymbolAdjacentSymbol : EvtBase2<SymbolEtt, SymbolEtt>;
 
 [TypeRegistryItem("某符号旋转到某位置时\t(SymbolEtt, Vector2Int)")]
-[LabelText("LabelText -- EvtSpinSymbolAt")]
-public record EvtSpinSymbolAt : EvtBase2<SymbolEtt, Vector2Int>
-{
-    public override string ToString()
-    {
-        return "ToString -- EvtSpinSymbolAt";
-    }
-}
-
-public record EvtClickSpin : EvtBase;
+public record EvtSpinSymbolAt : EvtBase2<SymbolEtt, Vector2Int>;

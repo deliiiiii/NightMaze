@@ -6,6 +6,7 @@ using General;
 using General.BindData;
 using GeneralPreview;
 using NM.Data;
+using NM.ViewEvt;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

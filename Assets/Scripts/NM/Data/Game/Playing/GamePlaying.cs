@@ -5,6 +5,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
+using NM.ViewEvt;
 using Sirenix.OdinInspector;
 
 namespace NM.Data;
@@ -240,10 +241,10 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         BelongFSM.EnterState<PlayingIdle>();
     }
 
-    static Func<UniAction, bool> IsSpinTiming(int timing)
-        => d => d.Timing.Match(some => some == timing, () => false);
-    static Predicate<UniAction> IsSpinTimingP(int timing)
-        => d => d.Timing.Match(some => some == timing, () => false);
+    // static Func<UniAction, bool> IsSpinTiming(int timing)
+    //     => d => d.Timing.Match(some => some == timing, () => false);
+    // static Predicate<UniAction> IsSpinTimingP(int timing)
+    //     => d => d.Timing.Match(some => some == timing, () => false);
 }
 
 
