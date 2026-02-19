@@ -10,7 +10,7 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
 {
     public SymbolConfig Config = config;
 
-    public IEnumerable<IUniEvt> OnEvt(GamePlaying ctx)
+    public IEnumerable<IUniEvt> OnEvt()
     {
         if (Config.ID == 1)
         {
@@ -18,8 +18,8 @@ public class SymbolEtt(SymbolConfig config) : EttBase<SymbolEtt>
             {
                 DoAsync = async (evt, ct) =>
                 {
-                    if (evt.Symbol == this && evt.AdjacentSymbol.Config.ID == 2)
-                        await ctx.SymbolAddSymbolAsync[this, CreateSymbol(9), ct];
+                    // if (evt.Symbol == this && evt.AdjacentSymbol.Config.ID == 2)
+                    //     await ctx.SymbolAddSymbolAsync[this, CreateSymbol(9), ct];
                 },
                 Des = "（香蕉发现和香蕉皮相邻时）添加一个葡萄酒",
                 // FireList = [nameof(EvtSymbolAddSymbol)],

@@ -8,6 +8,7 @@ using General;
 using GeneralPreview;
 using NM.ViewEvt;
 using Sirenix.OdinInspector;
+using UnityEngine.Assertions;
 
 namespace NM.Data;
 [Serializable]
@@ -39,7 +40,8 @@ public partial class GamePlaying
     void AddSymbol(SymbolEtt toAdd)
     {
         symbolDeckList.Add(toAdd);
-        toAdd.OnEvt(this).RegAll();
+        // toAdd.OnEvt(this).RegAll();
+        toAdd.OnEvt().RegAll();
         InState<PlayingSpin>().MatchA(some =>
         {
             some.DelayDoList.Add(new UniAction
@@ -53,7 +55,8 @@ public partial class GamePlaying
     }
     void RemoveSymbol(SymbolEtt toRemove)
     {
-        toRemove.OnEvt(this).UnRegAll();
+        // toRemove.OnEvt(this).UnRegAll();
+        toRemove.OnEvt().UnRegAll();
         symbolDeckList.Remove(toRemove);
         if (symbolDeckList.Count < DeckMax)
         {
