@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Cysharp.Threading.Tasks;
 
 namespace GeneralPreview;
 
@@ -27,6 +28,12 @@ public abstract record MyOption<T1>
         }
     }
     public TR Match<TR>(Func<T1, TR> some, Func<TR> none)
+        => this switch
+        {
+            MySome<T1> s => some.Invoke(s.Value),
+            _ => none.Invoke()
+        };
+    public UniTask MatchAsync(Func<T1, UniTask> some, Func<UniTask> none)
         => this switch
         {
             MySome<T1> s => some.Invoke(s.Value),

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;
@@ -23,6 +25,7 @@ public class SymbolView : MonoBehaviour
             TxtName.text = field.IsEmpty ? string.Empty : field.Config.Name;
             TxtAdd.text = string.Empty;
             TxtMulti.text = string.Empty;
+            TxtCoin.text = field.GetUltimateGive().ToString();
             buffList.ForEach(Destroy);
             buffList.Clear();
         }
@@ -31,31 +34,35 @@ public class SymbolView : MonoBehaviour
     public TextMeshProUGUI TxtName;
     public TextMeshProUGUI TxtAdd;
     public TextMeshProUGUI TxtMulti;
+    public TextMeshProUGUI TxtCoin;
     [SerializeField] Transform tranImgBuff;
     [ShowInInspector, ReadOnly] List<ImgBuff> buffList = [];
 
-
     void Awake()
     {
-        OnEvt().RegAll();
+        Bus.Register(OnEvtSpinImmediateDoSymbolAsync);
+        Bus.Register(OnEvtSpinSymbolUltimateGiveChangedAsync);
     }
 
     void OnDestroy()
     {
-        OnEvt().UnRegAll();
+        Bus.UnRegister(OnEvtSpinImmediateDoSymbolAsync);
+        Bus.UnRegister(OnEvtSpinSymbolUltimateGiveChangedAsync);
     }
 
-    IEnumerable<IUniEvt> OnEvt()
+    [UniEvtDes("放变红动画")]
+    UniEvt<EvtSpinImmediateDoSymbol> OnEvtSpinImmediateDoSymbolAsync => async (evt, ct) =>
     {
-        yield return new UniEvt<EvtSpinImmediateDoSymbol>()
-        {
-            DoAsync = async (evt, ct) =>
-            {
-                if (evt.Symbol != SymbolEtt || SymbolEtt.IsEmpty)
-                    return;
-                await onSpinTween.PlayAsync(ct);
-            },
-            Des = $"{SymbolEtt?.Config.Name ?? ""} 放变红动画"
-        };
-    }
+        if (evt.Symbol != SymbolEtt || SymbolEtt.IsEmpty)
+            return;
+        await onSpinTween.PlayAsync(ct);
+    };
+
+    [UniEvtDes("UltimateGive 变化时更新文本")]
+    UniEvt<EvtSpinSymbolUltimateGiveChanged> OnEvtSpinSymbolUltimateGiveChangedAsync => (evt, ct) =>
+    {
+        if (evt.Symbol == SymbolEtt)
+            TxtCoin.text = evt.UltimateGive.ToString();
+        return UniTask.CompletedTask;
+    };
 }

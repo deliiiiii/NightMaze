@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
@@ -13,7 +14,7 @@ namespace GeneralPreview;
 public static class Bus
 { 
     [HideInInspector]
-    static readonly Dictionary<Type, List<UniDele>> evtDic = new();
+    static readonly Dictionary<Type, List<Delegate>> evtDic = new();
     [ShowInInspector]
     static Dictionary<string, List<EvtShower>> NonViewDic 
         => evtDic
@@ -22,7 +23,7 @@ public static class Bus
                 pair => pair.Key.GetNiceName(),
                 pair => pair.Value.Select(dele => new EvtShower
                 {
-                    Des = dele.Des, 
+                    Des = dele.GetMethodInfo().GetAttribute<UniEvtDesAttribute>()?.Des ?? "None ...",
                     // NextList = dele.FireList.ToList(),
                 }).ToList());
 
@@ -37,7 +38,7 @@ public static class Bus
             return;
         foreach (var dele in list)
         {
-            await ((dele as UniEvt<T>)?.DoAsync(evt, ct) ?? UniTask.CompletedTask);
+            await ((UniEvt<T>)dele)(evt, ct);
         }
     }
     public static void Register<T>(UniEvt<T> act) where T : EvtBase
@@ -53,7 +54,7 @@ public static class Bus
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
             return;
-        var index = list.FindIndex(h => h == func);
+        var index = list.FindIndex(h => h == (Delegate)func);
         if (index == -1) 
             return;
         list.RemoveAt(index);
@@ -71,13 +72,4 @@ public class EvtShower
     public string Des = "None...";
     [HideIf(nameof(IsEmpty))]public List<string> NextList = [];
     [HideInInspector] bool IsEmpty => NextList.Count == 0;
-}
-
-public static class FuncWrapExt
-{
-    extension(IEnumerable<IUniEvt> self)
-    {
-        public void RegAll() => self.ForEach(wrap => wrap.Register());
-        public void UnRegAll() => self.ForEach(wrap => wrap.UnRegister());
-    }
 }

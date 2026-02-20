@@ -33,7 +33,7 @@ namespace GeneralPreview;
 // //         return new MyList<T1B>(ret);
 // //     }
 // // }
-public static class ListExt
+public static class MyListExt
 {
     // extension<T>(K1<MyList, T> k)
     // {

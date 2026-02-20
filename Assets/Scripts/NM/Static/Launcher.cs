@@ -1,16 +1,18 @@
-﻿using System;
+﻿global using static GeneralPreview.MyPrelude;
+using System;
 using Cysharp.Threading.Tasks;
 using General;
 using NM.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+
 namespace NM;
 
 public class Launcher : Singleton<Launcher>, IDisposable
 {
     // public List<ViewBase> ViewList = [];
-    [SerializeReference, ReadOnly] GameFSM gameFSM = null!;
+    [SerializeReference, ReadOnly] GamePlaying? gamePlaying;
     // readonly CompositeDisposable disposables = new();
     // ReSharper disable once Unity.IncorrectMethodSignature
     // ReSharper disable once UnusedMember.Local
@@ -23,14 +25,14 @@ public class Launcher : Singleton<Launcher>, IDisposable
         {
             if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
             {
-                gameFSM.Release();
+                gamePlaying?.UnRegisterAll();
             }
         };
 #endif
         try
         {
             await Loader.LoadAll();
-            gameFSM = new GameFSM();
+            gamePlaying = new GamePlaying();
             // ObservableSystem.DefaultFrameProvider = new R3.Unity.UnityFrameProvider(); 
             // Observable.EveryUpdate().Subscribe().AddTo(disposables);
         }

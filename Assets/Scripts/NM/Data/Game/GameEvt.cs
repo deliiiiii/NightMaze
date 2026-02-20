@@ -2,4 +2,4 @@
 
 namespace NM.Data;
 
-public record EvtOnEnterPlaying : EvtBase;
+public record EvtOnEnterPlaying(GamePlaying Ctx) : EvtBase;

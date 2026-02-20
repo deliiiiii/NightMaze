@@ -1,11 +1,19 @@
 ﻿global using static GeneralPreview.MyPrelude;
 using System;
+using Cysharp.Threading.Tasks;
 
 namespace GeneralPreview;
 public record NoneClass;
 public static class MyPrelude 
 {
     public static readonly NoneClass None = new ();
+    public static readonly Func<UniTask> RTask = () => UniTask.CompletedTask;
+    public static readonly Func<int> RZero = () => 0;
+    public static readonly Func<bool> RTrue = () => true;
+    public static readonly Func<bool> RFalse = () => false;
+    public static T Rid<T>(T x) => x;
+    public static string RStr() => string.Empty;
+    
     
     public static Func<T0, T2> Compose<T0, T1, T2>(Func<T1, T2> f1, Func<T0, T1> f0) =>
         x => f1(f0(x));

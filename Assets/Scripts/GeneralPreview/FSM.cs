@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using General;
 using General.BindData;
 using Newtonsoft.Json;
@@ -16,7 +17,7 @@ public abstract class FSM<TThis>
     bool isLaunched;
     [JsonIgnore] BindDataUpdate? selfTickBind;
 
-    protected void Launch<TState>()
+    protected async UniTask LaunchAsync<TState>() where TState : IState
     {
         if (isLaunched)
         {
@@ -24,12 +25,12 @@ public abstract class FSM<TThis>
             return;
         }
         isLaunched = true;
-        EnterState<TState>();
+        await EnterStateAsync<TState>();
         // selfTickBind = Binder.FromTick(Tick);
         // selfTickBind.Bind();
     }
 
-    public void Release()
+    public async UniTask ReleaseAsync()
     {
         if (!isLaunched)
         {
@@ -37,13 +38,16 @@ public abstract class FSM<TThis>
             return;
         }
         isLaunched = false;
-        curState?.OnExit();
-        curState?.UnRegisterAll();
-        curState = null;
+        if (curState != null)
+        {
+            await curState.OnExitAsync();
+            curState.UnRegisterAll();
+            curState = null;
+        }
         // selfTickBind?.UnBind();
         // selfTickBind = null;
     }
-    public void EnterState<TState>()
+    public async UniTask EnterStateAsync<TState>() where TState : IState
     {
         if (!isLaunched)
         {
@@ -54,39 +58,40 @@ public abstract class FSM<TThis>
         {
             if(curState.GetType() == typeof(TState) && !curState.EnableReEnter)
                 return;
-            curState.OnExit();
+            await curState.OnExitAsync();
             curState.UnRegisterAll();
         }
         curState = (IState)Activator.CreateInstance<TState>()!;
         curState.BelongFSM = (TThis)this;
         curState.RegisterAll();
-        curState.OnEnter();
+        await curState.OnEnterAsync();
     }
 
-    public void EnterStateIfNotIn<TState>() => InState<TState>().MatchA(none: EnterState<TState>);
     public MyOption<TState> InState<TState>() => curState is TState state ? state : None;
     void Tick(float dt) => curState?.OnUpdate(dt);
-    interface IState
+
+    public interface IState
     {
         public TThis BelongFSM { get; set; }
-        public void OnEnter(){}
-        public void OnExit(){}
+        public UniTask OnEnterAsync() => UniTask.CompletedTask;
+        public UniTask OnExitAsync() => UniTask.CompletedTask;
         public void OnUpdate(float dt){}
         public bool EnableReEnter => false;
         
-        public IEnumerable<IUniEvt> OnEvt() => [];
-        void RegisterAll() => OnEvt().RegAll();
-        void UnRegisterAll() => OnEvt().UnRegAll();
+        // public IEnumerable<IUniEvt> OnEvt() => [];
+        void RegisterAll();
+        void UnRegisterAll();
     }
     [Serializable]
     public abstract class StateFSM<TSub> : FSM<TSub>, IState
         where TSub : FSM<TSub>
     {
         public required TThis BelongFSM { get; set; }
-        public abstract void OnEnter();
-        public abstract void OnExit();
+        public virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
+        public virtual UniTask OnExitAsync() => UniTask.CompletedTask;
         public virtual void OnUpdate(float dt){}
         public virtual bool EnableReEnter => false;
-        public virtual IEnumerable<IUniEvt> OnEvt() => [];
+        public virtual void RegisterAll(){}
+        public virtual void UnRegisterAll(){}
     }
 }

@@ -36,22 +36,22 @@ public class FilterSymbolIsSelf : FilterSymbolBase
 public class FilterSymbolShown : FilterSymbolBase
 {
     protected override bool FilterT(GamePlaying ctx, SymbolEtt symbol, SymbolEtt thatEvtArg) 
-        => ctx.InState<PlayingSpin>().Match(some => some.SymbolShownList.Contains(thatEvtArg), () => false);
+        => ctx.SymbolShownList.Contains(thatEvtArg);
 }
 
 [TypeRegistryItem("符号在角落")]
 public class FilterSymbolInCorner : FilterSymbolBase
 {
     protected override bool FilterT(GamePlaying ctx, SymbolEtt symbol, SymbolEtt thatEvtArg) 
-        => symbol.GetCom<SymbolInSpin>().Match(some =>
+        => symbol.Pos.Match(some =>
         {
-            var x = some.Pos.X;
-            var y = some.Pos.Y;
+            var x = some.X;
+            var y = some.Y;
             return x == Const.SpinFirstID && y == Const.SpinFirstID ||
                    x == Const.SpinFirstID && y == Const.SpinH ||
                    x == Const.SpinW && y == Const.SpinFirstID ||
                    x == Const.SpinW && y == Const.SpinH;
-        }, () => false);
+        }, RFalse);
 }
 
 [TypeRegistryItem("符号种类与自身相同")]

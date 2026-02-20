@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using General;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace GeneralPreview;
 
@@ -42,31 +41,8 @@ public abstract class EttBase<TThis>
     }
     
     [DebuggerStepThrough]
-    public MyOption<T> GetCom<T>() where T : class, ICom, new()
-    {
-        if (comDic.TryGetValue(typeof(T), out var com))
-        {
-            return (T)com;
-        }
-        return None;
-    }
+    public MyOption<T> GetCom<T>() where T : class, ICom, new() 
+        => comDic.TryGetValue(typeof(T), out var com) ? (T)com : None;
 
     public interface ICom;
-    public interface ICom<TCtx> : ICom;
-    [DebuggerStepThrough]
-    public CtxScope<TCtx> Ctx<TCtx>(TCtx ctx) => new((TThis)this);
-    [DebuggerStepThrough]
-    T GetByCtx<TCtx, T>(TCtx? _) where T : ICom<TCtx>
-    {
-        if (comDic.TryGetValue(typeof(T), out var existCom))
-            return (T)existCom;
-        throw new Exception($"Entity {GetType().Name} GetComponent {typeof(T).Name} With Ctx({typeof(TCtx)}) But NOT Exists");    
-    }
-    public readonly struct CtxScope<TCtx>(TThis self)
-    {
-        public TCom As<TCom>() where TCom : ICom<TCtx>
-        {
-            return self.GetByCtx<TCtx, TCom>(default);
-        }
-    }
 }
