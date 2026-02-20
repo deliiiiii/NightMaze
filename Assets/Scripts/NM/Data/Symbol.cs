@@ -61,8 +61,8 @@ public class SymbolEtt : EttBase<SymbolEtt>
     public static SymbolEtt CreateEmptySymbol() => new(-1);
     public static SymbolEtt CreateSymbol(int id) => new(id);
 
-    public override string ToString() => $"Symbol{Config.Name}({Config.ID}) {PosInfo})";
-    string PosInfo => Pos.Match(some => some.ToString(), RStr);
+    public override string ToString() => $"{Config.Name}(ID:{Config.ID}) {PosInfo})";
+    string PosInfo => Pos.Match(some => $"Pos{some.ToString()}", RStr);
 }
 
 #region DoCount

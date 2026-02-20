@@ -13,6 +13,8 @@ namespace NM.Data;
 [Serializable]
 public class GamePlaying : FSM<GamePlaying>
 {
+    public override string ToString() => nameof(GamePlaying);
+
     List<SymbolEtt> symbolDeckList = [];
     public IEnumerable<SymbolEtt> Deck => symbolDeckList;
     public long Coin;
