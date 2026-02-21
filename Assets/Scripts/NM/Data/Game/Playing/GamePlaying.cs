@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using NM.ViewEvt;
-using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 
 namespace NM.Data;
 
@@ -38,19 +38,18 @@ public class GamePlaying : FSM<GamePlaying>
         Bus.Register(OnEvtSpinSymbolAdjacentSymbolAsync);
         
         await Bus.FireAsync(new EvtOnEnterPlaying(this), cts.Token);
-        await ClearDeckAsync(cts.Token);
+        await ClearDeckAct.Invoke(cts.Token);
         
         
-        await AddSymbolAsync(SymbolEtt.CreateSymbol(0), cts.Token);
-        await AddSymbolAsync(SymbolEtt.CreateSymbol(1), cts.Token);
-        await AddSymbolAsync(SymbolEtt.CreateSymbol(1), cts.Token);
-        await AddSymbolAsync(SymbolEtt.CreateSymbol(1), cts.Token);
-        await AddSymbolAsync(SymbolEtt.CreateSymbol(1), cts.Token);
-        await AddSymbolAsync(SymbolEtt.CreateSymbol(1), cts.Token);
-        await AddSymbolAsync(SymbolEtt.CreateSymbol(2), cts.Token);
+        await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(0), cts.Token);
+        await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(1), cts.Token);
+        await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(2), cts.Token);
+        await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(2), cts.Token);
+        await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(2), cts.Token);
+        await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(2), cts.Token);
         while (symbolDeckList.Count < DeckMax)
         {
-            await AddSymbolAsync(SymbolEtt.CreateEmptySymbol(), cts.Token);
+            await AddSymbolAct.Invoke(SymbolEtt.CreateEmptySymbol(), cts.Token);
         }
         await LaunchAsync<PlayingIdle>();
     }
@@ -62,67 +61,76 @@ public class GamePlaying : FSM<GamePlaying>
     }
 
 
-    [ActionDes("符号添加符号")]
-    public async UniTask SymbolAddSymbolAsync(SymbolEtt arg1, SymbolEtt arg2, CancellationToken ct)
+    public UniAction<SymbolEtt, SymbolEtt> SymbolAddSymbolAct => new()
     {
-        await AddSymbolAsync(arg2, ct);
-        await Bus.FireAsync(new EvtSpinSymbolAddSymbol(arg1, arg2), ct);
-    }
-
-    [ActionDes("清空符号列表")]
-    public async UniTask ClearDeckAsync(CancellationToken ct)
-    {
-        foreach (var symbol in symbolDeckList.ToList())
+        Invoke = async (arg1, arg2, ct) =>
         {
-            await RemoveSymbol(symbol, ct);
-        }
-    }
-
-    [ActionDes("添加符号")]
-    async UniTask AddSymbolAsync(SymbolEtt toAdd, CancellationToken ct)
+            await AddSymbolAct.Invoke(arg2, ct);
+            await Bus.FireAsync(new EvtSpinSymbolAddSymbol(arg1, arg2), ct);
+        },
+        Des = "符号添加符号",
+    };
+    public UniAction ClearDeckAct => new()
     {
-        symbolDeckList.Add(toAdd);
-        if (!toAdd.IsEmpty)
+        Invoke = async (ct) =>
         {
-            await symbolDeckList.MyFirst(s => s.IsEmpty)
-                .MatchAsync(async some => await RemoveSymbol(some, ct), RTask);
-        }
-        await ShowSymbolRandomlyAsync(toAdd, ct);
-    }
-
-    [ActionDes("移除符号")]
-    async UniTask RemoveSymbol(SymbolEtt toRemove, CancellationToken ct)
+            foreach (var symbol in symbolDeckList.ToList())
+            {
+                await RemoveSymbolAct.Invoke(symbol, ct);
+            }
+        },
+        Des = "清空符号列表"
+    };
+    public UniAction<SymbolEtt> AddSymbolAct => new()
     {
-        symbolDeckList.Remove(toRemove);
-        if (symbolDeckList.Count < DeckMax)
+        Invoke = async (toAdd, ct) =>
         {
-            await AddSymbolAsync(SymbolEtt.CreateEmptySymbol(), ct);
-        }
-    }
-    
-    public async UniTask ShowSymbolRandomlyAsync(SymbolEtt symbol, CancellationToken ct)
-    {
-        await 
-            (
-                from s in SymbolShownList
-                where s.IsEmpty
-                from pos in s.Pos.Match(some => [some], Enumerable.Empty<Vector2Int>)
-                select pos
-            )
-            .ToList()
-            .RandomItem()
-            .MatchAsync(async some => await ShowSymbolAtAsync(symbol, some, ct), RTask);
+            symbolDeckList.Add(toAdd);
+            if (!toAdd.IsEmpty)
+            {
+                await symbolDeckList.MyFirst(s => s.IsEmpty)
+                    .MatchAsync(async some => await RemoveSymbolAct.Invoke(some, ct), RTask);
+            }
 
-    }
-    
-    [ActionDes("将符号显示在某位置")]
-    public async UniTask ShowSymbolAtAsync(SymbolEtt symbol, Vector2Int pos, CancellationToken ct)
+            await ShowSymbolRandomlyAct.Invoke(toAdd, ct);
+        },
+        Des = "添加符号"
+    };
+    public UniAction<SymbolEtt> RemoveSymbolAct => new()
     {
-        SymbolShownList.Add(symbol);
-        symbol.Pos = pos;
-        await Bus.FireAsync(new EvtSpinSymbolAt(this, symbol, pos), ct);
-    }
-    
+        Invoke = async (toRemove, ct) =>
+        {
+            symbolDeckList.Remove(toRemove);
+            if (symbolDeckList.Count < DeckMax)
+            {
+                await AddSymbolAct.Invoke(SymbolEtt.CreateEmptySymbol(), ct);
+            }
+        },
+        Des = "移除符号"
+    };
+    public UniAction<SymbolEtt> ShowSymbolRandomlyAct => new()
+    {
+        Invoke = async (symbol, ct) =>
+        {
+            await SymbolShownList
+                .Where(s => s.IsEmpty)
+                .SelectMany(s => s.Pos.Match(some => [some], Enumerable.Empty<Vector2Int>))
+                .ToList()
+                .RandomItem()
+                .MatchAsync(async some => await ShowSymbolAtAsync.Invoke(symbol, some, ct), RTask);
+        },
+        Des = "将符号显示在随机一个空位上"
+    };
+    public UniAction<SymbolEtt, Vector2Int> ShowSymbolAtAsync => new()
+    {
+        Invoke = async (symbol, pos, ct) =>
+        {
+            SymbolShownList.Add(symbol);
+            symbol.Pos = pos;
+            await Bus.FireAsync(new EvtSpinSymbolAt(this, symbol, pos), ct);
+        },
+        Des = "将符号显示在某位置"
+    };
 
     [UniEvtDes("(香蕉发现和香蕉皮相邻时) 添加一个葡萄酒")]
     UniEvt<EvtSpinSymbolAdjacentSymbol> OnEvtSpinSymbolAdjacentSymbolAsync => (evt, _) =>
@@ -132,21 +140,16 @@ public class GamePlaying : FSM<GamePlaying>
             if (evt.Symbol.ConfigID == 1 && evt.Symbol == s && evt.AdjacentSymbol.ConfigID == 2)
             {
                 InState<PlayingSpin>().MatchA(some =>
-                {
-                    some.DelayDoList.Add(ct => SymbolAddSymbolAsync(s, SymbolEtt.CreateSymbol(9), ct));
-                });
+                    some.DelayAddList.Add(SymbolAddSymbolAct.Apply(evt.Symbol, SymbolEtt.CreateSymbol(9))));
             }
         }
         return UniTask.CompletedTask;
     };
-
-    [UniEvtDes("(点击了旋转按钮) 尝试进入旋转状态")]
+    // [UniEvtDes("(点击了旋转按钮) 尝试进入旋转状态")]
     UniEvt<EvtClickSpin> OnEvtClickSpinAsync => (evt, ct) =>
     {
-        return InState<PlayingSpin>()
-            .Match<UniTask>(_ => UniTask.CompletedTask, async () => await EnterStateAsync<PlayingSpin>());
+        return InState<PlayingSpin>().Match(_ => UniTask.CompletedTask, EnterStateAsync<PlayingSpin>);
     };
-
 
     public IEnumerable<SymbolEtt> GetAdjacent(SymbolEtt symbolEtt)
         => symbolEtt.Pos.Match(pos =>
@@ -168,11 +171,10 @@ public class PlayingIdle : GamePlaying.StateFSM<PlayingIdle>;
 [Serializable]
 public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 {
-    public readonly List<UniAction> DelayDoList = [];
+    public List<UniAction> DelayAddList = [];
+    public List<UniAction> DelayDestroyList = [];
     readonly CancellationTokenSource cts = new();
 
-    IEnumerable<SymbolEtt> Deck => BelongFSM.Deck;
-    List<SymbolEtt> SymbolShownList => BelongFSM.SymbolShownList;
 
     public override async UniTask OnEnterAsync()
     {
@@ -182,22 +184,24 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
     
     async UniTask OnSpinAsync(CancellationToken ct)
     {
-        SymbolShownList.Clear();
-        var toShowList = Deck.ToList().ShuffleTo();
-        foreach (var toShow in toShowList)
+        BelongFSM.SymbolShownList.Clear();
+        foreach (var toShow in BelongFSM.Deck.ToList().ShuffleTo())
         {
-            var shownCount = SymbolShownList.Count;
+            var shownCount = BelongFSM.SymbolShownList.Count;
             if(shownCount == Const.SpinW * Const.SpinH)
                 break;
             var addX = shownCount / Const.SpinH + 1;
             var addY = shownCount % Const.SpinH + 1;
-            await BelongFSM.ShowSymbolAtAsync(toShow, new Vector2Int(addX, addY), ct);
+            await BelongFSM.ShowSymbolAtAsync.Invoke(toShow, new Vector2Int(addX, addY), ct);
         }
 
         do
         {
-            foreach (var symbol in SymbolShownList)
+            BelongFSM.SymbolShownList.Sort(SymbolEtt.ByPos);
+            DelayAddList.Clear();
+            foreach (var symbol in BelongFSM.SymbolShownList.Where(s => !s.AlreadyChecked))
             {
+                symbol.AlreadyChecked = true;
                 await Bus.FireAsync(new EvtSpinImmediateDoSymbol(symbol), ct);
                 foreach (var adjacentSymbol in BelongFSM.GetAdjacent(symbol))
                 {
@@ -205,13 +209,26 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
                     await Bus.FireAsync(new EvtSpinSymbolAdjacentSymbol(adjacentSymbol, symbol), ct, () => debug);
                 }
             }
-            foreach (var doDelay in DelayDoList)
+            foreach (var doDelay in DelayAddList)
             {
-                await doDelay(ct);
+                await doDelay.Invoke(ct);
             }
-            // DelayDoList.RemoveAll(IsSpinTimingP(InSpinTiming.AfterAdjacent));
-            DelayDoList.Clear();
-        } while (DelayDoList.Count != 0);
+        } while (DelayAddList.Count != 0);
+
+        
+        foreach (var symbol in BelongFSM.SymbolShownList)
+        {
+            await Bus.FireAsync(new EvtSpinPay(symbol), ct);
+        }
+
+        
+        
+        BelongFSM.Deck.ForEach(s =>
+        {
+            s.AlreadyChecked = false;
+            s.TempAdd.Clear();
+            s.TempMulti.Clear();
+        });
         MyDebug.Log("Spin End");
         await BelongFSM.EnterStateAsync<PlayingIdle>();
     }

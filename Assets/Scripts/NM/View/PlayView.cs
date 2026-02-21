@@ -7,6 +7,7 @@ using General.BindData;
 using GeneralPreview;
 using NM.Data;
 using NM.ViewEvt;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,9 @@ public class PlayView : ViewBase
 {
     [SerializeField] List<SymbolColumnView> symbolColumnList = [];
     public TextMeshProUGUI TxtCoin;
+    public TextMeshProUGUI TxtPayCoin;
     public Button BtnSpin;
+    [SerializeField, Required] DOTweenSequence payTween;
 
     protected override IEnumerable<BindDataBase> BindList()
     {
@@ -32,6 +35,7 @@ public class PlayView : ViewBase
         Bus.Register(OnEvtOnEnterPlayingAsync);
         Bus.Register(OnEvtClickSpinAsync);
         Bus.Register(OnEvtSpinSymbolAtAsync);
+        Bus.Register(OnEvtSpinPayAsync);
     }
 
     protected override void OnDestroy()
@@ -39,8 +43,11 @@ public class PlayView : ViewBase
         Bus.UnRegister(OnEvtOnEnterPlayingAsync);
         Bus.UnRegister(OnEvtClickSpinAsync);
         Bus.UnRegister(OnEvtSpinSymbolAtAsync);
+        Bus.UnRegister(OnEvtSpinPayAsync);
         base.OnDestroy();
     }
+    
+    
 
     [UniEvtDes("(进入Root - Playing状态时) 清空所有格子")]
     UniEvt<EvtOnEnterPlaying> OnEvtOnEnterPlayingAsync => (evt, ct) =>
@@ -62,8 +69,26 @@ public class PlayView : ViewBase
         SetSymbolAt(evt.Symbol, evt.Pos);
         return UniTask.CompletedTask;
     };
-    
-    
+
+    [UniEvtDes("(某符号结算时) 播放结算动画")]
+    UniEvt<EvtSpinPay> OnEvtSpinPayAsync => async (evt, ct) =>
+    {
+        foreach (var symbolColumn in symbolColumnList)
+        {
+            foreach (var symbolView in symbolColumn.SymbolList)
+            {
+                var ultimateGive = symbolView.SymbolEtt.GetUltimateGive();
+                if (symbolView.SymbolEtt == evt.Symbol && ultimateGive > 0)
+                {
+                    payTween[0].FromValue = symbolView.transform.position;
+                    TxtPayCoin.text = ultimateGive.ToString();
+                    await payTween.PlayAsync(ct);
+                }
+            }
+        }
+    };
+
+
     void SetAllEmpty(GamePlaying ctx)
     {
         _ = from x in Enumerable.Range(Const.SpinFirstID, Const.SpinW)

@@ -32,3 +32,5 @@ public record EvtSpinSymbolAdjacentSymbol(SymbolEtt AdjacentSymbol, SymbolEtt Sy
 public record EvtSpinSymbolAt(GamePlaying Ctx, SymbolEtt Symbol, Vector2Int Pos) : EvtBase;
 [TypeRegistryItem("某符号的最终金钱改变时\t(SymbolEtt)")]
 public record EvtSpinSymbolUltimateGiveChanged(SymbolEtt Symbol, long UltimateGive) : EvtBase;
+[TypeRegistryItem("某符号结算时\t(SymbolEtt)")]
+public record EvtSpinPay(SymbolEtt Symbol) : EvtBase;

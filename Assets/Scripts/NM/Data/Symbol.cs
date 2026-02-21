@@ -58,11 +58,19 @@ public class SymbolEtt : EttBase<SymbolEtt>
     }
     
     public bool IsEmpty => ConfigID == -1;
+    public bool AlreadyChecked;
     public static SymbolEtt CreateEmptySymbol() => new(-1);
     public static SymbolEtt CreateSymbol(int id) => new(id);
 
     public override string ToString() => $"{Config.Name}(ID:{Config.ID}) {PosInfo})";
     string PosInfo => Pos.Match(some => $"Pos{some.ToString()}", RStr);
+    
+    public static Comparison<SymbolEtt> ByPos => (s1, s2) =>
+    {
+        var p1 = s1.Pos.Match(Rid, () => new Vector2Int(int.MaxValue, int.MaxValue));
+        var p2 = s2.Pos.Match(Rid, () => new Vector2Int(int.MaxValue, int.MaxValue));
+        return p1.X != p2.X ? p1.X - p2.X : p1.Y - p2.Y;
+    };
 }
 
 #region DoCount

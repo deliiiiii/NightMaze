@@ -23,7 +23,7 @@ public static class Bus
                 pair => pair.Key.GetNiceName(),
                 pair => pair.Value.Select(dele => new EvtShower
                 {
-                    Des = dele.GetMethodInfo().GetAttribute<UniEvtDesAttribute>()?.Des ?? "None ...",
+                    Des = dele.GetMethodInfo().GetCustomAttribute<UniEvtDesAttribute>()?.Des ?? "None ...",
                     // NextList = dele.FireList.ToList(),
                 }).ToList());
 
@@ -65,8 +65,8 @@ public static class Bus
     }
 }
 
-public abstract record EvtBase;
 
+public abstract record EvtBase;
 public class EvtShower
 {
     public string Des = "None...";

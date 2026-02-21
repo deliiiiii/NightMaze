@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class DOTweenSequence : MonoBehaviour
 {
     [HideInInspector][SerializeField] SequenceAnimation[] mSequence;
+    public SequenceAnimation this[int id] => mSequence[id];
     [SerializeField] bool mPlayOnAwake = false;
     [SerializeField] bool mResetOnAwake = false;
     [SerializeField] float mDelay = 0;

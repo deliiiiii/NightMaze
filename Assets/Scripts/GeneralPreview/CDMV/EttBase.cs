@@ -43,6 +43,8 @@ public abstract class EttBase<TThis>
     [DebuggerStepThrough]
     public MyOption<T> GetCom<T>() where T : class, ICom, new() 
         => comDic.TryGetValue(typeof(T), out var com) ? (T)com : None;
+    // [DebuggerStepThrough]
+    // public bool HasCom<T>() where T : class, ICom, new() => comDic.ContainsKey(typeof(T));
 
     public interface ICom;
 }
