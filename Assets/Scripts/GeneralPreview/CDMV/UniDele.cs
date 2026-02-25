@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.GameCenter;
 
 namespace GeneralPreview;
 
@@ -42,9 +40,42 @@ public record UniAction<TArg1, TArg2> : UniDele
     };
 }
 
-public delegate UniTask UniEvt<in TArg1>(TArg1 arg1, CancellationToken token) where TArg1 : EvtBase;
-[AttributeUsage(AttributeTargets.Property)]
-public class UniEvtDesAttribute(string des) : Attribute
+
+public record UniAction<TArg1, TArg2, TArg3> : UniDele
 {
-    public readonly string Des = des;
+    [HideInInspector]public required Func<TArg1, TArg2, TArg3, CancellationToken, UniTask> Invoke { get; init; }
+    
+    public UniAction Apply(TArg1 arg1, TArg2 arg2, TArg3 arg3) => new()
+    {
+        Invoke = ct => Invoke(arg1, arg2, arg3, ct),
+        Des = $"{Des}. Arg = [{arg1}, {arg2}, {arg3}]",
+    };
+}
+
+public record UniEvt<TEvt> : UniAction<TEvt>, IDisposable, IUniEvt
+    where TEvt : EvtBase
+{
+    public UniEvt()
+    {
+        Bus.Register(this);
+    }
+    public void Dispose()
+    {
+        Bus.UnRegister(this);
+    }
+
+    public UniTask InvokeAsync(EvtBase evt, CancellationToken ct)
+    {
+        if (evt is TEvt e)
+        {
+            return Invoke(e, ct);
+        }
+        return UniTask.CompletedTask;
+    }
+}
+
+public interface IUniEvt
+{
+    public string Des { get; }
+    public UniTask InvokeAsync(EvtBase evt, CancellationToken ct);
 }

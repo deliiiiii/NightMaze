@@ -27,25 +27,27 @@ public class SymbolEtt : EttBase<SymbolEtt>
     public void DoTempAdd(int add)
     {
         TempAdd.Add(add);
-        Bus.FireAndForget(new EvtSpinSymbolUltimateGiveChanged(this, GetUltimateGive()));
+        Bus.FireAndForget(new EvtUltimateGiveChanged(this, GetUltimateGive()));
     }
 
     public void DoTempMulti(int multi)
     {
         TempMulti.Add(multi);
-        Bus.FireAndForget(new EvtSpinSymbolUltimateGiveChanged(this, GetUltimateGive()));
+        Bus.FireAndForget(new EvtUltimateGiveChanged(this, GetUltimateGive()));
     }
     
     public void DoTowaAdd(int add)
     {
         TowaAdd.Add(add);
-        Bus.FireAndForget(new EvtSpinSymbolUltimateGiveChanged(this, GetUltimateGive()));
+        Bus.FireAndForget(new EvtUltimateGiveChanged(this, GetUltimateGive()));
     }
     public void DoTowaMulti(int multi)
     {
         TowaMulti.Add(multi);
-        Bus.FireAndForget(new EvtSpinSymbolUltimateGiveChanged(this, GetUltimateGive()));
+        Bus.FireAndForget(new EvtUltimateGiveChanged(this, GetUltimateGive()));
     }
+    [TypeRegistryItem("某符号的最终金钱改变时\t(SymbolEtt)")]
+    public record EvtUltimateGiveChanged(SymbolEtt Symbol, long UltimateGive) : EvtBase;
 
     public long GetUltimateGive()
     {

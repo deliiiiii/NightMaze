@@ -13,7 +13,6 @@ public class Launcher : Singleton<Launcher>, IDisposable
 {
     // public List<ViewBase> ViewList = [];
     [SerializeReference, ReadOnly] GamePlaying? gamePlaying;
-    // readonly CompositeDisposable disposables = new();
     // ReSharper disable once Unity.IncorrectMethodSignature
     // ReSharper disable once UnusedMember.Local
     async UniTask Start()
@@ -25,7 +24,7 @@ public class Launcher : Singleton<Launcher>, IDisposable
         {
             if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
             {
-                gamePlaying?.UnRegisterAll();
+                gamePlaying?.Release();
             }
         };
 #endif

@@ -14,7 +14,7 @@ public abstract record MyOption<T1>
     }
     public static readonly MyNone<T1> None = new ();
     public static implicit operator MyOption<T1>(NoneClass _) => None;
-    
+    [DebuggerStepThrough]
     public void MatchA(Action<T1>? some = null, Action? none = null)
     {
         switch (this)
@@ -27,24 +27,26 @@ public abstract record MyOption<T1>
                 break;
         }
     }
+    [DebuggerStepThrough]
     public TR Match<TR>(Func<T1, TR> some, Func<TR> none)
         => this switch
         {
             MySome<T1> s => some.Invoke(s.Value),
             _ => none.Invoke()
         };
+    [DebuggerStepThrough]
     public UniTask MatchAsync(Func<T1, UniTask> some, Func<UniTask> none)
         => this switch
         {
             MySome<T1> s => some.Invoke(s.Value),
             _ => none.Invoke()
         };
-    public T1 Else(T1 noneValue)
-        => this switch
-        {
-            MySome<T1> s => s.Value,
-            _ => noneValue
-        };
+    // public T1 Else(T1 noneValue)
+        // => this switch
+        // {
+            // MySome<T1> s => s.Value,
+            // _ => noneValue
+        // };
     
     
     [DebuggerStepThrough]public MyOption<T1B> Map<T1B>(Func<T1, T1B> f) 

@@ -40,29 +40,30 @@ public class SymbolView : MonoBehaviour
 
     void Awake()
     {
-        Bus.Register(OnEvtSpinImmediateDoSymbolAsync);
-        Bus.Register(OnEvtSpinSymbolUltimateGiveChangedAsync);
+        OnSpinEvtImmediateDoSymbol.AddTo(destroyCancellationToken);
+        OnSymbolEvtUltimateGiveChanged.AddTo(destroyCancellationToken);
     }
-
-    void OnDestroy()
+    
+    UniEvt<PlayingSpin.EvtImmediateDoSymbol> OnSpinEvtImmediateDoSymbol => new()
     {
-        Bus.UnRegister(OnEvtSpinImmediateDoSymbolAsync);
-        Bus.UnRegister(OnEvtSpinSymbolUltimateGiveChangedAsync);
-    }
-
-    [UniEvtDes("放变红动画")]
-    UniEvt<EvtSpinImmediateDoSymbol> OnEvtSpinImmediateDoSymbolAsync => async (evt, ct) =>
+        Invoke = async (evt, ct) =>
+        {
+            if (evt.Symbol != SymbolEtt || SymbolEtt.IsEmpty)
+                return;
+            await onSpinTween.PlayAsync(ct);
+        },
+        Des = "放变红动画"
+    };
+    UniEvt<SymbolEtt.EvtUltimateGiveChanged> OnSymbolEvtUltimateGiveChanged => new()
     {
-        if (evt.Symbol != SymbolEtt || SymbolEtt.IsEmpty)
-            return;
-        await onSpinTween.PlayAsync(ct);
+        Invoke = (evt, ct) =>
+        {
+            if (evt.Symbol == SymbolEtt)
+                TxtCoin.text = evt.UltimateGive.ToString();
+            return UniTask.CompletedTask;
+        },
+        Des = "UltimateGive 变化时更新文本"
     };
 
-    [UniEvtDes("UltimateGive 变化时更新文本")]
-    UniEvt<EvtSpinSymbolUltimateGiveChanged> OnEvtSpinSymbolUltimateGiveChangedAsync => (evt, ct) =>
-    {
-        if (evt.Symbol == SymbolEtt)
-            TxtCoin.text = evt.UltimateGive.ToString();
-        return UniTask.CompletedTask;
-    };
+
 }

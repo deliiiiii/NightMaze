@@ -1,4 +1,5 @@
-﻿using System;
+﻿// using static NM.Data.GamePlaying;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -6,7 +7,6 @@ using General;
 using General.BindData;
 using GeneralPreview;
 using NM.Data;
-using NM.ViewEvt;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -26,66 +26,65 @@ public class PlayView : ViewBase
 
     protected override IEnumerable<BindDataBase> BindList()
     {
-        yield return Binder.FromEvt(BtnSpin.onClick).To(() => Bus.FireAndForget(new EvtClickSpin()));
+        yield return Binder.FromEvt(BtnSpin.onClick).To(() => Bus.FireAndForget(new GamePlaying.EvtClickSpin()));
     }
 
     protected override void Awake()
     {
         base.Awake();
-        Bus.Register(OnEvtOnEnterPlayingAsync);
-        Bus.Register(OnEvtClickSpinAsync);
-        Bus.Register(OnEvtSpinSymbolAtAsync);
-        Bus.Register(OnEvtSpinPayAsync);
+        OnPlayEvtOnEnter.AddTo(destroyCancellationToken);
+        OnPlayEvtShowSymbolAt.AddTo(destroyCancellationToken);
+        
+        OnSpinEvtOnEnter.AddTo(destroyCancellationToken);
+        OnSpinEvtSpinPay.AddTo(destroyCancellationToken);
     }
 
-    protected override void OnDestroy()
+    UniEvt<GamePlaying.EvtOnEnter> OnPlayEvtOnEnter => new()
     {
-        Bus.UnRegister(OnEvtOnEnterPlayingAsync);
-        Bus.UnRegister(OnEvtClickSpinAsync);
-        Bus.UnRegister(OnEvtSpinSymbolAtAsync);
-        Bus.UnRegister(OnEvtSpinPayAsync);
-        base.OnDestroy();
-    }
-    
-    
-
-    [UniEvtDes("(进入Root - Playing状态时) 清空所有格子")]
-    UniEvt<EvtOnEnterPlaying> OnEvtOnEnterPlayingAsync => (evt, ct) =>
-    {
-        SetAllEmpty(evt.Ctx);
-        return UniTask.CompletedTask;
-    };
-    
-    [UniEvtDes("(进入Playing - Spin时) 清空所有格子")]
-    UniEvt<EvtOnEnterSpin> OnEvtClickSpinAsync => (evt, ct) =>
-    {
-        SetAllEmpty(evt.Ctx.BelongFSM);
-        return UniTask.CompletedTask;
-    };
-    
-    [UniEvtDes("(某符号旋转到某位置时) 在格子上显示符号")]
-    UniEvt<EvtSpinSymbolAt> OnEvtSpinSymbolAtAsync => (evt, ct) =>
-    {
-        SetSymbolAt(evt.Symbol, evt.Pos);
-        return UniTask.CompletedTask;
-    };
-
-    [UniEvtDes("(某符号结算时) 播放结算动画")]
-    UniEvt<EvtSpinPay> OnEvtSpinPayAsync => async (evt, ct) =>
-    {
-        foreach (var symbolColumn in symbolColumnList)
+        Invoke = (evt, ct) =>
         {
-            foreach (var symbolView in symbolColumn.SymbolList)
+            SetAllEmpty(evt.Ctx);
+            return UniTask.CompletedTask;
+        },
+        Des = "(进入Root - Playing状态时) 清空所有格子"
+    };
+    UniEvt<GamePlaying.EvtShowSymbolAt> OnPlayEvtShowSymbolAt => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            SetSymbolAt(evt.Symbol, evt.Pos);
+            return UniTask.CompletedTask;
+        },
+        Des = "(某符号旋转到某位置时) 在格子上显示符号"
+    };
+    UniEvt<PlayingSpin.EvtOnEnter> OnSpinEvtOnEnter => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            SetAllEmpty(evt.Ctx.BelongFSM);
+            return UniTask.CompletedTask;
+        },
+        Des = "(进入Playing - Spin时) 清空所有格子"
+    };
+    UniEvt<PlayingSpin.EvtPay> OnSpinEvtSpinPay => new()
+    {
+        Invoke = async (evt, ct) =>
+        {
+            foreach (var symbolColumn in symbolColumnList)
             {
-                var ultimateGive = symbolView.SymbolEtt.GetUltimateGive();
-                if (symbolView.SymbolEtt == evt.Symbol && ultimateGive > 0)
+                foreach (var symbolView in symbolColumn.SymbolList)
                 {
-                    payTween[0].FromValue = symbolView.transform.position;
-                    TxtPayCoin.text = ultimateGive.ToString();
-                    await payTween.PlayAsync(ct);
+                    var ultimateGive = symbolView.SymbolEtt.GetUltimateGive();
+                    if (symbolView.SymbolEtt == evt.Symbol && ultimateGive > 0)
+                    {
+                        payTween[0].FromValue = symbolView.transform.position;
+                        TxtPayCoin.text = ultimateGive.ToString();
+                        await payTween.PlayAsync(ct);
+                    }
                 }
             }
-        }
+        },
+        Des = "(某符号结算时) 播放结算动画"
     };
 
 

@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
 using General.BindData;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
-using UnityEngine;
 
 namespace GeneralPreview;
 public abstract class FSM<TThis>
@@ -16,6 +15,8 @@ public abstract class FSM<TThis>
     [ShowInInspector, PropertyOrder(1)] IState? curState;
     bool isLaunched;
     [JsonIgnore] BindDataUpdate? selfTickBind;
+    readonly CancellationTokenSource cts = new();
+    protected CancellationToken CurCt => cts.Token;
 
     protected async UniTask LaunchAsync<TState>() where TState : IState
     {
@@ -30,20 +31,21 @@ public abstract class FSM<TThis>
         // selfTickBind.Bind();
     }
 
-    public async UniTask ReleaseAsync()
+    public void Release()
     {
         if (!isLaunched)
         {
             MyDebug.LogError($"FSM {GetType().Name} Release But NOT Launched"); 
-            return;
         }
         isLaunched = false;
         if (curState != null)
         {
-            await curState.OnExitAsync();
-            curState.UnRegisterAll();
+            // await curState.OnExitAsync(ct);
+            // curState.UnRegisterAll();
+            curState.TryRelease();
             curState = null;
         }
+        cts.Cancel();
         // selfTickBind?.UnBind();
         // selfTickBind = null;
     }
@@ -58,29 +60,29 @@ public abstract class FSM<TThis>
         {
             if(curState.GetType() == typeof(TState) && !curState.EnableReEnter)
                 return;
-            await curState.OnExitAsync();
-            curState.UnRegisterAll();
+            // await curState.OnExitAsync(ct);
+            // curState.UnRegisterAll();
+            curState.TryRelease();
         }
-        curState = (IState)Activator.CreateInstance<TState>()!;
+        curState = Activator.CreateInstance<TState>()!;
         curState.BelongFSM = (TThis)this;
         curState.RegisterAll();
         await curState.OnEnterAsync();
     }
-
+    [DebuggerStepThrough]
     public MyOption<TState> InState<TState>() => curState is TState state ? state : None;
     void Tick(float dt) => curState?.OnUpdate(dt);
 
     public interface IState
     {
         public TThis BelongFSM { get; set; }
+        // public CancellationTokenSource Cts { get; }
+        
         public UniTask OnEnterAsync() => UniTask.CompletedTask;
-        public UniTask OnExitAsync() => UniTask.CompletedTask;
+        public void TryRelease(){}
         public void OnUpdate(float dt){}
         public bool EnableReEnter => false;
-        
-        // public IEnumerable<IUniEvt> OnEvt() => [];
         void RegisterAll();
-        void UnRegisterAll();
     }
     [Serializable]
     public abstract class StateFSM<TSub> : FSM<TSub>, IState
@@ -88,10 +90,14 @@ public abstract class FSM<TThis>
     {
         public required TThis BelongFSM { get; set; }
         public virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
-        public virtual UniTask OnExitAsync() => UniTask.CompletedTask;
+        
+        // public virtual UniTask OnExitAsync(CancellationToken ct) => UniTask.CompletedTask;
+        void FSM<TThis>.IState.TryRelease()
+        {
+            if(isLaunched) Release();
+        }
         public virtual void OnUpdate(float dt){}
         public virtual bool EnableReEnter => false;
         public virtual void RegisterAll(){}
-        public virtual void UnRegisterAll(){}
     }
 }

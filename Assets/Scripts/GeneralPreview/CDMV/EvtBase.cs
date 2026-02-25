@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
@@ -14,18 +13,16 @@ namespace GeneralPreview;
 public static class Bus
 { 
     [HideInInspector]
-    static readonly Dictionary<Type, List<Delegate>> evtDic = new();
+    static readonly Dictionary<Type, List<IUniEvt>> evtDic = new();
+
     [ShowInInspector]
-    static Dictionary<string, List<EvtShower>> NonViewDic 
+    static Dictionary<string, List<string>> NonViewDic
         => evtDic
-            .Where(pair => !pair.Key.Namespace?.Contains("View") ?? false)
+            // .Where(pair => !pair.Key.Namespace?.Contains("View") ?? false)
             .ToDictionary(
                 pair => pair.Key.GetNiceName(),
-                pair => pair.Value.Select(dele => new EvtShower
-                {
-                    Des = dele.GetMethodInfo().GetCustomAttribute<UniEvtDesAttribute>()?.Des ?? "None ...",
-                    // NextList = dele.FireList.ToList(),
-                }).ToList());
+                pair => pair.Value.Select(dele => dele.Des).ToList()
+            );
 
     public static void FireAndForget<T>(T evt, Func<bool>? withDebug = null) where T : EvtBase
         => FireAsync(evt, CancellationToken.None, withDebug).Forget();
@@ -36,12 +33,12 @@ public static class Bus
             MyDebug.Log($"Fired - {evt}");
         if (!evtDic.TryGetValue(typeof(T), out var list)) 
             return;
-        foreach (var dele in list)
+        foreach (var dele in list.Where(_ => !ct.IsCancellationRequested))
         {
-            await ((UniEvt<T>)dele)(evt, ct);
+            await dele.InvokeAsync(evt, ct);
         }
     }
-    public static void Register<T>(UniEvt<T> act) where T : EvtBase
+    internal static void Register<T>(UniEvt<T> act) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
         {
@@ -50,11 +47,11 @@ public static class Bus
         }
         list.Add(act);
     }
-    public static void UnRegister<T>(UniEvt<T> func) where T : EvtBase
+    internal static void UnRegister<T>(UniEvt<T> func) where T : EvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
             return;
-        var index = list.FindIndex(h => h == (Delegate)func);
+        var index = list.FindIndex(h => (UniEvt<T>)h == func);
         if (index == -1) 
             return;
         list.RemoveAt(index);
@@ -65,11 +62,4 @@ public static class Bus
     }
 }
 
-
 public abstract record EvtBase;
-public class EvtShower
-{
-    public string Des = "None...";
-    [HideIf(nameof(IsEmpty))]public List<string> NextList = [];
-    [HideInInspector] bool IsEmpty => NextList.Count == 0;
-}
