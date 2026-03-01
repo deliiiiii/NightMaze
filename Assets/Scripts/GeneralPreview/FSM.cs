@@ -33,10 +33,10 @@ public abstract class FSM<TThis>
 
     public void Release()
     {
-        if (!isLaunched)
-        {
-            MyDebug.LogError($"FSM {GetType().Name} Release But NOT Launched"); 
-        }
+        // if (!isLaunched)
+        // {
+            // MyDebug.LogError($"FSM {GetType().Name} Release But NOT Launched");
+        // }
         isLaunched = false;
         if (curState != null)
         {
@@ -76,26 +76,19 @@ public abstract class FSM<TThis>
     public interface IState
     {
         public TThis BelongFSM { get; set; }
-        // public CancellationTokenSource Cts { get; }
-        
         public UniTask OnEnterAsync() => UniTask.CompletedTask;
         public void TryRelease(){}
         public void OnUpdate(float dt){}
         public bool EnableReEnter => false;
-        void RegisterAll();
+        public void RegisterAll(){}
     }
     [Serializable]
     public abstract class StateFSM<TSub> : FSM<TSub>, IState
-        where TSub : FSM<TSub>
+        where TSub : StateFSM<TSub>
     {
         public required TThis BelongFSM { get; set; }
         public virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
-        
-        // public virtual UniTask OnExitAsync(CancellationToken ct) => UniTask.CompletedTask;
-        void FSM<TThis>.IState.TryRelease()
-        {
-            if(isLaunched) Release();
-        }
+        void FSM<TThis>.IState.TryRelease() => Release();
         public virtual void OnUpdate(float dt){}
         public virtual bool EnableReEnter => false;
         public virtual void RegisterAll(){}
