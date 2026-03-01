@@ -13,7 +13,7 @@ public partial class GamePlaying : FSM<GamePlaying>
 {
     public override string ToString() => nameof(GamePlaying);
 
-    public List<SymbolEtt> SymbolDeckList = [];
+    public List<SymbolData> SymbolDeckList = [];
     public long Coin;
     public int RemoveToken;
     public int RefreshToken;
@@ -21,7 +21,7 @@ public partial class GamePlaying : FSM<GamePlaying>
     public int SpinCount;
     public int DeckMax = 20;
 
-    public List<SymbolEtt> SymbolShownList = [];
+    public List<SymbolData> SymbolShownList = [];
     
     public GamePlaying()
     {
@@ -29,8 +29,8 @@ public partial class GamePlaying : FSM<GamePlaying>
         InitAct.Invoke(CurCt).Forget();
     }
     
-    public IEnumerable<SymbolEtt> GetAdjacent(SymbolEtt symbolEtt) 
-        => symbolEtt.Pos.Match(
+    public IEnumerable<SymbolData> GetAdjacent(SymbolData SymbolData) 
+        => SymbolData.Pos.Match(
             pos =>
                 from x in Enumerable.Range(pos.X - 1, 3)
                 from y in Enumerable.Range(pos.Y - 1, 3)
@@ -77,7 +77,7 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 
         do
         {
-            BelongFSM.SymbolShownList.Sort(SymbolEtt.ByPos);
+            BelongFSM.SymbolShownList.Sort(SymbolData.ByPos);
             DelayAddList.Clear();
             foreach (var symbol in BelongFSM.SymbolShownList.Where(s => !s.AlreadyChecked))
             {
@@ -109,11 +109,11 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
     public record EvtOnEnter(PlayingSpin Ctx) : EvtBase;
 
     [TypeRegistryItem("立即")]
-    public record EvtImmediateDoSymbol(SymbolEtt Symbol) : EvtBase;
-    [TypeRegistryItem("发现某符号与(当前)某符号相邻时\t(SymbolEtt, SymbolEtt)")]
-    public record EvtSpinSymbolAdjacentSymbol(SymbolEtt AdjacentSymbol, SymbolEtt Symbol) : EvtBase;
-    [TypeRegistryItem("某符号结算时\t(SymbolEtt)")]
-    public record EvtPay(SymbolEtt Symbol) : EvtBase;
+    public record EvtImmediateDoSymbol(SymbolData Symbol) : EvtBase;
+    [TypeRegistryItem("发现某符号与(当前)某符号相邻时\t(SymbolData, SymbolData)")]
+    public record EvtSpinSymbolAdjacentSymbol(SymbolData AdjacentSymbol, SymbolData Symbol) : EvtBase;
+    [TypeRegistryItem("某符号结算时\t(SymbolData)")]
+    public record EvtPay(SymbolData Symbol) : EvtBase;
     
     UniEvt<EvtSpinSymbolAdjacentSymbol> OnEvtSpinSymbolAdjacentSymbolAsync => new()
     {
@@ -123,7 +123,7 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
             {
                 if (evt.Symbol.ConfigID == 1 && evt.Symbol == s && evt.AdjacentSymbol.ConfigID == 2)
                 {
-                    DelayAddList.Add(BelongFSM.SymbolAddSymbolAct.Apply(evt.Symbol, SymbolEtt.CreateSymbol(9)));
+                    DelayAddList.Add(BelongFSM.SymbolAddSymbolAct.Apply(evt.Symbol, SymbolData.CreateSymbol(9)));
                 }
             }
 

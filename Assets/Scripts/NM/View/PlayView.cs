@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using General;
 using General.BindData;
 using GeneralPreview;
 using NM.Data;
@@ -11,6 +10,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Binder = General.Binder;
 
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 
@@ -28,17 +28,8 @@ public class PlayView : ViewBase
     {
         yield return Binder.FromEvt(BtnSpin.onClick).To(() => Bus.FireAndForget(new GamePlaying.EvtClickSpin()));
     }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        OnPlayEvtOnEnter.AddTo(destroyCancellationToken);
-        OnPlayEvtShowSymbolAt.AddTo(destroyCancellationToken);
-        
-        OnSpinEvtOnEnter.AddTo(destroyCancellationToken);
-        OnSpinEvtSpinPay.AddTo(destroyCancellationToken);
-    }
-
+    
+    #region OnEvt
     UniEvt<GamePlaying.EvtOnEnter> OnPlayEvtOnEnter => new()
     {
         Invoke = (evt, ct) =>
@@ -74,8 +65,8 @@ public class PlayView : ViewBase
             {
                 foreach (var symbolView in symbolColumn.SymbolList)
                 {
-                    var ultimateGive = symbolView.SymbolEtt.GetUltimateGive();
-                    if (symbolView.SymbolEtt == evt.Symbol && ultimateGive > 0)
+                    var ultimateGive = symbolView.Data.GetUltimateGive();
+                    if (symbolView.Data == evt.Symbol && ultimateGive > 0)
                     {
                         payTween[0].FromValue = symbolView.transform.position;
                         TxtPayCoin.text = ultimateGive.ToString();
@@ -86,19 +77,23 @@ public class PlayView : ViewBase
         },
         Des = "(某符号结算时) 播放结算动画"
     };
+    #endregion
 
 
     void SetAllEmpty(GamePlaying ctx)
     {
-        _ = from x in Enumerable.Range(Const.SpinFirstID, Const.SpinW)
-            from y in Enumerable.Range(Const.SpinFirstID, Const.SpinH)
-            select SetSymbolAt(SymbolEtt.CreateEmptySymbol(), new Vector2Int(x, y));
+        foreach (var x in Enumerable.Range(Const.SpinFirstID, Const.SpinW))
+        {
+            foreach (var y in Enumerable.Range(Const.SpinFirstID, Const.SpinH))
+            {
+                SetSymbolAt(SymbolData.CreateEmptySymbol(), new Vector2Int(x, y));
+            }
+        }
     }
 
-    ValueTuple? SetSymbolAt(SymbolEtt symbolEtt, Vector2Int pos)
+    void SetSymbolAt(SymbolData symbolData, Vector2Int pos)
     {
         var symbolView = symbolColumnList[pos.X - 1].SymbolList[pos.Y - 1];
-        symbolView.SymbolEtt = symbolEtt;
-        return null;
+        symbolView.Data = symbolData;
     }
 }

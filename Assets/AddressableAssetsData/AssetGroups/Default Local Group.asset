@@ -17,62 +17,32 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 33647833f4609c242af2cd4ca232b882
   m_SerializeEntries:
-  - m_GUID: 2abb2506995c5c94ea353ecde55d1719
-    m_Address: "Symbol_3_\u871C\u8702"
+  - m_GUID: 468e5a1d63cc89d419b30104c9370976
+    m_Address: Symbol_1_11
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3f4b55e9fc05dcf42af08ecaf824f829
-    m_Address: "SymbolSet_0_\u6D4B\u8BD5Set"
+  - m_GUID: 59b931667c398c9489ecf64ef95b386a
+    m_Address: Symbol_9_99
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 45dcf5a446bc13e4cb89298a68318686
-    m_Address: "Symbol_-1_\u7A7A"
+  - m_GUID: c1df180b622e97244ae0df2e651286bd
+    m_Address: Symbol_2_22
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4998e2397ce01a5418a64b2b4256c84d
-    m_Address: "Symbol_1_\u9999\u8549"
+  - m_GUID: e32056df22658e342a18200e43746bd6
+    m_Address: Symbol_-1_-1
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 94a10ba91e45c4e4eb015a9d44ceb3a3
-    m_Address: "Symbol_2_\u9999\u8549\u76AE"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - NMConfig
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a6f7454d953193042afeaf5ee366f46b
-    m_Address: "Symbol_9_\u8461\u8404\u9152"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - NMConfig
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b9eb737a2813c15438f86a4e6e916e8a
-    m_Address: "Symbol_5_\u8D4F\u91D1\u730E\u4EBA"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - NMConfig
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bafd3cc186ea34740aa2fcb1a3a7c0ff
-    m_Address: "Symbol_100_\u5C0F\u5077"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - NMConfig
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c53d286e2ada19c49a7ffe8b48789d89
-    m_Address: "Symbol_0_\u951A"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - NMConfig
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d6fefc934f6b1cd4f821e5e9025d5d4c
-    m_Address: "Symbol_4_\u5564\u9152"
+  - m_GUID: efa5220ef1eadd745a8fa4f9a7df21f7
+    m_Address: Symbol_0_00
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig

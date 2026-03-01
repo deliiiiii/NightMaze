@@ -1,52 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Sirenix.Utilities;
+using System.Diagnostics;
+using General;
+using Sirenix.OdinInspector;
 
 namespace GeneralPreview;
 
-[AttributeUsage(AttributeTargets.Class)]
-public class IDAttribute(int id) : Attribute
+public abstract class DataBase<TThis>
+    where TThis : DataBase<TThis>
 {
-    public readonly int ID = id;
-}
-
-/// 通过Config创建的数据接口，Json忽略Config字段，通过ID自动关联
-
-/// 通过反射创建的数据基类，子类需添加IDAttribute特性
-public abstract class DataAttr<TData, TAttribute>
-    where TData : DataAttr<TData, TAttribute>
-    where TAttribute : IDAttribute
-{
-    static readonly Dictionary<int, Func<TData>> ctorDic = [];
-    public static void InitCtorDic()
+    [ShowInInspector] readonly Dictionary<Type, ICom> comDic = [];
+    [DebuggerStepThrough]
+    public T AddCom<T>(T? com = null)
+        where T : class, ICom, new()
     {
-        ctorDic.Clear();
-        typeof(TData).Assembly.GetTypes()
-            .Where(x => x.IsSubclassOf(typeof(TData))
-                        && x.GetAttribute<TAttribute>() != null)
-            .ToDictionary(x => x.GetAttribute<TAttribute>().ID)
-            .ForEach(pair =>
-            {
-                ctorDic.Add(pair.Key, () =>
-                {
-                    var ret = (TData)Activator.CreateInstance(pair.Value);
-                    ret.ID = pair.Key;
-                    return ret;
-                });
-            });
-    }
-
-    protected static TData CreateByAttr(int id)
-    {
-        if (ctorDic.TryGetValue(id, out var ctor))
+        if (comDic.TryGetValue(typeof(T), out var existCom))
         {
-            return ctor();
+            MyDebug.LogError($"Entity {GetType().Name} AddComponent {typeof(T).Name} But Already Exists");
+            return (T)existCom;
         }
-        // 找不到对应ID的类时，返回ID为-1的FallBack类.
-        return ctorDic[-1]();
-        // throw new Exception($"{typeof(TData).Name} CreateData : ID {id} out of range");
-    }
 
-    protected int ID;
+        com ??= new T();
+        comDic.Add(typeof(T), com);
+        return com;
+    }
+    [DebuggerStepThrough]
+    public void RemoveCom<T>() where T : class, ICom, new()
+    {
+        if (!comDic.TryGetValue(typeof(T), out _))
+        {
+            MyDebug.LogError($"Entity {ToString()} RemoveComponent {typeof(T).Name} But NOT Exists");
+            return;
+        }
+        comDic.Remove(typeof(T));
+    }
+    [DebuggerStepThrough]
+    public void RemoveAllCom()
+    {
+        comDic.Clear();
+    }
+    
+    [DebuggerStepThrough]
+    public MyOption<T> GetCom<T>() where T : class, ICom, new() 
+        => comDic.TryGetValue(typeof(T), out var com) ? (T)com : None;
+    // [DebuggerStepThrough]
+    // public bool HasCom<T>() where T : class, ICom, new() => comDic.ContainsKey(typeof(T));
+
+    public interface ICom;
 }

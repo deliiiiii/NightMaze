@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b827516ad06946f793ec88e85004fa31, type: 3}
-  m_Name: "Symbol_-1_\u7A7A"
+  m_Script: {fileID: 11500000, guid: a1e0ecb963054160b705a13cf028e216, type: 3}
+  m_Name: Symbol_9_99
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,7 +21,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  Name: "\u7A7A"
-  ID: -1
+  Name: 99
   Rarity: 0
-  Payout: 0
+  Payout: 1

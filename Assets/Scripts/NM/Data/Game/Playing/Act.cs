@@ -12,15 +12,15 @@ public partial class GamePlaying
         {
             await Bus.FireAsync(new EvtOnEnter(this), ct);
             await ClearDeckAct.Invoke(ct);
-            await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(0), ct);
-            await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(1), ct);
-            await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(2), ct);
-            await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(2), ct);
-            await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(2), ct);
-            await AddSymbolAct.Invoke(SymbolEtt.CreateSymbol(2), ct);
+            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(0), ct);
+            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(1), ct);
+            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(2), ct);
+            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(2), ct);
+            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(2), ct);
+            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(2), ct);
             while (SymbolDeckList.Count < DeckMax)
             {
-                await AddSymbolAct.Invoke(SymbolEtt.CreateEmptySymbol(), ct);
+                await AddSymbolAct.Invoke(SymbolData.CreateEmptySymbol(), ct);
             }
 
             await LaunchAsync<PlayingIdle>();
@@ -29,7 +29,7 @@ public partial class GamePlaying
     };
     public record EvtOnEnter(GamePlaying Ctx) : EvtBase;
 
-    public UniAction<SymbolEtt, SymbolEtt> SymbolAddSymbolAct => new()
+    public UniAction<SymbolData, SymbolData> SymbolAddSymbolAct => new()
     {
         Invoke = async (arg1, arg2, ct) =>
         {
@@ -38,8 +38,8 @@ public partial class GamePlaying
         },
         Des = "符号添加符号",
     };
-    [TypeRegistryItem("某符号添加某符号时\t(SymbolEtt, SymbolEtt)")]
-    public record EvtSpinSymbolAddSymbol(SymbolEtt Symbol, SymbolEtt AddedSymbol) : EvtBase;
+    [TypeRegistryItem("某符号添加某符号时\t(SymbolData, SymbolData)")]
+    public record EvtSpinSymbolAddSymbol(SymbolData Symbol, SymbolData AddedSymbol) : EvtBase;
 
     public UniAction ClearDeckAct => new()
     {
@@ -53,7 +53,7 @@ public partial class GamePlaying
         Des = "清空符号列表"
     };
 
-    public UniAction<SymbolEtt> AddSymbolAct => new()
+    public UniAction<SymbolData> AddSymbolAct => new()
     {
         Invoke = async (toAdd, ct) =>
         {
@@ -69,20 +69,20 @@ public partial class GamePlaying
         Des = "添加符号"
     };
 
-    public UniAction<SymbolEtt> RemoveSymbolAct => new()
+    public UniAction<SymbolData> RemoveSymbolAct => new()
     {
         Invoke = async (toRemove, ct) =>
         {
             SymbolDeckList.Remove(toRemove);
             if (SymbolDeckList.Count < DeckMax)
             {
-                await AddSymbolAct.Invoke(SymbolEtt.CreateEmptySymbol(), ct);
+                await AddSymbolAct.Invoke(SymbolData.CreateEmptySymbol(), ct);
             }
         },
         Des = "移除符号"
     };
 
-    public UniAction<SymbolEtt> ShowSymbolRandomlyAct => new()
+    public UniAction<SymbolData> ShowSymbolRandomlyAct => new()
     {
         Invoke = async (symbol, ct) =>
         {
@@ -96,7 +96,7 @@ public partial class GamePlaying
         Des = "将符号显示在随机一个空位上"
     };
 
-    public UniAction<SymbolEtt, Vector2Int> ShowSymbolAtAsync => new()
+    public UniAction<SymbolData, Vector2Int> ShowSymbolAtAsync => new()
     {
         Invoke = async (symbol, pos, ct) =>
         {
@@ -106,24 +106,24 @@ public partial class GamePlaying
         },
         Des = "符号显示在某位置"
     };
-    [TypeRegistryItem("符号显示在某位置时\t(SymbolEtt, Vector2Int)")]
-    public record EvtShowSymbolAt(GamePlaying Ctx, SymbolEtt Symbol, Vector2Int Pos) : EvtBase;
+    [TypeRegistryItem("符号显示在某位置时\t(SymbolData, Vector2Int)")]
+    public record EvtShowSymbolAt(GamePlaying Ctx, SymbolData Symbol, Vector2Int Pos) : EvtBase;
     
-    [TypeRegistryItem("某符号每旋转N次\t(SymbolEtt, int)")]
-    public record EvtSpinSymbolEverySpinN(SymbolEtt Symbol, int SpinCountN) : EvtBase;
+    [TypeRegistryItem("某符号每旋转N次\t(SymbolData, int)")]
+    public record EvtSpinSymbolEverySpinN(SymbolData Symbol, int SpinCountN) : EvtBase;
 
-    [TypeRegistryItem("某符号消除某符号时\t(SymbolEtt, SymbolEtt)")]
-    public record EvtSpinSymbolDestroySymbol(SymbolEtt Symbol, SymbolEtt DestroyedSymbol) : EvtBase;
-    [TypeRegistryItem("某符号移除某符号时\t(SymbolEtt, SymbolEtt)")]
-    public record EvtSpinSymbolRemoveSymbol(SymbolEtt Symbol, SymbolEtt RemovedSymbol) : EvtBase;
-    [TypeRegistryItem("某符号临时加算时\t(SymbolEtt, int)")]
-    public record EvtSpinSymbolPayoutAddTemp(SymbolEtt Symbol, int Add) : EvtBase;
-    [TypeRegistryItem("某符号临时乘算时\t(SymbolEtt, int)")]
-    public record EvtSpinSymbolPayoutMulTemp(SymbolEtt Symbol, int Mul) : EvtBase;
-    [TypeRegistryItem("某符号永久加算时\t(SymbolEtt, int)")]
-    public record EvtSpinSymbolPayoutAddPermanent(SymbolEtt Symbol, int Add) : EvtBase;
-    [TypeRegistryItem("某符号积攒X时\t(SymbolEtt, int)")]
-    public record EvtSpinSymbolStock(SymbolEtt Symbol, int Stock) : EvtBase;
-    [TypeRegistryItem("玩家移除某符号时\t(SymbolEtt)")]
-    public record EvtSpinPlayerRemoveSymbol(SymbolEtt RemovedSymbol) : EvtBase;
+    [TypeRegistryItem("某符号消除某符号时\t(SymbolData, SymbolData)")]
+    public record EvtSpinSymbolDestroySymbol(SymbolData Symbol, SymbolData DestroyedSymbol) : EvtBase;
+    [TypeRegistryItem("某符号移除某符号时\t(SymbolData, SymbolData)")]
+    public record EvtSpinSymbolRemoveSymbol(SymbolData Symbol, SymbolData RemovedSymbol) : EvtBase;
+    [TypeRegistryItem("某符号临时加算时\t(SymbolData, int)")]
+    public record EvtSpinSymbolPayoutAddTemp(SymbolData Symbol, int Add) : EvtBase;
+    [TypeRegistryItem("某符号临时乘算时\t(SymbolData, int)")]
+    public record EvtSpinSymbolPayoutMulTemp(SymbolData Symbol, int Mul) : EvtBase;
+    [TypeRegistryItem("某符号永久加算时\t(SymbolData, int)")]
+    public record EvtSpinSymbolPayoutAddPermanent(SymbolData Symbol, int Add) : EvtBase;
+    [TypeRegistryItem("某符号积攒X时\t(SymbolData, int)")]
+    public record EvtSpinSymbolStock(SymbolData Symbol, int Stock) : EvtBase;
+    [TypeRegistryItem("玩家移除某符号时\t(SymbolData)")]
+    public record EvtSpinPlayerRemoveSymbol(SymbolData RemovedSymbol) : EvtBase;
 }

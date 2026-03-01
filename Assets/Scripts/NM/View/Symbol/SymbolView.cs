@@ -14,7 +14,7 @@ public class SymbolView : MonoBehaviour
     [SerializeField, Required] DOTweenSequence onSpinTween;
 
     [ShowInInspector, ReadOnly]
-    public SymbolEtt SymbolEtt
+    public SymbolData Data
     {
         get;
         set
@@ -46,17 +46,17 @@ public class SymbolView : MonoBehaviour
     {
         Invoke = async (evt, ct) =>
         {
-            if (evt.Symbol != SymbolEtt || SymbolEtt.IsEmpty)
+            if (evt.Symbol != Data || Data.IsEmpty)
                 return;
             await onSpinTween.PlayAsync(ct);
         },
         Des = "放变红动画"
     };
-    UniEvt<SymbolEtt.EvtUltimateGiveChanged> OnSymbolEvtUltimateGiveChanged => new()
+    UniEvt<SymbolData.EvtUltimateGiveChanged> OnSymbolEvtUltimateGiveChanged => new()
     {
         Invoke = (evt, ct) =>
         {
-            if (evt.Symbol == SymbolEtt)
+            if (evt.Symbol == Data)
                 TxtCoin.text = evt.UltimateGive.ToString();
             return UniTask.CompletedTask;
         },

@@ -7,6 +7,9 @@ namespace NM.Config;
 [UnityEngine.CreateAssetMenu(fileName = "NewSymbolSet", menuName = "NM/" + nameof(SymbolConfigSet))]
 public class SymbolConfigSet : ConfigMulti<SymbolConfigSet>
 {
+    // ReSharper disable once InconsistentNaming
+    public int _ID;
+    public override int ID => _ID;
     protected override string PrefixName => "SymbolSet";
     [Required] public HashSet<SymbolConfig> SymbolSet = [];
 }

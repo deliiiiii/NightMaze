@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b827516ad06946f793ec88e85004fa31, type: 3}
-  m_Name: "Symbol_100_\u5C0F\u5077"
+  m_Script: {fileID: 11500000, guid: 498951e927954ce6ad8348681da319a7, type: 3}
+  m_Name: Symbol_2_22
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -20,20 +20,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: EvtList
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[NM.Config.EvtReceiver, NM]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  Name: "\u5C0F\u5077"
-  ID: 100
+    SerializationNodes: []
+  Name: 22
   Rarity: 0
-  Payout: -1
+  Payout: 1

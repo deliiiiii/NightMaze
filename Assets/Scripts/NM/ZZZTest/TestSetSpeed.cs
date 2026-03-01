@@ -2,6 +2,8 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+namespace NM.ZZZTest;
+
 internal class TestSetSpeed : MonoBehaviour
 {
     [Button]
