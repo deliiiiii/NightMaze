@@ -25,12 +25,12 @@ public partial class GamePlaying : FSM<GamePlaying>
     
     public GamePlaying()
     {
-        OnEvtClickSpinAsync.AddTo(CurCt);
+        IUniEvt.BindAll(this, CurCt);
         InitAct.Invoke(CurCt).Forget();
     }
     
-    public IEnumerable<SymbolData> GetAdjacent(SymbolData SymbolData) 
-        => SymbolData.Pos.Match(
+    public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData) 
+        => symbolData.Pos.Match(
             pos =>
                 from x in Enumerable.Range(pos.X - 1, 3)
                 from y in Enumerable.Range(pos.Y - 1, 3)
@@ -48,11 +48,6 @@ public class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 {
     public List<UniAction> DelayAddList = [];
     public List<UniAction> DelayDestroyList = [];
-
-    public override void RegisterAll()
-    {
-        OnEvtSpinSymbolAdjacentSymbolAsync.AddTo(CurCt);
-    }
 
     public override async UniTask OnEnterAsync()
     {

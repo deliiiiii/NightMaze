@@ -36,12 +36,8 @@ public class SymbolView : MonoBehaviour
     [SerializeField] Transform tranImgBuff;
     [ShowInInspector, ReadOnly] List<ImgBuff> buffList = [];
 
-    void Awake()
-    {
-        OnSpinEvtImmediateDoSymbol.AddTo(destroyCancellationToken);
-        OnSymbolEvtUltimateGiveChanged.AddTo(destroyCancellationToken);
-    }
-    
+    void Awake() => IUniEvt.BindAll(this, destroyCancellationToken);
+
     UniEvt<PlayingSpin.EvtImmediateDoSymbol> OnSpinEvtImmediateDoSymbol => new()
     {
         Invoke = async (evt, ct) =>
@@ -62,6 +58,4 @@ public class SymbolView : MonoBehaviour
         },
         Des = "UltimateGive 变化时更新文本"
     };
-
-
 }

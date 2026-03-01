@@ -91,6 +91,7 @@ public abstract class FSM<TThis>
         void FSM<TThis>.IState.TryRelease() => Release();
         public virtual void OnUpdate(float dt){}
         public virtual bool EnableReEnter => false;
-        public virtual void RegisterAll(){}
+
+        void FSM<TThis>.IState.RegisterAll() => IUniEvt.BindAll(this, CurCt);
     }
 }
