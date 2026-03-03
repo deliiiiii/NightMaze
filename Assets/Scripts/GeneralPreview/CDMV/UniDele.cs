@@ -8,56 +8,11 @@ using Sirenix.Utilities;
 using UnityEngine;
 
 namespace GeneralPreview;
-
-[HideReferenceObjectPicker]
-public abstract record UniDele
-{
-    // public readonly MyOption<int> Timing = None;
-    [ReadOnly, ShowInInspector] public required string Des { get; init; } = "None ...";
-    // [ReadOnly]public List<string> FireList { get; init; } = [];
-}
-public record UniAction : UniDele
-{
-    [HideInInspector]public required Func<CancellationToken, UniTask> InvokeAsync { get; init; }
-}
-
-public record UniAction<TArg1> : UniDele
-{
-    [HideInInspector]public required Func<TArg1, CancellationToken, UniTask> Invoke { get; init; }
-    
-    public UniAction Apply(TArg1 arg1) => new()
-    {
-        InvokeAsync = ct => Invoke(arg1, ct),
-        Des = $"{Des}. Arg = [{arg1}]",
-    };
-}
-
-public record UniAction<TArg1, TArg2> : UniDele
-{
-    [HideInInspector]public required Func<TArg1, TArg2, CancellationToken, UniTask> Invoke { get; init; }
-    
-    public UniAction Apply(TArg1 arg1, TArg2 arg2) => new()
-    {
-        InvokeAsync = ct => Invoke(arg1, arg2, ct),
-        Des = $"{Des}. Arg = [{arg1}, {arg2}]",
-    };
-}
-
-
-public record UniAction<TArg1, TArg2, TArg3> : UniDele
-{
-    [HideInInspector]public required Func<TArg1, TArg2, TArg3, CancellationToken, UniTask> Invoke { get; init; }
-    
-    public UniAction Apply(TArg1 arg1, TArg2 arg2, TArg3 arg3) => new()
-    {
-        InvokeAsync = ct => Invoke(arg1, arg2, arg3, ct),
-        Des = $"{Des}. Arg = [{arg1}, {arg2}, {arg3}]",
-    };
-}
-
-public record UniEvt<TEvt> : UniAction<TEvt>, IDisposable, IUniEvt
+public record UniEvt<TEvt> : IDisposable, IUniEvt
     where TEvt : EvtBase
 {
+    [ReadOnly, ShowInInspector] public required string Des { get; init; } = "None ...";
+    [HideInInspector]public required Func<TEvt, CancellationToken, UniTask> Invoke { get; init; }
     public UniEvt()
     {
         Bus.Register(this);
@@ -67,14 +22,7 @@ public record UniEvt<TEvt> : UniAction<TEvt>, IDisposable, IUniEvt
         Bus.UnRegister(this);
     }
 
-    public UniTask InvokeAsync(EvtBase evt, CancellationToken ct)
-    {
-        if (evt is TEvt e)
-        {
-            return Invoke(e, ct);
-        }
-        return UniTask.CompletedTask;
-    }
+    public UniTask InvokeAsync(EvtBase evt, CancellationToken ct) => Invoke((TEvt)evt, ct);
 }
 
 public interface IUniEvt
@@ -114,3 +62,4 @@ public interface IUniEvt
     public string Des { get; }
     public UniTask InvokeAsync(EvtBase evt, CancellationToken ct);
 }
+

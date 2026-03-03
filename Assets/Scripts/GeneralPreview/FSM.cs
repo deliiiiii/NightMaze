@@ -33,10 +33,10 @@ public abstract class FSM<TThis>
 
     public void Release()
     {
-        // if (!isLaunched)
-        // {
-            // MyDebug.LogError($"FSM {GetType().Name} Release But NOT Launched");
-        // }
+        if (!isLaunched)
+        {
+            MyDebug.LogError($"FSM {GetType().Name} Release But NOT Launched");
+        }
         isLaunched = false;
         if (curState != null)
         {
@@ -95,5 +95,18 @@ public abstract class FSM<TThis>
         public virtual bool EnableReEnter => false;
 
         void FSM<TThis>.IState.RegisterAll() => IUniEvt.BindAll(this, CurCt);
+    }
+    
+    public abstract record UniAction
+    {
+        public required TThis Ctx;
+        public abstract string Des { get; }
+        protected abstract UniTask InvokeAsync(CancellationToken ct);
+
+        public UniTask.Awaiter GetAwaiter()
+        {
+            return InvokeAsync(Ctx.CurCt).GetAwaiter();
+        }
+        public void Forget() => InvokeAsync(CancellationToken.None).Forget();
     }
 }

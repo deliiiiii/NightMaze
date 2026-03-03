@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using Sirenix.OdinInspector;
 
@@ -6,114 +8,92 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
-    public UniAction InitAct => new()
+    public record ActSymbolAddSymbol : UniAction
     {
-        InvokeAsync = async ct =>
-        {
-            await Bus.FireAsync(new EvtOnEnter(this), ct);
-            await ClearDeckAct.InvokeAsync(ct);
-            await AddSymbolAct.Invoke(SymbolData.Create(0), ct);
-            await AddSymbolAct.Invoke(SymbolData.Create(1), ct);
-            await AddSymbolAct.Invoke(SymbolData.Create(1), ct);
-            await AddSymbolAct.Invoke(SymbolData.Create(1), ct);
-            await AddSymbolAct.Invoke(SymbolData.Create(1), ct);
-            await AddSymbolAct.Invoke(SymbolData.Create(2), ct);
-            while (SymbolDeckList.Count < DeckMax)
-            {
-                await AddSymbolAct.Invoke(SymbolData.CreateEmpty(), ct);
-            }
+        public override string Des => "符号添加符号";
+        public required SymbolData Arg1, Arg2;
 
-            await LaunchAsync<PlayingIdle>();
-        },
-        Des = "初始化",
-    };
-    public record EvtOnEnter(GamePlaying Ctx) : EvtBase;
-
-    public UniAction<SymbolData, SymbolData> SymbolAddSymbolAct => new()
-    {
-        Invoke = async (arg1, arg2, ct) =>
+        protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            await AddSymbolAct.Invoke(arg2, ct);
-            await Bus.FireAsync(new EvtSpinSymbolAddSymbol(arg1, arg2), ct);
-        },
-        Des = "符号添加符号",
-    };
-    [TypeRegistryItem("某符号添加某符号时\t(SymbolData, SymbolData)")]
+            await new ActAddSymbol{Ctx = Ctx, ToAdd = Arg2};
+            await Bus.FireAsync(new EvtSpinSymbolAddSymbol(Arg1, Arg2), ct);
+        }
+    }
     public record EvtSpinSymbolAddSymbol(SymbolData Symbol, SymbolData AddedSymbol) : EvtBase;
-
-    public UniAction ClearDeckAct => new()
+    
+    public record ActClearDeck : UniAction
     {
-        InvokeAsync = async (ct) =>
+        public override string Des => "清空符号列表";
+
+        protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            foreach (var symbol in SymbolDeckList.ToList())
+            foreach (var symbol in Ctx.SymbolDeckList.ToList())
             {
-                await RemoveSymbolAct.Invoke(symbol, ct);
+                await new ActRemoveSymbol{ Ctx = Ctx, ToRemove = symbol};
             }
-        },
-        Des = "清空符号列表"
-    };
-
-    public UniAction<SymbolData> AddSymbolAct => new()
+        }
+    }
+    public record ActAddSymbol : UniAction
     {
-        Invoke = async (toAdd, ct) =>
+        public override string Des => "添加符号";
+        public required SymbolData ToAdd;
+        protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            SymbolDeckList.Add(toAdd);
-            if(SymbolDeckList.Count > DeckMax)
+            Ctx.SymbolDeckList.Add(ToAdd);
+            if(Ctx.SymbolDeckList.Count > Ctx.DeckMax)
             {
-                await GetEmpty().MatchAsync(async some =>
+                await Ctx.GetEmpty().MatchAsync(async some =>
                 {
-                    await RemoveSymbolAct.Invoke(some, ct);
+                    await new ActRemoveSymbol { ToRemove = some, Ctx = Ctx };
                 }, RTask);
             }
-            await ShowSymbolRandomlyAct.Invoke(toAdd, ct);
-        },
-        Des = "添加符号"
-    };
-
-    public UniAction<SymbolData> RemoveSymbolAct => new()
+            await new ActShowSymbolRandomly { Symbol = ToAdd, Ctx = Ctx };
+        }
+    }
+    public record ActRemoveSymbol : UniAction
     {
-        Invoke = async (toRemove, ct) =>
+        public override string Des => "移除符号";
+        public required SymbolData ToRemove;
+        protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            SymbolDeckList.Remove(toRemove);
-            toRemove.Dispose?.Invoke();
-            if (SymbolDeckList.Count < DeckMax)
+            Ctx.SymbolDeckList.Remove(ToRemove);
+            ToRemove.Dispose?.Invoke();
+            if (Ctx.SymbolDeckList.Count < Ctx.DeckMax)
             {
-                await AddSymbolAct.Invoke(SymbolData.CreateEmpty(), ct);
+                await new ActAddSymbol() { ToAdd = SymbolData.CreateEmpty(), Ctx = Ctx };
             }
-        },
-        Des = "移除符号"
-    };
-
-    public UniAction<SymbolData> ShowSymbolRandomlyAct => new()
+        }
+    }
+    public record ActShowSymbolRandomly : UniAction
     {
-        Invoke = async (symbol, ct) =>
+        public override string Des => "将符号显示在随机一个空位上";
+        public required SymbolData Symbol;
+        protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            await SymbolShownList
+            await Ctx.SymbolShownList
                 .Where(s => s.IsEmpty)
                 .SelectMany(s => s.Pos.Match(some => [some], Enumerable.Empty<Vector2Int>))
                 .ToList()
                 .RandomItem()
-                .MatchAsync(async some => await ShowSymbolAtAsync.Invoke(symbol, some, ct), RTask);
-        },
-        Des = "将符号显示在随机一个空位上"
-    };
-
-    public UniAction<SymbolData, Vector2Int> ShowSymbolAtAsync => new()
+                .MatchAsync(async some => await new ActShowSymbolAt { Symbol = Symbol, Pos = some, Ctx = Ctx }, RTask);
+        }
+    }
+    public record ActShowSymbolAt : UniAction
     {
-        Invoke = async (symbol, pos, ct) =>
+        public override string Des => "将符号显示在某位置上";
+        public required SymbolData Symbol;
+        public required Vector2Int Pos;
+        protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            SymbolShownList.Add(symbol);
-            symbol.Pos = pos;
-            await Bus.FireAsync(new EvtShowSymbolAt(this, symbol, pos), ct);
-        },
-        Des = "符号显示在某位置"
-    };
+            Ctx.SymbolShownList.Add(Symbol);
+            Symbol.Pos = Pos;
+            await Bus.FireAsync(new EvtShowSymbolAt(Ctx, Symbol, Pos), ct);
+        }
+    }
     [TypeRegistryItem("符号显示在某位置时\t(SymbolData, Vector2Int)")]
     public record EvtShowSymbolAt(GamePlaying Ctx, SymbolData Symbol, Vector2Int Pos) : EvtBase;
-    
     [TypeRegistryItem("某符号每旋转N次\t(SymbolData, int)")]
     public record EvtSpinSymbolEverySpinN(SymbolData Symbol, int SpinCountN) : EvtBase;
-
     [TypeRegistryItem("某符号消除某符号时\t(SymbolData, SymbolData)")]
     public record EvtSpinSymbolDestroySymbol(SymbolData Symbol, SymbolData DestroyedSymbol) : EvtBase;
     [TypeRegistryItem("某符号移除某符号时\t(SymbolData, SymbolData)")]

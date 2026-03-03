@@ -43,16 +43,16 @@ public static class Factory<TRelyBase, TInsBase>
         {
             if (assemblySet != null)
                 return assemblySet;
-            HashSet<Assembly> ret = [];
+            assemblySet = [];
             if (typeof(TInsBase).IsGenericType)
             {
                 foreach (var arg in typeof(TInsBase).GetGenericArguments())
                 {
-                    ret.Add(arg.Assembly);
+                    assemblySet.Add(arg.Assembly);
                 }
             }
-            ret.Add(typeof(TRelyBase).Assembly);
-            return ret;
+            assemblySet.Add(typeof(TRelyBase).Assembly);
+            return assemblySet;
         }
     }
     static Dictionary<Type, Type> InsDic
@@ -61,7 +61,7 @@ public static class Factory<TRelyBase, TInsBase>
         {
             if (insDic != null)
                 return insDic;
-            Dictionary<Type, Type> ret = [];
+            insDic = [];
             AssemblySet.SelectMany(a => a.GetTypes())
                 .Where(type => 
                     type.IsSubclassOf(typeof(TInsBase)) 
@@ -70,9 +70,9 @@ public static class Factory<TRelyBase, TInsBase>
                 {
                     var attr = type.GetCustomAttribute<FacInsAttribute>();
                     if(attr != null)
-                        ret[attr.RelyType] = type;
+                        insDic[attr.RelyType] = type;
                 });
-            return ret;
+            return insDic;
         }
     }
 

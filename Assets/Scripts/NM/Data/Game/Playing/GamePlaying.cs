@@ -24,12 +24,26 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
     public override async UniTask OnEnterAsync()
     {
         IUniEvt.BindAll(this, CurCt);
-        await InitAct.InvokeAsync(CurCt);
+        await Bus.FireAsync(new EvtOnEnter(this), CurCt);
+        await new ActClearDeck() { Ctx = this };
+        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(0) };
+        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
+        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
+        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
+        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
+        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(2) };
+        while (SymbolDeckList.Count < DeckMax)
+        {
+            await new ActAddSymbol { ToAdd = SymbolData.CreateEmpty(), Ctx = this };
+        }
+
+        await LaunchAsync<PlayingIdle>();
     }
+    public record EvtOnEnter(GamePlaying Ctx) : EvtBase;
 
     public override void OnExit()
     {
-        ClearDeckAct.InvokeAsync(CurCt);
+        new ActClearDeck{ Ctx = this }.Forget();
     }
 
     public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData) 

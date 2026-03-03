@@ -31,7 +31,12 @@ public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
                 break;
             var addX = shownCount / Const.SpinH + 1;
             var addY = shownCount % Const.SpinH + 1;
-            await BelongFSM.ShowSymbolAtAsync.Invoke(toShow, new Vector2Int(addX, addY), CurCt);
+            await new GamePlaying.ActShowSymbolAt
+            {
+                Symbol = toShow,
+                Pos = new Vector2Int(addX, addY),
+                Ctx = BelongFSM
+            };
         }
 
         do
@@ -50,7 +55,7 @@ public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
             }
             foreach (var doDelay in DelayAddList)
             {
-                await doDelay.InvokeAsync(CurCt);
+                await doDelay;
             }
         } while (DelayAddList.Count != 0);
 
