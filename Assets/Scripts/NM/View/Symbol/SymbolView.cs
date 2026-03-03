@@ -20,7 +20,7 @@ public class SymbolView : MonoBehaviour
         set
         {
             field = value;
-            TxtName.text = field.IsEmpty ? string.Empty : field.Config.Name;
+            TxtName.text = field.IsEmpty ? string.Empty : field.Name;
             TxtAdd.text = string.Empty;
             TxtMulti.text = string.Empty;
             TxtCoin.text = field.GetUltimateGive().ToString();

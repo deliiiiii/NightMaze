@@ -18,7 +18,7 @@ public abstract record UniDele
 }
 public record UniAction : UniDele
 {
-    [HideInInspector]public required Func<CancellationToken, UniTask> Invoke { get; init; }
+    [HideInInspector]public required Func<CancellationToken, UniTask> InvokeAsync { get; init; }
 }
 
 public record UniAction<TArg1> : UniDele
@@ -27,7 +27,7 @@ public record UniAction<TArg1> : UniDele
     
     public UniAction Apply(TArg1 arg1) => new()
     {
-        Invoke = ct => Invoke(arg1, ct),
+        InvokeAsync = ct => Invoke(arg1, ct),
         Des = $"{Des}. Arg = [{arg1}]",
     };
 }
@@ -38,7 +38,7 @@ public record UniAction<TArg1, TArg2> : UniDele
     
     public UniAction Apply(TArg1 arg1, TArg2 arg2) => new()
     {
-        Invoke = ct => Invoke(arg1, arg2, ct),
+        InvokeAsync = ct => Invoke(arg1, arg2, ct),
         Des = $"{Des}. Arg = [{arg1}, {arg2}]",
     };
 }
@@ -50,7 +50,7 @@ public record UniAction<TArg1, TArg2, TArg3> : UniDele
     
     public UniAction Apply(TArg1 arg1, TArg2 arg2, TArg3 arg3) => new()
     {
-        Invoke = ct => Invoke(arg1, arg2, arg3, ct),
+        InvokeAsync = ct => Invoke(arg1, arg2, arg3, ct),
         Des = $"{Des}. Arg = [{arg1}, {arg2}, {arg3}]",
     };
 }
@@ -79,6 +79,23 @@ public record UniEvt<TEvt> : UniAction<TEvt>, IDisposable, IUniEvt
 
 public interface IUniEvt
 {
+    public static void BindAll(object obj, ref Action? onDispose)
+    {
+        var filtered = obj
+            .GetType()
+            .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+            .Where(propertyInfo =>
+            {
+                var pType = propertyInfo.PropertyType;
+                return pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(UniEvt<>);
+            });
+        foreach (var propertyInfo in filtered)  
+        {
+            var iDisposable = (IDisposable)propertyInfo.GetMemberValue(obj);
+            onDispose += iDisposable.Dispose;
+        }
+
+    }
     public static void BindAll(object obj, CancellationToken ct)
     {
         obj.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
@@ -87,7 +104,11 @@ public interface IUniEvt
                 var pType = propertyInfo.PropertyType;
                 return pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(UniEvt<>);
             })
-            .ForEach(propertyInfo => ((IDisposable)propertyInfo.GetMemberValue(obj)).AddTo(ct));
+            .ForEach(propertyInfo =>
+            {
+                var iDisposable = (IDisposable)propertyInfo.GetMemberValue(obj);
+                iDisposable.AddTo(ct);
+            });
 
     }
     public string Des { get; }

@@ -1,4 +1,4 @@
-﻿namespace NM;
+﻿namespace NM.Data;
 
 public static class Const
 {

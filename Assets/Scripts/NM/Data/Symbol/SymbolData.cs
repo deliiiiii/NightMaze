@@ -7,10 +7,11 @@ using NM.Config;
 using Sirenix.OdinInspector;
 
 namespace NM.Data;
+
 [Serializable]
 public class SymbolData : DataBase<SymbolData>
 {
-    public SymbolData(int configID)
+    SymbolData(int configID)
     {
         ConfigID = configID;
         if (Config == null)
@@ -20,25 +21,23 @@ public class SymbolData : DataBase<SymbolData>
             if (Config == null)
             {
                 MyDebug.LogError($"空符号(ID = -1)也不存在");
-                return;
             }
+            return;
         }
-
-        if (Config is SymbolConfig0) 
-            AddCom<SymbolCom0>();
+        AddCom(SymbolC2Com.Create(Config));
     }
-    
+
+    public Action? Dispose;
+
     public static Comparison<SymbolData> ByPos => (s1, s2) =>
     {
         var p1 = s1.Pos.Match(Rid, () => new Vector2Int(int.MaxValue, int.MaxValue));
         var p2 = s2.Pos.Match(Rid, () => new Vector2Int(int.MaxValue, int.MaxValue));
         return p1.X != p2.X ? p1.X - p2.X : p1.Y - p2.Y;
     };
-    public static SymbolData CreateEmptySymbol() => CreateSymbol(-1);
-    public static SymbolData CreateSymbol(int id) => new(id);
+    public static SymbolData CreateEmpty() => Create(-1);
+    public static SymbolData Create(int id) => new(id);
     
-    public int ConfigID { get; init; }
-    public bool IsEmpty => ConfigID == -1;
     public MyOption<Vector2Int> Pos = None;
     public bool AlreadyChecked;
     public readonly List<int> TempAdd = [];
@@ -46,9 +45,14 @@ public class SymbolData : DataBase<SymbolData>
     public readonly List<int> TowaAdd = [];
     public readonly List<int> TowaMulti = [];
     
+    public int ConfigID { get; init; }
+    public bool IsEmpty => ConfigID == -1;
+    public string Name => Config.Name;
     [field: NonSerialized]
-    public SymbolConfig Config => field ??= RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ConfigID);
+    SymbolConfig Config => field ??= RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ConfigID);
+    string PosInfo => Pos.Match(some => $"Pos{some.ToString()}", RStr);
     
+    public override string ToString() => $"{Config.Name}(ID:{Config.ID}) {PosInfo})";
     public void DoTempAdd(int add)
     {
         TempAdd.Add(add);
@@ -84,11 +88,14 @@ public class SymbolData : DataBase<SymbolData>
         return ret;
     }
     
-    public abstract class ConfigCom<TConfig> : ComBase where TConfig : SymbolConfig
+    public abstract class ConfigDesBase<TConfig> : ComBase where TConfig : SymbolConfig
     {
         protected TConfig Config => (TConfig)BelongData.Config;
+
+        public sealed override void OnCreate()
+        {
+            base.OnCreate();
+            IUniEvt.BindAll(this, ref BelongData.Dispose);
+        }
     }
-    
-    public override string ToString() => $"{Config.Name}(ID:{Config.ID}) {PosInfo})";
-    string PosInfo => Pos.Match(some => $"Pos{some.ToString()}", RStr);
 }

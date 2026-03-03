@@ -1,8 +1,13 @@
-﻿namespace NM.Config;
+﻿using UnityEngine;
 
-[UnityEngine.CreateAssetMenu(fileName = "NewSymbol", menuName = "NM/" + nameof(SymbolConfig0))]
+namespace NM.Config;
+
+[CreateAssetMenu(fileName = "NewSymbol", menuName = "NM/" + nameof(SymbolConfig0))]
 public class SymbolConfig0 : SymbolConfig
 {
     public override int ID => 0;
-    public required SymbolConfig TarConfig;
+    [SerializeField] SymbolConfig? tarConfig;
+    [SerializeField] SymbolConfig? createConfig;
+    public int TarID => tarConfig?.ID ?? -1;
+    public int CreateID => createConfig?.ID ?? -1;
 }

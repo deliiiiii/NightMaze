@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 
-namespace NM;
+namespace NM.Data;
 
 public static class Loader
 {

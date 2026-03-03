@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NM;
+namespace NM.Data;
 
 public record struct Vector2Int(int X, int Y)
 {

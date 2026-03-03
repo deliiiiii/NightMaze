@@ -5,21 +5,18 @@ using NM.Config;
 
 namespace NM.Data;
 
-public class SymbolCom0 : SymbolData.ConfigCom<SymbolConfig0>
+[FacIns(typeof(SymbolConfig0))]
+public class SymbolConfigDes0 : SymbolData.ConfigDesBase<SymbolConfig0>
 {
-    public SymbolCom0()
-    {
-        OnEvtSpinSymbolAdjacentSymbolAsync.AddTo(CancellationToken.None);
-    }
     UniEvt<PlayingSpin.EvtSpinSymbolAdjacentSymbol> OnEvtSpinSymbolAdjacentSymbolAsync => new()
     {
         Invoke = (evt, _) =>
         {
             var spinCtx = evt.Ctx;
             var playCtx = spinCtx.BelongFSM;
-            if (evt.Symbol == BelongData && evt.AdjacentSymbol.ConfigID == Config.TarConfig.ID)
+            if (evt.Symbol == BelongData && evt.AdjacentSymbol.ConfigID == Config.TarID)
             {
-                spinCtx.DelayAddList.Add(playCtx.SymbolAddSymbolAct.Apply(evt.Symbol, SymbolData.CreateSymbol(9)));
+                spinCtx.DelayAddList.Add(playCtx.SymbolAddSymbolAct.Apply(evt.Symbol, SymbolData.Create(Config.CreateID)));
             }
 
             return UniTask.CompletedTask;

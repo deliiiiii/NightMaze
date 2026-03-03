@@ -26,6 +26,8 @@ public abstract record MyOption<T1>
                 break;
         }
     }
+    
+    
     [DebuggerStepThrough] public TR Match<TR>(Func<T1, TR> some, Func<TR> none)
         => this switch
         {

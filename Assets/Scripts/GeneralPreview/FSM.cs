@@ -15,10 +15,10 @@ public abstract class FSM<TThis>
     [ShowInInspector, PropertyOrder(1)] IState? curState;
     bool isLaunched;
     [JsonIgnore] BindDataUpdate? selfTickBind;
-    readonly CancellationTokenSource cts = new();
+    [JsonIgnore] readonly CancellationTokenSource cts = new();
     protected CancellationToken CurCt => cts.Token;
 
-    protected async UniTask LaunchAsync<TState>() where TState : IState
+    public async UniTask LaunchAsync<TState>() where TState : IState
     {
         if (isLaunched)
         {
@@ -40,9 +40,7 @@ public abstract class FSM<TThis>
         isLaunched = false;
         if (curState != null)
         {
-            // await curState.OnExitAsync(ct);
-            // curState.UnRegisterAll();
-            curState.TryRelease();
+            curState.OnExit();
             curState = null;
         }
         cts.Cancel();
@@ -60,9 +58,7 @@ public abstract class FSM<TThis>
         {
             if(curState.GetType() == typeof(TState) && !curState.EnableReEnter)
                 return;
-            // await curState.OnExitAsync(ct);
-            // curState.UnRegisterAll();
-            curState.TryRelease();
+            curState.OnExit();
         }
         curState = Activator.CreateInstance<TState>()!;
         curState.BelongFSM = (TThis)this;
@@ -77,7 +73,7 @@ public abstract class FSM<TThis>
     {
         public TThis BelongFSM { get; set; }
         public UniTask OnEnterAsync() => UniTask.CompletedTask;
-        public void TryRelease(){}
+        public void OnExit(){}
         public void OnUpdate(float dt){}
         public bool EnableReEnter => false;
         public void RegisterAll(){}
@@ -88,7 +84,13 @@ public abstract class FSM<TThis>
     {
         public required TThis BelongFSM { get; set; }
         public virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
-        void FSM<TThis>.IState.TryRelease() => Release();
+
+        void FSM<TThis>.IState.OnExit()
+        {
+            OnExit();
+            Release();
+        }
+        public virtual void OnExit(){}
         public virtual void OnUpdate(float dt){}
         public virtual bool EnableReEnter => false;
 

@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace NM;
+namespace NM.Data;
 [PublicAPI]
 public class NameC
 {

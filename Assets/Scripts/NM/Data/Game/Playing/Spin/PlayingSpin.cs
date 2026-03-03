@@ -50,7 +50,7 @@ public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
             }
             foreach (var doDelay in DelayAddList)
             {
-                await doDelay.Invoke(CurCt);
+                await doDelay.InvokeAsync(CurCt);
             }
         } while (DelayAddList.Count != 0);
 

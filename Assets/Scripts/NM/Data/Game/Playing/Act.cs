@@ -8,19 +8,19 @@ public partial class GamePlaying
 {
     public UniAction InitAct => new()
     {
-        Invoke = async ct =>
+        InvokeAsync = async ct =>
         {
             await Bus.FireAsync(new EvtOnEnter(this), ct);
-            await ClearDeckAct.Invoke(ct);
-            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(0), ct);
-            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(1), ct);
-            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(1), ct);
-            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(1), ct);
-            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(1), ct);
-            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(2), ct);
+            await ClearDeckAct.InvokeAsync(ct);
+            await AddSymbolAct.Invoke(SymbolData.Create(0), ct);
+            await AddSymbolAct.Invoke(SymbolData.Create(1), ct);
+            await AddSymbolAct.Invoke(SymbolData.Create(1), ct);
+            await AddSymbolAct.Invoke(SymbolData.Create(1), ct);
+            await AddSymbolAct.Invoke(SymbolData.Create(1), ct);
+            await AddSymbolAct.Invoke(SymbolData.Create(2), ct);
             while (SymbolDeckList.Count < DeckMax)
             {
-                await AddSymbolAct.Invoke(SymbolData.CreateEmptySymbol(), ct);
+                await AddSymbolAct.Invoke(SymbolData.CreateEmpty(), ct);
             }
 
             await LaunchAsync<PlayingIdle>();
@@ -43,7 +43,7 @@ public partial class GamePlaying
 
     public UniAction ClearDeckAct => new()
     {
-        Invoke = async (ct) =>
+        InvokeAsync = async (ct) =>
         {
             foreach (var symbol in SymbolDeckList.ToList())
             {
@@ -58,12 +58,13 @@ public partial class GamePlaying
         Invoke = async (toAdd, ct) =>
         {
             SymbolDeckList.Add(toAdd);
-            if (!toAdd.IsEmpty)
+            if(SymbolDeckList.Count > DeckMax)
             {
-                await SymbolDeckList.MyFirst(s => s.IsEmpty)
-                    .MatchAsync(async some => await RemoveSymbolAct.Invoke(some, ct), RTask);
+                await GetEmpty().MatchAsync(async some =>
+                {
+                    await RemoveSymbolAct.Invoke(some, ct);
+                }, RTask);
             }
-
             await ShowSymbolRandomlyAct.Invoke(toAdd, ct);
         },
         Des = "添加符号"
@@ -74,9 +75,10 @@ public partial class GamePlaying
         Invoke = async (toRemove, ct) =>
         {
             SymbolDeckList.Remove(toRemove);
+            toRemove.Dispose?.Invoke();
             if (SymbolDeckList.Count < DeckMax)
             {
-                await AddSymbolAct.Invoke(SymbolData.CreateEmptySymbol(), ct);
+                await AddSymbolAct.Invoke(SymbolData.CreateEmpty(), ct);
             }
         },
         Des = "移除符号"

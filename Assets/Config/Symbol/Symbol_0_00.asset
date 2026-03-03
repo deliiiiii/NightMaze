@@ -24,4 +24,5 @@ MonoBehaviour:
   Name: 00
   Rarity: 0
   Payout: 1
-  TarConfig: {fileID: 11400000, guid: 468e5a1d63cc89d419b30104c9370976, type: 2}
+  tarConfig: {fileID: 11400000, guid: 468e5a1d63cc89d419b30104c9370976, type: 2}
+  createConfig: {fileID: 11400000, guid: 59b931667c398c9489ecf64ef95b386a, type: 2}

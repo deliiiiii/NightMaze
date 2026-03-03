@@ -22,6 +22,7 @@ public abstract class DataBase<TThis>
 
         com ??= Activator.CreateInstance<T>();
         com.BelongData = (TThis)this;
+        com.OnCreate();
         comDic.Add(typeof(T), com);
         return com;
     }
@@ -48,5 +49,6 @@ public abstract class DataBase<TThis>
     public abstract class ComBase
     {
         public required TThis BelongData { get; set; }
+        public virtual void OnCreate() { }
     }
 }

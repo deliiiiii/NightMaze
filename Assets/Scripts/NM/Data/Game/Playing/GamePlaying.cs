@@ -7,7 +7,7 @@ using GeneralPreview;
 namespace NM.Data;
 
 [Serializable]
-public partial class GamePlaying : FSM<GamePlaying>
+public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
 {
     public override string ToString() => nameof(GamePlaying);
 
@@ -20,13 +20,18 @@ public partial class GamePlaying : FSM<GamePlaying>
     public int DeckMax = 20;
 
     public List<SymbolData> SymbolShownList = [];
-    
-    public GamePlaying()
+
+    public override async UniTask OnEnterAsync()
     {
         IUniEvt.BindAll(this, CurCt);
-        InitAct.Invoke(CurCt).Forget();
+        await InitAct.InvokeAsync(CurCt);
     }
-    
+
+    public override void OnExit()
+    {
+        ClearDeckAct.InvokeAsync(CurCt);
+    }
+
     public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData) 
         => symbolData.Pos.Match(
             pos =>
@@ -37,4 +42,6 @@ public partial class GamePlaying : FSM<GamePlaying>
                 where !(x == pos.X && y == pos.Y)
                 select SymbolShownList.FirstOrDefault(xs => xs.Pos.Match(some => some.X == x && some.Y == y, RFalse)),
             () => []);
+
+    public MyOption<SymbolData> GetEmpty() => SymbolDeckList.MyFirst(s => s.IsEmpty);
 }
