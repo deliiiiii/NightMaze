@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using General;
 using GeneralPreview;
+using Newtonsoft.Json;
 using NM.Config;
 using Sirenix.OdinInspector;
 
@@ -25,6 +26,12 @@ public class SymbolData : DataBase<SymbolData>
             return;
         }
         AddCom(SymbolC2Com.Create(Config));
+    }
+
+    [JsonConstructor]
+    SymbolData()
+    {
+        
     }
 
     public Action? Dispose;

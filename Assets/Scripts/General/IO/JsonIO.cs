@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -74,8 +76,7 @@ namespace General
             string str = JsonConvert.SerializeObject(obj, settings);
             File.WriteAllText(path, str);
         }
-        [CanBeNull]
-        public static T Read<T>(string pathPre, string name)
+        public static async UniTask<T> ReadAsync<T>(string pathPre, string name, CancellationToken ct)
         {
             string path = pathPre + "/" + name + ".json";
             if (!File.Exists(path))
@@ -83,7 +84,7 @@ namespace General
                 Debug.Log("path :" + path + " not exist");
                 return default;
             }
-            string str = File.ReadAllText(path);
+            string str = await File.ReadAllTextAsync(path, ct);
             // return JsonUtility.FromJson<T>(str);
             return JsonConvert.DeserializeObject<T>(str, settings);
         }

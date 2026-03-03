@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
@@ -12,6 +13,8 @@ namespace GeneralPreview;
 public abstract class FSM<TThis>
     where TThis : FSM<TThis>
 {
+    static bool StateHasSubClass => typeof(IState).SubTypeList().Any();
+    
     [ShowInInspector, PropertyOrder(0)] public string CurStateName => curState?.GetType().Name ?? "Null";
     [ShowInInspector, PropertyOrder(1)] IState? curState;
     bool isLaunched;
@@ -19,7 +22,7 @@ public abstract class FSM<TThis>
     [JsonIgnore] readonly CancellationTokenSource cts = new();
     protected CancellationToken CurCt => cts.Token;
 
-    public async UniTask LaunchAsync<TState>() where TState : IState
+    public async UniTask LaunchAsync<TState>(TState stateData) where TState : IState
     {
         if (isLaunched)
         {
@@ -27,14 +30,14 @@ public abstract class FSM<TThis>
             return;
         }
         isLaunched = true;
-        await EnterStateAsync<TState>();
+        await EnterStateAsync(stateData);
         // selfTickBind = Binder.FromTick(Tick);
         // selfTickBind.Bind();
     }
 
     public void Release()
     {
-        if (!isLaunched)
+        if (!isLaunched && StateHasSubClass)
         {
             MyDebug.LogError($"FSM {GetType().Name} Release But NOT Launched");
             return;
@@ -49,7 +52,7 @@ public abstract class FSM<TThis>
         // selfTickBind?.UnBind();
         // selfTickBind = null;
     }
-    public async UniTask EnterStateAsync<TState>() where TState : IState
+    public async UniTask EnterStateAsync<TState>(TState stateData) where TState : IState
     {
         if (!isLaunched)
         {
@@ -62,7 +65,7 @@ public abstract class FSM<TThis>
                 return;
             curState.OnExit();
         }
-        curState = Activator.CreateInstance<TState>()!;
+        curState = stateData;
         curState.BelongFSM = (TThis)this;
         curState.RegisterAll();
         await curState.OnEnterAsync();
@@ -84,7 +87,7 @@ public abstract class FSM<TThis>
     public abstract class StateFSM<TSub> : FSM<TSub>, IState
         where TSub : StateFSM<TSub>
     {
-        public required TThis BelongFSM { get; set; }
+        [field: NonSerialized] public TThis BelongFSM { get; set; } = null!;
         public virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
 
         void FSM<TThis>.IState.OnExit()

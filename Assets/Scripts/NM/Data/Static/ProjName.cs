@@ -9,4 +9,6 @@ public class NameC
     // Tag结尾..
     public const string ConfigTag = "NMConfig";
     public const string ArtTag = "NMArt";
+    
+    public const string SlotFolder = "Slot";
 }

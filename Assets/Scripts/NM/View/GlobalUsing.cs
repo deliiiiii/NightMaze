@@ -1,0 +1,1 @@
+﻿global using Txt = TMPro.TMP_Text;

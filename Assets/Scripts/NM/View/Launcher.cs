@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using General;
+using GeneralPreview;
 using NM.Data;
 
 namespace NM.View;
 
 public class Launcher : Singleton<Launcher>
 {
+    public List<ViewBase> ViewList = [];
     // ReSharper disable once Unity.IncorrectMethodSignature
     // ReSharper disable once UnusedMember.Local
     async UniTask Start()
@@ -25,7 +28,8 @@ public class Launcher : Singleton<Launcher>
         try
         {
             await Loader.LoadAll();
-            await GameRoot.Root.LaunchAsync<GamePlaying>();
+            ViewList.ForEach(v => v.Bind());
+            await GameRoot.Root.LaunchAsync(new GamePlaying());
         }
         catch (Exception e)
         {

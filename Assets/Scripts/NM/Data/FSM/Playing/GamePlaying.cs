@@ -10,7 +10,8 @@ namespace NM.Data;
 public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
 {
     public override string ToString() => nameof(GamePlaying);
-
+    public string PlayerName = "Deli";
+    public float PlayTime;
     public List<SymbolData> SymbolDeckList = [];
     public long Coin;
     public int RemoveToken;
@@ -36,7 +37,7 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
             await new ActAddSymbol { ToAdd = SymbolData.CreateEmpty(), Ctx = this };
         }
 
-        await LaunchAsync<PlayingIdle>();
+        await LaunchAsync(new PlayingIdle());
     }
     public record EvtOnEnter(GamePlaying Ctx) : EvtBase;
 

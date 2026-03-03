@@ -8,11 +8,24 @@ namespace GeneralPreview;
 public abstract class ViewBase : MonoBehaviour
 {
     protected virtual IEnumerable<BindDataBase> BindList() => [];
+    bool bind;
 
-    protected virtual void Awake()
+    public virtual void Bind()
     {
+        if (bind)
+        {
+            MyDebug.LogError($"{GetType().GetNiceName()} already bound");
+            return;
+        }
         BindList().ForEach(b => b.Bind());
         IUniEvt.BindAll(this, destroyCancellationToken);
+        bind = true;
+    }
+
+    void Awake()
+    {
+        if(!bind)
+            Bind();
     }
 
     protected virtual void OnDestroy()
