@@ -23,7 +23,6 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
 
     public override async UniTask OnEnterAsync()
     {
-        IUniEvt.BindAll(this, CurCt);
         await Bus.FireAsync(new EvtOnEnter(this), CurCt);
         await new ActClearDeck() { Ctx = this };
         await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(0) };

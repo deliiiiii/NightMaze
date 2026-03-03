@@ -12,7 +12,7 @@ public class Launcher : Singleton<Launcher>
     async UniTask Start()
     {
 #if UNITY_EDITOR
-        // Binder.FromTick(_ => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint()).Bind();
+        Binder.FromTick(_ => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint()).Bind();
         // 退出游戏模式
         UnityEditor.EditorApplication.playModeStateChanged += state =>
         {

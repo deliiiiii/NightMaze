@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using NM.Config;
+using UnityEngine;
 
 namespace NM.Data;
 
@@ -32,7 +33,6 @@ public class SymbolConfigDes0 : SymbolData.ConfigDesBase<SymbolConfig0>
                     }
                 });
             }
-
             return UniTask.CompletedTask;
         },
         Des = "(香蕉发现和香蕉皮相邻时) 添加一个葡萄酒"
@@ -40,6 +40,7 @@ public class SymbolConfigDes0 : SymbolData.ConfigDesBase<SymbolConfig0>
     
     record ActWrapper : PlayingSpin.UniAction
     {
+        [HideInInspector]
         public required GamePlaying.ActSymbolAddSymbol InnerAction;
         public override string Des => InnerAction.Des;
         protected override async UniTask InvokeAsync(System.Threading.CancellationToken ct)

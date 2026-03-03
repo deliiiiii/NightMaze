@@ -6,6 +6,7 @@ using General;
 using General.BindData;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace GeneralPreview;
 public abstract class FSM<TThis>
@@ -36,6 +37,7 @@ public abstract class FSM<TThis>
         if (!isLaunched)
         {
             MyDebug.LogError($"FSM {GetType().Name} Release But NOT Launched");
+            return;
         }
         isLaunched = false;
         if (curState != null)
@@ -84,12 +86,6 @@ public abstract class FSM<TThis>
     {
         public required TThis BelongFSM { get; set; }
         public virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
-
-        void FSM<TThis>.IState.OnExit()
-        {
-            OnExit();
-            Release();
-        }
         public virtual void OnExit(){}
         public virtual void OnUpdate(float dt){}
         public virtual bool EnableReEnter => false;
@@ -99,7 +95,9 @@ public abstract class FSM<TThis>
     
     public abstract record UniAction
     {
+        [HideInInspector]
         public required TThis Ctx;
+        [ShowInInspector]
         public abstract string Des { get; }
         protected abstract UniTask InvokeAsync(CancellationToken ct);
 

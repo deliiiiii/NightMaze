@@ -64,7 +64,6 @@ public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         {
             await Bus.FireAsync(new EvtPay(symbol), CurCt);
         }
-        
         MyDebug.Log("Spin End");
         await BelongFSM.EnterStateAsync<PlayingIdle>();
     }

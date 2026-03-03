@@ -1,5 +1,6 @@
 ﻿global using static GeneralPreview.MyPrelude;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Cysharp.Threading.Tasks;
 
@@ -15,7 +16,7 @@ public static class MyPrelude
     [DebuggerStepThrough] public static bool RFalse() => false;
     [DebuggerStepThrough] public static T Rid<T>(T x) => x;
     [DebuggerStepThrough] public static string RStr() => string.Empty;
-    // [DebuggerStepThrough] public static List<T> RList<T>() => [];
+    [DebuggerStepThrough] public static List<T> RList<T>() => [];
     
     
     public static Func<T0, T2> Compose<T0, T1, T2>(Func<T1, T2> f1, Func<T0, T1> f0) =>

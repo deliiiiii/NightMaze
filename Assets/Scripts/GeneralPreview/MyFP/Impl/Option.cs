@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Cysharp.Threading.Tasks;
 
 namespace GeneralPreview;
-
+[Serializable]
 public abstract record MyOption<T1>
 {
     public static implicit operator MyOption<T1>(T1 some)
@@ -73,7 +73,7 @@ public abstract record MyOption<T1>
     [DebuggerStepThrough]public MyOption<T1C> SelectMany<T1B, T1C>(Func<T1, MyOption<T1B>> f, Func<T1, T1B, T1C> s) =>
         Bind(a => f(a).Map(b => s(a, b)));
 }
-[DebuggerStepThrough]
+[DebuggerStepThrough][Serializable]
 public record MySome<T>(T Value) : MyOption<T>;
-[DebuggerStepThrough]
+[DebuggerStepThrough][Serializable]
 public record MyNone<T> : MyOption<T>;
