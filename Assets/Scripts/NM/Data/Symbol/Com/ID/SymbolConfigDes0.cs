@@ -15,11 +15,21 @@ public class SymbolConfigDes0 : SymbolData.ConfigDesBase<SymbolConfig0>
             var playCtx = spinCtx.BelongFSM;
             if (evt.Symbol == BelongData && evt.AdjacentSymbol.ConfigID == Config.TarID)
             {
-                spinCtx.DelayAddList.Add(new GamePlaying.ActSymbolAddSymbol
+                // spinCtx.DelayAddList.Add(new GamePlaying.ActSymbolAddSymbol
+                // {
+                //     Ctx = evt.Ctx.BelongFSM,
+                //     Arg1 = evt.Symbol,
+                //     Arg2 = SymbolData.Create(Config.CreateID),
+                // });
+                spinCtx.DelayAddList.Add(new ActWrapper
                 {
-                    Ctx = evt.Ctx.BelongFSM,
-                    Arg1 = evt.Symbol,
-                    Arg2 = SymbolData.Create(Config.CreateID),
+                    Ctx = spinCtx,
+                    InnerAction = new GamePlaying.ActSymbolAddSymbol
+                    {
+                        Ctx = playCtx,
+                        Arg1 = evt.Symbol,
+                        Arg2 = SymbolData.Create(Config.CreateID),
+                    }
                 });
             }
 
@@ -27,4 +37,14 @@ public class SymbolConfigDes0 : SymbolData.ConfigDesBase<SymbolConfig0>
         },
         Des = "(香蕉发现和香蕉皮相邻时) 添加一个葡萄酒"
     };
+    
+    record ActWrapper : PlayingSpin.UniAction
+    {
+        public required GamePlaying.ActSymbolAddSymbol InnerAction;
+        public override string Des => InnerAction.Des;
+        protected override async UniTask InvokeAsync(System.Threading.CancellationToken ct)
+        {
+            await InnerAction;
+        }
+    }
 }
