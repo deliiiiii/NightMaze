@@ -14,9 +14,9 @@ public partial class GamePlaying
             await ClearDeckAct.Invoke(ct);
             await AddSymbolAct.Invoke(SymbolData.CreateSymbol(0), ct);
             await AddSymbolAct.Invoke(SymbolData.CreateSymbol(1), ct);
-            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(2), ct);
-            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(2), ct);
-            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(2), ct);
+            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(1), ct);
+            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(1), ct);
+            await AddSymbolAct.Invoke(SymbolData.CreateSymbol(1), ct);
             await AddSymbolAct.Invoke(SymbolData.CreateSymbol(2), ct);
             while (SymbolDeckList.Count < DeckMax)
             {

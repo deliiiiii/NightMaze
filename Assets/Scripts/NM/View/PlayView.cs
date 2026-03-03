@@ -1,9 +1,7 @@
-﻿// using static NM.Data.GamePlaying;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using General.BindData;
+using General;
 using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;

@@ -10,17 +10,44 @@ namespace NM.Data;
 [Serializable]
 public class SymbolData : DataBase<SymbolData>
 {
+    public SymbolData(int configID)
+    {
+        ConfigID = configID;
+        if (Config == null)
+        {
+            MyDebug.LogError($"符号ID {configID} 不存在，已创建空符号");
+            ConfigID = -1;
+            if (Config == null)
+            {
+                MyDebug.LogError($"空符号(ID = -1)也不存在");
+                return;
+            }
+        }
+
+        if (Config is SymbolConfig0) 
+            AddCom<SymbolCom0>();
+    }
+    
+    public static Comparison<SymbolData> ByPos => (s1, s2) =>
+    {
+        var p1 = s1.Pos.Match(Rid, () => new Vector2Int(int.MaxValue, int.MaxValue));
+        var p2 = s2.Pos.Match(Rid, () => new Vector2Int(int.MaxValue, int.MaxValue));
+        return p1.X != p2.X ? p1.X - p2.X : p1.Y - p2.Y;
+    };
     public static SymbolData CreateEmptySymbol() => CreateSymbol(-1);
     public static SymbolData CreateSymbol(int id) => new(id);
     
     public int ConfigID { get; init; }
+    public bool IsEmpty => ConfigID == -1;
     public MyOption<Vector2Int> Pos = None;
+    public bool AlreadyChecked;
     public readonly List<int> TempAdd = [];
     public readonly List<int> TempMulti = [];
     public readonly List<int> TowaAdd = [];
     public readonly List<int> TowaMulti = [];
     
-    public SymbolConfig Config => RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ConfigID);
+    [field: NonSerialized]
+    public SymbolConfig Config => field ??= RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ConfigID);
     
     public void DoTempAdd(int add)
     {
@@ -57,53 +84,11 @@ public class SymbolData : DataBase<SymbolData>
         return ret;
     }
     
-    public bool IsEmpty => ConfigID == -1;
-    public bool AlreadyChecked;
-
-    public SymbolData(int configID)
+    public abstract class ConfigCom<TConfig> : ComBase where TConfig : SymbolConfig
     {
-        ConfigID = configID;
-        if (Config == null)
-        {
-            MyDebug.LogError($"符号ID {configID} 不存在，已创建空符号");
-            ConfigID = -1;
-            if (Config == null)
-            {
-                MyDebug.LogError($"空符号(ID = -1)也不存在");
-            }
-        }
+        protected TConfig Config => (TConfig)BelongData.Config;
     }
-
+    
     public override string ToString() => $"{Config.Name}(ID:{Config.ID}) {PosInfo})";
     string PosInfo => Pos.Match(some => $"Pos{some.ToString()}", RStr);
-    
-    public static Comparison<SymbolData> ByPos => (s1, s2) =>
-    {
-        var p1 = s1.Pos.Match(Rid, () => new Vector2Int(int.MaxValue, int.MaxValue));
-        var p2 = s2.Pos.Match(Rid, () => new Vector2Int(int.MaxValue, int.MaxValue));
-        return p1.X != p2.X ? p1.X - p2.X : p1.Y - p2.Y;
-    };
-}
-
-// public abstract class SymbolData<TConfig>(int configID) : SymbolData(configID) where TConfig : SymbolConfig
-// {
-//     protected new TConfig Config => (TConfig)base.Config;
-// }
-
-#region DoCount
-public abstract class DoCountBase;
-public class DoCountInfinite : DoCountBase;
-public class DoCountNumber : DoCountBase
-{
-    [MinValue(1)]public int N = 1;
-}
-#endregion
-public class SymbolComStock : SymbolData.ICom
-{
-    public int Count;
-}
-
-public class SymbolComEveryNSpin : SymbolData.ICom
-{
-    public int Count;
 }

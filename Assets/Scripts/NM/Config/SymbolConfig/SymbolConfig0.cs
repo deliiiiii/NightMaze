@@ -4,4 +4,5 @@
 public class SymbolConfig0 : SymbolConfig
 {
     public override int ID => 0;
+    public required SymbolConfig TarConfig;
 }

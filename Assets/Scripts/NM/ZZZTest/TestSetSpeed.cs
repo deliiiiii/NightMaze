@@ -6,8 +6,8 @@ namespace NM.ZZZTest;
 
 internal class TestSetSpeed : MonoBehaviour
 {
-    [Button]
-    public void SetSpeed(float tar = 1)
+    [SerializeField][OnValueChanged(nameof(OnChanged))] float tar = 1;
+    void OnChanged()
     {
         DOTween.timeScale = tar;
     }

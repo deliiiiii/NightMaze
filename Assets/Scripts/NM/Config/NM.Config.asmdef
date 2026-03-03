@@ -1,0 +1,18 @@
+{
+    "name": "NM.Config",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4e70dbe7b6ef58440ade1788ae61de83",
+        "GUID:d7cd482536f444347ae1515d520f0e9b",
+        "GUID:c8b3e3df72f41c446b897313f3965d91"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

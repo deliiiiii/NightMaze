@@ -11,5 +11,5 @@ public class AddressableBatchConfig : SerializedScriptableObject
     //     AddressableBatchProcessor.ShowWindowWithArg(this);
     // }
 
-    [ReadOnly] public List<BatchRule> RuleList = new();
+    [ReadOnly] public List<BatchRule> RuleList = [];
 }

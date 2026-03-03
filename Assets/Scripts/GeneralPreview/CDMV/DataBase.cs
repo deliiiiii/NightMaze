@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 using General;
 using Sirenix.OdinInspector;
 
@@ -9,10 +10,9 @@ namespace GeneralPreview;
 public abstract class DataBase<TThis>
     where TThis : DataBase<TThis>
 {
-    [ShowInInspector] readonly Dictionary<Type, ICom> comDic = [];
+    [ShowInInspector] readonly Dictionary<Type, ComBase> comDic = [];
     [DebuggerStepThrough]
-    public T AddCom<T>(T? com = null)
-        where T : class, ICom, new()
+    protected T AddCom<T>(T? com = null) where T : ComBase
     {
         if (comDic.TryGetValue(typeof(T), out var existCom))
         {
@@ -20,12 +20,13 @@ public abstract class DataBase<TThis>
             return (T)existCom;
         }
 
-        com ??= new T();
+        com ??= Activator.CreateInstance<T>();
+        com.BelongData = (TThis)this;
         comDic.Add(typeof(T), com);
         return com;
     }
     [DebuggerStepThrough]
-    public void RemoveCom<T>() where T : class, ICom, new()
+    protected void RemoveCom<T>() where T : ComBase
     {
         if (!comDic.TryGetValue(typeof(T), out _))
         {
@@ -35,16 +36,17 @@ public abstract class DataBase<TThis>
         comDic.Remove(typeof(T));
     }
     [DebuggerStepThrough]
-    public void RemoveAllCom()
-    {
-        comDic.Clear();
-    }
-    
-    [DebuggerStepThrough]
-    public MyOption<T> GetCom<T>() where T : class, ICom, new() 
-        => comDic.TryGetValue(typeof(T), out var com) ? (T)com : None;
-    // [DebuggerStepThrough]
-    // public bool HasCom<T>() where T : class, ICom, new() => comDic.ContainsKey(typeof(T));
+    protected void RemoveAllCom() => comDic.Clear();
 
-    public interface ICom;
+    [DebuggerStepThrough]
+    public MyOption<T> GetCom<T>() where T : ComBase
+        => comDic.TryGetValue(typeof(T), out var com) ? (T)com : None;
+    [DebuggerStepThrough]
+    public bool HasCom<T>() where T : ComBase 
+        => comDic.ContainsKey(typeof(T));
+
+    public abstract class ComBase
+    {
+        public required TThis BelongData { get; set; }
+    }
 }

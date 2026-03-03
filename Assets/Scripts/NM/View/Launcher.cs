@@ -1,13 +1,11 @@
-﻿global using static GeneralPreview.MyPrelude;
-using System;
+﻿using System;
 using Cysharp.Threading.Tasks;
 using General;
 using NM.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-
-namespace NM;
+namespace NM.View;
 
 public class Launcher : Singleton<Launcher>, IDisposable
 {

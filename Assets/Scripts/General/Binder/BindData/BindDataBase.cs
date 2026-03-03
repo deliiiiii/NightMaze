@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace General.BindData
+namespace General
 {
     [Serializable]
     public abstract class BindDataBase
