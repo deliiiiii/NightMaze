@@ -86,6 +86,12 @@ public abstract class FSM<TThis>
     {
         public required TThis BelongFSM { get; set; }
         public virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
+
+        void FSM<TThis>.IState.OnExit()
+        {
+            OnExit();
+            Release();
+        }
         public virtual void OnExit(){}
         public virtual void OnUpdate(float dt){}
         public virtual bool EnableReEnter => false;
