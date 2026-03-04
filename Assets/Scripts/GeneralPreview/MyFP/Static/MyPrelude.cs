@@ -17,7 +17,6 @@ public static class MyPrelude
     [DebuggerStepThrough] public static T Rid<T>(T x) => x;
     [DebuggerStepThrough] public static string RStr() => string.Empty;
     [DebuggerStepThrough] public static List<T> RList<T>() => [];
-    public static Action NoAct = () => { };
     
     
     public static Func<T0, T2> Compose<T0, T1, T2>(Func<T1, T2> f1, Func<T0, T1> f0) =>

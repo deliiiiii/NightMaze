@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using General;
 using GeneralPreview;
-using Newtonsoft.Json;
 using NM.Config;
 using Sirenix.OdinInspector;
+using Unity.Plastic.Newtonsoft.Json;
+using UnityEngine;
+using Vector2Int = GeneralPreview.Vector2Int;
 
 namespace NM.Data;
 
@@ -27,14 +29,8 @@ public class SymbolData : DataBase<SymbolData>
         }
         AddCom(SymbolC2Com.Create(Config));
     }
-
     [JsonConstructor]
-    SymbolData()
-    {
-        
-    }
-
-    public Action? Dispose;
+    SymbolData(){}
 
     public static Comparison<SymbolData> ByPos => (s1, s2) =>
     {
@@ -52,9 +48,9 @@ public class SymbolData : DataBase<SymbolData>
     public readonly List<int> TowaAdd = [];
     public readonly List<int> TowaMulti = [];
     
-    public int ConfigID { get; init; }
-    public bool IsEmpty => ConfigID == -1;
-    public string Name => Config.Name;
+    [ShowInInspector, PropertyOrder(0)] public int ConfigID { get; init; }
+    [HideInInspector] public bool IsEmpty => ConfigID == -1;
+    [ShowInInspector, PropertyOrder(1)]public string Name => Config.Name;
     [field: NonSerialized]
     SymbolConfig Config => field ??= RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ConfigID);
     string PosInfo => Pos.Match(some => $"Pos{some.ToString()}", RStr);
@@ -98,11 +94,5 @@ public class SymbolData : DataBase<SymbolData>
     public abstract class ConfigDesBase<TConfig> : ComBase where TConfig : SymbolConfig
     {
         protected TConfig Config => (TConfig)BelongData.Config;
-
-        public sealed override void OnCreate()
-        {
-            base.OnCreate();
-            IUniEvt.BindAll(this, ref BelongData.Dispose);
-        }
     }
 }

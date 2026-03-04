@@ -8,18 +8,16 @@ namespace NM.Data;
 
 public class LenPlaying : MonoBehaviour
 {
-    public static MyOption<GamePlaying> PlayingOp => Root.InState<GamePlaying>();
-    [ShowInInspector] GamePlaying Playing => PlayingOp.Match(Rid, () => null!);
-
+    [ShowInInspector] public static MyOption<GamePlaying> Playing => Root.InState<GamePlaying>();
     [Button]
-    public void Save() => PlayingOp.MatchA(some => Saver.Save(NameC.SlotFolder, some.PlayerName, some), NoAct);
+    public void Save() => Playing.MatchA(some => Saver.Save(NameC.SlotFolder, some.PlayerName, some));
     [ShowInInspector]
     public List<PlayingSpin.UniAction> DelayDo
     {
         get
         {
             var op = 
-                from playing in PlayingOp
+                from playing in Playing
                 from spin in playing.InState<PlayingSpin>()
                 select spin.DelayAddList;
             return op.Match(Rid, () => []);

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using Cysharp.Threading.Tasks;
+using Sirenix.OdinInspector;
 
 namespace GeneralPreview;
-[Serializable]
+[Serializable, ShowInInspector, HideReferenceObjectPicker]
 public abstract record MyOption<T1>
 {
     public static implicit operator MyOption<T1>(T1 some)
@@ -74,6 +75,11 @@ public abstract record MyOption<T1>
         Bind(a => f(a).Map(b => s(a, b)));
 }
 [DebuggerStepThrough][Serializable]
-public record MySome<T>(T Value) : MyOption<T>;
+public record MySome<T>(T Value) : MyOption<T>
+{
+    [ShowInInspector]
+    public T Value { get; init; } = Value;
+}
+
 [DebuggerStepThrough][Serializable]
 public record MyNone<T> : MyOption<T>;

@@ -1,8 +1,8 @@
 {
   "$id": "1",
   "$type": "NM.Data.GamePlaying, NM.Data",
-  "PlayerName": "aassdd",
-  "PlayTime": 0.0,
+  "PlayerName": "Deli_!",
+  "PlayTime": 3.1491667171940207,
   "SymbolDeckList": {
     "$type": "System.Collections.Generic.List`1[[NM.Data.SymbolData, NM.Data]], mscorlib",
     "$values": [
@@ -11,7 +11,13 @@
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
           "$id": "3",
-          "$type": "GeneralPreview.MyNone`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview"
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "4",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 1,
+            "Y": 3
+          }
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -32,58 +38,26 @@
         },
         "<ConfigID>k__BackingField": 0,
         "comDic": {
-          "$id": "4",
+          "$id": "5",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "5",
-            "$type": "NM.Data.SymbolConfigDes0, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "2"
-            }
+            "$id": "6",
+            "$type": "NM.Data.SymbolConfigDes0, NM.Data"
           }
         }
       },
       {
-        "$id": "6",
+        "$id": "7",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
-        },
-        "AlreadyChecked": false,
-        "TempAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TempMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "<ConfigID>k__BackingField": 1,
-        "comDic": {
-          "$id": "7",
-          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
-          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "8",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "6"
-            }
+          "$id": "8",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "9",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 3,
+            "Y": 3
           }
-        }
-      },
-      {
-        "$id": "9",
-        "$type": "NM.Data.SymbolData, NM.Data",
-        "Pos": {
-          "$ref": "3"
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -108,10 +82,7 @@
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
             "$id": "11",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "9"
-            }
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       },
@@ -119,43 +90,54 @@
         "$id": "12",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
-        },
-        "AlreadyChecked": false,
-        "TempAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TempMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "<ConfigID>k__BackingField": 1,
-        "comDic": {
           "$id": "13",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "14",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 1,
+            "Y": 2
+          }
+        },
+        "AlreadyChecked": true,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 1,
+        "comDic": {
+          "$id": "15",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "14",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "12"
-            }
+            "$id": "16",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       },
       {
-        "$id": "15",
+        "$id": "17",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
+          "$id": "18",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "19",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 5,
+            "Y": 1
+          }
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -176,22 +158,66 @@
         },
         "<ConfigID>k__BackingField": 1,
         "comDic": {
-          "$id": "16",
+          "$id": "20",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "17",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "15"
-            }
+            "$id": "21",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       },
       {
-        "$id": "18",
+        "$id": "22",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
+          "$id": "23",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "24",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 2,
+            "Y": 2
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 1,
+        "comDic": {
+          "$id": "25",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "26",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "27",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "28",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "29",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 1,
+            "Y": 4
+          }
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -212,22 +238,26 @@
         },
         "<ConfigID>k__BackingField": 2,
         "comDic": {
-          "$id": "19",
+          "$id": "30",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "20",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "18"
-            }
+            "$id": "31",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       },
       {
-        "$id": "21",
+        "$id": "32",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
+          "$id": "33",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "34",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 5,
+            "Y": 2
+          }
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -246,24 +276,28 @@
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
         },
-        "<ConfigID>k__BackingField": -1,
+        "<ConfigID>k__BackingField": 9,
         "comDic": {
-          "$id": "22",
+          "$id": "35",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "23",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "21"
-            }
+            "$id": "36",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       },
       {
-        "$id": "24",
+        "$id": "37",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
+          "$id": "38",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "39",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 5,
+            "Y": 4
+          }
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -282,196 +316,13 @@
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
         },
-        "<ConfigID>k__BackingField": -1,
-        "comDic": {
-          "$id": "25",
-          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
-          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "26",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "24"
-            }
-          }
-        }
-      },
-      {
-        "$id": "27",
-        "$type": "NM.Data.SymbolData, NM.Data",
-        "Pos": {
-          "$ref": "3"
-        },
-        "AlreadyChecked": false,
-        "TempAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TempMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "<ConfigID>k__BackingField": -1,
-        "comDic": {
-          "$id": "28",
-          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
-          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "29",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "27"
-            }
-          }
-        }
-      },
-      {
-        "$id": "30",
-        "$type": "NM.Data.SymbolData, NM.Data",
-        "Pos": {
-          "$ref": "3"
-        },
-        "AlreadyChecked": false,
-        "TempAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TempMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "<ConfigID>k__BackingField": -1,
-        "comDic": {
-          "$id": "31",
-          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
-          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "32",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "30"
-            }
-          }
-        }
-      },
-      {
-        "$id": "33",
-        "$type": "NM.Data.SymbolData, NM.Data",
-        "Pos": {
-          "$ref": "3"
-        },
-        "AlreadyChecked": false,
-        "TempAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TempMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "<ConfigID>k__BackingField": -1,
-        "comDic": {
-          "$id": "34",
-          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
-          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "35",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "33"
-            }
-          }
-        }
-      },
-      {
-        "$id": "36",
-        "$type": "NM.Data.SymbolData, NM.Data",
-        "Pos": {
-          "$ref": "3"
-        },
-        "AlreadyChecked": false,
-        "TempAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TempMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "<ConfigID>k__BackingField": -1,
-        "comDic": {
-          "$id": "37",
-          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
-          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "38",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "36"
-            }
-          }
-        }
-      },
-      {
-        "$id": "39",
-        "$type": "NM.Data.SymbolData, NM.Data",
-        "Pos": {
-          "$ref": "3"
-        },
-        "AlreadyChecked": false,
-        "TempAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TempMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "<ConfigID>k__BackingField": -1,
+        "<ConfigID>k__BackingField": 9,
         "comDic": {
           "$id": "40",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
             "$id": "41",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "39"
-            }
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       },
@@ -479,43 +330,14 @@
         "$id": "42",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
-        },
-        "AlreadyChecked": false,
-        "TempAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TempMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "<ConfigID>k__BackingField": -1,
-        "comDic": {
           "$id": "43",
-          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
-          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
             "$id": "44",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "42"
-            }
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 5,
+            "Y": 2
           }
-        }
-      },
-      {
-        "$id": "45",
-        "$type": "NM.Data.SymbolData, NM.Data",
-        "Pos": {
-          "$ref": "3"
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -534,24 +356,28 @@
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
         },
-        "<ConfigID>k__BackingField": -1,
+        "<ConfigID>k__BackingField": 9,
         "comDic": {
-          "$id": "46",
+          "$id": "45",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "47",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "45"
-            }
+            "$id": "46",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       },
       {
-        "$id": "48",
+        "$id": "47",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
+          "$id": "48",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "49",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 3,
+            "Y": 1
+          }
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -570,24 +396,28 @@
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
         },
-        "<ConfigID>k__BackingField": -1,
+        "<ConfigID>k__BackingField": 9,
         "comDic": {
-          "$id": "49",
+          "$id": "50",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "50",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "48"
-            }
+            "$id": "51",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       },
       {
-        "$id": "51",
+        "$id": "52",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
+          "$id": "53",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "54",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 4,
+            "Y": 1
+          }
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -606,52 +436,13 @@
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
         },
-        "<ConfigID>k__BackingField": -1,
-        "comDic": {
-          "$id": "52",
-          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
-          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "53",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "51"
-            }
-          }
-        }
-      },
-      {
-        "$id": "54",
-        "$type": "NM.Data.SymbolData, NM.Data",
-        "Pos": {
-          "$ref": "3"
-        },
-        "AlreadyChecked": false,
-        "TempAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TempMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaAdd": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "TowaMulti": {
-          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-          "$values": []
-        },
-        "<ConfigID>k__BackingField": -1,
+        "<ConfigID>k__BackingField": 9,
         "comDic": {
           "$id": "55",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
             "$id": "56",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "54"
-            }
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       },
@@ -659,7 +450,14 @@
         "$id": "57",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
+          "$id": "58",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "59",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 2,
+            "Y": 3
+          }
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -678,24 +476,28 @@
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
         },
-        "<ConfigID>k__BackingField": -1,
+        "<ConfigID>k__BackingField": 9,
         "comDic": {
-          "$id": "58",
+          "$id": "60",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "59",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "57"
-            }
+            "$id": "61",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       },
       {
-        "$id": "60",
+        "$id": "62",
         "$type": "NM.Data.SymbolData, NM.Data",
         "Pos": {
-          "$ref": "3"
+          "$id": "63",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "64",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 4,
+            "Y": 2
+          }
         },
         "AlreadyChecked": false,
         "TempAdd": {
@@ -714,22 +516,499 @@
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
         },
-        "<ConfigID>k__BackingField": -1,
+        "<ConfigID>k__BackingField": 9,
         "comDic": {
-          "$id": "61",
+          "$id": "65",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
           "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "$id": "62",
-            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
-            "<BelongData>k__BackingField": {
-              "$ref": "60"
-            }
+            "$id": "66",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "67",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "68",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "69",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 1,
+            "Y": 1
+          }
+        },
+        "AlreadyChecked": true,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "70",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "71",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "72",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "73",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "74",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 1,
+            "Y": 4
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "75",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "76",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "77",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "78",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "79",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 2,
+            "Y": 1
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "80",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "81",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "82",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "83",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "84",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 4,
+            "Y": 2
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "85",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "86",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "87",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "88",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "89",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 5,
+            "Y": 3
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "90",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "91",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "92",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "93",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "94",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 2,
+            "Y": 4
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "95",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "96",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "97",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "98",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "99",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 1,
+            "Y": 4
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "100",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "101",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "102",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "103",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "104",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 3,
+            "Y": 2
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "105",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "106",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "107",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "108",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "109",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 3,
+            "Y": 4
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "110",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "111",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "112",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "113",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "114",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 4,
+            "Y": 3
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "115",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "116",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "117",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "118",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "119",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 5,
+            "Y": 4
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "120",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "121",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+          }
+        }
+      },
+      {
+        "$id": "122",
+        "$type": "NM.Data.SymbolData, NM.Data",
+        "Pos": {
+          "$id": "123",
+          "$type": "GeneralPreview.MySome`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview",
+          "<Value>k__BackingField": {
+            "$id": "124",
+            "$type": "GeneralPreview.Vector2Int, GeneralPreview",
+            "X": 4,
+            "Y": 4
+          }
+        },
+        "AlreadyChecked": false,
+        "TempAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TempMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaAdd": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "TowaMulti": {
+          "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "<ConfigID>k__BackingField": 9,
+        "comDic": {
+          "$id": "125",
+          "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
+          "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "126",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
           }
         }
       }
     ]
   },
-  "Coin": 0,
+  "<Coin>k__BackingField": 206,
   "RemoveToken": 0,
   "RefreshToken": 0,
   "NextRentCount": 0,
@@ -737,13 +1016,67 @@
   "DeckMax": 20,
   "SymbolShownList": {
     "$type": "System.Collections.Generic.List`1[[NM.Data.SymbolData, NM.Data]], mscorlib",
-    "$values": []
-  },
-  "curState": {
-    "$id": "63",
-    "$type": "NM.Data.PlayingIdle, NM.Data",
-    "curState": null,
-    "isLaunched": false
-  },
-  "isLaunched": true
+    "$values": [
+      {
+        "$ref": "67"
+      },
+      {
+        "$ref": "12"
+      },
+      {
+        "$ref": "2"
+      },
+      {
+        "$ref": "72"
+      },
+      {
+        "$ref": "77"
+      },
+      {
+        "$ref": "22"
+      },
+      {
+        "$ref": "57"
+      },
+      {
+        "$ref": "92"
+      },
+      {
+        "$ref": "47"
+      },
+      {
+        "$ref": "102"
+      },
+      {
+        "$ref": "7"
+      },
+      {
+        "$ref": "107"
+      },
+      {
+        "$ref": "52"
+      },
+      {
+        "$ref": "82"
+      },
+      {
+        "$ref": "112"
+      },
+      {
+        "$ref": "122"
+      },
+      {
+        "$ref": "17"
+      },
+      {
+        "$ref": "32"
+      },
+      {
+        "$ref": "87"
+      },
+      {
+        "$ref": "37"
+      }
+    ]
+  }
 }

@@ -62,7 +62,9 @@ public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         
         foreach (var symbol in BelongFSM.SymbolShownList)
         {
-            await Bus.FireAsync(new EvtPay(symbol), CurCt);
+            var pay = symbol.GetUltimateGive();
+            await Bus.FireAsync(new EvtPay(symbol, pay), CurCt);
+            BelongFSM.Coin += pay;
         }
         MyDebug.Log("Spin End");
         await BelongFSM.EnterStateAsync(new PlayingIdle());
@@ -80,7 +82,7 @@ public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
     /// 某符号结算时
     /// </summary>
     /// <param name="Symbol"></param>
-    public record EvtPay(SymbolData Symbol) : EvtBase;
+    public record EvtPay(SymbolData Symbol, long Pay) : EvtBase;
     
     /// <summary>
     /// 发现某符号与(当前)某符号相邻时

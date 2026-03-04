@@ -42,7 +42,7 @@ public class Launcher : Singleton<Launcher>
         {
             await Loader.LoadAll();
             ViewList.ForEach(v => v.Bind());
-            await GameRoot.Root.LaunchAsync(new GamePlaying());
+            await GameRoot.Root.LaunchAsync(new GameTitle());
         }
         catch (Exception e)
         {

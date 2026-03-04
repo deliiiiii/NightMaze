@@ -13,14 +13,14 @@ namespace GeneralPreview;
 public abstract class FSM<TThis>
     where TThis : FSM<TThis>
 {
-    static bool StateHasSubClass => typeof(IState).SubTypeList().Any();
+    [JsonIgnore] static bool StateHasSubClass => typeof(IState).SubTypeList().Any();
     
-    [ShowInInspector, PropertyOrder(0)] public string CurStateName => curState?.GetType().Name ?? "Null";
-    [ShowInInspector, PropertyOrder(1)] IState? curState;
-    bool isLaunched;
+    [JsonIgnore, ShowInInspector, PropertyOrder(0)] public string CurStateName => curState?.GetType().Name ?? "Null";
+    [JsonIgnore, ShowInInspector, PropertyOrder(1)] IState? curState;
+    [JsonIgnore] bool isLaunched;
     [JsonIgnore] BindDataUpdate? selfTickBind;
     [JsonIgnore] readonly CancellationTokenSource cts = new();
-    protected CancellationToken CurCt => cts.Token;
+    [JsonIgnore] protected CancellationToken CurCt => cts.Token;
 
     public async UniTask LaunchAsync<TState>(TState stateData) where TState : IState
     {
@@ -31,8 +31,7 @@ public abstract class FSM<TThis>
         }
         isLaunched = true;
         await EnterStateAsync(stateData);
-        // selfTickBind = Binder.FromTick(Tick);
-        // selfTickBind.Bind();
+        Binder.FromTick(Tick).Bind(CurCt);
     }
 
     public void Release()
@@ -49,8 +48,6 @@ public abstract class FSM<TThis>
             curState = null;
         }
         cts.Cancel();
-        // selfTickBind?.UnBind();
-        // selfTickBind = null;
     }
     public async UniTask EnterStateAsync<TState>(TState stateData) where TState : IState
     {
@@ -90,7 +87,7 @@ public abstract class FSM<TThis>
     public abstract class StateFSM<TSub> : FSM<TSub>, IState
         where TSub : StateFSM<TSub>
     {
-        [field: NonSerialized] public TThis BelongFSM { get; set; } = null!;
+        [field: JsonIgnore, NonSerialized] public TThis BelongFSM { get; set; } = null!;
         public virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
 
         void FSM<TThis>.IState.OnExit()

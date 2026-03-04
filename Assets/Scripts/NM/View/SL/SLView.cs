@@ -17,7 +17,6 @@ public class SLView : ViewBase
     [SerializeField] SlotView pfbSlotView;
     [SerializeField] SlotEmptyView pfbSlotEmptyView;
     [SerializeField] Transform tranContent;
-
     [SerializeField] NewSlotParamView paramView;
 
     [SerializeField, ReadOnly] SlotView? curSelected;

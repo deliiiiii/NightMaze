@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
+using NM.Data;
 using UnityEngine;
 using UnityEngine.UI;
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
@@ -30,6 +31,16 @@ public class MainView : ViewBase
     }
     
     public record EvtClickBtnOpenSL : EvtBase;
+
+    UniEvt<GamePlaying.EvtOnExit> OnExitPlay => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            gameObject.SetActive(true);
+            return UniTask.CompletedTask;
+        },
+        Des = "(Play时) 显示标题界面",
+    };
     
     UniEvt<SLView.EvtClickReturn> OnEvtClickReturn => new()
     {

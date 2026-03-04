@@ -21,23 +21,38 @@ public class PlayView : ViewBase
     public TextMeshProUGUI TxtCoin;
     public TextMeshProUGUI TxtPayCoin;
     public Button BtnSpin;
+    public Button BtnExit;
     [SerializeField, Required] DOTweenSequence payTween;
 
     protected override IEnumerable<BindDataBase> BindList()
     {
         yield return Binder.FromEvt(BtnSpin.onClick).To(() => Bus.FireAndForget(new GamePlaying.EvtClickSpin()));
+        yield return Binder.FromEvt(BtnExit.onClick).To(() => Bus.FireAndForget(new GamePlaying.EvtClickExit()));
     }
     
     #region OnEvt
-    UniEvt<GamePlaying.EvtOnEnter> OnPlayEvtOnEnter => new()
+    UniEvt<GamePlaying.EvtOnEnter> OnEnter => new()
     {
         Invoke = (evt, ct) =>
         {
-            SetAllEmpty(evt.Ctx);
+            gameObject.SetActive(true);
+            RefreshAll(evt.Ctx);
             return UniTask.CompletedTask;
         },
-        Des = "(进入Root - Playing状态时) 清空所有格子"
+        Des = "(进入Root - Playing状态时) 恢复游戏"
     };
+
+    UniEvt<GamePlaying.EvtOnExit> OnExit => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            gameObject.SetActive(false);
+            return UniTask.CompletedTask;
+        },
+        Des = "(退出Root - Playing状态时) 隐藏界面"
+    };
+    
+    
     UniEvt<GamePlaying.EvtShowSymbolAt> OnPlayEvtShowSymbolAt => new()
     {
         Invoke = (evt, ct) =>
@@ -47,11 +62,22 @@ public class PlayView : ViewBase
         },
         Des = "(某符号旋转到某位置时) 在格子上显示符号"
     };
+    UniEvt<GamePlaying.EvtCoinChanged> OnCoinChanged => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            TxtCoin.text = evt.Value.ToString();
+            return UniTask.CompletedTask;
+        },
+        Des = "(金币变化时) 刷新金币显示"
+    };
+    
+    
     UniEvt<PlayingSpin.EvtOnEnter> OnSpinEvtOnEnter => new()
     {
         Invoke = (evt, ct) =>
         {
-            SetAllEmpty(evt.Ctx.BelongFSM);
+            SetAllSymbolEmpty();
             return UniTask.CompletedTask;
         },
         Des = "(进入Playing - Spin时) 清空所有格子"
@@ -60,15 +86,15 @@ public class PlayView : ViewBase
     {
         Invoke = async (evt, ct) =>
         {
+            var pay = evt.Pay;
             foreach (var symbolColumn in symbolColumnList)
             {
                 foreach (var symbolView in symbolColumn.SymbolList)
                 {
-                    var ultimateGive = symbolView.Data.GetUltimateGive();
-                    if (symbolView.Data == evt.Symbol && ultimateGive > 0)
+                    if (symbolView.Data == evt.Symbol && pay > 0)
                     {
                         payTween[0].FromValue = symbolView.transform.position;
-                        TxtPayCoin.text = ultimateGive.ToString();
+                        TxtPayCoin.text = pay.ToString();
                         await payTween.PlayAsync(ct);
                     }
                 }
@@ -79,7 +105,17 @@ public class PlayView : ViewBase
     #endregion
 
 
-    void SetAllEmpty(GamePlaying ctx)
+    void RefreshAll(GamePlaying ctx)
+    {
+        SetAllSymbolEmpty();
+        ctx.SymbolDeckList.ForEach(s =>
+        {
+            s.Pos.MatchA(some => SetSymbolAt(s, some));
+            TxtCoin.text = ctx.Coin.ToString();
+        });
+    }
+
+    void SetAllSymbolEmpty()
     {
         foreach (var x in Enumerable.Range(Const.SpinFirstID, Const.SpinW))
         {
@@ -89,7 +125,6 @@ public class PlayView : ViewBase
             }
         }
     }
-
     void SetSymbolAt(SymbolData symbolData, Vector2Int pos)
     {
         var symbolView = symbolColumnList[pos.X - 1].SymbolList[pos.Y - 1];

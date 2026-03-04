@@ -25,7 +25,7 @@ public class DOTweenSequence : MonoBehaviour
     [SerializeField] UnityEvent mOnUpdate = null;
     [SerializeField] UnityEvent mOnComplete = null;
 
-    Tween mTween;
+    [CanBeNull] Tween mTween;
 
     void Awake()
     {
@@ -810,6 +810,7 @@ public class DOTweenSequence : MonoBehaviour
         if (mTween == null) return;
         if (ct.IsCancellationRequested)
         {
+            mTween.Complete();
             mTween.Kill();
             ct.ThrowIfCancellationRequested();
         }
@@ -822,6 +823,7 @@ public class DOTweenSequence : MonoBehaviour
         }
         catch (OperationCanceledException)
         {
+            mTween?.Complete();
             mTween?.Kill();
             throw;
         }

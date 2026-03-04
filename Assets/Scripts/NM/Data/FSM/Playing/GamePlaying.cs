@@ -13,7 +13,18 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
     public string PlayerName = "Deli";
     public double PlayTime;
     public List<SymbolData> SymbolDeckList = [];
-    public long Coin;
+
+    public long Coin
+    {
+        get;
+        set
+        {
+            field = value;
+            Bus.FireAndForget(new EvtCoinChanged(value));
+        }
+    }
+    public record EvtCoinChanged(long Value): EvtBase;
+    
     public int RemoveToken;
     public int RefreshToken;
     public int NextRentCount;
@@ -24,19 +35,23 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
 
     public override async UniTask OnEnterAsync()
     {
-        await Bus.FireAsync(new EvtOnEnter(this), CurCt);
-        await new ActClearDeck() { Ctx = this };
-        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(0) };
-        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
-        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
-        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
-        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
-        await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(2) };
-        while (SymbolDeckList.Count < DeckMax)
+        if (!SymbolDeckList.Any())
         {
-            await new ActAddSymbol { ToAdd = SymbolData.CreateEmpty(), Ctx = this };
+            await new ActClearDeck() { Ctx = this };
+            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(0) };
+            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
+            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
+            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
+            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
+            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(2) };
+            while (SymbolDeckList.Count < DeckMax)
+            {
+                await new ActAddSymbol { ToAdd = SymbolData.CreateEmpty(), Ctx = this };
+            }
         }
+        
 
+        await Bus.FireAsync(new EvtOnEnter(this), CurCt);
         await LaunchAsync(new PlayingIdle());
     }
     public record EvtOnEnter(GamePlaying Ctx) : EvtBase;
@@ -44,7 +59,16 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
     public override void OnExit()
     {
         new ActClearDeck{ Ctx = this }.Forget();
+        Bus.FireAndForget(new EvtOnExit());
     }
+
+    public override void OnUpdate(float dt)
+    {
+        base.OnUpdate(dt);
+        PlayTime += dt;
+    }
+
+    public record EvtOnExit : EvtBase;
 
     public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData) 
         => symbolData.Pos.Match(
