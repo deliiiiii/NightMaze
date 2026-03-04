@@ -18,6 +18,7 @@ public abstract class ViewBase : MonoBehaviour
     {
         if (bind)
             return;
+        // MyDebug.Log($"{GetType().GetNiceName()} Bind");
         manualCts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken);
         BindList().ForEach(b => b.Bind(manualCts.Token));
         IUniEvt.BindAll(this, manualCts.Token);
@@ -27,6 +28,7 @@ public abstract class ViewBase : MonoBehaviour
     {
         if (!bind)
             return;
+        // MyDebug.Log($"{GetType().GetNiceName()} Unbind");
         bind = false;
         manualCts.Cancel();
     }
@@ -39,6 +41,7 @@ public abstract class ViewBase : MonoBehaviour
 
     void OnDestroy()
     {
+        // MyDebug.Log($"{GetType().GetNiceName()} OnDestroy");
         if(bind)
             Unbind();
     }

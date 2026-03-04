@@ -11,7 +11,21 @@ using UnityEngine;
 namespace GeneralPreview;
 
 public static class Bus
-{ 
+{
+    [HideInInspector]
+    public static bool TryClear
+    {
+        get;
+        set
+        {
+            field = value;
+            if (evtDic.Any())
+            {
+                MyDebug.LogError("上次运行时注册的事件未清除，已自动清除。请检查是否报错，或有事件未正确注销...");
+                evtDic.Clear();
+            }
+        }
+    }
     [HideInInspector]
     static readonly Dictionary<Type, List<IUniEvt>> evtDic = new();
 

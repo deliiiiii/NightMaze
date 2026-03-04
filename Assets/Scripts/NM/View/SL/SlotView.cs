@@ -31,7 +31,8 @@ public class SlotView : ViewBase
     {
         Data = fData;
         txtPlayerName.text = Data.PlayerName;
-        txtPlayTime.text = TimeSpan.FromSeconds(Data.PlayTime).ToString(@"hh\:mm\:ss");
+        var hours = (int)(Data.PlayTime / 3600);
+        txtPlayTime.text = $@"{hours}:{TimeSpan.FromSeconds(Data.PlayTime):mm\:ss\.ff}";
         txtCoin.text = Data.Coin.ToString();
         txtSymbolCount.text = Data.SymbolDeckList.Count.ToString();
     }

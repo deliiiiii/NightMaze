@@ -17,6 +17,7 @@ public class Launcher : Singleton<Launcher>
         {
             if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
             {
+                Instance.ViewList.Where(v => v != null).ForEach(v => v.Unbind());
                 GameRoot.Root.Release();
             }
         };
@@ -24,6 +25,12 @@ public class Launcher : Singleton<Launcher>
     }
     
     public List<ViewBase> ViewList = [];
+    protected override void Awake()
+    {
+        base.Awake();
+        Bus.TryClear = true;
+    }
+
     // ReSharper disable once Unity.IncorrectMethodSignature
     // ReSharper disable once UnusedMember.Local
     async UniTask Start()
@@ -41,9 +48,5 @@ public class Launcher : Singleton<Launcher>
         {
             MyDebug.LogError(e);
         }
-    }
-    void OnDestroy()
-    {
-        ViewList.Where(v => v != null).ForEach(v => v.Unbind());
     }
 }

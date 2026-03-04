@@ -11,7 +11,7 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
 {
     public override string ToString() => nameof(GamePlaying);
     public string PlayerName = "Deli";
-    public float PlayTime;
+    public double PlayTime;
     public List<SymbolData> SymbolDeckList = [];
     public long Coin;
     public int RemoveToken;
