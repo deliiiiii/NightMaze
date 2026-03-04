@@ -31,7 +31,10 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
     public int SpinCount;
     public int DeckMax = 20;
 
-    public List<SymbolData> SymbolShownList = [];
+    public List<SymbolData> SymbolShownList =>
+        SymbolDeckList
+        .Where(s => s.Pos.Match(_ => true, RFalse))
+        .ToList();
 
     public override async UniTask OnEnterAsync()
     {

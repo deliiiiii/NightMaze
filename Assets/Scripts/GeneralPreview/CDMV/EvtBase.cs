@@ -47,7 +47,7 @@ public static class Bus
             MyDebug.Log($"Fired - {evt}");
         if (!evtDic.TryGetValue(typeof(T), out var list)) 
             return;
-        foreach (var dele in list.Where(_ => !ct.IsCancellationRequested))
+        foreach (var dele in list.Where(_ => !ct.IsCancellationRequested).ToList())
         {
             await dele.InvokeAsync(evt, ct);
         }

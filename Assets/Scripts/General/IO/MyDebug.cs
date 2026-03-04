@@ -51,7 +51,7 @@ namespace General
             Debug.LogError(message);
 
         }
-        [HideInCallstack]
+        [HideInCallstack][DebuggerStepThrough]
         static bool CheckLog(LogType logType)
         {
             return canLogAll && logTypes.Contains(logType);

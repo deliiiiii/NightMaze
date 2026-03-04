@@ -41,9 +41,10 @@ public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 
         do
         {
-            BelongFSM.SymbolShownList.Sort(SymbolData.ByPos);
+            var shownList = BelongFSM.SymbolShownList;
+            shownList.Sort(SymbolData.ByPos);
             DelayAddList.Clear();
-            foreach (var symbol in BelongFSM.SymbolShownList.Where(s => !s.AlreadyChecked))
+            foreach (var symbol in shownList.Where(s => !s.AlreadyChecked))
             {
                 symbol.AlreadyChecked = true;
                 await Bus.FireAsync(new EvtImmediateDoSymbol(symbol), CurCt);
