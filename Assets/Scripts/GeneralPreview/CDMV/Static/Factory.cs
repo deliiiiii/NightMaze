@@ -24,6 +24,7 @@ public static class Factory<TRelyBase, TInsBase>
 {
     static Factory()
     {
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.playModeStateChanged += state =>
         {
             if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
@@ -32,6 +33,7 @@ public static class Factory<TRelyBase, TInsBase>
                 insDic = null;
             }
         };
+#endif
     }
     
     // ReSharper disable StaticMemberInGenericType

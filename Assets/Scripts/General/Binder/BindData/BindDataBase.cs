@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 
 namespace General
 {
     [Serializable]
-    public abstract class BindDataBase
+    public abstract class BindDataBase : IDisposable
     {
-        public void Bind()
+        public void Bind(CancellationToken? ct = null)
         {
             if (guardSet.Any(guard => !guard.Invoke()))
             {
                 return;
             }
-
+            if (ct != null)
+            {
+                this.AddTo(ct.Value);
+            }
             BindInternal();
         }
         protected abstract void BindInternal();
@@ -25,6 +30,8 @@ namespace General
             guardSet.Add(guard);
             return this as T;
         }
+
+        public void Dispose() => UnBind();
     }
 }
 

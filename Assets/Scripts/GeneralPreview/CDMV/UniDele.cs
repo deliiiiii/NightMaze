@@ -62,4 +62,3 @@ public interface IUniEvt
     public string Des { get; }
     public UniTask InvokeAsync(EvtBase evt, CancellationToken ct);
 }
-

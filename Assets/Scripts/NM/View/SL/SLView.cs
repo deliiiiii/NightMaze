@@ -30,6 +30,11 @@ public class SLView : ViewBase
                 return;
             Bus.FireAndForget(new EvtClickLoad(curSelected.Data));
         });
+        yield return Binder.FromEvt(btnReturn.onClick).To(() =>
+        {
+            gameObject.SetActive(false);
+            Bus.FireAndForget(new EvtClickReturn());
+        });
     }
 
     UniEvt<MainView.EvtClickBtnOpenSL> OnClickBtnOpenSL => new()
@@ -37,6 +42,7 @@ public class SLView : ViewBase
         Invoke = async (evt, ct) =>
         {
             gameObject.SetActive(true);
+            curSelected = null;
             tranContent.ClearChildren();
             var dataList = await Saver.LoadAllAsync<GamePlaying>(NameC.SlotFolder, ct);
             foreach (var data in dataList)
@@ -52,9 +58,14 @@ public class SLView : ViewBase
                 await UniTask.WaitForSeconds(0.1f, cancellationToken: ct);
             }
             var insEmpty = Instantiate(pfbSlotEmptyView, tranContent);
-            insEmpty.OnClick += () => paramView.gameObject.SetActive(true);
+            insEmpty.OnClick += () =>
+            {
+                curSelected?.OnUnSelect();
+                curSelected = null;
+                paramView.gameObject.SetActive(true);
+            };
         },
-        Des = "(在主界面点击了加载按钮) 尝试进入存档选择界面"
+        Des = "(在标题点击了选择存档按钮) 尝试进入存档选择界面"
     };
     
     UniEvt<EvtClickLoad> OnEvtClickLoad => new()
@@ -67,4 +78,5 @@ public class SLView : ViewBase
         Des = "(点击了加载按钮) 尝试进入游戏状态"
     };
     public record EvtClickLoad(GamePlaying Data) : EvtBase;
+    public record EvtClickReturn : EvtBase;
 }

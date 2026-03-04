@@ -61,8 +61,11 @@ public abstract class FSM<TThis>
         }
         if (curState != null)
         {
-            if(curState.GetType() == typeof(TState) && !curState.EnableReEnter)
+            if (curState.GetType() == typeof(TState) && !curState.EnableReEnter)
+            {
+                MyDebug.Log($"FSM {GetType().Name} ReEnter State {typeof(TState).Name} But ReEnter is Not Enabled");
                 return;
+            }
             curState.OnExit();
         }
         curState = stateData;
@@ -80,7 +83,7 @@ public abstract class FSM<TThis>
         public UniTask OnEnterAsync() => UniTask.CompletedTask;
         public void OnExit(){}
         public void OnUpdate(float dt){}
-        public bool EnableReEnter => false;
+        public bool EnableReEnter => true;
         public void RegisterAll(){}
     }
     [Serializable]
@@ -97,7 +100,7 @@ public abstract class FSM<TThis>
         }
         public virtual void OnExit(){}
         public virtual void OnUpdate(float dt){}
-        public virtual bool EnableReEnter => false;
+        public virtual bool EnableReEnter => true;
 
         void FSM<TThis>.IState.RegisterAll() => IUniEvt.BindAll(this, CurCt);
     }

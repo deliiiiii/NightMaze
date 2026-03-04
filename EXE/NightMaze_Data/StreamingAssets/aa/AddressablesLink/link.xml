@@ -1,7 +1,10 @@
 <linker>
-  <assembly fullname="NM, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="NM.Config.SymbolConfig" preserve="all" />
-    <type fullname="NM.Config.SymbolConfigSet" preserve="all" />
+  <assembly fullname="NM.Config, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="NM.Config.SymbolConfig0" preserve="all" />
+    <type fullname="NM.Config.SymbolConfig1" preserve="all" />
+    <type fullname="NM.Config.SymbolConfig2" preserve="all" />
+    <type fullname="NM.Config.SymbolConfig9" preserve="all" />
+    <type fullname="NM.Config.SymbolConfigB1" preserve="all" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />

@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using NM.Data;
+using Sirenix.Utilities;
 
 namespace NM.View;
-
 public class Launcher : Singleton<Launcher>
 {
-    public List<ViewBase> ViewList = [];
-    // ReSharper disable once Unity.IncorrectMethodSignature
-    // ReSharper disable once UnusedMember.Local
-    async UniTask Start()
+    static Launcher()
     {
 #if UNITY_EDITOR
-        Binder.FromTick(_ => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint()).Bind();
-        // 退出游戏模式
         UnityEditor.EditorApplication.playModeStateChanged += state =>
         {
             if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
@@ -24,6 +20,16 @@ public class Launcher : Singleton<Launcher>
                 GameRoot.Root.Release();
             }
         };
+#endif
+    }
+    
+    public List<ViewBase> ViewList = [];
+    // ReSharper disable once Unity.IncorrectMethodSignature
+    // ReSharper disable once UnusedMember.Local
+    async UniTask Start()
+    {
+#if UNITY_EDITOR
+        Binder.FromTick(_ => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint()).Bind(destroyCancellationToken);
 #endif
         try
         {
@@ -35,5 +41,9 @@ public class Launcher : Singleton<Launcher>
         {
             MyDebug.LogError(e);
         }
+    }
+    void OnDestroy()
+    {
+        ViewList.Where(v => v != null).ForEach(v => v.Unbind());
     }
 }

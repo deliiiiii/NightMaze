@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using General;
 using Sirenix.Utilities;
 using UnityEngine;
+#pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 
 namespace GeneralPreview;
 
@@ -9,17 +12,23 @@ public abstract class ViewBase : MonoBehaviour
 {
     protected virtual IEnumerable<BindDataBase> BindList() => [];
     bool bind;
+    CancellationTokenSource manualCts;
 
-    public virtual void Bind()
+    public void Bind()
     {
         if (bind)
-        {
-            MyDebug.LogError($"{GetType().GetNiceName()} already bound");
             return;
-        }
-        BindList().ForEach(b => b.Bind());
-        IUniEvt.BindAll(this, destroyCancellationToken);
+        manualCts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken);
+        BindList().ForEach(b => b.Bind(manualCts.Token));
+        IUniEvt.BindAll(this, manualCts.Token);
         bind = true;
+    }
+    public void Unbind()
+    {
+        if (!bind)
+            return;
+        bind = false;
+        manualCts.Cancel();
     }
 
     void Awake()
@@ -28,8 +37,9 @@ public abstract class ViewBase : MonoBehaviour
             Bind();
     }
 
-    protected virtual void OnDestroy()
+    void OnDestroy()
     {
-        BindList().ForEach(b => b.UnBind());
+        if(bind)
+            Unbind();
     }
 }

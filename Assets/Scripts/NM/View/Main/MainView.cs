@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using UnityEngine;
@@ -29,4 +30,14 @@ public class MainView : ViewBase
     }
     
     public record EvtClickBtnOpenSL : EvtBase;
+    
+    UniEvt<SLView.EvtClickReturn> OnEvtClickReturn => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            gameObject.SetActive(true);
+            return UniTask.CompletedTask;
+        },
+        Des = "(点击了返回按钮) 尝试返回标题"
+    };
 }

@@ -12,7 +12,7 @@ public class LenPlaying : MonoBehaviour
     [ShowInInspector] GamePlaying Playing => PlayingOp.Match(Rid, () => null!);
 
     [Button]
-    void Save() => PlayingOp.MatchA(some => Saver.Save(NameC.SlotFolder, some.PlayerName, some), NoAct);
+    public void Save() => PlayingOp.MatchA(some => Saver.Save(NameC.SlotFolder, some.PlayerName, some), NoAct);
     [ShowInInspector]
     public List<PlayingSpin.UniAction> DelayDo
     {
