@@ -4,16 +4,18 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
+using Sirenix.Utilities;
 
 namespace NM.Data;
 
 [Serializable]
 public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 {
+    protected override IState InitState => null!;
     public List<UniAction> DelayAddList = [];
     public List<UniAction> DelayDestroyList = [];
 
-    public override async UniTask OnEnterAsync()
+    protected override async UniTask OnEnterAsync()
     {
         BelongFSM.SymbolDeckList.ForEach(s =>
         {
@@ -23,10 +25,10 @@ public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         });
         
         await Bus.FireAsync(new EvtOnEnter(this), CurCt);
-        BelongFSM.SymbolShownList.Clear();
+        BelongFSM.SymbolDeckList.Where(s => s.Pos.IsSome).ForEach(s => s.Pos = None);
         foreach (var toShow in BelongFSM.SymbolDeckList.ShuffleTo())
         {
-            var shownCount = BelongFSM.SymbolShownList.Count;
+            var shownCount = BelongFSM.SymbolShownListSorted.Count;
             if(shownCount == Const.SpinW * Const.SpinH)
                 break;
             var addX = shownCount / Const.SpinH + 1;
@@ -41,10 +43,8 @@ public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 
         do
         {
-            var shownList = BelongFSM.SymbolShownList;
-            shownList.Sort(SymbolData.ByPos);
             DelayAddList.Clear();
-            foreach (var symbol in shownList.Where(s => !s.AlreadyChecked))
+            foreach (var symbol in BelongFSM.SymbolShownListSorted.Where(s => !s.AlreadyChecked))
             {
                 symbol.AlreadyChecked = true;
                 await Bus.FireAsync(new EvtImmediateDoSymbol(symbol), CurCt);
@@ -61,7 +61,7 @@ public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         } while (DelayAddList.Count != 0);
 
         
-        foreach (var symbol in BelongFSM.SymbolShownList)
+        foreach (var symbol in BelongFSM.SymbolShownListSorted)
         {
             var pay = symbol.GetUltimateGive();
             await Bus.FireAsync(new EvtPay(symbol, pay), CurCt);

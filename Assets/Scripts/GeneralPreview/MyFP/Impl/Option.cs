@@ -15,6 +15,7 @@ public abstract record MyOption<T1>
     }
     public static readonly MyNone<T1> None = new();
     public static implicit operator MyOption<T1>(Unit _) => None;
+    public bool IsSome => this is MySome<T1>;
     [DebuggerStepThrough] public void MatchA(Action<T1>? some = null, Action? none = null)
     {
         switch (this)

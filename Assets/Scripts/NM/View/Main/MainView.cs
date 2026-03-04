@@ -39,7 +39,7 @@ public class MainView : ViewBase
             gameObject.SetActive(true);
             return UniTask.CompletedTask;
         },
-        Des = "(Play时) 显示标题界面",
+        Des = "(退出Play状态) 显示标题界面",
     };
     
     UniEvt<SLView.EvtClickReturn> OnEvtClickReturn => new()
@@ -49,6 +49,6 @@ public class MainView : ViewBase
             gameObject.SetActive(true);
             return UniTask.CompletedTask;
         },
-        Des = "(点击了返回按钮) 尝试返回标题"
+        Des = "(SLView点击了返回按钮) 尝试返回标题"
     };
 }

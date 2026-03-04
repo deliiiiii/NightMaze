@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace NM.View;
 
-public class SymbolView : MonoBehaviour
+public class SymbolView : ViewBase
 {
     [SerializeField, Required] DOTweenSequence onSpinTween;
 
@@ -36,7 +36,6 @@ public class SymbolView : MonoBehaviour
     [SerializeField] Transform tranImgBuff;
     [ShowInInspector, ReadOnly] List<ImgBuff> buffList = [];
 
-    void Awake() => IUniEvt.BindAll(this, destroyCancellationToken);
 
     UniEvt<PlayingSpin.EvtImmediateDoSymbol> OnSpinEvtImmediateDoSymbol => new()
     {

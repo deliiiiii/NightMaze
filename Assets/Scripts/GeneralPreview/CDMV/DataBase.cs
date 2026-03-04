@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 using General;
+using Newtonsoft.Json;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace GeneralPreview;
 
@@ -13,10 +15,13 @@ public abstract class DataBase<TThis>
     [OnDeserialized]
     void OnDeserialized(StreamingContext context)
     {
-        BindAllCom();
+        foreach (var com in comDic.Values)
+        {
+            com.Bind((TThis)this);
+        }
     }
 
-    public Action? DisposeAct;
+    [HideInInspector] public Action? DisposeAct;
     [ShowInInspector] readonly Dictionary<Type, ComBase> comDic = [];
     [DebuggerStepThrough]
     protected T AddCom<T>(T? com = null) where T : ComBase
@@ -52,17 +57,9 @@ public abstract class DataBase<TThis>
     public bool HasCom<T>() where T : ComBase 
         => comDic.ContainsKey(typeof(T));
     
-    protected void BindAllCom()
-    {
-        foreach (var com in comDic.Values)
-        {
-            com.Bind((TThis)this);
-        }
-    }
-
     public abstract class ComBase
     {
-        [field: NonSerialized, Newtonsoft.Json.JsonIgnore] public TThis BelongData { get; private set; } = null!;
+        [field: NonSerialized, JsonIgnore] protected TThis BelongData { get; private set; } = null!;
 
         public void Bind(TThis belongData)
         {

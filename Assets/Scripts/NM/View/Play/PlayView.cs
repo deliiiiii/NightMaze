@@ -8,7 +8,6 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Binder = General.Binder;
 using Vector2Int = GeneralPreview.Vector2Int;
 
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
@@ -111,8 +110,8 @@ public class PlayView : ViewBase
         ctx.SymbolDeckList.ForEach(s =>
         {
             s.Pos.MatchA(some => SetSymbolAt(s, some));
-            TxtCoin.text = ctx.Coin.ToString();
         });
+        TxtCoin.text = ctx.Coin.ToString();
     }
 
     void SetAllSymbolEmpty()

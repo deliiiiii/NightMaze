@@ -10,31 +10,30 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace GeneralPreview;
-public abstract class FSM<TThis>
+public abstract class FSM<TThis> : IDisposable
     where TThis : FSM<TThis>
 {
-    [JsonIgnore] static bool StateHasSubClass => typeof(IState).SubTypeList().Any();
     
-    [JsonIgnore, ShowInInspector, PropertyOrder(0)] public string CurStateName => curState?.GetType().Name ?? "Null";
-    [JsonIgnore, ShowInInspector, PropertyOrder(1)] IState? curState;
+    [JsonIgnore] static bool StateHasSubClass => typeof(IState).SubTypeList().Any();
+    [JsonIgnore, ShowInInspector, PropertyOrder(-11)] public string CurStateName => curState?.GetType().Name ?? "Null";
     [JsonIgnore] bool isLaunched;
     [JsonIgnore] BindDataUpdate? selfTickBind;
     [JsonIgnore] readonly CancellationTokenSource cts = new();
     [JsonIgnore] protected CancellationToken CurCt => cts.Token;
+    [ShowInInspector, PropertyOrder(-10)] IState? curState;
+    protected abstract IState InitState { get; }
 
-    public async UniTask LaunchAsync<TState>(TState stateData) where TState : IState
+    protected async UniTask LaunchAsync()
     {
         if (isLaunched)
         {
             MyDebug.LogError($"FSM {GetType().Name} Has Already Launched");
             return;
         }
-        isLaunched = true;
-        await EnterStateAsync(stateData);
+        await EnterStateAsync(curState ?? InitState);
         Binder.FromTick(Tick).Bind(CurCt);
     }
-
-    public void Release()
+    void Release()
     {
         if (!isLaunched && StateHasSubClass)
         {
@@ -51,12 +50,7 @@ public abstract class FSM<TThis>
     }
     public async UniTask EnterStateAsync<TState>(TState stateData) where TState : IState
     {
-        if (!isLaunched)
-        {
-            MyDebug.LogError($"FSM {GetType().Name} Enter State But NOT Launched");
-            return;
-        }
-        if (curState != null)
+        if (curState != null && isLaunched)
         {
             if (curState.GetType() == typeof(TState) && !curState.EnableReEnter)
             {
@@ -65,6 +59,8 @@ public abstract class FSM<TThis>
             }
             curState.OnExit();
         }
+
+        isLaunched = true;
         curState = stateData;
         curState.BelongFSM = (TThis)this;
         curState.RegisterAll();
@@ -76,29 +72,30 @@ public abstract class FSM<TThis>
 
     public interface IState
     {
-        public TThis BelongFSM { get; set; }
-        public UniTask OnEnterAsync() => UniTask.CompletedTask;
-        public void OnExit(){}
-        public void OnUpdate(float dt){}
-        public bool EnableReEnter => true;
-        public void RegisterAll(){}
+        TThis BelongFSM { get; set; }
+        UniTask OnEnterAsync() => UniTask.CompletedTask;
+        void OnExit(){}
+        void OnUpdate(float dt){}
+        bool EnableReEnter => true;
+        void RegisterAll(){}
     }
     [Serializable]
     public abstract class StateFSM<TSub> : FSM<TSub>, IState
         where TSub : StateFSM<TSub>
     {
         [field: JsonIgnore, NonSerialized] public TThis BelongFSM { get; set; } = null!;
-        public virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
-
+        UniTask FSM<TThis>.IState.OnEnterAsync() => OnEnterAsync();
+        protected virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
         void FSM<TThis>.IState.OnExit()
         {
             OnExit();
             Release();
         }
-        public virtual void OnExit(){}
-        public virtual void OnUpdate(float dt){}
-        public virtual bool EnableReEnter => true;
-
+        protected virtual void OnExit(){}
+        void FSM<TThis>.IState.OnUpdate(float dt) => OnUpdate(dt);
+        protected virtual void OnUpdate(float dt){}
+        bool FSM<TThis>.IState.EnableReEnter => EnableReEnter;
+        protected virtual bool EnableReEnter => true;
         void FSM<TThis>.IState.RegisterAll() => IUniEvt.BindAll(this, CurCt);
     }
     
@@ -116,4 +113,6 @@ public abstract class FSM<TThis>
         }
         public void Forget() => InvokeAsync(CancellationToken.None).Forget();
     }
+
+    public void Dispose() => Release();
 }

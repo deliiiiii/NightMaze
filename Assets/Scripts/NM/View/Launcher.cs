@@ -18,7 +18,7 @@ public class Launcher : Singleton<Launcher>
             if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
             {
                 Instance.ViewList.Where(v => v != null).ForEach(v => v.Unbind());
-                GameRoot.Root.Release();
+                // GameRoot.Root.Release();
             }
         };
 #endif
@@ -42,7 +42,8 @@ public class Launcher : Singleton<Launcher>
         {
             await Loader.LoadAll();
             ViewList.ForEach(v => v.Bind());
-            await GameRoot.Root.LaunchAsync(new GameTitle());
+            GameRoot.Root.AddTo(destroyCancellationToken);
+            await GameRoot.Root.LaunchAsync();
         }
         catch (Exception e)
         {

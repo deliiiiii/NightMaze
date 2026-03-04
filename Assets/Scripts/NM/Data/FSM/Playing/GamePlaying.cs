@@ -9,6 +9,7 @@ namespace NM.Data;
 [Serializable]
 public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
 {
+    protected override IState InitState => new PlayingIdle();
     public override string ToString() => nameof(GamePlaying);
     public string PlayerName = "Deli";
     public double PlayTime;
@@ -31,12 +32,19 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
     public int SpinCount;
     public int DeckMax = 20;
 
-    public List<SymbolData> SymbolShownList =>
-        SymbolDeckList
-        .Where(s => s.Pos.Match(_ => true, RFalse))
-        .ToList();
+    public List<SymbolData> SymbolShownListSorted
+    {
+        get
+        {
+            var ret = SymbolDeckList
+                .Where(s => s.Pos.Match(_ => true, RFalse))
+                .ToList();
+            ret.Sort(SymbolData.ByPos);
+            return ret;
+        }
+    }
 
-    public override async UniTask OnEnterAsync()
+    protected override async UniTask OnEnterAsync()
     {
         if (!SymbolDeckList.Any())
         {
@@ -52,20 +60,16 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
                 await new ActAddSymbol { ToAdd = SymbolData.CreateEmpty(), Ctx = this };
             }
         }
-        
-
         await Bus.FireAsync(new EvtOnEnter(this), CurCt);
-        await LaunchAsync(new PlayingIdle());
+        await LaunchAsync();
     }
     public record EvtOnEnter(GamePlaying Ctx) : EvtBase;
-
-    public override void OnExit()
+    protected override void OnExit()
     {
         new ActClearDeck{ Ctx = this }.Forget();
         Bus.FireAndForget(new EvtOnExit());
     }
-
-    public override void OnUpdate(float dt)
+    protected override void OnUpdate(float dt)
     {
         base.OnUpdate(dt);
         PlayTime += dt;
@@ -81,7 +85,7 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
                 where x is >= Const.SpinFirstID and <= Const.SpinW
                 where y is >= Const.SpinFirstID and <= Const.SpinH
                 where !(x == pos.X && y == pos.Y)
-                select SymbolShownList.FirstOrDefault(xs => xs.Pos.Match(some => some.X == x && some.Y == y, RFalse)),
+                select SymbolShownListSorted.FirstOrDefault(xs => xs.Pos.Match(some => some.X == x && some.Y == y, RFalse)),
             () => []);
 
     public MyOption<SymbolData> GetEmpty() => SymbolDeckList.MyFirst(s => s.IsEmpty);
