@@ -1,8 +1,8 @@
 {
   "$id": "1",
   "$type": "NM.Data.GamePlaying, NM.Data",
-  "PlayerName": "kkk",
-  "PlayTime": 18.210448604542762,
+  "PlayerName": "ppp",
+  "PlayTime": 22.484855923801661,
   "SymbolDeckList": {
     "$type": "System.Collections.Generic.List`1[[NM.Data.SymbolData, NM.Data]], mscorlib",
     "$values": [
@@ -16,7 +16,7 @@
             "$id": "4",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
             "X": 1,
-            "Y": 4
+            "Y": 2
           }
         },
         "AlreadyChecked": true,
@@ -55,11 +55,11 @@
           "<Value>k__BackingField": {
             "$id": "9",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 5,
-            "Y": 1
+            "X": 3,
+            "Y": 2
           }
         },
-        "AlreadyChecked": false,
+        "AlreadyChecked": true,
         "TempAdd": {
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
@@ -95,11 +95,11 @@
           "<Value>k__BackingField": {
             "$id": "14",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 5,
+            "X": 2,
             "Y": 4
           }
         },
-        "AlreadyChecked": false,
+        "AlreadyChecked": true,
         "TempAdd": {
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
@@ -135,8 +135,8 @@
           "<Value>k__BackingField": {
             "$id": "19",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 1,
-            "Y": 3
+            "X": 2,
+            "Y": 2
           }
         },
         "AlreadyChecked": true,
@@ -175,11 +175,11 @@
           "<Value>k__BackingField": {
             "$id": "24",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 5,
+            "X": 4,
             "Y": 2
           }
         },
-        "AlreadyChecked": false,
+        "AlreadyChecked": true,
         "TempAdd": {
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
@@ -216,7 +216,7 @@
             "$id": "29",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
             "X": 4,
-            "Y": 3
+            "Y": 4
           }
         },
         "AlreadyChecked": true,
@@ -255,8 +255,8 @@
           "<Value>k__BackingField": {
             "$id": "34",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 2,
-            "Y": 1
+            "X": 5,
+            "Y": 2
           }
         },
         "AlreadyChecked": true,
@@ -295,8 +295,8 @@
           "<Value>k__BackingField": {
             "$id": "39",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 3,
-            "Y": 4
+            "X": 5,
+            "Y": 3
           }
         },
         "AlreadyChecked": true,
@@ -335,7 +335,7 @@
           "<Value>k__BackingField": {
             "$id": "44",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 1,
+            "X": 4,
             "Y": 1
           }
         },
@@ -376,7 +376,7 @@
             "$id": "49",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
             "X": 4,
-            "Y": 2
+            "Y": 3
           }
         },
         "AlreadyChecked": true,
@@ -415,8 +415,8 @@
           "<Value>k__BackingField": {
             "$id": "54",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 3,
-            "Y": 2
+            "X": 1,
+            "Y": 4
           }
         },
         "AlreadyChecked": true,
@@ -456,7 +456,7 @@
             "$id": "59",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
             "X": 1,
-            "Y": 2
+            "Y": 3
           }
         },
         "AlreadyChecked": true,
@@ -495,11 +495,11 @@
           "<Value>k__BackingField": {
             "$id": "64",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 5,
-            "Y": 3
+            "X": 3,
+            "Y": 4
           }
         },
-        "AlreadyChecked": false,
+        "AlreadyChecked": true,
         "TempAdd": {
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
@@ -535,11 +535,11 @@
           "<Value>k__BackingField": {
             "$id": "69",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 4,
-            "Y": 4
+            "X": 1,
+            "Y": 1
           }
         },
-        "AlreadyChecked": false,
+        "AlreadyChecked": true,
         "TempAdd": {
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
@@ -615,8 +615,8 @@
           "<Value>k__BackingField": {
             "$id": "79",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 2,
-            "Y": 2
+            "X": 5,
+            "Y": 4
           }
         },
         "AlreadyChecked": true,
@@ -656,7 +656,7 @@
             "$id": "84",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
             "X": 2,
-            "Y": 3
+            "Y": 1
           }
         },
         "AlreadyChecked": true,
@@ -695,8 +695,8 @@
           "<Value>k__BackingField": {
             "$id": "89",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 4,
-            "Y": 1
+            "X": 2,
+            "Y": 3
           }
         },
         "AlreadyChecked": true,
@@ -775,8 +775,8 @@
           "<Value>k__BackingField": {
             "$id": "99",
             "$type": "GeneralPreview.Vector2Int, GeneralPreview",
-            "X": 2,
-            "Y": 4
+            "X": 5,
+            "Y": 1
           }
         },
         "AlreadyChecked": true,
@@ -796,7 +796,7 @@
           "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
           "$values": []
         },
-        "<ConfigID>k__BackingField": -1,
+        "<ConfigID>k__BackingField": 9,
         "comDic": {
           "$id": "100",
           "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
@@ -808,75 +808,17 @@
       }
     ]
   },
-  "<Coin>k__BackingField": 0,
+  "<Coin>k__BackingField": 20,
   "RemoveToken": 0,
   "RefreshToken": 0,
   "NextRentCount": 0,
   "SpinCount": 0,
   "DeckMax": 20,
-  "curState": {
+  "CurState": {
     "$id": "102",
-    "$type": "NM.Data.PlayingSpin, NM.Data",
-    "DelayAddList": {
-      "$type": "System.Collections.Generic.List`1[[GeneralPreview.FSM`1+UniAction[[NM.Data.PlayingSpin, NM.Data]], GeneralPreview]], mscorlib",
-      "$values": [
-        {
-          "$id": "103",
-          "$type": "NM.Data.SymbolConfigDes0+ActWrapper, NM.Data",
-          "InnerAction": {
-            "$id": "104",
-            "$type": "NM.Data.GamePlaying+ActSymbolAddSymbol, NM.Data",
-            "Arg1": {
-              "$ref": "2"
-            },
-            "Arg2": {
-              "$id": "105",
-              "$type": "NM.Data.SymbolData, NM.Data",
-              "Pos": {
-                "$id": "106",
-                "$type": "GeneralPreview.MyNone`1[[GeneralPreview.Vector2Int, GeneralPreview]], GeneralPreview"
-              },
-              "AlreadyChecked": false,
-              "TempAdd": {
-                "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-                "$values": []
-              },
-              "TempMulti": {
-                "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-                "$values": []
-              },
-              "TowaAdd": {
-                "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-                "$values": []
-              },
-              "TowaMulti": {
-                "$type": "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
-                "$values": []
-              },
-              "<ConfigID>k__BackingField": 9,
-              "comDic": {
-                "$id": "107",
-                "$type": "System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data]], GeneralPreview]], mscorlib",
-                "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-                  "$id": "108",
-                  "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-                }
-              }
-            },
-            "Ctx": {
-              "$ref": "1"
-            }
-          },
-          "Ctx": {
-            "$ref": "102"
-          }
-        }
-      ]
-    },
-    "DelayDestroyList": {
-      "$type": "System.Collections.Generic.List`1[[GeneralPreview.FSM`1+UniAction[[NM.Data.PlayingSpin, NM.Data]], GeneralPreview]], mscorlib",
-      "$values": []
-    },
-    "curState": null
-  }
+    "$type": "NM.Data.PlayingIdle, NM.Data",
+    "CurState": null,
+    "isLaunched": false
+  },
+  "isLaunched": true
 }

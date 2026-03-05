@@ -11,7 +11,6 @@ namespace NM.Data;
 [Serializable]
 public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 {
-    protected override IState InitState => null!;
     public List<UniAction> DelayAddList = [];
     public List<UniAction> DelayDestroyList = [];
 

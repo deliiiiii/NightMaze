@@ -27,23 +27,6 @@ public record UniEvt<TEvt> : IDisposable, IUniEvt
 
 public interface IUniEvt
 {
-    public static void BindAll(object obj, ref Action? onDispose)
-    {
-        var filtered = obj
-            .GetType()
-            .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-            .Where(propertyInfo =>
-            {
-                var pType = propertyInfo.PropertyType;
-                return pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(UniEvt<>);
-            });
-        foreach (var propertyInfo in filtered)  
-        {
-            var iDisposable = (IDisposable)propertyInfo.GetMemberValue(obj);
-            onDispose += iDisposable.Dispose;
-        }
-
-    }
     public static void BindAll(object obj, CancellationToken ct)
     {
         obj.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)

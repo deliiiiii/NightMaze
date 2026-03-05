@@ -9,7 +9,6 @@ namespace NM.Data;
 [Serializable]
 public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
 {
-    protected override IState InitState => new PlayingIdle();
     public override string ToString() => nameof(GamePlaying);
     public string PlayerName = "Deli";
     public double PlayTime;
@@ -47,9 +46,8 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
 
     protected override async UniTask OnEnterAsync()
     {
-        if (!SymbolDeckList.Any())
+        if (CurState == null)
         {
-            await new ActClearDeck() { Ctx = this };
             await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(0) };
             await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
             await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
@@ -66,13 +64,14 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
             SymbolDeckList.ForEach(s => s.BindAll());
         }
         await Bus.FireAsync(new EvtOnEnter(this), CurCt);
-        await LaunchAsync();
+        await LaunchAsync(CurState ?? new PlayingIdle());
     }
     public record EvtOnEnter(GamePlaying Ctx) : EvtBase;
     protected override void OnExit()
     {
-        new ActClearDeck{ Ctx = this }.Forget();
+        Release();
         Bus.FireAndForget(new EvtOnExit());
+        new ActClearDeck{ Ctx = this }.Forget();
     }
     protected override void OnUpdate(float dt)
     {
@@ -85,13 +84,13 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
     public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData) 
         => symbolData.Pos.Match(
             pos =>
-                from x in Enumerable.Range(pos.X - 1, 3)
-                from y in Enumerable.Range(pos.Y - 1, 3)
+                from x in Enumerable.Range(pos.X - 1, pos.X + 1)
+                from y in Enumerable.Range(pos.Y - 1, pos.Y + 1)
                 where x is >= Const.SpinFirstID and <= Const.SpinW
                 where y is >= Const.SpinFirstID and <= Const.SpinH
                 where !(x == pos.X && y == pos.Y)
                 select SymbolShownListSorted.FirstOrDefault(xs => xs.Pos.Match(some => some.X == x && some.Y == y, RFalse)),
-            () => []);
+            () => []).Where(x => x != null);
 
     public MyOption<SymbolData> GetEmpty() => SymbolDeckList.MyFirst(s => s.IsEmpty);
 }

@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.Serialization;
+using System.Threading;
 using General;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace GeneralPreview;
 
-public abstract class DataBase<TThis>
+public abstract class DataBase<TThis> : IDisposable
     where TThis : DataBase<TThis>
 {
     /// 状态初始化完成后调用，绑定组件的TThis及事件
@@ -17,11 +19,10 @@ public abstract class DataBase<TThis>
     {
         foreach (var com in comDic.Values)
         {
-            com.Bind((TThis)this);
+            com.Bind();
         }
     }
-
-    [HideInInspector] public Action? DisposeAct;
+    public void Dispose() => RemoveAllCom();
     [ShowInInspector] readonly Dictionary<Type, ComBase> comDic = [];
     [DebuggerStepThrough]
     protected T AddCom<T>(T? com = null) where T : ComBase
@@ -33,22 +34,28 @@ public abstract class DataBase<TThis>
         }
 
         com ??= Activator.CreateInstance<T>();
-        com.Bind((TThis)this);
+        com.BelongData = (TThis)this;
+        com.Bind();
         comDic.Add(typeof(T), com);
         return com;
     }
     [DebuggerStepThrough]
     protected void RemoveCom<T>() where T : ComBase
     {
-        if (!comDic.TryGetValue(typeof(T), out _))
+        if (!comDic.TryGetValue(typeof(T), out var com))
         {
             MyDebug.LogError($"Entity {ToString()} RemoveComponent {typeof(T).Name} But NOT Exists");
             return;
         }
+        com.Dispose();
         comDic.Remove(typeof(T));
     }
     [DebuggerStepThrough]
-    protected void RemoveAllCom() => comDic.Clear();
+    void RemoveAllCom()
+    {
+        comDic.Values.ForEach(com => com.Dispose());
+        comDic.Clear();
+    }
 
     [DebuggerStepThrough]
     public MyOption<T> GetCom<T>() where T : ComBase
@@ -57,14 +64,17 @@ public abstract class DataBase<TThis>
     public bool HasCom<T>() where T : ComBase 
         => comDic.ContainsKey(typeof(T));
     
-    public abstract class ComBase
+    public abstract class ComBase : IDisposable
     {
-        [field: NonSerialized, JsonIgnore] protected TThis BelongData { get; private set; } = null!;
-
-        public void Bind(TThis belongData)
+        [HideInInspector] public required TThis BelongData { get; set; }
+        [HideInInspector, JsonIgnore] readonly CancellationTokenSource cts = new();
+        public void Bind()
         {
-            BelongData = belongData;
-            IUniEvt.BindAll(this, ref BelongData.DisposeAct);
+            IUniEvt.BindAll(this, cts.Token);
+        }
+        public void Dispose()
+        {
+            cts.Cancel();
         }
     }
 }

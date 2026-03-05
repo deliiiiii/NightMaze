@@ -29,7 +29,7 @@ public partial class GamePlaying
         {
             foreach (var symbol in Ctx.SymbolDeckList.ToList())
             {
-                await new ActRemoveSymbol{ Ctx = Ctx, ToRemove = symbol, ShouldAdd = false};
+                await new ActRemoveSymbol{ Ctx = Ctx, ToRemove = symbol, ShouldAddEmpty = false};
             }
         }
     }
@@ -44,7 +44,7 @@ public partial class GamePlaying
             {
                 await Ctx.GetEmpty().MatchAsync(async some =>
                 {
-                    await new ActRemoveSymbol { ToRemove = some, Ctx = Ctx, ShouldAdd = true};
+                    await new ActRemoveSymbol { ToRemove = some, Ctx = Ctx, ShouldAddEmpty = true};
                 }, RTask);
             }
             await new ActShowSymbolRandomly { Symbol = ToAdd, Ctx = Ctx };
@@ -54,12 +54,12 @@ public partial class GamePlaying
     {
         public override string Des => "移除符号";
         public required SymbolData ToRemove;
-        public required bool ShouldAdd;
+        public required bool ShouldAddEmpty;
         protected override async UniTask InvokeAsync(CancellationToken ct)
         {
             Ctx.SymbolDeckList.Remove(ToRemove);
-            ToRemove.DisposeAct?.Invoke();
-            if (Ctx.SymbolDeckList.Count < Ctx.DeckMax && ShouldAdd)
+            ToRemove.Dispose();
+            if (Ctx.SymbolDeckList.Count < Ctx.DeckMax && ShouldAddEmpty)
             {
                 await new ActAddSymbol() { ToAdd = SymbolData.CreateEmpty(), Ctx = Ctx };
             }
