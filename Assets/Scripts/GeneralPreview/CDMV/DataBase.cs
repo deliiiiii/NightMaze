@@ -12,8 +12,8 @@ namespace GeneralPreview;
 public abstract class DataBase<TThis>
     where TThis : DataBase<TThis>
 {
-    [OnDeserialized]
-    void OnDeserialized(StreamingContext context)
+    /// 状态初始化完成后调用，绑定组件的TThis及事件
+    public void BindAll()
     {
         foreach (var com in comDic.Values)
         {

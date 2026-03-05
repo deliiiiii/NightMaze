@@ -71,7 +71,7 @@ public partial class GamePlaying
         public required SymbolData Symbol;
         protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            await Ctx.SymbolShownList
+            await Ctx.SymbolShownListSorted
                 .Where(s => s.IsEmpty)
                 .SelectMany(s => s.Pos.Match(some => [some], Enumerable.Empty<Vector2Int>))
                 .ToList()
@@ -86,7 +86,7 @@ public partial class GamePlaying
         public required Vector2Int Pos;
         protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            Ctx.SymbolShownList.Add(Symbol);
+            Ctx.SymbolShownListSorted.Add(Symbol);
             Symbol.Pos = Pos;
             await Bus.FireAsync(new EvtShowSymbolAt(Ctx, Symbol, Pos), ct);
         }

@@ -15,6 +15,7 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
     public double PlayTime;
     public List<SymbolData> SymbolDeckList = [];
 
+    // public partial long Coin;
     public long Coin
     {
         get;
@@ -59,6 +60,10 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
             {
                 await new ActAddSymbol { ToAdd = SymbolData.CreateEmpty(), Ctx = this };
             }
+        }
+        else
+        {
+            SymbolDeckList.ForEach(s => s.BindAll());
         }
         await Bus.FireAsync(new EvtOnEnter(this), CurCt);
         await LaunchAsync();

@@ -7,6 +7,7 @@ using General;
 using General.BindData;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace GeneralPreview;
@@ -59,6 +60,7 @@ public abstract class FSM<TThis> : IDisposable
             }
             curState.OnExit();
         }
+        MyDebug.Log($"{GetType().GetNiceName()} Enter{typeof(TState).GetNiceName()}");
 
         isLaunched = true;
         curState = stateData;
