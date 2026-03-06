@@ -16,10 +16,10 @@ public partial class GamePlaying
         protected override async UniTask InvokeAsync(CancellationToken ct)
         {
             await new ActAddSymbol{Ctx = Ctx, ToAdd = Arg2};
-            await Bus.FireAsync(new EvtSpinSymbolAddSymbol(Arg1, Arg2), ct);
+            await Bus.FireAsync(new EvtSymbolAddSymbol(Arg1, Arg2), ct);
         }
     }
-    public record EvtSpinSymbolAddSymbol(SymbolData Symbol, SymbolData AddedSymbol) : EvtBase;
+    public record EvtSymbolAddSymbol(SymbolData Symbol, SymbolData AddedSymbol) : EvtBase;
     
     public record ActClearDeck : UniAction
     {

@@ -14,17 +14,18 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
     public double PlayTime;
     public List<SymbolData> SymbolDeckList = [];
 
-    // public partial long Coin;
-    public long Coin
-    {
-        get;
-        set
-        {
-            field = value;
-            Bus.FireAndForget(new EvtCoinChanged(value));
-        }
-    }
-    public record EvtCoinChanged(long Value): EvtBase;
+    [EvtChanged]
+    public partial long Coin {get;set;}
+    // public long Coin
+    // {
+    //     get;
+    //     set
+    //     {
+    //         field = value;
+    //         Bus.FireAndForget(new EvtCoinChanged(value));
+    //     }
+    // }
+    // public record EvtCoinChanged(long Value): EvtBase;
     
     public int RemoveToken;
     public int RefreshToken;
@@ -81,16 +82,16 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
 
     public record EvtOnExit : EvtBase;
 
-    public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData) 
+    public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData)
         => symbolData.Pos.Match(
-            pos =>
-                from x in Enumerable.Range(pos.X - 1, pos.X + 1)
-                from y in Enumerable.Range(pos.Y - 1, pos.Y + 1)
-                where x is >= Const.SpinFirstID and <= Const.SpinW
-                where y is >= Const.SpinFirstID and <= Const.SpinH
-                where !(x == pos.X && y == pos.Y)
-                select SymbolShownListSorted.FirstOrDefault(xs => xs.Pos.Match(some => some.X == x && some.Y == y, RFalse)),
-            () => []).Where(x => x != null);
+            thisPos => SymbolShownListSorted.
+                Where(other => other.Pos.Match(
+                    otherPos => Math.Abs(otherPos.X - thisPos.X) <= 1 && 
+                                Math.Abs(otherPos.Y - thisPos.Y) <= 1 &&
+                                !(otherPos.X == thisPos.X && otherPos.Y == thisPos.Y),
+                RFalse)),
+            () => []);
+
 
     public MyOption<SymbolData> GetEmpty() => SymbolDeckList.MyFirst(s => s.IsEmpty);
 }
