@@ -17,13 +17,12 @@ public abstract class FSM<TThis> : IDisposable
     [JsonIgnore] static bool StateHasSubClass => typeof(IState).SubTypeList().Any();
     [JsonIgnore] readonly CancellationTokenSource cts = new();
     [JsonIgnore] protected CancellationToken CurCt => cts.Token;
-    [ShowInInspector, PropertyOrder(-10), LabelText(nameof(CurStateName))] protected IState? CurState;
+    [JsonIgnore, ShowInInspector, PropertyOrder(-10), LabelText(nameof(CurStateName))] protected IState? CurState;
     [JsonIgnore] string CurStateName => CurState?.GetType().Name ?? "Null";
-    bool isLaunched;
 
     protected async UniTask LaunchAsync(IState initState)
     {
-        if (isLaunched && initState != CurState)
+        if (CurState != null)
         {
             MyDebug.LogError($"FSM {GetType().Name} Has Already Launched");
             return;
@@ -33,22 +32,18 @@ public abstract class FSM<TThis> : IDisposable
     }
     protected void Release()
     {
-        if (!isLaunched)
+        if (CurState == null)
         {
             MyDebug.LogError($"FSM {GetType().Name} Release But NOT Launched");
             return;
         }
-        isLaunched = false;
-        if (CurState != null)
-        {
-            CurState.OnExit();
-            CurState = null;
-        }
+        CurState.OnExit();
+        CurState = null;
         cts.Cancel();
     }
-    public async UniTask EnterStateAsync<TState>(TState stateData) where TState : IState
+    public async UniTask EnterStateAsync<TState>(TState newState) where TState : IState
     {
-        if (CurState != null && isLaunched)
+        if (CurState != null)
         {
             if (CurState.GetType() == typeof(TState) && !CurState.EnableReEnter)
             {
@@ -57,13 +52,12 @@ public abstract class FSM<TThis> : IDisposable
             }
             CurState.OnExit();
         }
-        MyDebug.Log($"{GetType().GetNiceName()} Enter{stateData.GetType().GetNiceName()}");
+        MyDebug.Log($"{GetType().GetNiceName()} Enter{newState.GetType().GetNiceName()}");
         
-        CurState = stateData;
+        CurState = newState;
         CurState.BelongFSM = (TThis)this;
         CurState.RegisterAll();
         await CurState.OnEnterAsync();
-        isLaunched = true;
     }
     [DebuggerStepThrough]
     public MyOption<TState> InState<TState>() => CurState is TState state ? state : None;

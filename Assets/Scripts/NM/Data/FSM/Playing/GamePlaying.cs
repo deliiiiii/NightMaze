@@ -18,6 +18,7 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
 
     [EvtChanged]
     public partial long Coin {get;set;}
+    // 源生↓↓↓
     // public long Coin
     // {
     //     get;
