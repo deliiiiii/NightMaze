@@ -11,7 +11,7 @@ using Sirenix.Utilities;
 using UnityEngine;
 
 namespace GeneralPreview;
-public abstract class FSM<TThis> : IDisposable
+public abstract record FSM<TThis> : IDisposable
     where TThis : FSM<TThis>
 {
     [JsonIgnore] static bool StateHasSubClass => typeof(IState).SubTypeList().Any();
@@ -73,7 +73,7 @@ public abstract class FSM<TThis> : IDisposable
         void RegisterAll(){}
     }
     [Serializable]
-    public abstract class StateFSM<TSub> : FSM<TSub>, IState
+    public abstract record StateFSM<TSub> : FSM<TSub>, IState
         where TSub : StateFSM<TSub>
     {
         [field: JsonIgnore, NonSerialized] public TThis BelongFSM { get; set; } = null!;

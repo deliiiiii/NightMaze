@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 
 namespace NM.Data;
 
-public partial class GamePlaying
+public partial record GamePlaying
 {
     public record ActSymbolAddSymbol : UniAction
     {

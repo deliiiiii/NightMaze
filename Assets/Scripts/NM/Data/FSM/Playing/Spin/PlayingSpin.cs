@@ -9,7 +9,7 @@ using Sirenix.Utilities;
 namespace NM.Data;
 
 [Serializable]
-public partial class PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
+public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 {
     public List<UniAction> DelayAddList = [];
     public List<UniAction> DelayDestroyList = [];

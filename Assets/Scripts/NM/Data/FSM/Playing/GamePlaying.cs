@@ -9,7 +9,7 @@ using GeneralPreview;
 namespace NM.Data;
 
 [Serializable]
-public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
+public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
 {
     public override string ToString() => nameof(GamePlaying);
     public string PlayerName = "Deli";

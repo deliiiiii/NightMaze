@@ -3,7 +3,7 @@ using GeneralPreview;
 
 namespace NM.Data;
 
-public partial class GameRoot : FSM<GameRoot>
+public partial record GameRoot : FSM<GameRoot>
 {
     public static readonly GameRoot Root = new();
     public UniTask LaunchAsync() => base.LaunchAsync(new GameTitle());

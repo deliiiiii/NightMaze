@@ -2,7 +2,7 @@
 
 namespace NM.Data;
 
-public partial class GamePlaying 
+public partial record GamePlaying 
 {
     public record EvtClickSpin : EvtBase;
 

@@ -3,4 +3,4 @@
 namespace NM.Data;
 
 [Serializable]
-public class PlayingIdle : GamePlaying.StateFSM<PlayingIdle>;
+public partial record PlayingIdle : GamePlaying.StateFSM<PlayingIdle>;
