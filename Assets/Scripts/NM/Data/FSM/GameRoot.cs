@@ -6,5 +6,5 @@ namespace NM.Data;
 public partial record GameRoot : FSM<GameRoot>
 {
     public static readonly GameRoot Root = new();
-    public UniTask LaunchAsync() => base.LaunchAsync(new GameTitle());
+    public UniTask LaunchAsync() => base.LaunchAsync(new GameTitle(), false);
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using General;
 using GeneralPreview;
@@ -30,17 +31,9 @@ public class SymbolData : DataBase<SymbolData>
         AddCom(SymbolC2Com.Create(Config));
     }
     [JsonConstructor]
-    SymbolData(){}
-
-    public static Comparison<SymbolData> ByPos => (s1, s2) =>
-    {
-        var p1 = s1.Pos.Match(Rid, () => new Vector2Int(int.MaxValue, int.MaxValue));
-        var p2 = s2.Pos.Match(Rid, () => new Vector2Int(int.MaxValue, int.MaxValue));
-        return p1.X != p2.X ? p1.X - p2.X : p1.Y - p2.Y;
-    };
-    public static SymbolData CreateEmpty() => Create(-1);
-    public static SymbolData Create(int id) => new(id);
-    
+    [DebuggerStepThrough] SymbolData(){}
+    public static Func<SymbolData> CreateEmpty => () => Create(-1);
+    public static Func<int, SymbolData> Create => id => new SymbolData(id);
     public MyOption<Vector2Int> Pos = None;
     public bool AlreadyChecked;
     public readonly List<int> TempAdd = [];

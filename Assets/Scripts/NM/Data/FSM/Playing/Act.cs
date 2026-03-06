@@ -28,7 +28,7 @@ public partial record GamePlaying
 
         protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            foreach (var symbol in Ctx.SymbolDeckList.ToList())
+            foreach (var symbol in Ctx.symbolDeckList.ToList())
             {
                 await new ActRemoveSymbol{ Ctx = Ctx, ToRemove = symbol, ShouldAddEmpty = false};
             }
@@ -40,11 +40,11 @@ public partial record GamePlaying
         public required SymbolData ToAdd;
         protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            Ctx.SymbolDeckList.Add(ToAdd);
+            Ctx.symbolDeckList.Add(ToAdd);
             await new ActShowSymbolRandomly { Symbol = ToAdd, Ctx = Ctx };
-            if(Ctx.SymbolDeckList.Count > Ctx.DeckMax)
+            if(Ctx.symbolDeckList.Count > Ctx.DeckMax)
             {
-                await Ctx.GetEmptyWhere(s => s.Pos == ToAdd.Pos).MatchAsync(async some =>
+                await Ctx.symbolDeckList.MyFirst(s => s.IsEmpty && s.Pos == ToAdd.Pos).MatchAsync(async some =>
                 {
                     await new ActRemoveSymbol { ToRemove = some, Ctx = Ctx, ShouldAddEmpty = false};
                 }, RTask);
@@ -59,9 +59,9 @@ public partial record GamePlaying
         public required bool ShouldAddEmpty;
         protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            Ctx.SymbolDeckList.Remove(ToRemove);
+            Ctx.symbolDeckList.Remove(ToRemove);
             ToRemove.Dispose();
-            if (Ctx.SymbolDeckList.Count < Ctx.DeckMax && ShouldAddEmpty)
+            if (Ctx.symbolDeckList.Count < Ctx.DeckMax && ShouldAddEmpty)
             {
                 await new ActAddSymbol() { ToAdd = SymbolData.CreateEmpty(), Ctx = Ctx };
             }
@@ -73,7 +73,7 @@ public partial record GamePlaying
         public required SymbolData Symbol;
         protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            await Ctx.SymbolShownListSorted
+            await Ctx.SymbolShownSorted
                 .Where(s => s.IsEmpty)
                 .SelectMany(s => s.Pos.Match(some => [some], Enumerable.Empty<Vector2Int>))
                 .ToList()

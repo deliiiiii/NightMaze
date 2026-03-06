@@ -17,17 +17,16 @@ public abstract record FSM<TThis> : IDisposable
     [JsonIgnore] static bool StateHasSubClass => typeof(IState).SubTypeList().Any();
     [JsonIgnore] readonly CancellationTokenSource cts = new();
     [JsonIgnore] protected CancellationToken CurCt => cts.Token;
-    [JsonIgnore, ShowInInspector, PropertyOrder(-10), LabelText(nameof(CurStateName))] protected IState? CurState;
     [JsonIgnore] string CurStateName => CurState?.GetType().Name ?? "Null";
-
-    protected async UniTask LaunchAsync(IState initState)
+    [ShowInInspector, PropertyOrder(-10), LabelText(nameof(CurStateName))] protected IState? CurState;
+    protected async UniTask LaunchAsync(IState initState, bool isCurStateFromLoad)
     {
         if (CurState != null)
         {
             MyDebug.LogError($"FSM {GetType().Name} Has Already Launched");
             return;
         }
-        await EnterStateAsync(initState);
+        await EnterStateAsync(initState, isCurStateFromLoad);
         Binder.FromTick(Tick).Bind(CurCt);
     }
     protected void Release()
@@ -41,7 +40,7 @@ public abstract record FSM<TThis> : IDisposable
         CurState = null;
         cts.Cancel();
     }
-    public async UniTask EnterStateAsync<TState>(TState newState) where TState : IState
+    public async UniTask EnterStateAsync<TState>(TState newState, bool isCurStateFromLoad) where TState : IState
     {
         if (CurState != null)
         {
@@ -52,21 +51,22 @@ public abstract record FSM<TThis> : IDisposable
             }
             CurState.OnExit();
         }
-        MyDebug.Log($"{GetType().GetNiceName()} Enter{newState.GetType().GetNiceName()}");
+        MyDebug.Log($"{GetType().GetNiceName()} Enter{newState.GetType().GetNiceName()} IsLaunch :{CurState == null}");
         
         CurState = newState;
         CurState.BelongFSM = (TThis)this;
         CurState.RegisterAll();
-        await CurState.OnEnterAsync();
+        await CurState.OnEnterAsync(isCurStateFromLoad);
     }
     [DebuggerStepThrough]
     public MyOption<TState> InState<TState>() => CurState is TState state ? state : None;
+    public bool IsState<TState>() => CurState is TState;
     void Tick(float dt) => CurState?.OnUpdate(dt);
 
     public interface IState
     {
         TThis BelongFSM { get; set; }
-        UniTask OnEnterAsync() => UniTask.CompletedTask;
+        UniTask OnEnterAsync(bool isThisFromLoad) => UniTask.CompletedTask;
         void OnExit(){}
         void OnUpdate(float dt){}
         bool EnableReEnter => true;
@@ -76,9 +76,10 @@ public abstract record FSM<TThis> : IDisposable
     public abstract record StateFSM<TSub> : FSM<TSub>, IState
         where TSub : StateFSM<TSub>
     {
+        public override int GetHashCode() => base.GetHashCode();
         [field: JsonIgnore, NonSerialized] public TThis BelongFSM { get; set; } = null!;
-        UniTask FSM<TThis>.IState.OnEnterAsync() => OnEnterAsync();
-        protected virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
+        UniTask FSM<TThis>.IState.OnEnterAsync(bool isThisFromLoad) => OnEnterAsync(isThisFromLoad);
+        protected virtual UniTask OnEnterAsync(bool isThisFromLoad) => UniTask.CompletedTask;
         void FSM<TThis>.IState.OnExit() => OnExit();
         protected virtual void OnExit(){}
         void FSM<TThis>.IState.OnUpdate(float dt) => OnUpdate(dt);

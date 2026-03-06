@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 
 namespace GeneralPreview;
@@ -9,13 +10,13 @@ public static class ListExt
     // public static int RandomIndexWeighted(this List<int> list, Random seed = null)
     //     => list.IndexOf(list.RandomItemWeighted(weightFunc: x => x, filter: null, seed: seed));
     
-    extension<T>(List<T> list)
+    extension<T>(List<T> self)
     {
         public MyOption<T> RandomItem(
             List<int> weightList,
             Func<T, bool>? filter = null,
             Random? seed = null)
-            => list.RandomItemWeighted(x => weightList[list.IndexOf(x)], filter, seed);
+            => self.RandomItemWeighted(x => weightList[self.IndexOf(x)], filter, seed);
 
         public MyOption<T> RandomItem(
             Func<T, int>? weightFunc = null, 
@@ -24,8 +25,8 @@ public static class ListExt
         {
             filter ??= _ => true;
             if (weightFunc != null)
-                return list.RandomItemWeighted(weightFunc, filter, seed);
-            var fList = list.Where(filter).ToList();
+                return self.RandomItemWeighted(weightFunc, filter, seed);
+            var fList = self.Where(filter).ToList();
             if(fList.Count == 0)
                 return None;
             return fList[seed?.Next(0, fList.Count) ?? UnityEngine.Random.Range(0, fList.Count)];
@@ -37,7 +38,7 @@ public static class ListExt
             Random? seed = null)
         {
             filter ??= _ => true;
-            var fList = list.Where(filter).ToList();
+            var fList = self.Where(filter).ToList();
             if (fList.Count == 0)
                 return None;
     
@@ -59,7 +60,23 @@ public static class ListExt
 
         public List<T> ShuffleTo(Random? seed = null)
         {
-            var shuffledList = list.ToList();
+            var shuffledList = self.ToList();
+            var n = shuffledList.Count;
+            seed ??= new Random();
+            while (n > 1)
+            {
+                var k = seed.Next(n--);
+                (shuffledList[n], shuffledList[k]) = (shuffledList[k], shuffledList[n]);
+            }
+            return shuffledList;
+        }
+    }
+
+    extension<T>(ImmutableList<T> self)
+    {
+        public List<T> ShuffleTo(Random? seed = null)
+        {
+            var shuffledList = self.ToList();
             var n = shuffledList.Count;
             seed ??= new Random();
             while (n > 1)

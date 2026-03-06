@@ -107,7 +107,7 @@ public class PlayView : ViewBase
     void RefreshAll(GamePlaying ctx)
     {
         SetAllSymbolEmpty();
-        ctx.SymbolDeckList.ForEach(s =>
+        ctx.SymbolDeck.ForEach(s =>
         {
             s.Pos.MatchA(some => SetSymbolAt(s, some));
         });

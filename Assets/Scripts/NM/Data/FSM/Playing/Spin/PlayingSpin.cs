@@ -14,9 +14,9 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
     public List<UniAction> DelayAddList = [];
     public List<UniAction> DelayDestroyList = [];
 
-    protected override async UniTask OnEnterAsync()
+    protected override async UniTask OnEnterAsync(bool isThisFromLoad)
     {
-        BelongFSM.SymbolDeckList.ForEach(s =>
+        BelongFSM.SymbolDeck.ForEach(s =>
         {
             s.AlreadyChecked = false;
             s.TempAdd.Clear();
@@ -24,10 +24,10 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         });
         
         await Bus.FireAsync(new EvtOnEnter(this), CurCt);
-        BelongFSM.SymbolDeckList.Where(s => s.Pos.IsSome).ForEach(s => s.Pos = None);
-        foreach (var toShow in BelongFSM.SymbolDeckList.ShuffleTo())
+        BelongFSM.SymbolDeck.Where(s => s.Pos.IsSome).ForEach(s => s.Pos = None);
+        foreach (var toShow in BelongFSM.SymbolDeck.ShuffleTo())
         {
-            var shownCount = BelongFSM.SymbolShownListSorted.Count;
+            var shownCount = BelongFSM.SymbolShownSorted.Count;
             if(shownCount == Const.SpinW * Const.SpinH)
                 break;
             var addX = shownCount / Const.SpinH + 1;
@@ -43,7 +43,7 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         do
         {
             DelayAddList.Clear();
-            foreach (var symbol in BelongFSM.SymbolShownListSorted.Where(s => !s.AlreadyChecked))
+            foreach (var symbol in BelongFSM.SymbolShownSorted.Where(s => !s.AlreadyChecked))
             {
                 symbol.AlreadyChecked = true;
                 await Bus.FireAsync(new EvtImmediateDoSymbol(symbol), CurCt);
@@ -60,14 +60,14 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         } while (DelayAddList.Count != 0);
 
         
-        foreach (var symbol in BelongFSM.SymbolShownListSorted)
+        foreach (var symbol in BelongFSM.SymbolShownSorted)
         {
             var pay = symbol.GetUltimateGive();
             await Bus.FireAsync(new EvtPay(symbol, pay), CurCt);
             BelongFSM.Coin += pay;
         }
         MyDebug.Log("Spin End");
-        await BelongFSM.EnterStateAsync(new PlayingIdle());
+        await BelongFSM.EnterStateAsync(new PlayingIdle(), false);
     }
     
     

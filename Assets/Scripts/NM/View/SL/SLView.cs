@@ -40,6 +40,8 @@ public class SLView : ViewBase
     {
         Invoke = async (evt, ct) =>
         {
+            if (!GameRoot.Root.IsState<GameTitle>())
+                return;
             gameObject.SetActive(true);
             curSelected = null;
             tranContent.ClearChildren();
@@ -72,7 +74,7 @@ public class SLView : ViewBase
         Invoke = async (evt, ct) =>
         {
             gameObject.SetActive(false);
-            await GameRoot.Root.EnterStateAsync(evt.Data);
+            await GameRoot.Root.EnterStateAsync(evt.Data, true);
         },
         Des = "(点击了加载按钮) 尝试进入游戏状态"
     };

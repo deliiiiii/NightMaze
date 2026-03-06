@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Diagnostics;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
@@ -14,10 +13,9 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public override string ToString() => nameof(GamePlaying);
     public string PlayerName = "Deli";
     public double PlayTime;
-    public List<SymbolData> SymbolDeckList = [];
-
-    [EvtChanged]
-    public partial long Coin {get;set;}
+    List<SymbolData> symbolDeckList = [];
+    public ImmutableList<SymbolData> SymbolDeck => symbolDeckList.ToImmutableList();
+    [EvtChanged] public partial long Coin {get;set;}
     // 源生↓↓↓
     // public long Coin
     // {
@@ -35,60 +33,52 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public int NextRentCount;
     public int SpinCount;
     public int DeckMax = 20;
-
-    public ImmutableList<SymbolData> SymbolShownListSorted =>
-        SymbolDeckList
+    
+    public ImmutableList<SymbolData> SymbolShownSorted =>
+        symbolDeckList
             .Where(s => s.Pos.IsSome)
             .OrderBy(s => s.Pos.Match(pos => pos, () => Vector2Int.MaxValue))
             .ToImmutableList();
-
-    protected override async UniTask OnEnterAsync()
+    public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData)
+        => symbolData.Pos.Match(
+            thisPos => SymbolShownSorted.
+                Where(other => other.Pos.Match(
+                    otherPos => Math.Abs(otherPos.X - thisPos.X) <= 1 && 
+                                Math.Abs(otherPos.Y - thisPos.Y) <= 1 &&
+                                !(otherPos.X == thisPos.X && otherPos.Y == thisPos.Y),
+                    RFalse)),
+            () => []);
+    
+    protected override async UniTask OnEnterAsync(bool isThisFromLoad)
     {
-        if (CurState == null)
+        if (!isThisFromLoad)
         {
-            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(0) };
-            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
-            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
-            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
-            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(1) };
-            await new ActAddSymbol { Ctx = this, ToAdd = SymbolData.Create(2) };
-            while (SymbolDeckList.Count < DeckMax)
-            {
-                await new ActAddSymbol { ToAdd = SymbolData.CreateEmpty(), Ctx = this };
-            }
+            symbolDeckList = [
+                SymbolData.Create(0),
+                SymbolData.Create(1),
+                SymbolData.Create(1),
+                SymbolData.Create(1),
+                SymbolData.Create(1),
+                SymbolData.Create(2), 
+                .. SymbolData.CreateEmpty.Repeat(DeckMax - symbolDeckList.Count)
+            ];
         }
-        else
-        {
-            SymbolDeckList.ForEach(s => s.BindAll());
-        }
+        symbolDeckList.ForEach(s => s.BindAll());
         await Bus.FireAsync(new EvtOnEnter(this), CurCt);
-        await LaunchAsync(CurState ?? new PlayingIdle());
+        await LaunchAsync(CurState ?? new PlayingIdle(), CurState != null);
     }
     public record EvtOnEnter(GamePlaying Ctx) : EvtBase;
     protected override void OnExit()
     {
         Release();
         Bus.FireAndForget(new EvtOnExit());
-        new ActClearDeck{ Ctx = this }.Forget();
+        symbolDeckList.ForEach(s => s.Dispose());
+        // new ActClearDeck{ Ctx = this }.Forget();
     }
+    public record EvtOnExit : EvtBase;
     protected override void OnUpdate(float dt)
     {
         base.OnUpdate(dt);
         PlayTime += dt;
     }
-
-    public record EvtOnExit : EvtBase;
-
-    public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData)
-        => symbolData.Pos.Match(
-            thisPos => SymbolShownListSorted.
-                Where(other => other.Pos.Match(
-                    otherPos => Math.Abs(otherPos.X - thisPos.X) <= 1 && 
-                                Math.Abs(otherPos.Y - thisPos.Y) <= 1 &&
-                                !(otherPos.X == thisPos.X && otherPos.Y == thisPos.Y),
-                RFalse)),
-            () => []);
-
-    [DebuggerStepThrough]
-    public MyOption<SymbolData> GetEmptyWhere(Func<SymbolData, bool> condition) => SymbolDeckList.MyFirst(s => s.IsEmpty && condition(s));
 }
