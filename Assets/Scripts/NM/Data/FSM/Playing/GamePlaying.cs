@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
@@ -33,17 +35,11 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
     public int SpinCount;
     public int DeckMax = 20;
 
-    public List<SymbolData> SymbolShownListSorted
-    {
-        get
-        {
-            var ret = SymbolDeckList
-                .Where(s => s.Pos.Match(_ => true, RFalse))
-                .ToList();
-            ret.Sort(SymbolData.ByPos);
-            return ret;
-        }
-    }
+    public ImmutableList<SymbolData> SymbolShownListSorted =>
+        SymbolDeckList
+            .Where(s => s.Pos.IsSome)
+            .OrderBy(s => s.Pos.Match(pos => pos, () => Vector2Int.MaxValue))
+            .ToImmutableList();
 
     protected override async UniTask OnEnterAsync()
     {
@@ -92,6 +88,6 @@ public partial class GamePlaying : GameRoot.StateFSM<GamePlaying>
                 RFalse)),
             () => []);
 
-
-    public MyOption<SymbolData> GetEmpty() => SymbolDeckList.MyFirst(s => s.IsEmpty);
+    [DebuggerStepThrough]
+    public MyOption<SymbolData> GetEmptyWhere(Func<SymbolData, bool> condition) => SymbolDeckList.MyFirst(s => s.IsEmpty && condition(s));
 }

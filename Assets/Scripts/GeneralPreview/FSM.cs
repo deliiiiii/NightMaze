@@ -96,17 +96,11 @@ public abstract class FSM<TThis> : IDisposable
     
     public abstract record UniAction
     {
-        [HideInInspector]
-        public required TThis Ctx;
-        [ShowInInspector]
-        public abstract string Des { get; }
-        protected abstract UniTask InvokeAsync(CancellationToken ct);
-
-        public UniTask.Awaiter GetAwaiter()
-        {
-            return InvokeAsync(Ctx.CurCt).GetAwaiter();
-        }
-        public void Forget() => InvokeAsync(CancellationToken.None).Forget();
+        [HideInInspector] public required TThis Ctx;
+        [ShowInInspector] public abstract string Des { get; }
+        [DebuggerStepThrough] protected abstract UniTask InvokeAsync(CancellationToken ct);
+        [DebuggerStepThrough] public UniTask.Awaiter GetAwaiter() => InvokeAsync(Ctx.CurCt).GetAwaiter();
+        [DebuggerStepThrough] public void Forget() => InvokeAsync(CancellationToken.None).Forget();
     }
 
     public void Dispose() => Release();

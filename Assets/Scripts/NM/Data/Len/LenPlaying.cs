@@ -9,8 +9,14 @@ namespace NM.Data;
 public class LenPlaying : MonoBehaviour
 {
     [ShowInInspector] public static MyOption<GamePlaying> Playing => Root.InState<GamePlaying>();
-    [Button]
     public void Save() => Playing.MatchA(some => Saver.Save(NameC.SlotFolder, some.PlayerName, some));
+
+    [Button]
+    public void AddPosIsNull(int id) => Playing.MatchA(some => new GamePlaying.ActAddSymbol
+    {
+        ToAdd = SymbolData.Create(id),
+        Ctx = some
+    }.Forget());
     [ShowInInspector]
     public List<PlayingSpin.UniAction> DelayDo
     {

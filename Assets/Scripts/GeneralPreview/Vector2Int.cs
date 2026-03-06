@@ -2,7 +2,7 @@
 
 namespace GeneralPreview;
 
-public record struct Vector2Int(int X, int Y)
+public record struct Vector2Int(int X, int Y) : IComparable<Vector2Int>
 {
     public int X = X;
     public int Y = Y;
@@ -15,8 +15,10 @@ public record struct Vector2Int(int X, int Y)
         if (len == 0) return new Vector2Int(0, 0);
         return new Vector2Int((int)(X / len), (int)(Y / len));
     }
-    public static Vector2Int Zero => new Vector2Int(0, 0);
-    public static Vector2Int One => new Vector2Int(1, 1);
+    public static Vector2Int Zero = new (0, 0);
+    public static Vector2Int One = new (1, 1);
+    public static Vector2Int MaxValue = new (int.MaxValue, int.MaxValue);
+    public static Vector2Int MinValue = new (int.MinValue, int.MinValue);
     
     public static Vector2Int operator +(Vector2Int a, Vector2Int b)
     {
@@ -42,5 +44,11 @@ public record struct Vector2Int(int X, int Y)
     public override string ToString()
     {
         return $"({X}, {Y})";
+    }
+
+    public int CompareTo(Vector2Int other)
+    {
+        var xComparison = X.CompareTo(other.X);
+        return xComparison != 0 ? xComparison : Y.CompareTo(other.Y);
     }
 }

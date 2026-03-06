@@ -19,6 +19,7 @@ public abstract class DataBase<TThis> : IDisposable
     {
         foreach (var com in comDic.Values)
         {
+            com.BelongData = (TThis)this;
             com.Bind();
         }
     }
@@ -66,7 +67,7 @@ public abstract class DataBase<TThis> : IDisposable
     
     public abstract class ComBase : IDisposable
     {
-        [HideInInspector] public required TThis BelongData { get; set; }
+        [HideInInspector][field: JsonIgnore] public required TThis BelongData { get; set; }
         [HideInInspector, JsonIgnore] readonly CancellationTokenSource cts = new();
         public void Bind()
         {

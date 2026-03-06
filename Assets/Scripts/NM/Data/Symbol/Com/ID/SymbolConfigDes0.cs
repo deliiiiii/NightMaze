@@ -16,12 +16,6 @@ public class SymbolConfigDes0 : SymbolData.ConfigDesBase<SymbolConfig0>
             var playCtx = spinCtx.BelongFSM;
             if (evt.Symbol == BelongData && evt.AdjacentSymbol.ConfigID == Config.TarID)
             {
-                // spinCtx.DelayAddList.Add(new GamePlaying.ActSymbolAddSymbol
-                // {
-                //     Ctx = evt.Ctx.BelongFSM,
-                //     Arg1 = evt.Symbol,
-                //     Arg2 = SymbolData.Create(Config.CreateID),
-                // });
                 spinCtx.DelayAddList.Add(new ActWrapper
                 {
                     Ctx = spinCtx,

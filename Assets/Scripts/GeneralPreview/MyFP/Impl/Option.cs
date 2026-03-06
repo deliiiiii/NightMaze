@@ -2,11 +2,14 @@
 using System.Diagnostics;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
+using Newtonsoft.Json;
 
 namespace GeneralPreview;
 [Serializable, ShowInInspector, HideReferenceObjectPicker]
+[JsonConverter(typeof(MyOptionJsonConverter))]
 public abstract record MyOption<T1>
 {
+    [DebuggerStepThrough]
     public static implicit operator MyOption<T1>(T1 some)
     {
         if(some is null)
@@ -14,6 +17,7 @@ public abstract record MyOption<T1>
         return new MySome<T1>(some);
     }
     public static readonly MyNone<T1> None = new();
+    [DebuggerStepThrough]
     public static implicit operator MyOption<T1>(Unit _) => None;
     public bool IsSome => this is MySome<T1>;
     [DebuggerStepThrough] public void MatchA(Action<T1>? some = null, Action? none = null)
@@ -76,11 +80,7 @@ public abstract record MyOption<T1>
         Bind(a => f(a).Map(b => s(a, b)));
 }
 [DebuggerStepThrough][Serializable]
-public record MySome<T>(T Value) : MyOption<T>
-{
-    [ShowInInspector]
-    public T Value { get; init; } = Value;
-}
+public record MySome<T>([property: ShowInInspector] T Value) : MyOption<T>;
 
 [DebuggerStepThrough][Serializable]
 public record MyNone<T> : MyOption<T>;

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using General;
 using GeneralPreview;
 using Sirenix.OdinInspector;
 
@@ -40,14 +41,15 @@ public partial class GamePlaying
         protected override async UniTask InvokeAsync(CancellationToken ct)
         {
             Ctx.SymbolDeckList.Add(ToAdd);
+            await new ActShowSymbolRandomly { Symbol = ToAdd, Ctx = Ctx };
             if(Ctx.SymbolDeckList.Count > Ctx.DeckMax)
             {
-                await Ctx.GetEmpty().MatchAsync(async some =>
+                await Ctx.GetEmptyWhere(s => s.Pos == ToAdd.Pos).MatchAsync(async some =>
                 {
-                    await new ActRemoveSymbol { ToRemove = some, Ctx = Ctx, ShouldAddEmpty = true};
+                    await new ActRemoveSymbol { ToRemove = some, Ctx = Ctx, ShouldAddEmpty = false};
                 }, RTask);
             }
-            await new ActShowSymbolRandomly { Symbol = ToAdd, Ctx = Ctx };
+            
         }
     }
     public record ActRemoveSymbol : UniAction
@@ -86,7 +88,6 @@ public partial class GamePlaying
         public required Vector2Int Pos;
         protected override async UniTask InvokeAsync(CancellationToken ct)
         {
-            Ctx.SymbolShownListSorted.Add(Symbol);
             Symbol.Pos = Pos;
             await Bus.FireAsync(new EvtShowSymbolAt(Ctx, Symbol, Pos), ct);
         }

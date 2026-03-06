@@ -59,9 +59,9 @@ namespace General
         static readonly JsonSerializerSettings settings = new()
         {
             Formatting = Formatting.Indented,
-            TypeNameHandling = TypeNameHandling.All,
+            TypeNameHandling = TypeNameHandling.Auto,
             ContractResolver = new PrivateFieldsContractResolver(),
-            PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+            PreserveReferencesHandling = PreserveReferencesHandling.None,
         };
         public static void Write<T>(string pathPre, string name, T obj)
         {
