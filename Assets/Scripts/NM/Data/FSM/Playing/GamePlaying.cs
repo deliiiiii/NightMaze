@@ -53,7 +53,8 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     {
         if (!isThisFromLoad)
         {
-            symbolDeckList = [
+            symbolDeckList = 
+            [
                 SymbolData.Create(0),
                 SymbolData.Create(1),
                 SymbolData.Create(1),

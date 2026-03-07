@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
@@ -9,6 +10,13 @@ namespace NM.Data;
 
 public partial record GamePlaying
 {
+    [Obsolete("符号添加符号")]
+    async UniTask SymbolAddSymbolAsync(SymbolData subjectSymbol, SymbolData addedSymbol, CancellationToken ct)
+    {
+        await new ActAddSymbol{Ctx = this, ToAdd = addedSymbol};
+        await Bus.FireAsync(new EvtSymbolAddSymbol(subjectSymbol, addedSymbol), ct);
+    }
+    
     public record ActSymbolAddSymbol : UniAction
     {
         public override string Des => "符号添加符号";

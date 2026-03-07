@@ -58,45 +58,51 @@ public abstract record FSM<TThis> : IDisposable
         CurState.RegisterAll();
         await CurState.OnEnterAsync(isCurStateFromLoad);
     }
-    [DebuggerStepThrough]
-    public MyOption<TState> InState<TState>() => CurState is TState state ? state : None;
-    public bool IsState<TState>() => CurState is TState;
-    void Tick(float dt) => CurState?.OnUpdate(dt);
+    [DebuggerStepThrough] public MyOption<TState> InState<TState>() => CurState is TState state ? state : None;
+    [DebuggerStepThrough] public bool IsState<TState>() => CurState is TState;
+    [DebuggerStepThrough] void Tick(float dt) => CurState?.OnUpdate(dt);
 
     public interface IState
     {
         TThis BelongFSM { get; set; }
         UniTask OnEnterAsync(bool isThisFromLoad) => UniTask.CompletedTask;
-        void OnExit(){}
-        void OnUpdate(float dt){}
+        [DebuggerStepThrough] void OnExit(){}
+        [DebuggerStepThrough] void OnUpdate(float dt){}
         bool EnableReEnter => true;
-        void RegisterAll(){}
+        [DebuggerStepThrough] void RegisterAll(){}
     }
     [Serializable]
     public abstract record StateFSM<TSub> : FSM<TSub>, IState
         where TSub : StateFSM<TSub>
     {
-        public override int GetHashCode() => base.GetHashCode();
+        [DebuggerStepThrough] public override int GetHashCode() => base.GetHashCode();
         [field: JsonIgnore, NonSerialized] public TThis BelongFSM { get; set; } = null!;
-        UniTask FSM<TThis>.IState.OnEnterAsync(bool isThisFromLoad) => OnEnterAsync(isThisFromLoad);
-        protected virtual UniTask OnEnterAsync(bool isThisFromLoad) => UniTask.CompletedTask;
-        void FSM<TThis>.IState.OnExit() => OnExit();
-        protected virtual void OnExit(){}
-        void FSM<TThis>.IState.OnUpdate(float dt) => OnUpdate(dt);
-        protected virtual void OnUpdate(float dt){}
+        [DebuggerStepThrough] UniTask FSM<TThis>.IState.OnEnterAsync(bool isThisFromLoad) => OnEnterAsync(isThisFromLoad);
+        [DebuggerStepThrough] protected virtual UniTask OnEnterAsync(bool isThisFromLoad) => UniTask.CompletedTask;
+        [DebuggerStepThrough] void FSM<TThis>.IState.OnExit() => OnExit();
+        [DebuggerStepThrough] protected virtual void OnExit(){}
+        [DebuggerStepThrough] void FSM<TThis>.IState.OnUpdate(float dt) => OnUpdate(dt);
+        [DebuggerStepThrough] protected virtual void OnUpdate(float dt){}
         bool FSM<TThis>.IState.EnableReEnter => EnableReEnter;
         protected virtual bool EnableReEnter => true;
-        void FSM<TThis>.IState.RegisterAll() => IUniEvt.BindAll(this, CurCt);
+        [DebuggerStepThrough] void FSM<TThis>.IState.RegisterAll() => IUniEvt.BindAll(this, CurCt);
     }
     
-    public abstract record UniAction
+    public abstract record UniAction : IUniAction
     {
-        [HideInInspector] public required TThis Ctx;
+        [HideInInspector, JsonIgnore] public required TThis Ctx;
         [ShowInInspector] public abstract string Des { get; }
+        [DebuggerStepThrough] UniTask IUniAction.InvokeAsync(CancellationToken ct) => InvokeAsync(ct);
         [DebuggerStepThrough] protected abstract UniTask InvokeAsync(CancellationToken ct);
         [DebuggerStepThrough] public UniTask.Awaiter GetAwaiter() => InvokeAsync(Ctx.CurCt).GetAwaiter();
         [DebuggerStepThrough] public void Forget() => InvokeAsync(CancellationToken.None).Forget();
     }
 
     public void Dispose() => Release();
+}
+
+public interface IUniAction
+{
+    string Des { get; }
+    UniTask InvokeAsync(CancellationToken ct);
 }
