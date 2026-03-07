@@ -11,7 +11,7 @@ public class LenPlaying : MonoBehaviour
     [ShowInInspector] public static MyOption<GamePlaying> Playing => Root.InState<GamePlaying>();
     public void Save() => Playing.MatchA(some => Saver.Save(NameC.SlotFolder, some.PlayerName, some));
     [ShowInInspector]
-    public List<PlayingSpin.UniAction> DelayDo
+    public List<IUniAction> DelayDo
     {
         get
         {

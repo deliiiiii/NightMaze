@@ -11,8 +11,10 @@ namespace NM.Data;
 [Serializable]
 public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 {
-    public List<UniAction> DelayAddList = [];
-    public List<UniAction> DelayDestroyList = [];
+    public override string ToString() => nameof(PlayingSpin);
+
+    public List<IUniAction> DelayAddList = [];
+    public List<IUniAction> DelayDestroyList = [];
 
     protected override async UniTask OnEnterAsync(bool isThisFromLoad)
     {
@@ -36,7 +38,7 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
             {
                 Symbol = toShow,
                 Pos = new Vector2Int(addX, addY),
-                Ctx = BelongFSM
+                @this = BelongFSM
             };
         }
 
@@ -63,8 +65,14 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         foreach (var symbol in BelongFSM.SymbolShownSorted)
         {
             var pay = symbol.GetUltimateGive();
+            if(pay == 0)
+                continue;
             await Bus.FireAsync(new EvtPay(symbol, pay), CurCt);
-            BelongFSM.Coin += pay;
+            await new GamePlaying.ActSetCoin
+            {
+                Value = BelongFSM.Coin + pay,
+                @this = BelongFSM,
+            };
         }
         MyDebug.Log("Spin End");
         await BelongFSM.EnterStateAsync(new PlayingIdle(), false);

@@ -90,11 +90,12 @@ public abstract record FSM<TThis> : IDisposable
     
     public abstract record UniAction : IUniAction
     {
-        [HideInInspector, JsonIgnore] public required TThis Ctx;
-        [ShowInInspector] public abstract string Des { get; }
+        // ReSharper disable once InconsistentNaming
+        [HideInInspector, JsonIgnore] public required TThis @this;
+
         [DebuggerStepThrough] UniTask IUniAction.InvokeAsync(CancellationToken ct) => InvokeAsync(ct);
         [DebuggerStepThrough] protected abstract UniTask InvokeAsync(CancellationToken ct);
-        [DebuggerStepThrough] public UniTask.Awaiter GetAwaiter() => InvokeAsync(Ctx.CurCt).GetAwaiter();
+        [DebuggerStepThrough] public UniTask.Awaiter GetAwaiter() => InvokeAsync(@this.CurCt).GetAwaiter();
         [DebuggerStepThrough] public void Forget() => InvokeAsync(CancellationToken.None).Forget();
     }
 
@@ -103,6 +104,7 @@ public abstract record FSM<TThis> : IDisposable
 
 public interface IUniAction
 {
-    string Des { get; }
+    string ToString();
     UniTask InvokeAsync(CancellationToken ct);
+    UniTask.Awaiter GetAwaiter();
 }

@@ -15,7 +15,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public double PlayTime;
     List<SymbolData> symbolDeckList = [];
     public ImmutableList<SymbolData> SymbolDeck => symbolDeckList.ToImmutableList();
-    [EvtChanged] public partial long Coin {get;set;}
+    public long Coin { get; private set;}
     // 源生↓↓↓
     // public long Coin
     // {
@@ -27,7 +27,6 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     //     }
     // }
     // public record EvtCoinChanged(long Value): EvtBase;
-    
     public int RemoveToken;
     public int RefreshToken;
     public int NextRentCount;

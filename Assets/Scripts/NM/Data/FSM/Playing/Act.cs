@@ -2,120 +2,84 @@
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using General;
 using GeneralPreview;
-using Sirenix.OdinInspector;
 
 namespace NM.Data;
 
 public partial record GamePlaying
 {
     [Obsolete("符号添加符号")]
-    async UniTask SymbolAddSymbolAsync(SymbolData subjectSymbol, SymbolData addedSymbol, CancellationToken ct)
+    public async UniTask SymbolAddSymbolAsync(SymbolData subjectSymbol, SymbolData addedSymbol, CancellationToken ct)
     {
-        await new ActAddSymbol{Ctx = this, ToAdd = addedSymbol};
-        await Bus.FireAsync(new EvtSymbolAddSymbol(subjectSymbol, addedSymbol), ct);
+        await new ActAddSymbol{@this = this, ToAdd = addedSymbol};
     }
-    
-    public record ActSymbolAddSymbol : UniAction
+    [Obsolete("金币变化")]
+    public UniTask SetCoinAsync(long value, CancellationToken ct)
     {
-        public override string Des => "符号添加符号";
-        public required SymbolData Arg1, Arg2;
-
-        protected override async UniTask InvokeAsync(CancellationToken ct)
+        Coin = value;
+        return UniTask.CompletedTask;
+    }
+    [Obsolete("清空符号列表")]
+    public async UniTask ClearDeckAsync(CancellationToken ct)
+    {
+        foreach (var symbol in symbolDeckList.ToList())
         {
-            await new ActAddSymbol{Ctx = Ctx, ToAdd = Arg2};
-            await Bus.FireAsync(new EvtSymbolAddSymbol(Arg1, Arg2), ct);
+            await new ActRemoveSymbol{ @this = this, ToRemove = symbol, ShouldAddEmpty = false};
         }
     }
-    public record EvtSymbolAddSymbol(SymbolData Symbol, SymbolData AddedSymbol) : EvtBase;
-    
-    public record ActClearDeck : UniAction
+    [Obsolete("添加符号")]
+    public async UniTask AddSymbolAsync(SymbolData toAdd, CancellationToken ct)
     {
-        public override string Des => "清空符号列表";
-
-        protected override async UniTask InvokeAsync(CancellationToken ct)
+        symbolDeckList.Add(toAdd);
+        await new ActShowSymbolRandomly { Symbol = toAdd, @this = this };
+        if(symbolDeckList.Count > DeckMax)
         {
-            foreach (var symbol in Ctx.symbolDeckList.ToList())
+            await symbolDeckList.MyFirst(s => s.IsEmpty && s.Pos == toAdd.Pos).MatchAsync(async some =>
             {
-                await new ActRemoveSymbol{ Ctx = Ctx, ToRemove = symbol, ShouldAddEmpty = false};
-            }
+                await new ActRemoveSymbol { ToRemove = some, @this = this, ShouldAddEmpty = false};
+            }, RTask);
         }
     }
-    public record ActAddSymbol : UniAction
+    [Obsolete("移除符号")]
+    public async UniTask RemoveSymbolAsync(SymbolData toRemove, bool shouldAddEmpty, CancellationToken ct)
     {
-        public override string Des => "添加符号";
-        public required SymbolData ToAdd;
-        protected override async UniTask InvokeAsync(CancellationToken ct)
+        symbolDeckList.Remove(toRemove);
+        toRemove.Dispose();
+        if (symbolDeckList.Count < DeckMax && shouldAddEmpty)
         {
-            Ctx.symbolDeckList.Add(ToAdd);
-            await new ActShowSymbolRandomly { Symbol = ToAdd, Ctx = Ctx };
-            if(Ctx.symbolDeckList.Count > Ctx.DeckMax)
-            {
-                await Ctx.symbolDeckList.MyFirst(s => s.IsEmpty && s.Pos == ToAdd.Pos).MatchAsync(async some =>
-                {
-                    await new ActRemoveSymbol { ToRemove = some, Ctx = Ctx, ShouldAddEmpty = false};
-                }, RTask);
-            }
-            
+            await new ActAddSymbol { ToAdd = SymbolData.CreateEmpty(), @this = this };
         }
     }
-    public record ActRemoveSymbol : UniAction
+    [Obsolete("将符号显示在随机一个空位上")]
+    public async UniTask ShowSymbolRandomlyAsync(SymbolData symbol, CancellationToken ct)
     {
-        public override string Des => "移除符号";
-        public required SymbolData ToRemove;
-        public required bool ShouldAddEmpty;
-        protected override async UniTask InvokeAsync(CancellationToken ct)
-        {
-            Ctx.symbolDeckList.Remove(ToRemove);
-            ToRemove.Dispose();
-            if (Ctx.symbolDeckList.Count < Ctx.DeckMax && ShouldAddEmpty)
-            {
-                await new ActAddSymbol() { ToAdd = SymbolData.CreateEmpty(), Ctx = Ctx };
-            }
-        }
+        await SymbolShownSorted
+            .Where(s => s.IsEmpty)
+            .SelectMany(s => s.Pos.Match(some => [some], Enumerable.Empty<Vector2Int>))
+            .ToList()
+            .RandomItem()
+            .MatchAsync(async some => await new ActShowSymbolAt { Symbol = symbol, Pos = some, @this = this }, RTask);
     }
-    public record ActShowSymbolRandomly : UniAction
+    [Obsolete("将符号显示在某位置上")]
+    public UniTask ShowSymbolAtAsync(SymbolData symbol, Vector2Int pos, CancellationToken ct)
     {
-        public override string Des => "将符号显示在随机一个空位上";
-        public required SymbolData Symbol;
-        protected override async UniTask InvokeAsync(CancellationToken ct)
-        {
-            await Ctx.SymbolShownSorted
-                .Where(s => s.IsEmpty)
-                .SelectMany(s => s.Pos.Match(some => [some], Enumerable.Empty<Vector2Int>))
-                .ToList()
-                .RandomItem()
-                .MatchAsync(async some => await new ActShowSymbolAt { Symbol = Symbol, Pos = some, Ctx = Ctx }, RTask);
-        }
+        symbol.Pos = pos;
+        return UniTask.CompletedTask;
     }
-    public record ActShowSymbolAt : UniAction
-    {
-        public override string Des => "将符号显示在某位置上";
-        public required SymbolData Symbol;
-        public required Vector2Int Pos;
-        protected override async UniTask InvokeAsync(CancellationToken ct)
-        {
-            Symbol.Pos = Pos;
-            await Bus.FireAsync(new EvtShowSymbolAt(Ctx, Symbol, Pos), ct);
-        }
-    }
-    [TypeRegistryItem("符号显示在某位置时\t(SymbolData, Vector2Int)")]
-    public record EvtShowSymbolAt(GamePlaying Ctx, SymbolData Symbol, Vector2Int Pos) : EvtBase;
-    [TypeRegistryItem("某符号每旋转N次\t(SymbolData, int)")]
-    public record EvtSpinSymbolEverySpinN(SymbolData Symbol, int SpinCountN) : EvtBase;
-    [TypeRegistryItem("某符号消除某符号时\t(SymbolData, SymbolData)")]
-    public record EvtSpinSymbolDestroySymbol(SymbolData Symbol, SymbolData DestroyedSymbol) : EvtBase;
-    [TypeRegistryItem("某符号移除某符号时\t(SymbolData, SymbolData)")]
-    public record EvtSpinSymbolRemoveSymbol(SymbolData Symbol, SymbolData RemovedSymbol) : EvtBase;
-    [TypeRegistryItem("某符号临时加算时\t(SymbolData, int)")]
-    public record EvtSpinSymbolPayoutAddTemp(SymbolData Symbol, int Add) : EvtBase;
-    [TypeRegistryItem("某符号临时乘算时\t(SymbolData, int)")]
-    public record EvtSpinSymbolPayoutMulTemp(SymbolData Symbol, int Mul) : EvtBase;
-    [TypeRegistryItem("某符号永久加算时\t(SymbolData, int)")]
-    public record EvtSpinSymbolPayoutAddPermanent(SymbolData Symbol, int Add) : EvtBase;
-    [TypeRegistryItem("某符号积攒X时\t(SymbolData, int)")]
-    public record EvtSpinSymbolStock(SymbolData Symbol, int Stock) : EvtBase;
-    [TypeRegistryItem("玩家移除某符号时\t(SymbolData)")]
-    public record EvtSpinPlayerRemoveSymbol(SymbolData RemovedSymbol) : EvtBase;
+    // [TypeRegistryItem("某符号每旋转N次\t(SymbolData, int)")]
+    // public record EvtSpinSymbolEverySpinN(SymbolData Symbol, int SpinCountN) : EvtBase;
+    // [TypeRegistryItem("某符号消除某符号时\t(SymbolData, SymbolData)")]
+    // public record EvtSpinSymbolDestroySymbol(SymbolData Symbol, SymbolData DestroyedSymbol) : EvtBase;
+    // [TypeRegistryItem("某符号移除某符号时\t(SymbolData, SymbolData)")]
+    // public record EvtSpinSymbolRemoveSymbol(SymbolData Symbol, SymbolData RemovedSymbol) : EvtBase;
+    // [TypeRegistryItem("某符号临时加算时\t(SymbolData, int)")]
+    // public record EvtSpinSymbolPayoutAddTemp(SymbolData Symbol, int Add) : EvtBase;
+    // [TypeRegistryItem("某符号临时乘算时\t(SymbolData, int)")]
+    // public record EvtSpinSymbolPayoutMulTemp(SymbolData Symbol, int Mul) : EvtBase;
+    // [TypeRegistryItem("某符号永久加算时\t(SymbolData, int)")]
+    // public record EvtSpinSymbolPayoutAddPermanent(SymbolData Symbol, int Add) : EvtBase;
+    // [TypeRegistryItem("某符号积攒X时\t(SymbolData, int)")]
+    // public record EvtSpinSymbolStock(SymbolData Symbol, int Stock) : EvtBase;
+    // [TypeRegistryItem("玩家移除某符号时\t(SymbolData)")]
+    // public record EvtSpinPlayerRemoveSymbol(SymbolData RemovedSymbol) : EvtBase;
 }

@@ -61,7 +61,7 @@ public class PlayView : ViewBase
         },
         Des = "(某符号旋转到某位置时) 在格子上显示符号"
     };
-    UniEvt<GamePlaying.EvtCoinChanged> OnCoinChanged => new()
+    UniEvt<GamePlaying.EvtSetCoin> OnCoinChanged => new()
     {
         Invoke = (evt, ct) =>
         {
