@@ -60,7 +60,7 @@ namespace General
                 MyDebug.LogError($"存档类型{typeof(TDiskData)}应是JObject, 或实现IHasVersion接口");
                 return null;
             }
-            while (!(curVersion < Const.Version + 0.001f))
+            while (Math.Abs(curVersion - Const.Version) > 1e-2)
             {
                 var step = stepDic.GetValueOrDefault(curVersion);
                 if (step == null)

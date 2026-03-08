@@ -14,6 +14,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public override string ToString() => nameof(GamePlaying);
     public string PlayerName = "Deli";
     public double PlayTime;
+    public double PlayTimex2;
     [ShowInInspector] List<SymbolData> symbolDeckList = [];
     public ImmutableList<SymbolData> SymbolDeck => symbolDeckList.ToImmutableList();
     public long Coin { get; private set;}
