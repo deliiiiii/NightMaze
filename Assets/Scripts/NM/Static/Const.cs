@@ -1,4 +1,4 @@
-﻿namespace NM.Data;
+﻿namespace NM;
 
 public static class Const
 {
@@ -6,4 +6,6 @@ public static class Const
     public const int SpinH = 4;
     public const int SpinFirstID = 1;
     public const int DeckMax = 20;
+
+    public const float Version = 20260308;
 }

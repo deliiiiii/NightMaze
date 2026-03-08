@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using General;
 using GeneralPreview;
-using NM.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,9 +18,6 @@ public class NewSlotParamView : ViewBase
     protected override IEnumerable<BindDataBase> BindList()
     {
         yield return Binder.FromEvt(btnClose.onClick).To(() => gameObject.SetActive(false));
-        yield return Binder.FromEvt(btnStart.onClick).To(() => Bus.FireAndForget(new SLView.EvtClickLoad(new GamePlaying()
-        {
-            PlayerName = iptName.text
-        })));
+        yield return Binder.FromEvt(btnStart.onClick).To(() => Bus.FireAndForget(new SLView.EvtCLickStartNew(iptName.text)));
     }
 }

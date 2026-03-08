@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
@@ -11,22 +9,26 @@ using Sirenix.Utilities;
 using UnityEngine;
 
 namespace GeneralPreview;
-public abstract record FSM<TThis> : IDisposable
+public abstract record FSM<TThis> : IDisposable, IHasVersion
     where TThis : FSM<TThis>
 {
-    [JsonIgnore] static bool StateHasSubClass => typeof(IState).SubTypeList().Any();
-    [JsonIgnore] readonly CancellationTokenSource cts = new();
-    [JsonIgnore] protected CancellationToken CurCt => cts.Token;
-    [JsonIgnore] string CurStateName => CurState?.GetType().Name ?? "Null";
     [ShowInInspector, PropertyOrder(-10), LabelText(nameof(CurStateName))] protected IState? CurState;
-    protected async UniTask LaunchAsync(IState initState, bool isCurStateFromLoad)
+    // ReSharper disable once ConvertToAutoProperty
+    [JsonIgnore] double IHasVersion.savedVersion {get => savedVersion; set => savedVersion = value;}
+    double savedVersion = Const.Version;
+    [JsonIgnore] string CurStateName => CurState?.GetType().Name ?? "Null";
+    
+    [JsonIgnore] protected readonly CancellationTokenSource Cts = new();
+    [JsonIgnore] protected CancellationToken CurCt => Cts.Token;
+    protected async UniTask LaunchAsync(IState initState, bool isNewStateFromLoad)
     {
-        if (CurState != null)
+        if (CurState != null && !isNewStateFromLoad)
         {
             MyDebug.LogError($"FSM {GetType().Name} Has Already Launched");
             return;
         }
-        await EnterStateAsync(initState, isCurStateFromLoad);
+        MyDebug.Log($"{GetType().GetNiceName()} Launching...");
+        await EnterStateAsync(initState, isNewStateFromLoad);
         Binder.FromTick(Tick).Bind(CurCt);
     }
     protected void Release()
@@ -37,12 +39,13 @@ public abstract record FSM<TThis> : IDisposable
             return;
         }
         CurState.OnExit();
+        
         CurState = null;
-        cts.Cancel();
+        Cts.Cancel();
     }
-    public async UniTask EnterStateAsync<TState>(TState newState, bool isCurStateFromLoad) where TState : IState
+    public async UniTask EnterStateAsync<TState>(TState newState, bool isNewStateFromLoad) where TState : IState
     {
-        if (CurState != null)
+        if (CurState != null && !isNewStateFromLoad)
         {
             if (CurState.GetType() == typeof(TState) && !CurState.EnableReEnter)
             {
@@ -51,12 +54,12 @@ public abstract record FSM<TThis> : IDisposable
             }
             CurState.OnExit();
         }
-        MyDebug.Log($"{GetType().GetNiceName()} Enter{newState.GetType().GetNiceName()} IsLaunch :{CurState == null}");
+        MyDebug.Log($"{GetType().GetNiceName()} Enter{newState.GetType().GetNiceName()}. isLaunched: {CurState == null}. isNewStateFromLoad: {isNewStateFromLoad}");
         
         CurState = newState;
         CurState.BelongFSM = (TThis)this;
         CurState.RegisterAll();
-        await CurState.OnEnterAsync(isCurStateFromLoad);
+        await CurState.OnEnterAsync(isNewStateFromLoad);
     }
     [DebuggerStepThrough] public MyOption<TState> InState<TState>() => CurState is TState state ? state : None;
     [DebuggerStepThrough] public bool IsState<TState>() => CurState is TState;
@@ -79,7 +82,12 @@ public abstract record FSM<TThis> : IDisposable
         [field: JsonIgnore, NonSerialized] public TThis BelongFSM { get; set; } = null!;
         [DebuggerStepThrough] UniTask FSM<TThis>.IState.OnEnterAsync(bool isThisFromLoad) => OnEnterAsync(isThisFromLoad);
         [DebuggerStepThrough] protected virtual UniTask OnEnterAsync(bool isThisFromLoad) => UniTask.CompletedTask;
-        [DebuggerStepThrough] void FSM<TThis>.IState.OnExit() => OnExit();
+        [DebuggerStepThrough] void FSM<TThis>.IState.OnExit()
+        {
+            OnExit();
+            Cts.Cancel();
+        }
+
         [DebuggerStepThrough] protected virtual void OnExit(){}
         [DebuggerStepThrough] void FSM<TThis>.IState.OnUpdate(float dt) => OnUpdate(dt);
         [DebuggerStepThrough] protected virtual void OnUpdate(float dt){}

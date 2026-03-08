@@ -7,14 +7,14 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
-using UnityEngine;
+using Sirenix.Utilities;
 
 namespace General
 {
-    class PrivateFieldsContractResolver : DefaultContractResolver
+    internal class PrivateFieldsContractResolver : DefaultContractResolver
     {
         protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
@@ -54,7 +54,7 @@ namespace General
         }
     }
 
-    public static class JsonIO
+    internal static class JsonIO
     {
         static readonly JsonSerializerSettings settings = new()
         {
@@ -81,12 +81,29 @@ namespace General
             string path = pathPre + "/" + name + ".json";
             if (!File.Exists(path))
             {
-                Debug.Log("path :" + path + " not exist");
+                MyDebug.Log("path :" + path + " not exist");
                 return default;
             }
             string str = await File.ReadAllTextAsync(path, ct);
-            // return JsonUtility.FromJson<T>(str);
             return JsonConvert.DeserializeObject<T>(str, settings);
+        }
+        public static async UniTask<T> ReadWithVerAsync<T>(string pathPre, string name, CancellationToken ct)
+            where T : IHasVersion
+        {
+            string path = pathPre + "/" + name + ".json";
+            if (!File.Exists(path))
+            {
+                MyDebug.Log("path :" + path + " not exist");
+                return default;
+            }
+            string str = await File.ReadAllTextAsync(path, ct);
+            var nullableJObj = MigrateStepFactory<JObject, T>.MigrateUntilCur(JObject.Parse(str));
+            return nullableJObj == null ? Activator.CreateInstance<T>() : nullableJObj.ToObject<T>(new JsonSerializer
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+                ContractResolver = new PrivateFieldsContractResolver(),
+                PreserveReferencesHandling = PreserveReferencesHandling.None,
+            });
         }
         public static void Delete(string pathPre, string name)
         {
@@ -164,4 +181,5 @@ namespace General
         }
         #endregion
     }
+    
 }

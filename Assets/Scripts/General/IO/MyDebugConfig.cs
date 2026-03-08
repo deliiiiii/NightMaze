@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace General
 {
-    [CreateAssetMenu(fileName = nameof(MyDebugConfig), menuName = "General/" + nameof(MyDebugConfig))]
+    [UnityEngine.CreateAssetMenu(fileName = nameof(MyDebugConfig), menuName = "General/" + nameof(MyDebugConfig))]
     [ReadOnly]
     public class MyDebugConfig : SerializedScriptableObject
     {

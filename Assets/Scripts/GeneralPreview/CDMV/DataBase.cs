@@ -24,7 +24,10 @@ public abstract class DataBase<TThis> : IDisposable
         }
     }
     public void Dispose() => RemoveAllCom();
+    
     [ShowInInspector] readonly Dictionary<Type, ComBase> comDic = [];
+    float savedVersion = Const.Version;
+    
     [DebuggerStepThrough]
     protected T AddCom<T>(T? com = null) where T : ComBase
     {

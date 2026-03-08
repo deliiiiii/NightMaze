@@ -810,7 +810,7 @@ public class DOTweenSequence : MonoBehaviour
         if (mTween == null) return;
         if (ct.IsCancellationRequested)
         {
-            mTween.Complete();
+            mTween.Complete(true);
             mTween.Kill();
             ct.ThrowIfCancellationRequested();
         }

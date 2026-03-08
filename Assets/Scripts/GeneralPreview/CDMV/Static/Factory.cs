@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Sirenix.Utilities;
 
-namespace NM.Data;
+namespace GeneralPreview;
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public class FacInsAttribute(Type relyType) : Attribute

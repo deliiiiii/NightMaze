@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
+using Sirenix.OdinInspector;
 
 namespace NM.Data;
 
@@ -13,7 +14,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public override string ToString() => nameof(GamePlaying);
     public string PlayerName = "Deli";
     public double PlayTime;
-    List<SymbolData> symbolDeckList = [];
+    [ShowInInspector] List<SymbolData> symbolDeckList = [];
     public ImmutableList<SymbolData> SymbolDeck => symbolDeckList.ToImmutableList();
     public long Coin { get; private set;}
     // 源生↓↓↓
@@ -59,9 +60,9 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
                 SymbolData.Create(1),
                 SymbolData.Create(1),
                 SymbolData.Create(1),
-                SymbolData.Create(2), 
-                .. SymbolData.CreateEmpty.Repeat(DeckMax - symbolDeckList.Count)
+                SymbolData.Create(2)
             ];
+            symbolDeckList.AddRange(SymbolData.CreateEmpty.Repeat(DeckMax - symbolDeckList.Count));
         }
         symbolDeckList.ForEach(s => s.BindAll());
         await Bus.FireAsync(new EvtOnEnter(this), CurCt);

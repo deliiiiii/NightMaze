@@ -45,7 +45,7 @@ public class SLView : ViewBase
             gameObject.SetActive(true);
             curSelected = null;
             tranContent.ClearChildren();
-            var dataList = await Saver.LoadAllAsync<GamePlaying>(NameC.SlotFolder, ct);
+            var dataList = await Saver.LoadAllWithVerAsync<GamePlaying>(NameC.SlotFolder, ct);
             foreach (var data in dataList)
             {
                 var ins = Instantiate(pfbSlotView, tranContent);
@@ -76,8 +76,22 @@ public class SLView : ViewBase
             gameObject.SetActive(false);
             await GameRoot.Root.EnterStateAsync(evt.Data, true);
         },
-        Des = "(点击了加载按钮) 尝试进入游戏状态"
+        Des = "(点击了加载按钮) 进入游戏状态"
     };
     public record EvtClickLoad(GamePlaying Data) : EvtBase;
+    UniEvt<EvtCLickStartNew> OnEvtCLickStartNew => new()
+    {
+        Invoke = async (evt, ct) =>
+        {
+            gameObject.SetActive(false);
+            var data = new GamePlaying
+            {
+                PlayerName = evt.PlayerName
+            };
+            await GameRoot.Root.EnterStateAsync(data, false);
+        },
+        Des = "(点击了新游戏按钮) 创建游戏数据并进入游戏状态"
+    };
+    public record EvtCLickStartNew(string PlayerName) : EvtBase;
     public record EvtClickReturn : EvtBase;
 }

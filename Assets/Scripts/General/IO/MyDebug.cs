@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Sirenix.OdinInspector;
-using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 namespace General
@@ -21,7 +20,7 @@ namespace General
         static bool canLogError = true;
         static HashSet<LogType> logTypes = ((LogType[])Enum.GetValues(typeof(LogType))).ToHashSet();
 
-        [HideInCallstack][DebuggerStepThrough]
+        [UnityEngine.HideInCallstack][DebuggerStepThrough]
         public static void Log(object message, LogType logType = LogType.Default)
         {
             if (!canLog || !CheckLog(logType))
@@ -31,7 +30,7 @@ namespace General
             Debug.Log(message);
         
         }
-        [HideInCallstack][DebuggerStepThrough]
+        [UnityEngine.HideInCallstack][DebuggerStepThrough]
         public static void LogWarning(object message, LogType logType = LogType.Default, int threshold = 0)
         {
             if (!canLogWarning || !CheckLog(logType))
@@ -41,7 +40,7 @@ namespace General
             Debug.LogWarning(message);
 
         }
-        [HideInCallstack][DebuggerStepThrough]
+        [UnityEngine.HideInCallstack][DebuggerStepThrough]
         public static void LogError(object message, LogType logType = LogType.Default, int threshold = 0)
         {
             if (!canLogError || !CheckLog(logType))
@@ -51,7 +50,7 @@ namespace General
             Debug.LogError(message);
 
         }
-        [HideInCallstack][DebuggerStepThrough]
+        [UnityEngine.HideInCallstack][DebuggerStepThrough]
         static bool CheckLog(LogType logType)
         {
             return canLogAll && logTypes.Contains(logType);

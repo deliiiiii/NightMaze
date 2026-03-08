@@ -1,8 +1,5 @@
-﻿using JetBrains.Annotations;
-
-namespace NM.Data;
-[PublicAPI]
-public class NameC
+﻿namespace NM;
+public static class NameC
 {
     public const string Name = "NM";
     
