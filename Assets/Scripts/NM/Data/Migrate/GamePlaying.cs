@@ -13,3 +13,15 @@ public class MGamePlaying_20260308 : IMigrateStepJson<GamePlaying>
         return data;
     }
 }
+
+public class MGamePlaying_20260308d1 : IMigrateStepJson<GamePlaying>
+{
+    public double FromVersion => 20260308.1;
+    public double ToVersion => 20260308.2;
+    public JObject Migrate(JObject data)
+    {
+        var playTime2 = data["PlayTimex2"]?.Value<float>();
+        data["Name2"] = "Name2..." + (playTime2?.ToString("F2") ?? "null");
+        return data;
+    }
+}

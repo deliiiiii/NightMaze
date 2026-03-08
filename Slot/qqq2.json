@@ -1,7 +1,6 @@
 {
   "PlayerName": "qqq2",
   "PlayTime": 25.883080650120974,
-  "PlayTimex2": 45.0105094909668,
   "symbolDeckList": [
     {
       "Pos": {
@@ -477,5 +476,5 @@
     "CurState": null,
     "savedVersion": 20260308.0
   },
-  "savedVersion": 20260308.1
+  "savedVersion": 20260308.0
 }
