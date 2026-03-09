@@ -27,7 +27,7 @@ namespace General
         where TRuntimeData : IHasVersion
     {
         static readonly Dictionary<double, IMigrateStep<TDiskData, TRuntimeData>> stepDic = new();
-
+        public static void Clear() => stepDic.Clear();
         public static void Add(IMigrateStep<TDiskData, TRuntimeData> step)
         {
             if (!stepDic.TryAdd(step.FromVersion, step))

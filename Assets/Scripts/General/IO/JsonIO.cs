@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -10,47 +11,74 @@ using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
-using Sirenix.Utilities;
 
 namespace General
 {
     internal class PrivateFieldsContractResolver : DefaultContractResolver
     {
+        public static readonly PrivateFieldsContractResolver Instance = new PrivateFieldsContractResolver();
+
         protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
-            // 1. 只获取带有 [JsonProperty] 特性的属性
-            var props = base.CreateProperties(type, memberSerialization)
-                .Where(p => p.AttributeProvider.GetAttributes(typeof(JsonPropertyAttribute), true).Any())
-                .ToList();
+            var props = new List<JsonProperty>(base.CreateProperties(type, memberSerialization));
 
-            // 2. 遍历类型层次结构以包含所有基类的字段
-            var currentType = type;
+            // 过滤只读属性
+            props.RemoveAll(p =>
+            {
+                var propInfo = p.DeclaringType?.GetProperty(p.UnderlyingName ?? "", 
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                return propInfo != null && !propInfo.CanWrite;
+            });
+            Type currentType = type;
             while (currentType != null && currentType != typeof(object))
             {
-                // 获取当前类型的所有实例字段
-                var fields = currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
+                // A. 补充私有属性
+                var nonPublicProps = currentType.GetProperties(
+                    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+                foreach (var propInfo in nonPublicProps)
+                {
+                    // 过滤只读属性
+                    if (!propInfo.CanWrite) 
+                        continue;
+                    var jsonProp = base.CreateProperty(propInfo, memberSerialization);
+                    if (jsonProp.Ignored) 
+                        continue;
+                    if (props.Any(p => p.PropertyName == jsonProp.PropertyName))
+                        continue;
+                    jsonProp.Writable = true;
+                    jsonProp.Readable = true;
+                    props.Add(jsonProp);
+                }
+                // B. 补充私有字段
+                var fields = currentType.GetFields(
+                    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
                 foreach (var field in fields)
                 {
-                    // 排除委托类型的字段
-                    if (typeof(Delegate).IsAssignableFrom(field.FieldType))
-                    {
+                    if (Attribute.IsDefined(field, typeof(CompilerGeneratedAttribute)))
                         continue;
-                    }
-
-                    // 避免重复添加（例如，如果字段是已添加属性的后备字段）
-                    if (props.All(p => p.UnderlyingName != field.Name))
-                    {
-                        var prop = CreateProperty(field, memberSerialization);
-                        prop.Readable = true;
-                        prop.Writable = true;
-                        props.Add(prop);
-                    }
+                    var jsonProp = base.CreateProperty(field, memberSerialization);
+                    if (jsonProp.Ignored)
+                        continue;
+                    if (props.Any(p => p.PropertyName == jsonProp.PropertyName))
+                        continue;
+                    jsonProp.Writable = true;
+                    jsonProp.Readable = true;
+                    props.Add(jsonProp);
                 }
                 currentType = currentType.BaseType;
             }
-
-            return props;
+            var result = props.Where(p => !typeof(Delegate).IsAssignableFrom(p.PropertyType)).ToList();
+            return result.OrderBy(p => GetTypeDepth(p.DeclaringType)).ToList();
+        }
+        static int GetTypeDepth(Type t)
+        {
+            int depth = 0;
+            while (t != null)
+            {
+                t = t.BaseType;
+                depth++;
+            }
+            return depth;
         }
     }
 
@@ -60,7 +88,7 @@ namespace General
         {
             Formatting = Formatting.Indented,
             TypeNameHandling = TypeNameHandling.Auto,
-            ContractResolver = new PrivateFieldsContractResolver(),
+            ContractResolver = PrivateFieldsContractResolver.Instance,
             PreserveReferencesHandling = PreserveReferencesHandling.None,
         };
         public static void Write<T>(string pathPre, string name, T obj)
@@ -101,7 +129,7 @@ namespace General
             return nullableJObj == null ? Activator.CreateInstance<T>() : nullableJObj.ToObject<T>(new JsonSerializer
             {
                 TypeNameHandling = TypeNameHandling.Auto,
-                ContractResolver = new PrivateFieldsContractResolver(),
+                ContractResolver = PrivateFieldsContractResolver.Instance,
                 PreserveReferencesHandling = PreserveReferencesHandling.None,
             });
         }

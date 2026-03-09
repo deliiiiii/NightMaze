@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.Serialization;
 using System.Threading;
 using General;
 using Newtonsoft.Json;
@@ -25,11 +24,10 @@ public abstract class DataBase<TThis> : IDisposable
     }
     public void Dispose() => RemoveAllCom();
     
-    [ShowInInspector] readonly Dictionary<Type, ComBase> comDic = [];
     double savedVersion = Const.Version;
+    [ShowInInspector] readonly Dictionary<Type, ComBase> comDic = [];
     
-    [DebuggerStepThrough]
-    protected T AddCom<T>(T? com = null) where T : ComBase
+    [DebuggerStepThrough] protected T AddCom<T>(T? com = null) where T : ComBase
     {
         if (comDic.TryGetValue(typeof(T), out var existCom))
         {
@@ -43,8 +41,7 @@ public abstract class DataBase<TThis> : IDisposable
         comDic.Add(typeof(T), com);
         return com;
     }
-    [DebuggerStepThrough]
-    protected void RemoveCom<T>() where T : ComBase
+    [DebuggerStepThrough] protected void RemoveCom<T>() where T : ComBase
     {
         if (!comDic.TryGetValue(typeof(T), out var com))
         {
@@ -54,23 +51,20 @@ public abstract class DataBase<TThis> : IDisposable
         com.Dispose();
         comDic.Remove(typeof(T));
     }
-    [DebuggerStepThrough]
-    void RemoveAllCom()
+    [DebuggerStepThrough] void RemoveAllCom()
     {
         comDic.Values.ForEach(com => com.Dispose());
         comDic.Clear();
     }
 
-    [DebuggerStepThrough]
-    public MyOption<T> GetCom<T>() where T : ComBase
+    [DebuggerStepThrough] public MyOption<T> GetCom<T>() where T : ComBase
         => comDic.TryGetValue(typeof(T), out var com) ? (T)com : None;
-    [DebuggerStepThrough]
-    public bool HasCom<T>() where T : ComBase 
+    [DebuggerStepThrough] public bool HasCom<T>() where T : ComBase 
         => comDic.ContainsKey(typeof(T));
     
     public abstract class ComBase : IDisposable
     {
-        [HideInInspector][field: JsonIgnore] public required TThis BelongData { get; set; }
+        [HideInInspector, JsonIgnore] public required TThis BelongData { get; set; }
         [HideInInspector, JsonIgnore] readonly CancellationTokenSource cts = new();
         public void Bind()
         {

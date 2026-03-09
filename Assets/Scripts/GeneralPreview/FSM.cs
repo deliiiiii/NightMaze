@@ -79,7 +79,7 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion
         where TSub : StateFSM<TSub>
     {
         [DebuggerStepThrough] public override int GetHashCode() => base.GetHashCode();
-        [field: JsonIgnore, NonSerialized] public TThis BelongFSM { get; set; } = null!;
+        [JsonIgnore] public TThis BelongFSM { get; set; } = null!;
         [DebuggerStepThrough] UniTask FSM<TThis>.IState.OnEnterAsync(bool isThisFromLoad) => OnEnterAsync(isThisFromLoad);
         [DebuggerStepThrough] protected virtual UniTask OnEnterAsync(bool isThisFromLoad) => UniTask.CompletedTask;
         [DebuggerStepThrough] void FSM<TThis>.IState.OnExit()
@@ -101,10 +101,9 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion
         // ReSharper disable once InconsistentNaming
         [HideInInspector, JsonIgnore] public required TThis @this;
 
-        [DebuggerStepThrough] UniTask IUniAction.InvokeAsync(CancellationToken ct) => InvokeAsync(ct);
-        [DebuggerStepThrough] protected abstract UniTask InvokeAsync(CancellationToken ct);
-        [DebuggerStepThrough] public UniTask.Awaiter GetAwaiter() => InvokeAsync(@this.CurCt).GetAwaiter();
-        [DebuggerStepThrough] public void Forget() => InvokeAsync(CancellationToken.None).Forget();
+        [DebuggerStepThrough] protected abstract UniTask InvokeAsync();
+        [DebuggerStepThrough] public UniTask.Awaiter GetAwaiter() => InvokeAsync().GetAwaiter();
+        [DebuggerStepThrough] public void Forget() => InvokeAsync().Forget();
     }
 
     public void Dispose() => Release();
@@ -112,7 +111,5 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion
 
 public interface IUniAction
 {
-    string ToString();
-    UniTask InvokeAsync(CancellationToken ct);
     UniTask.Awaiter GetAwaiter();
 }

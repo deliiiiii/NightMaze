@@ -2,12 +2,11 @@
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using General;
 using GeneralPreview;
 
 namespace NM.Data;
 
-public partial record GamePlaying : IHasVersion
+public partial record GamePlaying
 {
     [Obsolete("符号添加符号")]
     public async UniTask SymbolAddSymbolAsync(SymbolData subjectSymbol, SymbolData addedSymbol, CancellationToken ct)

@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using General;
 using GeneralPreview;
+using Newtonsoft.Json;
 using NM.Config;
 using Sirenix.OdinInspector;
-using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
 
@@ -41,8 +41,8 @@ public class SymbolData : DataBase<SymbolData>
     public readonly List<int> TowaAdd = [];
     public readonly List<int> TowaMulti = [];
     public DoCountBase DoCount = new DoCountInfinite();
-    public int? Stock;
-    public int? EveryNSpin;
+    public MyOption<int> Stock = None;
+    public MyOption<int> EveryNSpin = None;
     
     [ShowInInspector, PropertyOrder(0)] public int ConfigID { get; init; }
     [HideInInspector] public bool IsEmpty => ConfigID == -1;

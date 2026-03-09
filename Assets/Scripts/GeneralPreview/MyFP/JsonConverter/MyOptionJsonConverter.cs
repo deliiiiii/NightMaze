@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 namespace GeneralPreview;
@@ -41,15 +40,26 @@ public class MyOptionJsonConverter : JsonConverter
             writer.WriteNull();
             return;
         }
-        Type type = value.GetType();
-        PropertyInfo? valueProp = type.GetProperty("Value");
-        if (valueProp != null)
+        var originalFormatting = writer.Formatting;
+        writer.Formatting = Formatting.None;
+        try
         {
-            object? innerValue = valueProp.GetValue(value);
-            serializer.Serialize(writer, innerValue);
+            Type type = value.GetType();
+            PropertyInfo? valueProp = type.GetProperty(nameof(MySome<>.Value));
+            if (valueProp != null)
+            {
+                object? innerValue = valueProp.GetValue(value);
+                serializer.Serialize(writer, innerValue);
+            }
+            else
+            {
+                writer.WriteNull();
+            }
         }
-        else
-            writer.WriteNull();
+        finally
+        {
+            writer.Formatting = originalFormatting;
+        }
     }
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
