@@ -22,12 +22,23 @@ namespace General
         {
             var props = new List<JsonProperty>(base.CreateProperties(type, memberSerialization));
 
-            // 过滤只读属性
+            // 不仅过滤只读属性, 还必须修正 private set 属性的写入权限
             props.RemoveAll(p =>
             {
-                var propInfo = p.DeclaringType?.GetProperty(p.UnderlyingName ?? "", 
+                var propInfo = p.DeclaringType?.GetProperty(p.UnderlyingName ?? "",
                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                return propInfo != null && !propInfo.CanWrite;
+                
+                if (propInfo != null)
+                {
+                    // 1. 如果属性完全不可写 如{ get; }, 则移除
+                    if (!propInfo.CanWrite) 
+                        return true;
+                    // 2. 如果属性有 private set, CanWrite 是 true,
+                    // 但 base.CreateProperties 默认会将其 Writable 设为 false.
+                    // 必须强制设为 true, 否则反序列化时会直接忽略该字段.
+                    p.Writable = true;
+                }
+                return false;
             });
             Type currentType = type;
             while (currentType != null && currentType != typeof(object))
