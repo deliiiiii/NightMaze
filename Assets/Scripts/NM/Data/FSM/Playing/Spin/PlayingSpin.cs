@@ -85,18 +85,20 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
     /// 立即
     /// </summary>
     /// <param name="Symbol">被执行的符号</param>
+    [EvtName("立即执行符号")]
     public record EvtImmediateDoSymbol(SymbolData Symbol) : EvtBase;
     /// <summary>
     /// 某符号结算时
     /// </summary>
     /// <param name="Symbol"></param>
+    [EvtName("结算符号")]
     public record EvtPay(SymbolData Symbol, long Pay) : EvtBase;
-    
     /// <summary>
-    /// 发现某符号与(当前)某符号相邻时
+    /// 发现某符号与当前符号相邻时
     /// </summary>
     /// <param name="Ctx">上下文</param>
     /// <param name="AdjacentSymbol">被发现的符号</param>
     /// <param name="Symbol">当前符号</param>
+    [EvtName("发现某符号与当前某符号相邻")]
     public record EvtSpinSymbolAdjacentSymbol(PlayingSpin Ctx, SymbolData AdjacentSymbol, SymbolData Symbol) : EvtBase;
 }

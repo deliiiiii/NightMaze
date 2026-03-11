@@ -17,7 +17,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     [ShowInInspector] List<SymbolData> symbolDeckList = [];
     public ImmutableList<SymbolData> SymbolDeck => symbolDeckList.ToImmutableList();
     public long Coin { get; private set;}
-    // 源生↓↓↓
+    // 标注[EvtChanged]则源生↓↓↓
     // public long Coin
     // {
     //     get;
@@ -64,7 +64,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
             ];
             symbolDeckList.AddRange(SymbolData.CreateEmpty.Repeat(DeckMax - symbolDeckList.Count));
         }
-        symbolDeckList.ForEach(s => s.BindAll());
+        symbolDeckList.ForEach(s => s.BindAllCom());
         await Bus.FireAsync(new EvtOnEnter(this), CurCt);
         await LaunchAsync(CurState ?? new PlayingIdle(), CurState != null);
     }

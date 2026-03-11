@@ -14,12 +14,12 @@ public abstract class DataBase<TThis> : IDisposable
     where TThis : DataBase<TThis>
 {
     /// 状态初始化完成后调用，绑定组件的TThis及事件
-    public void BindAll()
+    public void BindAllCom()
     {
         foreach (var com in comDic.Values)
         {
             com.BelongData = (TThis)this;
-            com.Bind();
+            com.BindToData();
         }
     }
     public void Dispose() => RemoveAllCom();
@@ -37,7 +37,7 @@ public abstract class DataBase<TThis> : IDisposable
 
         com ??= Activator.CreateInstance<T>();
         com.BelongData = (TThis)this;
-        com.Bind();
+        com.BindToData();
         comDic.Add(typeof(T), com);
         return com;
     }
@@ -66,7 +66,7 @@ public abstract class DataBase<TThis> : IDisposable
     {
         [HideInInspector, JsonIgnore] public required TThis BelongData { get; set; }
         [HideInInspector, JsonIgnore] readonly CancellationTokenSource cts = new();
-        public void Bind()
+        public void BindToData()
         {
             IUniEvt.BindAll(this, cts.Token);
         }

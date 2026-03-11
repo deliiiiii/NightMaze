@@ -1,12 +1,14 @@
 {
   "CurState": {
-    "$type": "NM.Data.PlayingIdle, NM.Data",
+    "$type": "NM.Data.PlayingSpin, NM.Data",
     "CurState": null,
-    "savedVersion": 20260309.0
+    "savedVersion": 20260309.0,
+    "DelayAddList": [],
+    "DelayDestroyList": []
   },
   "savedVersion": 20260309.0,
   "PlayerName": "qqq2",
-  "PlayTime": 46.994796112179756,
+  "PlayTime": 48.993619007989764,
   "RemoveToken": 0,
   "RefreshToken": 0,
   "NextRentCount": 0,
@@ -21,8 +23,8 @@
           "$type": "NM.Data.SymbolConfigDes0, NM.Data"
         }
       },
-      "Pos":{"X":1,"Y":2},
-      "AlreadyChecked": true,
+      "Pos":{"X":4,"Y":4},
+      "AlreadyChecked": false,
       "TempAdd": [],
       "TempMulti": [],
       "TowaAdd": [],
@@ -41,7 +43,27 @@
           "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
         }
       },
-      "Pos":{"X":5,"Y":1},
+      "Pos":{"X":5,"Y":2},
+      "AlreadyChecked": false,
+      "TempAdd": [],
+      "TempMulti": [],
+      "TowaAdd": [],
+      "TowaMulti": [],
+      "DoCount": {
+        "$type": "NM.Data.DoCountInfinite, NM.Data"
+      },
+      "Stock":null,
+      "EveryNSpin":null,
+      "ConfigID": 1
+    },
+    {
+      "savedVersion": 20260308.2,
+      "comDic": {
+        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+        }
+      },
+      "Pos":{"X":1,"Y":3},
       "AlreadyChecked": true,
       "TempAdd": [],
       "TempMulti": [],
@@ -61,8 +83,8 @@
           "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
         }
       },
-      "Pos":{"X":1,"Y":4},
-      "AlreadyChecked": true,
+      "Pos":{"X":4,"Y":1},
+      "AlreadyChecked": false,
       "TempAdd": [],
       "TempMulti": [],
       "TowaAdd": [],
@@ -81,28 +103,8 @@
           "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
         }
       },
-      "Pos":{"X":2,"Y":3},
-      "AlreadyChecked": true,
-      "TempAdd": [],
-      "TempMulti": [],
-      "TowaAdd": [],
-      "TowaMulti": [],
-      "DoCount": {
-        "$type": "NM.Data.DoCountInfinite, NM.Data"
-      },
-      "Stock":null,
-      "EveryNSpin":null,
-      "ConfigID": 1
-    },
-    {
-      "savedVersion": 20260308.2,
-      "comDic": {
-        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-        }
-      },
-      "Pos":{"X":2,"Y":4},
-      "AlreadyChecked": true,
+      "Pos":{"X":4,"Y":2},
+      "AlreadyChecked": false,
       "TempAdd": [],
       "TempMulti": [],
       "TowaAdd": [],
@@ -122,7 +124,7 @@
         }
       },
       "Pos":{"X":2,"Y":2},
-      "AlreadyChecked": true,
+      "AlreadyChecked": false,
       "TempAdd": [],
       "TempMulti": [],
       "TowaAdd": [],
@@ -141,8 +143,188 @@
           "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
         }
       },
-      "Pos":{"X":3,"Y":1},
+      "Pos":{"X":2,"Y":4},
+      "AlreadyChecked": false,
+      "TempAdd": [],
+      "TempMulti": [],
+      "TowaAdd": [],
+      "TowaMulti": [],
+      "DoCount": {
+        "$type": "NM.Data.DoCountInfinite, NM.Data"
+      },
+      "Stock":null,
+      "EveryNSpin":null,
+      "ConfigID": -1
+    },
+    {
+      "savedVersion": 20260308.2,
+      "comDic": {
+        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+        }
+      },
+      "Pos":{"X":5,"Y":4},
+      "AlreadyChecked": false,
+      "TempAdd": [],
+      "TempMulti": [],
+      "TowaAdd": [],
+      "TowaMulti": [],
+      "DoCount": {
+        "$type": "NM.Data.DoCountInfinite, NM.Data"
+      },
+      "Stock":null,
+      "EveryNSpin":null,
+      "ConfigID": -1
+    },
+    {
+      "savedVersion": 20260308.2,
+      "comDic": {
+        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+        }
+      },
+      "Pos":{"X":1,"Y":2},
       "AlreadyChecked": true,
+      "TempAdd": [],
+      "TempMulti": [],
+      "TowaAdd": [],
+      "TowaMulti": [],
+      "DoCount": {
+        "$type": "NM.Data.DoCountInfinite, NM.Data"
+      },
+      "Stock":null,
+      "EveryNSpin":null,
+      "ConfigID": -1
+    },
+    {
+      "savedVersion": 20260308.2,
+      "comDic": {
+        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+        }
+      },
+      "Pos":{"X":3,"Y":2},
+      "AlreadyChecked": false,
+      "TempAdd": [],
+      "TempMulti": [],
+      "TowaAdd": [],
+      "TowaMulti": [],
+      "DoCount": {
+        "$type": "NM.Data.DoCountInfinite, NM.Data"
+      },
+      "Stock":null,
+      "EveryNSpin":null,
+      "ConfigID": -1
+    },
+    {
+      "savedVersion": 20260308.2,
+      "comDic": {
+        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+        }
+      },
+      "Pos":{"X":4,"Y":3},
+      "AlreadyChecked": false,
+      "TempAdd": [],
+      "TempMulti": [],
+      "TowaAdd": [],
+      "TowaMulti": [],
+      "DoCount": {
+        "$type": "NM.Data.DoCountInfinite, NM.Data"
+      },
+      "Stock":null,
+      "EveryNSpin":null,
+      "ConfigID": -1
+    },
+    {
+      "savedVersion": 20260308.2,
+      "comDic": {
+        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+        }
+      },
+      "Pos":{"X":2,"Y":1},
+      "AlreadyChecked": false,
+      "TempAdd": [],
+      "TempMulti": [],
+      "TowaAdd": [],
+      "TowaMulti": [],
+      "DoCount": {
+        "$type": "NM.Data.DoCountInfinite, NM.Data"
+      },
+      "Stock":null,
+      "EveryNSpin":null,
+      "ConfigID": -1
+    },
+    {
+      "savedVersion": 20260308.2,
+      "comDic": {
+        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+        }
+      },
+      "Pos":{"X":2,"Y":3},
+      "AlreadyChecked": false,
+      "TempAdd": [],
+      "TempMulti": [],
+      "TowaAdd": [],
+      "TowaMulti": [],
+      "DoCount": {
+        "$type": "NM.Data.DoCountInfinite, NM.Data"
+      },
+      "Stock":null,
+      "EveryNSpin":null,
+      "ConfigID": -1
+    },
+    {
+      "savedVersion": 20260308.2,
+      "comDic": {
+        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+        }
+      },
+      "Pos":{"X":3,"Y":4},
+      "AlreadyChecked": false,
+      "TempAdd": [],
+      "TempMulti": [],
+      "TowaAdd": [],
+      "TowaMulti": [],
+      "DoCount": {
+        "$type": "NM.Data.DoCountInfinite, NM.Data"
+      },
+      "Stock":null,
+      "EveryNSpin":null,
+      "ConfigID": -1
+    },
+    {
+      "savedVersion": 20260308.2,
+      "comDic": {
+        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+        }
+      },
+      "Pos":{"X":5,"Y":1},
+      "AlreadyChecked": false,
+      "TempAdd": [],
+      "TempMulti": [],
+      "TowaAdd": [],
+      "TowaMulti": [],
+      "DoCount": {
+        "$type": "NM.Data.DoCountInfinite, NM.Data"
+      },
+      "Stock":null,
+      "EveryNSpin":null,
+      "ConfigID": -1
+    },
+    {
+      "savedVersion": 20260308.2,
+      "comDic": {
+        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
+        }
+      },
+      "Pos":{"X":3,"Y":3},
+      "AlreadyChecked": false,
       "TempAdd": [],
       "TempMulti": [],
       "TowaAdd": [],
@@ -181,28 +363,8 @@
           "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
         }
       },
-      "Pos":{"X":5,"Y":2},
-      "AlreadyChecked": true,
-      "TempAdd": [],
-      "TempMulti": [],
-      "TowaAdd": [],
-      "TowaMulti": [],
-      "DoCount": {
-        "$type": "NM.Data.DoCountInfinite, NM.Data"
-      },
-      "Stock":null,
-      "EveryNSpin":null,
-      "ConfigID": -1
-    },
-    {
-      "savedVersion": 20260308.2,
-      "comDic": {
-        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-        }
-      },
-      "Pos":{"X":5,"Y":4},
-      "AlreadyChecked": true,
+      "Pos":{"X":1,"Y":4},
+      "AlreadyChecked": false,
       "TempAdd": [],
       "TempMulti": [],
       "TowaAdd": [],
@@ -222,167 +384,7 @@
         }
       },
       "Pos":{"X":5,"Y":3},
-      "AlreadyChecked": true,
-      "TempAdd": [],
-      "TempMulti": [],
-      "TowaAdd": [],
-      "TowaMulti": [],
-      "DoCount": {
-        "$type": "NM.Data.DoCountInfinite, NM.Data"
-      },
-      "Stock":null,
-      "EveryNSpin":null,
-      "ConfigID": -1
-    },
-    {
-      "savedVersion": 20260308.2,
-      "comDic": {
-        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-        }
-      },
-      "Pos":{"X":3,"Y":3},
-      "AlreadyChecked": true,
-      "TempAdd": [],
-      "TempMulti": [],
-      "TowaAdd": [],
-      "TowaMulti": [],
-      "DoCount": {
-        "$type": "NM.Data.DoCountInfinite, NM.Data"
-      },
-      "Stock":null,
-      "EveryNSpin":null,
-      "ConfigID": -1
-    },
-    {
-      "savedVersion": 20260308.2,
-      "comDic": {
-        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-        }
-      },
-      "Pos":{"X":3,"Y":2},
-      "AlreadyChecked": true,
-      "TempAdd": [],
-      "TempMulti": [],
-      "TowaAdd": [],
-      "TowaMulti": [],
-      "DoCount": {
-        "$type": "NM.Data.DoCountInfinite, NM.Data"
-      },
-      "Stock":null,
-      "EveryNSpin":null,
-      "ConfigID": -1
-    },
-    {
-      "savedVersion": 20260308.2,
-      "comDic": {
-        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-        }
-      },
-      "Pos":{"X":3,"Y":4},
-      "AlreadyChecked": true,
-      "TempAdd": [],
-      "TempMulti": [],
-      "TowaAdd": [],
-      "TowaMulti": [],
-      "DoCount": {
-        "$type": "NM.Data.DoCountInfinite, NM.Data"
-      },
-      "Stock":null,
-      "EveryNSpin":null,
-      "ConfigID": -1
-    },
-    {
-      "savedVersion": 20260308.2,
-      "comDic": {
-        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-        }
-      },
-      "Pos":{"X":4,"Y":2},
-      "AlreadyChecked": true,
-      "TempAdd": [],
-      "TempMulti": [],
-      "TowaAdd": [],
-      "TowaMulti": [],
-      "DoCount": {
-        "$type": "NM.Data.DoCountInfinite, NM.Data"
-      },
-      "Stock":null,
-      "EveryNSpin":null,
-      "ConfigID": -1
-    },
-    {
-      "savedVersion": 20260308.2,
-      "comDic": {
-        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-        }
-      },
-      "Pos":{"X":4,"Y":4},
-      "AlreadyChecked": true,
-      "TempAdd": [],
-      "TempMulti": [],
-      "TowaAdd": [],
-      "TowaMulti": [],
-      "DoCount": {
-        "$type": "NM.Data.DoCountInfinite, NM.Data"
-      },
-      "Stock":null,
-      "EveryNSpin":null,
-      "ConfigID": -1
-    },
-    {
-      "savedVersion": 20260308.2,
-      "comDic": {
-        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-        }
-      },
-      "Pos":{"X":1,"Y":3},
-      "AlreadyChecked": true,
-      "TempAdd": [],
-      "TempMulti": [],
-      "TowaAdd": [],
-      "TowaMulti": [],
-      "DoCount": {
-        "$type": "NM.Data.DoCountInfinite, NM.Data"
-      },
-      "Stock":null,
-      "EveryNSpin":null,
-      "ConfigID": -1
-    },
-    {
-      "savedVersion": 20260308.2,
-      "comDic": {
-        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-        }
-      },
-      "Pos":{"X":2,"Y":1},
-      "AlreadyChecked": true,
-      "TempAdd": [],
-      "TempMulti": [],
-      "TowaAdd": [],
-      "TowaMulti": [],
-      "DoCount": {
-        "$type": "NM.Data.DoCountInfinite, NM.Data"
-      },
-      "Stock":null,
-      "EveryNSpin":null,
-      "ConfigID": -1
-    },
-    {
-      "savedVersion": 20260308.2,
-      "comDic": {
-        "GeneralPreview.DataBase`1+ComBase[[NM.Data.SymbolData, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], GeneralPreview, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
-          "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
-        }
-      },
-      "Pos":{"X":4,"Y":3},
-      "AlreadyChecked": true,
+      "AlreadyChecked": false,
       "TempAdd": [],
       "TempMulti": [],
       "TowaAdd": [],
@@ -401,8 +403,8 @@
           "$type": "NM.Data.SymbolConfigDesB1, NM.Data"
         }
       },
-      "Pos":{"X":4,"Y":1},
-      "AlreadyChecked": true,
+      "Pos":{"X":3,"Y":1},
+      "AlreadyChecked": false,
       "TempAdd": [],
       "TempMulti": [],
       "TowaAdd": [],

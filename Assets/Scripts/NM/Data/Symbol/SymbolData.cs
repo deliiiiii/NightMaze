@@ -47,23 +47,20 @@ public class SymbolData : DataBase<SymbolData>
     [ShowInInspector, PropertyOrder(0)] public int ConfigID { get; init; }
     [HideInInspector] public bool IsEmpty => ConfigID == -1;
     [ShowInInspector, PropertyOrder(1)]public string Name => Config.Name;
-    [field: NonSerialized]
     SymbolConfig Config => field ??= RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ConfigID);
-    string PosInfo => Pos.Match(some => $"Pos{some.ToString()}", RStr);
+    string PosInfo => Pos.Match(some => $"(Pos:{some.X},{some.Y})", RStr);
     
-    public override string ToString() => $"{Config.Name}(ID:{Config.ID}) {PosInfo})";
+    public override string ToString() => $"{Config.Name}(ID:{Config.ID}){PosInfo}";
     public void DoTempAdd(int add)
     {
         TempAdd.Add(add);
         Bus.FireAndForget(new EvtUltimateGiveChanged(this, GetUltimateGive()));
     }
-
     public void DoTempMulti(int multi)
     {
         TempMulti.Add(multi);
         Bus.FireAndForget(new EvtUltimateGiveChanged(this, GetUltimateGive()));
     }
-    
     public void DoTowaAdd(int add)
     {
         TowaAdd.Add(add);

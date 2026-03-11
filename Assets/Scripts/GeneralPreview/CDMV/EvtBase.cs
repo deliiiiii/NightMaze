@@ -43,8 +43,15 @@ public static class Bus
     public static async UniTask FireAsync<T>(T evt, CancellationToken ct, Func<bool>? withDebug = null) where T : EvtBase
     {
         withDebug ??= () => true;
-        if(withDebug())
-            MyDebug.Log($"Fired - {evt}");
+        if (withDebug())
+        {
+            var attr = typeof(T).GetCustomAttribute<EvtNameAttribute>();
+            var typeName = attr != null ? $"{attr.Name}" : typeof(T).GetNiceName();
+            var details = evt.ToString();
+            var leftBracketIndex = details.IndexOf('{');
+            var rightBracketIndex = details.IndexOf('}');
+            MyDebug.Log($"Fired - {typeName} {details.Substring(leftBracketIndex, rightBracketIndex - leftBracketIndex + 1)}");
+        }
         if (!evtDic.TryGetValue(typeof(T), out var list)) 
             return;
         foreach (var dele in list.Where(_ => !ct.IsCancellationRequested).ToList())
