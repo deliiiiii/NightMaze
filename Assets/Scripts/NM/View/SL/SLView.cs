@@ -84,10 +84,7 @@ public class SLView : ViewBase
         Invoke = async (evt, ct) =>
         {
             gameObject.SetActive(false);
-            var data = new GamePlaying
-            {
-                PlayerName = evt.PlayerName
-            };
+            var data = new GamePlaying(playerName: evt.PlayerName);
             await GameRoot.Root.EnterStateAsync(data, false);
         },
         Des = "(点击了新游戏按钮) 创建游戏数据并进入游戏状态"

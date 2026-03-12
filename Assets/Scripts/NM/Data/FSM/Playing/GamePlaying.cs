@@ -4,18 +4,20 @@ using System.Collections.Immutable;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
-using Sirenix.OdinInspector;
 
 namespace NM.Data;
 
 [Serializable]
 public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
 {
+    public GamePlaying(string playerName)
+    {
+        PlayerName = playerName;
+    }
     public override string ToString() => nameof(GamePlaying);
-    public string PlayerName = "Deli";
-    public double PlayTime;
-    [ShowInInspector] List<SymbolData> symbolDeckList = [];
-    public ImmutableList<SymbolData> SymbolDeck => symbolDeckList.ToImmutableList();
+    public string PlayerName { get; private set;}= "Deli";
+    public double PlayTime { get; private set;}
+    List<SymbolData> symbolDeckList = [];
     public long Coin { get; private set;}
     // 标注[EvtChanged]则源生↓↓↓
     // public long Coin
@@ -28,12 +30,13 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     //     }
     // }
     // public record EvtCoinChanged(long Value): EvtBase;
-    public int RemoveToken;
-    public int RefreshToken;
-    public int NextRentCount;
-    public int SpinCount;
-    public int DeckMax = 20;
+    public int RemoveToken{ get; private set;}
+    public int RefreshToken{ get; private set;}
+    public int NextRentCount{ get; private set;}
+    public int SpinCount{ get; private set;}
+    public int DeckMax{ get; private set;} = 20;
     
+    public ImmutableList<SymbolData> SymbolDeck => symbolDeckList.ToImmutableList();
     public ImmutableList<SymbolData> SymbolShownSorted =>
         symbolDeckList
             .Where(s => s.Pos.IsSome)
