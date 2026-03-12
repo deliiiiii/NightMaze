@@ -12,11 +12,11 @@ namespace NM.View;
 
 public class SLView : ViewBase
 {
-    [SerializeField] Button btnLoad;
-    [SerializeField] Button btnReturn;
+    [SerializeField] Btn btnLoad;
+    [SerializeField] Btn btnReturn;
     [SerializeField] SlotView pfbSlotView;
     [SerializeField] SlotEmptyView pfbSlotEmptyView;
-    [SerializeField] Transform tranContent;
+    [SerializeField] Trs tranContent;
     [SerializeField] NewSlotParamView paramView;
 
     [SerializeField, ReadOnly] SlotView? curSelected;

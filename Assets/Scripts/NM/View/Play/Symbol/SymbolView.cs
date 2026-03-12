@@ -3,7 +3,6 @@ using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;
-using TMPro;
 using UnityEngine;
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 
@@ -29,11 +28,11 @@ public class SymbolView : ViewBase
         }
     } = null!;
 
-    public TextMeshProUGUI TxtName;
-    public TextMeshProUGUI TxtAdd;
-    public TextMeshProUGUI TxtMulti;
-    public TextMeshProUGUI TxtCoin;
-    [SerializeField] Transform tranImgBuff;
+    public Txt TxtName;
+    public Txt TxtAdd;
+    public Txt TxtMulti;
+    public Txt TxtCoin;
+    [SerializeField] Trs tranImgBuff;
     [ShowInInspector, ReadOnly] List<ImgBuff> buffList = [];
 
 

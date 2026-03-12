@@ -2,7 +2,4 @@
 
 namespace NM.View;
 
-public class LoadingView : ViewBase
-{
-    
-}
+public class LoadingView : ViewBase;

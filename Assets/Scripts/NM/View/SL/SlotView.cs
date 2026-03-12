@@ -23,8 +23,8 @@ public class SlotView : ViewBase
     [SerializeField] Txt txtPlayTime;
     [SerializeField] Txt txtCoin;
     [SerializeField] Txt txtSymbolCount;
-    [SerializeField] Button btn;
-    [SerializeField] GameObject goSelected;
+    [SerializeField] Btn btn;
+    [SerializeField] GO goSelected;
     public event Action? OnClick;
     
     public void Init(GamePlaying fData)

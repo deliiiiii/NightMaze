@@ -5,9 +5,7 @@ using General;
 using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Vector2Int = GeneralPreview.Vector2Int;
 
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
@@ -17,10 +15,10 @@ namespace NM.View;
 public class PlayView : ViewBase
 {
     [SerializeField] List<SymbolColumnView> symbolColumnList = [];
-    public TextMeshProUGUI TxtCoin;
-    public TextMeshProUGUI TxtPayCoin;
-    public Button BtnSpin;
-    public Button BtnExit;
+    public Txt TxtCoin;
+    public Txt TxtPayCoin;
+    public Btn BtnSpin;
+    public Btn BtnExit;
     [SerializeField, Required] DOTweenSequence payTween;
 
     protected override IEnumerable<BindDataBase> BindList()
