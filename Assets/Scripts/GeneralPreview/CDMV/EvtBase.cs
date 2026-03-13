@@ -38,15 +38,14 @@ public static class Bus
                 pair => pair.Value.Select(dele => dele.Des).ToList()
             );
 
-    internal static void FireAndForget<T>(T evt, Func<bool>? withDebug = null) where T : EvtForgetBase
-        => FireAsync(evt, CancellationToken.None, withDebug).Forget();
-    internal static async UniTask FireAsync<T>(T evt, CancellationToken ct, Func<bool>? withDebug = null) where T : IEvtBase
+    internal static void FireAndForget<T>(T evt, bool debug = true) where T : IEvtBase
+        => FireAsync(evt, CancellationToken.None, debug).Forget();
+    internal static async UniTask FireAsync<T>(T evt, CancellationToken ct, bool debug = true) where T : IEvtBase
     {
         var evtType = evt.GetType();
         if (BusDisposable.IsMute(evtType.FullName))
             return;
-        withDebug ??= () => true;
-        if (withDebug())
+        if (debug)
         {
             var attr = evtType.GetCustomAttribute<EvtNameAttribute>();
             var typeName = attr != null ? $"{attr.Name}" : evtType.GetNiceName();
@@ -90,9 +89,11 @@ public abstract record EvtBase<THasCt>(THasCt WhoHasCt)
     : IEvtBase
     where THasCt : IHasCt
 {
-    public Func<bool> GetDebug = () => true;
+    bool getDebug = true;
+
+    public EvtBase<THasCt> Debug(bool debug) { getDebug = debug; return this; }
     public THasCt WhoHasCt = WhoHasCt;
-    public UniTask.Awaiter GetAwaiter() => Bus.FireAsync(this, WhoHasCt.Ct, GetDebug).GetAwaiter();
+    public UniTask.Awaiter GetAwaiter() => Bus.FireAsync(this, WhoHasCt.Ct, getDebug).GetAwaiter();
 }
 
 public abstract record EvtForgetBase : IEvtBase

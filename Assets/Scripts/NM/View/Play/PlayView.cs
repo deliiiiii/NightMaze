@@ -33,7 +33,7 @@ public class PlayView : ViewBase
         Invoke = (evt, ct) =>
         {
             gameObject.SetActive(true);
-            RefreshAll(evt.Ctx);
+            RefreshAll(evt.WhoHasCt);
             return UniTask.CompletedTask;
         },
         Des = "(进入Root - Playing状态时) 恢复游戏"

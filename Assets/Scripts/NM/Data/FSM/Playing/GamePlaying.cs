@@ -71,7 +71,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
         await new EvtOnEnter(this);
         await LaunchAsync(CurState ?? new PlayingIdle(), CurState != null);
     }
-    public record EvtOnEnter(GamePlaying Ctx) : EvtBase<GamePlaying>(Ctx);
+    public record EvtOnEnter(GamePlaying WhoHasCt) : EvtBase<GamePlaying>(WhoHasCt);
     protected override void OnExit()
     {
         Release();

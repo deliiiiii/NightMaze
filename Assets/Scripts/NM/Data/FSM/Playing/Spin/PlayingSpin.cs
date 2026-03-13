@@ -50,14 +50,12 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
                 {
                     symbol.AlreadyChecked = true;
                     await new EvtImmediateDoSymbol(symbol);
-                    await BelongFSM.GetAdjacent(symbol).ForEachAsync(async adjacentSymbol =>
-                    {
-                        var debug = !adjacentSymbol.IsEmpty && !symbol.IsEmpty;
-                        await new EvtSpinSymbolAdjacentSymbol(this, adjacentSymbol, symbol)
+                    await BelongFSM.GetAdjacent(symbol)
+                        .ForEachAsync(async adjacentSymbol =>
                         {
-                            GetDebug = () => debug
-                        };
-                    });
+                            await new EvtSpinSymbolAdjacentSymbol(this, adjacentSymbol, symbol)
+                                .Debug(!adjacentSymbol.IsEmpty && !symbol.IsEmpty);
+                        });
                 });
             await DelayAddList.ForEachAsync(async x => await x);
         } while (DelayAddList.Count != 0);
@@ -81,9 +79,9 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
     
 
     [EvtName("立即执行符号")]
-    public record EvtImmediateDoSymbol(SymbolData SymbolData) : EvtBase<SymbolData>(SymbolData);
+    public record EvtImmediateDoSymbol(SymbolData WhoHasCt) : EvtBase<SymbolData>(WhoHasCt);
     [EvtName("结算符号")]
-    public record EvtPay(SymbolData SymbolData, long Pay) : EvtBase<SymbolData>(SymbolData);
+    public record EvtPay(SymbolData WhoHasCt, long Pay) : EvtBase<SymbolData>(WhoHasCt);
     [EvtName("发现某符号与当前某符号相邻")]
     public record EvtSpinSymbolAdjacentSymbol(PlayingSpin Ctx, SymbolData AdjacentSymbol, SymbolData Symbol) : EvtBase<PlayingSpin>(Ctx);
 }
