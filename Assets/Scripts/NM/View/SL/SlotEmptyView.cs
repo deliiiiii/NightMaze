@@ -15,6 +15,6 @@ public class SlotEmptyView : ViewBase
     
     protected override IEnumerable<BindDataBase> BindList()
     {
-        yield return Binder.FromEvt(btnAdd.onClick).To(() => OnClick?.Invoke());
+        yield return btnAdd.onClick.EvtBindTo(() => OnClick?.Invoke());
     }
 }

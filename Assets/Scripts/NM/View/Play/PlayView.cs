@@ -23,8 +23,8 @@ public class PlayView : ViewBase
 
     protected override IEnumerable<BindDataBase> BindList()
     {
-        yield return Binder.FromEvt(BtnSpin.onClick).To(() => Bus.FireAndForget(new GamePlaying.EvtClickSpin()));
-        yield return Binder.FromEvt(BtnExit.onClick).To(() => Bus.FireAndForget(new GamePlaying.EvtClickExit()));
+        yield return BtnSpin.onClick.EvtBindTo(new GamePlaying.EvtClickSpin().Forget);
+        yield return BtnExit.onClick.EvtBindTo(new GamePlaying.EvtClickExit().Forget);
     }
     
     #region OnEvt
@@ -69,16 +69,6 @@ public class PlayView : ViewBase
         Des = "(金币变化时) 刷新金币显示"
     };
     
-    
-    UniEvt<PlayingSpin.EvtOnEnter> OnSpinEvtOnEnter => new()
-    {
-        Invoke = (evt, ct) =>
-        {
-            SetAllSymbolEmpty();
-            return UniTask.CompletedTask;
-        },
-        Des = "(进入Playing - Spin时) 清空所有格子"
-    };
     UniEvt<PlayingSpin.EvtPay> OnSpinEvtSpinPay => new()
     {
         Invoke = async (evt, ct) =>
@@ -88,7 +78,7 @@ public class PlayView : ViewBase
             {
                 foreach (var symbolView in symbolColumn.SymbolList)
                 {
-                    if (symbolView.Data == evt.Symbol && pay > 0)
+                    if (symbolView.Data == evt.WhoHasCt && pay > 0)
                     {
                         payTween[0].FromValue = symbolView.transform.position;
                         TxtPayCoin.text = pay.ToString();
@@ -99,12 +89,25 @@ public class PlayView : ViewBase
         },
         Des = "(某符号结算时) 播放结算动画"
     };
+    
+    UniEvt<SymbolData.EvtPosChanged> OnSymbolEvtPosChanged => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            if (!evt.NewValue.IsSome)
+            {
+                evt.OldValue.MatchA(SetEmptyAt);
+            }
+            return UniTask.CompletedTask;
+        },
+        Des = "(某符号删除Pos时) 在位置上显示空符号"
+    };
     #endregion
 
 
     void RefreshAll(GamePlaying ctx)
     {
-        SetAllSymbolEmpty();
+        SetAllEmpty();
         ctx.SymbolDeck.ForEach(s =>
         {
             s.Pos.MatchA(some => SetSymbolAt(s, some));
@@ -112,13 +115,13 @@ public class PlayView : ViewBase
         TxtCoin.text = ctx.Coin.ToString();
     }
 
-    void SetAllSymbolEmpty()
+    void SetAllEmpty()
     {
         foreach (var x in Enumerable.Range(Const.SpinFirstID, Const.SpinW))
         {
             foreach (var y in Enumerable.Range(Const.SpinFirstID, Const.SpinH))
             {
-                SetSymbolAt(SymbolData.CreateEmpty(), new Vector2Int(x, y));
+                SetEmptyAt(new Vector2Int(x, y));
             }
         }
     }
@@ -126,5 +129,9 @@ public class PlayView : ViewBase
     {
         var symbolView = symbolColumnList[pos.X - 1].SymbolList[pos.Y - 1];
         symbolView.Data = symbolData;
+    }
+    void SetEmptyAt(Vector2Int pos)
+    {
+        SetSymbolAt(SymbolData.CreateEmpty(), pos);
     }
 }

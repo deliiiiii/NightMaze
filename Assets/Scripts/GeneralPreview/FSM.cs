@@ -9,10 +9,12 @@ using Sirenix.Utilities;
 using UnityEngine;
 
 namespace GeneralPreview;
-public abstract record FSM<TThis> : IDisposable, IHasVersion
+public abstract record FSM<TThis> : IDisposable, IHasVersion, IHasCt
     where TThis : FSM<TThis>
 {
     [ShowInInspector, PropertyOrder(-10), LabelText(nameof(CurStateName))] protected IState? CurState;
+    public void Dispose() => Release();
+    CancellationToken IHasCt.Ct => Cts.Token;
     // ReSharper disable once ConvertToAutoProperty
     [JsonIgnore] double IHasVersion.savedVersion {get => savedVersion; set => savedVersion = value;}
     double savedVersion = Const.Version;
@@ -20,6 +22,8 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion
     
     [JsonIgnore] protected readonly CancellationTokenSource Cts = new();
     [JsonIgnore] protected CancellationToken CurCt => Cts.Token;
+    
+    
     protected async UniTask LaunchAsync(IState initState, bool isNewStateFromLoad)
     {
         if (CurState != null && !isNewStateFromLoad)
@@ -29,7 +33,7 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion
         }
         MyDebug.Log($"{GetType().GetNiceName()} Launching...");
         await EnterStateAsync(initState, isNewStateFromLoad);
-        Binder.FromTick(Tick).Bind(CurCt);
+        Tick.ToBinder().Bind(CurCt);
     }
     protected void Release()
     {
@@ -63,7 +67,7 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion
     }
     [DebuggerStepThrough] public MyOption<TState> InState<TState>() => CurState is TState state ? state : None;
     [DebuggerStepThrough] public bool IsState<TState>() => CurState is TState;
-    [DebuggerStepThrough] void Tick(float dt) => CurState?.OnUpdate(dt);
+    Action<float> Tick => dt => CurState?.OnUpdate(dt);
 
     public interface IState
     {
@@ -105,8 +109,6 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion
         [DebuggerStepThrough] public UniTask.Awaiter GetAwaiter() => InvokeAsync().GetAwaiter();
         [DebuggerStepThrough] public void Forget() => InvokeAsync().Forget();
     }
-
-    public void Dispose() => Release();
 }
 
 public interface IUniAction

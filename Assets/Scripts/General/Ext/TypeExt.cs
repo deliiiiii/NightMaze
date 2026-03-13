@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public static class TypeExt
+namespace General
 {
-    public static IEnumerable<Type> SubTypeList(this Type type)
+    public static class TypeExt
     {
-        return AppDomain.CurrentDomain.GetAssemblies()
-            .SelectMany(a => a.GetTypes())
-            .Where(t => type.IsAssignableFrom(t) && t != type && !t.IsAbstract);
+        public static IEnumerable<Type> SubTypes(this Type type)
+        {
+            return AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(a => a.GetTypes())
+                .Where(t => type.IsAssignableFrom(t) && t != type && !t.IsAbstract);
+        }
     }
 }

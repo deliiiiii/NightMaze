@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine.Events;
 
-namespace General.BindData
+namespace General
 {
     public class BindDataEvent : BindDataBase
     {

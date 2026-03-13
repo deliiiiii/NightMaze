@@ -13,8 +13,10 @@ using Vector2Int = GeneralPreview.Vector2Int;
 namespace NM.Data;
 
 [Serializable]
-public class SymbolData : DataBase<SymbolData>
+public partial class SymbolData : DataBase<SymbolData>
 {
+    public static Func<SymbolData> CreateEmpty => () => Create(-1);
+    public static Func<int, SymbolData> Create => id => new SymbolData(id);
     SymbolData(int configID)
     {
         ConfigID = configID;
@@ -30,12 +32,9 @@ public class SymbolData : DataBase<SymbolData>
         }
         AddCom(SymbolC2Com.Create(Config));
     }
-    [JsonConstructor]
-    [DebuggerStepThrough] SymbolData(){}
-    public static Func<SymbolData> CreateEmpty => () => Create(-1);
-    public static Func<int, SymbolData> Create => id => new SymbolData(id);
-    public MyOption<Vector2Int> Pos = None;
-    public bool AlreadyChecked;
+    [JsonConstructor] [DebuggerStepThrough] SymbolData(){}
+    [EvtChanged] public partial MyOption<Vector2Int> Pos { get; set; } = None;
+    public bool AlreadyChecked { get; set; }
     public readonly List<int> TempAdd = [];
     public readonly List<int> TempMulti = [];
     public readonly List<int> TowaAdd = [];
@@ -47,32 +46,32 @@ public class SymbolData : DataBase<SymbolData>
     [ShowInInspector, PropertyOrder(0)] public int ConfigID { get; init; }
     [HideInInspector] public bool IsEmpty => ConfigID == -1;
     [ShowInInspector, PropertyOrder(1)]public string Name => Config.Name;
-    SymbolConfig Config => field ??= RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ConfigID);
-    string PosInfo => Pos.Match(some => $"(Pos:{some.X},{some.Y})", RStr);
+    SymbolConfig Config => RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ConfigID);
+    string PosInfo => Pos.Match(some => $"(Pos:{some.X} {some.Y})", RStr);
     
-    public override string ToString() => $"{Config.Name}(ID:{Config.ID}){PosInfo}";
+    public override string ToString() => $"{Config.Name}(ID:{ConfigID}){PosInfo}";
     public void DoTempAdd(int add)
     {
         TempAdd.Add(add);
-        Bus.FireAndForget(new EvtUltimateGiveChanged(this, GetUltimateGive()));
+        new EvtUltimateGiveChanged(this, GetUltimateGive()).Forget();
     }
     public void DoTempMulti(int multi)
     {
         TempMulti.Add(multi);
-        Bus.FireAndForget(new EvtUltimateGiveChanged(this, GetUltimateGive()));
+        new EvtUltimateGiveChanged(this, GetUltimateGive()).Forget();
     }
     public void DoTowaAdd(int add)
     {
         TowaAdd.Add(add);
-        Bus.FireAndForget(new EvtUltimateGiveChanged(this, GetUltimateGive()));
+        new EvtUltimateGiveChanged(this, GetUltimateGive()).Forget();
     }
     public void DoTowaMulti(int multi)
     {
         TowaMulti.Add(multi);
-        Bus.FireAndForget(new EvtUltimateGiveChanged(this, GetUltimateGive()));
+        new EvtUltimateGiveChanged(this, GetUltimateGive()).Forget();
     }
     [TypeRegistryItem("某符号的最终金钱改变时\t(SymbolEtt)")]
-    public record EvtUltimateGiveChanged(SymbolData Symbol, long UltimateGive) : EvtBase;
+    public record EvtUltimateGiveChanged(SymbolData Symbol, long UltimateGive) : EvtForgetBase;
 
     public long GetUltimateGive()
     {

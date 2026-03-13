@@ -65,8 +65,8 @@ namespace General
                 var step = stepDic.GetValueOrDefault(curVersion);
                 if (step == null)
                 {
-                    MyDebug.LogError($"迁移存档类型{typeof(TDiskData)}的数据{typeof(TRuntimeData)}失败: 未找到从版本{curVersion}开始的迁移步骤");
-                    return null;
+                    MyDebug.LogError($"迁移存档类型{typeof(TDiskData)}的数据{typeof(TRuntimeData)}失败: 未找到从版本{curVersion}开始的迁移步骤. 将停留在该版本.");
+                    return data;
                 }
                 data = stepDic[curVersion].Migrate(data);
                 if (data is JObject jObject2)

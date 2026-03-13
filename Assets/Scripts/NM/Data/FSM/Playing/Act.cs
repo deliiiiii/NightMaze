@@ -5,22 +5,22 @@ using Cysharp.Threading.Tasks;
 using GeneralPreview;
 
 namespace NM.Data;
-
+[ActContainer]
 public partial record GamePlaying
 {
     [Obsolete("符号添加符号")]
-    public async UniTask SymbolAddSymbolAsync(SymbolData subjectSymbol, SymbolData addedSymbol, CancellationToken ct)
+    async UniTask SymbolAddSymbolAsync(SymbolData subjectSymbol, SymbolData addedSymbol, CancellationToken ct)
     {
         await new ActAddSymbol{@this = this, ToAdd = addedSymbol};
     }
     [Obsolete("金币变化")]
-    public UniTask SetCoinAsync(long value, CancellationToken ct)
+    UniTask SetCoinAsync(long value, CancellationToken ct)
     {
         Coin = value;
         return UniTask.CompletedTask;
     }
     [Obsolete("清空符号列表")]
-    public async UniTask ClearDeckAsync(CancellationToken ct)
+    async UniTask ClearDeckAsync(CancellationToken ct)
     {
         foreach (var symbol in symbolDeckList.ToList())
         {
@@ -28,7 +28,7 @@ public partial record GamePlaying
         }
     }
     [Obsolete("添加符号")]
-    public async UniTask AddSymbolAsync(SymbolData toAdd, CancellationToken ct)
+    async UniTask AddSymbolAsync(SymbolData toAdd, CancellationToken ct)
     {
         symbolDeckList.Add(toAdd);
         await new ActShowSymbolRandomly { Symbol = toAdd, @this = this };
@@ -41,7 +41,7 @@ public partial record GamePlaying
         }
     }
     [Obsolete("移除符号")]
-    public async UniTask RemoveSymbolAsync(SymbolData toRemove, bool shouldAddEmpty, CancellationToken ct)
+    async UniTask RemoveSymbolAsync(SymbolData toRemove, bool shouldAddEmpty, CancellationToken ct)
     {
         symbolDeckList.Remove(toRemove);
         toRemove.Dispose();
@@ -51,7 +51,7 @@ public partial record GamePlaying
         }
     }
     [Obsolete("将符号显示在随机一个空位上")]
-    public async UniTask ShowSymbolRandomlyAsync(SymbolData symbol, CancellationToken ct)
+    async UniTask ShowSymbolRandomlyAsync(SymbolData symbol, CancellationToken ct)
     {
         await SymbolShownSorted
             .Where(s => s.IsEmpty)
@@ -61,7 +61,7 @@ public partial record GamePlaying
             .MatchAsync(async some => await new ActShowSymbolAt { Symbol = symbol, Pos = some, @this = this }, RTask);
     }
     [Obsolete("将符号显示在某位置上")]
-    public UniTask ShowSymbolAtAsync(SymbolData symbol, Vector2Int pos, CancellationToken ct)
+    UniTask ShowSymbolAtAsync(SymbolData symbol, Vector2Int pos, CancellationToken ct)
     {
         symbol.Pos = pos;
         return UniTask.CompletedTask;

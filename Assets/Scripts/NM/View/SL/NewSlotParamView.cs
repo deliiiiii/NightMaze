@@ -15,7 +15,7 @@ public class NewSlotParamView : ViewBase
 
     protected override IEnumerable<BindDataBase> BindList()
     {
-        yield return Binder.FromEvt(btnClose.onClick).To(() => gameObject.SetActive(false));
-        yield return Binder.FromEvt(btnStart.onClick).To(() => Bus.FireAndForget(new SLView.EvtCLickStartNew(iptName.text)));
+        yield return btnClose.onClick.EvtBindTo(gameObject.SetActiveFalse);
+        yield return btnStart.onClick.EvtBindTo(new SLView.EvtCLickStartNew(iptName.text).Forget);
     }
 }

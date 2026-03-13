@@ -35,7 +35,8 @@ public class Launcher : Singleton<Launcher>
     async UniTask Start()
     {
 #if UNITY_EDITOR
-        Binder.FromTick(_ => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint()).Bind(destroyCancellationToken);
+        var act = (float _) => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint();
+        act.ToBinder().Bind(destroyCancellationToken);
 #endif
         try
         {

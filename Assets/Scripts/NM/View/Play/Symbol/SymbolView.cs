@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using General;
 using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;
@@ -40,7 +41,7 @@ public class SymbolView : ViewBase
     {
         Invoke = async (evt, ct) =>
         {
-            if (evt.Symbol != Data || Data.IsEmpty)
+            if (evt.WhoHasCt != Data || Data.IsEmpty)
                 return;
             await onSpinTween.PlayAsync(ct);
         },

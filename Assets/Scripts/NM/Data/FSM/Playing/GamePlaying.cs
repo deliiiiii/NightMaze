@@ -23,7 +23,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     // public long Coin
     // {
     //     get;
-    //     set
+    //     private set
     //     {
     //         field = value;
     //         Bus.FireAndForget(new EvtCoinChanged(value));
@@ -68,18 +68,17 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
             symbolDeckList.AddRange(SymbolData.CreateEmpty.Repeat(DeckMax - symbolDeckList.Count));
         }
         symbolDeckList.ForEach(s => s.BindAllCom());
-        await Bus.FireAsync(new EvtOnEnter(this), CurCt);
+        await new EvtOnEnter(this);
         await LaunchAsync(CurState ?? new PlayingIdle(), CurState != null);
     }
-    public record EvtOnEnter(GamePlaying Ctx) : EvtBase;
+    public record EvtOnEnter(GamePlaying Ctx) : EvtBase<GamePlaying>(Ctx);
     protected override void OnExit()
     {
         Release();
-        Bus.FireAndForget(new EvtOnExit());
+        new EvtOnExit().Forget();
         symbolDeckList.ForEach(s => s.Dispose());
-        // new ActClearDeck{ Ctx = this }.Forget();
     }
-    public record EvtOnExit : EvtBase;
+    public record EvtOnExit : EvtForgetBase;
     protected override void OnUpdate(float dt)
     {
         base.OnUpdate(dt);

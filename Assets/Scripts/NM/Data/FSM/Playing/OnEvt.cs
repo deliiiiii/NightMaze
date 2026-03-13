@@ -4,7 +4,7 @@ namespace NM.Data;
 
 public partial record GamePlaying 
 {
-    public record EvtClickSpin : EvtBase;
+    public record EvtClickSpin : EvtForgetBase;
 
     UniEvt<EvtClickSpin> OnEvtClickSpinAsync => new()
     {
@@ -15,7 +15,7 @@ public partial record GamePlaying
         Des = "(点击了旋转按钮) 尝试进入旋转状态"
     };
     
-    public record EvtClickExit : EvtBase;
+    public record EvtClickExit : EvtForgetBase;
     UniEvt<EvtClickExit> OnEvtClickExitAsync => new()
     {
         Invoke = async (evt, ct) =>

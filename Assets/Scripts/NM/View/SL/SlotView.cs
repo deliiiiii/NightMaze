@@ -4,7 +4,6 @@ using General;
 using GeneralPreview;
 using NM.Data;
 using UnityEngine;
-using UnityEngine.UI;
 
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 
@@ -14,7 +13,7 @@ public class SlotView : ViewBase
 {
     protected override IEnumerable<BindDataBase> BindList()
     {
-        yield return Binder.FromEvt(btn.onClick).To(() => OnClick?.Invoke());
+        yield return btn.onClick.EvtBindTo(() => OnClick?.Invoke());
     }
 
     public GamePlaying Data { get; private set; }
@@ -38,10 +37,10 @@ public class SlotView : ViewBase
     }
     public void OnSelect()
     {
-        goSelected.SetActive(true);
+        goSelected.SetActiveTrue();
     }
     public void OnUnSelect()
     {
-        goSelected.SetActive(false);
+        goSelected.SetActiveFalse();
     }
 }

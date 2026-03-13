@@ -79,8 +79,17 @@ public abstract record MyOption<T1>
     [DebuggerStepThrough]public MyOption<T1C> SelectMany<T1B, T1C>(Func<T1, MyOption<T1B>> f, Func<T1, T1B, T1C> s) =>
         Bind(a => f(a).Map(b => s(a, b)));
 }
-[DebuggerStepThrough][Serializable]
-public record MySome<T>([property: ShowInInspector] T Value) : MyOption<T>;
 
-[DebuggerStepThrough][Serializable]
-public record MyNone<T> : MyOption<T>;
+[DebuggerStepThrough]
+[Serializable]
+public record MySome<T>([property: ShowInInspector] T Value) : MyOption<T>
+{
+    public override string ToString() => $"{nameof(MySome<>)}({Value})";
+}
+
+[DebuggerStepThrough]
+[Serializable]
+public record MyNone<T> : MyOption<T>
+{
+    public override string ToString() => $"{nameof(MyNone<>)}";
+}

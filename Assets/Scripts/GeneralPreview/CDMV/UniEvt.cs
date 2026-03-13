@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace GeneralPreview;
 public record UniEvt<TEvt> : IDisposable, IUniEvt
-    where TEvt : EvtBase
+    where TEvt : IEvtBase
 {
     [ReadOnly, ShowInInspector] public required string Des { get; init; } = "None ...";
     [HideInInspector]public required Func<TEvt, CancellationToken, UniTask> Invoke { get; init; }
@@ -22,7 +22,7 @@ public record UniEvt<TEvt> : IDisposable, IUniEvt
         Bus.UnRegister(this);
     }
 
-    public UniTask InvokeAsync(EvtBase evt, CancellationToken ct) => Invoke((TEvt)evt, ct);
+    public UniTask InvokeAsync(IEvtBase evt, CancellationToken ct) => Invoke((TEvt)evt, ct);
 }
 
 public interface IUniEvt
@@ -43,5 +43,5 @@ public interface IUniEvt
 
     }
     public string Des { get; }
-    public UniTask InvokeAsync(EvtBase evt, CancellationToken ct);
+    public UniTask InvokeAsync(IEvtBase evt, CancellationToken ct);
 }

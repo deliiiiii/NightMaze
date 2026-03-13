@@ -27,7 +27,7 @@ public static class Bus
         }
     }
     [HideInInspector]
-    static readonly Dictionary<Type, List<IUniEvt>> evtDic = new();
+    static readonly Dictionary<Type, List<IUniEvt>> evtDic = [];
 
     [ShowInInspector]
     static Dictionary<string, List<string>> NonViewDic
@@ -38,28 +38,31 @@ public static class Bus
                 pair => pair.Value.Select(dele => dele.Des).ToList()
             );
 
-    public static void FireAndForget<T>(T evt, Func<bool>? withDebug = null) where T : EvtBase
+    internal static void FireAndForget<T>(T evt, Func<bool>? withDebug = null) where T : EvtForgetBase
         => FireAsync(evt, CancellationToken.None, withDebug).Forget();
-    public static async UniTask FireAsync<T>(T evt, CancellationToken ct, Func<bool>? withDebug = null) where T : EvtBase
+    internal static async UniTask FireAsync<T>(T evt, CancellationToken ct, Func<bool>? withDebug = null) where T : IEvtBase
     {
+        var evtType = evt.GetType();
+        if (BusDisposable.IsMute(evtType.FullName))
+            return;
         withDebug ??= () => true;
         if (withDebug())
         {
-            var attr = typeof(T).GetCustomAttribute<EvtNameAttribute>();
-            var typeName = attr != null ? $"{attr.Name}" : typeof(T).GetNiceName();
+            var attr = evtType.GetCustomAttribute<EvtNameAttribute>();
+            var typeName = attr != null ? $"{attr.Name}" : evtType.GetNiceName();
             var details = evt.ToString();
             var leftBracketIndex = details.IndexOf('{');
             var rightBracketIndex = details.IndexOf('}');
             MyDebug.Log($"Fired - {typeName} {details.Substring(leftBracketIndex, rightBracketIndex - leftBracketIndex + 1)}");
         }
-        if (!evtDic.TryGetValue(typeof(T), out var list)) 
+        if (!evtDic.TryGetValue(evtType, out var list)) 
             return;
         foreach (var dele in list.Where(_ => !ct.IsCancellationRequested).ToList())
         {
             await dele.InvokeAsync(evt, ct);
         }
     }
-    internal static void Register<T>(UniEvt<T> act) where T : EvtBase
+    internal static void Register<T>(UniEvt<T> act) where T : IEvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
         {
@@ -68,7 +71,7 @@ public static class Bus
         }
         list.Add(act);
     }
-    internal static void UnRegister<T>(UniEvt<T> func) where T : EvtBase
+    internal static void UnRegister<T>(UniEvt<T> func) where T : IEvtBase
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
             return;
@@ -83,4 +86,22 @@ public static class Bus
     }
 }
 
-public abstract record EvtBase;
+public abstract record EvtBase<THasCt>(THasCt WhoHasCt)
+    : IEvtBase
+    where THasCt : IHasCt
+{
+    public Func<bool> GetDebug = () => true;
+    public THasCt WhoHasCt = WhoHasCt;
+    public UniTask.Awaiter GetAwaiter() => Bus.FireAsync(this, WhoHasCt.Ct, GetDebug).GetAwaiter();
+}
+
+public abstract record EvtForgetBase : IEvtBase
+{
+    public void Forget() => Bus.FireAndForget(this);
+}
+
+public interface IHasCt
+{
+    CancellationToken Ct { get; }
+}
+public interface IEvtBase;

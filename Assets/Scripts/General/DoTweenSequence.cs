@@ -1,355 +1,358 @@
 ﻿#if DOTWEEN
-using DG.Tweening;
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-[Serializable]
-public class DOTweenSequence : MonoBehaviour
+
+namespace General
 {
-    [HideInInspector][SerializeField] SequenceAnimation[] mSequence;
-    public SequenceAnimation this[int id] => mSequence[id];
-    [SerializeField] bool mPlayOnAwake = false;
-    [SerializeField] bool mResetOnAwake = false;
-    [SerializeField] float mDelay = 0;
-    [SerializeField] Ease mEase = Ease.OutQuad;
-    [SerializeField] int mLoops = 1;
-    [SerializeField] LoopType mLoopType = LoopType.Restart;
-    [SerializeField] UpdateType mUpdateType = UpdateType.Normal;
-
-    [SerializeField] bool mIgnoreTimeScale = true;
-    [SerializeField] UnityEvent mOnPlay = null;
-    [SerializeField] UnityEvent mOnUpdate = null;
-    [SerializeField] UnityEvent mOnComplete = null;
-
-    [CanBeNull] Tween mTween;
-
-    void Awake()
+    [Serializable]
+    public class DOTweenSequence : MonoBehaviour
     {
-        if (mPlayOnAwake) DOPlay();
-        else if (mResetOnAwake)
-        {
-            ResetToFromValue();
-        }
-    }
+        [HideInInspector][SerializeField] SequenceAnimation[] mSequence;
+        public SequenceAnimation this[int id] => mSequence[id];
+        [SerializeField] bool mPlayOnAwake = false;
+        [SerializeField] bool mResetOnAwake = false;
+        [SerializeField] float mDelay = 0;
+        [SerializeField] Ease mEase = Ease.OutQuad;
+        [SerializeField] int mLoops = 1;
+        [SerializeField] LoopType mLoopType = LoopType.Restart;
+        [SerializeField] UpdateType mUpdateType = UpdateType.Normal;
 
-    void ResetToFromValue()
-    {
-        foreach (var item in mSequence)
+        [SerializeField] bool mIgnoreTimeScale = true;
+        [SerializeField] UnityEvent mOnPlay = null;
+        [SerializeField] UnityEvent mOnUpdate = null;
+        [SerializeField] UnityEvent mOnComplete = null;
+
+        [CanBeNull] Tween mTween;
+
+        void Awake()
         {
-            var useFromValue = item.UseFromValue;
-            if (!useFromValue) continue;
-            var targetCom = item.Target;
-            var resetValue = item.FromValue;
-            switch (item.AnimationType)
+            if (mPlayOnAwake) DOPlay();
+            else if (mResetOnAwake)
             {
-                case DOTweenType.DOMove:
+                ResetToFromValue();
+            }
+        }
+
+        void ResetToFromValue()
+        {
+            foreach (var item in mSequence)
+            {
+                var useFromValue = item.UseFromValue;
+                if (!useFromValue) continue;
+                var targetCom = item.Target;
+                var resetValue = item.FromValue;
+                switch (item.AnimationType)
+                {
+                    case DOTweenType.DOMove:
                     {
                         ((Transform)targetCom).position = resetValue;
                         break;
                     }
-                case DOTweenType.DOMoveX:
+                    case DOTweenType.DOMoveX:
                     {
                         ((Transform)targetCom).SetPositionX(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOMoveY:
+                    case DOTweenType.DOMoveY:
                     {
                         ((Transform)targetCom).SetPositionY(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOMoveZ:
+                    case DOTweenType.DOMoveZ:
                     {
                         ((Transform)targetCom).SetPositionZ(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOLocalMove:
+                    case DOTweenType.DOLocalMove:
                     {
                         ((Transform)targetCom).localPosition = resetValue;
                         break;
                     }
-                case DOTweenType.DOLocalMoveX:
+                    case DOTweenType.DOLocalMoveX:
                     {
                         ((Transform)targetCom).SetLocalPositionX(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOLocalMoveY:
+                    case DOTweenType.DOLocalMoveY:
                     {
                         ((Transform)targetCom).SetLocalPositionY(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOLocalMoveZ:
+                    case DOTweenType.DOLocalMoveZ:
                     {
                         ((Transform)targetCom).SetLocalPositionZ(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOAnchorPos:
+                    case DOTweenType.DOAnchorPos:
                     {
                         ((RectTransform)targetCom).anchoredPosition = resetValue;
                         break;
                     }
-                case DOTweenType.DOAnchorPosX:
+                    case DOTweenType.DOAnchorPosX:
                     {
                         ((RectTransform)targetCom).SetAnchoredPositionX(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOAnchorPosY:
+                    case DOTweenType.DOAnchorPosY:
                     {
                         ((RectTransform)targetCom).SetAnchoredPositionY(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOAnchorPosZ:
+                    case DOTweenType.DOAnchorPosZ:
                     {
                         ((RectTransform)targetCom).SetAnchoredPosition3Dz(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOAnchorPos3D:
+                    case DOTweenType.DOAnchorPos3D:
                     {
                         ((RectTransform)targetCom).anchoredPosition3D = resetValue;
                         break;
                     }
-                case DOTweenType.DOColor:
+                    case DOTweenType.DOColor:
                     {
                         ((Graphic)targetCom).color = resetValue;
                         break;
                     }
-                case DOTweenType.DOFade:
+                    case DOTweenType.DOFade:
                     {
                         ((Graphic)targetCom).SetColorAlpha(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOCanvasGroupFade:
+                    case DOTweenType.DOCanvasGroupFade:
                     {
                         ((CanvasGroup)targetCom).alpha = resetValue.x;
                         break;
                     }
-                case DOTweenType.DOValue:
+                    case DOTweenType.DOValue:
                     {
                         ((Slider)targetCom).value = resetValue.x;
                         break;
                     }
-                case DOTweenType.DOSizeDelta:
+                    case DOTweenType.DOSizeDelta:
                     {
                         ((RectTransform)targetCom).sizeDelta = resetValue;
                         break;
                     }
-                case DOTweenType.DOFillAmount:
+                    case DOTweenType.DOFillAmount:
                     {
                         ((Image)targetCom).fillAmount = resetValue.x;
                         break;
                     }
-                case DOTweenType.DOFlexibleSize:
+                    case DOTweenType.DOFlexibleSize:
                     {
                         (targetCom as LayoutElement).SetFlexibleSize(resetValue);
                         break;
                     }
-                case DOTweenType.DOMinSize:
+                    case DOTweenType.DOMinSize:
                     {
                         (targetCom as LayoutElement).SetMinSize(resetValue);
                         break;
                     }
-                case DOTweenType.DOPreferredSize:
+                    case DOTweenType.DOPreferredSize:
                     {
                         (targetCom as LayoutElement).SetPreferredSize(resetValue);
                         break;
                     }
-                case DOTweenType.DOScale:
+                    case DOTweenType.DOScale:
                     {
                         ((Transform)targetCom).localScale = resetValue;
                         break;
                     }
-                case DOTweenType.DOScaleX:
+                    case DOTweenType.DOScaleX:
                     {
                         ((Transform)targetCom).SetLocalScaleX(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOScaleY:
+                    case DOTweenType.DOScaleY:
                     {
                         ((Transform)targetCom).SetLocalScaleY(resetValue.x);
                         break;
                     }
-                case DOTweenType.DOScaleZ:
+                    case DOTweenType.DOScaleZ:
                     {
                         ((Transform)targetCom).SetLocalScaleZ(resetValue.z);
                         break;
                     }
-                case DOTweenType.DORotate:
+                    case DOTweenType.DORotate:
                     {
                         ((Transform)targetCom).eulerAngles = resetValue;
                         break;
                     }
-                case DOTweenType.DOLocalRotate:
+                    case DOTweenType.DOLocalRotate:
                     {
                         ((Transform)targetCom).localEulerAngles = resetValue;
                         break;
                     }
-            }
-        }
-    }
-
-    [CanBeNull]
-    Tween CreateTween(bool reverse = false)
-    {
-        if (mSequence == null || mSequence.Length == 0)
-        {
-            return null;
-        }
-        var sequence = DOTween.Sequence();
-        if (reverse)
-        {
-            for (int i = mSequence.Length - 1; i >= 0; i--)
-            {
-                var item = mSequence[i];
-                var tweener = item.CreateTween(true);
-                if (tweener == null)
-                {
-                    Debug.LogErrorFormat("Tweener is null. Index:{0}, Animation Type:{1}, Component Type:{2}", i, item.AnimationType, item.Target == null ? "null" : item.Target.GetType().Name);
-                    continue;
-                }
-                tweener.SetUpdate(!mIgnoreTimeScale);
-                switch (item.AddType)
-                {
-                    case AddType.Append:
-                        sequence.Append(tweener);
-                        break;
-                    case AddType.Join:
-                        sequence.Join(tweener);
-                        break;
                 }
             }
         }
-        else
+
+        [CanBeNull]
+        Tween CreateTween(bool reverse = false)
         {
-            for (int i = 0; i < mSequence.Length; i++)
+            if (mSequence == null || mSequence.Length == 0)
             {
-                var item = mSequence[i];
-                var tweener = item.CreateTween(false);
-                if (tweener == null)
+                return null;
+            }
+            var sequence = DOTween.Sequence();
+            if (reverse)
+            {
+                for (int i = mSequence.Length - 1; i >= 0; i--)
                 {
-                    Debug.LogErrorFormat("Tweener is null. Index:{0}, Animation Type:{1}, Component Type:{2}", i, item.AnimationType, item.Target == null ? "null" : item.Target.GetType().Name);
-                    continue;
-                }
-                tweener.SetUpdate(!mIgnoreTimeScale);
-                switch (item.AddType)
-                {
-                    case AddType.Append:
-                        sequence.Append(tweener);
-                        break;
-                    case AddType.Join:
-                        sequence.Join(tweener);
-                        break;
+                    var item = mSequence[i];
+                    var tweener = item.CreateTween(true);
+                    if (tweener == null)
+                    {
+                        Debug.LogErrorFormat("Tweener is null. Index:{0}, Animation Type:{1}, Component Type:{2}", i, item.AnimationType, item.Target == null ? "null" : item.Target.GetType().Name);
+                        continue;
+                    }
+                    tweener.SetUpdate(!mIgnoreTimeScale);
+                    switch (item.AddType)
+                    {
+                        case AddType.Append:
+                            sequence.Append(tweener);
+                            break;
+                        case AddType.Join:
+                            sequence.Join(tweener);
+                            break;
+                    }
                 }
             }
-        }
-        sequence.SetEase(mEase).SetUpdate(mUpdateType, mIgnoreTimeScale).SetLoops(mLoops, mLoopType).SetDelay(mDelay);
-        if (mOnPlay != null) sequence.OnPlay(mOnPlay.Invoke);
-        if (mOnUpdate != null) sequence.OnUpdate(mOnUpdate.Invoke);
-        if (mOnComplete != null) sequence.OnComplete(mOnComplete.Invoke);
-        sequence.SetAutoKill(true);
-        return sequence;
-    }
-    public void Play()
-    {
-        DOPlay();
-    }
-    public Tween DOPlay()
-    {
-        mTween = CreateTween();
-        return mTween?.Play();
-    }
-
-    public Tween DORewind()
-    {
-        mTween = CreateTween(true);
-        return mTween?.Play();
-    }
-
-    public void DOComplete(bool withCallback = false)
-    {
-        mTween?.Complete(withCallback);
-    }
-
-    public void DOKill()
-    {
-        mTween?.Kill();
-        mTween = null;
-    }
-    [Serializable]
-    public enum DOTweenType
-    {
-        DOMove,
-        DOMoveX,
-        DOMoveY,
-        DOMoveZ,
-
-        DOLocalMove,
-        DOLocalMoveX,
-        DOLocalMoveY,
-        DOLocalMoveZ,
-
-        DOScale,
-        DOScaleX,
-        DOScaleY,
-        DOScaleZ,
-
-        DORotate,
-        DOLocalRotate,
-
-        DOAnchorPos,
-        DOAnchorPosX,
-        DOAnchorPosY,
-        DOAnchorPosZ,
-        DOAnchorPos3D,
-
-
-        DOColor,
-        DOFade,
-        DOCanvasGroupFade,
-        DOFillAmount,
-        DOFlexibleSize,
-        DOMinSize,
-        DOPreferredSize,
-        DOSizeDelta,
-        DOValue
-    }
-
-    [Serializable]
-    public class SequenceAnimation
-    {
-        public AddType AddType = AddType.Append;
-        public DOTweenType AnimationType = DOTweenType.DOMove;
-        public Component Target = null;
-        public Vector4 ToValue = Vector4.zero;
-
-        public bool UseToTarget = false;
-        public Component ToTarget = null;
-
-        public bool UseFromValue = false;
-        public Vector4 FromValue = Vector4.zero;
-        public bool SpeedBased = false;
-        public float DurationOrSpeed = 1;
-        public float Delay = 0;
-        public UpdateType UpdateType = UpdateType.Normal;
-        public bool CustomEase = false;
-        public AnimationCurve EaseCurve;
-        public Ease Ease = Ease.OutQuad;
-        public int Loops = 1;
-        public LoopType LoopType = LoopType.Restart;
-        public bool Snapping = false;
-        public UnityEvent OnPlay = null;
-        public UnityEvent OnUpdate = null;
-        public UnityEvent OnComplete = null;
-        public Tween CreateTween(bool reverse)
-        {
-            Tween result = null;
-            float duration = DurationOrSpeed;
-
-            switch (AnimationType)
+            else
             {
-                case DOTweenType.DOMove:
+                for (int i = 0; i < mSequence.Length; i++)
+                {
+                    var item = mSequence[i];
+                    var tweener = item.CreateTween(false);
+                    if (tweener == null)
+                    {
+                        Debug.LogErrorFormat("Tweener is null. Index:{0}, Animation Type:{1}, Component Type:{2}", i, item.AnimationType, item.Target == null ? "null" : item.Target.GetType().Name);
+                        continue;
+                    }
+                    tweener.SetUpdate(!mIgnoreTimeScale);
+                    switch (item.AddType)
+                    {
+                        case AddType.Append:
+                            sequence.Append(tweener);
+                            break;
+                        case AddType.Join:
+                            sequence.Join(tweener);
+                            break;
+                    }
+                }
+            }
+            sequence.SetEase(mEase).SetUpdate(mUpdateType, mIgnoreTimeScale).SetLoops(mLoops, mLoopType).SetDelay(mDelay);
+            if (mOnPlay != null) sequence.OnPlay(mOnPlay.Invoke);
+            if (mOnUpdate != null) sequence.OnUpdate(mOnUpdate.Invoke);
+            if (mOnComplete != null) sequence.OnComplete(mOnComplete.Invoke);
+            sequence.SetAutoKill(true);
+            return sequence;
+        }
+        public void Play()
+        {
+            DOPlay();
+        }
+        public Tween DOPlay()
+        {
+            mTween = CreateTween();
+            return mTween?.Play();
+        }
+
+        public Tween DORewind()
+        {
+            mTween = CreateTween(true);
+            return mTween?.Play();
+        }
+
+        public void DOComplete(bool withCallback = false)
+        {
+            mTween?.Complete(withCallback);
+        }
+
+        public void DOKill()
+        {
+            mTween?.Kill();
+            mTween = null;
+        }
+        [Serializable]
+        public enum DOTweenType
+        {
+            DOMove,
+            DOMoveX,
+            DOMoveY,
+            DOMoveZ,
+
+            DOLocalMove,
+            DOLocalMoveX,
+            DOLocalMoveY,
+            DOLocalMoveZ,
+
+            DOScale,
+            DOScaleX,
+            DOScaleY,
+            DOScaleZ,
+
+            DORotate,
+            DOLocalRotate,
+
+            DOAnchorPos,
+            DOAnchorPosX,
+            DOAnchorPosY,
+            DOAnchorPosZ,
+            DOAnchorPos3D,
+
+
+            DOColor,
+            DOFade,
+            DOCanvasGroupFade,
+            DOFillAmount,
+            DOFlexibleSize,
+            DOMinSize,
+            DOPreferredSize,
+            DOSizeDelta,
+            DOValue
+        }
+
+        [Serializable]
+        public class SequenceAnimation
+        {
+            public AddType AddType = AddType.Append;
+            public DOTweenType AnimationType = DOTweenType.DOMove;
+            public Component Target = null;
+            public Vector4 ToValue = Vector4.zero;
+
+            public bool UseToTarget = false;
+            public Component ToTarget = null;
+
+            public bool UseFromValue = false;
+            public Vector4 FromValue = Vector4.zero;
+            public bool SpeedBased = false;
+            public float DurationOrSpeed = 1;
+            public float Delay = 0;
+            public UpdateType UpdateType = UpdateType.Normal;
+            public bool CustomEase = false;
+            public AnimationCurve EaseCurve;
+            public Ease Ease = Ease.OutQuad;
+            public int Loops = 1;
+            public LoopType LoopType = LoopType.Restart;
+            public bool Snapping = false;
+            public UnityEvent OnPlay = null;
+            public UnityEvent OnUpdate = null;
+            public UnityEvent OnComplete = null;
+            public Tween CreateTween(bool reverse)
+            {
+                Tween result = null;
+                float duration = DurationOrSpeed;
+
+                switch (AnimationType)
+                {
+                    case DOTweenType.DOMove:
                     {
                         var transform = (Transform)Target;
                         Vector3 targetValue = UseToTarget ? ((Transform)ToTarget).position : ToValue;
@@ -363,8 +366,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Vector3.Distance(targetValue, startValue) / DurationOrSpeed;
                         result = transform.DOMove(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOMoveX:
+                        break;
+                    case DOTweenType.DOMoveX:
                     {
                         var transform = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).position.x : ToValue.x;
@@ -378,8 +381,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = transform.DOMoveX(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOMoveY:
+                        break;
+                    case DOTweenType.DOMoveY:
                     {
                         var transform = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).position.y : ToValue.x;
@@ -393,8 +396,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = transform.DOMoveY(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOMoveZ:
+                        break;
+                    case DOTweenType.DOMoveZ:
                     {
                         var transform = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).position.z : ToValue.x;
@@ -408,8 +411,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = transform.DOMoveZ(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOLocalMove:
+                        break;
+                    case DOTweenType.DOLocalMove:
                     {
                         var transform = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).localPosition : (Vector3)ToValue;
@@ -423,8 +426,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Vector3.Distance(targetValue, startValue) / DurationOrSpeed;
                         result = transform.DOLocalMove(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOLocalMoveX:
+                        break;
+                    case DOTweenType.DOLocalMoveX:
                     {
                         var transform = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).localPosition.x : ToValue.x;
@@ -438,8 +441,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = transform.DOLocalMoveX(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOLocalMoveY:
+                        break;
+                    case DOTweenType.DOLocalMoveY:
                     {
                         var transform = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).localPosition.y : ToValue.x;
@@ -453,8 +456,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = transform.DOLocalMoveY(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOLocalMoveZ:
+                        break;
+                    case DOTweenType.DOLocalMoveZ:
                     {
                         var transform = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).localPosition.z : ToValue.x;
@@ -468,8 +471,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = transform.DOLocalMoveZ(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOScale:
+                        break;
+                    case DOTweenType.DOScale:
                     {
                         var com = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).localScale : (Vector3)ToValue;
@@ -482,8 +485,8 @@ public class DOTweenSequence : MonoBehaviour
                         if (SpeedBased) duration = Vector3.Distance(targetValue, startValue) / DurationOrSpeed;
                         result = com.DOScale(targetValue, duration);
                     }
-                    break;
-                case DOTweenType.DOScaleX:
+                        break;
+                    case DOTweenType.DOScaleX:
                     {
                         var com = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).localScale.x : ToValue.x;
@@ -497,8 +500,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = com.DOScaleX(targetValue, duration);
                     }
-                    break;
-                case DOTweenType.DOScaleY:
+                        break;
+                    case DOTweenType.DOScaleY:
                     {
                         var com = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).localScale.y : ToValue.x;
@@ -512,8 +515,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = com.DOScaleY(targetValue, duration);
                     }
-                    break;
-                case DOTweenType.DOScaleZ:
+                        break;
+                    case DOTweenType.DOScaleZ:
                     {
                         var com = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).localScale.z : ToValue.x;
@@ -527,8 +530,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = com.DOScaleZ(targetValue, duration);
                     }
-                    break;
-                case DOTweenType.DORotate:
+                        break;
+                    case DOTweenType.DORotate:
                     {
                         var com = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).eulerAngles : (Vector3)ToValue;
@@ -542,8 +545,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = GetEulerAnglesAngle(targetValue, startValue) / DurationOrSpeed;
                         result = com.DORotate(targetValue, duration, RotateMode.FastBeyond360);
                     }
-                    break;
-                case DOTweenType.DOLocalRotate:
+                        break;
+                    case DOTweenType.DOLocalRotate:
                     {
                         var com = (Transform)Target;
                         var targetValue = UseToTarget ? ((Transform)ToTarget).localEulerAngles : (Vector3)ToValue;
@@ -557,8 +560,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = GetEulerAnglesAngle(targetValue, startValue) / DurationOrSpeed;
                         result = com.DOLocalRotate(targetValue, duration, RotateMode.FastBeyond360);
                     }
-                    break;
-                case DOTweenType.DOAnchorPos:
+                        break;
+                    case DOTweenType.DOAnchorPos:
                     {
                         var rectTransform = (RectTransform)Target;
                         var targetValue = UseToTarget ? ((RectTransform)ToTarget).anchoredPosition : (Vector2)ToValue;
@@ -572,8 +575,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Vector2.Distance(targetValue, startValue) / DurationOrSpeed;
                         result = rectTransform.DOAnchorPos(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOAnchorPosX:
+                        break;
+                    case DOTweenType.DOAnchorPosX:
                     {
                         var rectTransform = (RectTransform)Target;
                         var targetValue = UseToTarget ? ((RectTransform)ToTarget).anchoredPosition.x : ToValue.x;
@@ -587,8 +590,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = rectTransform.DOAnchorPosX(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOAnchorPosY:
+                        break;
+                    case DOTweenType.DOAnchorPosY:
                     {
                         var rectTransform = (RectTransform)Target;
                         var targetValue = UseToTarget ? ((RectTransform)ToTarget).anchoredPosition.y : ToValue.x;
@@ -602,8 +605,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = rectTransform.DOAnchorPosY(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOAnchorPosZ:
+                        break;
+                    case DOTweenType.DOAnchorPosZ:
                     {
                         var rectTransform = (RectTransform)Target;
                         var targetValue = UseToTarget ? ((RectTransform)ToTarget).anchoredPosition3D.z : ToValue.x;
@@ -617,8 +620,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = rectTransform.DOAnchorPos3DZ(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOAnchorPos3D:
+                        break;
+                    case DOTweenType.DOAnchorPos3D:
                     {
                         var rectTransform = (RectTransform)Target;
                         var targetValue = UseToTarget ? ((RectTransform)ToTarget).anchoredPosition3D : (Vector3)ToValue;
@@ -632,8 +635,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Vector3.Distance(targetValue, startValue) / DurationOrSpeed;
                         result = rectTransform.DOAnchorPos3D(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOSizeDelta:
+                        break;
+                    case DOTweenType.DOSizeDelta:
                     {
                         var rectTransform = (RectTransform)Target;
                         var targetValue = UseToTarget ? ((RectTransform)ToTarget).sizeDelta : (Vector2)ToValue;
@@ -647,8 +650,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Vector2.Distance(targetValue, startValue) / DurationOrSpeed;
                         result = rectTransform.DOSizeDelta(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOColor:
+                        break;
+                    case DOTweenType.DOColor:
                     {
                         var com = (Graphic)Target;
                         var targetValue = UseToTarget ? ((Graphic)ToTarget).color : (Color)ToValue;
@@ -662,8 +665,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Vector4.Distance(targetValue, startValue) / DurationOrSpeed;
                         result = com.DOColor(targetValue, duration);
                     }
-                    break;
-                case DOTweenType.DOFade:
+                        break;
+                    case DOTweenType.DOFade:
                     {
                         var com = (Graphic)Target;
                         var targetValue = UseToTarget ? ((Graphic)ToTarget).color.a : ToValue.x;
@@ -677,8 +680,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = com.DOFade(targetValue, duration);
                     }
-                    break;
-                case DOTweenType.DOCanvasGroupFade:
+                        break;
+                    case DOTweenType.DOCanvasGroupFade:
                     {
                         var com = (CanvasGroup)Target;
                         var targetValue = UseToTarget ? ((CanvasGroup)ToTarget).alpha : ToValue.x;
@@ -692,8 +695,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = com.DOFade(targetValue, duration);
                     }
-                    break;
-                case DOTweenType.DOValue:
+                        break;
+                    case DOTweenType.DOValue:
                     {
                         var com = (Slider)Target;
                         var targetValue = UseToTarget ? ((Slider)ToTarget).value : ToValue.x;
@@ -707,9 +710,9 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = com.DOValue(targetValue, duration, Snapping);
                     }
-                    break;
+                        break;
 
-                case DOTweenType.DOFillAmount:
+                    case DOTweenType.DOFillAmount:
                     {
                         var com = (Image)Target;
                         var targetValue = UseToTarget ? ((Image)ToTarget).fillAmount : ToValue.x;
@@ -723,8 +726,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Mathf.Abs(targetValue - startValue) / DurationOrSpeed;
                         result = com.DOFillAmount(targetValue, duration);
                     }
-                    break;
-                case DOTweenType.DOFlexibleSize:
+                        break;
+                    case DOTweenType.DOFlexibleSize:
                     {
                         var com = Target as LayoutElement;
                         var targetValue = UseToTarget ? (ToTarget as LayoutElement).GetFlexibleSize() : (Vector2)ToValue;
@@ -738,8 +741,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Vector2.Distance(targetValue, startValue) / DurationOrSpeed;
                         result = com.DOFlexibleSize(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOMinSize:
+                        break;
+                    case DOTweenType.DOMinSize:
                     {
                         var com = Target as LayoutElement;
                         var targetValue = UseToTarget ? (ToTarget as LayoutElement).GetMinSize() : (Vector2)ToValue;
@@ -753,8 +756,8 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Vector2.Distance(targetValue, startValue) / DurationOrSpeed;
                         result = com.DOMinSize(targetValue, duration, Snapping);
                     }
-                    break;
-                case DOTweenType.DOPreferredSize:
+                        break;
+                    case DOTweenType.DOPreferredSize:
                     {
                         var com = Target as LayoutElement;
                         var targetValue = UseToTarget ? (ToTarget as LayoutElement).GetPreferredSize() : (Vector2)ToValue;
@@ -768,67 +771,68 @@ public class DOTweenSequence : MonoBehaviour
                             duration = Vector2.Distance(targetValue, startValue) / DurationOrSpeed;
                         result = com.DOPreferredSize(targetValue, duration, Snapping);
                     }
-                    break;
-            }
+                        break;
+                }
 
-            if (result != null)
+                if (result != null)
+                {
+                    result.SetAutoKill(true).SetTarget(Target.gameObject).SetLoops(Loops, LoopType).SetUpdate(UpdateType);
+                    if (Delay > 0) result.SetDelay(Delay);
+                    if (CustomEase) result.SetEase(EaseCurve);
+                    else result.SetEase(Ease);
+
+                    if (OnPlay != null) result.OnPlay(OnPlay.Invoke);
+                    if (OnUpdate != null) result.OnUpdate(OnUpdate.Invoke);
+                    if (OnComplete != null) result.OnComplete(OnComplete.Invoke);
+                }
+                return result;
+            }
+            public static float GetEulerAnglesAngle(Vector3 euler1, Vector3 euler2)
             {
-                result.SetAutoKill(true).SetTarget(Target.gameObject).SetLoops(Loops, LoopType).SetUpdate(UpdateType);
-                if (Delay > 0) result.SetDelay(Delay);
-                if (CustomEase) result.SetEase(EaseCurve);
-                else result.SetEase(Ease);
+                // 计算差值
+                Vector3 delta = euler2 - euler1;
+                delta.x = Mathf.DeltaAngle(euler1.x, euler2.x);
+                delta.y = Mathf.DeltaAngle(euler1.y, euler2.y);
+                delta.z = Mathf.DeltaAngle(euler1.z, euler2.z);
 
-                if (OnPlay != null) result.OnPlay(OnPlay.Invoke);
-                if (OnUpdate != null) result.OnUpdate(OnUpdate.Invoke);
-                if (OnComplete != null) result.OnComplete(OnComplete.Invoke);
+                float angle = Mathf.Sqrt(delta.x * delta.x + delta.y * delta.y + delta.z * delta.z);
+                return (angle + 360) % 360;
             }
-            return result;
         }
-        public static float GetEulerAnglesAngle(Vector3 euler1, Vector3 euler2)
+        [Serializable]
+        public enum AddType
         {
-            // 计算差值
-            Vector3 delta = euler2 - euler1;
-            delta.x = Mathf.DeltaAngle(euler1.x, euler2.x);
-            delta.y = Mathf.DeltaAngle(euler1.y, euler2.y);
-            delta.z = Mathf.DeltaAngle(euler1.z, euler2.z);
-
-            float angle = Mathf.Sqrt(delta.x * delta.x + delta.y * delta.y + delta.z * delta.z);
-            return (angle + 360) % 360;
+            Append,
+            Join
         }
-    }
-    [Serializable]
-    public enum AddType
-    {
-        Append,
-        Join
-    }
     
-    public async UniTask PlayAsync(CancellationToken ct)
-    {
-        mTween?.Kill();
-        mTween = CreateTween();
-        if (mTween == null) return;
-        if (ct.IsCancellationRequested)
+        public async UniTask PlayAsync(CancellationToken ct)
         {
-            mTween.Complete(true);
-            mTween.Kill();
-            ct.ThrowIfCancellationRequested();
-        }
-
-        mTween.Play();
-
-        try
-        {
-            await mTween.AsyncWaitForCompletion().AsUniTask().AttachExternalCancellation(ct);
-        }
-        catch (OperationCanceledException)
-        {
-            mTween?.Complete();
             mTween?.Kill();
-            throw;
+            mTween = CreateTween();
+            if (mTween == null) return;
+            if (ct.IsCancellationRequested)
+            {
+                mTween.Complete(true);
+                mTween.Kill();
+                ct.ThrowIfCancellationRequested();
+            }
+
+            mTween.Play();
+
+            try
+            {
+                await mTween.AsyncWaitForCompletion().AsUniTask().AttachExternalCancellation(ct);
+            }
+            catch (OperationCanceledException)
+            {
+                mTween?.Complete();
+                mTween?.Kill();
+                throw;
+            }
         }
+
+
     }
-
-
 }
 #endif

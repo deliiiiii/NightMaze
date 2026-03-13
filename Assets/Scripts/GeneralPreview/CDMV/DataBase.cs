@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace GeneralPreview;
 
-public abstract class DataBase<TThis> : IDisposable
+public abstract class DataBase<TThis> : IDisposable, IHasCt
     where TThis : DataBase<TThis>
 {
     /// 状态初始化完成后调用，绑定组件的TThis及事件
@@ -23,9 +23,11 @@ public abstract class DataBase<TThis> : IDisposable
         }
     }
     public void Dispose() => RemoveAllCom();
+    public CancellationToken Ct => cts.Token;
     
     double savedVersion = Const.Version;
     [ShowInInspector] readonly Dictionary<Type, ComBase> comDic = [];
+    [HideInInspector, JsonIgnore] readonly CancellationTokenSource cts = new();
     
     [DebuggerStepThrough] protected T AddCom<T>(T? com = null) where T : ComBase
     {

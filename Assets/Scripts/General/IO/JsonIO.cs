@@ -124,6 +124,8 @@ namespace General
                 return default;
             }
             string str = await File.ReadAllTextAsync(path, ct);
+            using var _ = BusDisposable.MuteScope(typeof(T).Name);
+            using var _2 = BusDisposable.MuteScope("Data");
             return JsonConvert.DeserializeObject<T>(str, settings);
         }
         public static async UniTask<T> ReadWithVerAsync<T>(string pathPre, string name, CancellationToken ct)
@@ -136,6 +138,8 @@ namespace General
                 return default;
             }
             string str = await File.ReadAllTextAsync(path, ct);
+            using var _ = BusDisposable.MuteScope(typeof(T).Name);
+            using var _2 = BusDisposable.MuteScope("Data");
             var nullableJObj = MigrateStepFactory<JObject, T>.MigrateUntilCur(JObject.Parse(str));
             return nullableJObj == null ? Activator.CreateInstance<T>() : nullableJObj.ToObject<T>(new JsonSerializer
             {

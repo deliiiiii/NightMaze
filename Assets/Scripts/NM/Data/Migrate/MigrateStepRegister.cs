@@ -1,5 +1,7 @@
-﻿using General;
+﻿using System;
+using General;
 using Newtonsoft.Json.Linq;
+using Sirenix.Utilities;
 
 namespace NM.Data;
 
@@ -8,8 +10,9 @@ public static class MigrateStepRegister
     public static void Init()
     {
         MigrateStepFactory<JObject, GamePlaying>.Clear();
-        MigrateStepFactory<JObject, GamePlaying>.Add(new MGamePlaying_20260308());
-        MigrateStepFactory<JObject, GamePlaying>.Add(new MGamePlaying_20260308d1());
-        MigrateStepFactory<JObject, GamePlaying>.Add(new MGamePlaying_20260308d2());
+        typeof(IMigrateStepJson<GamePlaying>).SubTypes().ForEach(type =>
+        {
+            MigrateStepFactory<JObject, GamePlaying>.Add((IMigrateStepJson<GamePlaying>)Activator.CreateInstance(type));
+        });
     }
 }

@@ -1,6 +1,7 @@
 ﻿using General;
 using Newtonsoft.Json.Linq;
 using Sirenix.Utilities;
+// ReSharper disable InconsistentNaming
 
 namespace NM.Data;
 

@@ -2,7 +2,8 @@
 {
     public static class Const
     {
-        public static readonly double Version = 20260309;
-        public static readonly string SavedVersionName = "savedVersion";
+        public const double LastVersion = 20260309;
+        public const double Version = 20260313;
+        public const string SavedVersionName = "savedVersion";
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Events;
 
-namespace General.BindData
+namespace General
 {
     public class BindDataObs<T> : BindDataBase
         where T : struct

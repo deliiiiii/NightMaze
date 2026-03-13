@@ -15,12 +15,12 @@ public class MainView : ViewBase
     [SerializeField]Btn btnExit;
     protected override IEnumerable<BindDataBase> BindList()
     {
-        yield return Binder.FromEvt(btnOpenSL.onClick).To(() =>
+        yield return btnOpenSL.onClick.EvtBindTo(() =>
         {
             gameObject.SetActive(false);
-            Bus.FireAndForget(new EvtClickBtnOpenSL());
+            new EvtClickBtnOpenSL().Forget();
         });
-        yield return Binder.FromEvt(btnExit.onClick).To(() =>
+        yield return btnExit.onClick.EvtBindTo(() =>
         {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
@@ -30,7 +30,7 @@ public class MainView : ViewBase
         });
     }
     
-    public record EvtClickBtnOpenSL : EvtBase;
+    public record EvtClickBtnOpenSL : EvtForgetBase;
 
     UniEvt<GamePlaying.EvtOnExit> OnExitPlay => new()
     {

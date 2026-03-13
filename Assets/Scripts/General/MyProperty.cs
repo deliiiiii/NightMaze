@@ -90,13 +90,8 @@ namespace General
                 _ => throw new InvalidCastException($"Cannot convert {v.value} (Type: {typeof(T)}) to float")
             };
         }
-
-
-        public override string ToString()
-        {
-            return Value.ToString();
-        }
-    
+        // public BindDataObs<T> FromObs() => new(this);
+        public override string ToString() => Value.ToString();
         public const string NameOfValue = nameof(value); 
     }
 }

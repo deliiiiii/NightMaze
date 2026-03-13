@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace General.BindData
+namespace General
 {
     public class BindDataUpdate : BindDataBase
     {
