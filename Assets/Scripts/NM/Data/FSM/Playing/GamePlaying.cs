@@ -37,6 +37,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public int DeckMax{ get; private set;} = 20;
     
     public IEnumerable<SymbolData> SymbolDeck => symbolDeckList;
+    public IEnumerable<SymbolData> SymbolRandomly => symbolDeckList.ShuffleTo();
     public IEnumerable<SymbolData> SymbolShownSorted => 
         from symbol in symbolDeckList
         from pos in symbol.Pos.ToIEnumerable()

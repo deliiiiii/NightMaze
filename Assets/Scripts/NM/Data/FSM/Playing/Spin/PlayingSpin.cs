@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Cysharp.Threading.Tasks;
-using General;
 using GeneralPreview;
 using Sirenix.Utilities;
 
@@ -26,22 +24,17 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
             s.TempMulti.Clear();
             s.Pos.MatchA(some => s.Pos = None);
         });
-        await BelongFSM.SymbolDeck
-            .ToList()
-            .ShuffleTo()
-            .Take(Const.SpinW * Const.SpinH)
-            .ForEachAsync(async toShow =>
-            {
-                var shownCount = BelongFSM.SymbolShownSorted.Count();
-                var addX = shownCount / Const.SpinH + 1;
-                var addY = shownCount % Const.SpinH + 1;
-                await new GamePlaying.ActShowSymbolAt
-                {
-                    Symbol = toShow,
-                    Pos = new Vector2Int(addX, addY),
-                    @this = BelongFSM
-                };
-            });
+        var showSymbolActs = from toShow in BelongFSM.SymbolRandomly.Take(Const.SpinW * Const.SpinH)
+                        let shownCount = BelongFSM.SymbolShownSorted.Count()
+                        let addX = shownCount / Const.SpinH + 1
+                        let addY = shownCount % Const.SpinH + 1
+                        select new GamePlaying.ActShowSymbolAt
+                        {
+                            Symbol = toShow,
+                            Pos = new Vector2Int(addX, addY),
+                            @this = BelongFSM
+                        };
+        await showSymbolActs.SeqAwait();
         do
         {
             DelayAddList.Clear();
@@ -58,22 +51,21 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
                                 .Debug(!adjacentSymbol.IsEmpty && !symbol.IsEmpty);
                         });
                 });
-            await DelayAddList.ForEachAsync(async x => await x);
+            await DelayAddList.SeqAwait();
         } while (DelayAddList.Count != 0);
 
-        await BelongFSM.SymbolShownSorted
-            .ForEachAsync(async symbol =>
+        await BelongFSM.SymbolShownSorted.ForEachAsync(async symbol =>
+        {
+            var pay = symbol.GetUltimateGive();
+            if(pay == 0)
+                return;
+            await new EvtPay(symbol, pay);
+            await new GamePlaying.ActSetCoin
             {
-                var pay = symbol.GetUltimateGive();
-                if(pay == 0)
-                    return;
-                await new EvtPay(symbol, pay);
-                await new GamePlaying.ActSetCoin
-                {
-                    Value = BelongFSM.Coin + pay,
-                    @this = BelongFSM,
-                };
-            });
+                Value = BelongFSM.Coin + pay,
+                @this = BelongFSM,
+            };
+        });
         await BelongFSM.EnterStateAsync(new PlayingIdle(), false);
     }
     
