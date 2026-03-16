@@ -50,35 +50,6 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
     }
     protected override async UniTask OnEnterAsync(bool isThisFromLoad)
     {
-        // do
-        // {
-        //     DelayAddList.Clear();
-        //     await BelongFSM.SymbolShownSorted
-        //         .Where(s => !s.AlreadyChecked)
-        //         .ForEachAsync(async symbol =>
-        //         {
-        //             await new ActImmediateDoSymbol
-        //             {
-        //                 Symbol = symbol,
-        //                 @this = this
-        //             };
-        //         });
-        //     await DelayAddList.SeqAwait();
-        // } while (DelayAddList.Count != 0);
-
-        // await BelongFSM.SymbolShownSorted.ForEachAsync(async symbol =>
-        // {
-        //     var pay = symbol.GetUltimateGive();
-        //     if(pay == 0)
-        //         return;
-        //     await new EvtSymbolPay(symbol, pay);
-        //     await new GamePlaying.ActSetCoin
-        //     {
-        //         Value = BelongFSM.Coin + pay,
-        //         @this = BelongFSM,
-        //     };
-        // });
-        // await BelongFSM.EnterStateAsync(new PlayingIdle(), false);
         if (!isThisFromLoad)
         {
             doList = GetDoList().ToList();
