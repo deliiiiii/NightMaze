@@ -39,7 +39,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public ImmutableList<SymbolData> SymbolDeck => symbolDeckList.ToImmutableList();
     public ImmutableList<SymbolData> SymbolShownSorted =>
         symbolDeckList
-            .Where(s => s.Pos.IsSome)
+            .Where(s => s.Pos.HasValue)
             .OrderBy(s => s.Pos.Match(pos => pos, () => Vector2Int.MaxValue))
             .ToImmutableList();
     public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData)

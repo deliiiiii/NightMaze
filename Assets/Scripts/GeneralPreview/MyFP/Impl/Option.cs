@@ -19,7 +19,13 @@ public abstract record MyOption<T1>
     public static readonly MyNone<T1> None = new();
     [DebuggerStepThrough]
     public static implicit operator MyOption<T1>(Unit _) => None;
-    public bool IsSome => this is MySome<T1>;
+    public bool HasValue => this is MySome<T1>;
+    public static T1 operator |(MyOption<T1> @this, T1 elseValue) 
+        => @this.Else(elseValue);
+    public static UniTask<T1> operator |(MyOption<T1> @this, UniTask<T1> elseValue) 
+        => @this.ElseAsync(elseValue);
+    public static bool operator true(MyOption<T1> @this) => @this.HasValue;
+    public static bool operator false(MyOption<T1> @this) => !@this.HasValue;
     [DebuggerStepThrough] public void MatchA(Action<T1>? some = null, Action? none = null)
     {
         switch (this)
@@ -32,7 +38,18 @@ public abstract record MyOption<T1>
                 break;
         }
     }
-    
+    [DebuggerStepThrough] T1 Else(T1 elseValue) =>
+        this switch
+        {
+            MySome<T1> s => s.Value,
+            _ => elseValue
+        };
+    [DebuggerStepThrough] UniTask<T1> ElseAsync(UniTask<T1> elseValue) =>
+        this switch
+        {
+            MySome<T1> s => UniTask.FromResult(s.Value),
+            _ => elseValue
+        };
     
     [DebuggerStepThrough] public TR Match<TR>(Func<T1, TR> some, Func<TR> none)
         => this switch

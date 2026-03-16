@@ -94,7 +94,7 @@ public class PlayView : ViewBase
     {
         Invoke = (evt, ct) =>
         {
-            if (!evt.NewValue.IsSome)
+            if (!evt.NewValue.HasValue)
             {
                 evt.OldValue.MatchA(SetEmptyAt);
             }
