@@ -13,17 +13,32 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion, IHasCt
     where TThis : FSM<TThis>
 {
     [ShowInInspector, PropertyOrder(-10), LabelText(nameof(CurStateName))] protected IState? CurState;
-    public void Dispose() => Release();
-    CancellationToken IHasCt.Ct => Cts.Token;
+    [DebuggerStepThrough] public void Dispose() => Release();
+    CancellationToken IHasCt.Ct
+    {
+        [DebuggerStepThrough] get => Cts.Token;
+    }
+
     // ReSharper disable once ConvertToAutoProperty
-    [JsonIgnore] double IHasVersion.savedVersion {get => savedVersion; set => savedVersion = value;}
+    [JsonIgnore]
+    double IHasVersion.savedVersion
+    {
+        [DebuggerStepThrough] get => savedVersion; 
+        [DebuggerStepThrough] set => savedVersion = value;
+    }
     double savedVersion = Const.Version;
-    [JsonIgnore] string CurStateName => CurState?.GetType().Name ?? "Null";
-    
+    [JsonIgnore] string CurStateName
+    {
+        [DebuggerStepThrough] get => CurState?.GetType().Name ?? "Null";
+    }
+
     [JsonIgnore] protected readonly CancellationTokenSource Cts = new();
-    [JsonIgnore] protected CancellationToken CurCt => Cts.Token;
-    
-    
+    [JsonIgnore] protected CancellationToken CurCt
+    {
+        [DebuggerStepThrough] get => Cts.Token;
+    }
+
+
     protected async UniTask LaunchAsync(IState initState, bool isNewStateFromLoad)
     {
         if (CurState != null && !isNewStateFromLoad)
@@ -40,10 +55,10 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion, IHasCt
         if (CurState == null)
         {
             MyDebug.LogError($"FSM {GetType().Name} Release But NOT Launched");
+            Cts.Cancel();
             return;
         }
         CurState.OnExit();
-        
         CurState = null;
         Cts.Cancel();
     }
@@ -72,7 +87,7 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion, IHasCt
     public interface IState
     {
         TThis BelongFSM { get; set; }
-        UniTask OnEnterAsync(bool isThisFromLoad) => UniTask.CompletedTask;
+        [DebuggerStepThrough] UniTask OnEnterAsync(bool isThisFromLoad) => UniTask.CompletedTask;
         [DebuggerStepThrough] void OnExit(){}
         [DebuggerStepThrough] void OnUpdate(float dt){}
         bool EnableReEnter => true;
@@ -86,27 +101,27 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion, IHasCt
         [JsonIgnore] public TThis BelongFSM { get; set; } = null!;
         [DebuggerStepThrough] UniTask FSM<TThis>.IState.OnEnterAsync(bool isThisFromLoad) => OnEnterAsync(isThisFromLoad);
         [DebuggerStepThrough] protected virtual UniTask OnEnterAsync(bool isThisFromLoad) => UniTask.CompletedTask;
-        [DebuggerStepThrough] void FSM<TThis>.IState.OnExit()
+        void FSM<TThis>.IState.OnExit()
         {
             OnExit();
             Cts.Cancel();
         }
 
-        [DebuggerStepThrough] protected virtual void OnExit(){}
+        protected virtual void OnExit(){}
         [DebuggerStepThrough] void FSM<TThis>.IState.OnUpdate(float dt) => OnUpdate(dt);
         [DebuggerStepThrough] protected virtual void OnUpdate(float dt){}
         bool FSM<TThis>.IState.EnableReEnter => EnableReEnter;
         protected virtual bool EnableReEnter => true;
         [DebuggerStepThrough] void FSM<TThis>.IState.RegisterAll() => IUniEvt.BindAll(this, CurCt);
     }
-    
-    public abstract record UniAction : ICanAwait
+
+    public abstract record UniAction(TThis Self) : ICanAwait
     {
-        // ReSharper disable once InconsistentNaming
-        [HideInInspector, JsonIgnore] public required TThis @this;
+        [HideInInspector] protected readonly TThis Self = Self;
 
         [DebuggerStepThrough] protected abstract UniTask InvokeAsync();
-        [DebuggerStepThrough] public UniTask.Awaiter GetAwaiter() => InvokeAsync().GetAwaiter();
+        public UniTask.Awaiter GetAwaiter() 
+            => Self.Cts.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : InvokeAsync().GetAwaiter();
         [DebuggerStepThrough] public void Forget() => InvokeAsync().Forget();
     }
 }

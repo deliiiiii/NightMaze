@@ -13,9 +13,9 @@ public class LenPlaying : MonoBehaviour
     public void Save() => Playing.MatchA(some => Saver.Save(NameC.SlotFolder, some.PlayerName, some));
 
     [ShowInInspector]
-    public IEnumerable<ICanAwait> DelayDo =>
-        from playing in Playing.ToIEnumerable()
-        from spin in playing.InState<PlayingSpin>().ToIEnumerable()
-        from add in spin.DelayAddList
-        select add;
+    public List<ICanAwait> DelayDo =>
+        (from playing in Playing.ToIEnumerable()
+            from spin in playing.InState<PlayingSpin>().ToIEnumerable()
+            from add in spin.DoList
+            select add).ToList();
 }

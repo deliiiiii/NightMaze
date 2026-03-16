@@ -86,14 +86,14 @@ public static class Bus
 }
 
 public abstract record EvtBase<THasCt>(THasCt WhoHasCt)
-    : IEvtBase
+    : IEvtBase, ICanAwait
     where THasCt : IHasCt
 {
     bool getDebug = true;
-
     public EvtBase<THasCt> Debug(bool debug) { getDebug = debug; return this; }
-    public THasCt WhoHasCt = WhoHasCt;
-    public UniTask.Awaiter GetAwaiter() => Bus.FireAsync(this, WhoHasCt.Ct, getDebug).GetAwaiter();
+    public readonly THasCt WhoHasCt = WhoHasCt;
+    public UniTask.Awaiter GetAwaiter() 
+        => WhoHasCt.Ct.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : Bus.FireAsync(this, WhoHasCt.Ct, getDebug).GetAwaiter();
 }
 
 public abstract record EvtForgetBase : IEvtBase

@@ -11,30 +11,30 @@ public partial record GamePlaying
     [Obsolete("符号添加符号")]
     async UniTask SymbolAddSymbolAsync(SymbolData subjectSymbol, SymbolData addedSymbol, CancellationToken ct)
     {
-        await new ActAddSymbol{@this = this, ToAdd = addedSymbol};
+        await new ActAddSymbol(this) {ToAdd = addedSymbol};
     }
-    [Obsolete("金币变化")]
-    UniTask SetCoinAsync(long value, CancellationToken ct)
+    [Obsolete("获得金币")]
+    UniTask GainCoinAsync(long value, CancellationToken ct)
     {
-        Coin = value;
+        Coin += value;
         return UniTask.CompletedTask;
     }
     [Obsolete("清空符号列表")]
     UniTask ClearDeckAsync(CancellationToken ct) =>
         (
             from symbol in symbolDeckList 
-            select new ActRemoveSymbol { @this = this, ToRemove = symbol, ShouldAddEmpty = false })
+            select new ActRemoveSymbol(this) {ToRemove = symbol, ShouldAddEmpty = false })
         .SeqAwait();
 
     [Obsolete("添加符号")]
     async UniTask AddSymbolAsync(SymbolData toAdd, CancellationToken ct)
     {
         symbolDeckList.Add(toAdd);
-        await new ActShowSymbolRandomly { Symbol = toAdd, @this = this };
+        await new ActShowSymbolRandomly(this) { Symbol = toAdd };
         if(symbolDeckList.Count > DeckMax)
         {
             await (from toRemove in symbolDeckList.FirstOptional(s => s.IsEmpty && s.Pos == toAdd.Pos)
-                select new ActRemoveSymbol { ToRemove = toRemove, @this = this, ShouldAddEmpty = false }).ToUniTask();
+                select new ActRemoveSymbol(this){ ToRemove = toRemove, ShouldAddEmpty = false }).ToUniTask();
         }
     }
     [Obsolete("移除符号")]
@@ -44,7 +44,7 @@ public partial record GamePlaying
         toRemove.Dispose();
         if (symbolDeckList.Count < DeckMax && shouldAddEmpty)
         {
-            await new ActAddSymbol { ToAdd = SymbolData.CreateEmpty(), @this = this };
+            await new ActAddSymbol(this) { ToAdd = SymbolData.CreateEmpty()};
         }
     }
 
@@ -57,7 +57,7 @@ public partial record GamePlaying
                 from pos in _symbol.Pos.ToIEnumerable()
                 select pos).ToList();
         await (from ranPos in posList.RandomItemOptional()
-            select new ActShowSymbolAt { Symbol = symbol, Pos = ranPos, @this = this }).ToUniTask();
+            select new ActShowSymbolAt(this) { Symbol = symbol, Pos = ranPos }).ToUniTask();
     }
         
     [Obsolete("将符号显示在某位置上")]

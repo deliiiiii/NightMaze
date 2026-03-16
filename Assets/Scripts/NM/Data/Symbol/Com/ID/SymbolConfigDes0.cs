@@ -11,15 +11,14 @@ public class SymbolConfigDes0 : SymbolData.ConfigDesBase<SymbolConfig0>
     {
         Invoke = (evt, _) =>
         {
-            var spinCtx = evt.Ctx;
+            var spinCtx = evt.WhoHasCt;
             var playCtx = spinCtx.BelongFSM;
             if (evt.Symbol == BelongData && evt.AdjacentSymbol.ConfigID == Config.TarID)
             {
-                spinCtx.DelayAddList.Add(new GamePlaying.ActSymbolAddSymbol
+                spinCtx.InsertBeforeCheckUnchecked(new GamePlaying.ActSymbolAddSymbol(playCtx)
                 {
-                    @this = playCtx,
                     SubjectSymbol = evt.Symbol,
-                    AddedSymbol = SymbolData.Create(Config.CreateID),
+                    AddedSymbol = SymbolData.Create(Config.CreateID)
                 });
             }
             return UniTask.CompletedTask;

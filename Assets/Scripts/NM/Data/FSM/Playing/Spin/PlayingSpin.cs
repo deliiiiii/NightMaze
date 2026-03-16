@@ -12,10 +12,21 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 {
     public override string ToString() => nameof(PlayingSpin);
 
-    public List<ICanAwait> DelayAddList = [];
-    public List<ICanAwait> DelayDestroyList = [];
+    List<ICanAwait> doList = [];
+    public IEnumerable<ICanAwait> DoList => doList;
+    void InsertBeforeType(IEnumerable<ICanAwait> toInsert, Type type)
+    {
+        var id = doList.FindIndex(d => d.GetType() == type);
+        if (id == -1)
+            id = 0;
+        doList.InsertRange(id, toInsert);
+    }
+    public void InsertHead(IEnumerable<ICanAwait> toInsert) => doList.InsertRange(0, toInsert);
+    public void InsertHead(ICanAwait toInsert) => InsertHead([toInsert]);
+    public void InsertBeforeCheckUnchecked(IEnumerable<ICanAwait> toInsert) => InsertBeforeType(toInsert, typeof(ActWillCheckUncheckedSymbol));
+    public void InsertBeforeCheckUnchecked(ICanAwait toInsert) => InsertBeforeCheckUnchecked([toInsert]);
 
-    protected override async UniTask OnEnterAsync(bool isThisFromLoad)
+    IEnumerable<ICanAwait> GetDoList()
     {
         BelongFSM.SymbolDeck.ForEach(s =>
         {
@@ -24,57 +35,63 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
             s.TempMulti.Clear();
             s.Pos.MatchA(some => s.Pos = None);
         });
-        var showSymbolActs = from toShow in BelongFSM.SymbolRandomly.Take(Const.SpinW * Const.SpinH)
-                        let shownCount = BelongFSM.SymbolShownSorted.Count()
-                        let addX = shownCount / Const.SpinH + 1
-                        let addY = shownCount % Const.SpinH + 1
-                        select new GamePlaying.ActShowSymbolAt
-                        {
-                            Symbol = toShow,
-                            Pos = new Vector2Int(addX, addY),
-                            @this = BelongFSM
-                        };
-        await showSymbolActs.SeqAwait();
-        do
-        {
-            DelayAddList.Clear();
-            await BelongFSM.SymbolShownSorted
-                .Where(s => !s.AlreadyChecked)
-                .ForEachAsync(async symbol =>
-                {
-                    symbol.AlreadyChecked = true;
-                    await new EvtImmediateDoSymbol(symbol);
-                    await BelongFSM.GetAdjacent(symbol)
-                        .ForEachAsync(async adjacentSymbol =>
-                        {
-                            await new EvtSpinSymbolAdjacentSymbol(this, adjacentSymbol, symbol)
-                                .Debug(!adjacentSymbol.IsEmpty && !symbol.IsEmpty);
-                        });
-                });
-            await DelayAddList.SeqAwait();
-        } while (DelayAddList.Count != 0);
-
-        await BelongFSM.SymbolShownSorted.ForEachAsync(async symbol =>
-        {
-            var pay = symbol.GetUltimateGive();
-            if(pay == 0)
-                return;
-            await new EvtPay(symbol, pay);
-            await new GamePlaying.ActSetCoin
+        var showSymbolActs = BelongFSM.SymbolRandomly
+            .Take(Const.SpinW * Const.SpinH)
+            .Select((toShow, index) => new GamePlaying.ActShowSymbolAt(BelongFSM)
             {
-                Value = BelongFSM.Coin + pay,
-                @this = BelongFSM,
-            };
-        });
-        await BelongFSM.EnterStateAsync(new PlayingIdle(), false);
+                Symbol = toShow,
+                Pos = new Vector2Int(index / Const.SpinH + 1, index % Const.SpinH + 1)
+            });
+        foreach (var item in showSymbolActs)
+            yield return item;
+        yield return new ActWillCheckUncheckedSymbol(this);
+        yield return new ActWillPayShownSymbol(this);
+        yield return new ActEnterIdle(this);
     }
-    
-    
+    protected override async UniTask OnEnterAsync(bool isThisFromLoad)
+    {
+        // do
+        // {
+        //     DelayAddList.Clear();
+        //     await BelongFSM.SymbolShownSorted
+        //         .Where(s => !s.AlreadyChecked)
+        //         .ForEachAsync(async symbol =>
+        //         {
+        //             await new ActImmediateDoSymbol
+        //             {
+        //                 Symbol = symbol,
+        //                 @this = this
+        //             };
+        //         });
+        //     await DelayAddList.SeqAwait();
+        // } while (DelayAddList.Count != 0);
 
-    [EvtName("立即执行符号")]
-    public record EvtImmediateDoSymbol(SymbolData WhoHasCt) : EvtBase<SymbolData>(WhoHasCt);
+        // await BelongFSM.SymbolShownSorted.ForEachAsync(async symbol =>
+        // {
+        //     var pay = symbol.GetUltimateGive();
+        //     if(pay == 0)
+        //         return;
+        //     await new EvtSymbolPay(symbol, pay);
+        //     await new GamePlaying.ActSetCoin
+        //     {
+        //         Value = BelongFSM.Coin + pay,
+        //         @this = BelongFSM,
+        //     };
+        // });
+        // await BelongFSM.EnterStateAsync(new PlayingIdle(), false);
+        if (!isThisFromLoad)
+        {
+            doList = GetDoList().ToList();
+        }
+
+        while (doList.Any())
+        {
+            var cur = doList[0];
+            await cur;
+            doList.Remove(cur);
+        }
+    }
     [EvtName("结算符号")]
-    public record EvtPay(SymbolData WhoHasCt, long Pay) : EvtBase<SymbolData>(WhoHasCt);
-    [EvtName("发现某符号与当前某符号相邻")]
-    public record EvtSpinSymbolAdjacentSymbol(PlayingSpin Ctx, SymbolData AdjacentSymbol, SymbolData Symbol) : EvtBase<PlayingSpin>(Ctx);
+    public record EvtSymbolPay(SymbolData WhoHasCt, long Pay) : EvtBase<SymbolData>(WhoHasCt);
+    
 }

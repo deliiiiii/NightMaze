@@ -5,7 +5,6 @@ namespace NM.Data;
 public partial record GamePlaying 
 {
     public record EvtClickSpin : EvtForgetBase;
-
     UniEvt<EvtClickSpin> OnEvtClickSpinAsync => new()
     {
         Invoke = (evt, ct) => InState<PlayingSpin>().Reverse() | EnterStateAsync(new PlayingSpin(), false),

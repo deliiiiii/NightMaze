@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
@@ -10,6 +9,7 @@ namespace NM.Data;
 [Serializable]
 public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
 {
+    [Newtonsoft.Json.JsonConstructor] GamePlaying() { }
     public GamePlaying(string playerName)
     {
         PlayerName = playerName;
@@ -18,7 +18,8 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public string PlayerName { get; private set;}= "Deli";
     public double PlayTime { get; private set;}
     List<SymbolData> symbolDeckList = [];
-    public long Coin { get; private set;}
+    [EvtChanged]
+    public partial long Coin { get; private set;}
     // 标注[EvtChanged]则源生↓↓↓
     // public long Coin
     // {
@@ -41,7 +42,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public IEnumerable<SymbolData> SymbolShownSorted => 
         from symbol in symbolDeckList
         from pos in symbol.Pos.ToIEnumerable()
-        orderby pos
+        orderby pos ascending
         select symbol;
     public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData) =>
         from thisPos in symbolData.Pos.ToIEnumerable()

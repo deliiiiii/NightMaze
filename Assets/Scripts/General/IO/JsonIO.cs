@@ -100,7 +100,8 @@ namespace General
             Formatting = Formatting.Indented,
             TypeNameHandling = TypeNameHandling.Auto,
             ContractResolver = PrivateFieldsContractResolver.Instance,
-            PreserveReferencesHandling = PreserveReferencesHandling.None,
+            PreserveReferencesHandling = PreserveReferencesHandling.All,
+            ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
         };
         public static void Write<T>(string pathPre, string name, T obj)
         {
@@ -141,12 +142,12 @@ namespace General
             using var _ = BusDisposable.MuteScope(typeof(T).Name);
             using var _2 = BusDisposable.MuteScope("Data");
             var nullableJObj = MigrateStepFactory<JObject, T>.MigrateUntilCur(JObject.Parse(str));
-            return nullableJObj == null ? Activator.CreateInstance<T>() : nullableJObj.ToObject<T>(new JsonSerializer
-            {
-                TypeNameHandling = TypeNameHandling.Auto,
-                ContractResolver = PrivateFieldsContractResolver.Instance,
-                PreserveReferencesHandling = PreserveReferencesHandling.None,
-            });
+            return nullableJObj == null 
+                ? Activator.CreateInstance<T>() 
+                : nullableJObj.ToObject<T>(JsonSerializer.Create(settings));
+            // return nullableJObj == null
+            //     ? Activator.CreateInstance<T>()
+            //     : JsonConvert.DeserializeObject<T>(nullableJObj.ToString(), settings);
         }
         public static void Delete(string pathPre, string name)
         {

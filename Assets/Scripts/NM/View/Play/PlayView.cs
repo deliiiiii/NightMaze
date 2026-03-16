@@ -60,17 +60,17 @@ public class PlayView : ViewBase
         },
         Des = "(某符号旋转到某位置时) 在格子上显示符号"
     };
-    UniEvt<GamePlaying.EvtSetCoin> OnCoinChanged => new()
+    UniEvt<GamePlaying.EvtCoinChanged> OnCoinChanged => new()
     {
         Invoke = (evt, ct) =>
         {
-            TxtCoin.text = evt.Value.ToString();
+            TxtCoin.text = evt.NewValue.ToString();
             return UniTask.CompletedTask;
         },
-        Des = "(金币变化时) 刷新金币显示"
+        Des = "(金币增加时) 刷新金币显示"
     };
     
-    UniEvt<PlayingSpin.EvtPay> OnSpinEvtSpinPay => new()
+    UniEvt<PlayingSpin.EvtSymbolPay> OnSpinEvtSpinPay => new()
     {
         Invoke = async (evt, ct) =>
         {

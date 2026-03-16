@@ -22,7 +22,11 @@ public abstract class DataBase<TThis> : IDisposable, IHasCt
             com.BindToData();
         }
     }
-    public void Dispose() => RemoveAllCom();
+    public void Dispose() 
+    {
+        RemoveAllCom();
+        cts.Cancel();
+    }
     public CancellationToken Ct => cts.Token;
     
     double savedVersion = Const.Version;

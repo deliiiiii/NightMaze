@@ -37,11 +37,11 @@ public class SymbolView : ViewBase
     [ShowInInspector, ReadOnly] List<ImgBuff> buffList = [];
 
 
-    UniEvt<PlayingSpin.EvtImmediateDoSymbol> OnSpinEvtImmediateDoSymbol => new()
+    UniEvt<PlayingSpin.EvtImmediateCheckSymbol> OnSpinEvtImmediateDoSymbol => new()
     {
         Invoke = async (evt, ct) =>
         {
-            if (evt.WhoHasCt != Data || Data.IsEmpty)
+            if (evt.Symbol != Data || Data.IsEmpty)
                 return;
             await onSpinTween.PlayAsync(ct);
         },
