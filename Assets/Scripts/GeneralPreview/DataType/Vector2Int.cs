@@ -51,4 +51,9 @@ public record struct Vector2Int(int X, int Y) : IComparable<Vector2Int>
         var xComparison = X.CompareTo(other.X);
         return xComparison != 0 ? xComparison : Y.CompareTo(other.Y);
     }
+
+    public TResult ToList<TResult>()
+    {
+        throw new NotImplementedException();
+    }
 }

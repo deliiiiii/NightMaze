@@ -14,8 +14,8 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 {
     public override string ToString() => nameof(PlayingSpin);
 
-    public List<IUniAction> DelayAddList = [];
-    public List<IUniAction> DelayDestroyList = [];
+    public List<ICanAwait> DelayAddList = [];
+    public List<ICanAwait> DelayDestroyList = [];
 
     protected override async UniTask OnEnterAsync(bool isThisFromLoad)
     {
@@ -27,11 +27,12 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
             s.Pos.MatchA(some => s.Pos = None);
         });
         await BelongFSM.SymbolDeck
+            .ToList()
             .ShuffleTo()
             .Take(Const.SpinW * Const.SpinH)
             .ForEachAsync(async toShow =>
             {
-                var shownCount = BelongFSM.SymbolShownSorted.Count;
+                var shownCount = BelongFSM.SymbolShownSorted.Count();
                 var addX = shownCount / Const.SpinH + 1;
                 var addY = shownCount % Const.SpinH + 1;
                 await new GamePlaying.ActShowSymbolAt

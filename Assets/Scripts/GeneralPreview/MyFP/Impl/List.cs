@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 
 namespace GeneralPreview;
 //
@@ -61,5 +63,15 @@ public static class MyListExt
                     from keep in predicateM(item)
                     select keep ? xs.Append(item) : xs
             );
+    }
+    extension<T1>(IEnumerable<T1> self) where T1 : ICanAwait
+    {
+        [DebuggerStepThrough] public async UniTask SeqAwait()
+        {
+            foreach(var x in self)
+            {
+                await x;
+            }
+        }
     }
 }

@@ -100,7 +100,7 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion, IHasCt
         [DebuggerStepThrough] void FSM<TThis>.IState.RegisterAll() => IUniEvt.BindAll(this, CurCt);
     }
     
-    public abstract record UniAction : IUniAction
+    public abstract record UniAction : ICanAwait
     {
         // ReSharper disable once InconsistentNaming
         [HideInInspector, JsonIgnore] public required TThis @this;
@@ -111,7 +111,7 @@ public abstract record FSM<TThis> : IDisposable, IHasVersion, IHasCt
     }
 }
 
-public interface IUniAction
+public interface ICanAwait
 {
     UniTask.Awaiter GetAwaiter();
 }

@@ -36,27 +36,27 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public int SpinCount{ get; private set;}
     public int DeckMax{ get; private set;} = 20;
     
-    public ImmutableList<SymbolData> SymbolDeck => symbolDeckList.ToImmutableList();
-    public ImmutableList<SymbolData> SymbolShownSorted =>
-        symbolDeckList
-            .Where(s => s.Pos.HasValue)
-            .OrderBy(s => s.Pos.Match(pos => pos, () => Vector2Int.MaxValue))
-            .ToImmutableList();
-    public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData)
-        => symbolData.Pos.Match(
-            thisPos => SymbolShownSorted.
-                Where(other => other.Pos.Match(
-                    otherPos => Math.Abs(otherPos.X - thisPos.X) <= 1 && 
-                                Math.Abs(otherPos.Y - thisPos.Y) <= 1 &&
-                                !(otherPos.X == thisPos.X && otherPos.Y == thisPos.Y),
-                    RFalse)),
-            () => []);
+    public IEnumerable<SymbolData> SymbolDeck => symbolDeckList;
+    public IEnumerable<SymbolData> SymbolShownSorted => 
+        from symbol in symbolDeckList
+        from pos in symbol.Pos.ToIEnumerable()
+        orderby pos
+        select symbol;
+    public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData) =>
+        from thisPos in symbolData.Pos.ToIEnumerable()
+        from other in symbolDeckList
+        from otherPos in other.Pos.ToIEnumerable()
+        where Math.Abs(otherPos.X - thisPos.X) <= 1 &&
+              Math.Abs(otherPos.Y - thisPos.Y) <= 1 &&
+              !(otherPos.X == thisPos.X && otherPos.Y == thisPos.Y)
+        orderby otherPos
+        select other;
     
     protected override async UniTask OnEnterAsync(bool isThisFromLoad)
     {
         if (!isThisFromLoad)
         {
-            symbolDeckList = 
+            List<SymbolData> initDeck = 
             [
                 SymbolData.Create(0),
                 SymbolData.Create(1),
@@ -65,9 +65,10 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
                 SymbolData.Create(1),
                 SymbolData.Create(2)
             ];
-            symbolDeckList.AddRange(SymbolData.CreateEmpty.Repeat(DeckMax - symbolDeckList.Count));
+            symbolDeckList = [..initDeck, ..SymbolData.CreateEmpty.Repeat(DeckMax - initDeck.Count)];
         }
-        symbolDeckList.ForEach(s => s.BindAllCom());
+        else
+            symbolDeckList.ForEach(s => s.BindAllCom());
         await new EvtOnEnter(this);
         await LaunchAsync(CurState ?? new PlayingIdle(), CurState != null);
     }

@@ -41,18 +41,22 @@ public static class FuncExt
     extension<T1, T2, TRet>(Func<T1, T2, TRet> self)
     {
         // 函数调用部分参数T1
-        public static Func<T2, TRet> operator >>(Func<T1, T2, TRet> @this, T1 t1) => t2 => @this(t1, t2);
+        public static Func<T2, TRet> operator >>(Func<T1, T2, TRet> @this, T1 t1) 
+            => t2 => @this(t1, t2);
         // 函数调用参数T1, T2
-        public static TRet operator >>(Func<T1, T2, TRet> @this, (T1, T2) args) => @this(args.Item1, args.Item2);
+        public static TRet operator >>(Func<T1, T2, TRet> @this, (T1, T2) args) 
+            => @this(args.Item1, args.Item2);
     }
     
     extension<T1, TMid, TRet>(Func<TMid, TRet>)
     {
-        public static Func<T1, TRet> operator *(Func<TMid, TRet> @this, Func<T1, TMid> right) => x => @this(right(x));
+        public static Func<T1, TRet> operator *(Func<TMid, TRet> @this, Func<T1, TMid> right) 
+            => x => @this(right(x));
     }
     extension<T1, T2, TMid, TRet>(Func<TMid, TRet>)
     {
-        public static Func<T1, T2, TRet> operator *(Func<TMid, TRet> @this, Func<T1, T2, TMid> right) => (x, y) => @this(right(x, y));
+        public static Func<T1, T2, TRet> operator *(Func<TMid, TRet> @this, Func<T1, T2, TMid> right) 
+            => (x, y) => @this(right(x, y));
     }
     #endregion
 }

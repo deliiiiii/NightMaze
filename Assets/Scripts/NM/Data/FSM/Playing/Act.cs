@@ -20,13 +20,12 @@ public partial record GamePlaying
         return UniTask.CompletedTask;
     }
     [Obsolete("清空符号列表")]
-    async UniTask ClearDeckAsync(CancellationToken ct)
-    {
-        foreach (var symbol in symbolDeckList.ToList())
-        {
-            await new ActRemoveSymbol{ @this = this, ToRemove = symbol, ShouldAddEmpty = false};
-        }
-    }
+    UniTask ClearDeckAsync(CancellationToken ct) =>
+        (
+            from symbol in symbolDeckList 
+            select new ActRemoveSymbol { @this = this, ToRemove = symbol, ShouldAddEmpty = false })
+        .SeqAwait();
+
     [Obsolete("添加符号")]
     async UniTask AddSymbolAsync(SymbolData toAdd, CancellationToken ct)
     {
@@ -34,10 +33,8 @@ public partial record GamePlaying
         await new ActShowSymbolRandomly { Symbol = toAdd, @this = this };
         if(symbolDeckList.Count > DeckMax)
         {
-            await symbolDeckList.MyFirst(s => s.IsEmpty && s.Pos == toAdd.Pos).MatchAsync(async some =>
-            {
-                await new ActRemoveSymbol { ToRemove = some, @this = this, ShouldAddEmpty = false};
-            }, RTask);
+            await (from toRemove in symbolDeckList.FirstOptional(s => s.IsEmpty && s.Pos == toAdd.Pos)
+                select new ActRemoveSymbol { ToRemove = toRemove, @this = this, ShouldAddEmpty = false }).ToUniTask();
         }
     }
     [Obsolete("移除符号")]
@@ -50,16 +47,19 @@ public partial record GamePlaying
             await new ActAddSymbol { ToAdd = SymbolData.CreateEmpty(), @this = this };
         }
     }
+
     [Obsolete("将符号显示在随机一个空位上")]
     async UniTask ShowSymbolRandomlyAsync(SymbolData symbol, CancellationToken ct)
     {
-        await SymbolShownSorted
-            .Where(s => s.IsEmpty)
-            .SelectMany(s => s.Pos.Match(some => [some], Enumerable.Empty<Vector2Int>))
-            .ToList()
-            .RandomItem()
-            .MatchAsync(async some => await new ActShowSymbolAt { Symbol = symbol, Pos = some, @this = this }, RTask);
+        var posList =
+            (from _symbol in SymbolShownSorted
+                where _symbol.IsEmpty
+                from pos in _symbol.Pos.ToIEnumerable()
+                select pos).ToList();
+        await (from ranPos in posList.RandomItemOptional()
+            select new ActShowSymbolAt { Symbol = symbol, Pos = ranPos, @this = this }).ToUniTask();
     }
+        
     [Obsolete("将符号显示在某位置上")]
     UniTask ShowSymbolAtAsync(SymbolData symbol, Vector2Int pos, CancellationToken ct)
     {

@@ -1,7 +1,7 @@
 ﻿using GeneralPreview;
 using Sirenix.OdinInspector;
 
-namespace NM.Data.Len;
+namespace NM.Data;
 
 public class LenOption : SerializedMonoBehaviour
 {

@@ -5,6 +5,7 @@ using General;
 using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
 
@@ -94,10 +95,7 @@ public class PlayView : ViewBase
     {
         Invoke = (evt, ct) =>
         {
-            if (!evt.NewValue.HasValue)
-            {
-                evt.OldValue.MatchA(SetEmptyAt);
-            }
+            evt.NewValue.MatchA(none: () => evt.OldValue.MatchA(SetEmptyAt));
             return UniTask.CompletedTask;
         },
         Des = "(某符号删除Pos时) 在位置上显示空符号"

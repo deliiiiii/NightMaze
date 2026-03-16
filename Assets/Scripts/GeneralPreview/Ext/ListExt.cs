@@ -13,27 +13,27 @@ public static class ListExt
     
     extension<T>(List<T> self)
     {
-        public MyOption<T> RandomItem(
+        public MyOption<T> RandomItemOptional(
             List<int> weightList,
             Func<T, bool>? filter = null,
             Random? seed = null)
-            => self.RandomItemWeighted(x => weightList[self.IndexOf(x)], filter, seed);
+            => self.RandomItemWeightedOptional(x => weightList[self.IndexOf(x)], filter, seed);
 
-        public MyOption<T> RandomItem(
+        public MyOption<T> RandomItemOptional(
             Func<T, int>? weightFunc = null, 
             Func<T, bool>? filter = null,
             Random? seed = null)
         {
             filter ??= _ => true;
             if (weightFunc != null)
-                return self.RandomItemWeighted(weightFunc, filter, seed);
+                return self.RandomItemWeightedOptional(weightFunc, filter, seed);
             var fList = self.Where(filter).ToList();
             if(fList.Count == 0)
                 return None;
             return fList[seed?.Next(0, fList.Count) ?? UnityEngine.Random.Range(0, fList.Count)];
         }
 
-        MyOption<T> RandomItemWeighted(
+        MyOption<T> RandomItemWeightedOptional(
             Func<T, int> weightFunc,
             Func<T, bool>? filter,
             Random? seed = null)

@@ -47,7 +47,10 @@ public partial class SymbolData : DataBase<SymbolData>
     [HideInInspector] public bool IsEmpty => ConfigID == -1;
     [ShowInInspector, PropertyOrder(1)]public string Name => Config.Name;
     SymbolConfig Config => RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ConfigID);
-    string PosInfo => Pos.Match(some => $"(Pos:{some.X} {some.Y})", RStr);
+
+    string PosInfo => (
+        from pos in Pos 
+        select $"(Pos:{pos.X} {pos.Y})") | string.Empty;
     
     public override string ToString() => $"{Config.Name}(ID:{ConfigID}){PosInfo}";
     public void DoTempAdd(int add)
