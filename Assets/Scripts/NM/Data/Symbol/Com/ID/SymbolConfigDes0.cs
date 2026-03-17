@@ -5,14 +5,14 @@ using NM.Config;
 namespace NM.Data;
 
 [FacIns(typeof(SymbolConfig0))]
-public class SymbolConfigDes0 : SymbolData.ConfigDesBase<SymbolConfig0>
+public class SymbolConfigDes0 : SymbolData.ConfigDesBase<SymbolConfig0, SymbolConfigDes0>
 {
     UniEvt<PlayingSpin.EvtSpinSymbolAdjacentSymbol> OnEvtSpinSymbolAdjacentSymbolAsync => new()
     {
         Invoke = (evt, _) =>
         {
             var spinCtx = evt.WhoHasCt;
-            var playCtx = spinCtx.BelongFSM;
+            var playCtx = spinCtx.BelongData;
             if (evt.Symbol == BelongData && evt.AdjacentSymbol.ConfigID == Config.TarID)
             {
                 spinCtx.InsertBeforeCheckUnchecked(new GamePlaying.ActSymbolAddSymbol(playCtx)

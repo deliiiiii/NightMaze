@@ -6,7 +6,7 @@ using GeneralPreview;
 
 namespace NM.Data;
 [ActContainer]
-public partial record GamePlaying
+public partial class GamePlaying
 {
     [Obsolete("符号添加符号")]
     async UniTask SymbolAddSymbolAsync(SymbolData subjectSymbol, SymbolData addedSymbol, CancellationToken ct)
@@ -30,6 +30,7 @@ public partial record GamePlaying
     async UniTask AddSymbolAsync(SymbolData toAdd, CancellationToken ct)
     {
         symbolDeckList.Add(toAdd);
+        await toAdd.OnAddAsync(false);
         await new ActShowSymbolRandomly(this) { Symbol = toAdd };
         if(symbolDeckList.Count > DeckMax)
         {
@@ -40,8 +41,8 @@ public partial record GamePlaying
     [Obsolete("移除符号")]
     async UniTask RemoveSymbolAsync(SymbolData toRemove, bool shouldAddEmpty, CancellationToken ct)
     {
+        toRemove.OnRemove();
         symbolDeckList.Remove(toRemove);
-        toRemove.Dispose();
         if (symbolDeckList.Count < DeckMax && shouldAddEmpty)
         {
             await new ActAddSymbol(this) { ToAdd = SymbolData.CreateEmpty()};

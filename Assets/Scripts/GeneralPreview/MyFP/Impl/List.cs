@@ -35,6 +35,7 @@ namespace GeneralPreview;
 // //         return new MyList<T1B>(ret);
 // //     }
 // // }
+[DebuggerStepThrough]
 public static class MyListExt
 {
     // extension<T>(K1<MyList, T> k)
@@ -66,7 +67,7 @@ public static class MyListExt
     }
     extension<T1>(IEnumerable<T1> self) where T1 : ICanAwait
     {
-        [DebuggerStepThrough] public async UniTask SeqAwait()
+        public async UniTask SeqAwait()
         {
             foreach(var x in self)
             {

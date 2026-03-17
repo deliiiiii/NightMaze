@@ -23,8 +23,8 @@ public record MyIO<T1>(Func<T1> Run)
         // Map(k, f).Run();
         new(() => f(Run()).Run());
     
-    [DebuggerStepThrough]public MyIO<T1B> Select<T1B>(Func<T1, T1B> f) => Map(f);
-    [DebuggerStepThrough]public MyIO<T1C> SelectMany<T1B, T1C>(Func<T1, MyIO<T1B>> f, Func<T1, T1B, T1C> s) =>
+    public MyIO<T1B> Select<T1B>(Func<T1, T1B> f) => Map(f);
+    public MyIO<T1C> SelectMany<T1B, T1C>(Func<T1, MyIO<T1B>> f, Func<T1, T1B, T1C> s) =>
         Bind(a => f(a).Map(b => s(a, b)));
 
     public MyIO<IEnumerable<T1>> Replicate(int count) 

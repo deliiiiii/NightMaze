@@ -6,17 +6,18 @@ using Cysharp.Threading.Tasks;
 
 namespace GeneralPreview;
 public record Unit;
+[DebuggerStepThrough]
 public static class MyPrelude 
 {
     public static readonly Unit None = new ();
-    [DebuggerStepThrough] public static UniTask RTask() => UniTask.CompletedTask;
-    [DebuggerStepThrough] public static UniTask RTask<T>(T _) => UniTask.CompletedTask;
-    [DebuggerStepThrough] public static int RZero() => 0;
-    [DebuggerStepThrough] public static bool RTrue() => true;
-    [DebuggerStepThrough] public static bool RFalse() => false;
-    [DebuggerStepThrough] public static T Rid<T>(T x) => x;
-    [DebuggerStepThrough] public static string RStr() => string.Empty;
-    [DebuggerStepThrough] public static List<T> RList<T>() => [];
+    public static UniTask RTask() => UniTask.CompletedTask;
+    public static UniTask RTask<T>(T _) => UniTask.CompletedTask;
+    public static int RZero() => 0;
+    public static bool RTrue() => true;
+    public static bool RFalse() => false;
+    public static T Rid<T>(T x) => x;
+    public static string RStr() => string.Empty;
+    public static List<T> RList<T>() => [];
     
     
     public static Func<T0, T2> Compose<T0, T1, T2>(Func<T1, T2> f1, Func<T0, T1> f0) =>

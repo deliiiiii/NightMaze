@@ -12,6 +12,7 @@ namespace General
         [LabelText("默认")]
         Default,
     }
+    [DebuggerStepThrough]
     public static class MyDebug
     {
         static bool canLogAll = true;
@@ -20,7 +21,7 @@ namespace General
         static bool canLogError = true;
         static HashSet<LogType> logTypes = ((LogType[])Enum.GetValues(typeof(LogType))).ToHashSet();
 
-        [UnityEngine.HideInCallstack][DebuggerStepThrough]
+        [UnityEngine.HideInCallstack]
         public static void Log(object message, LogType logType = LogType.Default)
         {
             if (!canLog || !CheckLog(logType))
@@ -30,7 +31,7 @@ namespace General
             Debug.Log(message);
         
         }
-        [UnityEngine.HideInCallstack][DebuggerStepThrough]
+        [UnityEngine.HideInCallstack]
         public static void LogWarning(object message, LogType logType = LogType.Default, int threshold = 0)
         {
             if (!canLogWarning || !CheckLog(logType))
@@ -40,7 +41,7 @@ namespace General
             Debug.LogWarning(message);
 
         }
-        [UnityEngine.HideInCallstack][DebuggerStepThrough]
+        [UnityEngine.HideInCallstack]
         public static void LogError(object message, LogType logType = LogType.Default, int threshold = 0)
         {
             if (!canLogError || !CheckLog(logType))
@@ -50,7 +51,7 @@ namespace General
             Debug.LogError(message);
 
         }
-        [UnityEngine.HideInCallstack][DebuggerStepThrough]
+        [UnityEngine.HideInCallstack]
         static bool CheckLog(LogType logType)
         {
             return canLogAll && logTypes.Contains(logType);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using General;
 using Sirenix.Utilities;
 
 namespace GeneralPreview;
@@ -64,10 +65,7 @@ public static class Factory<TRelyBase, TInsBase>
             if (insDic != null)
                 return insDic;
             insDic = [];
-            AssemblySet.SelectMany(a => a.GetTypes())
-                .Where(type => 
-                    type.IsSubclassOf(typeof(TInsBase)) 
-                    && !type.IsAbstract)
+            typeof(TInsBase).SubTypes()
                 .ForEach(type =>
                 {
                     var attr = type.GetCustomAttribute<FacInsAttribute>();
@@ -79,13 +77,11 @@ public static class Factory<TRelyBase, TInsBase>
     }
 
     static readonly Type fallbackType = 
-        AssemblySet
-            .SelectMany(a => a.GetTypes())
-            .FirstOrDefault(type => type.IsSubclassOf(typeof(TInsBase)) 
-                                    && !type.IsAbstract
-                                    && type.GetCustomAttribute<FacFallbackAttribute>()
-                                        ?.RelyTypeBase == typeof(TRelyBase)) 
-                                        ?? throw new Exception($"未找到{typeof(TInsBase)}的回退类型");
+        (
+            from subType in typeof(TInsBase).SubTypes() 
+            where subType.GetCustomAttribute<FacFallbackAttribute>()?.RelyTypeBase == typeof(TRelyBase) 
+            select subType)
+        .FirstOrDefault() ?? throw new Exception($"未找到{typeof(TInsBase).GetNiceName()}的回退类型");
     public static TInsBase Create<TRely>(TRely rely) where TRely : TRelyBase
     {
         var relyType = rely.GetType();
@@ -93,7 +89,4 @@ public static class Factory<TRelyBase, TInsBase>
             return (TInsBase)Activator.CreateInstance(ins);
         return (TInsBase)Activator.CreateInstance(fallbackType);
     }
-    
-    
 }
-

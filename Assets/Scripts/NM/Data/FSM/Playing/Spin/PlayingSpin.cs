@@ -8,7 +8,7 @@ using Sirenix.Utilities;
 namespace NM.Data;
 
 [Serializable]
-public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
+public partial class PlayingSpin : GamePlaying.Com<PlayingSpin>
 {
     public override string ToString() => nameof(PlayingSpin);
 
@@ -28,16 +28,16 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
 
     IEnumerable<ICanAwait> GetDoList()
     {
-        BelongFSM.SymbolDeck.ForEach(s =>
+        BelongData.SymbolDeck.ForEach(s =>
         {
             s.AlreadyChecked = false;
             s.TempAdd.Clear();
             s.TempMulti.Clear();
             s.Pos.MatchA(some => s.Pos = None);
         });
-        var showSymbolActs = BelongFSM.SymbolRandomly
+        var showSymbolActs = BelongData.SymbolRandomly
             .Take(Const.SpinW * Const.SpinH)
-            .Select((toShow, index) => new GamePlaying.ActShowSymbolAt(BelongFSM)
+            .Select((toShow, index) => new GamePlaying.ActShowSymbolAt(BelongData)
             {
                 Symbol = toShow,
                 Pos = new Vector2Int(index / Const.SpinH + 1, index % Const.SpinH + 1)
@@ -48,8 +48,10 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
         yield return new ActWillPayShownSymbol(this);
         yield return new ActEnterIdle(this);
     }
-    protected override async UniTask OnEnterAsync(bool isThisFromLoad)
+
+    public override async UniTask OnAddAsync(bool isThisFromLoad)
     {
+        await base.OnAddAsync(isThisFromLoad);
         if (!isThisFromLoad)
         {
             doList = GetDoList().ToList();
@@ -60,6 +62,7 @@ public partial record PlayingSpin : GamePlaying.StateFSM<PlayingSpin>
             var cur = doList[0];
             await cur;
             doList.Remove(cur);
+            await UniTask.Yield();
         }
     }
     [EvtName("结算符号")]

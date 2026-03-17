@@ -40,7 +40,7 @@ public class SLView : ViewBase
     {
         Invoke = async (evt, ct) =>
         {
-            if (!GameRoot.Root.IsState<GameTitle>())
+            if (!GameRoot.Root.HasCom<GameTitle>())
                 return;
             gameObject.SetActiveTrue();
             curSelected = null;
@@ -74,7 +74,7 @@ public class SLView : ViewBase
         Invoke = async (evt, ct) =>
         {
             gameObject.SetActiveFalse();
-            await GameRoot.Root.EnterStateAsync(evt.Data, true);
+            await GameRoot.Root.AddComAsync(evt.Data, true);
         },
         Des = "(点击了加载按钮) 进入游戏状态"
     };
@@ -85,7 +85,7 @@ public class SLView : ViewBase
         {
             gameObject.SetActiveFalse();
             var data = new GamePlaying(playerName: evt.PlayerName);
-            await GameRoot.Root.EnterStateAsync(data, false);
+            await GameRoot.Root.AddComAsync(data, false);
         },
         Des = "(点击了新游戏按钮) 创建游戏数据并进入游戏状态"
     };

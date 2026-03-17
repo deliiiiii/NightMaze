@@ -1,3 +1,3 @@
 ﻿namespace NM.Data;
 
-public partial record PlayingSpin;
+public partial class PlayingSpin;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using Newtonsoft.Json;
@@ -30,7 +31,9 @@ public partial class SymbolData : DataBase<SymbolData>
             }
             return;
         }
-        AddCom(SymbolC2Com.Create(Config));
+
+        var com = SymbolC2Com.Create(Config);
+        AddComAsync(SymbolC2Com.Create(Config), false).Forget();
     }
     [JsonConstructor] [DebuggerStepThrough] SymbolData(){}
     [EvtChanged] public partial MyOption<Vector2Int> Pos { get; set; } = None;
@@ -85,8 +88,10 @@ public partial class SymbolData : DataBase<SymbolData>
         ret *= TowaMulti.Aggregate(1, (current, multi) => current * multi);
         return ret;
     }
-    
-    public abstract class ConfigDesBase<TConfig> : ComBase where TConfig : SymbolConfig
+
+    public abstract class ConfigDesBase<TConfig, TSub> : Com<TSub>
+        where TConfig : SymbolConfig
+        where TSub : ConfigDesBase<TConfig, TSub>
     {
         protected TConfig Config => (TConfig)BelongData.Config;
     }

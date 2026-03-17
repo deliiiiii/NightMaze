@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -10,6 +11,7 @@ namespace GeneralPreview;
 /// <summary>
 /// 利用表达式树实现高效深复制
 /// </summary>
+[DebuggerStepThrough]
 public static class DeepCopyExt
 {
     static readonly object isStructTypeToDeepCopyDictionaryLocker = new();

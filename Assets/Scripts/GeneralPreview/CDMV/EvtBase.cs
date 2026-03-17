@@ -91,7 +91,8 @@ public abstract record EvtBase<THasCt>(THasCt WhoHasCt)
 {
     bool getDebug = true;
     public EvtBase<THasCt> Debug(bool debug) { getDebug = debug; return this; }
-    public readonly THasCt WhoHasCt = WhoHasCt;
+    [HideInInspector] public THasCt WhoHasCt = WhoHasCt;
+    [ShowInInspector] string EvtDes => ToString();
     public UniTask.Awaiter GetAwaiter() 
         => WhoHasCt.Ct.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : Bus.FireAsync(this, WhoHasCt.Ct, getDebug).GetAwaiter();
 }

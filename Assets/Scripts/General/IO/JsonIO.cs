@@ -79,7 +79,7 @@ namespace General
                 currentType = currentType.BaseType;
             }
             var result = props.Where(p => !typeof(Delegate).IsAssignableFrom(p.PropertyType)).ToList();
-            return result.OrderBy(p => GetTypeDepth(p.DeclaringType)).ToList();
+            return result.OrderBy(p => GetTypeDepth(p.DeclaringType) + (p.Order ?? 0)).ToList();
         }
         static int GetTypeDepth(Type t)
         {
@@ -107,10 +107,9 @@ namespace General
         {
             //Debug.Log("write"+curEntity);
             string path = pathPre +"/" + name + ".json";
-            string pathShort = pathPre;
-            if (!Directory.Exists(pathShort))
+            if (!Directory.Exists(pathPre))
             {
-                Directory.CreateDirectory(pathShort);
+                Directory.CreateDirectory(pathPre);
             }
             // string str = JsonUtility.ToJson(curEntity, true);
             string str = JsonConvert.SerializeObject(obj, settings);

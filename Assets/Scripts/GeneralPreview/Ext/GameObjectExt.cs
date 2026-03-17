@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
 
 namespace GeneralPreview;
-
+[DebuggerStepThrough]
 public static class GameObjectExt
 {
     extension(GameObject self)

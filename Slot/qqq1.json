@@ -1,0 +1,895 @@
+{
+  "$id": "1",
+  "savedVersion": 20260313.0,
+  "MutexListSet": {
+    "$id": "2",
+    "$values": [
+      {
+        "$id": "3",
+        "$values": [
+          "NM.Data.PlayingIdle, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "NM.Data.PlayingSpin, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+        ]
+      }
+    ]
+  },
+  "PlayerName": "qqq1",
+  "PlayTime": 17.426759319379926,
+  "Coin": 9,
+  "RemoveToken": 0,
+  "RefreshToken": 0,
+  "NextRentCount": 0,
+  "SpinCount": 0,
+  "DeckMax": 20,
+  "symbolDeckList": {
+    "$id": "4",
+    "$values": [
+      {
+        "$id": "5",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "6",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "7",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"8","X":3,"Y":2},
+        "AlreadyChecked": true,
+        "ConfigID": 0,
+        "comDic": {
+          "$id": "9",
+          "NM.Data.SymbolConfigDes0, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "10",
+            "$type": "NM.Data.SymbolConfigDes0, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "11",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "12"
+            }
+          }
+        }
+      },
+      {
+        "$id": "13",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "14",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "15",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"16","X":1,"Y":2},
+        "AlreadyChecked": true,
+        "ConfigID": 1,
+        "comDic": {
+          "$id": "17",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "18",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "19",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "20"
+            }
+          }
+        }
+      },
+      {
+        "$id": "21",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "22",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "23",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"24","X":2,"Y":1},
+        "AlreadyChecked": true,
+        "ConfigID": 1,
+        "comDic": {
+          "$id": "25",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "26",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "27",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "28"
+            }
+          }
+        }
+      },
+      {
+        "$id": "29",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "30",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "31",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"32","X":4,"Y":3},
+        "AlreadyChecked": true,
+        "ConfigID": 1,
+        "comDic": {
+          "$id": "33",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "34",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "35",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "36"
+            }
+          }
+        }
+      },
+      {
+        "$id": "37",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "38",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "39",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"40","X":4,"Y":1},
+        "AlreadyChecked": true,
+        "ConfigID": 1,
+        "comDic": {
+          "$id": "41",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "42",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "43",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "44"
+            }
+          }
+        }
+      },
+      {
+        "$id": "45",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "46",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "47",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"48","X":5,"Y":1},
+        "AlreadyChecked": true,
+        "ConfigID": 2,
+        "comDic": {
+          "$id": "49",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "50",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "51",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "52"
+            }
+          }
+        }
+      },
+      {
+        "$id": "53",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "54",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "55",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"56","X":2,"Y":2},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "57",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "58",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "59",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "60"
+            }
+          }
+        }
+      },
+      {
+        "$id": "61",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "62",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "63",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"64","X":1,"Y":3},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "65",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "66",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "67",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "68"
+            }
+          }
+        }
+      },
+      {
+        "$id": "69",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "70",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "71",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"72","X":4,"Y":4},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "73",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "74",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "75",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "76"
+            }
+          }
+        }
+      },
+      {
+        "$id": "77",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "78",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "79",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"80","X":1,"Y":4},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "81",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "82",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "83",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "84"
+            }
+          }
+        }
+      },
+      {
+        "$id": "85",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "86",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "87",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"88","X":5,"Y":2},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "89",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "90",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "91",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "92"
+            }
+          }
+        }
+      },
+      {
+        "$id": "93",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "94",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "95",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"96","X":1,"Y":1},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "97",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "98",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "99",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "100"
+            }
+          }
+        }
+      },
+      {
+        "$id": "101",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "102",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "103",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"104","X":2,"Y":3},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "105",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "106",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "107",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "108"
+            }
+          }
+        }
+      },
+      {
+        "$id": "109",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "110",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "111",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"112","X":3,"Y":4},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "113",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "114",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "115",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "116"
+            }
+          }
+        }
+      },
+      {
+        "$id": "117",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "118",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "119",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"120","X":3,"Y":3},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "121",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "122",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "123",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "124"
+            }
+          }
+        }
+      },
+      {
+        "$id": "125",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "126",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "127",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"128","X":5,"Y":4},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "129",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "130",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "131",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "132"
+            }
+          }
+        }
+      },
+      {
+        "$id": "133",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "134",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "135",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"136","X":5,"Y":3},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "137",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "138",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "139",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "140"
+            }
+          }
+        }
+      },
+      {
+        "$id": "141",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "142",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "143",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"144","X":4,"Y":2},
+        "AlreadyChecked": true,
+        "ConfigID": -1,
+        "comDic": {
+          "$id": "145",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "146",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "147",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "148"
+            }
+          }
+        }
+      },
+      {
+        "$id": "149",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "150",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "151",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"152","X":2,"Y":4},
+        "AlreadyChecked": true,
+        "ConfigID": 9,
+        "comDic": {
+          "$id": "153",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "154",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "155",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "156"
+            }
+          }
+        }
+      },
+      {
+        "$id": "157",
+        "savedVersion": 20260313.0,
+        "MutexListSet": {
+          "$id": "158",
+          "$values": []
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "159",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"160","X":3,"Y":1},
+        "AlreadyChecked": true,
+        "ConfigID": 9,
+        "comDic": {
+          "$id": "161",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "162",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "MutexListSet": {
+              "$id": "163",
+              "$values": []
+            },
+            "comDic": {
+              "$id": "164"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "comDic": {
+    "$id": "165",
+    "NM.Data.PlayingSpin, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+      "$id": "166",
+      "$type": "NM.Data.PlayingSpin, NM.Data",
+      "savedVersion": 20260313.0,
+      "MutexListSet": {
+        "$id": "167",
+        "$values": []
+      },
+      "doList": {
+        "$id": "168",
+        "$values": [
+          {
+            "$id": "169",
+            "$type": "NM.Data.PlayingSpin+EvtSymbolPay, NM.Data",
+            "WhoHasCt": {
+              "$ref": "21"
+            },
+            "getDebug": true,
+            "Pay": 1
+          },
+          {
+            "$id": "170",
+            "$type": "NM.Data.GamePlaying+ActGainCoin, NM.Data",
+            "Self": {
+              "$ref": "1"
+            },
+            "Value": 1
+          },
+          {
+            "$id": "171",
+            "$type": "NM.Data.PlayingSpin+EvtSymbolPay, NM.Data",
+            "WhoHasCt": {
+              "$ref": "149"
+            },
+            "getDebug": true,
+            "Pay": 1
+          },
+          {
+            "$id": "172",
+            "$type": "NM.Data.GamePlaying+ActGainCoin, NM.Data",
+            "Self": {
+              "$ref": "1"
+            },
+            "Value": 1
+          },
+          {
+            "$id": "173",
+            "$type": "NM.Data.PlayingSpin+EvtSymbolPay, NM.Data",
+            "WhoHasCt": {
+              "$ref": "157"
+            },
+            "getDebug": true,
+            "Pay": 1
+          },
+          {
+            "$id": "174",
+            "$type": "NM.Data.GamePlaying+ActGainCoin, NM.Data",
+            "Self": {
+              "$ref": "1"
+            },
+            "Value": 1
+          },
+          {
+            "$id": "175",
+            "$type": "NM.Data.PlayingSpin+EvtSymbolPay, NM.Data",
+            "WhoHasCt": {
+              "$ref": "5"
+            },
+            "getDebug": true,
+            "Pay": 1
+          },
+          {
+            "$id": "176",
+            "$type": "NM.Data.GamePlaying+ActGainCoin, NM.Data",
+            "Self": {
+              "$ref": "1"
+            },
+            "Value": 1
+          },
+          {
+            "$id": "177",
+            "$type": "NM.Data.PlayingSpin+EvtSymbolPay, NM.Data",
+            "WhoHasCt": {
+              "$ref": "37"
+            },
+            "getDebug": true,
+            "Pay": 1
+          },
+          {
+            "$id": "178",
+            "$type": "NM.Data.GamePlaying+ActGainCoin, NM.Data",
+            "Self": {
+              "$ref": "1"
+            },
+            "Value": 1
+          },
+          {
+            "$id": "179",
+            "$type": "NM.Data.PlayingSpin+EvtSymbolPay, NM.Data",
+            "WhoHasCt": {
+              "$ref": "29"
+            },
+            "getDebug": true,
+            "Pay": 1
+          },
+          {
+            "$id": "180",
+            "$type": "NM.Data.GamePlaying+ActGainCoin, NM.Data",
+            "Self": {
+              "$ref": "1"
+            },
+            "Value": 1
+          },
+          {
+            "$id": "181",
+            "$type": "NM.Data.PlayingSpin+EvtSymbolPay, NM.Data",
+            "WhoHasCt": {
+              "$ref": "45"
+            },
+            "getDebug": true,
+            "Pay": 1
+          },
+          {
+            "$id": "182",
+            "$type": "NM.Data.GamePlaying+ActGainCoin, NM.Data",
+            "Self": {
+              "$ref": "1"
+            },
+            "Value": 1
+          },
+          {
+            "$id": "183",
+            "$type": "NM.Data.PlayingSpin+ActEnterIdle, NM.Data",
+            "Self": {
+              "$ref": "166"
+            }
+          }
+        ]
+      },
+      "comDic": {
+        "$id": "184"
+      }
+    }
+  }
+}

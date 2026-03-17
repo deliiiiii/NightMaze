@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace GeneralPreview;
-
+[DebuggerStepThrough]
 public static class FuncExt
 {
     #region Repeat

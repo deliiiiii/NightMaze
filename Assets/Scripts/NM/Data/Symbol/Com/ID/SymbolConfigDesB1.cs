@@ -8,4 +8,4 @@ namespace NM.Data;
 
 [FacIns(typeof(SymbolConfigB1))]
 [FacFallback(typeof(SymbolConfig))]
-public class SymbolConfigDesB1 : SymbolData.ConfigDesBase<SymbolConfigB1>;
+public class SymbolConfigDesB1 : SymbolData.ConfigDesBase<SymbolConfigB1, SymbolConfigDesB1>;

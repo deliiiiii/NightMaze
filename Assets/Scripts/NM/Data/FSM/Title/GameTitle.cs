@@ -1,3 +1,3 @@
 ﻿namespace NM.Data;
 
-public partial record GameTitle : GameRoot.StateFSM<GameTitle>;
+public partial class GameTitle : GameRoot.Com<GameTitle>;

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
-using Cysharp.Threading.Tasks;
 
 namespace GeneralPreview;
-
+[DebuggerStepThrough]
 public static class ListExt
 {
     // public static int RandomIndexWeighted(this List<int> list, Random seed = null)

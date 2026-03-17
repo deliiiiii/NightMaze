@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
-
+using Newtonsoft.Json;
 namespace NM.Data;
 
 [Serializable]
-public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
+public partial class GamePlaying : GameRoot.Com<GamePlaying>
 {
-    [Newtonsoft.Json.JsonConstructor] GamePlaying() { }
+    protected override List<HashSet<Type>> MutexListSet => 
+    [
+        [typeof(PlayingIdle), typeof(PlayingSpin)]
+    ];
+    [JsonConstructor] GamePlaying() { }
     public GamePlaying(string playerName)
     {
         PlayerName = playerName;
@@ -42,7 +46,7 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
     public IEnumerable<SymbolData> SymbolShownSorted => 
         from symbol in symbolDeckList
         from pos in symbol.Pos.ToIEnumerable()
-        orderby pos ascending
+        orderby pos
         select symbol;
     public IEnumerable<SymbolData> GetAdjacent(SymbolData symbolData) =>
         from thisPos in symbolData.Pos.ToIEnumerable()
@@ -53,10 +57,11 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
               !(otherPos.X == thisPos.X && otherPos.Y == thisPos.Y)
         orderby otherPos
         select other;
-    
-    protected override async UniTask OnEnterAsync(bool isThisFromLoad)
+
+    public override async UniTask OnAddAsync(bool isThisFromLoad)
     {
-        if (!isThisFromLoad)
+        await base.OnAddAsync(isThisFromLoad);
+        if(!isThisFromLoad)
         {
             List<SymbolData> initDeck = 
             [
@@ -68,23 +73,26 @@ public partial record GamePlaying : GameRoot.StateFSM<GamePlaying>
                 SymbolData.Create(2)
             ];
             symbolDeckList = [..initDeck, ..SymbolData.CreateEmpty.Repeat(DeckMax - initDeck.Count)];
+            await new EvtOnEnter(this);
+            await AddComAsync(new PlayingIdle(), false);
         }
         else
-            symbolDeckList.ForEach(s => s.BindAllCom());
-        await new EvtOnEnter(this);
-        await LaunchAsync(CurState ?? new PlayingIdle(), CurState != null);
+        {
+            await symbolDeckList.ForEachAsync(async s => await s.OnAddAsync(true));
+            await new EvtOnEnter(this);
+            await ((from com in GetFirstCom() select com.OnAddAsync(true)) | UniTask.CompletedTask);
+        }
     }
     public record EvtOnEnter(GamePlaying WhoHasCt) : EvtBase<GamePlaying>(WhoHasCt);
-    protected override void OnExit()
+    public override void OnRemove()
     {
-        Release();
         new EvtOnExit().Forget();
-        symbolDeckList.ForEach(s => s.Dispose());
+        symbolDeckList.ForEach(s => s.OnRemove());
+        base.OnRemove();
     }
     public record EvtOnExit : EvtForgetBase;
-    protected override void OnUpdate(float dt)
+    public override void OnUpdate(float dt)
     {
-        base.OnUpdate(dt);
         PlayTime += dt;
     }
 }
