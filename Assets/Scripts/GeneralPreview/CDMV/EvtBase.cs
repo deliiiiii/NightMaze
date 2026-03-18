@@ -29,14 +29,14 @@ public static class Bus
     [HideInInspector]
     static readonly Dictionary<Type, List<IUniEvt>> evtDic = [];
 
-    [ShowInInspector]
-    static Dictionary<string, List<string>> NonViewDic
-        => evtDic
-            // .Where(pair => !pair.Key.Namespace?.Contains("View") ?? false)
-            .ToDictionary(
-                pair => pair.Key.GetNiceName(),
-                pair => pair.Value.Select(dele => dele.Des).ToList()
-            );
+    // [ShowInInspector]
+    // static Dictionary<string, List<string>> NonViewDic
+    //     => evtDic
+    //         // .Where(pair => !pair.Key.Namespace?.Contains("View") ?? false)
+    //         .ToDictionary(
+    //             pair => pair.Key.GetNiceName(),
+    //             pair => pair.Value.Select(dele => dele.Des).ToList()
+    //         );
 
     internal static void FireAndForget<T>(T evt, bool debug = true) where T : IEvtBase
         => FireAsync(evt, CancellationToken.None, debug).Forget();

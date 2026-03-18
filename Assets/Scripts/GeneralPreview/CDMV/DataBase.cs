@@ -78,7 +78,14 @@ public abstract class DataBase<TThis> : DataBase<DataUnit>.ICom
         toRemove.OnRemove();
         comDic.Remove(key);
     }
-    Action<float> Tick => dt => { OnUpdate(dt); comDic.Values.ForEach(c => c.OnUpdate(dt)); };
+    Action<float> Tick => dt => 
+    {
+        OnUpdate(dt);  
+        foreach(var c in comDic.Values) 
+        {
+            c.OnUpdate(dt); 
+        }
+    };
     
     [DebuggerStepThrough]public async UniTask AddComAsync(ICom toAdd, bool isNewComFromLoad)
     {

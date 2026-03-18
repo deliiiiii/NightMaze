@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using General;
 using Sirenix.Utilities;
@@ -30,63 +32,65 @@ public static class Factory<TRelyBase, TInsBase>
         {
             if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
             {
-                assemblySet = null;
-                insDic = null;
+                insDic.Clear();
             }
         };
 #endif
-    }
-    
-    // ReSharper disable StaticMemberInGenericType
-    static HashSet<Assembly>? assemblySet;
-    static Dictionary<Type, Type>? insDic;
-    static HashSet<Assembly> AssemblySet
-    {
-        get
+        
+        var subTypes = typeof(TInsBase).SubTypes().ToList();
+        foreach (Type subType in subTypes)
         {
-            if (assemblySet != null)
-                return assemblySet;
-            assemblySet = [];
-            if (typeof(TInsBase).IsGenericType)
+            if (subType.GetCustomAttribute<FacFallbackAttribute>()?.RelyTypeBase == typeof(TRelyBase))
             {
-                foreach (var arg in typeof(TInsBase).GetGenericArguments())
-                {
-                    assemblySet.Add(arg.Assembly);
-                }
+                fallbackFunc = NewByType(subType);
+                break;
             }
-            assemblySet.Add(typeof(TRelyBase).Assembly);
-            return assemblySet;
         }
-    }
-    static Dictionary<Type, Type> InsDic
-    {
-        get
+        if (fallbackFunc == null)
+            MyDebug.LogError($"未找到{typeof(TInsBase).GetNiceName()}的回退类型");
+        foreach (var subType in subTypes)
         {
-            if (insDic != null)
-                return insDic;
-            insDic = [];
-            typeof(TInsBase).SubTypes()
-                .ForEach(type =>
-                {
-                    var attr = type.GetCustomAttribute<FacInsAttribute>();
-                    if(attr != null)
-                        insDic[attr.RelyType] = type;
-                });
-            return insDic;
+            FacInsAttribute attr = subType.GetCustomAttribute<FacInsAttribute>();
+            if(attr != null)
+                insDic[attr.RelyType] = NewByType(subType);
         }
-    }
 
-    static readonly Type fallbackType = 
-        (
-            from subType in typeof(TInsBase).SubTypes() 
-            where subType.GetCustomAttribute<FacFallbackAttribute>()?.RelyTypeBase == typeof(TRelyBase) 
-            select subType)
-        .FirstOrDefault() ?? throw new Exception($"未找到{typeof(TInsBase).GetNiceName()}的回退类型");
-    public static TInsBase Create<TRely>(TRely rely) where TRely : TRelyBase
+    }
+    // // ReSharper disable once StaticMemberInGenericType
+    // [AllowNull] [field: MaybeNull]
+    // static HashSet<Assembly> AssemblySet
+    // {
+    //     get
+    //     {
+    //         if (field != null)
+    //             return field;
+    //         field = [];
+    //         if (typeof(TInsBase).IsGenericType)
+    //         {
+    //             foreach (var arg in typeof(TInsBase).GetGenericArguments())
+    //             {
+    //                 field.Add(arg.Assembly);
+    //             }
+    //         }
+    //         field.Add(typeof(TRelyBase).Assembly);
+    //         return field;
+    //     }
+    //     set;
+    // }
+    // ReSharper disable once StaticMemberInGenericType
+    [AllowNull] static readonly Dictionary<Type, Func<TInsBase>> insDic = [];
+    static readonly Func<TInsBase>? fallbackFunc;
+    public static TInsBase Create<TRely>(TRely rely)
+        where TRely : TRelyBase =>
+        insDic.GetValueOrDefault(rely.GetType())?.Invoke() 
+        ?? fallbackFunc?.Invoke()
+        ?? throw new Exception($"{typeof(TInsBase).GetNiceName()} 创建失败. 未找到对应的类型, 且没有回退类型");
+
+    static Func<TInsBase> NewByType(Type type)
     {
-        var relyType = rely.GetType();
-        if (InsDic.TryGetValue(relyType, out var ins))
-            return (TInsBase)Activator.CreateInstance(ins);
-        return (TInsBase)Activator.CreateInstance(fallbackType);
+        // () => new Type()
+        var newExp = Expression.New(type);
+        var lambda = Expression.Lambda<Func<TInsBase>>(newExp);
+        return lambda.Compile();
     }
 }

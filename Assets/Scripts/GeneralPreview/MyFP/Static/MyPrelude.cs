@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Cysharp.Threading.Tasks;
+using General;
 
 namespace GeneralPreview;
-public record Unit;
 [DebuggerStepThrough]
 public static class MyPrelude 
 {

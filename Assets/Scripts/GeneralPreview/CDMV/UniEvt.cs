@@ -29,18 +29,11 @@ public interface IUniEvt
 {
     public static void BindAll(object obj, CancellationToken ct)
     {
-        obj.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-            .Where(propertyInfo =>
-            {
-                var pType = propertyInfo.PropertyType;
-                return pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(UniEvt<>);
-            })
-            .ForEach(propertyInfo =>
-            {
-                var iDisposable = (IDisposable)propertyInfo.GetMemberValue(obj);
-                iDisposable.AddTo(ct);
-            });
-
+        _ = (from propertyInfo in obj.GetType()
+                .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+            let pType = propertyInfo.PropertyType
+            where pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(UniEvt<>)
+            select _ = ((IDisposable)propertyInfo.GetMemberValue(obj)).AddTo(ct)).ToList();
     }
     public string Des { get; }
     public UniTask InvokeAsync(IEvtBase evt, CancellationToken ct);

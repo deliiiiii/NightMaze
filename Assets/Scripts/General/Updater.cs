@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Sirenix.Utilities;
 using UnityEngine;
 
@@ -10,14 +11,13 @@ namespace General
         public static SortedDictionary<int, HashSet<BindDataUpdate>> UpdateDic => Instance.updateDic;
         void Update()
         {
-            UpdateDic.Values.ForEach(set =>
+            foreach (var set in UpdateDic.Values)
             {
-                set.ForEach(v =>
+                foreach (var v in set)
                 {
-                    // if(v.GuardSet.All(guard => guard()))
                     v.Act(Time.deltaTime);
-                });
-            });
+                }
+            }
         }
     }
 }
