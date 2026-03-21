@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Reflection;
+using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 
 namespace General
 {
     public static class EnumExt
     {
-        public static string GetLabelText(this Enum? value)
+        public static string GetLabelText([CanBeNull] this Enum value)
         {
             if (value == null) 
                 return string.Empty;
