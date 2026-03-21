@@ -2,11 +2,13 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace GeneralPreview
+namespace GeneralPreview;
+
+public static class TransformExt
 {
-    public static class TransformExt
+    extension(Transform self)
     {
-        public static Transform ClearChildren(this Transform self)
+        public Transform ClearChildren()
         {
             for(int i = self.transform.childCount - 1; i >= 0; i--)
             {
@@ -14,8 +16,7 @@ namespace GeneralPreview
             }
             return self;
         }
-    
-        public static Transform ClearActiveChildren(this Transform self)
+        public Transform ClearActiveChildren()
         {
             for(int i = self.transform.childCount - 1; i >= 0; i--)
             {
@@ -24,38 +25,33 @@ namespace GeneralPreview
             }
             return self;
         }
-    
-    
-
-        public static void DisableAllChildren(this Transform self)
+        public void DisableAllChildren()
         {
             for(int i = self.childCount - 1; i >= 0; i--)
             {
                 self.GetChild(i).gameObject.SetActive(false);
             }
         }
-        
-        public static Transform DestroyActiveChildren(this Transform t)
+        public Transform DestroyActiveChildren()
         {
-            for(int i = 0; i < t.childCount; i++)
+            for(int i = 0; i < self.childCount; i++)
             {
-                if (!t.GetChild(i).gameObject.activeSelf)
+                if (!self.GetChild(i).gameObject.activeSelf)
                     continue;
-                GameObject.Destroy(t.GetChild(i).gameObject);
+                GameObject.Destroy(self.GetChild(i).gameObject);
             }
-            return t;
+            return self;
         }
-
-        public static Transform DestroyChild(this Transform t, Predicate<Transform> filter)
+        public Transform DestroyChild(Predicate<Transform> filter)
         {
-            for(int i = 0; i < t.childCount; i++)
+            for(int i = 0; i < self.childCount; i++)
             {
-                var child = t.GetChild(i);
+                var child = self.GetChild(i);
                 if (!filter(child))
                     continue;
                 GameObject.Destroy(child.gameObject);
             }
-            return t;
+            return self;
         }
     }
 }
