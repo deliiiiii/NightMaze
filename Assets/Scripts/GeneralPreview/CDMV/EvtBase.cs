@@ -29,14 +29,14 @@ public static class Bus
     [HideInInspector]
     static readonly Dictionary<Type, List<IUniEvt>> evtDic = [];
 
-    // [ShowInInspector]
-    // static Dictionary<string, List<string>> NonViewDic
-    //     => evtDic
-    //         // .Where(pair => !pair.Key.Namespace?.Contains("View") ?? false)
-    //         .ToDictionary(
-    //             pair => pair.Key.GetNiceName(),
-    //             pair => pair.Value.Select(dele => dele.Des).ToList()
-    //         );
+    [ShowInInspector]
+    static Dictionary<string, List<string>> NonViewDic
+        => evtDic
+            .Where(pair => !pair.Key.Namespace?.Contains("View") ?? false)
+            .ToDictionary(
+                pair => pair.Key.GetNiceName(),
+                pair => pair.Value.Select(dele => dele.Des).ToList()
+            );
 
     internal static void FireAndForget<T>(T evt, bool debug = true) where T : IEvtBase
         => FireAsync(evt, CancellationToken.None, debug).Forget();
@@ -94,7 +94,7 @@ public abstract record EvtBase<THasCt>(THasCt WhoHasCt)
     [HideInInspector] public THasCt WhoHasCt = WhoHasCt;
     [ShowInInspector] string EvtDes => ToString();
     public UniTask.Awaiter GetAwaiter() 
-        => WhoHasCt.Ct.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : Bus.FireAsync(this, WhoHasCt.Ct, getDebug).GetAwaiter();
+        => WhoHasCt.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : Bus.FireAsync(this, WhoHasCt.CurCt, getDebug).GetAwaiter();
 }
 
 public abstract record EvtForgetBase : IEvtBase
@@ -104,6 +104,6 @@ public abstract record EvtForgetBase : IEvtBase
 
 public interface IHasCt
 {
-    CancellationToken Ct { get; }
+    CancellationToken CurCt { get; }
 }
 public interface IEvtBase;

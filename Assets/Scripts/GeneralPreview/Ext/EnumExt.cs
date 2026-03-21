@@ -2,11 +2,13 @@
 using System.Reflection;
 using Sirenix.OdinInspector;
 
-namespace General
+namespace GeneralPreview;
+
+public static class EnumExt
 {
-    public static class EnumExt
+    extension(Enum? value)
     {
-        public static string GetLabelText(this Enum value)
+        public string GetLabelText()
         {
             if (value == null) 
                 return string.Empty;

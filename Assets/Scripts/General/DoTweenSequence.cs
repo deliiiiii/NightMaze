@@ -808,7 +808,7 @@ namespace General
     
         public async UniTask PlayAsync(CancellationToken ct)
         {
-            mTween?.Kill();
+            mTween?.Kill(true);
             mTween = CreateTween();
             if (mTween == null) return;
             if (ct.IsCancellationRequested)
@@ -817,18 +817,21 @@ namespace General
                 mTween.Kill();
                 ct.ThrowIfCancellationRequested();
             }
-
-            mTween.Play();
-
+            
             try
             {
+                mTween.Play();
                 await mTween.AsyncWaitForCompletion().AsUniTask().AttachExternalCancellation(ct);
             }
             catch (OperationCanceledException)
             {
-                mTween?.Complete();
-                mTween?.Kill();
+                // mTween?.Complete(true);
+                mTween?.Kill(true);
                 throw;
+            }
+            catch (Exception e)
+            {
+                MyDebug.LogError($"动画未处理异常(已阻止冒泡.): {e}.");
             }
         }
 

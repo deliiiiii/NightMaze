@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -29,10 +30,11 @@ public partial class PlayingSpin
             from symbol in BelongData.SymbolShownSorted 
             let pay = symbol.GetUltimateGive() 
             where pay != 0 
-            select (ICanAwait[])[
+            from evt in (List<ICanAwait>)[
                 new EvtSymbolPay(symbol, pay), 
-                new GamePlaying.ActGainCoin(BelongData) { Value = pay }];
-        InsertHead(list.SelectMany(x => x));
+                new GamePlaying.ActGainCoin(BelongData) { Value = pay }]
+            select evt;
+        InsertHead(list);
         return UniTask.CompletedTask;
     }
     [Obsolete("立即执行符号")]

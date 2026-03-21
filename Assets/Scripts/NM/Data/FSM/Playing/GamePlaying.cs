@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace NM.Data;
 
 [Serializable]
-public partial class GamePlaying : GameRoot.Com<GamePlaying>
+public partial class GamePlaying : CompositeBase<GameRoot, GamePlaying>
 {
     protected override List<HashSet<Type>> MutexListSet => 
     [
@@ -73,15 +73,15 @@ public partial class GamePlaying : GameRoot.Com<GamePlaying>
                 SymbolData.Create(2)
             ];
             symbolDeckList = [..initDeck, ..SymbolData.CreateEmpty.Repeat(DeckMax - initDeck.Count)];
-            await new EvtOnEnter(this);
-            await AddComAsync(new PlayingIdle(), false);
         }
         else
         {
             await symbolDeckList.ForEachAsync(async s => await s.OnAddAsync(true));
-            await new EvtOnEnter(this);
-            await ((from com in GetFirstCom() select com.OnAddAsync(true)) | UniTask.CompletedTask);
         }
+        await new EvtOnEnter(this);
+        await (isThisFromLoad 
+            ? AddComAsync(new PlayingIdle(), false) 
+            : AllComOnAddAsync());
     }
     public record EvtOnEnter(GamePlaying WhoHasCt) : EvtBase<GamePlaying>(WhoHasCt);
     public override void OnRemove()

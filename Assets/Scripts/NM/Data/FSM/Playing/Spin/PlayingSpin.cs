@@ -8,7 +8,7 @@ using Sirenix.Utilities;
 namespace NM.Data;
 
 [Serializable]
-public partial class PlayingSpin : GamePlaying.Com<PlayingSpin>
+public partial class PlayingSpin : CompositeBase<GamePlaying, PlayingSpin>
 {
     public override string ToString() => nameof(PlayingSpin);
 

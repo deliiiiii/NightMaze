@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Sirenix.Utilities;
 using UnityEngine;
 
 namespace General
 {
-    public class Updater : Singleton<Updater>
+    internal class Updater : Singleton<Updater>
     {
         readonly SortedDictionary<int, HashSet<BindDataUpdate>> updateDic = new();
-        public static SortedDictionary<int, HashSet<BindDataUpdate>> UpdateDic => Instance.updateDic;
+        public static SortedDictionary<int, HashSet<BindDataUpdate>> UpdateDic { [DebuggerStepThrough] get => Instance.updateDic; }
+
         void Update()
         {
             foreach (var set in UpdateDic.Values)

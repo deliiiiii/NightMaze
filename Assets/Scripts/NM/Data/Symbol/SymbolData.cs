@@ -14,7 +14,7 @@ using Vector2Int = GeneralPreview.Vector2Int;
 namespace NM.Data;
 
 [Serializable]
-public partial class SymbolData : DataBase<SymbolData>
+public partial class SymbolData : CompositeBase<GamePlaying, SymbolData>
 {
     public static Func<SymbolData> CreateEmpty => () => Create(-1);
     public static Func<int, SymbolData> Create => id => new SymbolData(id);
@@ -88,11 +88,12 @@ public partial class SymbolData : DataBase<SymbolData>
         ret *= TowaMulti.Aggregate(1, (current, multi) => current * multi);
         return ret;
     }
-
-    public abstract class ConfigDesBase<TConfig, TSub> : Com<TSub>
+    
+    public abstract class ConfigDesBase<TConfig, TSub> : CompositeBase<SymbolData, TSub>
         where TConfig : SymbolConfig
         where TSub : ConfigDesBase<TConfig, TSub>
     {
         protected TConfig Config => (TConfig)BelongData.Config;
     }
 }
+

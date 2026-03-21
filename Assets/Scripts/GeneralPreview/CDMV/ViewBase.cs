@@ -13,12 +13,12 @@ public abstract class ViewBase : MonoBehaviour
     bool bind;
     CancellationTokenSource manualCts;
 
-    public void Bind()
+    public void Bind(CancellationToken? ct = null)
     {
         if (bind)
             return;
         // MyDebug.Log($"{GetType().GetNiceName()} Bind");
-        manualCts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken);
+        manualCts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken, ct ?? CancellationToken.None);
         BindList().ForEach(b => b.Bind(manualCts.Token));
         IUniEvt.BindAll(this, manualCts.Token);
         bind = true;

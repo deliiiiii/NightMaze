@@ -40,9 +40,9 @@ public class Launcher : Singleton<Launcher>
 #endif
         try
         {
-            await Loader.LoadAll();
+            await Loader.LoadAllAsync(destroyCancellationToken);
             MigrateStepRegister.Init();
-            ViewList.ForEach(v => v.Bind());
+            ViewList.ForEach(v => v.Bind(destroyCancellationToken));
             GameRoot.Root.AddTo(destroyCancellationToken);
             await GameRoot.Root.AddComAsync(new GameTitle(), false);
         }

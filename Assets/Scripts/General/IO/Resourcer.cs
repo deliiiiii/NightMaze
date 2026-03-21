@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine.AddressableAssets;
@@ -52,9 +53,10 @@ namespace General
         /// 使用Addressable异步加载资源
         /// </summary>
         /// <param name="address">资源路径</param>
+        /// <param name="ct">token</param>
         /// <typeparam name="T">类型</typeparam>
         /// <returns>加载的资源</returns>
-        public static async UniTask<T> LoadAssetAsync<T>(string address) where T : Object
+        public static async UniTask<T> LoadAssetAsync<T>(string address, CancellationToken? ct = null) where T : Object
         {
             if (TryGetAssetFromCache(address, out T asset))
             {
@@ -67,7 +69,7 @@ namespace General
             try
             {
                 assetHandle = Addressables.LoadAssetAsync<Object>(address);
-                await assetHandle.ToUniTask();
+                await assetHandle.ToUniTask(cancellationToken: ct ?? CancellationToken.None);
             }
             catch (Exception e)
             {
@@ -138,21 +140,22 @@ namespace General
         //     st.Stop();
         //     // MyDebug.LogInfo($"加载标签组{label}资源用时:{st.Elapsed.TotalMilliseconds}ms");
         // }
-        
+
         /// <summary>
         /// 通过Label异步加载一组资源，并返回资源列表
         /// </summary>
         /// <param name="label">资源标签</param>
         /// <param name="parallel">是否并行加载, 默认为true</param>
+        /// <param name="ct">token</param>
         /// <typeparam name="T">资源类型</typeparam>
         /// <returns>加载的资源列表</returns>
-        public static async UniTask<List<T>> LoadAssetsAsyncByLabel<T>(string label, bool parallel = true) where T : Object
+        public static async UniTask<List<T>> LoadAssetsAsyncByLabel<T>(string label, bool parallel = true, CancellationToken? ct = null) where T : Object
         {
             IList<IResourceLocation> resourceLocations;
             // 先试图从缓存中获取Locations
             if (!_labelLocationsCache.TryGetValue(label, out var value))
             {
-                resourceLocations = await LoadResourceLocationsAsync(label);
+                resourceLocations = await LoadResourceLocationsAsync(label, ct);
             }
             else
             {
@@ -176,14 +179,14 @@ namespace General
                     
                     if (!parallel)
                     {
-                        var asset = await LoadAssetAsync<T>(location.PrimaryKey);
+                        var asset = await LoadAssetAsync<T>(location.PrimaryKey, ct);
                         if (asset != null)
                         {
                             loadedAssets.Add(asset);
                         }
                         continue;
                     }
-                    tasks.Add(LoadAssetAsync<T>(location.PrimaryKey));
+                    tasks.Add(LoadAssetAsync<T>(location.PrimaryKey, ct));
                     
                 }
 
@@ -286,7 +289,7 @@ namespace General
             }
         }
 
-        public static async UniTask<IList<IResourceLocation>> LoadResourceLocationsAsync(string label)
+        public static async UniTask<IList<IResourceLocation>> LoadResourceLocationsAsync(string label, CancellationToken? ct = null)
         {
             if (_labelLocationsCache.ContainsKey(label))
             {
@@ -295,7 +298,7 @@ namespace General
 
             // 通过标签获取所有资源的位置
             var locatorsHandle = Addressables.LoadResourceLocationsAsync(label, typeof(object));
-            await locatorsHandle.ToUniTask();
+            await locatorsHandle.ToUniTask(cancellationToken: ct ?? CancellationToken.None);
             if (locatorsHandle.Status != AsyncOperationStatus.Succeeded)
             {
                 throw new Exception($"使用标签[{label}]定位资源地址失败");

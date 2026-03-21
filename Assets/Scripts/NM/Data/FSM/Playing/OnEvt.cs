@@ -1,4 +1,5 @@
-﻿using GeneralPreview;
+﻿using Cysharp.Threading.Tasks;
+using GeneralPreview;
 
 namespace NM.Data;
 
@@ -7,7 +8,10 @@ public partial class GamePlaying
     public record EvtClickSpin : EvtForgetBase;
     UniEvt<EvtClickSpin> OnEvtClickSpinAsync => new()
     {
-        Invoke = (evt, ct) => !GetComOptional<PlayingSpin>() | AddComAsync(new PlayingSpin(), false),
+        Invoke = (evt, ct) =>
+        {
+            return GetComOptional<PlayingSpin>() | UniTask.Defer(() => AddComAsync(new PlayingSpin(), false));
+        },
         Des = "(点击了旋转按钮) 尝试进入旋转状态"
     };
     

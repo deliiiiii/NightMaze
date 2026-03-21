@@ -1,3 +1,5 @@
-﻿namespace NM.Data;
+﻿using GeneralPreview;
 
-public partial class GameTitle : GameRoot.Com<GameTitle>;
+namespace NM.Data;
+
+public partial class GameTitle : CompositeBase<GameRoot, GameTitle>;

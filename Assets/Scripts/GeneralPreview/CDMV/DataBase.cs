@@ -5,119 +5,111 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
-using Sirenix.OdinInspector;
 using Sirenix.Utilities;
-using UnityEngine;
 
 namespace GeneralPreview;
 
-public class DataUnit : DataBase<DataUnit>
+public interface IComposite;
+public class DataRoot : IComposite;
+
+public interface ILeaf<TBelong> : IDisposable, IHasVersion, IHasCt
+    where TBelong : class, IComposite
 {
-    public static readonly DataUnit One = new();
+    TBelong BelongData { get; set; }
+    UniTask OnAddAsync(bool isThisFromLoad);
+    void OnRemove();
+    void OnUpdate(float dt);
+    void IDisposable.Dispose() => OnRemove();
 }
-public abstract class DataBase<TThis> : DataBase<DataUnit>.ICom
-    where TThis : DataBase<TThis>
+public interface IComposite<TBelong, TThis> : ILeaf<TBelong>
+    where TBelong : class, IComposite
+    where TThis : class, IComposite, IComposite<TBelong, TThis>
 {
-    [JsonIgnore, HideInInspector] DataUnit DataUnit.ICom.BelongData { get; set; } = DataUnit.One;
-    
+    UniTask AddComAsync(ILeaf<TThis> toAdd, bool isNewComFromLoad);
+    public void RemoveCom(ILeaf<TThis> toRemove);
+}
+
+public abstract class CompositeBase<TBelong, TThis> : IComposite, IComposite<TBelong, TThis>
+    where TBelong : class, IComposite
+    where TThis : CompositeBase<TBelong, TThis>
+{
     public virtual UniTask OnAddAsync(bool isThisFromLoad)
     {
-        if (isThisFromLoad)
-        {
-            comDic.Values.ForEach(c =>
-            {
-                c.BelongData = (TThis)this;
-                IUniEvt.BindAll(this, CurCt);
-            });
-        }
-        Tick.ToBinder().Bind(CurCt);
+        IUniEvt.BindAll(this, CurCt);
+        var tick = OnUpdate;
+        tick.ToBinder().Bind(CurCt);
         return UniTask.CompletedTask;
+        // 必须自己管理.
+        // if (isThisFromLoad)
+        // {
+        //     await comDic.Values.ForEachAsync(async c => await c.OnAddAsync(isThisFromLoad));
+        // }
     }
 
+    protected async UniTask AllComOnAddAsync()
+    {
+        foreach (var c in comDic.Values)
+        {
+            await c.OnAddAsync(true);
+        }
+    }
     public virtual void OnRemove()
     {
         comDic.Values.ForEach(c => c.OnRemove());
         comDic.Clear();
         cts.Cancel();
     }
-
-    public virtual void OnUpdate(float dt) { }
-    void IDisposable.Dispose() => OnRemove();
-    // 组件默认都只能存在一个.
-    [ShowInInspector, PropertyOrder(-10), JsonProperty(Order = 9999)] Dictionary<Type, ICom> comDic = [];
-    protected virtual List<HashSet<Type>> MutexListSet { get; [UsedImplicitly] private set; } = [];
+    public virtual void OnUpdate(float dt)
+    {
+        foreach (var c in comDic.Values)
+        {
+            c.OnUpdate(dt);
+        }
+    }
     
-    CancellationToken IHasCt.Ct { [DebuggerStepThrough] get => cts.Token; }
-    public double savedVersion { [DebuggerStepThrough] get; [DebuggerStepThrough] set; } = Const.Version;
-
+    public double savedVersion { get; set; } = Const.Version;
     [JsonIgnore] readonly CancellationTokenSource cts = new();
-    [JsonIgnore] protected CancellationToken CurCt { [DebuggerStepThrough] get => cts.Token; }
+    public CancellationToken CurCt => cts.Token;
     
-    async UniTask _AddComAsync(ICom toAdd, bool isNewComFromLoad)
-    {
-        if(comDic.ContainsKey(toAdd.GetType()))
-        {
-            MyDebug.LogError($"{nameof(DataBase<>)} {GetType().Name} AddCom {toAdd.GetType().Name} But Already Exists");
-            return;
-        }
-        comDic.Add(toAdd.GetType(), toAdd);
-        toAdd.BelongData = (TThis)this;
-        IUniEvt.BindAll(this, CurCt);
-        await toAdd.OnAddAsync(isNewComFromLoad);
-    }
-    void _RemoveCom(ICom toRemove)
-    {
-        var key = toRemove.GetType();
-        if (!comDic.ContainsKey(key))
-        {
-            MyDebug.LogError($"{nameof(DataBase<>)} {GetType().Name} RemoveCom {toRemove.GetType().Name} But NOT Exists");
-            return;
-        }
-        toRemove.OnRemove();
-        comDic.Remove(key);
-    }
-    Action<float> Tick => dt => 
-    {
-        OnUpdate(dt);  
-        foreach(var c in comDic.Values) 
-        {
-            c.OnUpdate(dt); 
-        }
-    };
-    
-    [DebuggerStepThrough]public async UniTask AddComAsync(ICom toAdd, bool isNewComFromLoad)
+    protected virtual List<HashSet<Type>> MutexListSet { get; } = [];
+    readonly Dictionary<Type, ILeaf<TThis>> comDic = [];
+    [field: NonSerialized, JsonIgnore] public TBelong BelongData { get; set; } = null!;
+    public async UniTask AddComAsync(ILeaf<TThis> toAdd, bool isNewComFromLoad)
     {
         var gotMutex =
             from com in comDic.Values
             from mutexList in MutexListSet
             where mutexList.Contains(com.GetType()) && mutexList.Contains(toAdd.GetType())
             select com;
-        gotMutex.ToList().ForEach(_RemoveCom);
-        await _AddComAsync(toAdd, isNewComFromLoad);
+        gotMutex.ToList().ForEach(RemoveCom);
+        if(comDic.ContainsKey(toAdd.GetType()))
+        {
+            MyDebug.LogError($"{GetType().GetNiceName()} AddCom {toAdd.GetType().Name} But Already Exists");
+            return;
+        }
+        comDic.Add(toAdd.GetType(), toAdd);
+        toAdd.BelongData = (TThis)this;
+        await toAdd.OnAddAsync(isNewComFromLoad);
     }
-    [DebuggerStepThrough]public void RemoveCom(ICom toRemove) => _RemoveCom(toRemove);
-    [DebuggerStepThrough]public MyOption<TCom> GetComOptional<TCom>() where TCom : Com<TCom>
+    public void RemoveCom(ILeaf<TThis> toRemove)
+    {
+        var key = toRemove.GetType();
+        if (!comDic.ContainsKey(key))
+        {
+            MyDebug.LogError(
+                $"{GetType().GetNiceName()} RemoveCom {toRemove.GetType().Name} But NOT Exists");
+            return;
+        }
+
+        toRemove.OnRemove();
+        comDic.Remove(key);
+    }
+    [DebuggerStepThrough]public MyOption<TCom> GetComOptional<TCom>() where TCom : CompositeBase<TThis, TCom>
         => comDic.TryGetValue(typeof(TCom), out var com) ? (TCom)com : None;
-    [DebuggerStepThrough]public MyOption<ICom> GetFirstCom() => comDic.Values.FirstOptional(_ => true);
-    [DebuggerStepThrough]public bool HasCom<TCom>() where TCom : Com<TCom>
+    [DebuggerStepThrough]public MyOption<ILeaf<TThis>> GetFirstCom() => comDic.Values.FirstOptional(_ => true);
+    [DebuggerStepThrough]public bool HasCom<TCom>() where TCom : CompositeBase<TThis, TCom>
         => comDic.ContainsKey(typeof(TCom));
-    public interface ICom : IDisposable, IHasVersion, IHasCt
-    {
-        TThis BelongData { get; set; }
-        UniTask OnAddAsync(bool isThisFromLoad);
-        void OnRemove();
-        void OnUpdate(float dt);
-    }
-    public abstract class Com<TSub> : DataBase<TSub>, ICom 
-        where TSub : DataBase<TSub>
-    {
-        [JsonIgnore, HideInInspector] public TThis BelongData { get; set; } = null!;
-        [DebuggerStepThrough]UniTask DataBase<TThis>.ICom.OnAddAsync(bool isThisFromLoad) => OnAddAsync(isThisFromLoad);
-        [DebuggerStepThrough]void DataBase<TThis>.ICom.OnRemove() => OnRemove();
-        [DebuggerStepThrough]void DataBase<TThis>.ICom.OnUpdate(float dt) => OnUpdate(dt);
-    }
     
     public abstract record UniAction(TThis Self) : ICanAwait
     {
@@ -125,7 +117,7 @@ public abstract class DataBase<TThis> : DataBase<DataUnit>.ICom
 
         [DebuggerStepThrough] protected abstract UniTask InvokeAsync();
         public UniTask.Awaiter GetAwaiter() 
-            => Self.cts.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : InvokeAsync().GetAwaiter();
+            => Self.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : InvokeAsync().GetAwaiter();
         [DebuggerStepThrough] public void Forget() => InvokeAsync().Forget();
     }
 }
@@ -135,27 +127,17 @@ public interface ICanAwait
     UniTask.Awaiter GetAwaiter();
 }
 
-// public record GamePlaying2 : FSM2<GamePlaying2>
+// public static class DisposableTExt
 // {
-//     protected override List<HashSet<Type>> MutexListSet =>
-//     [
-//         [typeof(PlayInstantSpin1), typeof(PlayInstantSpin2)]
-//     ];
-// }
-// public record PlayInstantSpin1 : GamePlaying2.ComBase<PlayInstantSpin1>;
-// public record PlayInstantSpin2 : GamePlaying2.ComBase<PlayInstantSpin2>
-// {
-//     public static class TestClass
+//     extension<T>(IDisposable<T> self)
 //     {
-//         public static void TestFunc()
-//         { 
-//             var gp2 = new GamePlaying2();
-//             gp2.AddComAsync(new PlayInstantSpin1(), false).Forget();
-//             MyDebug.Log(gp2.GetComOptional<PlayInstantSpin1>().HasValue);
-//             MyDebug.Log(gp2.GetComOptional<PlayInstantSpin2>().HasValue);
-//             gp2.AddComAsync(new PlayInstantSpin2(), false).Forget();
-//             MyDebug.Log(gp2.GetComOptional<PlayInstantSpin1>().HasValue);
-//             MyDebug.Log(gp2.GetComOptional<PlayInstantSpin2>().HasValue);
+//         public CancellationTokenRegistration AddTo(T ctx, CancellationToken ct)
+//         {
+//             return ct.RegisterWithoutCaptureExecutionContext((object state) =>
+//             {
+//                 var d = (IDisposable<T>)state;
+//                 d.Dispose(ctx);
+//             }, self);
 //         }
 //     }
 // }

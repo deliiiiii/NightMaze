@@ -1,0 +1,682 @@
+{
+  "$id": "1",
+  "savedVersion": 20260313.0,
+  "BelongData": {
+    "$id": "2",
+    "savedVersion": 20260313.0,
+    "BelongData": null,
+    "comDic": {
+      "$id": "3",
+      "NM.Data.GamePlaying, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+        "$ref": "1"
+      }
+    }
+  },
+  "comDic": {
+    "$id": "4",
+    "NM.Data.PlayingIdle, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+      "$id": "5",
+      "$type": "NM.Data.PlayingIdle, NM.Data",
+      "savedVersion": 20260313.0,
+      "BelongData": {
+        "$ref": "1"
+      },
+      "comDic": {
+        "$id": "6"
+      }
+    }
+  },
+  "PlayerName": "1112",
+  "PlayTime": 23.74351220857352,
+  "Coin": 12,
+  "RemoveToken": 0,
+  "RefreshToken": 0,
+  "NextRentCount": 0,
+  "SpinCount": 0,
+  "DeckMax": 20,
+  "symbolDeckList": {
+    "$id": "7",
+    "$values": [
+      {
+        "$id": "8",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "9",
+          "NM.Data.SymbolConfigDes0, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "10",
+            "$type": "NM.Data.SymbolConfigDes0, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "8"
+            },
+            "comDic": {
+              "$id": "11"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "12",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"13","X":3,"Y":4},
+        "AlreadyChecked": true,
+        "ConfigID": 0
+      },
+      {
+        "$id": "14",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "15",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "16",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "14"
+            },
+            "comDic": {
+              "$id": "17"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "18",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"19","X":2,"Y":1},
+        "AlreadyChecked": true,
+        "ConfigID": 1
+      },
+      {
+        "$id": "20",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "21",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "22",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "20"
+            },
+            "comDic": {
+              "$id": "23"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "24",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"25","X":1,"Y":2},
+        "AlreadyChecked": true,
+        "ConfigID": 1
+      },
+      {
+        "$id": "26",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "27",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "28",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "26"
+            },
+            "comDic": {
+              "$id": "29"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "30",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"31","X":1,"Y":1},
+        "AlreadyChecked": true,
+        "ConfigID": 1
+      },
+      {
+        "$id": "32",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "33",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "34",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "32"
+            },
+            "comDic": {
+              "$id": "35"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "36",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"37","X":5,"Y":2},
+        "AlreadyChecked": true,
+        "ConfigID": 1
+      },
+      {
+        "$id": "38",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "39",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "40",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "38"
+            },
+            "comDic": {
+              "$id": "41"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "42",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"43","X":1,"Y":3},
+        "AlreadyChecked": true,
+        "ConfigID": 2
+      },
+      {
+        "$id": "44",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "45",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "46",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "44"
+            },
+            "comDic": {
+              "$id": "47"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "48",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"49","X":2,"Y":3},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "50",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "51",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "52",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "50"
+            },
+            "comDic": {
+              "$id": "53"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "54",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"55","X":5,"Y":3},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "56",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "57",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "58",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "56"
+            },
+            "comDic": {
+              "$id": "59"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "60",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"61","X":5,"Y":1},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "62",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "63",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "64",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "62"
+            },
+            "comDic": {
+              "$id": "65"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "66",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"67","X":4,"Y":1},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "68",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "69",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "70",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "68"
+            },
+            "comDic": {
+              "$id": "71"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "72",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"73","X":2,"Y":2},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "74",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "75",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "76",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "74"
+            },
+            "comDic": {
+              "$id": "77"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "78",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"79","X":5,"Y":4},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "80",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "81",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "82",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "80"
+            },
+            "comDic": {
+              "$id": "83"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "84",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"85","X":3,"Y":2},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "86",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "87",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "88",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "86"
+            },
+            "comDic": {
+              "$id": "89"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "90",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"91","X":3,"Y":1},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "92",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "93",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "94",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "92"
+            },
+            "comDic": {
+              "$id": "95"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "96",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"97","X":4,"Y":3},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "98",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "99",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "100",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "98"
+            },
+            "comDic": {
+              "$id": "101"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "102",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"103","X":4,"Y":4},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "104",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "105",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "106",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "104"
+            },
+            "comDic": {
+              "$id": "107"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "108",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"109","X":2,"Y":4},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "110",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "111",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "112",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "110"
+            },
+            "comDic": {
+              "$id": "113"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "114",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"115","X":1,"Y":4},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "116",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "117",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "118",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "116"
+            },
+            "comDic": {
+              "$id": "119"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "120",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"121","X":4,"Y":2},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      },
+      {
+        "$id": "122",
+        "savedVersion": 20260313.0,
+        "BelongData": null,
+        "comDic": {
+          "$id": "123",
+          "NM.Data.SymbolConfigDesB1, NM.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": {
+            "$id": "124",
+            "$type": "NM.Data.SymbolConfigDesB1, NM.Data",
+            "savedVersion": 20260313.0,
+            "BelongData": {
+              "$ref": "122"
+            },
+            "comDic": {
+              "$id": "125"
+            }
+          }
+        },
+        "TempAdd": [],
+        "TempMulti": [],
+        "TowaAdd": [],
+        "TowaMulti": [],
+        "DoCount": {
+          "$id": "126",
+          "$type": "NM.Data.DoCountInfinite, NM.Data"
+        },
+        "Stock":null,
+        "EveryNSpin":null,
+        "Pos":{"$id":"127","X":3,"Y":3},
+        "AlreadyChecked": true,
+        "ConfigID": -1
+      }
+    ]
+  }
+}

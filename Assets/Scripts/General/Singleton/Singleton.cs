@@ -2,11 +2,13 @@
 //需要被继承 xxx : Singleton<xxx>
 //获取单例 xxx.Instance
 
+using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
 
 namespace General
 {
+    [DebuggerStepThrough]
     public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         public bool GlobalOnScene;

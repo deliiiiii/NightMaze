@@ -2,7 +2,7 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace General
+namespace GeneralPreview
 {
     public static class TransformExt
     {

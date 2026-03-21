@@ -12,7 +12,6 @@ namespace GeneralPreview;
 [JsonConverter(typeof(MyOptionJsonConverter))]
 public abstract record MyOption<T1>
 {
-    
     public static implicit operator MyOption<T1>(T1 some)
     {
         if(some is null)

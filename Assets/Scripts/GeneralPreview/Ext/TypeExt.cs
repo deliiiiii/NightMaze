@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace General
+namespace GeneralPreview;
+
+public static class TypeExt
 {
-    public static class TypeExt
+    extension(Type type)
     {
-        public static IEnumerable<Type> SubTypes(this Type type) =>
+        public IEnumerable<Type> SubTypes() =>
             from ass in AppDomain.CurrentDomain.GetAssemblies()
             from t in ass.GetTypes()
             where type.IsAssignableFrom(t) && t != type && !t.IsAbstract 

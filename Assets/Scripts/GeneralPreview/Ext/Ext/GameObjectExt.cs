@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace General
+namespace GeneralPreview
 {
     public static class GameObjectExt
     {
