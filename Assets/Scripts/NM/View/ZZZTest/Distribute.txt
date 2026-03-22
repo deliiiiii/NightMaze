@@ -1,0 +1,6 @@
+﻿Card.Des 完美打击
+GamePlaying .. 
+
+GamePlaying                 xx.造成6点伤害.你每有一张名字中有打击的牌, 基础伤害+2.
+    -PlayingTurn            xx.造成16点伤害.你每有一张名字中有打击的牌, 基础伤害+2.(已+10)
+        -TurnPlayerYield    xxx.
