@@ -38,29 +38,31 @@ namespace General
             {
                 DontDestroyOnLoad(gameObject);
             }
+
+            destroyCancellationToken.Register(() => instance = null);
         }
 
-#if UNITY_EDITOR
-        void OnPlayModeStateChanged(PlayModeStateChange s)
-        {
-            if (s == PlayModeStateChange.ExitingPlayMode && instance != null)
-            {
-                // DestroyImmediate(gameObject);
-                instance = null;
-            }
-        }
-#endif
-        void OnEnable()
-        {
-#if UNITY_EDITOR
-            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-#endif
-        }
-        void OnDisable()
-        {
-#if UNITY_EDITOR
-            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
-#endif
-        }
+// #if UNITY_EDITOR
+//         void OnPlayModeStateChanged(PlayModeStateChange s)
+//         {
+//             if (s == PlayModeStateChange.ExitingPlayMode && instance != null)
+//             {
+//                 // DestroyImmediate(gameObject);
+//                 instance = null;
+//             }
+//         }
+// #endif
+//         void OnEnable()
+//         {
+// #if UNITY_EDITOR
+//             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+// #endif
+//         }
+//         void OnDisable()
+//         {
+// #if UNITY_EDITOR
+//             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+// #endif
+//         }
     }
 }

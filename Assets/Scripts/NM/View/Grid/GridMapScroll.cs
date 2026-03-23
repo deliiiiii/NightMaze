@@ -1,32 +1,50 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace NM.View;
 
 public class GridMapScroll : MonoBehaviour
 {
-    // public float 
+    public int MinSeenGrid = 2;
+    public int MaxSeenGrid = 24;
+    public int TarSeenGrid = 12;
+    public float Duration = 0.4f;
+    [ShowInInspector]float TarOrtho => TarSeenGrid * GridSize / 2f;
+    public const int GridSize = 1;
     void Awake()
     {
         IUniEvt.BindAll(this, destroyCancellationToken);
+        var tickMouse = TickMouse;
+        tickMouse.ToBinder().Bind(destroyCancellationToken);
+        Tween.Bind(() => MyCamera.MainV.m_Lens.OrthographicSize, cur => MyCamera.MainV.m_Lens.OrthographicSize = cur,
+            () => TarOrtho, Duration,
+            Tween.CubicOut,
+            destroyCancellationToken);
     }
 
-    UniEvt<MyInput.EvtKeyDown> EvtMouseDown => new()
+    void TickMouse(float dt)
     {
-        Des = "按下鼠标键",
-        Invoke = (evt, ct) =>
-        {
-            if (evt.Key == KeyCode.Mouse0)
-            {
-                MyDebug.Log("0");
-            }
-            else if(evt.Key == KeyCode.Mouse1)
-            {
-                MyDebug.Log("1");
-            }
-            return UniTask.CompletedTask;
-        },
-    };
+        int y = (int)Math.Clamp(Input.mouseScrollDelta.y, -1, 1);
+        TarSeenGrid = Math.Clamp(TarSeenGrid - y, MinSeenGrid, MaxSeenGrid);
+    }
+    // UniEvt<MyInput.EvtKeyDown> EvtMouseDown => new()
+    // {
+    //     Des = "按下鼠标键",
+    //     Invoke = (evt, ct) =>
+    //     {
+    //         if (evt.Key == KeyCode.Mouse0)
+    //         {
+    //             MyDebug.Log("0");
+    //         }
+    //         else if(evt.Key == KeyCode.Mouse1)
+    //         {
+    //             MyDebug.Log("1");
+    //         }
+    //         return UniTask.CompletedTask;
+    //     },
+    // };
 }
