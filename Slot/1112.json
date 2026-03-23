@@ -27,8 +27,8 @@
     }
   },
   "PlayerName": "1112",
-  "PlayTime": 23.74351220857352,
-  "Coin": 12,
+  "PlayTime": 35.897477116435766,
+  "Coin": 18,
   "RemoveToken": 0,
   "RefreshToken": 0,
   "NextRentCount": 0,
@@ -65,7 +65,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"13","X":3,"Y":4},
+        "Pos":{"$id":"13","X":2,"Y":1},
         "AlreadyChecked": true,
         "ConfigID": 0
       },
@@ -97,7 +97,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"19","X":2,"Y":1},
+        "Pos":{"$id":"19","X":4,"Y":2},
         "AlreadyChecked": true,
         "ConfigID": 1
       },
@@ -129,7 +129,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"25","X":1,"Y":2},
+        "Pos":{"$id":"25","X":1,"Y":3},
         "AlreadyChecked": true,
         "ConfigID": 1
       },
@@ -161,7 +161,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"31","X":1,"Y":1},
+        "Pos":{"$id":"31","X":3,"Y":1},
         "AlreadyChecked": true,
         "ConfigID": 1
       },
@@ -193,7 +193,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"37","X":5,"Y":2},
+        "Pos":{"$id":"37","X":4,"Y":1},
         "AlreadyChecked": true,
         "ConfigID": 1
       },
@@ -225,7 +225,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"43","X":1,"Y":3},
+        "Pos":{"$id":"43","X":3,"Y":3},
         "AlreadyChecked": true,
         "ConfigID": 2
       },
@@ -257,7 +257,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"49","X":2,"Y":3},
+        "Pos":{"$id":"49","X":5,"Y":3},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -289,7 +289,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"55","X":5,"Y":3},
+        "Pos":{"$id":"55","X":5,"Y":2},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -321,7 +321,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"61","X":5,"Y":1},
+        "Pos":{"$id":"61","X":1,"Y":4},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -353,7 +353,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"67","X":4,"Y":1},
+        "Pos":{"$id":"67","X":4,"Y":3},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -417,7 +417,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"79","X":5,"Y":4},
+        "Pos":{"$id":"79","X":3,"Y":4},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -449,7 +449,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"85","X":3,"Y":2},
+        "Pos":{"$id":"85","X":5,"Y":1},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -481,7 +481,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"91","X":3,"Y":1},
+        "Pos":{"$id":"91","X":3,"Y":2},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -513,7 +513,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"97","X":4,"Y":3},
+        "Pos":{"$id":"97","X":5,"Y":4},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -545,7 +545,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"103","X":4,"Y":4},
+        "Pos":{"$id":"103","X":1,"Y":2},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -577,7 +577,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"109","X":2,"Y":4},
+        "Pos":{"$id":"109","X":1,"Y":1},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -609,7 +609,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"115","X":1,"Y":4},
+        "Pos":{"$id":"115","X":2,"Y":4},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -641,7 +641,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"121","X":4,"Y":2},
+        "Pos":{"$id":"121","X":4,"Y":4},
         "AlreadyChecked": true,
         "ConfigID": -1
       },
@@ -673,7 +673,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"127","X":3,"Y":3},
+        "Pos":{"$id":"127","X":2,"Y":3},
         "AlreadyChecked": true,
         "ConfigID": -1
       }

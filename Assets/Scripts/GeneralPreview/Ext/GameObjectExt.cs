@@ -14,5 +14,7 @@ public static class GameObjectExt
             var com = self.GetComponent<T>();
             return com != null ? com : None;
         }
+
+        public T GetOrAddCom<T>() where T : Component => self.GetComponent<T>() ?? self.AddComponent<T>();
     }
 }
