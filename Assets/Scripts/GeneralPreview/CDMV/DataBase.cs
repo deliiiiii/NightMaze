@@ -73,8 +73,8 @@ public abstract class CompositeBase<TBelong, TThis> : IComposite, IComposite<TBe
     public CancellationToken CurCt => cts.Token;
     
     protected virtual List<HashSet<Type>> MutexListSet { get; } = [];
-    readonly Dictionary<Type, ILeaf<TThis>> comDic = [];
-    [field: NonSerialized, JsonIgnore] public TBelong BelongData { get; set; } = null!;
+    [JsonProperty(Order = 9999)]readonly Dictionary<Type, ILeaf<TThis>> comDic = [];
+    [field: NonSerialized][JsonIgnore] public TBelong BelongData { get; set; } = null!;
     public async UniTask AddComAsync(ILeaf<TThis> toAdd, bool isNewComFromLoad)
     {
         var gotMutex =

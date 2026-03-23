@@ -34,7 +34,9 @@ public partial class GamePlaying : CompositeBase<GameRoot, GamePlaying>
     //         Bus.FireAndForget(new EvtCoinChanged(value));
     //     }
     // }
-    // public record EvtCoinChanged(long Value): EvtBase;
+    // public record EvtCoinChanged(GamePlaying gamePlaying,
+    //              long OldValue,
+    //              long NewValue): EvtForgetBase;
     public int RemoveToken{ get; private set;}
     public int RefreshToken{ get; private set;}
     public int NextRentCount{ get; private set;}

@@ -14,7 +14,7 @@ using Vector2Int = GeneralPreview.Vector2Int;
 namespace NM.Data;
 
 [Serializable]
-public partial class SymbolData : CompositeBase<GamePlaying, SymbolData>
+public partial class SymbolData : CompositeBase<DataRoot, SymbolData>
 {
     public static Func<SymbolData> CreateEmpty => () => Create(-1);
     public static Func<int, SymbolData> Create => id => new SymbolData(id);
