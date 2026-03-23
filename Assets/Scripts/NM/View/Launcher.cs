@@ -40,6 +40,7 @@ public class Launcher : Singleton<Launcher>
 #endif
         try
         {
+            MyInput.Init(destroyCancellationToken);
             await Loader.LoadAllAsync(destroyCancellationToken);
             MigrateStepRegister.Init();
             ViewList.ForEach(v => v.Bind(destroyCancellationToken));

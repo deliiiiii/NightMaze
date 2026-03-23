@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Grid Back
+    uniqueID: 2834383639
+    locked: 0
+  - name: Grid Symbol
+    uniqueID: 4095521609
+    locked: 0
   - name: UI
     uniqueID: 3023799083
     locked: 0

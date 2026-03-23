@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 namespace NM.View;
 
-public class GridTrigger : MonoBehaviour
+public class GridSprTrigger : MonoBehaviour
 {
     // CancellationTokenSource cts = new();
     [SerializeField] DOTweenSequence onEnterTween = null!;

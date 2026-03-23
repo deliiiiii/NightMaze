@@ -99,7 +99,7 @@ public abstract record EvtBase<THasCt>(THasCt WhoHasCt)
 
 public abstract record EvtForgetBase : IEvtBase
 {
-    public void Forget() => Bus.FireAndForget(this);
+    public void Forget(bool debug = true) => Bus.FireAndForget(this, debug);
 }
 
 public interface IHasCt

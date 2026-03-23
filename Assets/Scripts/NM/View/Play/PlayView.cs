@@ -24,8 +24,8 @@ public class PlayView : ViewBase
 
     protected override IEnumerable<BindDataBase> BindList()
     {
-        yield return BtnSpin.onClick.EvtBindTo(new GamePlaying.EvtClickSpin().Forget);
-        yield return BtnExit.onClick.EvtBindTo(new GamePlaying.EvtClickExit().Forget);
+        yield return BtnSpin.onClick.EvtBindTo(() => new GamePlaying.EvtClickSpin().Forget());
+        yield return BtnExit.onClick.EvtBindTo(() => new GamePlaying.EvtClickExit().Forget());
     }
     
     #region OnEvt

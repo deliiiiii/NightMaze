@@ -1625,6 +1625,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 311023196}
+  - component: {fileID: 311023197}
   m_Layer: 0
   m_Name: Grid Parent
   m_TagString: Untagged
@@ -1651,6 +1652,18 @@ Transform:
   - {fileID: 729265229}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &311023197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311023195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9589e4ad126d48c68f907d319f89b136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &371595525
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,7 +2450,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000002b833bb4
+  m_ApplyToSortingLayers: 000000002b833bb41743f1a849b31cf4
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -8651,7 +8664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7726976850546557868, guid: 5abea9810632ee94da84236f1b22659d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.0009379387
       objectReference: {fileID: 0}
     - target: {fileID: 7726976850546557868, guid: 5abea9810632ee94da84236f1b22659d, type: 3}
       propertyPath: m_LocalPosition.y
