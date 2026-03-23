@@ -1,27 +1,33 @@
-﻿using Cysharp.Threading.Tasks;
-using GeneralPreview;
+﻿using NM.View.ZZZTest;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace NM.View;
 
-public class GridMapDrag : ViewBase
+public class GridMapDrag : MonoBehaviour, IMultiDragHandler
 {
     [SerializeField] Trs follow = null!;
     ClampInRect ClampInRect => field ??= follow.GetComponent<ClampInRect>();
-    
-    UniEvt<MyInput.EvtMouseDrag> EvtMouseDrag => new()
+
+    void Awake()
     {
-        Des = "鼠标拖动, 移动地图",
-        Invoke = (evt, ct) =>
-        {
-            var worldPos = MyCamera.ScreenDeltaToWorldDelta(evt.Delta);
-            // MyDebug.Log($"World Delta {worldPos}");
-            follow.transform.position = new Vector3(
-                follow.transform.position.x - worldPos.x,
-                follow.transform.position.y - worldPos.y,
-                follow.transform.position.z);
-            ClampInRect.Clamp();
-            return UniTask.CompletedTask;
-        },
-    };
+        // this.ForwardAllEvt();
+        // this.DisableRayWhenDrag();
+        // this.BindEvtPntTrg(EventTriggerType.Drag, evt =>
+        // {
+        //     
+        // });
+    }
+    
+    public void OnMultiDrag(PointerEventData eventData)
+    {
+        if(eventData.button != PointerEventData.InputButton.Right)
+            return;
+        var worldDelta = MyCamera.ScreenDeltaToWorldDelta(eventData.delta);
+        follow.transform.position = new Vector3(
+            follow.transform.position.x - worldDelta.x,
+            follow.transform.position.y - worldDelta.y,
+            follow.transform.position.z);
+        ClampInRect.Clamp();
+    }
 }

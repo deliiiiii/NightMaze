@@ -26,6 +26,22 @@ namespace General
             t.position = pos;
         }
 
+        public static void SetPositionXY(this Transform t, Vector2 tar)
+        {
+            var pos = t.position;
+            pos.x = tar.x;
+            pos.y = tar.y;
+            t.position = pos;
+        }
+        public static void SetPositionXY(this Transform t, Vector3 tar)
+        {
+            var pos = t.position;
+            pos.x = tar.x;
+            pos.y = tar.y;
+            t.position = pos;
+        }
+        
+
         public static void SetLocalPositionX(this Transform t, float x)
         {
             var pos = t.localPosition;

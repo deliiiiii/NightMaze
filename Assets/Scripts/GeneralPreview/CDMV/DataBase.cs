@@ -13,16 +13,16 @@ namespace GeneralPreview;
 public interface IComposite;
 public class DataRoot : IComposite;
 
-public interface ILeaf<TBelong> : IDisposable, IHasVersion, IHasCt
+public interface ILeaf<TBelong> : IDisposable, IHasCt
     where TBelong : class, IComposite
 {
     TBelong BelongData { get; set; }
-    UniTask OnAddAsync(bool isThisFromLoad);
-    void OnRemove();
-    void OnUpdate(float dt);
+    UniTask OnAddAsync(bool isThisFromLoad) => UniTask.CompletedTask;
+    void OnRemove(){}
+    void OnUpdate(float dt){}
     void IDisposable.Dispose() => OnRemove();
 }
-public interface IComposite<TBelong, TThis> : ILeaf<TBelong>
+public interface IComposite<TBelong, TThis> : ILeaf<TBelong>, IHasVersion
     where TBelong : class, IComposite
     where TThis : class, IComposite, IComposite<TBelong, TThis>
 {

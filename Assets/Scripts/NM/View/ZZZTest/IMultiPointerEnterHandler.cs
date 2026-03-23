@@ -1,0 +1,30 @@
+﻿using UnityEngine.EventSystems;
+
+namespace NM.View.ZZZTest;
+
+public interface IMultiPointerEnterHandler : IEventSystemHandler, IPointerPena
+{
+    void OnMultiPointerEnter(PointerEventData eventData);
+}
+
+public interface IMultiPointerExitHandler : IEventSystemHandler, IPointerPena
+{
+    void OnMultiPointerExit(PointerEventData eventData);
+}
+
+public interface IMultiBeginDragHandler : IEventSystemHandler, IPointerPena
+{
+    void OnMultiBeginDrag(PointerEventData eventData);
+}
+
+public interface IMultiDragHandler : IEventSystemHandler, IPointerPena
+{
+    void OnMultiDrag(PointerEventData eventData);
+}
+
+public interface IMultiEndDragHandler : IEventSystemHandler, IPointerPena
+{
+    void OnMultiEndDrag(PointerEventData eventData);
+}
+
+public interface IPointerPena;
