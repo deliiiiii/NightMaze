@@ -22,7 +22,7 @@ public interface ILeaf<TBelong> : IDisposable, IHasCt
     void OnUpdate(float dt){}
     void IDisposable.Dispose() => OnRemove();
 }
-public interface IComposite<TBelong, TThis> : ILeaf<TBelong>, IHasVersion
+public interface IComposite<TBelong, TThis> : ILeaf<TBelong>, IComposite, IHasVersion
     where TBelong : class, IComposite
     where TThis : class, IComposite, IComposite<TBelong, TThis>
 {
@@ -30,33 +30,39 @@ public interface IComposite<TBelong, TThis> : ILeaf<TBelong>, IHasVersion
     public void RemoveCom(ILeaf<TThis> toRemove);
 }
 
-public abstract class CompositeBase<TBelong, TThis> : IComposite, IComposite<TBelong, TThis>
+public abstract class CompositeBase<TBelong, TThis> : IComposite<TBelong, TThis>
     where TBelong : class, IComposite
     where TThis : CompositeBase<TBelong, TThis>
 {
-    public virtual UniTask OnAddAsync(bool isThisFromLoad)
+    public async UniTask OnAddAsync(bool isThisFromLoad)
     {
         IUniEvt.BindAll(this, CurCt);
         var tick = OnUpdate;
         tick.ToBinder().Bind(CurCt);
-        return UniTask.CompletedTask;
-        // 必须自己管理.
-        // if (isThisFromLoad)
-        // {
-        //     await comDic.Values.ForEachAsync(async c => await c.OnAddAsync(isThisFromLoad));
-        // }
+        await OnInitData(isThisFromLoad);
+        await new EvtOnEnter((TThis)this);
+        await OnLaunchCom(isThisFromLoad);
     }
 
-    protected async UniTask AllComOnAddAsync()
+    protected virtual UniTask OnInitData(bool isThisFromLoad) => UniTask.CompletedTask;
+    /// 子类可覆盖逻辑, 或额外清理comDic和不是comDic里管理的东西, 如GamePlaying中SymbolDeckList
+    protected virtual async UniTask OnLaunchCom(bool isThisFromLoad)
     {
-        foreach (var c in comDic.Values)
+        if (isThisFromLoad)
         {
-            await c.OnAddAsync(true);
+            await comDic.Values.ForEachAsync(async c => await c.OnAddAsync(isThisFromLoad));
         }
     }
-    public virtual void OnRemove()
+    /// 子类可覆盖逻辑, 或额外清理comDic和不是comDic里管理的东西, 如GamePlaying中SymbolDeckList
+    protected virtual void OnReleaseCom()
     {
         comDic.Values.ForEach(c => c.OnRemove());
+    }
+    
+    public void OnRemove()
+    {
+        new EvtOnExit().Forget();
+        OnReleaseCom();
         comDic.Clear();
         cts.Cancel();
     }
@@ -120,6 +126,11 @@ public abstract class CompositeBase<TBelong, TThis> : IComposite, IComposite<TBe
             => Self.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : InvokeAsync().GetAwaiter();
         [DebuggerStepThrough] public void Forget() => InvokeAsync().Forget();
     }
+    
+    /// 仅为了通知UI.
+    public record EvtOnEnter(TThis WhoHasCt) : EvtBase<TThis>(WhoHasCt);
+    /// 仅为了通知UI.
+    public record EvtOnExit : EvtForgetBase;
 }
 
 public interface ICanAwait

@@ -37,10 +37,10 @@ public partial class GamePlaying : CompositeBase<GameRoot, GamePlaying>
     // public record EvtCoinChanged(GamePlaying gamePlaying,
     //              long OldValue,
     //              long NewValue): EvtForgetBase;
-    public int RemoveToken{ get; private set;}
-    public int RefreshToken{ get; private set;}
-    public int NextRentCount{ get; private set;}
-    public int SpinCount{ get; private set;}
+    [EvtChanged]public partial int RemoveToken{ get; private set;}
+    [EvtChanged]public partial int RefreshToken{ get; private set;}
+    [EvtChanged]public partial int NextRentCount{ get; private set;}
+    [EvtChanged]public partial int SpinCount{ get; private set;}
     public int DeckMax{ get; private set;} = 20;
     
     public IEnumerable<SymbolData> SymbolDeck => symbolDeckList;
@@ -59,10 +59,8 @@ public partial class GamePlaying : CompositeBase<GameRoot, GamePlaying>
               !(otherPos.X == thisPos.X && otherPos.Y == thisPos.Y)
         orderby otherPos
         select other;
-
-    public override async UniTask OnAddAsync(bool isThisFromLoad)
+    protected override async UniTask OnInitData(bool isThisFromLoad)
     {
-        await base.OnAddAsync(isThisFromLoad);
         if(!isThisFromLoad)
         {
             List<SymbolData> initDeck = 
@@ -80,19 +78,19 @@ public partial class GamePlaying : CompositeBase<GameRoot, GamePlaying>
         {
             await symbolDeckList.ForEachAsync(async s => await s.OnAddAsync(true));
         }
-        await new EvtOnEnter(this);
-        await (isThisFromLoad 
-            ? AddComAsync(new PlayingIdle(), false) 
-            : AllComOnAddAsync());
     }
-    public record EvtOnEnter(GamePlaying WhoHasCt) : EvtBase<GamePlaying>(WhoHasCt);
-    public override void OnRemove()
+
+    protected override async UniTask OnLaunchCom(bool isThisFromLoad)
     {
-        new EvtOnExit().Forget();
-        symbolDeckList.ForEach(s => s.OnRemove());
-        base.OnRemove();
+        await (isThisFromLoad
+            ? AddComAsync(new PlayingIdle(), false)
+            : base.OnLaunchCom(isThisFromLoad));
     }
-    public record EvtOnExit : EvtForgetBase;
+    protected override void OnReleaseCom()
+    {
+        symbolDeckList.ForEach(s => s.OnRemove());
+        base.OnReleaseCom();
+    }
     public override void OnUpdate(float dt)
     {
         PlayTime += dt;

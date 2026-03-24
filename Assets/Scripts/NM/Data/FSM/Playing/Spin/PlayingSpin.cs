@@ -48,10 +48,10 @@ public partial class PlayingSpin : CompositeBase<GamePlaying, PlayingSpin>
         yield return new ActWillPayShownSymbol(this);
         yield return new ActEnterIdle(this);
     }
-
-    public override async UniTask OnAddAsync(bool isThisFromLoad)
+    
+    protected override async UniTask OnLaunchCom(bool isThisFromLoad)
     {
-        await base.OnAddAsync(isThisFromLoad);
+        await base.OnLaunchCom(isThisFromLoad);
         if (!isThisFromLoad)
         {
             doList = GetDoList().ToList();
@@ -65,6 +65,7 @@ public partial class PlayingSpin : CompositeBase<GamePlaying, PlayingSpin>
             await UniTask.Yield();
         }
     }
+
     [EvtName("结算符号")]
     public record EvtSymbolPay(SymbolData WhoHasCt, long Pay) : EvtBase<SymbolData>(WhoHasCt);
     

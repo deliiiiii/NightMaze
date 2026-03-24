@@ -2,7 +2,7 @@
   "$id": "1",
   "savedVersion": 20260313.0,
   "PlayerName": "1112",
-  "PlayTime": 49.712111117318273,
+  "PlayTime": 173.00158687820658,
   "Coin": 18,
   "RemoveToken": 0,
   "RefreshToken": 0,
@@ -25,7 +25,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"5","X":2,"Y":2},
+        "Pos":{"$id":"5","X":5,"Y":3},
         "AlreadyChecked": false,
         "ConfigID": 0,
         "comDic": {
@@ -53,7 +53,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"11","X":1,"Y":4},
+        "Pos":{"$id":"11","X":1,"Y":3},
         "AlreadyChecked": true,
         "ConfigID": 1,
         "comDic": {
@@ -81,8 +81,8 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"17","X":5,"Y":1},
-        "AlreadyChecked": false,
+        "Pos":{"$id":"17","X":1,"Y":4},
+        "AlreadyChecked": true,
         "ConfigID": 1,
         "comDic": {
           "$id": "18",
@@ -109,8 +109,8 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"23","X":2,"Y":4},
-        "AlreadyChecked": false,
+        "Pos":{"$id":"23","X":1,"Y":1},
+        "AlreadyChecked": true,
         "ConfigID": 1,
         "comDic": {
           "$id": "24",
@@ -137,7 +137,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"29","X":4,"Y":4},
+        "Pos":{"$id":"29","X":3,"Y":3},
         "AlreadyChecked": false,
         "ConfigID": 1,
         "comDic": {
@@ -166,7 +166,7 @@
         "Stock":null,
         "EveryNSpin":null,
         "Pos":{"$id":"35","X":3,"Y":2},
-        "AlreadyChecked": false,
+        "AlreadyChecked": true,
         "ConfigID": 2,
         "comDic": {
           "$id": "36",
@@ -193,7 +193,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"41","X":3,"Y":1},
+        "Pos":{"$id":"41","X":4,"Y":3},
         "AlreadyChecked": false,
         "ConfigID": -1,
         "comDic": {
@@ -221,7 +221,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"47","X":2,"Y":1},
+        "Pos":{"$id":"47","X":4,"Y":2},
         "AlreadyChecked": false,
         "ConfigID": -1,
         "comDic": {
@@ -249,8 +249,8 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"53","X":1,"Y":1},
-        "AlreadyChecked": true,
+        "Pos":{"$id":"53","X":5,"Y":2},
+        "AlreadyChecked": false,
         "ConfigID": -1,
         "comDic": {
           "$id": "54",
@@ -277,8 +277,8 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"59","X":1,"Y":2},
-        "AlreadyChecked": true,
+        "Pos":{"$id":"59","X":5,"Y":1},
+        "AlreadyChecked": false,
         "ConfigID": -1,
         "comDic": {
           "$id": "60",
@@ -305,7 +305,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"65","X":3,"Y":3},
+        "Pos":{"$id":"65","X":4,"Y":4},
         "AlreadyChecked": false,
         "ConfigID": -1,
         "comDic": {
@@ -333,8 +333,8 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"71","X":4,"Y":3},
-        "AlreadyChecked": false,
+        "Pos":{"$id":"71","X":3,"Y":1},
+        "AlreadyChecked": true,
         "ConfigID": -1,
         "comDic": {
           "$id": "72",
@@ -361,8 +361,8 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"77","X":5,"Y":3},
-        "AlreadyChecked": false,
+        "Pos":{"$id":"77","X":1,"Y":2},
+        "AlreadyChecked": true,
         "ConfigID": -1,
         "comDic": {
           "$id": "78",
@@ -389,8 +389,8 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"83","X":5,"Y":2},
-        "AlreadyChecked": false,
+        "Pos":{"$id":"83","X":2,"Y":4},
+        "AlreadyChecked": true,
         "ConfigID": -1,
         "comDic": {
           "$id": "84",
@@ -417,7 +417,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"89","X":4,"Y":1},
+        "Pos":{"$id":"89","X":5,"Y":4},
         "AlreadyChecked": false,
         "ConfigID": -1,
         "comDic": {
@@ -445,7 +445,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"95","X":2,"Y":3},
+        "Pos":{"$id":"95","X":3,"Y":4},
         "AlreadyChecked": false,
         "ConfigID": -1,
         "comDic": {
@@ -473,7 +473,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"101","X":1,"Y":3},
+        "Pos":{"$id":"101","X":2,"Y":2},
         "AlreadyChecked": true,
         "ConfigID": -1,
         "comDic": {
@@ -501,8 +501,8 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"107","X":3,"Y":4},
-        "AlreadyChecked": false,
+        "Pos":{"$id":"107","X":2,"Y":1},
+        "AlreadyChecked": true,
         "ConfigID": -1,
         "comDic": {
           "$id": "108",
@@ -529,7 +529,7 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"113","X":4,"Y":2},
+        "Pos":{"$id":"113","X":4,"Y":1},
         "AlreadyChecked": false,
         "ConfigID": -1,
         "comDic": {
@@ -557,8 +557,8 @@
         },
         "Stock":null,
         "EveryNSpin":null,
-        "Pos":{"$id":"119","X":5,"Y":4},
-        "AlreadyChecked": false,
+        "Pos":{"$id":"119","X":2,"Y":3},
+        "AlreadyChecked": true,
         "ConfigID": -1,
         "comDic": {
           "$id": "120",
@@ -590,7 +590,7 @@
               "$ref": "124"
             },
             "Symbol": {
-              "$ref": "9"
+              "$ref": "33"
             }
           },
           {
@@ -600,7 +600,7 @@
               "$ref": "124"
             },
             "Symbol": {
-              "$ref": "45"
+              "$ref": "27"
             }
           },
           {
@@ -610,7 +610,7 @@
               "$ref": "124"
             },
             "Symbol": {
-              "$ref": "3"
+              "$ref": "93"
             }
           },
           {
@@ -620,7 +620,7 @@
               "$ref": "124"
             },
             "Symbol": {
-              "$ref": "93"
+              "$ref": "111"
             }
           },
           {
@@ -630,7 +630,7 @@
               "$ref": "124"
             },
             "Symbol": {
-              "$ref": "21"
+              "$ref": "45"
             }
           },
           {
@@ -650,7 +650,7 @@
               "$ref": "124"
             },
             "Symbol": {
-              "$ref": "33"
+              "$ref": "63"
             }
           },
           {
@@ -660,7 +660,7 @@
               "$ref": "124"
             },
             "Symbol": {
-              "$ref": "63"
+              "$ref": "57"
             }
           },
           {
@@ -670,7 +670,7 @@
               "$ref": "124"
             },
             "Symbol": {
-              "$ref": "105"
+              "$ref": "51"
             }
           },
           {
@@ -680,7 +680,7 @@
               "$ref": "124"
             },
             "Symbol": {
-              "$ref": "87"
+              "$ref": "3"
             }
           },
           {
@@ -690,85 +690,25 @@
               "$ref": "124"
             },
             "Symbol": {
-              "$ref": "111"
+              "$ref": "87"
             }
           },
           {
             "$id": "137",
-            "$type": "NM.Data.PlayingSpin+ActImmediateCheckSymbol, NM.Data",
-            "Self": {
-              "$ref": "124"
-            },
-            "Symbol": {
-              "$ref": "69"
-            }
-          },
-          {
-            "$id": "138",
-            "$type": "NM.Data.PlayingSpin+ActImmediateCheckSymbol, NM.Data",
-            "Self": {
-              "$ref": "124"
-            },
-            "Symbol": {
-              "$ref": "27"
-            }
-          },
-          {
-            "$id": "139",
-            "$type": "NM.Data.PlayingSpin+ActImmediateCheckSymbol, NM.Data",
-            "Self": {
-              "$ref": "124"
-            },
-            "Symbol": {
-              "$ref": "15"
-            }
-          },
-          {
-            "$id": "140",
-            "$type": "NM.Data.PlayingSpin+ActImmediateCheckSymbol, NM.Data",
-            "Self": {
-              "$ref": "124"
-            },
-            "Symbol": {
-              "$ref": "81"
-            }
-          },
-          {
-            "$id": "141",
-            "$type": "NM.Data.PlayingSpin+ActImmediateCheckSymbol, NM.Data",
-            "Self": {
-              "$ref": "124"
-            },
-            "Symbol": {
-              "$ref": "75"
-            }
-          },
-          {
-            "$id": "142",
-            "$type": "NM.Data.PlayingSpin+ActImmediateCheckSymbol, NM.Data",
-            "Self": {
-              "$ref": "124"
-            },
-            "Symbol": {
-              "$ref": "117"
-            }
-          },
-          {
-            "$id": "143",
             "$type": "NM.Data.PlayingSpin+ActWillCheckUncheckedSymbol, NM.Data",
             "Self": {
               "$ref": "124"
             }
           },
           {
-            "$id": "144",
+            "$id": "138",
             "$type": "NM.Data.PlayingSpin+ActWillPayShownSymbol, NM.Data",
             "Self": {
               "$ref": "124"
             }
           },
           {
-            "$id": "145",
+            "$id": "139",
             "$type": "NM.Data.PlayingSpin+ActEnterIdle, NM.Data",
             "Self": {
               "$ref": "124"
@@ -777,7 +717,7 @@
         ]
       },
       "comDic": {
-        "$id": "146"
+        "$id": "140"
       }
     }
   }
