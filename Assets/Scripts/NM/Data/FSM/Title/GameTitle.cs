@@ -1,5 +1,3 @@
-﻿using GeneralPreview;
+﻿namespace NM.Data;
 
-namespace NM.Data;
-
-public partial class GameTitle : CompositeBase<GameRoot, GameTitle>;
+public partial class GameTitle : RootStateBase<GameTitle>;

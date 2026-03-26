@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
-using Sirenix.Utilities;
 
 namespace NM.Data;
 [ActContainer]
@@ -47,7 +46,7 @@ public partial class PlayingSpin
             .SeqAwait();
     }
     [Obsolete("进入Idle状态")]
-    UniTask EnterIdleAsync(CancellationToken ct) => BelongData.AddComAsync(new PlayingIdle(), false);
+    UniTask EnterIdleAsync(CancellationToken ct) => BelongData.ChangeState(new PlayingIdle(), false);
     
     [EvtName("发现某符号与当前某符号相邻")]
     public record EvtSpinSymbolAdjacentSymbol(PlayingSpin WhoHasCt, SymbolData AdjacentSymbol, SymbolData Symbol) 

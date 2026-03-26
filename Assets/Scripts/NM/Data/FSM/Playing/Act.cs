@@ -30,7 +30,7 @@ public partial class GamePlaying
     async UniTask AddSymbolAsync(SymbolData toAdd, CancellationToken ct)
     {
         symbolDeckList.Add(toAdd);
-        await toAdd.OnAddAsync(false);
+        await toAdd.OnCreateAsync(false);
         await new ActShowSymbolRandomly(this) { Symbol = toAdd };
         if(symbolDeckList.Count > DeckMax)
         {

@@ -8,7 +8,7 @@ using Sirenix.Utilities;
 namespace NM.Data;
 
 [Serializable]
-public partial class PlayingSpin : CompositeBase<GamePlaying, PlayingSpin>
+public partial class PlayingSpin : PlayStateBase<PlayingSpin>
 {
     public override string ToString() => nameof(PlayingSpin);
 
@@ -48,15 +48,14 @@ public partial class PlayingSpin : CompositeBase<GamePlaying, PlayingSpin>
         yield return new ActWillPayShownSymbol(this);
         yield return new ActEnterIdle(this);
     }
-    
+
+    protected override void OnCreateFreshData()
+    {
+        doList = GetDoList().ToList();
+    }
+
     protected override async UniTask OnLaunchCom(bool isThisFromLoad)
     {
-        await base.OnLaunchCom(isThisFromLoad);
-        if (!isThisFromLoad)
-        {
-            doList = GetDoList().ToList();
-        }
-
         while (doList.Any())
         {
             var cur = doList[0];

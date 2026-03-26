@@ -7,12 +7,8 @@ using Newtonsoft.Json;
 namespace NM.Data;
 
 [Serializable]
-public partial class GamePlaying : CompositeBase<GameRoot, GamePlaying>
+public partial class GamePlaying : RootStateBase<GamePlaying>
 {
-    protected override List<HashSet<Type>> MutexListSet => 
-    [
-        [typeof(PlayingIdle), typeof(PlayingSpin)]
-    ];
     [JsonConstructor] GamePlaying() { }
     public GamePlaying(string playerName)
     {
@@ -59,40 +55,44 @@ public partial class GamePlaying : CompositeBase<GameRoot, GamePlaying>
               !(otherPos.X == thisPos.X && otherPos.Y == thisPos.Y)
         orderby otherPos
         select other;
-    protected override async UniTask OnInitData(bool isThisFromLoad)
+    protected override void OnCreateFreshData()
     {
-        if(!isThisFromLoad)
-        {
-            List<SymbolData> initDeck = 
-            [
-                SymbolData.Create(0),
-                SymbolData.Create(1),
-                SymbolData.Create(1),
-                SymbolData.Create(1),
-                SymbolData.Create(1),
-                SymbolData.Create(2)
-            ];
-            symbolDeckList = [..initDeck, ..SymbolData.CreateEmpty.Repeat(DeckMax - initDeck.Count)];
-        }
-        else
-        {
-            await symbolDeckList.ForEachAsync(async s => await s.OnAddAsync(true));
-        }
+        List<SymbolData> initDeck = 
+        [
+            SymbolData.Create(0),
+            SymbolData.Create(1),
+            SymbolData.Create(1),
+            SymbolData.Create(1),
+            SymbolData.Create(1),
+            SymbolData.Create(2)
+        ];
+        symbolDeckList = [..initDeck, ..SymbolData.CreateEmpty.Repeat(DeckMax - initDeck.Count)];
+        state = new PlayingIdle();
     }
 
     protected override async UniTask OnLaunchCom(bool isThisFromLoad)
     {
-        await (isThisFromLoad
-            ? AddComAsync(new PlayingIdle(), false)
-            : base.OnLaunchCom(isThisFromLoad));
+        // await symbolDeckList.ForEachAsync(async s => await s.OnAddAsync(true));
+        await symbolDeckList.EachOnLaunchCom(isThisFromLoad);
+        await state!.OnCreateAsync(isThisFromLoad);
     }
     protected override void OnReleaseCom()
     {
-        symbolDeckList.ForEach(s => s.OnRemove());
-        base.OnReleaseCom();
+        state?.OnRemove();
+        symbolDeckList.EachOnReleaseCom();
+        // symbolDeckList.ForEach(s => s.OnRemove());
     }
-    public override void OnUpdate(float dt)
+
+    protected override void OnSelfTick(float dt)
     {
         PlayTime += dt;
     }
+
+    Node? state;
+    public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : PlayStateBase<T>
+        => _ChangeAsync(this, ref state, com, isNewFromLoad);
+    public MyOption<T> GetStateOptional<T>() where T : PlayStateBase<T>
+        => state is T s ? s : None;
 }
+
+public abstract class PlayStateBase<T> : Node<GamePlaying, T> where T : PlayStateBase<T>;

@@ -10,7 +10,7 @@ public partial class GamePlaying
     {
         Invoke = (evt, ct) =>
         {
-            return GetComOptional<PlayingSpin>() | UniTask.Defer(() => AddComAsync(new PlayingSpin(), false));
+            return GetStateOptional<PlayingSpin>() | UniTask.Defer(() => ChangeState(new PlayingSpin(), false));
         },
         Des = "(点击了旋转按钮) 尝试进入旋转状态"
     };
@@ -18,7 +18,7 @@ public partial class GamePlaying
     public record EvtClickExit : EvtForgetBase;
     UniEvt<EvtClickExit> OnEvtClickExitAsync => new()
     {
-        Invoke = (evt, ct) => BelongData.AddComAsync(new GameTitle(), false),
+        Invoke = (evt, ct) => GameRoot.ChangeStateAsync(new GameTitle(), false),
         Des = "(点击了退出按钮) ..直接退出游戏状态"
     };
 }

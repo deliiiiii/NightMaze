@@ -44,8 +44,8 @@ public class Launcher : Singleton<Launcher>
             await Loader.LoadAllAsync(destroyCancellationToken);
             MigrateStepRegister.Init();
             ViewList.ForEach(v => v.Bind(destroyCancellationToken));
-            GameRoot.Root.AddTo(destroyCancellationToken);
-            await GameRoot.Root.AddComAsync(new GameTitle(), false);
+            GameRoot.AddTo(destroyCancellationToken);
+            await GameRoot.ChangeStateAsync(new GameTitle(), false);
         }
         catch (Exception e)
         {

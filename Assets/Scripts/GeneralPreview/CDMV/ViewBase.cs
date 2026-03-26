@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GeneralPreview;
 
-public abstract class ViewBase : MonoBehaviour, IComposite
+public abstract class ViewBase : MonoBehaviour
 {
     protected virtual IEnumerable<BindDataBase> BindList() => [];
     bool bind;

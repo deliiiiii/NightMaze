@@ -14,7 +14,7 @@ using Vector2Int = GeneralPreview.Vector2Int;
 namespace NM.Data;
 
 [Serializable]
-public partial class SymbolData : CompositeBase<DataRoot, SymbolData>
+public partial class SymbolData : Node<SymbolData>
 {
     public static Func<SymbolData> CreateEmpty => () => Create(-1);
     public static Func<int, SymbolData> Create => id => new SymbolData(id);
@@ -29,13 +29,24 @@ public partial class SymbolData : CompositeBase<DataRoot, SymbolData>
             {
                 MyDebug.LogError($"空符号(ID = -1)也不存在");
             }
-            return;
+            // return;
         }
-
-        var com = SymbolC2Com.Create(Config);
-        AddComAsync(SymbolC2Com.Create(Config), false).Forget();
+        // AddComAsync(SymbolC2Com.Create(Config), false).Forget();
     }
     [JsonConstructor] [DebuggerStepThrough] SymbolData(){}
+    protected override void OnCreateFreshData()
+    {
+        // configDes = SymbolC2Com.Create(Config);
+    }
+    protected override async UniTask OnLaunchCom(bool isThisFromLoad)
+    {
+        // await configDes!.OnCreateAsync(isThisFromLoad);
+    }
+    protected override void OnReleaseCom()
+    {
+        // configDes!.OnRemove();
+    }
+
     [EvtChanged] public partial MyOption<Vector2Int> Pos { get; set; } = None;
     public bool AlreadyChecked { get; set; }
     public readonly List<int> TempAdd = [];
@@ -47,6 +58,8 @@ public partial class SymbolData : CompositeBase<DataRoot, SymbolData>
     public MyOption<int> EveryNSpin = None;
     
     [ShowInInspector, PropertyOrder(0)] public int ConfigID { get; init; }
+    Node? configDes;
+    
     [HideInInspector] public bool IsEmpty => ConfigID == -1;
     [ShowInInspector, PropertyOrder(1)]public string Name => Config.Name;
     SymbolConfig Config => RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ConfigID);
@@ -89,11 +102,11 @@ public partial class SymbolData : CompositeBase<DataRoot, SymbolData>
         return ret;
     }
     
-    public abstract class ConfigDesBase<TConfig, TSub> : CompositeBase<SymbolData, TSub>
-        where TConfig : SymbolConfig
-        where TSub : ConfigDesBase<TConfig, TSub>
-    {
-        protected TConfig Config => (TConfig)BelongData.Config;
-    }
+    // public abstract class ConfigDesBase<TConfig> : Node<SymbolData, ConfigDesBase<TConfig>>
+    //     where TConfig : SymbolConfig
+    //     // where TSub : ConfigDesBase<TConfig, TSub>
+    // {
+    //     protected TConfig Config => (TConfig)BelongData.Config;
+    // }
 }
 

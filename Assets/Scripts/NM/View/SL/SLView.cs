@@ -27,7 +27,8 @@ public class SLView : ViewBase
         {
             if (curSelected == null)
                 return;
-            new EvtClickLoad(curSelected.Data).Forget();
+            gameObject.SetActiveFalse();
+            GameRoot.ChangeStateAsync(curSelected.Data, true).Forget();
         });
         yield return btnReturn.onClick.EvtBindTo(() =>
         {
@@ -40,7 +41,7 @@ public class SLView : ViewBase
     {
         Invoke = async (evt, ct) =>
         {
-            if (!GameRoot.Root.HasCom<GameTitle>())
+            if (!GameRoot.IsState<GameTitle>())
                 return;
             gameObject.SetActiveTrue();
             curSelected = null;
@@ -69,26 +70,15 @@ public class SLView : ViewBase
         Des = "(在标题点击了选择存档按钮) 尝试进入存档选择界面"
     };
     
-    UniEvt<EvtClickLoad> OnEvtClickLoad => new()
-    {
-        Invoke = async (evt, ct) =>
-        {
-            gameObject.SetActiveFalse();
-            await GameRoot.Root.AddComAsync(evt.Data, true);
-        },
-        Des = "(点击了加载按钮) 进入游戏状态"
-    };
-    public record EvtClickLoad(GamePlaying Data) : EvtForgetBase;
-    UniEvt<EvtCLickStartNew> OnEvtCLickStartNew => new()
+    UniEvt<NewSlotParamView.EvtCLickStartNew> OnEvtCLickStartNew => new()
     {
         Invoke = async (evt, ct) =>
         {
             gameObject.SetActiveFalse();
             var data = new GamePlaying(playerName: evt.PlayerName);
-            await GameRoot.Root.AddComAsync(data, false);
+            await GameRoot.ChangeStateAsync(data, false);
         },
         Des = "(点击了新游戏按钮) 创建游戏数据并进入游戏状态"
     };
-    public record EvtCLickStartNew(string PlayerName) : EvtForgetBase;
     public record EvtClickReturn : EvtForgetBase;
 }

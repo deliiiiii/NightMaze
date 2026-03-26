@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
-using GeneralPreview;
 using NM.View.ZZZTest;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace NM.View;
