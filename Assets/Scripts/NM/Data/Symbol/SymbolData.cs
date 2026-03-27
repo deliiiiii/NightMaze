@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using Newtonsoft.Json;
@@ -31,31 +30,13 @@ public partial class SymbolData : Node<SymbolData>
             }
             // return;
         }
-        // AddComAsync(SymbolC2Com.Create(Config), false).Forget();
     }
     [JsonConstructor] [DebuggerStepThrough] SymbolData(){}
-    protected override void OnCreateFreshData()
-    {
-        // configDes = SymbolC2Com.Create(Config);
-    }
-    protected override async UniTask OnLaunchCom(bool isThisFromLoad)
-    {
-        // await configDes!.OnCreateAsync(isThisFromLoad);
-    }
-    protected override void OnReleaseCom()
-    {
-        // configDes!.OnRemove();
-    }
-
     [EvtChanged] public partial MyOption<Vector2Int> Pos { get; set; } = None;
-    public bool AlreadyChecked { get; set; }
     public readonly List<int> TempAdd = [];
     public readonly List<int> TempMulti = [];
     public readonly List<int> TowaAdd = [];
     public readonly List<int> TowaMulti = [];
-    public DoCountBase DoCount = new DoCountInfinite();
-    public MyOption<int> Stock = None;
-    public MyOption<int> EveryNSpin = None;
     
     [ShowInInspector, PropertyOrder(0)] public int ConfigID { get; init; }
     Node? configDes;
@@ -101,12 +82,5 @@ public partial class SymbolData : Node<SymbolData>
         ret *= TowaMulti.Aggregate(1, (current, multi) => current * multi);
         return ret;
     }
-    
-    // public abstract class ConfigDesBase<TConfig> : Node<SymbolData, ConfigDesBase<TConfig>>
-    //     where TConfig : SymbolConfig
-    //     // where TSub : ConfigDesBase<TConfig, TSub>
-    // {
-    //     protected TConfig Config => (TConfig)BelongData.Config;
-    // }
 }
 

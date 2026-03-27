@@ -5,63 +5,68 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
 using Newtonsoft.Json;
-
 namespace GeneralPreview;
 
 
-// public class NodeUnit : Node<NodeUnit>
-// {
-//     RootStateBase? state;
-//     public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : RootStateBase
-//         => _ChangeAsync(this, ref state, com, isNewFromLoad);
-//     
-//     public abstract class RootStateBase : Node<NodeUnit, RootStateBase>;
-//     public class StateTitle : RootStateBase;
-//     public class StatePlay : RootStateBase
-//     {
-//         PlayStateBase? state;
-//         EnvBase? env;
-//         public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : PlayStateBase
-//             => _ChangeAsync(this, ref state, com, isNewFromLoad);
-//         public UniTask ChangeEnv<T>(T com, bool isNewFromLoad) where T : EnvBase
-//             => _ChangeAsync(this, ref env, com, isNewFromLoad);
-//
-//         protected override void OnCreateFreshData()
-//         {
-//             state = new StateSpin();
-//             env = new EnvSunState();
-//         }
-//
-//         protected override async UniTask OnLaunchCom(bool isThisFromLoad)
-//         {
-//             await state!.OnCreateAsync(isThisFromLoad);
-//             await env!.OnCreateAsync(isThisFromLoad);
-//         }
-//
-//         protected override void OnReleaseCom()
-//         {
-//             state?.OnRemove();
-//             env?.OnRemove();
-//         }
-//
-//         public abstract class PlayStateBase : Node<PlayStateBase>;
-//         public class StateIdle : PlayStateBase;
-//         public class StateSpin : PlayStateBase
-//         {
-//             SpinStateBase? curState;
-//
-//             public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : SpinStateBase
-//                 => _ChangeAsync(this, ref curState, com, isNewFromLoad);
-//             public abstract class SpinStateBase : Node<SpinStateBase>;
-//             public class StateBefore : SpinStateBase;
-//             public class StateAfter : SpinStateBase;
-//         }
-//         
-//         public abstract class EnvBase : Node<EnvBase>;
-//         public class EnvSunState : EnvBase;
-//         public class EnvRainState : EnvBase;
-//     }
-// }
+public class NodeUnit : Node<NodeUnit>
+{
+    Node? state;
+    public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : RootStateBase<T>
+        => _ChangeAsync(this, ref state, com, isNewFromLoad);
+    
+    public abstract class RootStateBase<T> : Node<NodeUnit, T> where T : RootStateBase<T>;
+    public class StateTitle : RootStateBase<StateTitle>;
+    public class StatePlay : RootStateBase<StatePlay>
+    {
+        Node? state;
+        Node? env;
+        public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : PlayStateBase<T>
+            => _ChangeAsync(this, ref state, com, isNewFromLoad);
+        public UniTask ChangeEnv<T>(T com, bool isNewFromLoad) where T : EnvBase<T>
+            => _ChangeAsync(this, ref env, com, isNewFromLoad);
+
+        protected internal override void OnCreateFreshData()
+        {
+            state = new StateSpin();
+            env = new EnvSunState();
+        }
+
+        protected internal override async UniTask OnLaunchCom(bool isThisFromLoad)
+        {
+            await state!.OnCreateAsync(isThisFromLoad);
+            await env!.OnCreateAsync(isThisFromLoad);
+        }
+
+        protected internal override void OnReleaseCom()
+        {
+            state?.OnRemove();
+            env?.OnRemove();
+        }
+
+        public abstract class PlayStateBase<T> : Node<StatePlay, T> where T : PlayStateBase<T>;
+        public class StateIdle : PlayStateBase<StateIdle>;
+        public class StateSpin : PlayStateBase<StateSpin>
+        {
+            SpinStateBase? curState;
+
+            public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : SpinStateBase
+                => _ChangeAsync(this, ref curState, com, isNewFromLoad);
+            public abstract class SpinStateBase : Node<SpinStateBase>;
+            public class StateBefore : SpinStateBase;
+            public class StateAfter : SpinStateBase;
+        }
+        
+        public abstract class EnvBase<T> : Node<StatePlay, T> where T : EnvBase<T>;
+        public class EnvSunState : EnvBase<EnvSunState>;
+        public class EnvRainState : EnvBase<EnvRainState>;
+    }
+}
+
+public abstract class EttBase //: IDisposable, IHasCt, IHasVersion
+{
+    internal static int CurID;
+    int ettID = CurID++;
+}
 
 public abstract class Node
 {
@@ -133,6 +138,8 @@ public abstract class Node<TBelong, TThis> : Node<TThis>, IHasBelong<TBelong>
     where TThis : Node<TBelong, TThis>
 {
     public TBelong BelongData { get; set; } = null!;
+    // [JsonIgnore]TBelong IHasBelong<TBelong>.BelongData { get => BelongData; set => BelongData = value; }
+    // protected TBelong BelongData { get; set; } = null!;
 }
 
 public interface IHasBelong<TBelong> where TBelong : class

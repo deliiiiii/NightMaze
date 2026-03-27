@@ -37,16 +37,6 @@ public class SymbolView : ViewBase
     [ShowInInspector, ReadOnly] List<ImgBuff> buffList = [];
 
 
-    UniEvt<PlayingSpin.EvtImmediateCheckSymbol> OnSpinEvtImmediateDoSymbol => new()
-    {
-        Invoke = async (evt, ct) =>
-        {
-            if (evt.Symbol != Data || Data.IsEmpty)
-                return;
-            await onSpinTween.PlayAsync(ct);
-        },
-        Des = "放变红动画"
-    };
     UniEvt<SymbolData.EvtUltimateGiveChanged> OnSymbolEvtUltimateGiveChanged => new()
     {
         Invoke = (evt, ct) =>
