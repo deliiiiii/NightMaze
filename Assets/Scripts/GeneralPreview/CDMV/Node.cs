@@ -1,71 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
 using Newtonsoft.Json;
+using Sirenix.Utilities;
+
 namespace GeneralPreview;
 
-
-public class NodeUnit : Node<NodeUnit>
-{
-    Node? state;
-    public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : RootStateBase<T>
-        => _ChangeAsync(this, ref state, com, isNewFromLoad);
-    
-    public abstract class RootStateBase<T> : Node<NodeUnit, T> where T : RootStateBase<T>;
-    public class StateTitle : RootStateBase<StateTitle>;
-    public class StatePlay : RootStateBase<StatePlay>
-    {
-        Node? state;
-        Node? env;
-        public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : PlayStateBase<T>
-            => _ChangeAsync(this, ref state, com, isNewFromLoad);
-        public UniTask ChangeEnv<T>(T com, bool isNewFromLoad) where T : EnvBase<T>
-            => _ChangeAsync(this, ref env, com, isNewFromLoad);
-
-        protected internal override void OnCreateFreshData()
-        {
-            state = new StateSpin();
-            env = new EnvSunState();
-        }
-
-        protected internal override async UniTask OnLaunchCom(bool isThisFromLoad)
-        {
-            await state!.OnCreateAsync(isThisFromLoad);
-            await env!.OnCreateAsync(isThisFromLoad);
-        }
-
-        protected internal override void OnReleaseCom()
-        {
-            state?.OnRemove();
-            env?.OnRemove();
-        }
-
-        public abstract class PlayStateBase<T> : Node<StatePlay, T> where T : PlayStateBase<T>;
-        public class StateIdle : PlayStateBase<StateIdle>;
-        public class StateSpin : PlayStateBase<StateSpin>
-        {
-            SpinStateBase? curState;
-
-            public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : SpinStateBase
-                => _ChangeAsync(this, ref curState, com, isNewFromLoad);
-            public abstract class SpinStateBase : Node<SpinStateBase>;
-            public class StateBefore : SpinStateBase;
-            public class StateAfter : SpinStateBase;
-        }
-        
-        public abstract class EnvBase<T> : Node<StatePlay, T> where T : EnvBase<T>;
-        public class EnvSunState : EnvBase<EnvSunState>;
-        public class EnvRainState : EnvBase<EnvRainState>;
-    }
-}
-
-public abstract class EttBase //: IDisposable, IHasCt, IHasVersion
+public abstract record EttBase
 {
     internal static int CurID;
-    int ettID = CurID++;
+}
+public abstract record EttBase<T> : EttBase where T : EttBase<T> //: IDisposable, IHasCt, IHasVersion
+{
+    public interface ICom;
+    public int EttID { get; init; } = CurID++;
 }
 
 public abstract class Node
@@ -75,14 +27,53 @@ public abstract class Node
 }
 public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where TThis : Node<TThis>
 {
-    protected static UniTask _ChangeAsync<TComBase, TComSub>(TThis @this, ref TComBase? field, TComSub com, bool isNewFromLoad) 
+    protected interface INodeCom;
+
+    // [typeof(EttXX) : [0 : XxxInXxx, ...], ...]
+    readonly Dictionary<EttBase, INodeCom> comDic = [];
+    protected MyOption<TCom> GetEttCom<TEtt, TCom>(TEtt ett)
+        where TEtt : EttBase<TEtt>
+        where TCom : INodeCom, EttBase<TEtt>.ICom
+    {
+        if (comDic.TryGetValue(ett, out var com))
+                return (TCom)com;
+        MyDebug.LogError($"{GetType().GetNiceName()}中未找到EttID:{ett}的组件. 将提供默认值");
+        return None;
+    }
+
+    protected TCom AddEttCom<TEtt, TCom>(TEtt ett, TCom com)
+        where TEtt : EttBase<TEtt>
+        where TCom : INodeCom, EttBase<TEtt>.ICom
+    {
+        if(comDic.TryGetValue(ett, out var oldCom))
+        {
+            MyDebug.LogError($"在{GetType().GetNiceName()}中EttID:{ett}已有组件{oldCom.GetType().GetNiceName()}.");
+            return (TCom)oldCom;
+        }
+        comDic[ett] = com;
+        return com;
+    }
+
+    protected void RemoveEttCom<TEtt, TCom>(TEtt ett)
+        where TEtt : EttBase<TEtt>
+        where TCom : INodeCom, EttBase<TEtt>.ICom
+    {
+        if (comDic.Remove(ett))
+            return;
+        MyDebug.LogError($"在{GetType().GetNiceName()}中未找到EttID:{ett}的组件，无法移除.");
+    }
+
+    protected IEnumerable<TEtt> GetEttList<TEtt>() 
+        => comDic.Keys.OfType<TEtt>();
+
+    protected UniTask _ChangeAsync<TComBase, TComSub>(ref TComBase? field, TComSub com, bool isNewFromLoad) 
         where TComBase : Node
         where TComSub : TComBase
     {
         field?.OnRemove();
         field = com;
         if(field is IHasBelong<TThis> hasBelong)
-            hasBelong.BelongData = @this;
+            hasBelong.BelongNode = (TThis)this;
         return CallOnCreate();
         async UniTask CallOnCreate()
         {
@@ -137,14 +128,14 @@ public abstract class Node<TBelong, TThis> : Node<TThis>, IHasBelong<TBelong>
     where TBelong : class
     where TThis : Node<TBelong, TThis>
 {
-    public TBelong BelongData { get; set; } = null!;
+    public TBelong BelongNode { get; set; } = null!;
     // [JsonIgnore]TBelong IHasBelong<TBelong>.BelongData { get => BelongData; set => BelongData = value; }
     // protected TBelong BelongData { get; set; } = null!;
 }
 
 public interface IHasBelong<TBelong> where TBelong : class
 {
-    TBelong BelongData { get; set; }
+    TBelong BelongNode { get; set; }
 }
 
 

@@ -12,7 +12,7 @@ public partial class GameRoot : Node<GameRoot>
     public static CancellationTokenRegistration AddTo(CancellationToken ct)
         => root.AddTo(ct);
     public static UniTask ChangeStateAsync<T>(T com, bool isNewFromLoad) where T : RootStateBase<T>
-         => _ChangeAsync(root, ref state, com, isNewFromLoad);
+         => root._ChangeAsync(ref state, com, isNewFromLoad);
     public static MyOption<T> GetStateOptional<T>() where T : RootStateBase<T>
         => state is T s ? s : None;
     public static bool IsState<T>() where T : RootStateBase<T>

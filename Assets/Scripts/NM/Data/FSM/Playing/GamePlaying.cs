@@ -66,7 +66,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
 
     Node? state;
     public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : PlayStateBase<T>
-        => _ChangeAsync(this, ref state, com, isNewFromLoad);
+        => _ChangeAsync(ref state, com, isNewFromLoad);
     public MyOption<T> GetStateOptional<T>() where T : PlayStateBase<T>
         => state is T s ? s : None;
 }
