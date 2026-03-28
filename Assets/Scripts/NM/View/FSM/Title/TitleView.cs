@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
@@ -9,16 +10,18 @@ using UnityEngine;
 
 namespace NM.View;
 
-public class MainView : ViewBase
+public class TitleView : ViewBase
 {
     [SerializeField]Btn btnOpenSL;
     [SerializeField]Btn btnExit;
+    CancellationTokenSource slCts = new();
     protected override IEnumerable<BindDataBase> BindList()
     {
         yield return btnOpenSL.onClick.EvtBindTo(() =>
         {
-            gameObject.SetActive(false);
-            new EvtClickBtnOpenSL().Forget();
+            this.SetActiveFalse();
+            slCts = new();
+            SLViewIns.OnOpenAsync(slCts.Token).Forget();
         });
         yield return btnExit.onClick.EvtBindTo(() =>
         {
@@ -29,26 +32,13 @@ public class MainView : ViewBase
 #endif
         });
     }
-    
-    public record EvtClickBtnOpenSL : EvtForgetBase;
-
     UniEvt<GamePlaying.EvtOnExit> OnExitPlay => new()
     {
         Invoke = (evt, ct) =>
         {
-            gameObject.SetActive(true);
+            this.SetActiveTrue();
             return UniTask.CompletedTask;
         },
         Des = "(退出Play状态) 显示标题界面",
-    };
-    
-    UniEvt<SLView.EvtClickReturn> OnEvtClickReturn => new()
-    {
-        Invoke = (evt, ct) =>
-        {
-            gameObject.SetActive(true);
-            return UniTask.CompletedTask;
-        },
-        Des = "(SLView点击了返回按钮) 尝试返回标题"
     };
 }

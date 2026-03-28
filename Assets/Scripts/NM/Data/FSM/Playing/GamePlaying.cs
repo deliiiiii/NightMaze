@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using Newtonsoft.Json;
@@ -15,9 +16,9 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     public override string ToString() => nameof(GamePlaying);
     public string PlayerName { get; private set;}= "Deli";
     public double PlayTime { get; private set;}
-    // List<SymbolData> symbolDeckList = [];
-    // [EvtChanged]
-    // public partial long Coin { get; private set;}
+    List<EttSymbol> symbolDeckList = [];
+    [EvtChanged]
+    public partial long Coin { get; private set;}
     // 标注[EvtChanged]则源生↓↓↓
     // public long Coin
     // {

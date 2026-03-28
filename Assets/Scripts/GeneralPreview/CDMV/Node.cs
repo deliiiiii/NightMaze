@@ -27,7 +27,7 @@ public abstract class Node
 }
 public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where TThis : Node<TThis>
 {
-    protected interface INodeCom;
+    public interface INodeCom;
 
     // [typeof(EttXX) : [0 : XxxInXxx, ...], ...]
     readonly Dictionary<EttBase, INodeCom> comDic = [];

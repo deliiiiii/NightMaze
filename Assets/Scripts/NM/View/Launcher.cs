@@ -43,7 +43,7 @@ public class Launcher : Singleton<Launcher>
             MyInput.Init(destroyCancellationToken);
             await Loader.LoadAllAsync(destroyCancellationToken);
             MigrateStepRegister.Init();
-            ViewList.ForEach(v => v.Bind(destroyCancellationToken));
+            ViewStatic.BindAll();
             GameRoot.AddTo(destroyCancellationToken);
             await GameRoot.ChangeStateAsync(new GameTitle(), false);
         }

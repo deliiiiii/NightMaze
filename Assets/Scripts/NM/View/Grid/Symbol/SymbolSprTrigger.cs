@@ -1,29 +1,33 @@
 ﻿using System.Threading;
 using General;
+using GeneralPreview;
+using NM.Data;
 using NM.View.ZZZTest;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace NM.View;
 
-public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragHandler, IMultiEndDragHandler
+public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragHandler, IMultiEndDragHandler,
+    IMultiPointerEnterHandler, IMultiPointerExitHandler
 {
-    public CancellationToken CurCt => destroyCancellationToken;
-    [field:SerializeReference] public SymbolView BelongData { get; set; } = null!;
-    Vector3? initPos;
+    [field:SerializeReference] public SymbolView BelongView { get; set; } = null!;
+    Vector2 initThisScreenPos;
+    Vector2 initThisWorldPos;
     
     public void OnMultiBeginDrag(PointerEventData eventData)
     {
         if(eventData.button != PointerEventData.InputButton.Left)
             return;
-        initPos = transform.position;
+        initThisScreenPos = MyCamera.Main.WorldToScreenPoint(transform.position);
+        initThisWorldPos = transform.position;
     }
 
     public void OnMultiDrag(PointerEventData eventData)
     {
         if(eventData.button != PointerEventData.InputButton.Left)
             return;
-        var tarPos = MyCamera.Main.ScreenToWorldPoint(eventData.position);
+        var tarPos = MyCamera.Main.ScreenToWorldPoint(initThisScreenPos + eventData.position - eventData.pressPosition);
         transform.SetPositionXY(tarPos); 
     }
 
@@ -31,6 +35,20 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
     {
         if(eventData.button != PointerEventData.InputButton.Left)
             return;
-        transform.SetPositionXY(initPos!.Value);
+        transform.position = initThisWorldPos;
+        // transform.SetPositionXY(initScreenPos);
+
     }
+
+    public record EvtOnEndDrag(EttSymbol EttSymbol, Vector3 WorldPos) : EvtForgetBase;
+
+    public void OnMultiPointerEnter(PointerEventData eventData)
+    {
+    }
+
+    public void OnMultiPointerExit(PointerEventData eventData)
+    {
+        
+    }
+    
 }

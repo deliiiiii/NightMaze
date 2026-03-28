@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using General;
-using GeneralPreview;
+﻿using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,40 +8,5 @@ namespace NM.View;
 
 public class SymbolView : ViewBase
 {
-    [SerializeField, Required] DOTweenSequence onSpinTween;
-
-    [ShowInInspector, ReadOnly]
-    public SymbolData Data
-    {
-        get;
-        set
-        {
-            field = value;
-            TxtName.text = field.IsEmpty ? string.Empty : field.Name;
-            TxtAdd.text = string.Empty;
-            TxtMulti.text = string.Empty;
-            TxtCoin.text = field.GetUltimateGive().ToString();
-            buffList.ForEach(Destroy);
-            buffList.Clear();
-        }
-    } = null!;
-
-    public Txt TxtName;
-    public Txt TxtAdd;
-    public Txt TxtMulti;
-    public Txt TxtCoin;
-    [SerializeField] Trs tranImgBuff;
-    [ShowInInspector, ReadOnly] List<ImgBuff> buffList = [];
-
-
-    UniEvt<SymbolData.EvtUltimateGiveChanged> OnSymbolEvtUltimateGiveChanged => new()
-    {
-        Invoke = (evt, ct) =>
-        {
-            if (evt.Symbol == Data)
-                TxtCoin.text = evt.UltimateGive.ToString();
-            return UniTask.CompletedTask;
-        },
-        Des = "UltimateGive 变化时更新文本"
-    };
+    [ReadOnly][field:SerializeReference] public EttSymbol Data { get; set; }
 }

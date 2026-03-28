@@ -17,4 +17,10 @@ public static class GameObjectExt
 
         public T GetOrAddCom<T>() where T : Component => self.GetComponent<T>() ?? self.AddComponent<T>();
     }
+
+    extension(MonoBehaviour self)
+    {
+        public void SetActiveTrue() => self.gameObject.SetActive(true);
+        public void SetActiveFalse() => self.gameObject.SetActive(false);
+    }
 }

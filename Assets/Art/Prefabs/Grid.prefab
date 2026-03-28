@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0bb7f99b09f407ea398738485d60039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BelongData>k__BackingField: {fileID: 2275613949135412045}
+  <BelongView>k__BackingField: {fileID: 2275613949135412045}
 --- !u!61 &4094631305101470663
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -430,12 +430,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd84f8bfe90042aaa0148a9c73ba3f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onSpinTween: {fileID: 0}
-  TxtName: {fileID: 0}
-  TxtAdd: {fileID: 0}
-  TxtMulti: {fileID: 0}
-  TxtCoin: {fileID: 0}
-  tranImgBuff: {fileID: 0}
+  <Data>k__BackingField:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &5604997631837343387
 GameObject:
   m_ObjectHideFlags: 0
