@@ -40,7 +40,7 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
 
     }
 
-    public record EvtOnEndDrag(EttSymbol EttSymbol, Vector3 WorldPos) : EvtForgetBase;
+    public record EvtOnEndDrag(Data.EttSymbol EttSymbol, Vector3 WorldPos) : EvtForgetBase;
 
     public void OnMultiPointerEnter(PointerEventData eventData)
     {

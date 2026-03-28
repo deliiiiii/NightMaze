@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-
-namespace NM.Data;
+﻿namespace NM.Data;
 [ActContainer]
 public partial class GamePlaying
 {

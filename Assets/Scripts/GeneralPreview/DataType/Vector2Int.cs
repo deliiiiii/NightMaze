@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace GeneralPreview;
 
@@ -6,6 +7,11 @@ public record struct Vector2Int(int X, int Y) : IComparable<Vector2Int>
 {
     public int X = X;
     public int Y = Y;
+
+    public static implicit operator Vector3(Vector2Int v)
+    {
+        return new Vector3(v.X, v.Y);
+    }
     
     public int LengthSquared => X * X + Y * Y;
     public double Length => Math.Sqrt(LengthSquared);

@@ -16,7 +16,10 @@ public abstract record EttBase
 }
 public abstract record EttBase<T> : EttBase where T : EttBase<T> //: IDisposable, IHasCt, IHasVersion
 {
-    public interface ICom;
+    public abstract class ComBase
+    {
+        public T BelongEtt { get; internal set; } = null!;
+    }
     public int EttID { get; init; } = CurID++;
 }
 
@@ -33,7 +36,7 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     readonly Dictionary<EttBase, INodeCom> comDic = [];
     protected MyOption<TCom> GetEttCom<TEtt, TCom>(TEtt ett)
         where TEtt : EttBase<TEtt>
-        where TCom : INodeCom, EttBase<TEtt>.ICom
+        where TCom : EttBase<TEtt>.ComBase, INodeCom
     {
         if (comDic.TryGetValue(ett, out var com))
                 return (TCom)com;
@@ -43,7 +46,7 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
 
     protected TCom AddEttCom<TEtt, TCom>(TEtt ett, TCom com)
         where TEtt : EttBase<TEtt>
-        where TCom : INodeCom, EttBase<TEtt>.ICom
+        where TCom : EttBase<TEtt>.ComBase, INodeCom
     {
         if(comDic.TryGetValue(ett, out var oldCom))
         {
@@ -51,12 +54,13 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
             return (TCom)oldCom;
         }
         comDic[ett] = com;
+        com.BelongEtt = ett;
         return com;
     }
 
     protected void RemoveEttCom<TEtt, TCom>(TEtt ett)
         where TEtt : EttBase<TEtt>
-        where TCom : INodeCom, EttBase<TEtt>.ICom
+        where TCom : EttBase<TEtt>.ComBase, INodeCom
     {
         if (comDic.Remove(ett))
             return;

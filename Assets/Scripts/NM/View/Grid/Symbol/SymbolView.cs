@@ -8,5 +8,5 @@ namespace NM.View;
 
 public class SymbolView : ViewBase
 {
-    [ReadOnly][field:SerializeReference] public EttSymbol Data { get; set; }
+    [ReadOnly][field:SerializeReference] public Data.EttSymbol Data { get; set; }
 }
