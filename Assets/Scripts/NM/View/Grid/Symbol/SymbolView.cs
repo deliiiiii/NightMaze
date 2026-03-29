@@ -8,5 +8,7 @@ namespace NM.View;
 
 public class SymbolView : ViewBase
 {
-    [ReadOnly][field:SerializeReference] public Data.EttSymbol Data { get; set; }
+    [field:SerializeReference, ReadOnly] public GamePlaying.Symbol Data { get; set; }
+
+    public SpriteRenderer Sr;
 }

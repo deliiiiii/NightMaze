@@ -1,5 +1,5 @@
 ﻿using GeneralPreview;
 
-namespace NM;
+namespace NM.ViewEvt;
 
 public record EvtPlayViewClickExit : EvtForgetBase;

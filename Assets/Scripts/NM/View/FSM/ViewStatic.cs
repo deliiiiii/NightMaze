@@ -17,11 +17,13 @@ public class ViewStatic : Singleton<ViewStatic>
 
     public static void BindAll()
     {
+        TitleViewIns.Bind();
         PlayViewIns.Bind();
     }
 
     public static void UnBindAll()
     {
+        TitleViewIns.Unbind();
         PlayViewIns.Unbind();
     }
 }

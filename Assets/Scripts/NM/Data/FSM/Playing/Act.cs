@@ -1,10 +1,26 @@
-﻿namespace NM.Data;
+﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using GeneralPreview;
+
+namespace NM.Data;
 [ActContainer]
 public partial class GamePlaying
 {
-    // [Obsolete("符号添加符号")]
-    // async UniTask SymbolAddSymbolAsync(SymbolData subjectSymbol, SymbolData addedSymbol, CancellationToken ct)
-    // {
-    //     
-    // }
+    [Obsolete("某地块放置在某位置")]
+    UniTask SetGridAtPosAsync(Grid grid, Vector2Int pos, CancellationToken ct)
+    {
+        grid.Pos = pos;
+        return UniTask.CompletedTask;
+    }   
+    [Obsolete("某符号放置在某位置")]
+    UniTask SetSymbolAtPosAsync(Symbol symbol, Vector2Int pos, CancellationToken ct)
+    {
+        var oldPos = symbol.Pos;
+        symbol.Pos = pos;
+        new EvtSetSymbolAtPosWithOld(symbol, oldPos, pos).Forget();
+        return UniTask.CompletedTask;
+    }
+
+    public record EvtSetSymbolAtPosWithOld(Symbol Symbol, Vector2Int OldPos, Vector2Int NewPos) : EvtForgetBase;
 }

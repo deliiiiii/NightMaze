@@ -32,13 +32,23 @@ public class TitleView : ViewBase
 #endif
         });
     }
-    UniEvt<GamePlaying.EvtOnExit> OnExitPlay => new()
+    // UniEvt<GamePlaying.EvtOnExit> OnExitPlay => new()
+    // {
+    //     Invoke = (evt, ct) =>
+    //     {
+    //         this.SetActiveTrue();
+    //         return UniTask.CompletedTask;
+    //     },
+    //     Des = "(退出Play状态) 显示标题界面",
+    // };
+
+    UniEvt<GameTitle.EvtOnEnter> OnEnterTitle => new()
     {
         Invoke = (evt, ct) =>
         {
             this.SetActiveTrue();
             return UniTask.CompletedTask;
         },
-        Des = "(退出Play状态) 显示标题界面",
+        Des = "(进入Title状态) 显示标题界面",
     };
 }

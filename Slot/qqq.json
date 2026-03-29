@@ -7,7 +7,7 @@
       {
         "Key": {
           "$id": "3",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "4",
@@ -22,7 +22,7 @@
       {
         "Key": {
           "$id": "6",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "7",
@@ -37,7 +37,7 @@
       {
         "Key": {
           "$id": "9",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "10",
@@ -52,7 +52,7 @@
       {
         "Key": {
           "$id": "12",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "13",
@@ -67,7 +67,7 @@
       {
         "Key": {
           "$id": "15",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "16",
@@ -82,7 +82,7 @@
       {
         "Key": {
           "$id": "18",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "19",
@@ -97,7 +97,7 @@
       {
         "Key": {
           "$id": "21",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "22",
@@ -112,7 +112,7 @@
       {
         "Key": {
           "$id": "24",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "25",
@@ -127,7 +127,7 @@
       {
         "Key": {
           "$id": "27",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "28",
@@ -142,7 +142,7 @@
       {
         "Key": {
           "$id": "30",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "31",
@@ -157,7 +157,7 @@
       {
         "Key": {
           "$id": "33",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "34",
@@ -172,7 +172,7 @@
       {
         "Key": {
           "$id": "36",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "37",
@@ -187,7 +187,7 @@
       {
         "Key": {
           "$id": "39",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "40",
@@ -202,7 +202,7 @@
       {
         "Key": {
           "$id": "42",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "43",
@@ -217,7 +217,7 @@
       {
         "Key": {
           "$id": "45",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "46",
@@ -232,7 +232,7 @@
       {
         "Key": {
           "$id": "48",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "49",
@@ -247,7 +247,7 @@
       {
         "Key": {
           "$id": "51",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "52",
@@ -262,7 +262,7 @@
       {
         "Key": {
           "$id": "54",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "55",
@@ -277,7 +277,7 @@
       {
         "Key": {
           "$id": "57",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "58",
@@ -292,7 +292,7 @@
       {
         "Key": {
           "$id": "60",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "61",
@@ -307,7 +307,7 @@
       {
         "Key": {
           "$id": "63",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "64",
@@ -322,7 +322,7 @@
       {
         "Key": {
           "$id": "66",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "67",
@@ -337,7 +337,7 @@
       {
         "Key": {
           "$id": "69",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "70",
@@ -352,7 +352,7 @@
       {
         "Key": {
           "$id": "72",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "73",
@@ -367,7 +367,7 @@
       {
         "Key": {
           "$id": "75",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "76",
@@ -382,7 +382,7 @@
       {
         "Key": {
           "$id": "78",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "79",
@@ -397,7 +397,7 @@
       {
         "Key": {
           "$id": "81",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "82",
@@ -412,7 +412,7 @@
       {
         "Key": {
           "$id": "84",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "85",
@@ -427,7 +427,7 @@
       {
         "Key": {
           "$id": "87",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "88",
@@ -442,7 +442,7 @@
       {
         "Key": {
           "$id": "90",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "91",
@@ -457,7 +457,7 @@
       {
         "Key": {
           "$id": "93",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "94",
@@ -472,7 +472,7 @@
       {
         "Key": {
           "$id": "96",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "97",
@@ -487,7 +487,7 @@
       {
         "Key": {
           "$id": "99",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "100",
@@ -502,7 +502,7 @@
       {
         "Key": {
           "$id": "102",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "103",
@@ -517,7 +517,7 @@
       {
         "Key": {
           "$id": "105",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "106",
@@ -532,7 +532,7 @@
       {
         "Key": {
           "$id": "108",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "109",
@@ -547,7 +547,7 @@
       {
         "Key": {
           "$id": "111",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "112",
@@ -562,7 +562,7 @@
       {
         "Key": {
           "$id": "114",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "115",
@@ -577,7 +577,7 @@
       {
         "Key": {
           "$id": "117",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "118",
@@ -592,7 +592,7 @@
       {
         "Key": {
           "$id": "120",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "121",
@@ -607,7 +607,7 @@
       {
         "Key": {
           "$id": "123",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "124",
@@ -622,7 +622,7 @@
       {
         "Key": {
           "$id": "126",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "127",
@@ -637,7 +637,7 @@
       {
         "Key": {
           "$id": "129",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "130",
@@ -652,7 +652,7 @@
       {
         "Key": {
           "$id": "132",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "133",
@@ -667,7 +667,7 @@
       {
         "Key": {
           "$id": "135",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "136",
@@ -682,7 +682,7 @@
       {
         "Key": {
           "$id": "138",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "139",
@@ -697,7 +697,7 @@
       {
         "Key": {
           "$id": "141",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "142",
@@ -712,7 +712,7 @@
       {
         "Key": {
           "$id": "144",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "145",
@@ -727,7 +727,7 @@
       {
         "Key": {
           "$id": "147",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "148",
@@ -742,7 +742,7 @@
       {
         "Key": {
           "$id": "150",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "151",
@@ -757,7 +757,7 @@
       {
         "Key": {
           "$id": "153",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "154",
@@ -772,7 +772,7 @@
       {
         "Key": {
           "$id": "156",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "157",
@@ -787,7 +787,7 @@
       {
         "Key": {
           "$id": "159",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "160",
@@ -802,7 +802,7 @@
       {
         "Key": {
           "$id": "162",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "163",
@@ -817,7 +817,7 @@
       {
         "Key": {
           "$id": "165",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "166",
@@ -832,7 +832,7 @@
       {
         "Key": {
           "$id": "168",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "169",
@@ -847,7 +847,7 @@
       {
         "Key": {
           "$id": "171",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "172",
@@ -862,7 +862,7 @@
       {
         "Key": {
           "$id": "174",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "175",
@@ -877,7 +877,7 @@
       {
         "Key": {
           "$id": "177",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "178",
@@ -892,7 +892,7 @@
       {
         "Key": {
           "$id": "180",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "181",
@@ -907,7 +907,7 @@
       {
         "Key": {
           "$id": "183",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "184",
@@ -922,7 +922,7 @@
       {
         "Key": {
           "$id": "186",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "187",
@@ -937,7 +937,7 @@
       {
         "Key": {
           "$id": "189",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "190",
@@ -952,7 +952,7 @@
       {
         "Key": {
           "$id": "192",
-          "$type": "NM.Data.EttGrid, NM.Data"
+          "$type": "NM.EttGrid, NM"
         },
         "Value": {
           "$id": "193",
@@ -967,29 +967,29 @@
       {
         "Key": {
           "$id": "195",
-          "$type": "NM.Data.EttSymbol, NM.Data"
+          "$type": "NM.EttSymbol, NM"
         },
         "Value": {
           "$id": "196",
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "197",
-            "X": 1,
-            "Y": 1
+            "X": 5,
+            "Y": 3
           }
         }
       },
       {
         "Key": {
           "$id": "198",
-          "$type": "NM.Data.EttSymbol, NM.Data"
+          "$type": "NM.EttSymbol, NM"
         },
         "Value": {
           "$id": "199",
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "200",
-            "X": 1,
+            "X": 4,
             "Y": 2
           }
         }
@@ -997,45 +997,45 @@
       {
         "Key": {
           "$id": "201",
-          "$type": "NM.Data.EttSymbol, NM.Data"
+          "$type": "NM.EttSymbol, NM"
         },
         "Value": {
           "$id": "202",
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "203",
-            "X": 1,
-            "Y": 3
-          }
-        }
-      },
-      {
-        "Key": {
-          "$id": "204",
-          "$type": "NM.Data.EttSymbol, NM.Data"
-        },
-        "Value": {
-          "$id": "205",
-          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
-          "Pos": {
-            "$id": "206",
-            "X": 1,
+            "X": 3,
             "Y": 4
           }
         }
       },
       {
         "Key": {
+          "$id": "204",
+          "$type": "NM.EttSymbol, NM"
+        },
+        "Value": {
+          "$id": "205",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "Pos": {
+            "$id": "206",
+            "X": 4,
+            "Y": 3
+          }
+        }
+      },
+      {
+        "Key": {
           "$id": "207",
-          "$type": "NM.Data.EttSymbol, NM.Data"
+          "$type": "NM.EttSymbol, NM"
         },
         "Value": {
           "$id": "208",
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "209",
-            "X": 1,
-            "Y": 5
+            "X": 5,
+            "Y": 4
           }
         }
       }
@@ -1052,7 +1052,7 @@
       "$ref": "1"
     }
   },
-  "PlayerName": "qqq1",
-  "PlayTime": 3.8039664989337325,
+  "PlayerName": "qqq",
+  "PlayTime": 63.654381389729679,
   "Coin": 0
 }

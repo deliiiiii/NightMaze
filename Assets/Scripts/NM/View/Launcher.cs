@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using NM.Data;
-using Sirenix.Utilities;
 
 namespace NM.View;
 public class Launcher : Singleton<Launcher>

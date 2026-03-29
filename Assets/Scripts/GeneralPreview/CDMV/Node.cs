@@ -71,11 +71,12 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         where TEtt : EttBase<TEtt>, new()
         where TCom : ComBase<TEtt, TCom>
     {
-        if(comDic.TryGetValue(ett, out var oldCom))
-        {
-            MyDebug.LogError($"在{GetType().GetNiceName()}中EttID:{ett.EttID}已有组件{oldCom.GetType().GetNiceName()}.");
-            return (TCom)oldCom;
-        }
+        // if(comDic.TryGetValue(ett, out var oldCom))
+        // {
+        //     MyDebug.LogError($"在{GetType().GetNiceName()}中EttID:{ett.EttID}已有组件{oldCom.GetType().GetNiceName()}.");
+        //     comDic[ett] = com;
+        //     return (TCom)oldCom;
+        // }
         comDic[ett] = com;
         com.BelongEtt = ett;
         return com;

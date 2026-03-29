@@ -3,8 +3,6 @@ using Newtonsoft.Json;
 
 namespace NM.Data;
 
-public record EttSymbol : EttBase<EttSymbol>;
-
 public partial class GamePlaying
 {
     public MyOption<Symbol> this[EttSymbol ettId] => GetEttComOptional<EttSymbol, Symbol>(ettId);

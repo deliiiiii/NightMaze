@@ -1,4 +1,4 @@
-﻿using System.Threading;
+﻿using System.Linq;
 using General;
 using GeneralPreview;
 using NM.Data;
@@ -27,6 +27,8 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
     {
         if(eventData.button != PointerEventData.InputButton.Left)
             return;
+        
+        // MyDebug.Log(mouseGridPos);
         var tarPos = MyCamera.Main.ScreenToWorldPoint(initThisScreenPos + eventData.position - eventData.pressPosition);
         transform.SetPositionXY(tarPos); 
     }
@@ -35,12 +37,17 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
     {
         if(eventData.button != PointerEventData.InputButton.Left)
             return;
-        transform.position = initThisWorldPos;
-        // transform.SetPositionXY(initScreenPos);
-
+        var mouseGridPos = PlayView.ScreenToGrid(eventData.position);
+        if(PlayViewIns.Data.EmptyGrids.Any(grid => grid.Pos == mouseGridPos))
+        {
+            new GamePlaying.ActSetSymbolAtPos(PlayViewIns.Data)
+            {
+                Symbol = BelongView.Data,
+                Pos = mouseGridPos
+            }.Forget();
+        }
+        transform.localPosition = Vector3.zero;
     }
-
-    public record EvtOnEndDrag(Data.EttSymbol EttSymbol, Vector3 WorldPos) : EvtForgetBase;
 
     public void OnMultiPointerEnter(PointerEventData eventData)
     {
