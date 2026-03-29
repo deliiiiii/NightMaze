@@ -36,7 +36,7 @@ public class PlayView : ViewBase<GamePlaying>
         {
             Data = evt.WhoHasCt;
             ClearAllGrid();
-            Data.GridList.ForEach(grid =>
+            Data.Grids.ForEach(grid =>
             {
                 var go = Instantiate(gridPfb, GridTrs);
                 go.transform.localPosition = grid.Pos;

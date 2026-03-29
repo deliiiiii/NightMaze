@@ -1,0 +1,708 @@
+{
+  "$id": "1",
+  "savedVersion": 20260313.0,
+  "comDic": {
+    "$id": "2",
+    "0": {
+      "$id": "3",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 0,
+      "Pos": {
+        "$id": "4",
+        "X": 1,
+        "Y": 1
+      }
+    },
+    "1": {
+      "$id": "5",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 1,
+      "Pos": {
+        "$id": "6",
+        "X": 1,
+        "Y": 2
+      }
+    },
+    "2": {
+      "$id": "7",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 2,
+      "Pos": {
+        "$id": "8",
+        "X": 1,
+        "Y": 3
+      }
+    },
+    "3": {
+      "$id": "9",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 3,
+      "Pos": {
+        "$id": "10",
+        "X": 1,
+        "Y": 4
+      }
+    },
+    "4": {
+      "$id": "11",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 4,
+      "Pos": {
+        "$id": "12",
+        "X": 1,
+        "Y": 5
+      }
+    },
+    "5": {
+      "$id": "13",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 5,
+      "Pos": {
+        "$id": "14",
+        "X": 1,
+        "Y": 6
+      }
+    },
+    "6": {
+      "$id": "15",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 6,
+      "Pos": {
+        "$id": "16",
+        "X": 1,
+        "Y": 7
+      }
+    },
+    "7": {
+      "$id": "17",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 7,
+      "Pos": {
+        "$id": "18",
+        "X": 1,
+        "Y": 8
+      }
+    },
+    "8": {
+      "$id": "19",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 8,
+      "Pos": {
+        "$id": "20",
+        "X": 2,
+        "Y": 1
+      }
+    },
+    "9": {
+      "$id": "21",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 9,
+      "Pos": {
+        "$id": "22",
+        "X": 2,
+        "Y": 2
+      }
+    },
+    "10": {
+      "$id": "23",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 10,
+      "Pos": {
+        "$id": "24",
+        "X": 2,
+        "Y": 3
+      }
+    },
+    "11": {
+      "$id": "25",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 11,
+      "Pos": {
+        "$id": "26",
+        "X": 2,
+        "Y": 4
+      }
+    },
+    "12": {
+      "$id": "27",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 12,
+      "Pos": {
+        "$id": "28",
+        "X": 2,
+        "Y": 5
+      }
+    },
+    "13": {
+      "$id": "29",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 13,
+      "Pos": {
+        "$id": "30",
+        "X": 2,
+        "Y": 6
+      }
+    },
+    "14": {
+      "$id": "31",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 14,
+      "Pos": {
+        "$id": "32",
+        "X": 2,
+        "Y": 7
+      }
+    },
+    "15": {
+      "$id": "33",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 15,
+      "Pos": {
+        "$id": "34",
+        "X": 2,
+        "Y": 8
+      }
+    },
+    "16": {
+      "$id": "35",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 16,
+      "Pos": {
+        "$id": "36",
+        "X": 3,
+        "Y": 1
+      }
+    },
+    "17": {
+      "$id": "37",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 17,
+      "Pos": {
+        "$id": "38",
+        "X": 3,
+        "Y": 2
+      }
+    },
+    "18": {
+      "$id": "39",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 18,
+      "Pos": {
+        "$id": "40",
+        "X": 3,
+        "Y": 3
+      }
+    },
+    "19": {
+      "$id": "41",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 19,
+      "Pos": {
+        "$id": "42",
+        "X": 3,
+        "Y": 4
+      }
+    },
+    "20": {
+      "$id": "43",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 20,
+      "Pos": {
+        "$id": "44",
+        "X": 3,
+        "Y": 5
+      }
+    },
+    "21": {
+      "$id": "45",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 21,
+      "Pos": {
+        "$id": "46",
+        "X": 3,
+        "Y": 6
+      }
+    },
+    "22": {
+      "$id": "47",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 22,
+      "Pos": {
+        "$id": "48",
+        "X": 3,
+        "Y": 7
+      }
+    },
+    "23": {
+      "$id": "49",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 23,
+      "Pos": {
+        "$id": "50",
+        "X": 3,
+        "Y": 8
+      }
+    },
+    "24": {
+      "$id": "51",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 24,
+      "Pos": {
+        "$id": "52",
+        "X": 4,
+        "Y": 1
+      }
+    },
+    "25": {
+      "$id": "53",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 25,
+      "Pos": {
+        "$id": "54",
+        "X": 4,
+        "Y": 2
+      }
+    },
+    "26": {
+      "$id": "55",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 26,
+      "Pos": {
+        "$id": "56",
+        "X": 4,
+        "Y": 3
+      }
+    },
+    "27": {
+      "$id": "57",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 27,
+      "Pos": {
+        "$id": "58",
+        "X": 4,
+        "Y": 4
+      }
+    },
+    "28": {
+      "$id": "59",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 28,
+      "Pos": {
+        "$id": "60",
+        "X": 4,
+        "Y": 5
+      }
+    },
+    "29": {
+      "$id": "61",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 29,
+      "Pos": {
+        "$id": "62",
+        "X": 4,
+        "Y": 6
+      }
+    },
+    "30": {
+      "$id": "63",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 30,
+      "Pos": {
+        "$id": "64",
+        "X": 4,
+        "Y": 7
+      }
+    },
+    "31": {
+      "$id": "65",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 31,
+      "Pos": {
+        "$id": "66",
+        "X": 4,
+        "Y": 8
+      }
+    },
+    "32": {
+      "$id": "67",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 32,
+      "Pos": {
+        "$id": "68",
+        "X": 5,
+        "Y": 1
+      }
+    },
+    "33": {
+      "$id": "69",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 33,
+      "Pos": {
+        "$id": "70",
+        "X": 5,
+        "Y": 2
+      }
+    },
+    "34": {
+      "$id": "71",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 34,
+      "Pos": {
+        "$id": "72",
+        "X": 5,
+        "Y": 3
+      }
+    },
+    "35": {
+      "$id": "73",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 35,
+      "Pos": {
+        "$id": "74",
+        "X": 5,
+        "Y": 4
+      }
+    },
+    "36": {
+      "$id": "75",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 36,
+      "Pos": {
+        "$id": "76",
+        "X": 5,
+        "Y": 5
+      }
+    },
+    "37": {
+      "$id": "77",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 37,
+      "Pos": {
+        "$id": "78",
+        "X": 5,
+        "Y": 6
+      }
+    },
+    "38": {
+      "$id": "79",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 38,
+      "Pos": {
+        "$id": "80",
+        "X": 5,
+        "Y": 7
+      }
+    },
+    "39": {
+      "$id": "81",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 39,
+      "Pos": {
+        "$id": "82",
+        "X": 5,
+        "Y": 8
+      }
+    },
+    "40": {
+      "$id": "83",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 40,
+      "Pos": {
+        "$id": "84",
+        "X": 6,
+        "Y": 1
+      }
+    },
+    "41": {
+      "$id": "85",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 41,
+      "Pos": {
+        "$id": "86",
+        "X": 6,
+        "Y": 2
+      }
+    },
+    "42": {
+      "$id": "87",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 42,
+      "Pos": {
+        "$id": "88",
+        "X": 6,
+        "Y": 3
+      }
+    },
+    "43": {
+      "$id": "89",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 43,
+      "Pos": {
+        "$id": "90",
+        "X": 6,
+        "Y": 4
+      }
+    },
+    "44": {
+      "$id": "91",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 44,
+      "Pos": {
+        "$id": "92",
+        "X": 6,
+        "Y": 5
+      }
+    },
+    "45": {
+      "$id": "93",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 45,
+      "Pos": {
+        "$id": "94",
+        "X": 6,
+        "Y": 6
+      }
+    },
+    "46": {
+      "$id": "95",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 46,
+      "Pos": {
+        "$id": "96",
+        "X": 6,
+        "Y": 7
+      }
+    },
+    "47": {
+      "$id": "97",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 47,
+      "Pos": {
+        "$id": "98",
+        "X": 6,
+        "Y": 8
+      }
+    },
+    "48": {
+      "$id": "99",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 48,
+      "Pos": {
+        "$id": "100",
+        "X": 7,
+        "Y": 1
+      }
+    },
+    "49": {
+      "$id": "101",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 49,
+      "Pos": {
+        "$id": "102",
+        "X": 7,
+        "Y": 2
+      }
+    },
+    "50": {
+      "$id": "103",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 50,
+      "Pos": {
+        "$id": "104",
+        "X": 7,
+        "Y": 3
+      }
+    },
+    "51": {
+      "$id": "105",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 51,
+      "Pos": {
+        "$id": "106",
+        "X": 7,
+        "Y": 4
+      }
+    },
+    "52": {
+      "$id": "107",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 52,
+      "Pos": {
+        "$id": "108",
+        "X": 7,
+        "Y": 5
+      }
+    },
+    "53": {
+      "$id": "109",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 53,
+      "Pos": {
+        "$id": "110",
+        "X": 7,
+        "Y": 6
+      }
+    },
+    "54": {
+      "$id": "111",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 54,
+      "Pos": {
+        "$id": "112",
+        "X": 7,
+        "Y": 7
+      }
+    },
+    "55": {
+      "$id": "113",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 55,
+      "Pos": {
+        "$id": "114",
+        "X": 7,
+        "Y": 8
+      }
+    },
+    "56": {
+      "$id": "115",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 56,
+      "Pos": {
+        "$id": "116",
+        "X": 8,
+        "Y": 1
+      }
+    },
+    "57": {
+      "$id": "117",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 57,
+      "Pos": {
+        "$id": "118",
+        "X": 8,
+        "Y": 2
+      }
+    },
+    "58": {
+      "$id": "119",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 58,
+      "Pos": {
+        "$id": "120",
+        "X": 8,
+        "Y": 3
+      }
+    },
+    "59": {
+      "$id": "121",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 59,
+      "Pos": {
+        "$id": "122",
+        "X": 8,
+        "Y": 4
+      }
+    },
+    "60": {
+      "$id": "123",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 60,
+      "Pos": {
+        "$id": "124",
+        "X": 8,
+        "Y": 5
+      }
+    },
+    "61": {
+      "$id": "125",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 61,
+      "Pos": {
+        "$id": "126",
+        "X": 8,
+        "Y": 6
+      }
+    },
+    "62": {
+      "$id": "127",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 62,
+      "Pos": {
+        "$id": "128",
+        "X": 8,
+        "Y": 7
+      }
+    },
+    "63": {
+      "$id": "129",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "BelongEttId": 63,
+      "Pos": {
+        "$id": "130",
+        "X": 8,
+        "Y": 8
+      }
+    },
+    "64": {
+      "$id": "131",
+      "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+      "BelongEttId": 64,
+      "Pos": {
+        "$id": "132",
+        "X": 1,
+        "Y": 1
+      }
+    },
+    "65": {
+      "$id": "133",
+      "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+      "BelongEttId": 65,
+      "Pos": {
+        "$id": "134",
+        "X": 1,
+        "Y": 2
+      }
+    },
+    "66": {
+      "$id": "135",
+      "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+      "BelongEttId": 66,
+      "Pos": {
+        "$id": "136",
+        "X": 1,
+        "Y": 3
+      }
+    },
+    "67": {
+      "$id": "137",
+      "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+      "BelongEttId": 67,
+      "Pos": {
+        "$id": "138",
+        "X": 1,
+        "Y": 4
+      }
+    },
+    "68": {
+      "$id": "139",
+      "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+      "BelongEttId": 68,
+      "Pos": {
+        "$id": "140",
+        "X": 1,
+        "Y": 5
+      }
+    }
+  },
+  "BelongNode": {
+    "$id": "141",
+    "savedVersion": 20260313.0,
+    "comDic": {
+      "$id": "142"
+    }
+  },
+  "PlayerName": "qqq2",
+  "PlayTime": 10.666009810753167,
+  "Coin": 0,
+  "state": null
+}

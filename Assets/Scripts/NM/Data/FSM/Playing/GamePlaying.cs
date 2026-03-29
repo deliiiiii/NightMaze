@@ -11,7 +11,8 @@ namespace NM.Data;
 [Serializable]
 public partial class GamePlaying : RootStateBase<GamePlaying>
 {
-    [JsonConstructor] GamePlaying() { }
+    // TODO 尝试删去BelongEtt；键字符串自定义反序列化.暂时不要改BelongNode.
+    [JsonConstructor] GamePlaying() { } 
     public GamePlaying(string playerName)
     {
         PlayerName = playerName;
@@ -19,8 +20,6 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     public override string ToString() => nameof(GamePlaying);
     public string PlayerName { get; private set;}= "Deli";
     public double PlayTime { get; private set;}
-    List<Symbol> symbolList = [];
-    List<Grid> gridList = [];
     [EvtChanged]
     public partial long Coin { get; private set;}
     // 标注[EvtChanged]则源生↓↓↓
@@ -36,18 +35,18 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     // public record EvtCoinChanged(GamePlaying gamePlaying,
     //              long OldValue,
     //              long NewValue): EvtForgetBase;
-    
-    public IEnumerable<Symbol> SymbolList => symbolList;
-    public IEnumerable<Grid> GridList => gridList;
 
-    public IEnumerable<Grid> EmptyGridList
+    public IEnumerable<Symbol> Symbols => GetEttList<Symbol>();
+    public IEnumerable<Grid> Grids => GetEttList<Grid>();
+
+    public IEnumerable<Grid> EmptyGrids
     {
         get
         {
             var posSet = (
-                from symbol in symbolList
+                from symbol in Symbols
                 select symbol.Pos).ToHashSet();
-            return from grid in gridList
+            return from grid in Grids
                 where !posSet.Contains(grid.Pos)
                 select grid;
         }
@@ -58,20 +57,11 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         (from x in Range(1, 8) 
             from y in Range(1, 8)
             select new Vector2Int(x, y))
-            .ForEach(pos =>
-            {
-                var grid = new Grid(pos);
-                AddEttCom(new EttGrid(), grid);
-                gridList.Add(grid);
-            });
-        EmptyGridList
+            .ForEach(pos => AddEttCom(new EttGrid(), new Grid(pos)));
+        EmptyGrids
+            .ToList()
             .Take(5)
-            .ForEach(grid =>
-            {
-                var symbol = new Symbol(grid.Pos);
-                AddEttCom(new EttSymbol(), symbol);
-                symbolList.Add(symbol);
-            });
+            .ForEach(grid => AddEttCom(new EttSymbol(), new Symbol(grid.Pos)));
     }
 
     protected override async UniTask OnLaunchCom(bool isThisFromLoad)

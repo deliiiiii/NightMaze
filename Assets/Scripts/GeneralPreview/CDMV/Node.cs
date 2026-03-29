@@ -14,13 +14,17 @@ public abstract record EttBase
 {
     internal static int CurID;
 }
-public abstract record EttBase<T> : EttBase where T : EttBase<T> //: IDisposable, IHasCt, IHasVersion
+public abstract record EttBase<T> : EttBase where T : EttBase<T>, new()
+//: IDisposable, IHasCt, IHasVersion
 {
     public abstract class ComBase
     {
-        public T BelongEtt { get; internal set; } = null!;
+        public int BelongEttId { get; internal set; }
     }
     public int EttID { get; init; } = CurID++;
+
+    protected EttBase(){}
+    public static T Create() => new();
 }
 
 public abstract class Node
@@ -33,42 +37,42 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     public interface INodeCom;
 
     // [typeof(EttXX) : [0 : XxxInXxx, ...], ...]
-    readonly Dictionary<EttBase, INodeCom> comDic = [];
+    readonly Dictionary<int, INodeCom> comDic = [];
     protected MyOption<TCom> GetEttCom<TEtt, TCom>(TEtt ett)
-        where TEtt : EttBase<TEtt>
+        where TEtt : EttBase<TEtt>, new()
         where TCom : EttBase<TEtt>.ComBase, INodeCom
     {
-        if (comDic.TryGetValue(ett, out var com))
+        if (comDic.TryGetValue(ett.EttID, out var com))
                 return (TCom)com;
         MyDebug.LogError($"{GetType().GetNiceName()}中未找到EttID:{ett}的组件. 将提供默认值");
         return None;
     }
 
     protected TCom AddEttCom<TEtt, TCom>(TEtt ett, TCom com)
-        where TEtt : EttBase<TEtt>
+        where TEtt : EttBase<TEtt>, new()
         where TCom : EttBase<TEtt>.ComBase, INodeCom
     {
-        if(comDic.TryGetValue(ett, out var oldCom))
+        if(comDic.TryGetValue(ett.EttID, out var oldCom))
         {
             MyDebug.LogError($"在{GetType().GetNiceName()}中EttID:{ett}已有组件{oldCom.GetType().GetNiceName()}.");
             return (TCom)oldCom;
         }
-        comDic[ett] = com;
-        com.BelongEtt = ett;
+        comDic[ett.EttID] = com;
+        com.BelongEttId = ett.EttID;
         return com;
     }
 
     protected void RemoveEttCom<TEtt, TCom>(TEtt ett)
-        where TEtt : EttBase<TEtt>
+        where TEtt : EttBase<TEtt>, new()
         where TCom : EttBase<TEtt>.ComBase, INodeCom
     {
-        if (comDic.Remove(ett))
+        if (comDic.Remove(ett.EttID))
             return;
         MyDebug.LogError($"在{GetType().GetNiceName()}中未找到EttID:{ett}的组件，无法移除.");
     }
 
-    protected IEnumerable<TEtt> GetEttList<TEtt>() 
-        => comDic.Keys.OfType<TEtt>();
+    protected IEnumerable<TCom> GetEttList<TCom>() 
+        => comDic.Values.OfType<TCom>();
 
     protected UniTask _ChangeAsync<TComBase, TComSub>(ref TComBase? field, TComSub com, bool isNewFromLoad) 
         where TComBase : Node
