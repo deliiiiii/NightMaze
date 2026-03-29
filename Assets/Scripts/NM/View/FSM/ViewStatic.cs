@@ -19,4 +19,9 @@ public class ViewStatic : Singleton<ViewStatic>
     {
         PlayViewIns.Bind();
     }
+
+    public static void UnBindAll()
+    {
+        PlayViewIns.Unbind();
+    }
 }

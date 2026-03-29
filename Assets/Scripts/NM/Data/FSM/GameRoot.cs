@@ -6,17 +6,34 @@ namespace NM.Data;
 
 public partial class GameRoot : Node<GameRoot>
 {
-    static readonly GameRoot root = new();
-    static Node? state;
+    static GameRoot()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.playModeStateChanged += state =>
+        {
+            if (state == UnityEditor.PlayModeStateChange.ExitingEditMode)
+            {
+                instance.state = null;
+            }
+        };
+#endif
+    }
+    static readonly GameRoot instance = new();
+    Node? state;
 
     public static CancellationTokenRegistration AddTo(CancellationToken ct)
-        => root.AddTo(ct);
+        => instance.AddTo(ct);
     public static UniTask ChangeStateAsync<T>(T com, bool isNewFromLoad) where T : RootStateBase<T>
-         => root._ChangeAsync(ref state, com, isNewFromLoad);
+         => instance._ChangeAsync(ref instance.state, com, isNewFromLoad);
     public static MyOption<T> GetStateOptional<T>() where T : RootStateBase<T>
-        => state is T s ? s : None;
+        => instance.state is T s ? s : None;
     public static bool IsState<T>() where T : RootStateBase<T>
-        => state is T;
+        => instance.state is T;
+    
+    protected override void OnReleaseCom()
+    {
+        state?.OnRemove();
+    }
 }
 
 public abstract class RootStateBase<T> : Node<GameRoot, T>

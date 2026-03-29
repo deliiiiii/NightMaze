@@ -11,7 +11,6 @@ namespace NM.Data;
 [Serializable]
 public partial class GamePlaying : RootStateBase<GamePlaying>
 {
-    // TODO 尝试删去BelongEtt；键字符串自定义反序列化.暂时不要改BelongNode.
     [JsonConstructor] GamePlaying() { } 
     public GamePlaying(string playerName)
     {
@@ -36,8 +35,8 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     //              long OldValue,
     //              long NewValue): EvtForgetBase;
 
-    public IEnumerable<Symbol> Symbols => GetEttList<Symbol>();
-    public IEnumerable<Grid> Grids => GetEttList<Grid>();
+    public IEnumerable<Symbol> Symbols => GetComs<Symbol>();
+    public IEnumerable<Grid> Grids => GetComs<Grid>();
 
     public IEnumerable<Grid> EmptyGrids
     {
@@ -57,13 +56,14 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         (from x in Range(1, 8) 
             from y in Range(1, 8)
             select new Vector2Int(x, y))
-            .ForEach(pos => AddEttCom(new EttGrid(), new Grid(pos)));
+            .ForEach(pos => AddEttCom(EttGrid.Create(), new Grid(pos)));
         EmptyGrids
             .ToList()
             .Take(5)
-            .ForEach(grid => AddEttCom(new EttSymbol(), new Symbol(grid.Pos)));
+            .ForEach(grid => AddEttCom(EttSymbol.Create(), new Symbol(grid.Pos)));
+        // state = new play
     }
-
+    
     protected override async UniTask OnLaunchCom(bool isThisFromLoad)
     {
         // await symbolDeckList.EachOnLaunchCom(isThisFromLoad);
@@ -80,11 +80,11 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         PlayTime += dt;
     }
 
-    Node? state;
-    public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : PlayStateBase<T>
-        => _ChangeAsync(ref state, com, isNewFromLoad);
-    public MyOption<T> GetStateOptional<T>() where T : PlayStateBase<T>
-        => state is T s ? s : None;
+    // Node? state;
+    // public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : PlayStateBase<T>
+        // => _ChangeAsync(ref state, com, isNewFromLoad);
+    // public MyOption<T> GetStateOptional<T>() where T : PlayStateBase<T>
+        // => state is T s ? s : None;
 }
 
 public abstract class PlayStateBase<T> : Node<GamePlaying, T> where T : PlayStateBase<T>;

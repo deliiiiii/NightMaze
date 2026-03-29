@@ -17,7 +17,8 @@ public class Launcher : Singleton<Launcher>
         {
             if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
             {
-                Instance.ViewList.Where(v => v != null).ForEach(v => v.Unbind());
+                // Instance.ViewList.Where(v => v != null).ForEach(v => v.Unbind());
+                ViewStatic.UnBindAll();
             }
         };
 #endif
