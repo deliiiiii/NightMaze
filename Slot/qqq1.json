@@ -1,0 +1,22 @@
+{
+  "$id": "1",
+  "savedVersion": 20260313.0,
+  "comDic": {
+    "$id": "2",
+    "$values": []
+  },
+  "BelongNode": {
+    "$id": "3",
+    "savedVersion": 20260313.0,
+    "comDic": {
+      "$id": "4",
+      "$values": []
+    },
+    "state": {
+      "$ref": "1"
+    }
+  },
+  "PlayerName": "qqq1",
+  "PlayTime": 5.2942275991663337,
+  "Coin": 0
+}

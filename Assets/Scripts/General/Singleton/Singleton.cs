@@ -2,8 +2,8 @@
 //需要被继承 xxx : Singleton<xxx>
 //获取单例 xxx.Instance
 
+using System;
 using System.Diagnostics;
-using UnityEditor;
 using UnityEngine;
 
 namespace General
@@ -18,6 +18,8 @@ namespace General
         {
             get
             {
+                if (!Application.isPlaying)
+                    return instance;
                 instance ??= FindObjectOfType<T>();
                 instance ??= new GameObject().AddComponent<T>();
                 return instance;
@@ -42,7 +44,7 @@ namespace General
             destroyCancellationToken.Register(() => instance = null);
         }
 
-// #if UNITY_EDITOR
+        // #if UNITY_EDITOR
 //         void OnPlayModeStateChanged(PlayModeStateChange s)
 //         {
 //             if (s == PlayModeStateChange.ExitingPlayMode && instance != null)

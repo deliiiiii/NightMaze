@@ -7,8 +7,8 @@ public record EttSymbol : EttBase<EttSymbol>;
 
 public partial class GamePlaying
 {
-    public MyOption<Symbol> this[EttSymbol ettId] => GetEttCom<EttSymbol, Symbol>(ettId);
-    public partial class Symbol(Vector2Int pos) : INodeCom<EttSymbol, Symbol>
+    public MyOption<Symbol> this[EttSymbol ettId] => GetEttComOptional<EttSymbol, Symbol>(ettId);
+    public partial class Symbol(Vector2Int pos) : ComBase<EttSymbol, Symbol>
     {
         [JsonProperty(ReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
         public Vector2Int Pos = pos;

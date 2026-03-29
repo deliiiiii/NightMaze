@@ -17,12 +17,8 @@ public abstract record EttBase
 public abstract record EttBase<T> : EttBase where T : EttBase<T>, new()
 //: IDisposable, IHasCt, IHasVersion
 {
-    // public abstract class ComBase
-    // {
-    //     [JsonIgnore] public T BelongEtt { get; internal set; } = null!;
-    // }
-    public int EttID { get; init; } = CurID++;
-    public static T Create() => new T();
+    public int EttID { get; } = CurID++;
+    public static T Create() => new();
 }
 
 public abstract class Node
@@ -36,27 +32,19 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     {
         EttBase BelongEtt { get; set; }
     }
-    public abstract class INodeCom<TEtt, TCom> : INodeCom
+    public abstract class ComBase<TEtt, TCom> : INodeCom
         where TEtt : EttBase<TEtt>, new()
-        where TCom : INodeCom<TEtt, TCom>
+        where TCom : ComBase<TEtt, TCom>
     {
-        // public TEtt BelongEtt { get; set; } = null!;
         [JsonIgnore]public TEtt BelongEtt { get; set; } = null!;
         [JsonIgnore]EttBase INodeCom.BelongEtt
         {
             get => BelongEtt;
             set => BelongEtt = (TEtt)value;
         }
-        // EttBase INodeCom.BelongEttBase
-        // {
-        //     get => BelongEtt;
-        //     set => value = BelongEtt;
-        // }
     }
-    // [0 : XxxInXxx, ...]
     [JsonIgnore]Dictionary<EttBase, INodeCom> comDic = [];
-    [JsonProperty("comDic")]
-    List<KeyValuePair<EttBase, INodeCom>> SerializableComDic
+    [JsonProperty("comDic")] List<KeyValuePair<EttBase, INodeCom>> SerializableComDic
     {
         get => comDic.ToList();
         set
@@ -69,19 +57,19 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         }
     }
 
-    protected MyOption<TCom> GetEttCom<TEtt, TCom>(TEtt ett)
+    protected MyOption<TCom> GetEttComOptional<TEtt, TCom>(TEtt ett)
         where TEtt : EttBase<TEtt>, new()
-        where TCom : INodeCom<TEtt, TCom>
+        where TCom : ComBase<TEtt, TCom>
     {
         if (comDic.TryGetValue(ett, out var com))
-                return (TCom)com;
-        MyDebug.LogError($"{GetType().GetNiceName()}中未找到EttID:{ett.EttID}的组件. 将提供默认值");
+            return (TCom)com;
+        // MyDebug.LogError($"{GetType().GetNiceName()}中未找到EttID:{ett.EttID}的组件. 将提供默认值");
         return None;
     }
 
     protected TCom AddEttCom<TEtt, TCom>(TEtt ett, TCom com)
         where TEtt : EttBase<TEtt>, new()
-        where TCom : INodeCom<TEtt, TCom>
+        where TCom : ComBase<TEtt, TCom>
     {
         if(comDic.TryGetValue(ett, out var oldCom))
         {
@@ -92,31 +80,26 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         com.BelongEtt = ett;
         return com;
     }
-
     protected void RemoveEttCom<TEtt>(TEtt ett)
         where TEtt : EttBase<TEtt>, new()
-    // where TCom : EttBase<TEtt>.ComBase, INodeCom
     {
         if (comDic.Remove(ett))
             return;
         MyDebug.LogError($"在{GetType().GetNiceName()}中未找到EttID:{ett.EttID}的组件，无法移除.");
     }
-
-    protected IEnumerable<TCom> GetComs<TCom>() 
-        => comDic.Values.OfType<TCom>();
-
-    protected UniTask _ChangeAsync<TComBase, TComSub>(ref TComBase? field, TComSub com, bool isNewFromLoad) 
-        where TComBase : Node
-        where TComSub : TComBase
+    protected IEnumerable<TCom> GetComs<TCom>() => comDic.Values.OfType<TCom>();
+    protected UniTask _ChangeAsync<TNode, TNodeSub>(ref TNode? field, TNodeSub node, bool isNewFromLoad) 
+        where TNode : Node
+        where TNodeSub : TNode
     {
         field?.OnRemove();
-        field = com;
+        field = node;
         if(field is IHasBelong<TThis> hasBelong)
             hasBelong.BelongNode = (TThis)this;
         return CallOnCreate();
         async UniTask CallOnCreate()
         {
-            await com.OnCreateAsync(isNewFromLoad);
+            await node.OnCreateAsync(isNewFromLoad);
         }
     }
     void IDisposable.Dispose() => OnRemove();
@@ -157,7 +140,7 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     {
         [UnityEngine.HideInInspector] protected readonly TThis Self = Self;
         [DebuggerStepThrough] protected abstract UniTask InvokeAsync();
-        public UniTask.Awaiter GetAwaiter() 
+        [DebuggerStepThrough] public UniTask.Awaiter GetAwaiter() 
             => Self.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : InvokeAsync().GetAwaiter();
         [DebuggerStepThrough] public void Forget() => InvokeAsync().Forget();
     }
@@ -167,41 +150,39 @@ public abstract class Node<TBelong, TThis> : Node<TThis>, IHasBelong<TBelong>
     where TBelong : class
     where TThis : Node<TBelong, TThis>
 {
-    public TBelong BelongNode { get; set; } = null!;
-    // [JsonIgnore]TBelong IHasBelong<TBelong>.BelongData { get => BelongData; set => BelongData = value; }
-    // protected TBelong BelongData { get; set; } = null!;
+    // public TBelong BelongNode { get; set; } = null!;
+    [JsonIgnore]TBelong IHasBelong<TBelong>.BelongNode { get => BelongNode; set => BelongNode = value; }
+    protected TBelong BelongNode { get; set; } = null!;
 }
 
 public interface IHasBelong<TBelong> where TBelong : class
 {
     TBelong BelongNode { get; set; }
 }
-
-
 public interface ICanAwait
 {
     UniTask.Awaiter GetAwaiter();
 }
-
-public static class NodeExt
-{
-    extension<T>(List<T> self) where T : Node<T>
-    {
-        public void EachOnCreateFreshData()
-        {
-            foreach (var node in self) 
-                node.OnCreateFreshData();
-        }
-
-        public async UniTask EachOnLaunchCom(bool isThisFromLoad)
-        {
-            foreach (var node in self) 
-                await node.OnLaunchCom(isThisFromLoad);
-        }
-        public void EachOnReleaseCom()
-        {
-            foreach (var node in self) 
-                node.OnReleaseCom();
-        }
-    }
-}
+//
+// public static class NodeExt
+// {
+//     extension<T>(List<T> self) where T : Node<T>
+//     {
+//         public void EachOnCreateFreshData()
+//         {
+//             foreach (var node in self) 
+//                 node.OnCreateFreshData();
+//         }
+//
+//         public async UniTask EachOnLaunchCom(bool isThisFromLoad)
+//         {
+//             foreach (var node in self) 
+//                 await node.OnLaunchCom(isThisFromLoad);
+//         }
+//         public void EachOnReleaseCom()
+//         {
+//             foreach (var node in self) 
+//                 node.OnReleaseCom();
+//         }
+//     }
+// }

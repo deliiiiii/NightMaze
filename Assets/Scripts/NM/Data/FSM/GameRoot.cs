@@ -23,8 +23,8 @@ public partial class GameRoot : Node<GameRoot>
 
     public static CancellationTokenRegistration AddTo(CancellationToken ct)
         => instance.AddTo(ct);
-    public static UniTask ChangeStateAsync<T>(T com, bool isNewFromLoad) where T : RootStateBase<T>
-         => instance._ChangeAsync(ref instance.state, com, isNewFromLoad);
+    public static UniTask ChangeStateAsync<T>(T node, bool isNewFromLoad) where T : RootStateBase<T>
+         => instance._ChangeAsync(ref instance.state, node, isNewFromLoad);
     public static MyOption<T> GetStateOptional<T>() where T : RootStateBase<T>
         => instance.state is T s ? s : None;
     public static bool IsState<T>() where T : RootStateBase<T>
