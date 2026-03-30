@@ -1,4 +1,5 @@
-﻿using NM.View.ZZZTest;
+﻿using General;
+using NM.View.ZZZTest;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,16 +9,6 @@ public class GridMapDrag : MonoBehaviour, IMultiDragHandler
 {
     [SerializeField] Trs follow = null!;
     ClampInRect ClampInRect => field ??= follow.GetComponent<ClampInRect>();
-
-    void Awake()
-    {
-        // this.ForwardAllEvt();
-        // this.DisableRayWhenDrag();
-        // this.BindEvtPntTrg(EventTriggerType.Drag, evt =>
-        // {
-        //     
-        // });
-    }
     
     public void OnMultiDrag(PointerEventData eventData)
     {

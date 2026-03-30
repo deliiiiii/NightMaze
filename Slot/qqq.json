@@ -989,8 +989,8 @@
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "200",
-            "X": 4,
-            "Y": 2
+            "X": 3,
+            "Y": 1
           }
         }
       },
@@ -1053,6 +1053,6 @@
     }
   },
   "PlayerName": "qqq",
-  "PlayTime": 63.654381389729679,
+  "PlayTime": 127.44153167773038,
   "Coin": 0
 }

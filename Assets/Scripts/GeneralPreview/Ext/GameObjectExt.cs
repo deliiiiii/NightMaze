@@ -1,5 +1,11 @@
 ﻿using System.Diagnostics;
+using System.Threading;
+using General;
+using JetBrains.Annotations;
+using PlasticGui.WorkspaceWindow.PendingChanges;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace GeneralPreview;
 [DebuggerStepThrough]
@@ -22,5 +28,23 @@ public static class GameObjectExt
     {
         public void SetActiveTrue() => self.gameObject.SetActive(true);
         public void SetActiveFalse() => self.gameObject.SetActive(false);
+    }
+    
+    extension(MonoBehaviour self)
+    {
+        public void BindEvtTrg(EventTriggerType type, UnityAction<BaseEventData> callback, CancellationToken? ct = null)
+        {
+            if (self.GetComponent<Collider2D>() == null)
+            {
+                MyDebug.LogError($"{self.name} 必须拥有2D碰撞体, 才能绑定eventData事件.");
+                return;
+            }
+            ct ??= self.destroyCancellationToken;
+            var trigger = self.gameObject.GetOrAddCom<EventTrigger>();
+            var entry = new EventTrigger.Entry { eventID = type };
+            entry.callback.AddListener(callback);
+            ct.Value.Register(() => trigger.triggers.Remove(entry));
+            trigger.triggers.Add(entry);
+        }
     }
 }
