@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -8,6 +9,13 @@ public static class TransformExt
 {
     extension(Transform self)
     {
+        public IEnumerable<Transform> GetChildren()
+        {
+            for(int i = 0; i < self.childCount; i++)
+            {
+                yield return self.GetChild(i);
+            }
+        }
         public Transform ClearChildren()
         {
             for(int i = self.transform.childCount - 1; i >= 0; i--)

@@ -19,6 +19,12 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     public override string ToString() => nameof(GamePlaying);
     public string PlayerName { get; private set;}= "Deli";
     public double PlayTime { get; private set;}
+    [EvtChanged]public partial long Prop1 { get;private set; }
+    [EvtChanged]public partial long Prop2 { get;private set; }
+    [EvtChanged]public partial long Prop3 { get;private set; }
+    [EvtChanged]public partial long Prop4 { get;private set; }
+    [EvtChanged]public partial long Prop5 { get;private set; }
+    [EvtChanged]public partial long Prop6 { get;private set; }
     [EvtChanged]
     public partial long Coin { get; private set;}
     // 标注[EvtChanged]则源生↓↓↓
@@ -79,12 +85,6 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     {
         PlayTime += dt;
     }
-
-    // Node? state;
-    // public UniTask ChangeState<T>(T com, bool isNewFromLoad) where T : PlayStateBase<T>
-        // => _ChangeAsync(ref state, com, isNewFromLoad);
-    // public MyOption<T> GetStateOptional<T>() where T : PlayStateBase<T>
-        // => state is T s ? s : None;
 }
 
 public abstract class PlayStateBase<T> : Node<GamePlaying, T> where T : PlayStateBase<T>;

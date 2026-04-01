@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GeneralPreview;
 [DebuggerStepThrough]
@@ -54,6 +55,48 @@ public abstract record MyEither<T1, T2>
     public MyEither<T1B, T2> Select<T1B>(Func<T1, T1B> f) => Map1(f);
     public MyEither<T1C, T2> SelectMany<T1B, T1C>(Func<T1, MyEither<T1B, T2>> f, Func<T1, T1B, T1C> s) =>
         Bind1(a => f(a).Map1(b => s(a, b)));
+
+    // public override string ToString()
+    // {
+    //     return this switch
+    //     {
+    //         Left<T1, T2> left => $"Left({left.Value})",
+    //         Right<T1, T2> right => $"Right({right.Value})",
+    //         _ => throw new InvalidOperationException(),
+    //     };
+    // }
+    public bool IsLeft([NotNullWhen(true)]out T1? left, [NotNullWhen(false)]out T2? right)
+    {
+        var ret = false;
+        left = default;
+        right = default;
+        switch (this)
+        {
+            case Left<T1, T2> l:
+                left = l.Value;
+                ret = true;
+                break;
+            case Right<T1, T2> r:
+                right = r.Value;
+                ret = false;
+                break;
+        }
+        return ret;
+    }
 }
-public record Left<T1, T2>(T1 Value) : MyEither<T1, T2>;
-public record Right<T1, T2>(T2 Value) : MyEither<T1, T2>;
+
+public record Left<T1, T2>(T1 Value) : MyEither<T1, T2>
+{
+    public override string ToString()
+    {
+        return $"Left ({Value})";
+    }
+}
+
+public record Right<T1, T2>(T2 Value) : MyEither<T1, T2>
+{
+    public override string ToString()
+    {
+        return $"Right ({Value})";
+    }
+}

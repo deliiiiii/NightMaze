@@ -146,12 +146,14 @@ public static class MyOptionExt
 [Serializable]
 public record MySome<T>([property: ShowInInspector] T Value) : MyOption<T>
 {
-    public override string ToString() => $"{nameof(MySome<>)}({Value})";
+    // public override string ToString() => $"{nameof(MySome<>)}({Value})";
+    public override string ToString() => $"Some ({Value})";
 }
 
 
 [Serializable]
 public record MyNone<T> : MyOption<T>
 {
-    public override string ToString() => $"{nameof(MyNone<>)}";
+    // public override string ToString() => $"{nameof(MyNone<>)}";
+    public override string ToString() => $"None";
 }
