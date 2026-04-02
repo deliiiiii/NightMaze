@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b280063ca6784e01ad51f9f39b4819d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  belongView: {fileID: 3271188090210110331}
   onEnterTween: {fileID: 5723720930624285385}
   onExitTween: {fileID: 3519878133573709586}
 --- !u!1 &2624305768987939916

@@ -13,8 +13,7 @@ public class GridMapScroll : MonoBehaviour
     public int MaxSeenGrid = 24;
     public int TarSeenGrid = 12;
     public float Duration = 0.4f;
-    [ShowInInspector]float TarOrtho => TarSeenGrid * GridSize / 2f;
-    public const int GridSize = 1;
+    [ShowInInspector]float TarOrtho => TarSeenGrid * Const.GridSize / 2f;
     void Awake()
     {
         IUniEvt.BindAll(this, destroyCancellationToken);

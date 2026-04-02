@@ -59,6 +59,8 @@ public class PlayView : ViewBase<GamePlaying>
             Data = null!;
             ClearAllGrid();
             this.SetActiveFalse();
+            GridDetail.SetActiveFalse();
+            lockGridDetail = false;
             return UniTask.CompletedTask;
         },
         Des = "(退出Root - Playing状态时) 隐藏界面"
@@ -85,15 +87,17 @@ public class PlayView : ViewBase<GamePlaying>
     #endregion
 
 
-    public void ShowGridPosDetail(Vector2 screenPos)
+    public void ShowGridDetailAtPos(Vector2Int gridPos)
     {
-        var thisGridPos = ScreenToGrid(screenPos);
+        if (lockGridDetail)
+            return;
+        // var gridPos = ScreenToGrid(screenPos);
         var detailList = new List<DetailInfo>();
         detailList.AddRange(
         [
             .. 
             from grid in Data.Grids
-            where grid.Pos == thisGridPos
+            where grid.Pos == gridPos
             select new DetailInfo
             {
                 Type = "地块",
@@ -104,7 +108,7 @@ public class PlayView : ViewBase<GamePlaying>
             }, 
             ..
             from symbol in Data.Symbols
-            where symbol.CoverPos(thisGridPos)
+            where symbol.CoverPos(gridPos)
             select new DetailInfo
             {
                 Type = "符号",
@@ -115,7 +119,7 @@ public class PlayView : ViewBase<GamePlaying>
             },
             ..
             from resource in Data.Resources
-            where resource.Pos == thisGridPos
+            where resource.Pos == gridPos
             select new DetailInfo
             {
                 Type = "资源",
@@ -125,9 +129,27 @@ public class PlayView : ViewBase<GamePlaying>
                 InSpinLineList = []
             }
         ]);
+        GridDetail.SetActiveTrue();
+        GridDetail.transform.position = GridToWorld(gridPos + new Vector2Int(1,1) * Const.GridSize);
+        GridDetail.transform.SetLocalPositionZ(0);
         GridDetail.Refresh(detailList);
     }
-    
+
+    public void HideGridDetail()
+    {
+        if (lockGridDetail)
+            return;
+        GridDetail.SetActiveFalse();
+    }
+
+    bool lockGridDetail;
+    public void SwitchLockGridDetail(bool? tar = null)
+    {
+        if (tar == null)
+            lockGridDetail = !lockGridDetail;
+        else
+            lockGridDetail = tar.Value;
+    }
 
     void ClearAllGrid()
     {
@@ -173,6 +195,7 @@ public class PlayView : ViewBase<GamePlaying>
         resourceList.Add(go);
     }
     public static Vector2Int ScreenToGrid(Vector2 screenPos) => WorldToGrid(MyCamera.Main.ScreenToWorldPoint(screenPos));
+    static Vector2 GridToScreen(Vector2Int gridPos) => MyCamera.Main.WorldToScreenPoint(GridToWorld(gridPos));
     static Vector2Int WorldToGrid(Vector2 worldPos) => new((int)worldPos.x, (int)worldPos.y);
     static Vector2 GridToWorld(Vector2Int gridPos) => gridPos;
 }

@@ -12,6 +12,7 @@ public class GridSprTrigger : MonoBehaviour,
     IMultiPointerExitHandler,
     IMultiPointerClickHandler
 {
+    [SerializeField] GridView belongView = null!;
     [SerializeField] DOTweenSequence onEnterTween = null!;
     [SerializeField] DOTweenSequence onExitTween = null!;
     readonly DoTweenSeqMutex enterExitTween = new();
@@ -25,17 +26,21 @@ public class GridSprTrigger : MonoBehaviour,
     {
         // MyDebug.Log($"{name} Pointer exit!");
         enterExitTween.PlayMutexAsync(onExitTween, destroyCancellationToken).Forget();
+        PlayViewIns.HideGridDetail();
     }
 
     public void OnMultiPointerClick(PointerEventData eventData)
     {
         if (eventData.button != PointerEventData.InputButton.Middle)
             return;
-        MyDebug.Log($"{name} middle click!");
+        // MyDebug.Log($"{name} middle click!");
+        PlayViewIns.SwitchLockGridDetail(false);
+        PlayViewIns.ShowGridDetailAtPos(belongView.Data.Pos);
+        PlayViewIns.SwitchLockGridDetail(true);
     }
 
     public void OnMultiPointerHover(PointerEventData eventData)
     {
-        PlayViewIns.ShowGridPosDetail(eventData.position);
+        PlayViewIns.ShowGridDetailAtPos(belongView.Data.Pos);
     }
 }

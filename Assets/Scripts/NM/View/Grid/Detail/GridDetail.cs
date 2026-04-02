@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using General;
 using GeneralPreview;
@@ -13,6 +14,8 @@ public class GridDetail : MonoBehaviour
     [SerializeField] GridDetailHead pfbGridDetailHead;
     [SerializeField] GridType pfbGridType;
     [SerializeField] GridInSpinLine pfbGridInSpinLine;
+
+    public Btn BtnClose;
     public Txt TxtDetail;
 
     public Trs TrsGridHead;
@@ -20,6 +23,15 @@ public class GridDetail : MonoBehaviour
     public Trs TrsGridInSpinLine;
     
     ItemTypeResourceMgr mgr => field ??= RefPoolSingle<ItemTypeResourceMgr>.Acquire();
+
+    void Awake()
+    {
+        BtnClose.onClick.EvtBindTo(() =>
+        {
+            PlayViewIns.SwitchLockGridDetail(false);
+            gameObject.SetActiveFalse();
+        }).Bind(destroyCancellationToken);
+    }
 
     public void Refresh(List<DetailInfo> detailList)
     {

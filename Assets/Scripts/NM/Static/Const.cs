@@ -6,7 +6,8 @@ public static class Const
     public const int SpinH = 4;
     public const int SpinFirstID = 1;
     public const int DeckMax = 20;
-
+    public const int GridSize = 1;
+    
     public static class Property
     {
         public const string Name1 = "Disorder";
