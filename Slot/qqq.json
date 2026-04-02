@@ -974,8 +974,8 @@
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "197",
-            "X": 5,
-            "Y": 3
+            "X": 2,
+            "Y": 1
           }
         }
       },
@@ -1005,7 +1005,7 @@
           "Pos": {
             "$id": "203",
             "X": 3,
-            "Y": 4
+            "Y": 2
           }
         }
       },
@@ -1019,7 +1019,7 @@
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "206",
-            "X": 4,
+            "X": 3,
             "Y": 3
           }
         }
@@ -1034,8 +1034,8 @@
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "209",
-            "X": 5,
-            "Y": 4
+            "X": 4,
+            "Y": 1
           }
         }
       }
@@ -1053,6 +1053,12 @@
     }
   },
   "PlayerName": "qqq",
-  "PlayTime": 127.44153167773038,
+  "PlayTime": 144.53301759250462,
+  "Prop1": 0,
+  "Prop2": 0,
+  "Prop3": 0,
+  "Prop4": 0,
+  "Prop5": 0,
+  "Prop6": 0,
   "Coin": 0
 }

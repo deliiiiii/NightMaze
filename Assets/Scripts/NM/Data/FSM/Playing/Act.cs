@@ -13,14 +13,11 @@ public partial class GamePlaying
         grid.Pos = pos;
         return UniTask.CompletedTask;
     }   
-    [Obsolete("某符号放置在某位置")]
+    [Obsolete("某符号放置在某位置")][ActConfig(true)]
     UniTask SetSymbolAtPosAsync(Symbol symbol, Vector2Int pos, CancellationToken ct)
     {
         var oldPos = symbol.Pos;
         symbol.Pos = pos;
-        new EvtSetSymbolAtPosWithOld(symbol, oldPos, pos).Forget();
         return UniTask.CompletedTask;
     }
-
-    public record EvtSetSymbolAtPosWithOld(Symbol Symbol, Vector2Int OldPos, Vector2Int NewPos) : EvtForgetBase;
 }

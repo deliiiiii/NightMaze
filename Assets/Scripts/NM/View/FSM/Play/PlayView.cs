@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
@@ -19,8 +20,8 @@ public class PlayView : ViewBase<GamePlaying>
     [SerializeField] GridView gridPfb;
     [SerializeField] SymbolView symbolPfb;
 
-    readonly Dictionary<Vector2Int, GridView> gridDic = [];
-    readonly Dictionary<Vector2Int, SymbolView> symbolDic = [];
+    readonly List<GridView> gridList = [];
+    readonly List<SymbolView> symbolList = [];
     
     protected override IEnumerable<BindDataBase> BindList()
     {
@@ -34,8 +35,8 @@ public class PlayView : ViewBase<GamePlaying>
         {
             Data = evt.WhoHasCt;
             // ClearAllGrid();
-            Data.Grids.ForEach(grid => SetGridAtPos(grid, grid.Pos));
-            Data.Symbols.ForEach(symbol => SetSymbolAtPos(symbol, symbol.Pos));
+            Data.Grids.ForEach(SetGridAtPos);
+            Data.Symbols.ForEach(SetSymbolAtPos);
             gameObject.SetActiveTrue();
             return UniTask.CompletedTask;
         },
@@ -58,16 +59,16 @@ public class PlayView : ViewBase<GamePlaying>
     {
         Invoke = (evt, ct) =>
         {
-            SetGridAtPos(evt.Grid, evt.Pos);
+            SetGridAtPos(evt.Grid);
             return UniTask.CompletedTask;
         },
         Des = "显示地块",
     };
-    UniEvt<GamePlaying.EvtSetSymbolAtPosWithOld> OnSetSymbolAtPos => new()
+    UniEvt<GamePlaying.EvtSetSymbolAtPos> OnSetSymbolAtPos => new()
     {
         Invoke = (evt, ct) =>
         {
-            SetSymbolAtPos(evt.Symbol, evt.NewPos, evt.OldPos);
+            SetSymbolAtPos(evt.Symbol);
             return UniTask.CompletedTask;
         },
         Des = "显示符号",
@@ -77,33 +78,35 @@ public class PlayView : ViewBase<GamePlaying>
 
     void ClearAllGrid()
     {
-        gridDic.Values.ForEach(grid => Destroy(grid.gameObject));
-        gridDic.Clear();
-        symbolDic.Clear();
+        gridList.ForEach(grid => Destroy(grid.gameObject));
+        gridList.Clear();
+        symbolList.Clear();
     }
 
-    void SetGridAtPos(GamePlaying.Grid grid, Vector2Int pos)
+    void SetGridAtPos(GamePlaying.Grid grid)
     {
-        gridDic.Remove(pos);
+        // gridList.Remove(pos);
+        // TODO
         var go = Instantiate(gridPfb, GridTrs);
         go.Data = grid;
-        go.transform.position = GridToWorld(pos);
+        go.transform.position = GridToWorld(grid.Pos);
         go.SetActiveTrue();
-        gridDic.Add(pos, go);
+        gridList.Add(go);
     }
 
-    void SetSymbolAtPos(GamePlaying.Symbol symbol, Vector2Int pos, Vector2Int? oldPos = null)
+    void SetSymbolAtPos(GamePlaying.Symbol symbol)
     {
-        if (oldPos == null || !symbolDic.Remove(oldPos.Value, out var go))
+        SymbolView? go = symbolList.FirstOrDefault(s => s.Data == symbol);
+        if (go == null)
         {
             go = Instantiate(symbolPfb);
             go.Data = symbol;
             go.SetActiveTrue();
             go.Sr.SetActiveTrue();
         }
-        symbolDic.Add(pos, go);
+        symbolList.Add(go);
 
-        go.transform.parent = gridDic[pos].TrsSymbol;
+        go.transform.parent = gridList.FirstOrDefault(g => g.Data.Pos == symbol.Pos)?.TrsSymbol;
         go.transform.localPosition = Vector3.zero;
     }
     public static Vector2Int ScreenToGrid(Vector2 screenPos) => WorldToGrid(MyCamera.Main.ScreenToWorldPoint(screenPos));

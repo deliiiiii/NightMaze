@@ -1,8 +1,4 @@
 ﻿//Mono单例
-//需要被继承 xxx : Singleton<xxx>
-//获取单例 xxx.Instance
-
-using System;
 using System.Diagnostics;
 using UnityEngine;
 
@@ -40,31 +36,7 @@ namespace General
             {
                 DontDestroyOnLoad(gameObject);
             }
-
             destroyCancellationToken.Register(() => instance = null);
         }
-
-        // #if UNITY_EDITOR
-//         void OnPlayModeStateChanged(PlayModeStateChange s)
-//         {
-//             if (s == PlayModeStateChange.ExitingPlayMode && instance != null)
-//             {
-//                 // DestroyImmediate(gameObject);
-//                 instance = null;
-//             }
-//         }
-// #endif
-//         void OnEnable()
-//         {
-// #if UNITY_EDITOR
-//             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-// #endif
-//         }
-//         void OnDisable()
-//         {
-// #if UNITY_EDITOR
-//             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
-// #endif
-//         }
     }
 }
