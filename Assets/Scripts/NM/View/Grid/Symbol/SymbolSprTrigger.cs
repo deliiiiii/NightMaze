@@ -37,14 +37,18 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
         if(eventData.button != PointerEventData.InputButton.Left)
             return;
         var mouseGridPos = PlayView.ScreenToGrid(eventData.position);
-        if(PlayViewIns.Data.EmptyGrids.Any(grid => grid.Pos == mouseGridPos))
+        GamePlayData.MatchA(some =>
         {
-            new GamePlaying.ActSetSymbolAtPos(PlayViewIns.Data)
+            if (some.EmptyGrids.Any(grid => grid.Pos == mouseGridPos))
             {
-                Symbol = BelongView.Data,
-                Pos = mouseGridPos
-            }.Forget();
-        }
+                new GamePlaying.ActSetSymbolAtPos(some)
+                {
+                    Symbol = BelongView.Data,
+                    Pos = mouseGridPos
+                }.Forget();
+            }
+        });
+       
         transform.localPosition = Vector3.zero;
     }
 

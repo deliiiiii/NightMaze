@@ -1065,8 +1065,8 @@
           "ID": 1,
           "PivotPos": {
             "$id": "202",
-            "X": 1,
-            "Y": 2
+            "X": 3,
+            "Y": 3
           },
           "DeltaPosList": {
             "$id": "203",
@@ -1091,8 +1091,8 @@
           "ID": 1,
           "PivotPos": {
             "$id": "207",
-            "X": 1,
-            "Y": 3
+            "X": 2,
+            "Y": 2
           },
           "DeltaPosList": {
             "$id": "208",
@@ -1117,8 +1117,8 @@
           "ID": 1,
           "PivotPos": {
             "$id": "212",
-            "X": 1,
-            "Y": 4
+            "X": 5,
+            "Y": 3
           },
           "DeltaPosList": {
             "$id": "213",
@@ -1143,8 +1143,8 @@
           "ID": 1,
           "PivotPos": {
             "$id": "217",
-            "X": 1,
-            "Y": 5
+            "X": 2,
+            "Y": 4
           },
           "DeltaPosList": {
             "$id": "218",
@@ -1252,7 +1252,7 @@
     }
   },
   "PlayerName": "qqq2",
-  "PlayTime": 1.6979169091209769,
+  "PlayTime": 2498.456642373465,
   "Prop1": 0,
   "Prop2": 0,
   "Prop3": 0,
@@ -1262,12 +1262,244 @@
   "Coin": 0,
   "state": {
     "$id": "237",
-    "$type": "NM.Data.PlayIdle, NM.Data",
+    "$type": "NM.Data.PlaySpin, NM.Data",
     "savedVersion": 20260402.0,
     "comDic": {
       "$id": "238",
-      "$values": []
+      "$values": [
+        {
+          "Key": {
+            "$ref": "195"
+          },
+          "Value": {
+            "$id": "239",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": {
+              "$id": "240",
+              "$values": [
+                {
+                  "$id": "241",
+                  "Ett": {
+                    "$ref": "195"
+                  },
+                  "Value": 2
+                }
+              ]
+            },
+            "ModifyProp2": {
+              "$id": "242",
+              "$values": [
+                {
+                  "$id": "243",
+                  "Ett": {
+                    "$ref": "195"
+                  },
+                  "Value": 3
+                }
+              ]
+            },
+            "ModifyProp3": {
+              "$id": "244",
+              "$values": [
+                {
+                  "$id": "245",
+                  "Ett": {
+                    "$ref": "195"
+                  },
+                  "Value": 4
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Key": {
+            "$ref": "200"
+          },
+          "Value": {
+            "$id": "246",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": {
+              "$id": "247",
+              "$values": [
+                {
+                  "$id": "248",
+                  "Ett": {
+                    "$ref": "200"
+                  },
+                  "Value": 2
+                }
+              ]
+            },
+            "ModifyProp2": {
+              "$id": "249",
+              "$values": [
+                {
+                  "$id": "250",
+                  "Ett": {
+                    "$ref": "200"
+                  },
+                  "Value": 3
+                }
+              ]
+            },
+            "ModifyProp3": {
+              "$id": "251",
+              "$values": [
+                {
+                  "$id": "252",
+                  "Ett": {
+                    "$ref": "200"
+                  },
+                  "Value": 4
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Key": {
+            "$ref": "205"
+          },
+          "Value": {
+            "$id": "253",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": {
+              "$id": "254",
+              "$values": [
+                {
+                  "$id": "255",
+                  "Ett": {
+                    "$ref": "205"
+                  },
+                  "Value": 2
+                }
+              ]
+            },
+            "ModifyProp2": {
+              "$id": "256",
+              "$values": [
+                {
+                  "$id": "257",
+                  "Ett": {
+                    "$ref": "205"
+                  },
+                  "Value": 3
+                }
+              ]
+            },
+            "ModifyProp3": {
+              "$id": "258",
+              "$values": [
+                {
+                  "$id": "259",
+                  "Ett": {
+                    "$ref": "205"
+                  },
+                  "Value": 4
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Key": {
+            "$ref": "210"
+          },
+          "Value": {
+            "$id": "260",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": {
+              "$id": "261",
+              "$values": [
+                {
+                  "$id": "262",
+                  "Ett": {
+                    "$ref": "210"
+                  },
+                  "Value": 2
+                }
+              ]
+            },
+            "ModifyProp2": {
+              "$id": "263",
+              "$values": [
+                {
+                  "$id": "264",
+                  "Ett": {
+                    "$ref": "210"
+                  },
+                  "Value": 3
+                }
+              ]
+            },
+            "ModifyProp3": {
+              "$id": "265",
+              "$values": [
+                {
+                  "$id": "266",
+                  "Ett": {
+                    "$ref": "210"
+                  },
+                  "Value": 4
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Key": {
+            "$ref": "215"
+          },
+          "Value": {
+            "$id": "267",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": {
+              "$id": "268",
+              "$values": [
+                {
+                  "$id": "269",
+                  "Ett": {
+                    "$ref": "215"
+                  },
+                  "Value": 2
+                }
+              ]
+            },
+            "ModifyProp2": {
+              "$id": "270",
+              "$values": [
+                {
+                  "$id": "271",
+                  "Ett": {
+                    "$ref": "215"
+                  },
+                  "Value": 3
+                }
+              ]
+            },
+            "ModifyProp3": {
+              "$id": "272",
+              "$values": [
+                {
+                  "$id": "273",
+                  "Ett": {
+                    "$ref": "215"
+                  },
+                  "Value": 4
+                }
+              ]
+            }
+          }
+        }
+      ]
     },
-    "BelongNode": null
+    "BelongNode": {
+      "$ref": "1"
+    },
+    "ToDoList": {
+      "$id": "274",
+      "$values": []
+    }
   }
 }

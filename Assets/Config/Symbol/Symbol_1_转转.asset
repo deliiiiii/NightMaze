@@ -25,9 +25,9 @@ MonoBehaviour:
   ID: 1
   Type: 31
   Rarity: 0
-  Prop1: 0
-  Prop2: 0
-  Prop3: 0
+  Prop1: 2
+  Prop2: 3
+  Prop3: 4
   EvtList: []
   references:
     version: 2

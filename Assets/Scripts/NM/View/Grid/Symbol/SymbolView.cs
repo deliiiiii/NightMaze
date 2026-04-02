@@ -1,4 +1,6 @@
-﻿using GeneralPreview;
+﻿using System.Data;
+using General;
+using GeneralPreview;
 using NM.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,4 +13,16 @@ public class SymbolView : ViewBase
     [field:SerializeReference, ReadOnly] public GamePlaying.Symbol Data { get; set; }
 
     public SpriteRenderer Sr;
+    public DOTweenSequence OnSpinTween;
+
+    UniEvt<PlaySpin.EvtBeforeCheckSymbol> OnBeforeCheckSymbol => new()
+    {
+        Invoke = async (evt, ct) =>
+        {
+            if (evt.Symbol.BelongEtt != Data.BelongEtt)
+                return;
+            await OnSpinTween.PlayAsync(ct);
+        },
+        Des = "符号结算前播放动画.",
+    };
 }

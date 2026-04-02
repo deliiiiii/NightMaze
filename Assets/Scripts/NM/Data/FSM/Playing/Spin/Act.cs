@@ -8,10 +8,13 @@ namespace NM.Data;
 public partial class PlaySpin
 {
     [Obsolete("执行符号效果")]
-    UniTask CheckSymbolAsync(Symbol symbol, CancellationToken ct)
+    async UniTask CheckSymbolAsync(Symbol symbol, CancellationToken ct)
     {
-        return UniTask.CompletedTask;
+        await new EvtBeforeCheckSymbol(this, symbol);
+        symbol.SelfAddBaseValue.Invoke();
     }
+
+    public record EvtBeforeCheckSymbol(PlaySpin WhoHasCt, Symbol Symbol) : EvtBase<PlaySpin>(WhoHasCt);
     
     [Obsolete("某物让某符号属性1 变化（添加时）")]
     UniTask EttAddSymbolModifyProp1Async(EttBase ett, Symbol symbol, int value, CancellationToken ct)

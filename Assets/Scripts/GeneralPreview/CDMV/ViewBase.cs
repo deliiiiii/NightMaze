@@ -50,5 +50,5 @@ public abstract class ViewBase : MonoBehaviour
 public abstract class ViewBase<TData> : ViewBase
     where TData : Node<TData>
 {
-    [ReadOnly] public TData Data = null!;
+    [ReadOnly] protected TData Data = null!;
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using General;
@@ -29,13 +30,23 @@ public class PlayView : ViewBase<GamePlaying>
     readonly List<SymbolView> symbolList = [];
     readonly List<ResourceView> resourceList = [];
     
+    public Vector2Int? LockedPosDetail;
+    
     protected override IEnumerable<BindDataBase> BindList()
     {
         yield return BtnSpin.onClick.EvtBindTo(() => new EvtPlayViewClickSpin().Forget());
         yield return BtnHarvest.onClick.EvtBindTo(() => new EvtPlayViewClickHarvest().Forget());
         yield return BtnExit.onClick.EvtBindTo(() => new EvtPlayViewClickExit().Forget());
     }
-    
+
+    void Update()
+    {
+        if (LockedPosDetail != null)
+        {
+            ShowGridDetailAtPos(LockedPosDetail.Value);
+        }
+    }
+
     #region OnEvt
     UniEvt<GamePlaying.EvtOnEnter> OnEnter => new()
     {
@@ -60,7 +71,7 @@ public class PlayView : ViewBase<GamePlaying>
             ClearAllGrid();
             this.SetActiveFalse();
             GridDetail.SetActiveFalse();
-            lockGridDetail = false;
+            LockedPosDetail = null;
             return UniTask.CompletedTask;
         },
         Des = "(退出Root - Playing状态时) 隐藏界面"
@@ -85,13 +96,9 @@ public class PlayView : ViewBase<GamePlaying>
         Des = "显示符号",
     };
     #endregion
-
-
+    
     public void ShowGridDetailAtPos(Vector2Int gridPos)
     {
-        if (lockGridDetail)
-            return;
-        // var gridPos = ScreenToGrid(screenPos);
         var detailList = new List<DetailInfo>();
         detailList.AddRange(
         [
@@ -114,8 +121,17 @@ public class PlayView : ViewBase<GamePlaying>
                 Type = "符号",
                 Name = symbol.Config.Name,
                 ItemTypeList = symbol.Config.Type.ToValues(),
-                Detail = $"SSS...",
-                InSpinLineList = []
+                Detail = $"事符号. 白值{string.Join(", ",
+                    symbol.Config.Prop1.ToStringWithSymbol(),
+                    symbol.Config.Prop2.ToStringWithSymbol(),
+                    symbol.Config.Prop3.ToStringWithSymbol()
+                )}",
+                InSpinLineList = (
+                    from spin in PlaySpinData.ToIEnumerable()
+                    from symbolInSpin in spin[symbol.BelongEtt].ToIEnumerable()
+                    from modProp1 in symbolInSpin.ModifyProp1
+                    select $"{symbol.Config.name} {modProp1.Value.ToStringWithSymbol()}"
+                    ).ToList()
             },
             ..
             from resource in Data.Resources
@@ -137,18 +153,9 @@ public class PlayView : ViewBase<GamePlaying>
 
     public void HideGridDetail()
     {
-        if (lockGridDetail)
+        if (LockedPosDetail != null)
             return;
         GridDetail.SetActiveFalse();
-    }
-
-    bool lockGridDetail;
-    public void SwitchLockGridDetail(bool? tar = null)
-    {
-        if (tar == null)
-            lockGridDetail = !lockGridDetail;
-        else
-            lockGridDetail = tar.Value;
     }
 
     void ClearAllGrid()
@@ -198,4 +205,22 @@ public class PlayView : ViewBase<GamePlaying>
     static Vector2 GridToScreen(Vector2Int gridPos) => MyCamera.Main.WorldToScreenPoint(GridToWorld(gridPos));
     static Vector2Int WorldToGrid(Vector2 worldPos) => new((int)worldPos.x, (int)worldPos.y);
     static Vector2 GridToWorld(Vector2Int gridPos) => gridPos;
+}
+
+
+static class IntExt
+{
+    extension(int self)
+    {
+        public string ToStringWithSymbol()
+        {
+            string symbol = self switch
+            {
+                > 0 => "+",
+                < 0 => "-",
+                _ => string.Empty
+            };
+            return $"{symbol}{self}";
+        }
+    }
 }

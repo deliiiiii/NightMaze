@@ -4,6 +4,7 @@ using System.Linq;
 using General;
 using GeneralPreview;
 using NM.Config;
+using Sirenix.Utilities;
 using UnityEngine;
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 
@@ -24,28 +25,45 @@ public class GridDetail : MonoBehaviour
     
     ItemTypeResourceMgr mgr => field ??= RefPoolSingle<ItemTypeResourceMgr>.Acquire();
 
+    List<GridDetailHead> headList;
+    GridDetailHead? curHead;
+
     void Awake()
     {
         BtnClose.onClick.EvtBindTo(() =>
         {
-            PlayViewIns.SwitchLockGridDetail(false);
+            PlayViewIns.LockedPosDetail = null;
             gameObject.SetActiveFalse();
         }).Bind(destroyCancellationToken);
+
+        headList = TrsGridHead.GetChildren().Select(c => c.GetComponent<GridDetailHead>()).ToList();
     }
 
+
+    public void SwitchToFirst()
+    {
+        headList[0].OnClick?.Invoke();
+    }
     public void Refresh(List<DetailInfo> detailList)
     {
-        TrsGridHead.ClearChildren();
-        GridDetailHead? firstHead = null;
+        int headCount = 0;
+        int tarCount = detailList.Count;
+        for (int i = 0; i < tarCount; i++)
+        {
+            headList[i].SetActiveTrue();
+        }
+        for (int i = tarCount; i < TrsGridHead.childCount; i++)
+        {
+            headList[i].SetActiveFalse();
+        }
         detailList.ForEach(detail =>
         {
-            var head = Instantiate(pfbGridDetailHead, TrsGridHead);
-            head.SetActiveTrue();
+            var head = headList[headCount++];
             head.TxtType.text = detail.Type;
             head.TxtName.text = detail.Name;
-            firstHead ??= head;
             head.OnClick = () =>
             {
+                curHead = head;
                 TrsGridType.ClearChildren();
                 detail.ItemTypeList.ForEach(itemType =>
                 {
@@ -65,7 +83,8 @@ public class GridDetail : MonoBehaviour
                 });
             };
         });
-        firstHead?.OnClick?.Invoke();
+        curHead ??= headList[0];
+        curHead.OnClick?.Invoke();
     }
 }
 
