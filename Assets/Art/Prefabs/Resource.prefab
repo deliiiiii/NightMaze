@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 402375592894148112}
   - component: {fileID: 775109222244815321}
   - component: {fileID: 8249402621999599391}
-  - component: {fileID: 7066149347800188325}
+  - component: {fileID: 697842624347503131}
   m_Layer: 0
-  m_Name: SymbolSpr
+  m_Name: ResourceSpr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &402375592894148112
 Transform:
   m_ObjectHideFlags: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.14, y: 0.14, z: 0.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5859878413842771267}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -199445687
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 9080238007994650367, guid: 4ca2f7ede74f83646937d6fa0d2b9fef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a95ecd5259c63a247b8bf0321125d16b, type: 3}
   m_Color: {r: 0.5018867, g: 0.5018867, b: 0.5018867, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.4, y: 4.3}
+    oldSize: {x: 0.65, y: 0.52}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.4, y: 4.3}
   m_EdgeRadius: 0
---- !u!114 &7066149347800188325
+--- !u!114 &697842624347503131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,10 +140,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5916420251184453429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0bb7f99b09f407ea398738485d60039, type: 3}
+  m_Script: {fileID: 11500000, guid: af9d6e10621e443fa09f10977ba5b352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BelongView>k__BackingField: {fileID: 6141876711774617493}
+  <BelongView>k__BackingField: {fileID: 9007299931937907984}
 --- !u!1 &7187888423295095985
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,9 +153,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5859878413842771267}
-  - component: {fileID: 6141876711774617493}
+  - component: {fileID: 9007299931937907984}
   m_Layer: 0
-  m_Name: Symbol
+  m_Name: Resource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,7 +177,7 @@ Transform:
   - {fileID: 402375592894148112}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6141876711774617493
+--- !u!114 &9007299931937907984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7187888423295095985}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd84f8bfe90042aaa0148a9c73ba3f3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 20148aa2f9ea468ebca51079162b0023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Data>k__BackingField:

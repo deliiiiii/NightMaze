@@ -43,6 +43,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
 
     public IEnumerable<Symbol> Symbols => GetComs<Symbol>();
     public IEnumerable<Grid> Grids => GetComs<Grid>();
+    public IEnumerable<Resource> Resources => GetComs<Resource>();
 
     public IEnumerable<Grid> EmptyGrids
     {
@@ -67,6 +68,12 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
             .ToList()
             .Take(5)
             .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(this, EttSymbol.Create(), 1, grid.Pos)));
+        
+        EmptyGrids
+            .ToList()
+            .Take(5)
+            .ForEach(grid => AddEttCom<EttResource, Resource>(new Resource(this, EttResource.Create(), 1, grid.Pos)));
+        
         state = new PlayIdle();
     }
     

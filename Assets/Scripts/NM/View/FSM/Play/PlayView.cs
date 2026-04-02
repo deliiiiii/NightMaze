@@ -21,9 +21,11 @@ public class PlayView : ViewBase<GamePlaying>
 
     [SerializeField] GridView gridPfb;
     [SerializeField] SymbolView symbolPfb;
+    [SerializeField] ResourceView resourcePfb;
 
     readonly List<GridView> gridList = [];
     readonly List<SymbolView> symbolList = [];
+    readonly List<ResourceView> resourceList = [];
     
     protected override IEnumerable<BindDataBase> BindList()
     {
@@ -41,6 +43,7 @@ public class PlayView : ViewBase<GamePlaying>
             // ClearAllGrid();
             Data.Grids.ForEach(SetGridAtPos);
             Data.Symbols.ForEach(SetSymbolAtPos);
+            Data.Resources.ForEach(SetResourceAtPos);
             gameObject.SetActiveTrue();
             return UniTask.CompletedTask;
         },
@@ -108,10 +111,20 @@ public class PlayView : ViewBase<GamePlaying>
             go.SetActiveTrue();
             go.Sr.SetActiveTrue();
         }
-        symbolList.Add(go);
-
         go.transform.parent = gridList.FirstOrDefault(g => g.Data.Pos == symbol.Pos)?.TrsSymbol;
         go.transform.localPosition = Vector3.zero;
+        
+        symbolList.Add(go);
+    }
+
+    void SetResourceAtPos(GamePlaying.Resource resource)
+    {
+        var go = Instantiate(resourcePfb, 
+            gridList.FirstOrDefault(g => g.Data.Pos == resource.Pos)?.TrsResource, true);
+        go.transform.localPosition = Vector3.zero;
+        go.Data = resource;
+        go.SetActiveTrue();
+        resourceList.Add(go);
     }
     public static Vector2Int ScreenToGrid(Vector2 screenPos) => WorldToGrid(MyCamera.Main.ScreenToWorldPoint(screenPos));
     static Vector2Int WorldToGrid(Vector2 worldPos) => new((int)worldPos.x, (int)worldPos.y);

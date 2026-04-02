@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace NM.View;
 
-public class GridView : MonoBehaviour
+public class ResourceView : MonoBehaviour
 {
-    [field:SerializeReference, ReadOnly] public GamePlaying.Grid Data { get; set; }
-    public Trs TrsSymbol;
-    public Trs TrsResource;
+    [field:SerializeReference, ReadOnly] public GamePlaying.Resource Data { get; set; }
+    
+    public SpriteRenderer Sr;
 }
