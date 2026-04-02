@@ -1,6 +1,6 @@
 {
   "$id": "1",
-  "savedVersion": 20260313.0,
+  "savedVersion": 20260402.0,
   "comDic": {
     "$id": "2",
     "$values": [
@@ -972,85 +972,215 @@
         "Value": {
           "$id": "196",
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
-          "Pos": {
+          "ID": 1,
+          "PivotPos": {
             "$id": "197",
-            "X": 1,
-            "Y": 1
+            "X": 3,
+            "Y": 6
           },
-          "ID": 1
+          "DeltaPosList": {
+            "$id": "198",
+            "$values": [
+              {
+                "$id": "199",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
         }
       },
       {
         "Key": {
-          "$id": "198",
+          "$id": "200",
           "$type": "NM.EttSymbol, NM"
         },
         "Value": {
-          "$id": "199",
-          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
-          "Pos": {
-            "$id": "200",
-            "X": 1,
-            "Y": 2
-          },
-          "ID": 1
-        }
-      },
-      {
-        "Key": {
           "$id": "201",
-          "$type": "NM.EttSymbol, NM"
-        },
-        "Value": {
-          "$id": "202",
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
-          "Pos": {
-            "$id": "203",
-            "X": 1,
-            "Y": 3
-          },
-          "ID": 1
-        }
-      },
-      {
-        "Key": {
-          "$id": "204",
-          "$type": "NM.EttSymbol, NM"
-        },
-        "Value": {
-          "$id": "205",
-          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
-          "Pos": {
-            "$id": "206",
-            "X": 1,
-            "Y": 4
-          },
-          "ID": 1
-        }
-      },
-      {
-        "Key": {
-          "$id": "207",
-          "$type": "NM.EttSymbol, NM"
-        },
-        "Value": {
-          "$id": "208",
-          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
-          "Pos": {
-            "$id": "209",
-            "X": 1,
+          "ID": 1,
+          "PivotPos": {
+            "$id": "202",
+            "X": 3,
             "Y": 5
           },
-          "ID": 1
+          "DeltaPosList": {
+            "$id": "203",
+            "$values": [
+              {
+                "$id": "204",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "205",
+          "$type": "NM.EttSymbol, NM"
+        },
+        "Value": {
+          "$id": "206",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "207",
+            "X": 4,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "208",
+            "$values": [
+              {
+                "$id": "209",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "210",
+          "$type": "NM.EttSymbol, NM"
+        },
+        "Value": {
+          "$id": "211",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "212",
+            "X": 2,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "213",
+            "$values": [
+              {
+                "$id": "214",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "215",
+          "$type": "NM.EttSymbol, NM"
+        },
+        "Value": {
+          "$id": "216",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "217",
+            "X": 3,
+            "Y": 4
+          },
+          "DeltaPosList": {
+            "$id": "218",
+            "$values": [
+              {
+                "$id": "219",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "220",
+          "$type": "NM.EttResource, NM"
+        },
+        "Value": {
+          "$id": "221",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "Pos": {
+            "$id": "222",
+            "X": 1,
+            "Y": 6
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "223",
+          "$type": "NM.EttResource, NM"
+        },
+        "Value": {
+          "$id": "224",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "Pos": {
+            "$id": "225",
+            "X": 1,
+            "Y": 7
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "226",
+          "$type": "NM.EttResource, NM"
+        },
+        "Value": {
+          "$id": "227",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "Pos": {
+            "$id": "228",
+            "X": 1,
+            "Y": 8
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "229",
+          "$type": "NM.EttResource, NM"
+        },
+        "Value": {
+          "$id": "230",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "Pos": {
+            "$id": "231",
+            "X": 2,
+            "Y": 1
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "232",
+          "$type": "NM.EttResource, NM"
+        },
+        "Value": {
+          "$id": "233",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "Pos": {
+            "$id": "234",
+            "X": 2,
+            "Y": 2
+          }
         }
       }
     ]
   },
   "BelongNode": {
-    "$id": "210",
-    "savedVersion": 20260313.0,
+    "$id": "235",
+    "savedVersion": 20260402.0,
     "comDic": {
-      "$id": "211",
+      "$id": "236",
       "$values": []
     },
     "state": {
@@ -1058,7 +1188,7 @@
     }
   },
   "PlayerName": "qqq1",
-  "PlayTime": 1.8583413045853376,
+  "PlayTime": 86.272718551568687,
   "Prop1": 0,
   "Prop2": 0,
   "Prop3": 0,
@@ -1067,11 +1197,11 @@
   "Prop6": 0,
   "Coin": 0,
   "state": {
-    "$id": "212",
+    "$id": "237",
     "$type": "NM.Data.PlayIdle, NM.Data",
-    "savedVersion": 20260313.0,
+    "savedVersion": 20260402.0,
     "comDic": {
-      "$id": "213",
+      "$id": "238",
       "$values": []
     },
     "BelongNode": null

@@ -72,6 +72,11 @@ public class MultiEventRaycaster : MonoBehaviour
         }
 
         hoveredObjects = currentHits;
+        foreach (GO obj in hoveredObjects)
+        {
+            ExecuteEvents.Execute<IMultiPointerHoverHandler>(obj, hoverEventData, 
+                (handler, data) => handler.OnMultiPointerHover((PointerEventData)data));
+        }
 
         // 独立轮询并派发3个按键的拖拽状态流
         for (int i = 0; i < 3; i++)
@@ -114,10 +119,15 @@ public class MultiEventRaycaster : MonoBehaviour
                 {
                     ExecuteEvents.Execute<IMultiEndDragHandler>(obj, eventData, 
                         (handler, data) => handler.OnMultiEndDrag((PointerEventData)data));
+                    if (currentHits.Contains(obj))
+                    {
+                        ExecuteEvents.Execute<IMultiPointerClickHandler>(obj, eventData, 
+                            (handler, data) => handler.OnMultiPointerClick((PointerEventData)data));
+                    }
                 }
-
                 draggedObjects[i].Clear();
             }
+            
         }
     }
 }

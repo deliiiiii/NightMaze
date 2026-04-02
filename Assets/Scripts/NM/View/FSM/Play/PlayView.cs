@@ -14,6 +14,8 @@ using Vector2Int = GeneralPreview.Vector2Int;
 namespace NM.View;
 public class PlayView : ViewBase<GamePlaying>
 {
+    public GridDetail GridDetail;
+    
     public Trs GridTrs;
     public Btn BtnSpin;
     public Btn BtnHarvest;
@@ -83,6 +85,50 @@ public class PlayView : ViewBase<GamePlaying>
     #endregion
 
 
+    public void ShowGridPosDetail(Vector2 screenPos)
+    {
+        var thisGridPos = ScreenToGrid(screenPos);
+        var detailList = new List<DetailInfo>();
+        detailList.AddRange(
+        [
+            .. 
+            from grid in Data.Grids
+            where grid.Pos == thisGridPos
+            select new DetailInfo
+            {
+                Type = "地块",
+                Name = grid.Config.Name,
+                ItemTypeList = grid.Config.Type.ToValues(),
+                Detail = $"DDD...Nothing but pos {grid.Pos.ToString()}",
+                InSpinLineList = []
+            }, 
+            ..
+            from symbol in Data.Symbols
+            where symbol.CoverPos(thisGridPos)
+            select new DetailInfo
+            {
+                Type = "符号",
+                Name = symbol.Config.Name,
+                ItemTypeList = symbol.Config.Type.ToValues(),
+                Detail = $"SSS...",
+                InSpinLineList = []
+            },
+            ..
+            from resource in Data.Resources
+            where resource.Pos == thisGridPos
+            select new DetailInfo
+            {
+                Type = "资源",
+                Name = resource.Config.Name,
+                ItemTypeList = resource.Config.Type.ToValues(),
+                Detail = $"RRResource...",
+                InSpinLineList = []
+            }
+        ]);
+        GridDetail.Refresh(detailList);
+    }
+    
+
     void ClearAllGrid()
     {
         gridList.ForEach(grid => Destroy(grid.gameObject));
@@ -111,7 +157,7 @@ public class PlayView : ViewBase<GamePlaying>
             go.SetActiveTrue();
             go.Sr.SetActiveTrue();
         }
-        go.transform.parent = gridList.FirstOrDefault(g => g.Data.Pos == symbol.Pos)?.TrsSymbol;
+        go.transform.parent = gridList.FirstOrDefault(g => g.Data.Pos == symbol.PivotPos)?.TrsSymbol;
         go.transform.localPosition = Vector3.zero;
         
         symbolList.Add(go);

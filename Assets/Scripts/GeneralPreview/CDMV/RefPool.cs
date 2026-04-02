@@ -29,12 +29,12 @@ public static class RefPoolSingle<T> where T : class, IRefSingle
         MyDebug.LogError("DataBase: AcquireOne<" + typeof(T).Name + "> Not Exist, Auto Register");
         return null!;
     }
-    public static void Release(ref T toRemove)
+    public static void Release()
     {
         var type = typeof(T);
         if (oneDataDic.Remove(type))
         {
-            toRemove = null!;
+            // toRemove = null!;
             return;
         }
         MyDebug.LogError("DataBase: ReleaseOne<" + typeof(T).Name + "> Not Exist");
@@ -79,14 +79,14 @@ public static class RefPoolMulti<T> where T : class, IRefMulti
     }
     public static T AcquireOne(Func<T, bool> pred) => AcquireAll().FirstOrDefault(pred)!;
 
-    public static void ReleaseOne(ref T toRemove)
+    public static void ReleaseOne(T toRemove)
     {
         var type = typeof(T);
         if (listDataDic.TryGetValue(type, out var data)) 
         {
             if (data.Remove(toRemove))
             {
-                toRemove = null!;
+                // toRemove = null!;
                 return;
             }
             MyDebug.LogError("DataBase: ReleaseListOne<" + typeof(T).Name + "> Not Exist In List");
@@ -95,7 +95,7 @@ public static class RefPoolMulti<T> where T : class, IRefMulti
         MyDebug.LogError("DataBase: ReleaseListOne<" + typeof(T).Name + "> Not Exist");
     }
     
-    public static void ReleaseSome(ref List<T> toRemove)
+    public static void ReleaseSome(List<T> toRemove)
     {
         var type = typeof(T);
         if (listDataDic.TryGetValue(type, out var data)) 
@@ -105,7 +105,7 @@ public static class RefPoolMulti<T> where T : class, IRefMulti
                 if (!data.Remove(r))
                     MyDebug.LogError("DataBase: ReleaseListSome<" + typeof(T).Name + "> Not Exist In List");
             });
-            toRemove = null!;
+            // toRemove = null!;
             return;
         }
         MyDebug.LogError("DataBase: ReleaseListSome<" + typeof(T).Name + "> Not Exist");

@@ -14,6 +14,21 @@ namespace General
 {
     public static class Resourcer
     {
+        static Resourcer()
+        {
+            #if UNITY_EDITOR
+            // 退出状态时清空缓存，防止编辑器状态下资源泄漏
+            UnityEditor.EditorApplication.playModeStateChanged += state =>
+            {
+                if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
+                {
+                    _assetHandleCache.Clear();
+                    _labelLocationsCache.Clear();
+                }
+            };
+            #endif
+        }
+        
         static Dictionary<string, AsyncOperationHandle<Object>> _assetHandleCache = new();
         static Dictionary<string, IList<IResourceLocation>> _labelLocationsCache = new();
 

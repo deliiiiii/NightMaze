@@ -51,7 +51,8 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         {
             var posSet = (
                 from symbol in Symbols
-                select symbol.Pos).ToHashSet();
+                from coveredPos in symbol.CoveredPosList
+                select coveredPos).ToHashSet();
             return from grid in Grids
                 where !posSet.Contains(grid.Pos)
                 select grid;
@@ -63,7 +64,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         (from x in Range(1, 8) 
             from y in Range(1, 8)
             select new Vector2Int(x, y))
-            .ForEach(pos => AddEttCom<EttGrid, Grid>(new Grid(this, EttGrid.Create(), pos)));
+            .ForEach(pos => AddEttCom<EttGrid, Grid>(new Grid(this, EttGrid.Create(), 1, pos)));
         EmptyGrids
             .ToList()
             .Take(5)

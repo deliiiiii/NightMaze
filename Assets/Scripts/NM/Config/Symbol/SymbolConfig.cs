@@ -7,6 +7,7 @@ namespace NM.Config;
 public partial class SymbolConfig : ConfigMulti<SymbolConfig>
 {
     protected override string PrefixName => "Symbol";
+    [LabelText("标签")]public EItemType Type;
     [LabelText("稀有度")] public ERarity Rarity;
 
     [LabelText($"属性1 {Const.Property.Name1}白值")] public int Prop1;

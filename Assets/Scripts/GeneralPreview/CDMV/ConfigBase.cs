@@ -10,15 +10,19 @@ using UnityEngine;
 namespace GeneralPreview;
 
 [Serializable]
-    public abstract class ConfigBase : SerializedScriptableObject
+    public abstract class ConfigBase : SerializedScriptableObject, IDisposable
     {
         public abstract void OnLoad();
+        public abstract void OnUnload();
+
+        void IDisposable.Dispose() => OnUnload();
     }
 
     public abstract class ConfigSingle<T> : ConfigBase, IRefSingle
         where T : ConfigSingle<T>
     {
         public sealed override void OnLoad() => RefPoolSingle<T>.Register(() => (T)this);
+        public sealed override void OnUnload() => RefPoolSingle<T>.Release();
     }
 
     [Serializable]
@@ -30,6 +34,7 @@ namespace GeneralPreview;
         public string Name = string.Empty;
 
         public sealed override void OnLoad() => RefPoolMulti<T>.RegisterOne(() => (T)this);
+        public sealed override void OnUnload() => RefPoolMulti<T>.ReleaseOne((T)this);
 
         [OnValueChanged(nameof(OnNameAndIdChanged))]
         [ValidateInput(nameof(CheckNameAndIdIdentical), "名称为空，或ID在当前文件夹(配置类相同)有重复")]

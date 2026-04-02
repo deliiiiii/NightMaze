@@ -10,12 +10,14 @@ public static class Loader
 {
     public static async UniTask LoadAllAsync(CancellationToken? ct = null)
     {
+        ct ??= CancellationToken.None;
         var configAll = new List<ConfigBase>(1000);
         configAll.AddRange(await Resourcer.LoadAssetsAsyncByLabel<ConfigBase>(NameC.ConfigTag, ct: ct));
         
         foreach (var config in configAll)
         {
             config.OnLoad();
+            config.AddTo(ct.Value);
         }
     }
 }

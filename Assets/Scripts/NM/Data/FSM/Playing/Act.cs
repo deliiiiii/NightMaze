@@ -16,7 +16,7 @@ public partial class GamePlaying
     [Obsolete("某符号放置在某位置")]
     UniTask SetSymbolAtPosAsync(Symbol symbol, Vector2Int pos, CancellationToken ct)
     {
-        symbol.Pos = pos;
+        symbol.PivotPos = pos;
         return UniTask.CompletedTask;
     }
 }

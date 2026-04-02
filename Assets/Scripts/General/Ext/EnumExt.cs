@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
@@ -17,5 +18,6 @@ namespace General
             var attribute = fieldInfo.GetCustomAttribute<LabelTextAttribute>();
             return attribute != null ? attribute.Text : value.ToString();
         }
+        
     }
 }

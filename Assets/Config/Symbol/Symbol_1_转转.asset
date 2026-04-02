@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d162adc8b51468185b5e616604b748a, type: 3}
-  m_Name: Resource_1_R1
+  m_Script: {fileID: 11500000, guid: 4d68e3271dfc48e892c16b30d66ff012, type: 3}
+  m_Name: "Symbol_1_\u8F6C\u8F6C"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,5 +21,14 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  Name: R1
+  Name: "\u8F6C\u8F6C"
   ID: 1
+  Type: 31
+  Rarity: 0
+  Prop1: 0
+  Prop2: 0
+  Prop3: 0
+  EvtList: []
+  references:
+    version: 2
+    RefIds: []
