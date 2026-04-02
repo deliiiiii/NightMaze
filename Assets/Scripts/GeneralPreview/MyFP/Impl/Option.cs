@@ -73,7 +73,7 @@ public abstract record MyOption<T1>
             MySome<T1> s => some.Invoke(s.Value),
             _ => none.Invoke()
         };
-    UniTask MatchAsync(Func<T1, UniTask> some, Func<UniTask> none)
+    public UniTask MatchAsync(Func<T1, UniTask> some, Func<UniTask> none)
         => this switch
         {
             MySome<T1> s => some.Invoke(s.Value),

@@ -15,6 +15,8 @@ namespace NM.View;
 public class PlayView : ViewBase<GamePlaying>
 {
     public Trs GridTrs;
+    public Btn BtnSpin;
+    public Btn BtnHarvest;
     public Btn BtnExit;
 
     [SerializeField] GridView gridPfb;
@@ -25,6 +27,8 @@ public class PlayView : ViewBase<GamePlaying>
     
     protected override IEnumerable<BindDataBase> BindList()
     {
+        yield return BtnSpin.onClick.EvtBindTo(() => new EvtPlayViewClickSpin().Forget());
+        yield return BtnHarvest.onClick.EvtBindTo(() => new EvtPlayViewClickHarvest().Forget());
         yield return BtnExit.onClick.EvtBindTo(() => new EvtPlayViewClickExit().Forget());
     }
     

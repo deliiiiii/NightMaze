@@ -974,9 +974,10 @@
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "197",
-            "X": 2,
+            "X": 1,
             "Y": 1
-          }
+          },
+          "ID": 1
         }
       },
       {
@@ -989,9 +990,10 @@
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "200",
-            "X": 3,
-            "Y": 1
-          }
+            "X": 1,
+            "Y": 2
+          },
+          "ID": 1
         }
       },
       {
@@ -1004,9 +1006,10 @@
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "203",
-            "X": 3,
-            "Y": 2
-          }
+            "X": 1,
+            "Y": 3
+          },
+          "ID": 1
         }
       },
       {
@@ -1019,9 +1022,10 @@
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "206",
-            "X": 3,
-            "Y": 3
-          }
+            "X": 1,
+            "Y": 4
+          },
+          "ID": 1
         }
       },
       {
@@ -1034,9 +1038,10 @@
           "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
           "Pos": {
             "$id": "209",
-            "X": 4,
-            "Y": 1
-          }
+            "X": 1,
+            "Y": 5
+          },
+          "ID": 1
         }
       }
     ]
@@ -1052,13 +1057,23 @@
       "$ref": "1"
     }
   },
-  "PlayerName": "qqq",
-  "PlayTime": 144.53301759250462,
+  "PlayerName": "qqq1",
+  "PlayTime": 1.8583413045853376,
   "Prop1": 0,
   "Prop2": 0,
   "Prop3": 0,
   "Prop4": 0,
   "Prop5": 0,
   "Prop6": 0,
-  "Coin": 0
+  "Coin": 0,
+  "state": {
+    "$id": "212",
+    "$type": "NM.Data.PlayIdle, NM.Data",
+    "savedVersion": 20260313.0,
+    "comDic": {
+      "$id": "213",
+      "$values": []
+    },
+    "BelongNode": null
+  }
 }

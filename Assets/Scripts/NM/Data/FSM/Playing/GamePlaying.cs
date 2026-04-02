@@ -62,22 +62,22 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         (from x in Range(1, 8) 
             from y in Range(1, 8)
             select new Vector2Int(x, y))
-            .ForEach(pos => AddEttCom(EttGrid.Create(), new Grid(pos)));
+            .ForEach(pos => AddEttCom<EttGrid, Grid>(new Grid(this, EttGrid.Create(), pos)));
         EmptyGrids
             .ToList()
             .Take(5)
-            .ForEach(grid => AddEttCom(EttSymbol.Create(), new Symbol(grid.Pos)));
-        // state = new play
+            .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(this, EttSymbol.Create(), 1, grid.Pos)));
+        state = new PlayIdle();
     }
     
     protected override async UniTask OnLaunchCom(bool isThisFromLoad)
     {
         // await symbolDeckList.EachOnLaunchCom(isThisFromLoad);
-        // await state!.OnCreateAsync(isThisFromLoad);
+        await state!.OnCreateAsync(isThisFromLoad);
     }
     protected override void OnReleaseCom()
     {
-        // state?.OnRemove();
+        state?.OnRemove();
         // symbolDeckList.EachOnReleaseCom();
     }
 
@@ -85,6 +85,14 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     {
         PlayTime += dt;
     }
+
+    Node? state;
+    public UniTask ChangeStateAsync<T>(T node, bool isNewFromLoad) where T : PlayStateBase<T>
+        => _ChangeAsync(ref state, node, isNewFromLoad);
+    public MyOption<T> GetStateOptional<T>() where T : PlayStateBase<T>
+        => state is T s ? s : None;
+    public bool IsState<T>() where T : PlayStateBase<T>
+        => state is T;
 }
 
 public abstract class PlayStateBase<T> : Node<GamePlaying, T> where T : PlayStateBase<T>;

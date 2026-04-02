@@ -2797,6 +2797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PreNodeList: []
+  NextNodeList: []
 --- !u!1 &7123914734084773543
 GameObject:
   m_ObjectHideFlags: 0

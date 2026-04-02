@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using UnityEngine;
 
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 namespace GeneralPreview;
@@ -28,9 +30,10 @@ namespace GeneralPreview;
         public string Name = string.Empty;
 
         public sealed override void OnLoad() => RefPoolMulti<T>.RegisterOne(() => (T)this);
-        // [OnValueChanged(nameof(OnNameAndIdChanged))]
+
+        [OnValueChanged(nameof(OnNameAndIdChanged))]
         [ValidateInput(nameof(CheckNameAndIdIdentical), "名称为空，或ID在当前文件夹(配置类相同)有重复")]
-        public abstract int ID { get; }
+        public int ID;
         
         protected abstract string PrefixName { get; }
 

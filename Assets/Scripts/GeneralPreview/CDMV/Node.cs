@@ -28,7 +28,7 @@ public abstract class Node
 }
 public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where TThis : Node<TThis>
 {
-    protected interface INodeCom
+    interface INodeCom
     {
         EttBase BelongEtt { get; set; }
     }
@@ -36,11 +36,16 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         where TEtt : EttBase<TEtt>, new()
         where TCom : ComBase<TEtt, TCom>
     {
-        [JsonIgnore]public TEtt BelongEtt { get; set; } = null!;
+        [JsonIgnore]public TEtt BelongEtt { get; private set; }
         [JsonIgnore]EttBase INodeCom.BelongEtt
         {
             get => BelongEtt;
             set => BelongEtt = (TEtt)value;
+        }
+
+        protected ComBase(TThis thisNode, TEtt belongEtt)
+        {
+            BelongEtt = belongEtt;
         }
     }
     [JsonIgnore]Dictionary<EttBase, INodeCom> comDic = [];
@@ -67,7 +72,7 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         return None;
     }
 
-    protected TCom AddEttCom<TEtt, TCom>(TEtt ett, TCom com)
+    public TCom AddEttCom<TEtt, TCom>(TCom com)
         where TEtt : EttBase<TEtt>, new()
         where TCom : ComBase<TEtt, TCom>
     {
@@ -77,11 +82,10 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         //     comDic[ett] = com;
         //     return (TCom)oldCom;
         // }
-        comDic[ett] = com;
-        com.BelongEtt = ett;
+        comDic[com.BelongEtt] = com;
         return com;
     }
-    protected void RemoveEttCom<TEtt>(TEtt ett)
+    public void RemoveEttCom<TEtt>(TEtt ett)
         where TEtt : EttBase<TEtt>, new()
     {
         if (comDic.Remove(ett))
@@ -137,7 +141,9 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     public record EvtOnEnter(TThis WhoHasCt) : EvtBase<TThis>(WhoHasCt);
     /// 仅为了通知UI.
     public record EvtOnExit : EvtForgetBase;
-    public abstract record UniAction(TThis Self) : ICanAwait
+
+    public interface IUniAction : ICanAwait;
+    public abstract record UniAction(TThis Self) : IUniAction
     {
         [UnityEngine.HideInInspector] protected readonly TThis Self = Self;
         [DebuggerStepThrough] protected abstract UniTask InvokeAsync();
