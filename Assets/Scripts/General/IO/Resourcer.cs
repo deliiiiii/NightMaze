@@ -229,7 +229,7 @@ namespace General
         /// <param name="asset">资源</param>
         /// <typeparam name="T">类型</typeparam>
         /// <returns></returns>
-        public static bool TryGetAssetFromCache<T>(string address, out T asset) where T : Object
+        static bool TryGetAssetFromCache<T>(string address, out T asset) where T : Object
         {
             if (_assetHandleCache.TryGetValue(address, out var handle))
             {
@@ -244,24 +244,24 @@ namespace General
             return false;
         }
 
-        public static T GetAssetFromCache<T>(string address) where T : Object
-        {
-            if (_assetHandleCache.TryGetValue(address, out var handle))
-            {
-                if (handle.IsValid() && handle.Status == AsyncOperationStatus.Succeeded)
-                {
-                    return (T)handle.Result;
-                }
-            }
-
-            return null;
-        }
+        // public static T GetAssetFromCache<T>(string address) where T : Object
+        // {
+        //     if (_assetHandleCache.TryGetValue(address, out var handle))
+        //     {
+        //         if (handle.IsValid() && handle.Status == AsyncOperationStatus.Succeeded)
+        //         {
+        //             return (T)handle.Result;
+        //         }
+        //     }
+        //
+        //     return null;
+        // }
 
         /// <summary>
         /// 释放资源
         /// </summary>
         /// <param name="address">资源地址</param>
-        public static void Release(string address)
+        static void Release(string address)
         {
             if (_assetHandleCache.TryGetValue(address, out var handle))
             {
