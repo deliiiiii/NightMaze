@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec4c498a0a9f4167a1e4be9b1d3de7de, type: 3}
+  m_Name: "Building_2_\u6D3B\u4F53\u6536\u5BB9\u6808"
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Pos
+      Entry: 7
+      Data: 0|NM.Config.ItemPosRectangle, NM.Config
+    - Name: Length
+      Entry: 3
+      Data: 1
+    - Name: Height
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+  Name: "\u6D3B\u4F53\u6536\u5BB9\u6808"
+  ID: 2
+  FlavorDes: "\u8EBA\u8EBA\u53C8\u5E73\u5E73"
+  Rarity: 0
+  Tag: 0
+  DesList:
+  - Trigger:
+      rid: 6212120996640456734
+    Result:
+      rid: 6212120996640456735
+  BuildingTag: 2
+  Prop1Cost: 0
+  Prop2Cost: 0
+  Prop3Cost: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6212120996640456734
+      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212120996640456735
+      type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: -2
+        ItemSelector:
+          rid: 6212120996640456749
+        PropType: 1
+        IntSelectorBase:
+          rid: 6212120996640456747
+    - rid: 6212120996640456747
+      type: {class: IntSelectorSumBy, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSelector:
+          rid: 6212120996640456751
+        Value: 2
+    - rid: 6212120996640456749
+      type: {class: ItemSelectorSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSort:
+          rid: -2
+        TakeMax:
+          rid: 6212121000153972736
+        ItemFilter:
+          rid: -2
+    - rid: 6212120996640456751
+      type: {class: ItemSelectorTag, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSort:
+          rid: -2
+        TakeMax:
+          rid: 6212121000153972737
+        ItemFilter:
+          rid: 6212120996640456752
+        ItemTag: 0
+        SymbolTag: 2
+        ResourceTag: 0
+        BuildingTag: 0
+    - rid: 6212120996640456752
+      type: {class: ItemFilterInManDis, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+        Dis: 2
+    - rid: 6212121000153972736
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121000153972737
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 

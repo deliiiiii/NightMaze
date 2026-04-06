@@ -22,8 +22,6 @@ public class GridDetail : MonoBehaviour
     public Trs TrsGridHead;
     public Trs TrsGridType;
     public Trs TrsGridInSpinLine;
-    
-    ItemTypeResourceMgr mgr => field ??= RefPoolSingle<ItemTypeResourceMgr>.Acquire();
 
     List<GridDetailHead> headList;
     GridDetailHead? curHead;
@@ -65,13 +63,13 @@ public class GridDetail : MonoBehaviour
             {
                 curHead = head;
                 TrsGridType.ClearChildren();
-                detail.ItemTypeList.ForEach(itemType =>
+                detail.TagInfoList.ForEach(tagInfo =>
                 {
                     var item = Instantiate(pfbGridType, TrsGridType);
                     item.SetActiveTrue();
-                    item.TxtType.text = itemType.GetLabelText();
-                    item.ImgBack.color = mgr.Dic[itemType].backColor;
-                    item.ImgIcon.sprite = mgr.Dic[itemType].icon;
+                    item.TxtType.text = tagInfo.TagName;
+                    item.ImgBack.color = tagInfo.BackColor;
+                    item.ImgIcon.sprite = tagInfo.Icon;
                 });
                 TxtDetail.text = detail.Detail;
                 TrsGridInSpinLine.ClearChildren();
@@ -86,13 +84,4 @@ public class GridDetail : MonoBehaviour
         curHead ??= headList[0];
         curHead.OnClick?.Invoke();
     }
-}
-
-public class DetailInfo
-{
-    public required string Type;
-    public required string Name;
-    public required List<EItemType> ItemTypeList;
-    public required string Detail;
-    public required List<string> InSpinLineList;
 }

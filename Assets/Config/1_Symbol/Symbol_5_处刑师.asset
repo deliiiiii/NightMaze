@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d68e3271dfc48e892c16b30d66ff012, type: 3}
+  m_Name: "Symbol_5_\u5904\u5211\u5E08"
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Pos
+      Entry: 7
+      Data: 0|NM.Config.ItemPosRectangle, NM.Config
+    - Name: Length
+      Entry: 3
+      Data: 1
+    - Name: Height
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+  Name: "\u5904\u5211\u5E08"
+  ID: 5
+  FlavorDes: "\u6CA1\u4EBA\u77E5\u9053\u90A3\u4E9B\u86CB\u767D\u5757\u54EA\u6765\u7684\uFF0C\u9664\u4E86\u4ED6"
+  Rarity: 0
+  Tag: 0
+  DesList:
+  - Trigger:
+      rid: 6212121000547450912
+    Result:
+      rid: 6212121000547450913
+  SymbolTag: 0
+  Prop1: 0
+  Prop2: 0
+  Prop3: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6212121000547450912
+      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121000547450913
+      type: {class: ItemDesResultRemoveItem, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: 6212121000547450917
+        ItemSelector:
+          rid: 6212121000547450914
+    - rid: 6212121000547450914
+      type: {class: ItemSelectorTag, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSort:
+          rid: -2
+        TakeMax:
+          rid: 6212121000547450915
+        ItemFilter:
+          rid: 6212121000547450916
+        ItemTag: 0
+        SymbolTag: 2
+        ResourceTag: 0
+        BuildingTag: 0
+    - rid: 6212121000547450915
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121000547450916
+      type: {class: ItemFilterInManDis, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+        Dis: 1
+    - rid: 6212121000547450917
+      type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: 6212121000547450921
+        ItemSelector:
+          rid: 6212121000547450918
+        PropType: 0
+        IntSelectorBase:
+          rid: 6212121000547450919
+    - rid: 6212121000547450918
+      type: {class: ItemSelectorSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSort:
+          rid: -2
+        TakeMax:
+          rid: 6212121000547450920
+        ItemFilter:
+          rid: -2
+    - rid: 6212121000547450919
+      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
+      data:
+        Value: 3
+    - rid: 6212121000547450920
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121000547450921
+      type: {class: ItemDesResultSpawnXAtX, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: -2
+        PosSelector:
+          rid: 6212121000547450925
+        ItemSelector:
+          rid: 6212121000547450923
+    - rid: 6212121000547450923
+      type: {class: ItemSelectorItem, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSort:
+          rid: -2
+        TakeMax:
+          rid: 6212121000547450924
+        ItemFilter:
+          rid: -2
+        GridList: []
+        SymbolList: []
+        BuildingList: []
+        ResourceList:
+        - {fileID: 11400000, guid: 52dfffd32de856844bcff5999a9cb10c, type: 2}
+    - rid: 6212121000547450924
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121000547450925
+      type: {class: PosSelectorFromResultItem, ns: NM.Config, asm: NM.Config}
+      data:
+        IOutItem:
+          rid: 6212121000547450913

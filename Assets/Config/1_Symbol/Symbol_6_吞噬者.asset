@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d68e3271dfc48e892c16b30d66ff012, type: 3}
+  m_Name: "Symbol_6_\u541E\u566C\u8005"
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Pos
+      Entry: 7
+      Data: 0|NM.Config.ItemPosRectangle, NM.Config
+    - Name: Length
+      Entry: 3
+      Data: 1
+    - Name: Height
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+  Name: "\u541E\u566C\u8005"
+  ID: 6
+  FlavorDes: "\u5927\u536B\u6234\u6709\u5927\u80C3\u888B"
+  Rarity: 0
+  Tag: 0
+  DesList:
+  - Trigger:
+      rid: 6212121000547450904
+    Result:
+      rid: 6212121000547450905
+  SymbolTag: 2
+  Prop1: 0
+  Prop2: 0
+  Prop3: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6212121000547450904
+      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121000547450905
+      type: {class: ItemDesResultRemoveItem, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: 6212121000547450909
+        ItemSelector:
+          rid: 6212121000547450906
+    - rid: 6212121000547450906
+      type: {class: ItemSelectorTag, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSort:
+          rid: -2
+        TakeMax:
+          rid: 6212121000547450907
+        ItemFilter:
+          rid: 6212121000547450908
+        ItemTag: 0
+        SymbolTag: 0
+        ResourceTag: 4
+        BuildingTag: 0
+    - rid: 6212121000547450907
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121000547450908
+      type: {class: ItemFilterInManDis, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+        Dis: 1
+    - rid: 6212121000547450909
+      type: {class: ItemDesResultAddItemDesToSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: -2
+        ItemSelector:
+          rid: 6212121000547450910
+    - rid: 6212121000547450910
+      type: {class: ItemSelectorFromResult, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSort:
+          rid: -2
+        TakeMax:
+          rid: 6212121000547450911
+        ItemFilter:
+          rid: -2
+        IOutItem:
+          rid: 6212121000547450905
+    - rid: 6212121000547450911
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 

@@ -4,6 +4,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
+using NM.Config;
 using NM.Data;
 using NM.ViewEvt;
 using Sirenix.Utilities;
@@ -109,7 +110,7 @@ public class PlayView : ViewBase<GamePlaying>
             {
                 Type = "地块",
                 Name = grid.Config.Name,
-                ItemTypeList = grid.Config.Type.ToValues(),
+                TagInfoList = grid.Config.DetailTagInfos,
                 Detail = $"DDD...Nothing but pos {grid.Pos.ToString()}",
                 InSpinLineList = []
             }, 
@@ -120,7 +121,7 @@ public class PlayView : ViewBase<GamePlaying>
             {
                 Type = "符号",
                 Name = symbol.Config.Name,
-                ItemTypeList = symbol.Config.Type.ToValues(),
+                TagInfoList = symbol.Config.DetailTagInfos,
                 Detail = $"事符号. 白值{string.Join(", ",
                     symbol.Config.Prop1.ToStringWithSymbol(),
                     symbol.Config.Prop2.ToStringWithSymbol(),
@@ -140,7 +141,7 @@ public class PlayView : ViewBase<GamePlaying>
             {
                 Type = "资源",
                 Name = resource.Config.Name,
-                ItemTypeList = resource.Config.Type.ToValues(),
+                TagInfoList = resource.Config.DetailTagInfos,
                 Detail = $"RRResource...",
                 InSpinLineList = []
             }

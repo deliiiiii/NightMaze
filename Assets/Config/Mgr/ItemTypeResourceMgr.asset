@@ -16,20 +16,19 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 21300000, guid: cac25f19e45546c40a4d1d939571e1d9, type: 3}
-    - {fileID: 21300000, guid: 1af5a6f6526e49f4abcb75734862cfc5, type: 3}
-    - {fileID: 21300000, guid: 29977882d8b2ad343b0ea42cf53dadf6, type: 3}
-    - {fileID: 21300000, guid: c932715d0d4701b419e74b6fcf68cdba, type: 3}
+    - {fileID: 21300000, guid: 60e7d71788404c84b867323aafa867bf, type: 3}
+    - {fileID: 21300000, guid: 2c6280ccc3fe91d4d8b1e8f0044b2ce4, type: 3}
+    - {fileID: 21300000, guid: b1e4edda672527b41b9dc19a574537ce, type: 3}
+    - {fileID: 21300000, guid: 5ba7f23ac449957448d1f59bb004ea0d, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: Dic
+    - Name: ItemDic
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[NM.Config.EItemType, NM.Config],[System.ValueTuple`2[[UnityEngine.Color,
-        UnityEngine.CoreModule],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib]],
-        mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[NM.Config.EItemType, NM.Config],[NM.Config.DetailTagInfo,
+        NM.Config]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EItemType,
@@ -45,7 +44,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -54,29 +53,31 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: System.ValueTuple`2[[UnityEngine.Color, UnityEngine.CoreModule],[UnityEngine.Sprite,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: Item1
+      Data: NM.Config.DetailTagInfo, NM.Config
+    - Name: TagName
+      Entry: 1
+      Data: "\u81EA\u7136"
+    - Name: BackColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0.487679
     - Name: 
       Entry: 4
       Data: 1
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
     - Name: 
       Entry: 4
       Data: 1
     - Name: 
       Entry: 8
       Data: 
-    - Name: Item2
-      Entry: 10
-      Data: 0
+    - Name: Icon
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -91,17 +92,19 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: System.ValueTuple`2[[UnityEngine.Color, UnityEngine.CoreModule],[UnityEngine.Sprite,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: Item1
+      Data: NM.Config.DetailTagInfo, NM.Config
+    - Name: TagName
+      Entry: 1
+      Data: "\u5F02\u8C61"
+    - Name: BackColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.5039873
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 4
       Data: 1
@@ -111,9 +114,100 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: Item2
-      Entry: 10
+    - Name: Icon
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: GridDic
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[NM.Config.EGridType, NM.Config],[NM.Config.DetailTagInfo,
+        NM.Config]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EGridType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SymbolDic
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[NM.Config.ESymbolType, NM.Config],[NM.Config.DetailTagInfo,
+        NM.Config]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.ESymbolType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: NM.Config.DetailTagInfo, NM.Config
+    - Name: TagName
+      Entry: 1
+      Data: People
+    - Name: BackColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
       Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Icon
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -125,14 +219,87 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 8
+      Data: 3
     - Name: $v
       Entry: 7
-      Data: System.ValueTuple`2[[UnityEngine.Color, UnityEngine.CoreModule],[UnityEngine.Sprite,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: Item1
+      Data: NM.Config.DetailTagInfo, NM.Config
+    - Name: TagName
+      Entry: 1
+      Data: Mechanics
+    - Name: BackColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Icon
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ResourceDic
+      Entry: 7
+      Data: 6|System.Collections.Generic.Dictionary`2[[NM.Config.EResourceType, NM.Config],[NM.Config.DetailTagInfo,
+        NM.Config]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 7|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EResourceType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: NM.Config.DetailTagInfo, NM.Config
+    - Name: TagName
+      Entry: 1
+      Data: Crops
+    - Name: BackColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0.438980162
     - Name: 
       Entry: 4
       Data: 0
@@ -140,15 +307,9 @@ MonoBehaviour:
       Entry: 4
       Data: 1
     - Name: 
-      Entry: 4
-      Data: 0.983017445
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
       Entry: 8
       Data: 
-    - Name: Item2
+    - Name: Icon
       Entry: 10
       Data: 2
     - Name: 
@@ -158,34 +319,62 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: BuildingDic
+      Entry: 7
+      Data: 8|System.Collections.Generic.Dictionary`2[[NM.Config.EBuildingType, NM.Config],[NM.Config.DetailTagInfo,
+        NM.Config]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 9|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EBuildingType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 3
-      Data: 16
+      Data: 2
     - Name: $v
       Entry: 7
-      Data: System.ValueTuple`2[[UnityEngine.Color, UnityEngine.CoreModule],[UnityEngine.Sprite,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: Item1
+      Data: NM.Config.DetailTagInfo, NM.Config
+    - Name: TagName
+      Entry: 1
+      Data: "\u5E87\u62A4\u6240"
+    - Name: BackColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 1
+      Data: 0.294117659
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 0.235294133
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 0.5882353
     - Name: 
       Entry: 4
       Data: 1
     - Name: 
       Entry: 8
       Data: 
-    - Name: Item2
+    - Name: Icon
       Entry: 10
       Data: 3
     - Name: 
