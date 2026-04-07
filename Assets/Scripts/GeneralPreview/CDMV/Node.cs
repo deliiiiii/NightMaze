@@ -44,7 +44,11 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         }
     }
     [JsonIgnore]Dictionary<EttBase, INodeCom> comDic = [];
-    [JsonProperty("comDic", ObjectCreationHandling = ObjectCreationHandling.Replace)] List<KeyCompactKvp<EttBase, INodeCom>> SerializableComDic
+    [JsonProperty("comDic",
+        ObjectCreationHandling = ObjectCreationHandling.Replace,
+        ItemIsReference = false
+        )]
+    List<KeyCompactKvp<EttBase, INodeCom>> SerializableComDic
     {
         get => comDic.Select(pair => new KeyCompactKvp<EttBase, INodeCom>(pair.Key, pair.Value)).ToList();
         set
