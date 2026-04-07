@@ -26,6 +26,17 @@ public static class Bus
             }
         }
     }
+
+    [HideInInspector]
+    public static bool ClearEditor
+    {
+        get;
+        set
+        {
+            field = value;
+            evtDic.Keys.Where(k => k.Name.Contains("PlayMode")).ToList().ForEach(k => evtDic.Remove(k));
+        }
+    }
     [HideInInspector]
     static readonly Dictionary<Type, List<IUniEvt>> evtDic = [];
 

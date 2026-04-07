@@ -10,6 +10,9 @@ public partial class GamePlaying
     public partial class Symbol : MyItem<EttSymbol, Symbol, SymbolConfig>
     {
         public Symbol(EttSymbol belongEtt, int id, Vector2Int pivotPos) : base(belongEtt, id, pivotPos) {}
-        public override SymbolConfig Config => field ??= RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ID);
+        public override SymbolConfig Config => field ??= 
+            RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ID)
+            ?? RefPoolMulti<SymbolConfig>.AcquireFirst() 
+            ?? throw new System.Exception($"SymbolConfig 一个配置也没有.");
     }
 }

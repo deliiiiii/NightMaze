@@ -9,6 +9,9 @@ public partial class GamePlaying
     public partial class Building : MyItem<EttBuilding, Building, BuildingConfig>
     {
         public Building(EttBuilding belongEtt, int id, Vector2Int pivotPos) : base(belongEtt, id, pivotPos) {}
-        public override BuildingConfig Config => field ??= RefPoolMulti<BuildingConfig>.AcquireOne(c => c.ID == ID);
+        public override BuildingConfig Config => field ??= 
+            RefPoolMulti<BuildingConfig>.AcquireOne(c => c.ID == ID)
+            ?? RefPoolMulti<BuildingConfig>.AcquireFirst()
+            ?? throw new System.Exception($"BuildingConfig 一个配置也没有.");
     }
 }

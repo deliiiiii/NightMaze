@@ -77,7 +77,8 @@ public static class RefPoolMulti<T> where T : class, IRefMulti
         MyDebug.LogError("DataBase: AcquireList<" + typeof(T).Name + "> Not Exist");
         return [];
     }
-    public static T AcquireOne(Func<T, bool> pred) => AcquireAll().FirstOrDefault(pred)!;
+    public static T? AcquireOne(Func<T, bool> pred) => AcquireAll().FirstOrDefault(pred);
+    public static T? AcquireFirst() => AcquireAll().FirstOrDefault();
 
     public static void ReleaseOne(T toRemove)
     {
