@@ -35,16 +35,16 @@ public class GridSprTrigger : MonoBehaviour,
             return;
         // MyDebug.Log($"{name} middle click!");
         PlayViewIns.LockedPosDetail = null;
-        PlayViewIns.ShowGridDetailAtPos(belongView.Data.Pos);
+        PlayViewIns.ShowGridDetailAtPos(belongView.Data.PivotPos);
         PlayViewIns.GridDetail.SwitchToFirst();
-        PlayViewIns.LockedPosDetail = belongView.Data.Pos;
+        PlayViewIns.LockedPosDetail = belongView.Data.PivotPos;
     }
 
     public void OnMultiPointerHover(PointerEventData eventData)
     {
         if (PlayViewIns.LockedPosDetail == null)
         {
-            PlayViewIns.ShowGridDetailAtPos(belongView.Data.Pos);
+            PlayViewIns.ShowGridDetailAtPos(belongView.Data.PivotPos);
             PlayViewIns.GridDetail.SwitchToFirst();
         }
     }

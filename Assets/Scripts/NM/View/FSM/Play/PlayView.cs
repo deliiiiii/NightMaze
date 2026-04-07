@@ -105,13 +105,13 @@ public class PlayView : ViewBase<GamePlaying>
         [
             .. 
             from grid in Data.Grids
-            where grid.Pos == gridPos
+            where grid.CoverPos(gridPos)
             select new DetailInfo
             {
                 Type = "地块",
                 Name = grid.Config.Name,
                 TagInfoList = grid.Config.DetailTagInfos,
-                Detail = $"DDD...Nothing but pos {grid.Pos.ToString()}",
+                Detail = $"DDD...Nothing but pos {grid.PivotPos.ToString()}",
                 InSpinLineList = []
             }, 
             ..
@@ -136,7 +136,7 @@ public class PlayView : ViewBase<GamePlaying>
             },
             ..
             from resource in Data.Resources
-            where resource.Pos == gridPos
+            where resource.CoverPos(gridPos)
             select new DetailInfo
             {
                 Type = "资源",
@@ -172,7 +172,7 @@ public class PlayView : ViewBase<GamePlaying>
         // TODO
         var go = Instantiate(gridPfb, GridTrs);
         go.Data = grid;
-        go.transform.position = GridToWorld(grid.Pos);
+        go.transform.position = GridToWorld(grid.PivotPos);
         go.SetActiveTrue();
         gridList.Add(go);
     }
@@ -187,7 +187,7 @@ public class PlayView : ViewBase<GamePlaying>
             go.SetActiveTrue();
             go.Sr.SetActiveTrue();
         }
-        go.transform.parent = gridList.FirstOrDefault(g => g.Data.Pos == symbol.PivotPos)?.TrsSymbol;
+        go.transform.parent = gridList.FirstOrDefault(g => g.Data.PivotPos == symbol.PivotPos)?.TrsSymbol;
         go.transform.localPosition = Vector3.zero;
         
         symbolList.Add(go);
@@ -196,7 +196,7 @@ public class PlayView : ViewBase<GamePlaying>
     void SetResourceAtPos(GamePlaying.Resource resource)
     {
         var go = Instantiate(resourcePfb, 
-            gridList.FirstOrDefault(g => g.Data.Pos == resource.Pos)?.TrsResource, true);
+            gridList.FirstOrDefault(g => g.Data.PivotPos == resource.PivotPos)?.TrsResource, true);
         go.transform.localPosition = Vector3.zero;
         go.Data = resource;
         go.SetActiveTrue();

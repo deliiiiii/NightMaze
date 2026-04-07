@@ -39,7 +39,7 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
         var mouseGridPos = PlayView.ScreenToGrid(eventData.position);
         GamePlayData.MatchA(some =>
         {
-            if (some.EmptyGrids.Any(grid => grid.Pos == mouseGridPos))
+            if (some.EmptyGrids.Any(grid => grid.CoverPos(mouseGridPos)))
             {
                 new GamePlaying.ActSetSymbolAtPos(some)
                 {

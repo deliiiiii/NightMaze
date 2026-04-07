@@ -26,7 +26,6 @@ public class ItemTypeResourceMgr : ConfigSingle<ItemTypeResourceMgr>
         RefillAndDeleteDic(ResourceDic);
         RefillAndDeleteDic(BuildingDic);
     }
-
     static void RefillAndDeleteDic<TEnum>(Dictionary<TEnum, DetailTagInfo> dic) where TEnum : Enum
     {
         var enums = GeneralPreview.EnumExt.GetValues<TEnum>().ToList();

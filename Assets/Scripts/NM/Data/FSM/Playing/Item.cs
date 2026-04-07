@@ -1,0 +1,41 @@
+﻿using System.Collections.Generic;
+using GeneralPreview;
+using NM.Config;
+
+namespace NM.Data;
+
+public partial class GamePlaying
+{
+    // public MyOption<MyItem> this[EttItem ettId] => GetEttComOptional<EttItem, MyItem>(ettId);
+    public abstract partial class MyItem<TEtt, TSub, TConfig> : ComBase<TEtt, TSub> 
+        where TEtt : EttBase<TEtt>, new()
+        where TSub : MyItem<TEtt, TSub, TConfig>
+        where TConfig : ItemConfigBase<TConfig>, new()
+    {
+        protected MyItem(GamePlaying thisNode, TEtt belongEtt, int id, Vector2Int pivotPos) : base(thisNode, belongEtt)
+        {
+            ID = id;
+            PivotPos = pivotPos;
+            DeltaPosList = Config.Pos switch
+            {
+                ItemPosRectangle rect => (
+                    from x in Range(0, rect.Length)
+                    from y in Range(0, rect.Height) 
+                    select new Vector2Int(x, y)).ToList(),
+                ItemPosCustom custom => custom.DeltaPosList,
+                _ => [Vector2Int.Zero],
+            };
+        }
+
+        public int ID;
+        public Vector2Int PivotPos;
+        public List<Vector2Int> DeltaPosList { get; init; }
+
+        public bool CoverPos(Vector2Int pos)
+            => CoveredPosList.Contains(pos);
+        public IEnumerable<Vector2Int> CoveredPosList
+            => DeltaPosList.Select(d => d + PivotPos);
+
+        public abstract TConfig Config { get; }
+    }
+}

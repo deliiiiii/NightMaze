@@ -15,11 +15,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 21300000, guid: 60e7d71788404c84b867323aafa867bf, type: 3}
-    - {fileID: 21300000, guid: 2c6280ccc3fe91d4d8b1e8f0044b2ce4, type: 3}
-    - {fileID: 21300000, guid: b1e4edda672527b41b9dc19a574537ce, type: 3}
-    - {fileID: 21300000, guid: 5ba7f23ac449957448d1f59bb004ea0d, type: 3}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,11 +23,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: ItemDic
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[NM.Config.EItemType, NM.Config],[NM.Config.DetailTagInfo,
+      Data: 0|System.Collections.Generic.Dictionary`2[[NM.Config.EItemTag, NM.Config],[NM.Config.DetailTagInfo,
         NM.Config]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EItemType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EItemTag,
         NM.Config]], mscorlib
     - Name: 
       Entry: 12
@@ -131,11 +127,11 @@ MonoBehaviour:
       Data: 
     - Name: GridDic
       Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[NM.Config.EGridType, NM.Config],[NM.Config.DetailTagInfo,
+      Data: 2|System.Collections.Generic.Dictionary`2[[NM.Config.EGridTag, NM.Config],[NM.Config.DetailTagInfo,
         NM.Config]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EGridType,
+      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EGridTag,
         NM.Config]], mscorlib
     - Name: 
       Entry: 12
@@ -148,7 +144,46 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: NM.Config.DetailTagInfo, NM.Config
+    - Name: TagName
+      Entry: 1
+      Data: "\u80A5\u6C83"
+    - Name: BackColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Icon
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -157,11 +192,11 @@ MonoBehaviour:
       Data: 
     - Name: SymbolDic
       Entry: 7
-      Data: 4|System.Collections.Generic.Dictionary`2[[NM.Config.ESymbolType, NM.Config],[NM.Config.DetailTagInfo,
+      Data: 4|System.Collections.Generic.Dictionary`2[[NM.Config.ESymbolTag, NM.Config],[NM.Config.DetailTagInfo,
         NM.Config]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.ESymbolType,
+      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.ESymbolTag,
         NM.Config]], mscorlib
     - Name: 
       Entry: 12
@@ -180,13 +215,13 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 4
+      Data: 2
     - Name: $v
       Entry: 7
       Data: NM.Config.DetailTagInfo, NM.Config
     - Name: TagName
       Entry: 1
-      Data: People
+      Data: "\u4EBA\u7C7B"
     - Name: BackColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -206,8 +241,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: Icon
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -219,13 +254,13 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 3
+      Data: 4
     - Name: $v
       Entry: 7
       Data: NM.Config.DetailTagInfo, NM.Config
     - Name: TagName
       Entry: 1
-      Data: Mechanics
+      Data: "\u673A\u68B0"
     - Name: BackColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -245,8 +280,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: Icon
-      Entry: 10
-      Data: 1
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -261,11 +296,11 @@ MonoBehaviour:
       Data: 
     - Name: ResourceDic
       Entry: 7
-      Data: 6|System.Collections.Generic.Dictionary`2[[NM.Config.EResourceType, NM.Config],[NM.Config.DetailTagInfo,
+      Data: 6|System.Collections.Generic.Dictionary`2[[NM.Config.EResourceTag, NM.Config],[NM.Config.DetailTagInfo,
         NM.Config]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 7|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EResourceType,
+      Data: 7|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EResourceTag,
         NM.Config]], mscorlib
     - Name: 
       Entry: 12
@@ -278,7 +313,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -290,7 +325,7 @@ MonoBehaviour:
       Data: NM.Config.DetailTagInfo, NM.Config
     - Name: TagName
       Entry: 1
-      Data: Crops
+      Data: "\u4F5C\u7269"
     - Name: BackColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -299,10 +334,10 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 4
-      Data: 0.438980162
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 4
       Data: 1
@@ -310,8 +345,47 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: Icon
-      Entry: 10
-      Data: 2
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: NM.Config.DetailTagInfo, NM.Config
+    - Name: TagName
+      Entry: 1
+      Data: "\u751F\u7269\u8D28"
+    - Name: BackColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Icon
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -326,11 +400,11 @@ MonoBehaviour:
       Data: 
     - Name: BuildingDic
       Entry: 7
-      Data: 8|System.Collections.Generic.Dictionary`2[[NM.Config.EBuildingType, NM.Config],[NM.Config.DetailTagInfo,
+      Data: 8|System.Collections.Generic.Dictionary`2[[NM.Config.EBuildingTag, NM.Config],[NM.Config.DetailTagInfo,
         NM.Config]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 9|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EBuildingType,
+      Data: 9|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EBuildingTag,
         NM.Config]], mscorlib
     - Name: 
       Entry: 12
@@ -343,7 +417,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -361,13 +435,13 @@ MonoBehaviour:
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.294117659
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0.235294133
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0.5882353
+      Data: 1
     - Name: 
       Entry: 4
       Data: 1
@@ -375,8 +449,47 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: Icon
-      Entry: 10
-      Data: 3
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: NM.Config.DetailTagInfo, NM.Config
+    - Name: TagName
+      Entry: 1
+      Data: "\u79D1\u7814"
+    - Name: BackColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Icon
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 

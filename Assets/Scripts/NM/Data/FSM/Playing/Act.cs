@@ -10,7 +10,7 @@ public partial class GamePlaying
     [Obsolete("某地块放置在某位置")]
     UniTask SetGridAtPosAsync(Grid grid, Vector2Int pos, CancellationToken ct)
     {
-        grid.Pos = pos;
+        grid.PivotPos = pos;
         return UniTask.CompletedTask;
     }   
     [Obsolete("某符号放置在某位置")]

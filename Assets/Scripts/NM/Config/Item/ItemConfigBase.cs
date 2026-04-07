@@ -8,7 +8,7 @@ using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
 
 namespace NM.Config;
-public abstract class ItemConfigBase<T> : ConfigMulti<T> where T : ItemConfigBase<T>
+public abstract class ItemConfigBase<T> : ConfigMulti<T> where T : ItemConfigBase<T>, new()
 {
     // ReSharper disable once StaticMemberInGenericType
     protected static ItemTypeResourceMgr Mgr => field ??= RefPoolSingle<ItemTypeResourceMgr>.Acquire();
@@ -53,7 +53,7 @@ public class ItemPosRectangle : ItemPos
 [PublicAPI, TypeRegistryItem("自定义")]
 public class ItemPosCustom : ItemPos
 {
-    [LabelText("相对坐标列表"), OnValueChanged(nameof(OnChanged))]public List<Vector2Int> DeltaPosList = [new(1,1)];
+    [LabelText("相对坐标列表"), OnValueChanged(nameof(OnChanged))]public List<Vector2Int> DeltaPosList = [new(0,0)];
     public override IEnumerable<Vector2Int> GetDeltaPos() => DeltaPosList;
 
     void OnChanged()

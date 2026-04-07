@@ -23,38 +23,23 @@ MonoBehaviour:
     SerializationNodes:
     - Name: Pos
       Entry: 7
-      Data: 0|NM.Config.ItemPosCustom, NM.Config
-    - Name: DeltaPosList
-      Entry: 7
-      Data: 1|System.Collections.Generic.List`1[[GeneralPreview.Vector2Int, GeneralPreview]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: GeneralPreview.Vector2Int, GeneralPreview
-    - Name: X
+      Data: 0|NM.Config.ItemPosRectangle, NM.Config
+    - Name: Length
       Entry: 3
       Data: 1
-    - Name: Y
+    - Name: Height
       Entry: 3
       Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 8
       Data: 
   Name: "\u666E\u901A"
   ID: 1
+  FlavorDes: 
   Rarity: 0
-  Type: 0
+  Tag: 0
   DesList: []
-  GridType: 0
+  GridTag: 0
+  references:
+    version: 2
+    RefIds: []

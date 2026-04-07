@@ -44,6 +44,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     public IEnumerable<Symbol> Symbols => GetComs<Symbol>();
     public IEnumerable<Grid> Grids => GetComs<Grid>();
     public IEnumerable<Resource> Resources => GetComs<Resource>();
+    public IEnumerable<Building> Buildings => GetComs<Building>();
 
     public IEnumerable<Grid> EmptyGrids
     {
@@ -53,8 +54,16 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
                 from symbol in Symbols
                 from coveredPos in symbol.CoveredPosList
                 select coveredPos).ToHashSet();
+            posSet.AddRange(
+                from res in Resources
+                from coveredPos in res.CoveredPosList
+                select coveredPos);
+            posSet.AddRange(
+                from building in Buildings
+                from coveredPos in building.CoveredPosList
+                select coveredPos);
             return from grid in Grids
-                where !posSet.Contains(grid.Pos)
+                where !posSet.Contains(grid.PivotPos)
                 select grid;
         }
     }
@@ -68,12 +77,12 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         EmptyGrids
             .ToList()
             .Take(5)
-            .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(this, EttSymbol.Create(), 1, grid.Pos)));
+            .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(this, EttSymbol.Create(), 1, grid.PivotPos)));
         
         EmptyGrids
             .ToList()
             .Take(5)
-            .ForEach(grid => AddEttCom<EttResource, Resource>(new Resource(this, EttResource.Create(), 1, grid.Pos)));
+            .ForEach(grid => AddEttCom<EttResource, Resource>(new Resource(this, EttResource.Create(), 1, grid.PivotPos)));
         
         state = new PlayIdle();
     }
