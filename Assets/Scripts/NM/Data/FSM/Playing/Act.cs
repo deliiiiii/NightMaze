@@ -19,4 +19,19 @@ public partial class GamePlaying
         symbol.PivotPos = pos;
         return UniTask.CompletedTask;
     }
+
+    [Obsolete("在某位置生成某物体")]
+    UniTask SpawnItemAtPosAsync(IItem item, Vector2Int pos, CancellationToken ct)
+    {
+        // TODO
+        return UniTask.CompletedTask;
+    }
+    
+    [Obsolete("移除某物体")]
+    UniTask RemoveItemAsync(IItem item, CancellationToken ct)
+    {
+        // TODO
+        return UniTask.CompletedTask;
+    }
+    
 }

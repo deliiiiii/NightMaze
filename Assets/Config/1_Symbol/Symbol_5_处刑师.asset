@@ -74,6 +74,7 @@ MonoBehaviour:
         ItemFilter:
           rid: 6212121012880539673
         ItemTag: 0
+        GridTag: 0
         SymbolTag: 2
         ResourceTag: 0
         BuildingTag: 0
@@ -90,8 +91,8 @@ MonoBehaviour:
         ItemSelector:
           rid: 6212121000547450918
         PropType: 0
-        IntSelectorBase:
-          rid: 6212121000547450919
+        IntSelector:
+          rid: 6212121024638222472
     - rid: 6212121000547450918
       type: {class: ItemSelectorSelf, ns: NM.Config, asm: NM.Config}
       data:
@@ -101,10 +102,6 @@ MonoBehaviour:
           rid: 6212121000547450920
         ItemFilter:
           rid: -2
-    - rid: 6212121000547450919
-      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
-      data:
-        Value: 3
     - rid: 6212121000547450920
       type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
       data: 
@@ -146,3 +143,7 @@ MonoBehaviour:
     - rid: 6212121012880539698
       type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
       data: 
+    - rid: 6212121024638222472
+      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
+      data:
+        Value: 3

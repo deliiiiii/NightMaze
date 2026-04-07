@@ -10,8 +10,9 @@ public static class IEnumerableExt
 {
     extension<T>(IEnumerable<T> self)
     {
-        public MyOption<T> FirstOptional(Func<T, bool> predicate)
+        public MyOption<T> FirstOptional(Func<T, bool>? predicate = null)
         {
+            predicate ??= RTrue1;
             var first = self.FirstOrDefault(predicate);
             if (first is not null)
                 return first;

@@ -14,7 +14,9 @@ public static class MyPrelude
     public static UniTask RTask<T>(T _) => UniTask.CompletedTask;
     public static int RZero() => 0;
     public static bool RTrue() => true;
+    public static bool RTrue1<T>(T _) => true;
     public static bool RFalse() => false;
+    public static bool RFalse1<T>(T _) => false;
     public static T Rid<T>(T x) => x;
     public static string RStr() => string.Empty;
     public static List<T> RList<T>() => [];

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using Newtonsoft.Json;
+using NM.Config;
 
 namespace NM.Data;
 
@@ -15,6 +18,8 @@ public partial class PlaySpin
         List<ModifyPropInfo> ModifyProp1 { get; }
         List<ModifyPropInfo> ModifyProp2 { get; }
         List<ModifyPropInfo> ModifyProp3 { get; }
+        
+        UniTask OnSpin(PlaySpin playSpin, CancellationToken ct);
     }
     public abstract class MyItem<TEtt, TSub> : ComBase<TEtt, TSub>, IItem
         where TEtt : EttBase<TEtt>, new()
@@ -41,29 +46,26 @@ public partial class PlaySpin
         List<ModifyPropInfo> IItem.ModifyProp1 => ModifyProp1;
         List<ModifyPropInfo> IItem.ModifyProp2 => ModifyProp2;
         List<ModifyPropInfo> IItem.ModifyProp3 => ModifyProp3;
+        
+        UniTask IItem.OnSpin(PlaySpin playSpin, CancellationToken ct) => OnSpin(playSpin, ct);
 
-        // public void SelfAddBaseValue(PlaySpin playSpin)
-        // {
-        //     playSpin.BelongNode[BelongEtt].MatchA(some =>
-        //     {
-        //         var config = some.Config;
-        //         ModifyProp1.Add(new ModifyPropInfo
-        //         {
-        //             Ett = BelongEtt,
-        //             Value = config.Prop1
-        //         });
-        //         ModifyProp2.Add(new ModifyPropInfo
-        //         {
-        //             Ett = BelongEtt,
-        //             Value = config.Prop2
-        //         });
-        //         ModifyProp3.Add(new ModifyPropInfo
-        //         {
-        //             Ett = BelongEtt,
-        //             Value = config.Prop3
-        //         });
-        //     });
-        // }
+        protected virtual UniTask OnSpin(PlaySpin playSpin, CancellationToken ct)
+        {
+            SelfAddBaseValue(playSpin);
+            playSpin.InsertAfter(
+                from itemInPlay in playSpin.BelongNode.GetItemByEtt(BelongEtt).ToIEnumerable()
+                from itemDes in itemInPlay.Config.DesList
+                where itemDes.Trigger is ItemDesTriggerEnterSpin
+                select new ActDoItemDesResult(playSpin)
+                {
+                    SelfItem = this,
+                    Result = itemDes.Result,
+                });
+            return UniTask.CompletedTask;
+        }
+        protected virtual void SelfAddBaseValue(PlaySpin playSpin)
+        {
+        }
     }
     public class ModifyPropInfo 
     {

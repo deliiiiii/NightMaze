@@ -2,7 +2,6 @@
 using UnityEngine;
 
 namespace NM.Config;
-
 public abstract class ItemDesResultBase
 {
     [Header("若满足条件"), HideLabel]
@@ -15,16 +14,17 @@ public class ItemDesResultAddXPropX : ItemDesResultBase, IItemDesOutItem
 {
     [SerializeReference, LabelText("{0}: 目标物体")] public ItemSelectorBase ItemSelector = new ItemSelectorSelf();
     [LabelText("{1}: 属性类型")] public EPropType PropType;
-    [SerializeReference, LabelText("{2}: 属性变化数值")] public IntSelectorBase IntSelectorBase = new IntSelectorConst();
+    [SerializeReference, LabelText("{2}: 属性变化数值")] public IntSelectorBase IntSelector = new IntSelectorConst();
     ItemSelectorBase IItemDesOutItem.ItemSelector => ItemSelector;
+
 }
 
 [TypeRegistryItem("在位置{0}生成物体{1}")]
 public class ItemDesResultSpawnXAtX : ItemDesResultBase, IItemDesOutPos, IItemDesOutItem
 {
-    [SerializeReference, LabelText("{0}: 生成位置")] public PosSelectorBase PosSelector = new PosSelectorConst();
-    [SerializeReference, LabelText("{1}: 生成物体")] public ItemSelectorBase ItemSelector = new ItemSelectorItem();
-    PosSelectorBase IItemDesOutPos.PosSelectorBase => PosSelector;
+    [SerializeReference, LabelText("{0}: 生成位置 (数量多于1的部分暂时舍弃.)")] public PosSelectorBase PosSelector = new PosSelectorConst();
+    [SerializeReference, LabelText("{1}: 生成物体 (数量多于1的部分暂时舍弃.)")] public ItemSelectorBase ItemSelector = new ItemSelectorItem();
+    PosSelectorBase IItemDesOutPos.PosSelector => PosSelector;
     ItemSelectorBase IItemDesOutItem.ItemSelector => ItemSelector;
 }
 
@@ -39,7 +39,7 @@ public enum EPropType
 [TypeRegistryItem("移除物体{0}", "独特")]
 public class ItemDesResultRemoveItem : ItemDesResultBase, IItemDesOutItem
 {
-    [SerializeReference, LabelText("{0} 指定目标物体")] public ItemSelectorBase ItemSelector = new ItemSelectorTag();
+    [SerializeReference, LabelText("{0} 指定目标物体 (完全可以为复数个.)")] public ItemSelectorBase ItemSelector = new ItemSelectorTag();
     ItemSelectorBase IItemDesOutItem.ItemSelector => ItemSelector;
 }
 

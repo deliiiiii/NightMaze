@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using NM.Data;
@@ -11,10 +12,10 @@ namespace NM.View;
 public class LenPlaying : MonoBehaviour
 {
     [ShowInInspector] public static MyOption<GamePlaying> Playing => GameRoot.GetStateOptional<GamePlaying>();
-    public void Save() => Playing.MatchA(some => Saver.Save(NameC.SlotFolder, some.PlayerName, some));
+    public void Save() => Playing.MatchA(some => Saver.SaveAsync(NameC.SlotFolder, some.PlayerName, some).Forget());
 
     [ShowInInspector]
-    public List<PlaySpin.IUniAction> DelayDo =>
+    public List<IUniAction> DelayDo =>
         (from playing in Playing.ToIEnumerable()
             from spin in playing.GetStateOptional<PlaySpin>().ToIEnumerable()
             from add in spin.ToDoList

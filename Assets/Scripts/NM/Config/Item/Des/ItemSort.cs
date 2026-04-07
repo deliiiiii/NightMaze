@@ -5,6 +5,7 @@ namespace NM.Config;
 public abstract class ItemSortBase
 {
     [LabelText("降序")]public bool Descending;
+    public int DescendingValue => Descending ? -1 : 1;
 }
 
 [TypeRegistryItem("位置从左到右, 从下到上")]

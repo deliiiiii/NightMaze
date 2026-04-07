@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using Sirenix.Utilities;
@@ -7,15 +8,33 @@ namespace NM.Data;
 
 public partial class PlaySpin : PlayStateBase<PlaySpin>
 {
-    public List<IUniAction> ToDoList = [];
+    List<IUniAction> toDoList = [];
+    public IEnumerable<IUniAction> ToDoList => toDoList;
+    int FindAfterId(Func<IUniAction, bool>? beforeWho = null)
+    {
+        beforeWho ??= RTrue1;
+        int beforeId = toDoList.IndexOf(toDoList.FirstOrDefault(beforeWho));
+        return beforeId;
+    }
+    public void InsertAfter(IUniAction act, Func<IUniAction, bool>? afterWho = null)
+    {
+        toDoList.Insert(FindAfterId(afterWho) + 1, act);
+    }
+    public void InsertAfter(IEnumerable<IUniAction> actList, Func<IUniAction, bool>? afterWho = null)
+    {
+        toDoList.InsertRange(FindAfterId(afterWho) + 1, actList);
+    }
+    
+    
     IEnumerable<IItem> Items => GetComs<IItem>();
     protected override void OnCreateFreshData()
     {
         BelongNode.Items.ForEach(item => OnBelongAddEtt(item.BelongEtt));
-        ToDoList = [..
-            from item in BelongNode.Items
-            orderby item.PivotPos.Y descending, item.PivotPos.X, item.Config.Order ascending 
-            from itemInThis in GetItemByEtt(item.BelongEtt).ToIEnumerable()
+        toDoList = [..
+            from itemInPlay in BelongNode.Items
+            orderby itemInPlay.PivotPos.Y descending, itemInPlay.PivotPos.X, itemInPlay.Config.Order ascending 
+            from itemInThis in GetItemByEtt(itemInPlay.BelongEtt).ToIEnumerable()
+            where itemInPlay is GamePlaying.Grid
             select new ActCheckItem(this)
             {
                 Item = itemInThis
@@ -38,11 +57,11 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
     {
         BelongNode.OnAddEtt += OnBelongAddEtt;
         BelongNode.OnRemoveEtt += OnBelongRemoveEtt;
-        while (ToDoList.Count != 0)
+        while (toDoList.Count != 0)
         {
-            var first = ToDoList[0];
+            var first = toDoList[0];
             await first;
-            ToDoList.Remove(first);
+            toDoList.Remove(first);
         }
     }
 
@@ -73,7 +92,6 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
                 throw new System.Exception($"没有匹配穷尽{nameof(EttBase)}类型: {ett.GetType()}.");
         }
     }
-
     void OnBelongRemoveEtt(EttBase ett)
     {
         switch (ett)

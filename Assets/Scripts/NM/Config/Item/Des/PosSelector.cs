@@ -4,7 +4,13 @@ using Vector2Int = GeneralPreview.Vector2Int;
 
 namespace NM.Config;
 
-public abstract class PosSelectorBase;
+public abstract class PosSelectorBase
+{
+    [SerializeReference, LabelText("且坐标满足"), PropertyOrder(9996)] public PosFilterBase? PosFilter;
+    [LabelText("随机选择"), PropertyOrder(9997f)] public bool Random;
+    [SerializeReference, LabelText("选择数量上限"), PropertyOrder(9998)] public IntSelectorBase TakeMax = new IntSelectorInfinite();
+    [SerializeReference, LabelText("排序"), PropertyOrder(9999)] public PosSortBase? PosSort;
+}
 [TypeRegistryItem("固定数值{0}")]
 public class PosSelectorConst : PosSelectorBase
 {
@@ -28,5 +34,5 @@ public class PosSelectorFromResultItem : PosSelectorBase
 
 public interface IItemDesOutPos
 {
-    public PosSelectorBase PosSelectorBase { get; }
+    public PosSelectorBase PosSelector { get; }
 }

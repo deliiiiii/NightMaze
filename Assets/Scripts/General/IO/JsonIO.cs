@@ -158,9 +158,23 @@ namespace General
             ContractResolver = PrivateFieldsContractResolver.Instance,
             PreserveReferencesHandling = PreserveReferencesHandling.All,
             ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+            Error = (sender, args) =>
+            {
+                string objType = args.ErrorContext.OriginalObject?.GetType().FullName;
+                if (args.ErrorContext.Error is JsonSerializationException ex)
+                {
+                    MyDebug.LogError($"类型{objType} 反序列化跳过一个废弃或无法识别的数据节点: {ex.Message}");
+                }
+                else
+                {
+                    MyDebug.LogError($"类型{objType} 反序列化出现未知错误.");
+                }
+                args.ErrorContext.Handled = true;
+            },
         };
-        public static void Write<T>(string pathPre, string name, T obj)
+        public static async UniTask WriteAsync<T>(string pathPre, string name, T obj)
         {
+            await UniTask.SwitchToThreadPool();
             //Debug.Log("write"+curEntity);
             string path = pathPre +"/" + name + ".json";
             if (!Directory.Exists(pathPre))
@@ -170,10 +184,12 @@ namespace General
             // string str = JsonUtility.ToJson(curEntity, true);
             string str = JsonConvert.SerializeObject(obj, settings);
             str = refRegex.Replace(str, "{ \"$ref\": \"$1\" }");
-            File.WriteAllText(path, str);
+            await File.WriteAllTextAsync(path, str);
+            await UniTask.SwitchToMainThread();
         }
         public static async UniTask<T> ReadAsync<T>(string pathPre, string name, CancellationToken ct)
         {
+            await UniTask.SwitchToThreadPool();
             string path = pathPre + "/" + name + ".json";
             if (!File.Exists(path))
             {
@@ -183,6 +199,7 @@ namespace General
             string str = await File.ReadAllTextAsync(path, ct);
             using var _ = BusDisposable.MuteScope(typeof(T).Name);
             using var _2 = BusDisposable.MuteScope("Data");
+            await UniTask.SwitchToMainThread();
             return JsonConvert.DeserializeObject<T>(str, settings);
         }
         public static async UniTask<T> ReadWithVerAsync<T>(string pathPre, string name, CancellationToken ct)

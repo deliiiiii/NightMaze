@@ -30,7 +30,7 @@ public partial class GamePlaying
         {
             await GetStateOptional<PlaySpin>().MatchAsync(async some =>
             {
-                if (some.ToDoList.Count == 0)
+                if (!some.ToDoList.Any())
                 {
                     await ChangeStateAsync(new PlayIdle(), false);
                 }

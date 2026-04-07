@@ -7,8 +7,8 @@ namespace General
 {
     public static class Saver
     {
-        public static void Save<T>(string pathPre, string name, T curEntity) 
-            => JsonIO.Write(pathPre, name, curEntity);
+        public static UniTask SaveAsync<T>(string pathPre, string name, T curEntity) 
+            => JsonIO.WriteAsync(pathPre, name, curEntity);
 
         public static UniTask<T> LoadAsync<T>(string pathPre, string name, CancellationToken ct)
             => JsonIO.ReadAsync<T>(pathPre, name, ct);

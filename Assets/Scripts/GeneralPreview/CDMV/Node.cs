@@ -148,8 +148,6 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
 
     public event Action<EttBase>? OnAddEtt;
     public event Action<EttBase>? OnRemoveEtt;
-
-    public interface IUniAction : ICanAwait;
     public abstract record UniAction(TThis Self) : IUniAction
     {
         [UnityEngine.HideInInspector] protected readonly TThis Self = Self;
@@ -159,6 +157,7 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         [DebuggerStepThrough] public void Forget() => InvokeAsync().Forget();
     }
 }
+public interface IUniAction : ICanAwait;
 
 public abstract class Node<TBelong, TThis> : Node<TThis>, IHasBelong<TBelong>
     where TBelong : class
