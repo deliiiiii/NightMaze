@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using General;
 using GeneralPreview;
 
 namespace NM.Data;
@@ -9,9 +8,9 @@ namespace NM.Data;
 public partial class PlaySpin
 {
     [Obsolete("执行物体词条")]
-    async UniTask CheckItemAsync(GamePlaying.IItem item, CancellationToken ct)
+    async UniTask CheckItemAsync(IItem item, CancellationToken ct)
     {
-        MyDebug.Log($"执行物体 pos:{item.PivotPos}");
+        // MyDebug.Log($"执行物体 pos:{item.PivotPos}");
         await UniTask.Delay(1000, cancellationToken: ct);
     }
 

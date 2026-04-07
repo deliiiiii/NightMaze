@@ -41,7 +41,6 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     // public record EvtCoinChanged(GamePlaying gamePlaying,
     //              long OldValue,
     //              long NewValue): EvtForgetBase;
-
     public IEnumerable<Grid> Grids => Items.OfType<Grid>();
     public IEnumerable<Symbol> Symbols => Items.OfType<Symbol>();
     public IEnumerable<Building> Buildings => Items.OfType<Building>();
@@ -68,6 +67,18 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
                 yield return resource;
             }
         }
+    }
+    
+    public MyOption<IItem> GetItemByEtt(EttBase ett)
+    {
+        return ett switch
+        {
+            EttGrid grid => GetEttComOptional<EttGrid, Grid>(grid).Map<IItem>(x => x),
+            EttSymbol symbol => GetEttComOptional<EttSymbol, Symbol>(symbol).Map<IItem>(x => x),
+            EttBuilding building => GetEttComOptional<EttBuilding, Building>(building).Map<IItem>(x => x),
+            EttResource resource => GetEttComOptional<EttResource, Resource>(resource).Map<IItem>(x => x),
+            _ => throw new System.Exception($"没有匹配穷尽EttBase{nameof(EttBase)}类型: {ett.GetType()}.")
+        };
     }
 
     public IEnumerable<Grid> EmptyGrids
@@ -136,4 +147,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         => state is T;
 }
 
-public abstract class PlayStateBase<T> : Node<GamePlaying, T> where T : PlayStateBase<T>;
+public abstract class PlayStateBase<T> : Node<GamePlaying, T> where T : PlayStateBase<T>
+{
+    
+}

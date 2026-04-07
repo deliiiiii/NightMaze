@@ -755,8 +755,8 @@
     },
     "state": { "$ref": "1" }
   },
-  "PlayerName": "111",
-  "PlayTime": 7.2398767042905092,
+  "PlayerName": "777",
+  "PlayTime": 10.743514507077634,
   "Prop1": 0,
   "Prop2": 0,
   "Prop3": 0,
@@ -1521,427 +1521,397 @@
           "$id": "230",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "50" }
+          "Item": { "$ref": "218" }
         },
         {
           "$id": "231",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "66" }
+          "Item": { "$ref": "161" }
         },
         {
           "$id": "232",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "82" }
+          "Item": { "$ref": "225" }
         },
         {
           "$id": "233",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "98" }
+          "Item": { "$ref": "169" }
         },
         {
           "$id": "234",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "114" }
+          "Item": { "$ref": "177" }
         },
         {
           "$id": "235",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "130" }
+          "Item": { "$ref": "185" }
         },
         {
           "$id": "236",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "16" }
+          "Item": { "$ref": "193" }
         },
         {
           "$id": "237",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "144" }
+          "Item": { "$ref": "201" }
         },
         {
           "$id": "238",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "32" }
+          "Item": { "$ref": "209" }
         },
         {
           "$id": "239",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "48" }
+          "Item": { "$ref": "217" }
         },
         {
           "$id": "240",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "64" }
+          "Item": { "$ref": "160" }
         },
         {
           "$id": "241",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "80" }
+          "Item": { "$ref": "224" }
         },
         {
           "$id": "242",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "96" }
+          "Item": { "$ref": "168" }
         },
         {
           "$id": "243",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "112" }
+          "Item": { "$ref": "176" }
         },
         {
           "$id": "244",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "128" }
+          "Item": { "$ref": "184" }
         },
         {
           "$id": "245",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "14" }
+          "Item": { "$ref": "192" }
         },
         {
           "$id": "246",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "142" }
+          "Item": { "$ref": "200" }
         },
         {
           "$id": "247",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "30" }
+          "Item": { "$ref": "208" }
         },
         {
           "$id": "248",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "46" }
+          "Item": { "$ref": "216" }
         },
         {
           "$id": "249",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "62" }
+          "Item": { "$ref": "159" }
         },
         {
           "$id": "250",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "78" }
+          "Item": { "$ref": "223" }
         },
         {
           "$id": "251",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "94" }
+          "Item": { "$ref": "167" }
         },
         {
           "$id": "252",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "110" }
+          "Item": { "$ref": "175" }
         },
         {
           "$id": "253",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "126" }
+          "Item": { "$ref": "183" }
         },
         {
           "$id": "254",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "12" }
+          "Item": { "$ref": "191" }
         },
         {
           "$id": "255",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "140" }
+          "Item": { "$ref": "199" }
         },
         {
           "$id": "256",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "28" }
+          "Item": { "$ref": "207" }
         },
         {
           "$id": "257",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "44" }
+          "Item": { "$ref": "215" }
         },
         {
           "$id": "258",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "60" }
+          "Item": { "$ref": "158" }
         },
         {
           "$id": "259",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "76" }
+          "Item": { "$ref": "222" }
         },
         {
           "$id": "260",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "92" }
+          "Item": { "$ref": "166" }
         },
         {
           "$id": "261",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "108" }
+          "Item": { "$ref": "174" }
         },
         {
           "$id": "262",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "124" }
+          "Item": { "$ref": "182" }
         },
         {
           "$id": "263",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "10" }
+          "Item": { "$ref": "190" }
         },
         {
           "$id": "264",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "138" }
+          "Item": { "$ref": "198" }
         },
         {
           "$id": "265",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "26" }
+          "Item": { "$ref": "206" }
         },
         {
           "$id": "266",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "42" }
+          "Item": { "$ref": "214" }
         },
         {
           "$id": "267",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "58" }
+          "Item": { "$ref": "157" }
         },
         {
           "$id": "268",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "74" }
+          "Item": { "$ref": "221" }
         },
         {
           "$id": "269",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "90" }
+          "Item": { "$ref": "165" }
         },
         {
           "$id": "270",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "106" }
+          "Item": { "$ref": "173" }
         },
         {
           "$id": "271",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "122" }
+          "Item": { "$ref": "181" }
         },
         {
           "$id": "272",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "8" }
+          "Item": { "$ref": "189" }
         },
         {
           "$id": "273",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "136" }
+          "Item": { "$ref": "197" }
         },
         {
           "$id": "274",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "24" }
+          "Item": { "$ref": "205" }
         },
         {
           "$id": "275",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "40" }
+          "Item": { "$ref": "213" }
         },
         {
           "$id": "276",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "56" }
+          "Item": { "$ref": "156" }
         },
         {
           "$id": "277",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "72" }
+          "Item": { "$ref": "220" }
         },
         {
           "$id": "278",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "88" }
+          "Item": { "$ref": "164" }
         },
         {
           "$id": "279",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "104" }
+          "Item": { "$ref": "228" }
         },
         {
           "$id": "280",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "120" }
+          "Item": { "$ref": "172" }
         },
         {
           "$id": "281",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "6" }
+          "Item": { "$ref": "180" }
         },
         {
           "$id": "282",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "134" }
+          "Item": { "$ref": "188" }
         },
         {
           "$id": "283",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "22" }
+          "Item": { "$ref": "196" }
         },
         {
           "$id": "284",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "150" }
+          "Item": { "$ref": "204" }
         },
         {
           "$id": "285",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "38" }
+          "Item": { "$ref": "212" }
         },
         {
           "$id": "286",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "54" }
+          "Item": { "$ref": "155" }
         },
         {
           "$id": "287",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "70" }
+          "Item": { "$ref": "219" }
         },
         {
           "$id": "288",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "86" }
+          "Item": { "$ref": "163" }
         },
         {
           "$id": "289",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "102" }
+          "Item": { "$ref": "227" }
         },
         {
           "$id": "290",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "118" }
+          "Item": { "$ref": "171" }
         },
         {
           "$id": "291",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "4" }
+          "Item": { "$ref": "179" }
         },
         {
           "$id": "292",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "132" }
+          "Item": { "$ref": "187" }
         },
         {
           "$id": "293",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "20" }
+          "Item": { "$ref": "195" }
         },
         {
           "$id": "294",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "148" }
+          "Item": { "$ref": "203" }
         },
         {
           "$id": "295",
           "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
           "Self": { "$ref": "153" },
-          "Item": { "$ref": "36" }
-        },
-        {
-          "$id": "296",
-          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
-          "Self": { "$ref": "153" },
-          "Item": { "$ref": "52" }
-        },
-        {
-          "$id": "297",
-          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
-          "Self": { "$ref": "153" },
-          "Item": { "$ref": "68" }
-        },
-        {
-          "$id": "298",
-          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
-          "Self": { "$ref": "153" },
-          "Item": { "$ref": "84" }
-        },
-        {
-          "$id": "299",
-          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
-          "Self": { "$ref": "153" },
-          "Item": { "$ref": "100" }
-        },
-        {
-          "$id": "300",
-          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
-          "Self": { "$ref": "153" },
-          "Item": { "$ref": "116" }
+          "Item": { "$ref": "211" }
         }
       ]
     }

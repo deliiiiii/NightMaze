@@ -119,7 +119,7 @@ public class PlayView : ViewBase<GamePlaying>
                 [
                     ..
                     from spin in PlaySpinData.ToIEnumerable()
-                    from itemInSpin in spin.GetItemByPlay(item).ToIEnumerable()
+                    from itemInSpin in spin.GetItemByEtt(item.BelongEtt).ToIEnumerable()
                     from modProp1 in itemInSpin.ModifyProp1
                     select $"{item.Config.Name} {modProp1.Value.ToStringWithSymbol()}"
                 ]

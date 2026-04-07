@@ -82,11 +82,13 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         //     return (TCom)oldCom;
         // }
         comDic[com.BelongEtt] = com;
+        OnAddEtt?.Invoke(com.BelongEtt);
         return com;
     }
     public void RemoveEttCom<TEtt>(TEtt ett)
         where TEtt : EttBase<TEtt>, new()
     {
+        OnRemoveEtt?.Invoke(ett);
         if (comDic.Remove(ett))
             return;
         MyDebug.LogError($"在{GetType().GetNiceName()}中未找到EttID:{ett.EttID}的组件，无法移除.");
@@ -140,6 +142,12 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     public record EvtOnEnter(TThis WhoHasCt) : EvtBase<TThis>(WhoHasCt);
     /// 仅为了通知UI.
     public record EvtOnExit : EvtForgetBase;
+    public delegate Action<TEtt> OnAddCom<in TEtt, in TCom>(TCom com)
+        where TEtt : EttBase<TEtt>, new()
+        where TCom : ComBase<TEtt, TCom>;
+
+    public event Action<EttBase>? OnAddEtt;
+    public event Action<EttBase>? OnRemoveEtt;
 
     public interface IUniAction : ICanAwait;
     public abstract record UniAction(TThis Self) : IUniAction

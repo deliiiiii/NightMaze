@@ -43,6 +43,7 @@ public partial class GamePlaying
 
         public abstract TConfig Config { get; }
 
+        EttBase IItem.BelongEtt => BelongEtt;
         int IItem.ID => ID;
         Vector2Int IItem.PivotPos => PivotPos;
         IEnumerable<Vector2Int> IItem.DeltaPosList => DeltaPosList;
@@ -53,6 +54,7 @@ public partial class GamePlaying
 
     public interface IItem
     {
+        EttBase BelongEtt { get; }
         int ID { get; }
         Vector2Int PivotPos { get; }
         IEnumerable<Vector2Int> DeltaPosList { get; }

@@ -8,13 +8,13 @@ public partial class PlaySpin
 {
     public interface IItem
     {
+        EttBase BelongEtt { get; }
         int Prop1 { get; }
         int Prop2 { get; }
         int Prop3 { get; }
         List<ModifyPropInfo> ModifyProp1 { get; }
         List<ModifyPropInfo> ModifyProp2 { get; }
         List<ModifyPropInfo> ModifyProp3 { get; }
-        EttBase BelongEtt { get; }
     }
     public abstract class MyItem<TEtt, TSub> : ComBase<TEtt, TSub>, IItem
         where TEtt : EttBase<TEtt>, new()
@@ -34,13 +34,13 @@ public partial class PlaySpin
         [JsonProperty(IsReference = false, ItemIsReference = false)]
         public List<ModifyPropInfo> ModifyProp3 = [];
         
+        EttBase IItem.BelongEtt => BelongEtt;
         int IItem.Prop1 => Prop1;
         int IItem.Prop2 => Prop2;
         int IItem.Prop3 => Prop3;
         List<ModifyPropInfo> IItem.ModifyProp1 => ModifyProp1;
         List<ModifyPropInfo> IItem.ModifyProp2 => ModifyProp2;
         List<ModifyPropInfo> IItem.ModifyProp3 => ModifyProp3;
-        EttBase IItem.BelongEtt => BelongEtt;
 
         // public void SelfAddBaseValue(PlaySpin playSpin)
         // {

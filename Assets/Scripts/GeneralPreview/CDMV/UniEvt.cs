@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -8,7 +9,7 @@ using Sirenix.Utilities;
 using UnityEngine;
 
 namespace GeneralPreview;
-public record UniEvt<TEvt> : IDisposable, IUniEvt
+public record UniEvt<TEvt> : IUniEvt
     where TEvt : IEvtBase
 {
     [ReadOnly, ShowInInspector] public required string Des { get; init; } = "None ...";
@@ -25,7 +26,7 @@ public record UniEvt<TEvt> : IDisposable, IUniEvt
     public UniTask InvokeAsync(IEvtBase evt, CancellationToken ct) => Invoke((TEvt)evt, ct);
 }
 
-public interface IUniEvt
+public interface IUniEvt : IDisposable
 {
     public static void BindAll(object obj, CancellationToken ct)
     {
