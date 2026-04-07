@@ -72,7 +72,7 @@ MonoBehaviour:
         TakeMax:
           rid: 6212121000547450915
         ItemFilter:
-          rid: 6212121000547450916
+          rid: 6212121012880539673
         ItemTag: 0
         SymbolTag: 2
         ResourceTag: 0
@@ -80,12 +80,6 @@ MonoBehaviour:
     - rid: 6212121000547450915
       type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
       data: 
-    - rid: 6212121000547450916
-      type: {class: ItemFilterInManDis, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: -2
-        Dis: 1
     - rid: 6212121000547450917
       type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
       data:
@@ -124,14 +118,24 @@ MonoBehaviour:
         PosSelector:
           rid: 6212121000547450925
         ItemSelector:
-          rid: 6212121000547450923
-    - rid: 6212121000547450923
+          rid: 6212121012880539697
+    - rid: 6212121000547450925
+      type: {class: PosSelectorFromResultItem, ns: NM.Config, asm: NM.Config}
+      data:
+        IOutItem:
+          rid: 6212121000547450913
+    - rid: 6212121012880539673
+      type: {class: ItemFilterIn3X3, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+    - rid: 6212121012880539697
       type: {class: ItemSelectorItem, ns: NM.Config, asm: NM.Config}
       data:
         ItemSort:
           rid: -2
         TakeMax:
-          rid: 6212121000547450924
+          rid: 6212121012880539698
         ItemFilter:
           rid: -2
         GridList: []
@@ -139,11 +143,6 @@ MonoBehaviour:
         BuildingList: []
         ResourceList:
         - {fileID: 11400000, guid: 52dfffd32de856844bcff5999a9cb10c, type: 2}
-    - rid: 6212121000547450924
+    - rid: 6212121012880539698
       type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
       data: 
-    - rid: 6212121000547450925
-      type: {class: PosSelectorFromResultItem, ns: NM.Config, asm: NM.Config}
-      data:
-        IOutItem:
-          rid: 6212121000547450913

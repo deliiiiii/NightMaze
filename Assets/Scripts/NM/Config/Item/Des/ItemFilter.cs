@@ -16,3 +16,5 @@ public class ItemFilterInManDis : ItemFilterBase
 {
     [LabelText("{0}: 距离格数") ,MinValue(0)]public int Dis;
 }
+[TypeRegistryItem("在自身周围3x3格范围内")]
+public class ItemFilterIn3X3 : ItemFilterBase;

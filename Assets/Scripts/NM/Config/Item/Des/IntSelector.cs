@@ -12,7 +12,7 @@ public class IntSelectorConst : IntSelectorBase
     [LabelText("{0}: 数值")] public int Value;
 }
 
-[TypeRegistryItem("每有一个{0}, 获得{1}数值")]
+[TypeRegistryItem("每有一个物体{0}, 获得{1}数值")]
 public class IntSelectorSumBy : IntSelectorBase
 {
     [SerializeReference, LabelText("{0}: 来源物体")] public ItemSelectorBase ItemSelector = new ItemSelectorSelf();

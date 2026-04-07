@@ -40,9 +40,9 @@ MonoBehaviour:
   Tag: 0
   DesList:
   - Trigger:
-      rid: 6212121000547450880
+      rid: 6212121012880539648
     Result:
-      rid: 6212121000547450881
+      rid: 6212121012880539649
   SymbolTag: 4
   Prop1: 0
   Prop2: 0
@@ -52,58 +52,91 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 6212121000547450880
+    - rid: 6212121012880539648
       type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
       data: 
-    - rid: 6212121000547450881
+    - rid: 6212121012880539649
       type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
       data:
         Condition:
-          rid: -2
+          rid: 6212121012880539653
         Next:
           rid: -2
         ItemSelector:
-          rid: 6212121000547450882
+          rid: 6212121012880539650
         PropType: 0
         IntSelectorBase:
-          rid: 6212121000547450889
-    - rid: 6212121000547450882
+          rid: 6212121012880539660
+    - rid: 6212121012880539650
       type: {class: ItemSelectorSelf, ns: NM.Config, asm: NM.Config}
       data:
         ItemSort:
           rid: -2
         TakeMax:
-          rid: 6212121000547450884
+          rid: 6212121012880539652
         ItemFilter:
           rid: -2
-    - rid: 6212121000547450884
+    - rid: 6212121012880539652
       type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
       data: 
-    - rid: 6212121000547450889
-      type: {class: IntSelectorSumBy, ns: NM.Config, asm: NM.Config}
+    - rid: 6212121012880539653
+      type: {class: ItemDesConditionCollectXItem, ns: NM.Config, asm: NM.Config}
       data:
+        Next:
+          rid: -2
         ItemSelector:
-          rid: 6212121000547450892
-        Value: 2
-    - rid: 6212121000547450892
+          rid: 6212121012880539654
+        MinValueSelector:
+          rid: 6212121012880539655
+    - rid: 6212121012880539654
       type: {class: ItemSelectorTag, ns: NM.Config, asm: NM.Config}
       data:
         ItemSort:
           rid: -2
         TakeMax:
-          rid: 6212121000547450893
+          rid: 6212121012880539656
         ItemFilter:
-          rid: 6212121000547450894
+          rid: 6212121012880539659
+        ItemTag: 0
+        SymbolTag: 0
+        ResourceTag: 2
+        BuildingTag: 0
+    - rid: 6212121012880539655
+      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
+      data:
+        Value: 1
+    - rid: 6212121012880539656
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121012880539659
+      type: {class: ItemFilterIn3X3, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+    - rid: 6212121012880539660
+      type: {class: IntSelectorSumBy, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSelector:
+          rid: 6212121012880539663
+        Value: 2
+    - rid: 6212121012880539663
+      type: {class: ItemSelectorTag, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSort:
+          rid: -2
+        TakeMax:
+          rid: 6212121012880539667
+        ItemFilter:
+          rid: 6212121012880539666
         ItemTag: 0
         SymbolTag: 0
         ResourceTag: 4
         BuildingTag: 0
-    - rid: 6212121000547450893
-      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
-      data: 
-    - rid: 6212121000547450894
-      type: {class: ItemFilterInManDis, ns: NM.Config, asm: NM.Config}
+    - rid: 6212121012880539666
+      type: {class: ItemFilterIn3X3, ns: NM.Config, asm: NM.Config}
       data:
         ItemFilter:
           rid: -2
-        Dis: 1
+    - rid: 6212121012880539667
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 

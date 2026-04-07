@@ -29,7 +29,7 @@ MonoBehaviour:
       Data: 2
     - Name: Height
       Entry: 3
-      Data: 2
+      Data: 12
     - Name: 
       Entry: 8
       Data: 
@@ -37,7 +37,7 @@ MonoBehaviour:
   ID: 1
   FlavorDes: "\u4E0D\u8981\u591A\u60F3\u8FD9\u662F\u4EC0\u4E48"
   Rarity: 0
-  Tag: 0
+  Tag: 4
   DesList: []
   ResourceTag: 4
   references:

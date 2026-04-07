@@ -30,33 +30,41 @@ namespace GeneralPreview;
         where T : ConfigMulti<T>
     {
         [OnValueChanged(nameof(OnNameAndIdChanged))] 
-        [ValidateInput(nameof(CheckName), "名称不能为空")]
+        [ValidateInput(nameof(CheckName), "名称不能为空，也不能包含斜杠/ \\")]
         public string Name = string.Empty;
 
         public sealed override void OnLoad() => RefPoolMulti<T>.RegisterOne(() => (T)this);
         public sealed override void OnUnload() => RefPoolMulti<T>.ReleaseOne((T)this);
 
         [OnValueChanged(nameof(OnNameAndIdChanged))]
-        [ValidateInput(nameof(CheckNameAndIdIdentical), "名称为空，或ID在当前文件夹(配置类相同)有重复")]
+        [ValidateInput(nameof(CheckNameAndIdIdentical), "名称格式有误，或ID在当前文件夹(配置类相同)有重复")]
         public int ID;
         
         protected abstract string PrefixName { get; }
 
         bool CheckAll() => CheckName() && CheckNameAndIdIdentical();
         // bool CheckId() => true;
-        bool CheckName() => Name != string.Empty;
+        bool CheckName()
+        {
+            if (Name.Contains('/'))
+                return false;
+            return Name != string.Empty;
+        }
+
         bool CheckNameAndIdIdentical()
         {
     #if UNITY_EDITOR
             if (!CheckName())
                 return false;
             var thisPath = UnityEditor.AssetDatabase.GetAssetPath(this);
+            var thisName = Path.GetFileName(thisPath);
             var directoryName = Path.GetDirectoryName(thisPath);
             // 获取该目录下所有ScriptableObject
             return Directory.GetFiles(directoryName!, "*.asset")
-                .Select(path => path.Replace('\\', '/'))
-                .Where(path => path != thisPath && path.Split('_')[0].Split('/')[^1] == PrefixName)
-                .All(path => int.Parse(path.Split('_')[1]) != ID);
+                .Select(Path.GetFileName)
+                .Where(thatName => thatName != thisName && thatName.Split('_')[0] == PrefixName)
+                .All(thatName => int.Parse(thatName.Split('_')[1]) != ID);
+            
     #endif
     #pragma warning disable CS0162 // 检测到不可到达的代码
             // ReSharper disable once HeuristicUnreachableCode
