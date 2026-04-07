@@ -24,6 +24,8 @@ namespace General
     
         public override void UnBind()
         {
+            if (!Updater.HasInstance)
+                return;
             if (Updater.UpdateDic.TryGetValue(priority, out var value))
             {
                 var found = value.FirstOrDefault(v => v.Act == Act);

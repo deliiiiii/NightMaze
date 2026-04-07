@@ -1731,8 +1731,8 @@
           "ID": 1,
           "PivotPos": {
             "$id": "335",
-            "X": 5,
-            "Y": 4
+            "X": 4,
+            "Y": 5
           },
           "DeltaPosList": {
             "$id": "336",
@@ -2017,7 +2017,7 @@
     }
   },
   "PlayerName": "qqq1",
-  "PlayTime": 38.023162093944848,
+  "PlayTime": 42.2090769065544,
   "Prop1": 0,
   "Prop2": 0,
   "Prop3": 0,
@@ -2027,14 +2027,175 @@
   "Coin": 0,
   "state": {
     "$id": "390",
-    "$type": "NM.Data.PlayIdle, NM.Data",
+    "$type": "NM.Data.PlaySpin, NM.Data",
     "savedVersion": 20260402.0,
     "comDic": {
       "$id": "391",
-      "$values": []
+      "$values": [
+        {
+          "Key": {
+            "$ref": "323"
+          },
+          "Value": {
+            "$id": "392",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": {
+              "$id": "393",
+              "$values": []
+            },
+            "ModifyProp2": {
+              "$id": "394",
+              "$values": []
+            },
+            "ModifyProp3": {
+              "$id": "395",
+              "$values": []
+            }
+          }
+        },
+        {
+          "Key": {
+            "$ref": "328"
+          },
+          "Value": {
+            "$id": "396",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": {
+              "$id": "397",
+              "$values": []
+            },
+            "ModifyProp2": {
+              "$id": "398",
+              "$values": []
+            },
+            "ModifyProp3": {
+              "$id": "399",
+              "$values": []
+            }
+          }
+        },
+        {
+          "Key": {
+            "$ref": "333"
+          },
+          "Value": {
+            "$id": "400",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": {
+              "$id": "401",
+              "$values": []
+            },
+            "ModifyProp2": {
+              "$id": "402",
+              "$values": []
+            },
+            "ModifyProp3": {
+              "$id": "403",
+              "$values": []
+            }
+          }
+        },
+        {
+          "Key": {
+            "$ref": "338"
+          },
+          "Value": {
+            "$id": "404",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": {
+              "$id": "405",
+              "$values": []
+            },
+            "ModifyProp2": {
+              "$id": "406",
+              "$values": []
+            },
+            "ModifyProp3": {
+              "$id": "407",
+              "$values": []
+            }
+          }
+        },
+        {
+          "Key": {
+            "$ref": "343"
+          },
+          "Value": {
+            "$id": "408",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": {
+              "$id": "409",
+              "$values": []
+            },
+            "ModifyProp2": {
+              "$id": "410",
+              "$values": []
+            },
+            "ModifyProp3": {
+              "$id": "411",
+              "$values": []
+            }
+          }
+        }
+      ]
     },
     "BelongNode": {
       "$ref": "1"
+    },
+    "ToDoList": {
+      "$id": "412",
+      "$values": [
+        {
+          "$id": "413",
+          "$type": "NM.Data.PlaySpin+ActCheckSymbol, NM.Data",
+          "Self": {
+            "$ref": "390"
+          },
+          "Symbol": {
+            "$ref": "400"
+          }
+        },
+        {
+          "$id": "414",
+          "$type": "NM.Data.PlaySpin+ActCheckSymbol, NM.Data",
+          "Self": {
+            "$ref": "390"
+          },
+          "Symbol": {
+            "$ref": "396"
+          }
+        },
+        {
+          "$id": "415",
+          "$type": "NM.Data.PlaySpin+ActCheckSymbol, NM.Data",
+          "Self": {
+            "$ref": "390"
+          },
+          "Symbol": {
+            "$ref": "404"
+          }
+        },
+        {
+          "$id": "416",
+          "$type": "NM.Data.PlaySpin+ActCheckSymbol, NM.Data",
+          "Self": {
+            "$ref": "390"
+          },
+          "Symbol": {
+            "$ref": "392"
+          }
+        },
+        {
+          "$id": "417",
+          "$type": "NM.Data.PlaySpin+ActCheckSymbol, NM.Data",
+          "Self": {
+            "$ref": "390"
+          },
+          "Symbol": {
+            "$ref": "408"
+          }
+        }
+      ]
     }
   }
 }

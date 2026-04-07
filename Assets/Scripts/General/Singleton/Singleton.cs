@@ -4,18 +4,21 @@ using UnityEngine;
 
 namespace General
 {
-    [DebuggerStepThrough]
+    [DebuggerStepThrough][DefaultExecutionOrder(9999)]
     public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         public bool GlobalOnScene;
 
         static T instance;
+        public static bool HasInstance => instance != null;
         protected static T Instance
         {
             get
             {
-                if (!Application.isPlaying)
-                    return instance;
+                // MyDebug.Log($"{typeof(T)} GET ins");
+                // if (!Application.isPlaying)
+                    // return instance;
+                // MyDebug.Log($"{typeof(T)} TrySpawn ins");
                 instance ??= FindObjectOfType<T>();
                 instance ??= new GameObject().AddComponent<T>();
                 return instance;
@@ -36,7 +39,11 @@ namespace General
             {
                 DontDestroyOnLoad(gameObject);
             }
-            destroyCancellationToken.Register(() => instance = null);
+            destroyCancellationToken.Register(() =>
+            {
+                // MyDebug.Log($"{typeof(T)} Destroy ins");
+                instance = null;
+            });
         }
     }
 }
