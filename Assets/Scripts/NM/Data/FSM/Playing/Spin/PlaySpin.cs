@@ -34,7 +34,7 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
             from itemInPlay in BelongNode.Items
             orderby itemInPlay.PivotPos.Y descending, itemInPlay.PivotPos.X, itemInPlay.Config.Order ascending 
             from itemInThis in GetItemByEtt(itemInPlay.BelongEtt).ToIEnumerable()
-            where itemInPlay is GamePlaying.Grid
+            where itemInPlay is GamePlaying.Symbol
             select new ActCheckItem(this)
             {
                 Item = itemInThis

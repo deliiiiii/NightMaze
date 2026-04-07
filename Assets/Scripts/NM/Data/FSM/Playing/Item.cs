@@ -50,6 +50,11 @@ public partial class GamePlaying
         bool IItem.CoverPos(Vector2Int pos) => CoverPos(pos);
         IEnumerable<Vector2Int> IItem.CoveredPosList => CoveredPosList;
         IItemConfig IItem.Config => Config;
+
+        public override string ToString()
+        {
+            return $"{GetType().Name}(ID: {ID}, PivotPos: {PivotPos}, DeltaPosList: [{string.Join(", ", DeltaPosList)}])";
+        }
     }
 
     public interface IItem

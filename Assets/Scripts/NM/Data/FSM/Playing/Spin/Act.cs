@@ -104,10 +104,10 @@ public partial class PlaySpin
             ItemSelectorSelf selectorSelf => [selfItem],
             ItemSelectorTag selectorTag => from itemInSpin in Items
                 from itemInPlay in BelongNode.GetItemByEtt(itemInSpin.BelongEtt).ToIEnumerable()
-                where (itemInPlay is GamePlaying.Grid grid && selectorTag.GridTag.HasFlag(grid.Config.Tag)) 
-                      || (itemInPlay is GamePlaying.Symbol symbol && selectorTag.SymbolTag.HasFlag(symbol.Config.Tag))
-                      || (itemInPlay is GamePlaying.Building building && selectorTag.BuildingTag.HasFlag(building.Config.Tag))
-                      || (itemInPlay is GamePlaying.Resource resource && selectorTag.ResourceTag.HasFlag(resource.Config.Tag))
+                where (itemInPlay is GamePlaying.Grid grid && selectorTag.GridTag != 0 && selectorTag.GridTag.HasFlag(grid.Config.GridTag)) 
+                      || (itemInPlay is GamePlaying.Symbol symbol && selectorTag.SymbolTag != 0 && selectorTag.SymbolTag.HasFlag(symbol.Config.SymbolTag))
+                      || (itemInPlay is GamePlaying.Building building && selectorTag.BuildingTag != 0 && selectorTag.BuildingTag.HasFlag(building.Config.BuildingTag))
+                      || (itemInPlay is GamePlaying.Resource resource && selectorTag.ResourceTag != 0 && selectorTag.ResourceTag.HasFlag(resource.Config.ResourceTag))
                 select itemInSpin,
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemSelectorBase)}类型: {itemSelector.GetType()}.")
         };

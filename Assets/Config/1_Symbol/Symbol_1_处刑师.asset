@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d68e3271dfc48e892c16b30d66ff012, type: 3}
-  m_Name: "Symbol_5_\u5904\u5211\u5E08"
+  m_Name: "Symbol_1_\u5904\u5211\u5E08"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -34,7 +34,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   Name: "\u5904\u5211\u5E08"
-  ID: 5
+  ID: 1
   FlavorDes: "\u6CA1\u4EBA\u77E5\u9053\u90A3\u4E9B\u86CB\u767D\u5757\u54EA\u6765\u7684\uFF0C\u9664\u4E86\u4ED6"
   Rarity: 0
   Tag: 0
@@ -67,12 +67,13 @@ MonoBehaviour:
     - rid: 6212121000547450914
       type: {class: ItemSelectorTag, ns: NM.Config, asm: NM.Config}
       data:
-        ItemSort:
-          rid: -2
-        TakeMax:
-          rid: 6212121000547450915
         ItemFilter:
           rid: 6212121012880539673
+        Random: 0
+        TakeMax:
+          rid: 6212121000547450915
+        ItemSort:
+          rid: -2
         ItemTag: 0
         GridTag: 0
         SymbolTag: 2
@@ -96,11 +97,12 @@ MonoBehaviour:
     - rid: 6212121000547450918
       type: {class: ItemSelectorSelf, ns: NM.Config, asm: NM.Config}
       data:
-        ItemSort:
+        ItemFilter:
           rid: -2
+        Random: 0
         TakeMax:
           rid: 6212121000547450920
-        ItemFilter:
+        ItemSort:
           rid: -2
     - rid: 6212121000547450920
       type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
@@ -119,6 +121,13 @@ MonoBehaviour:
     - rid: 6212121000547450925
       type: {class: PosSelectorFromResultItem, ns: NM.Config, asm: NM.Config}
       data:
+        PosFilter:
+          rid: -2
+        Random: 0
+        TakeMax:
+          rid: 6212121024638222482
+        PosSort:
+          rid: -2
         IOutItem:
           rid: 6212121000547450913
     - rid: 6212121012880539673
@@ -129,11 +138,12 @@ MonoBehaviour:
     - rid: 6212121012880539697
       type: {class: ItemSelectorItem, ns: NM.Config, asm: NM.Config}
       data:
-        ItemSort:
+        ItemFilter:
           rid: -2
+        Random: 0
         TakeMax:
           rid: 6212121012880539698
-        ItemFilter:
+        ItemSort:
           rid: -2
         GridList: []
         SymbolList: []
@@ -147,3 +157,6 @@ MonoBehaviour:
       type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
       data:
         Value: 3
+    - rid: 6212121024638222482
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 

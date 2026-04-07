@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using Newtonsoft.Json;
 using NM.Config;
+using Sirenix.Utilities;
 
 namespace NM.Data;
 
@@ -47,10 +49,11 @@ public partial class PlaySpin
         List<ModifyPropInfo> IItem.ModifyProp2 => ModifyProp2;
         List<ModifyPropInfo> IItem.ModifyProp3 => ModifyProp3;
         
-        UniTask IItem.OnSpin(PlaySpin playSpin, CancellationToken ct) => OnSpin(playSpin, ct);
+        [DebuggerStepThrough]UniTask IItem.OnSpin(PlaySpin playSpin, CancellationToken ct) => OnSpin(playSpin, ct);
 
         protected virtual UniTask OnSpin(PlaySpin playSpin, CancellationToken ct)
         {
+            _playSpin = playSpin;
             SelfAddBaseValue(playSpin);
             playSpin.InsertAfter(
                 from itemInPlay in playSpin.BelongNode.GetItemByEtt(BelongEtt).ToIEnumerable()
@@ -65,6 +68,16 @@ public partial class PlaySpin
         }
         protected virtual void SelfAddBaseValue(PlaySpin playSpin)
         {
+        }
+        [JsonIgnore]MyOption<PlaySpin> _playSpin;
+        public override string ToString()
+        {
+            return
+                (from p in _playSpin
+                    from itemInPlay in p.BelongNode.GetItemByEtt(BelongEtt)
+                    select $"{GetType().Name}(Prop1: {Prop1}, Prop2: {Prop2}, Prop3: {Prop3}, " +
+                           $"belong {itemInPlay})") 
+                | GetType().GetNiceName();
         }
     }
     public class ModifyPropInfo 

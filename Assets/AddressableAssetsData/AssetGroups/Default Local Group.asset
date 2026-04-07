@@ -30,7 +30,7 @@ MonoBehaviour:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 51596eba0b0af96459eb55cd4794d2ec
-    m_Address: "Symbol_5_\u5904\u5211\u5E08"
+    m_Address: "Symbol_1_\u5904\u5211\u5E08"
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig

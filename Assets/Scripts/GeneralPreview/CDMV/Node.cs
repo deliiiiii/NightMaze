@@ -110,7 +110,8 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     }
     void IDisposable.Dispose() => OnRemove();
     [JsonIgnore]readonly CancellationTokenSource cts = new();
-    public CancellationToken CurCt => cts.Token;
+    public CancellationToken CurCt { [DebuggerStepThrough] get => cts.Token; }
+
     public double savedVersion { get; set; } = Const.Version;
     public sealed override async UniTask OnCreateAsync(bool isThisFromLoad)
     {
@@ -148,13 +149,14 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
 
     public event Action<EttBase>? OnAddEtt;
     public event Action<EttBase>? OnRemoveEtt;
+    [DebuggerStepThrough]
     public abstract record UniAction(TThis Self) : IUniAction
     {
         [UnityEngine.HideInInspector] protected readonly TThis Self = Self;
-        [DebuggerStepThrough] protected abstract UniTask InvokeAsync();
-        [DebuggerStepThrough] public UniTask.Awaiter GetAwaiter() 
+        protected abstract UniTask InvokeAsync();
+        public UniTask.Awaiter GetAwaiter() 
             => Self.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : InvokeAsync().GetAwaiter();
-        [DebuggerStepThrough] public void Forget() => InvokeAsync().Forget();
+        public void Forget() => InvokeAsync().Forget();
     }
 }
 public interface IUniAction : ICanAwait;
