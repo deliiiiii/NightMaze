@@ -97,16 +97,16 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         (from x in Range(1, 8) 
             from y in Range(1, 8)
             select new Vector2Int(x, y))
-            .ForEach(pos => AddEttCom<EttGrid, Grid>(new Grid(this, EttGrid.Create(), 1, pos)));
+            .ForEach(pos => AddEttCom<EttGrid, Grid>(new Grid(EttGrid.Create(), 1, pos)));
         EmptyGrids
             .ToList()
             .Take(5)
-            .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(this, EttSymbol.Create(), 1, grid.PivotPos)));
+            .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(EttSymbol.Create(), 1, grid.PivotPos)));
         
         EmptyGrids
             .ToList()
             .Take(5)
-            .ForEach(grid => AddEttCom<EttResource, Resource>(new Resource(this, EttResource.Create(), 1, grid.PivotPos)));
+            .ForEach(grid => AddEttCom<EttResource, Resource>(new Resource(EttResource.Create(), 1, grid.PivotPos)));
         
         state = new PlayIdle();
     }

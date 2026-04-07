@@ -11,7 +11,7 @@ public partial class PlaySpin
     async UniTask CheckSymbolAsync(Symbol symbol, CancellationToken ct)
     {
         await new EvtBeforeCheckSymbol(this, symbol);
-        symbol.SelfAddBaseValue.Invoke();
+        symbol.SelfAddBaseValue(this);
     }
 
     public record EvtBeforeCheckSymbol(PlaySpin WhoHasCt, Symbol Symbol) : EvtBase<PlaySpin>(WhoHasCt);

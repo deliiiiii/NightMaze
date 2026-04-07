@@ -32,20 +32,16 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     {
         EttBase BelongEtt { get; set; }
     }
-    public abstract class ComBase<TEtt, TCom> : INodeCom
+    public abstract class ComBase<TEtt, TCom>(TEtt belongEtt) : INodeCom
         where TEtt : EttBase<TEtt>, new()
         where TCom : ComBase<TEtt, TCom>
     {
-        [JsonIgnore]public TEtt BelongEtt { get; private set; }
+        [JsonIgnore]public TEtt BelongEtt { get; private set; } = belongEtt;
+
         [JsonIgnore]EttBase INodeCom.BelongEtt
         {
             get => BelongEtt;
             set => BelongEtt = (TEtt)value;
-        }
-
-        protected ComBase(TThis thisNode, TEtt belongEtt)
-        {
-            BelongEtt = belongEtt;
         }
     }
     [JsonIgnore]Dictionary<EttBase, INodeCom> comDic = [];

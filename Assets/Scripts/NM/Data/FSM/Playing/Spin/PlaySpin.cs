@@ -12,7 +12,7 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
     IEnumerable<Symbol> Symbols => GetComs<Symbol>();
     protected override void OnCreateFreshData()
     {
-        BelongNode.Symbols.ForEach(s => AddEttCom<EttSymbol, Symbol>(new Symbol(this, s.BelongEtt)));
+        BelongNode.Symbols.ForEach(s => AddEttCom<EttSymbol, Symbol>(new Symbol(s.BelongEtt)));
         ToDoList = [..
             from s in Symbols
             from symbolInPlay in BelongNode[s.BelongEtt].ToIEnumerable()

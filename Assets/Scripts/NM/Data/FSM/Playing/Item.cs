@@ -11,7 +11,7 @@ public partial class GamePlaying
         where TSub : MyItem<TEtt, TSub, TConfig>
         where TConfig : ItemConfigBase<TConfig>, new()
     {
-        protected MyItem(GamePlaying thisNode, TEtt belongEtt, int id, Vector2Int pivotPos) : base(thisNode, belongEtt)
+        protected MyItem(TEtt belongEtt, int id, Vector2Int pivotPos) : base(belongEtt)
         {
             ID = id;
             PivotPos = pivotPos;
