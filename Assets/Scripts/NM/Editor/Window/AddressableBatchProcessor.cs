@@ -3,13 +3,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
 using General;
 using General.Editor;
 using GeneralPreview;
 using NM.Config;
-using NM.Data;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
@@ -22,16 +19,6 @@ internal class AddressableBatchProcessor : EditorWindow
     Vector2 scrollPosition;
     string[] fieldNames = [];
     string[] fieldValues = [];
-
-    UniEvt<EvtOnEnterPlayMode> OnEnterPlayMode => new()
-    {
-        Invoke = (evt, ct) =>
-        {
-            AutoApplyConfig();
-            return UniTask.CompletedTask;
-        },
-        Des = "进入 Play Mode 时自动应用 Addressable Batch Config 中的规则",
-    };
         
     [MenuItem("Tools/" + NameC.Name + "/" + nameof(AddressableBatchProcessor))]
     public static void ShowWindow()
@@ -205,22 +192,13 @@ internal class AddressableBatchProcessor : EditorWindow
         AssetDatabase.SaveAssets();
         config = newConfig;
     }
-    //
-    // [InitializeOnLoadMethod]
-    // static void RegisterPlayModeStateChanged()
-    // {
-    //     EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
-    //     EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-    // }
-    //
-    // static void OnPlayModeStateChanged(PlayModeStateChange state)
-    // {
-    //     if (state == PlayModeStateChange.EnteredPlayMode)
-    //     {
-    //         AutoApplyConfig();
-    //     }
-    // }
-
+    
+    [InitializeOnEnterPlayMode]
+    static void RegisterPlayModeStateChanged()
+    {
+        AutoApplyConfig();
+    }
+    
     static void AutoApplyConfig()
     {
         if(MyAsset.TryLoadFirstAsset<AddressableBatchConfig>(out var cfg))

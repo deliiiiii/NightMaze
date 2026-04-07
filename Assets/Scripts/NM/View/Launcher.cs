@@ -26,6 +26,7 @@ public class Launcher : Singleton<Launcher>
     protected override void Awake()
     {
         base.Awake();
+        Bus.TryClear = true;
     }
 
     // ReSharper disable once Unity.IncorrectMethodSignature
@@ -38,9 +39,6 @@ public class Launcher : Singleton<Launcher>
 #endif
         try
         {
-            new EvtOnEnterPlayMode().Forget();
-            Bus.ClearEditor = true;
-            Bus.TryClear = true;
             MyInput.Init(destroyCancellationToken);
             await Loader.LoadAllAsync(destroyCancellationToken);
             MigrateStepRegister.Init();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace General
 {
-    [DebuggerStepThrough][DefaultExecutionOrder(9999)]
+    [DebuggerStepThrough]
     public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         public bool GlobalOnScene;
