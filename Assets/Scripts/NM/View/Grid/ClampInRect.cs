@@ -5,7 +5,7 @@ namespace NM.View;
 
 public class ClampInRect : MonoBehaviour
 {
-    [SerializeField] BoxCollider2D boxCollider2D = null!;
+    [SerializeField] BoxCollider2D boxCollider2D;
     Rect? rect;
 
 

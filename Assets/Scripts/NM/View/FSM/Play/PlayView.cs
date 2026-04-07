@@ -11,8 +11,7 @@ using Sirenix.Utilities;
 using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
 
-#pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
-
+// #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 namespace NM.View;
 public class PlayView : ViewBase<GamePlaying>
 {
@@ -26,10 +25,13 @@ public class PlayView : ViewBase<GamePlaying>
     [SerializeField] GridView gridPfb;
     [SerializeField] SymbolView symbolPfb;
     [SerializeField] ResourceView resourcePfb;
+    [SerializeField] BuildingView buildingPfb;
 
-    readonly List<GridView> gridList = [];
-    readonly List<SymbolView> symbolList = [];
-    readonly List<ResourceView> resourceList = [];
+    readonly List<ItemViewBase> itemList = [];
+    IEnumerable<GridView> Grids => itemList.OfType<GridView>();
+    IEnumerable<SymbolView> Symbols => itemList.OfType<SymbolView>();
+    IEnumerable<BuildingView> Buildings => itemList.OfType<BuildingView>();
+    IEnumerable<ResourceView> Resources => itemList.OfType<ResourceView>();
     
     public Vector2Int? LockedPosDetail;
     
@@ -55,9 +57,10 @@ public class PlayView : ViewBase<GamePlaying>
         {
             Data = evt.WhoHasCt;
             // ClearAllGrid();
-            Data.Grids.ForEach(SetGridAtPos);
-            Data.Symbols.ForEach(SetSymbolAtPos);
-            Data.Resources.ForEach(SetResourceAtPos);
+            Data.Items.ForEach(SetItemAtPos);
+            // Data.Grids.ForEach(SetGridAtPos);
+            // Data.Symbols.ForEach(SetSymbolAtPos);
+            // Data.Resources.ForEach(SetResourceAtPos);
             gameObject.SetActiveTrue();
             return UniTask.CompletedTask;
         },
@@ -82,7 +85,7 @@ public class PlayView : ViewBase<GamePlaying>
     {
         Invoke = (evt, ct) =>
         {
-            SetGridAtPos(evt.Grid);
+            SetItemAtPos(evt.Grid);
             return UniTask.CompletedTask;
         },
         Des = "显示地块",
@@ -91,7 +94,7 @@ public class PlayView : ViewBase<GamePlaying>
     {
         Invoke = (evt, ct) =>
         {
-            SetSymbolAtPos(evt.Symbol);
+            SetItemAtPos(evt.Symbol);
             return UniTask.CompletedTask;
         },
         Des = "显示符号",
@@ -161,46 +164,41 @@ public class PlayView : ViewBase<GamePlaying>
 
     void ClearAllGrid()
     {
-        gridList.ForEach(grid => Destroy(grid.gameObject));
-        gridList.Clear();
-        symbolList.Clear();
+        itemList.ForEach(item => Destroy(item.gameObject));
+        itemList.Clear();
     }
 
-    void SetGridAtPos(GamePlaying.Grid grid)
+    void SetItemAtPos(GamePlaying.IItem item)
     {
-        // gridList.Remove(pos);
-        // TODO
-        var go = Instantiate(gridPfb, GridTrs);
-        go.Data = grid;
-        go.transform.position = GridToWorld(grid.PivotPos);
-        go.SetActiveTrue();
-        gridList.Add(go);
-    }
-
-    void SetSymbolAtPos(GamePlaying.Symbol symbol)
-    {
-        SymbolView? go = symbolList.FirstOrDefault(s => s.Data == symbol);
-        if (go == null)
+        ItemViewBase pfb = item switch
         {
-            go = Instantiate(symbolPfb);
-            go.Data = symbol;
-            go.SetActiveTrue();
-            go.Sr.SetActiveTrue();
-        }
-        go.transform.parent = gridList.FirstOrDefault(g => g.Data.PivotPos == symbol.PivotPos)?.TrsSymbol;
-        go.transform.localPosition = Vector3.zero;
+            GamePlaying.Grid => gridPfb,
+            GamePlaying.Symbol => symbolPfb,
+            GamePlaying.Resource => resourcePfb,
+            GamePlaying.Building => buildingPfb,
+            _ => throw new Exception($"未适配的Item类型 {item.GetType()}")
+        };
         
-        symbolList.Add(go);
-    }
+        ItemViewBase? ins = itemList.FirstOrDefault(s => s.Data == item);
+        if (ins == null)
+        {
+            ins = Instantiate(pfb);
+            ins.Data = item;
+            ins.SetActiveTrue();
+            ins.OnCreateView();
+        }
 
-    void SetResourceAtPos(GamePlaying.Resource resource)
-    {
-        var go = Instantiate(resourcePfb, 
-            gridList.FirstOrDefault(g => g.Data.PivotPos == resource.PivotPos)?.TrsResource, true);
-        go.transform.localPosition = Vector3.zero;
-        go.Data = resource;
-        go.SetActiveTrue();
-        resourceList.Add(go);
+        if (ins is GridView)
+        {
+            ins.transform.parent = GridTrs;
+            ins.transform.position = GridToWorld(item.PivotPos);
+        }
+        else
+        {
+            ins.transform.parent = Grids.FirstOrDefault(g => g.Data.PivotPos == item.PivotPos)?.TrsSymbol;
+            ins.transform.localPosition = Vector3.zero;
+        }
+        itemList.Add(ins);
     }
     public static Vector2Int ScreenToGrid(Vector2 screenPos) => WorldToGrid(MyCamera.Main.ScreenToWorldPoint(screenPos));
     static Vector2 GridToScreen(Vector2Int gridPos) => MyCamera.Main.WorldToScreenPoint(GridToWorld(gridPos));
@@ -208,8 +206,7 @@ public class PlayView : ViewBase<GamePlaying>
     static Vector2 GridToWorld(Vector2Int gridPos) => gridPos;
 }
 
-
-static class IntExt
+internal static class IntExt
 {
     extension(int self)
     {

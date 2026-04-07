@@ -2065,6 +2065,7 @@ MonoBehaviour:
   gridPfb: {fileID: 3271188090210110331, guid: 5abea9810632ee94da84236f1b22659d, type: 3}
   symbolPfb: {fileID: 6141876711774617493, guid: ce6be8f02411a834cb72168ea56fb189, type: 3}
   resourcePfb: {fileID: 9007299931937907984, guid: 1630b19ca22923d4aa305b5d2da14306, type: 3}
+  buildingPfb: {fileID: 2399326766535110166, guid: d67e1d9f5f576d74ea63bcbaa5c11ebc, type: 3}
 --- !u!1 &198180981
 GameObject:
   m_ObjectHideFlags: 0

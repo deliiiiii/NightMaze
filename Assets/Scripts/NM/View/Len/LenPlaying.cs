@@ -2,10 +2,11 @@
 using System.Linq;
 using General;
 using GeneralPreview;
+using NM.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace NM.Data;
+namespace NM.View;
 
 public class LenPlaying : MonoBehaviour
 {

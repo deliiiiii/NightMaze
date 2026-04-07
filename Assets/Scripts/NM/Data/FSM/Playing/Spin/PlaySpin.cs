@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using General;
+using GeneralPreview;
 using Sirenix.Utilities;
 
 namespace NM.Data;
@@ -13,7 +14,9 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
     {
         BelongNode.Symbols.ForEach(s => AddEttCom<EttSymbol, Symbol>(new Symbol(this, s.BelongEtt)));
         ToDoList = [..
-            from s in Symbols 
+            from s in Symbols
+            from symbolInPlay in BelongNode[s.BelongEtt].ToIEnumerable()
+            orderby symbolInPlay.PivotPos.Y descending, symbolInPlay.PivotPos.X
             select new ActCheckSymbol(this)
             {
                 Symbol = s

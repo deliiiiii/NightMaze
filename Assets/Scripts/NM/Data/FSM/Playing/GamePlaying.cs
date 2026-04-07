@@ -4,6 +4,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using Newtonsoft.Json;
+using NM.Config;
 using Sirenix.Utilities;
 
 namespace NM.Data;
@@ -41,32 +42,55 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     //              long OldValue,
     //              long NewValue): EvtForgetBase;
 
-    public IEnumerable<Symbol> Symbols => GetComs<Symbol>();
-    public IEnumerable<Grid> Grids => GetComs<Grid>();
-    public IEnumerable<Resource> Resources => GetComs<Resource>();
-    public IEnumerable<Building> Buildings => GetComs<Building>();
+    public IEnumerable<Grid> Grids => Items.OfType<Grid>();
+    public IEnumerable<Symbol> Symbols => Items.OfType<Symbol>();
+    public IEnumerable<Building> Buildings => Items.OfType<Building>();
+    public IEnumerable<Resource> Resources => Items.OfType<Resource>();
+
+    public IEnumerable<IItem> Items
+    {
+        get
+        {
+            foreach (var grid in GetComs<Grid>())
+            {
+                yield return grid;
+            }
+            foreach (var symbol in GetComs<Symbol>())
+            {
+                yield return symbol;
+            }
+            foreach (var building in GetComs<Building>())
+            {
+                yield return building;
+            }
+            foreach (var resource in GetComs<Resource>())
+            {
+                yield return resource;
+            }
+        }
+    }
 
     public IEnumerable<Grid> EmptyGrids
     {
         get
         {
             var posSet = (
-                from symbol in Symbols
-                from coveredPos in symbol.CoveredPosList
+                from item in Items
+                where item is not Grid
+                from coveredPos in item.CoveredPosList
                 select coveredPos).ToHashSet();
-            posSet.AddRange(
-                from res in Resources
-                from coveredPos in res.CoveredPosList
-                select coveredPos);
-            posSet.AddRange(
-                from building in Buildings
-                from coveredPos in building.CoveredPosList
-                select coveredPos);
-            return from grid in Grids
+            return 
+                from grid in Grids
                 where !posSet.Contains(grid.PivotPos)
                 select grid;
         }
     }
+
+    public IEnumerable<ItemDesConfig> ItemDesConfigs =>
+        from item in Items
+        orderby item.PivotPos.Y descending, item.PivotPos.X
+        from desConfig in item.Config.DesList
+        select desConfig;
 
     protected override void OnCreateFreshData()
     {

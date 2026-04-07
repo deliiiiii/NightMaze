@@ -8,11 +8,11 @@ namespace NM.View.ZZZTest;
 public class MultiEventRaycaster : MonoBehaviour
 {
     HashSet<GO> hoveredObjects = [];
-    PointerEventData hoverEventData = null!;
+    PointerEventData hoverEventData;
     readonly List<RaycastResult> results = new(64);
 
-    PointerEventData[] dragEventDatas = null!;
-    HashSet<GO>[] draggedObjects = null!;
+    PointerEventData[] dragEventDatas;
+    HashSet<GO>[] draggedObjects;
     Vector2 lastMousePosition;
 
     void Start()

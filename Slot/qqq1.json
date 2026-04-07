@@ -1,0 +1,1965 @@
+{
+  "$id": "1",
+  "savedVersion": 20260402.0,
+  "comDic": {
+    "$id": "2",
+    "$values": [
+      {
+        "Key": {
+          "$id": "3",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "4",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "5",
+            "X": 1,
+            "Y": 1
+          },
+          "DeltaPosList": {
+            "$id": "6",
+            "$values": [
+              {
+                "$id": "7",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "8",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "9",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "10",
+            "X": 1,
+            "Y": 2
+          },
+          "DeltaPosList": {
+            "$id": "11",
+            "$values": [
+              {
+                "$id": "12",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "13",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "14",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "15",
+            "X": 1,
+            "Y": 3
+          },
+          "DeltaPosList": {
+            "$id": "16",
+            "$values": [
+              {
+                "$id": "17",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "18",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "19",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "20",
+            "X": 1,
+            "Y": 4
+          },
+          "DeltaPosList": {
+            "$id": "21",
+            "$values": [
+              {
+                "$id": "22",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "23",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "24",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "25",
+            "X": 1,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "26",
+            "$values": [
+              {
+                "$id": "27",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "28",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "29",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "30",
+            "X": 1,
+            "Y": 6
+          },
+          "DeltaPosList": {
+            "$id": "31",
+            "$values": [
+              {
+                "$id": "32",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "33",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "34",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "35",
+            "X": 1,
+            "Y": 7
+          },
+          "DeltaPosList": {
+            "$id": "36",
+            "$values": [
+              {
+                "$id": "37",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "38",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "39",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "40",
+            "X": 1,
+            "Y": 8
+          },
+          "DeltaPosList": {
+            "$id": "41",
+            "$values": [
+              {
+                "$id": "42",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "43",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "44",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "45",
+            "X": 2,
+            "Y": 1
+          },
+          "DeltaPosList": {
+            "$id": "46",
+            "$values": [
+              {
+                "$id": "47",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "48",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "49",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "50",
+            "X": 2,
+            "Y": 2
+          },
+          "DeltaPosList": {
+            "$id": "51",
+            "$values": [
+              {
+                "$id": "52",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "53",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "54",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "55",
+            "X": 2,
+            "Y": 3
+          },
+          "DeltaPosList": {
+            "$id": "56",
+            "$values": [
+              {
+                "$id": "57",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "58",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "59",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "60",
+            "X": 2,
+            "Y": 4
+          },
+          "DeltaPosList": {
+            "$id": "61",
+            "$values": [
+              {
+                "$id": "62",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "63",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "64",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "65",
+            "X": 2,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "66",
+            "$values": [
+              {
+                "$id": "67",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "68",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "69",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "70",
+            "X": 2,
+            "Y": 6
+          },
+          "DeltaPosList": {
+            "$id": "71",
+            "$values": [
+              {
+                "$id": "72",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "73",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "74",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "75",
+            "X": 2,
+            "Y": 7
+          },
+          "DeltaPosList": {
+            "$id": "76",
+            "$values": [
+              {
+                "$id": "77",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "78",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "79",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "80",
+            "X": 2,
+            "Y": 8
+          },
+          "DeltaPosList": {
+            "$id": "81",
+            "$values": [
+              {
+                "$id": "82",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "83",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "84",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "85",
+            "X": 3,
+            "Y": 1
+          },
+          "DeltaPosList": {
+            "$id": "86",
+            "$values": [
+              {
+                "$id": "87",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "88",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "89",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "90",
+            "X": 3,
+            "Y": 2
+          },
+          "DeltaPosList": {
+            "$id": "91",
+            "$values": [
+              {
+                "$id": "92",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "93",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "94",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "95",
+            "X": 3,
+            "Y": 3
+          },
+          "DeltaPosList": {
+            "$id": "96",
+            "$values": [
+              {
+                "$id": "97",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "98",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "99",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "100",
+            "X": 3,
+            "Y": 4
+          },
+          "DeltaPosList": {
+            "$id": "101",
+            "$values": [
+              {
+                "$id": "102",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "103",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "104",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "105",
+            "X": 3,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "106",
+            "$values": [
+              {
+                "$id": "107",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "108",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "109",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "110",
+            "X": 3,
+            "Y": 6
+          },
+          "DeltaPosList": {
+            "$id": "111",
+            "$values": [
+              {
+                "$id": "112",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "113",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "114",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "115",
+            "X": 3,
+            "Y": 7
+          },
+          "DeltaPosList": {
+            "$id": "116",
+            "$values": [
+              {
+                "$id": "117",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "118",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "119",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "120",
+            "X": 3,
+            "Y": 8
+          },
+          "DeltaPosList": {
+            "$id": "121",
+            "$values": [
+              {
+                "$id": "122",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "123",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "124",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "125",
+            "X": 4,
+            "Y": 1
+          },
+          "DeltaPosList": {
+            "$id": "126",
+            "$values": [
+              {
+                "$id": "127",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "128",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "129",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "130",
+            "X": 4,
+            "Y": 2
+          },
+          "DeltaPosList": {
+            "$id": "131",
+            "$values": [
+              {
+                "$id": "132",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "133",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "134",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "135",
+            "X": 4,
+            "Y": 3
+          },
+          "DeltaPosList": {
+            "$id": "136",
+            "$values": [
+              {
+                "$id": "137",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "138",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "139",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "140",
+            "X": 4,
+            "Y": 4
+          },
+          "DeltaPosList": {
+            "$id": "141",
+            "$values": [
+              {
+                "$id": "142",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "143",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "144",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "145",
+            "X": 4,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "146",
+            "$values": [
+              {
+                "$id": "147",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "148",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "149",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "150",
+            "X": 4,
+            "Y": 6
+          },
+          "DeltaPosList": {
+            "$id": "151",
+            "$values": [
+              {
+                "$id": "152",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "153",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "154",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "155",
+            "X": 4,
+            "Y": 7
+          },
+          "DeltaPosList": {
+            "$id": "156",
+            "$values": [
+              {
+                "$id": "157",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "158",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "159",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "160",
+            "X": 4,
+            "Y": 8
+          },
+          "DeltaPosList": {
+            "$id": "161",
+            "$values": [
+              {
+                "$id": "162",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "163",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "164",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "165",
+            "X": 5,
+            "Y": 1
+          },
+          "DeltaPosList": {
+            "$id": "166",
+            "$values": [
+              {
+                "$id": "167",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "168",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "169",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "170",
+            "X": 5,
+            "Y": 2
+          },
+          "DeltaPosList": {
+            "$id": "171",
+            "$values": [
+              {
+                "$id": "172",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "173",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "174",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "175",
+            "X": 5,
+            "Y": 3
+          },
+          "DeltaPosList": {
+            "$id": "176",
+            "$values": [
+              {
+                "$id": "177",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "178",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "179",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "180",
+            "X": 5,
+            "Y": 4
+          },
+          "DeltaPosList": {
+            "$id": "181",
+            "$values": [
+              {
+                "$id": "182",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "183",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "184",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "185",
+            "X": 5,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "186",
+            "$values": [
+              {
+                "$id": "187",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "188",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "189",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "190",
+            "X": 5,
+            "Y": 6
+          },
+          "DeltaPosList": {
+            "$id": "191",
+            "$values": [
+              {
+                "$id": "192",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "193",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "194",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "195",
+            "X": 5,
+            "Y": 7
+          },
+          "DeltaPosList": {
+            "$id": "196",
+            "$values": [
+              {
+                "$id": "197",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "198",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "199",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "200",
+            "X": 5,
+            "Y": 8
+          },
+          "DeltaPosList": {
+            "$id": "201",
+            "$values": [
+              {
+                "$id": "202",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "203",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "204",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "205",
+            "X": 6,
+            "Y": 1
+          },
+          "DeltaPosList": {
+            "$id": "206",
+            "$values": [
+              {
+                "$id": "207",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "208",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "209",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "210",
+            "X": 6,
+            "Y": 2
+          },
+          "DeltaPosList": {
+            "$id": "211",
+            "$values": [
+              {
+                "$id": "212",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "213",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "214",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "215",
+            "X": 6,
+            "Y": 3
+          },
+          "DeltaPosList": {
+            "$id": "216",
+            "$values": [
+              {
+                "$id": "217",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "218",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "219",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "220",
+            "X": 6,
+            "Y": 4
+          },
+          "DeltaPosList": {
+            "$id": "221",
+            "$values": [
+              {
+                "$id": "222",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "223",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "224",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "225",
+            "X": 6,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "226",
+            "$values": [
+              {
+                "$id": "227",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "228",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "229",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "230",
+            "X": 6,
+            "Y": 6
+          },
+          "DeltaPosList": {
+            "$id": "231",
+            "$values": [
+              {
+                "$id": "232",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "233",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "234",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "235",
+            "X": 6,
+            "Y": 7
+          },
+          "DeltaPosList": {
+            "$id": "236",
+            "$values": [
+              {
+                "$id": "237",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "238",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "239",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "240",
+            "X": 6,
+            "Y": 8
+          },
+          "DeltaPosList": {
+            "$id": "241",
+            "$values": [
+              {
+                "$id": "242",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "243",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "244",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "245",
+            "X": 7,
+            "Y": 1
+          },
+          "DeltaPosList": {
+            "$id": "246",
+            "$values": [
+              {
+                "$id": "247",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "248",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "249",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "250",
+            "X": 7,
+            "Y": 2
+          },
+          "DeltaPosList": {
+            "$id": "251",
+            "$values": [
+              {
+                "$id": "252",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "253",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "254",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "255",
+            "X": 7,
+            "Y": 3
+          },
+          "DeltaPosList": {
+            "$id": "256",
+            "$values": [
+              {
+                "$id": "257",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "258",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "259",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "260",
+            "X": 7,
+            "Y": 4
+          },
+          "DeltaPosList": {
+            "$id": "261",
+            "$values": [
+              {
+                "$id": "262",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "263",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "264",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "265",
+            "X": 7,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "266",
+            "$values": [
+              {
+                "$id": "267",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "268",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "269",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "270",
+            "X": 7,
+            "Y": 6
+          },
+          "DeltaPosList": {
+            "$id": "271",
+            "$values": [
+              {
+                "$id": "272",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "273",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "274",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "275",
+            "X": 7,
+            "Y": 7
+          },
+          "DeltaPosList": {
+            "$id": "276",
+            "$values": [
+              {
+                "$id": "277",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "278",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "279",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "280",
+            "X": 7,
+            "Y": 8
+          },
+          "DeltaPosList": {
+            "$id": "281",
+            "$values": [
+              {
+                "$id": "282",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "283",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "284",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "285",
+            "X": 8,
+            "Y": 1
+          },
+          "DeltaPosList": {
+            "$id": "286",
+            "$values": [
+              {
+                "$id": "287",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "288",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "289",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "290",
+            "X": 8,
+            "Y": 2
+          },
+          "DeltaPosList": {
+            "$id": "291",
+            "$values": [
+              {
+                "$id": "292",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "293",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "294",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "295",
+            "X": 8,
+            "Y": 3
+          },
+          "DeltaPosList": {
+            "$id": "296",
+            "$values": [
+              {
+                "$id": "297",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "298",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "299",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "300",
+            "X": 8,
+            "Y": 4
+          },
+          "DeltaPosList": {
+            "$id": "301",
+            "$values": [
+              {
+                "$id": "302",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "303",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "304",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "305",
+            "X": 8,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "306",
+            "$values": [
+              {
+                "$id": "307",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "308",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "309",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "310",
+            "X": 8,
+            "Y": 6
+          },
+          "DeltaPosList": {
+            "$id": "311",
+            "$values": [
+              {
+                "$id": "312",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "313",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "314",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "315",
+            "X": 8,
+            "Y": 7
+          },
+          "DeltaPosList": {
+            "$id": "316",
+            "$values": [
+              {
+                "$id": "317",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "318",
+          "$type": "NM.EttGrid, NM"
+        },
+        "Value": {
+          "$id": "319",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "320",
+            "X": 8,
+            "Y": 8
+          },
+          "DeltaPosList": {
+            "$id": "321",
+            "$values": [
+              {
+                "$id": "322",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "323",
+          "$type": "NM.EttSymbol, NM"
+        },
+        "Value": {
+          "$id": "324",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "325",
+            "X": 2,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "326",
+            "$values": [
+              {
+                "$id": "327",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "328",
+          "$type": "NM.EttSymbol, NM"
+        },
+        "Value": {
+          "$id": "329",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "330",
+            "X": 4,
+            "Y": 3
+          },
+          "DeltaPosList": {
+            "$id": "331",
+            "$values": [
+              {
+                "$id": "332",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "333",
+          "$type": "NM.EttSymbol, NM"
+        },
+        "Value": {
+          "$id": "334",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "335",
+            "X": 4,
+            "Y": 5
+          },
+          "DeltaPosList": {
+            "$id": "336",
+            "$values": [
+              {
+                "$id": "337",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "338",
+          "$type": "NM.EttSymbol, NM"
+        },
+        "Value": {
+          "$id": "339",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "340",
+            "X": 2,
+            "Y": 3
+          },
+          "DeltaPosList": {
+            "$id": "341",
+            "$values": [
+              {
+                "$id": "342",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "343",
+          "$type": "NM.EttSymbol, NM"
+        },
+        "Value": {
+          "$id": "344",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "345",
+            "X": 3,
+            "Y": 4
+          },
+          "DeltaPosList": {
+            "$id": "346",
+            "$values": [
+              {
+                "$id": "347",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "348",
+          "$type": "NM.EttResource, NM"
+        },
+        "Value": {
+          "$id": "349",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "350",
+            "X": 1,
+            "Y": 6
+          },
+          "DeltaPosList": {
+            "$id": "351",
+            "$values": [
+              {
+                "$id": "352",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "353",
+          "$type": "NM.EttResource, NM"
+        },
+        "Value": {
+          "$id": "354",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "355",
+            "X": 1,
+            "Y": 7
+          },
+          "DeltaPosList": {
+            "$id": "356",
+            "$values": [
+              {
+                "$id": "357",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "358",
+          "$type": "NM.EttResource, NM"
+        },
+        "Value": {
+          "$id": "359",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "360",
+            "X": 1,
+            "Y": 8
+          },
+          "DeltaPosList": {
+            "$id": "361",
+            "$values": [
+              {
+                "$id": "362",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "363",
+          "$type": "NM.EttResource, NM"
+        },
+        "Value": {
+          "$id": "364",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "365",
+            "X": 2,
+            "Y": 1
+          },
+          "DeltaPosList": {
+            "$id": "366",
+            "$values": [
+              {
+                "$id": "367",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Key": {
+          "$id": "368",
+          "$type": "NM.EttResource, NM"
+        },
+        "Value": {
+          "$id": "369",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos": {
+            "$id": "370",
+            "X": 2,
+            "Y": 2
+          },
+          "DeltaPosList": {
+            "$id": "371",
+            "$values": [
+              {
+                "$id": "372",
+                "X": 0,
+                "Y": 0
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "BelongNode": {
+    "$id": "373",
+    "savedVersion": 20260402.0,
+    "comDic": {
+      "$id": "374",
+      "$values": []
+    },
+    "state": {
+      "$ref": "1"
+    }
+  },
+  "PlayerName": "qqq1",
+  "PlayTime": 55.992632121779025,
+  "Prop1": 0,
+  "Prop2": 0,
+  "Prop3": 0,
+  "Prop4": 0,
+  "Prop5": 0,
+  "Prop6": 0,
+  "Coin": 0,
+  "state": {
+    "$id": "375",
+    "$type": "NM.Data.PlayIdle, NM.Data",
+    "savedVersion": 20260402.0,
+    "comDic": {
+      "$id": "376",
+      "$values": []
+    },
+    "BelongNode": {
+      "$ref": "1"
+    }
+  }
+}

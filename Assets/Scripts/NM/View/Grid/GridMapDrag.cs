@@ -6,7 +6,7 @@ namespace NM.View;
 
 public class GridMapDrag : MonoBehaviour, IMultiDragHandler
 {
-    [SerializeField] Trs follow = null!;
+    [SerializeField] Trs follow;
     ClampInRect ClampInRect => field ??= follow.GetComponent<ClampInRect>();
     
     public void OnMultiDrag(PointerEventData eventData)

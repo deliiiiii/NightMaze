@@ -10,7 +10,7 @@ namespace NM.View;
 public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragHandler, IMultiEndDragHandler,
     IMultiPointerEnterHandler, IMultiPointerExitHandler
 {
-    [field:SerializeReference] public SymbolView BelongView { get; set; } = null!;
+    [field:SerializeReference] public SymbolView BelongView { get; set; }
     Vector2 initThisScreenPos;
     Vector2 initThisWorldPos;
     
@@ -43,7 +43,7 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
             {
                 new GamePlaying.ActSetSymbolAtPos(some)
                 {
-                    Symbol = BelongView.Data,
+                    Symbol = BelongView.DataT,
                     Pos = mouseGridPos
                 }.Forget();
             }

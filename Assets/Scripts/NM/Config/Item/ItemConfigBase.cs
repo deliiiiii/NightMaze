@@ -8,7 +8,8 @@ using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
 
 namespace NM.Config;
-public abstract class ItemConfigBase<T> : ConfigMulti<T> where T : ItemConfigBase<T>, new()
+public abstract class ItemConfigBase<T> : ConfigMulti<T>, IItemConfig
+    where T : ItemConfigBase<T>, new()
 {
     // ReSharper disable once StaticMemberInGenericType
     protected static ItemTypeResourceMgr Mgr => field ??= RefPoolSingle<ItemTypeResourceMgr>.Acquire();
@@ -19,6 +20,23 @@ public abstract class ItemConfigBase<T> : ConfigMulti<T> where T : ItemConfigBas
     [Required, LabelText("通用标签")] public EItemTag Tag;
     [Required, LabelText("词条列表")] public List<ItemDesConfig> DesList = [];
     public virtual List<DetailTagInfo> DetailTagInfos => Tag.ToValues().Select(t => Mgr.ItemDic[t]).ToList();
+    
+    string IItemConfig.FlavorDes => FlavorDes;
+    ERarity IItemConfig.Rarity => Rarity;
+    ItemPos IItemConfig.Pos => Pos;
+    EItemTag IItemConfig.Tag => Tag;
+    List<ItemDesConfig> IItemConfig.DesList => DesList;
+    List<DetailTagInfo> IItemConfig.DetailTagInfos => DetailTagInfos;
+}
+
+public interface IItemConfig
+{
+    string FlavorDes { get; }
+    ERarity Rarity { get; }
+    ItemPos Pos { get; }
+    EItemTag Tag { get; }
+    List<ItemDesConfig> DesList { get; }
+    List<DetailTagInfo> DetailTagInfos { get; }
 }
 public enum ERarity
 {
