@@ -13,6 +13,7 @@ public class GridConfig : ItemConfigBase<GridConfig>
 
     public override List<DetailTagInfo> DetailTagInfos =>
         [..base.DetailTagInfos, ..GridTag.ToValues().Select(e => Mgr.GridDic[e])];
+    public override int Order => 0;
 
     [Header("—— 地形配置 ——")]
     [LabelText("地形标签")]public EGridTag GridTag;

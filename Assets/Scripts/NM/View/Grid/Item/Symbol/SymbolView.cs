@@ -15,7 +15,7 @@ public class SymbolView : ItemViewBase<SymbolView, GamePlaying.Symbol>
     {
         Invoke = async (evt, ct) =>
         {
-            if (evt.Symbol.BelongEtt != DataT.BelongEtt)
+            if (evt.Item.BelongEtt != DataT.BelongEtt)
                 return;
             await OnSpinTween.PlayAsync(ct);
         },

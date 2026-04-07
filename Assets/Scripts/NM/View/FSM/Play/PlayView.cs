@@ -103,52 +103,75 @@ public class PlayView : ViewBase<GamePlaying>
     
     public void ShowGridDetailAtPos(Vector2Int gridPos)
     {
-        var detailList = new List<DetailInfo>();
-        detailList.AddRange(
+        List<DetailInfo> detailList =
         [
-            .. 
-            from grid in Data.Grids
-            where grid.CoverPos(gridPos)
-            select new DetailInfo
-            {
-                Type = "地块",
-                Name = grid.Config.Name,
-                TagInfoList = grid.Config.DetailTagInfos,
-                Detail = $"DDD...Nothing but pos {grid.PivotPos.ToString()}",
-                InSpinLineList = []
-            }, 
             ..
-            from symbol in Data.Symbols
-            where symbol.CoverPos(gridPos)
+            from item in Data.Items
+            where item.CoverPos(gridPos)
             select new DetailInfo
             {
-                Type = "符号",
-                Name = symbol.Config.Name,
-                TagInfoList = symbol.Config.DetailTagInfos,
-                Detail = $"事符号. 白值{string.Join(", ",
-                    symbol.Config.Prop1.ToStringWithSymbol(),
-                    symbol.Config.Prop2.ToStringWithSymbol(),
-                    symbol.Config.Prop3.ToStringWithSymbol()
-                )}",
-                InSpinLineList = (
+                Type = item.Config.PrefixName,
+                Name = item.Config.Name,
+                TagInfoList = item.Config.DetailTagInfos,
+                // TODO 不仅仅是风味文本.
+                Detail = item.Config.FlavorDes + $" {item.PivotPos}",
+                InSpinLineList =
+                [
+                    ..
                     from spin in PlaySpinData.ToIEnumerable()
-                    from symbolInSpin in spin[symbol.BelongEtt].ToIEnumerable()
-                    from modProp1 in symbolInSpin.ModifyProp1
-                    select $"{symbol.Config.name} {modProp1.Value.ToStringWithSymbol()}"
-                    ).ToList()
-            },
-            ..
-            from resource in Data.Resources
-            where resource.CoverPos(gridPos)
-            select new DetailInfo
-            {
-                Type = "资源",
-                Name = resource.Config.Name,
-                TagInfoList = resource.Config.DetailTagInfos,
-                Detail = $"RRResource...",
-                InSpinLineList = []
+                    from itemInSpin in spin.GetItemByPlay(item).ToIEnumerable()
+                    from modProp1 in itemInSpin.ModifyProp1
+                    select $"{item.Config.Name} {modProp1.Value.ToStringWithSymbol()}"
+                ]
             }
-        ]);
+        ];
+        
+        // var detailList = new List<DetailInfo>();
+        // detailList.AddRange(
+        // [
+        //     .. 
+        //     from grid in Data.Grids
+        //     where grid.CoverPos(gridPos)
+        //     select new DetailInfo
+        //     {
+        //         Type = "地块",
+        //         Name = grid.Config.Name,
+        //         TagInfoList = grid.Config.DetailTagInfos,
+        //         Detail = $"DDD...Nothing but pos {grid.PivotPos.ToString()}",
+        //         InSpinLineList = []
+        //     }, 
+        //     ..
+        //     from symbol in Data.Symbols
+        //     where symbol.CoverPos(gridPos)
+        //     select new DetailInfo
+        //     {
+        //         Type = "符号",
+        //         Name = symbol.Config.Name,
+        //         TagInfoList = symbol.Config.DetailTagInfos,
+        //         Detail = $"事符号. 白值{string.Join(", ",
+        //             symbol.Config.Prop1.ToStringWithSymbol(),
+        //             symbol.Config.Prop2.ToStringWithSymbol(),
+        //             symbol.Config.Prop3.ToStringWithSymbol()
+        //         )}",
+        //         InSpinLineList = (
+        //             from spin in PlaySpinData.ToIEnumerable()
+        //             from symbolInSpin in spin[symbol.BelongEtt].ToIEnumerable()
+        //             from modProp1 in symbolInSpin.ModifyProp1
+        //             select $"{symbol.Config.name} {modProp1.Value.ToStringWithSymbol()}"
+        //             ).ToList()
+        //     },
+        //     ..
+        //     from resource in Data.Resources
+        //     where resource.CoverPos(gridPos)
+        //     select new DetailInfo
+        //     {
+        //         Type = "资源",
+        //         Name = resource.Config.Name,
+        //         TagInfoList = resource.Config.DetailTagInfos,
+        //         Detail = $"RRResource...",
+        //         InSpinLineList = []
+        //     }
+        // ]);
         GridDetail.SetActiveTrue();
         GridDetail.transform.position = GridToWorld(gridPos + new Vector2Int(1,1) * Const.GridSize);
         GridDetail.transform.SetLocalPositionZ(0);

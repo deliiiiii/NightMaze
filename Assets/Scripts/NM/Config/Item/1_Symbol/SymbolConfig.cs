@@ -12,6 +12,7 @@ public partial class SymbolConfig : ItemConfigBase<SymbolConfig>
     protected override string PrefixName => "Symbol";
     public override List<DetailTagInfo> DetailTagInfos =>
         [..base.DetailTagInfos, ..SymbolTag.ToValues().Select(e => Mgr.SymbolDic[e])];
+    public override int Order => 1;
     [Header("—— 棋子配置 ——")]
 
     [LabelText("棋子标签")]public ESymbolTag SymbolTag;

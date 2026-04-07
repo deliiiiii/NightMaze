@@ -14,6 +14,59 @@ using Newtonsoft.Json.Serialization;
 
 namespace General
 {
+    public class CompactFormatNoRefConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType) => true;
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            var previousFormatting = writer.Formatting;
+            var previousReferenceHandling = serializer.PreserveReferencesHandling;
+            writer.Formatting = Formatting.None;
+            serializer.PreserveReferencesHandling = PreserveReferencesHandling.None;
+            serializer.Serialize(writer, value);
+            writer.Formatting = previousFormatting;
+            serializer.PreserveReferencesHandling = previousReferenceHandling;
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            var previousReferenceHandling = serializer.PreserveReferencesHandling;
+            serializer.PreserveReferencesHandling = PreserveReferencesHandling.None;
+            var result = serializer.Deserialize(reader, objectType);
+            serializer.PreserveReferencesHandling = previousReferenceHandling;
+            return result;
+        }
+    }
+    
+    public class CompactFormatRefConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType) => true;
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            var preFormatting = writer.Formatting;
+            var preReferenceHandling = serializer.PreserveReferencesHandling;
+            var preTypeNameHandling = serializer.TypeNameHandling;
+            writer.Formatting = Formatting.None;
+            serializer.PreserveReferencesHandling = PreserveReferencesHandling.All;
+            serializer.TypeNameHandling = TypeNameHandling.All;
+            serializer.Serialize(writer, value);
+            writer.Formatting = preFormatting;
+            serializer.PreserveReferencesHandling = preReferenceHandling;
+            serializer.TypeNameHandling = preTypeNameHandling;
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            var previousReferenceHandling = serializer.PreserveReferencesHandling;
+            serializer.PreserveReferencesHandling = PreserveReferencesHandling.All;
+            var result = serializer.Deserialize(reader, objectType);
+            serializer.PreserveReferencesHandling = previousReferenceHandling;
+            return result;
+        }
+    }
+    
     internal class PrivateFieldsContractResolver : DefaultContractResolver
     {
         public static readonly PrivateFieldsContractResolver Instance = new PrivateFieldsContractResolver();

@@ -12,7 +12,8 @@ public class BuildingConfig : ItemConfigBase<BuildingConfig>
     protected override string PrefixName => "Building";
     public override List<DetailTagInfo> DetailTagInfos =>
         [..base.DetailTagInfos, ..BuildingTag.ToValues().Select(e => Mgr.BuildingDic[e])];
-
+    public override int Order => 2;
+    
     [Header("—— 建筑配置 ——")]
     [LabelText("建筑标签")]public EBuildingTag BuildingTag;
     [LabelText($"花费{Const.Property.Name1}")]public int Prop1Cost;

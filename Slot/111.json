@@ -1,0 +1,2563 @@
+{
+  "$id": "1",
+  "savedVersion": 20260402.0,
+  "comDic": {
+    "$id": "2",
+    "$values": [
+      {
+        "$id": "3",
+        "Key":{"$id":"4","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "5",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":1},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "6",
+        "Key":{"$id":"7","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "8",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":2},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "9",
+        "Key":{"$id":"10","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "11",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":3},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "12",
+        "Key":{"$id":"13","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "14",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":4},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "15",
+        "Key":{"$id":"16","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "17",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":5},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "18",
+        "Key":{"$id":"19","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "20",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":6},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "21",
+        "Key":{"$id":"22","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "23",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":7},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "24",
+        "Key":{"$id":"25","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "26",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":8},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "27",
+        "Key":{"$id":"28","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "29",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":1},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "30",
+        "Key":{"$id":"31","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "32",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":2},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "33",
+        "Key":{"$id":"34","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "35",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":3},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "36",
+        "Key":{"$id":"37","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "38",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":4},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "39",
+        "Key":{"$id":"40","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "41",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":5},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "42",
+        "Key":{"$id":"43","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "44",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":6},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "45",
+        "Key":{"$id":"46","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "47",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":7},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "48",
+        "Key":{"$id":"49","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "50",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":8},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "51",
+        "Key":{"$id":"52","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "53",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":1},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "54",
+        "Key":{"$id":"55","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "56",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":2},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "57",
+        "Key":{"$id":"58","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "59",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":3},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "60",
+        "Key":{"$id":"61","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "62",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":4},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "63",
+        "Key":{"$id":"64","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "65",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":5},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "66",
+        "Key":{"$id":"67","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "68",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":6},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "69",
+        "Key":{"$id":"70","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "71",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":7},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "72",
+        "Key":{"$id":"73","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "74",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":8},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "75",
+        "Key":{"$id":"76","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "77",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":1},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "78",
+        "Key":{"$id":"79","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "80",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":2},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "81",
+        "Key":{"$id":"82","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "83",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":3},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "84",
+        "Key":{"$id":"85","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "86",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":4},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "87",
+        "Key":{"$id":"88","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "89",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":5},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "90",
+        "Key":{"$id":"91","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "92",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":6},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "93",
+        "Key":{"$id":"94","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "95",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":7},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "96",
+        "Key":{"$id":"97","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "98",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":8},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "99",
+        "Key":{"$id":"100","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "101",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":1},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "102",
+        "Key":{"$id":"103","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "104",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":2},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "105",
+        "Key":{"$id":"106","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "107",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":3},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "108",
+        "Key":{"$id":"109","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "110",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":4},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "111",
+        "Key":{"$id":"112","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "113",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":5},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "114",
+        "Key":{"$id":"115","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "116",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":6},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "117",
+        "Key":{"$id":"118","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "119",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":7},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "120",
+        "Key":{"$id":"121","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "122",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":8},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "123",
+        "Key":{"$id":"124","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "125",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":1},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "126",
+        "Key":{"$id":"127","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "128",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":2},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "129",
+        "Key":{"$id":"130","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "131",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":3},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "132",
+        "Key":{"$id":"133","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "134",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":4},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "135",
+        "Key":{"$id":"136","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "137",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":5},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "138",
+        "Key":{"$id":"139","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "140",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":6},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "141",
+        "Key":{"$id":"142","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "143",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":7},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "144",
+        "Key":{"$id":"145","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "146",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":8},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "147",
+        "Key":{"$id":"148","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "149",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":1},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "150",
+        "Key":{"$id":"151","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "152",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":2},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "153",
+        "Key":{"$id":"154","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "155",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":3},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "156",
+        "Key":{"$id":"157","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "158",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":4},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "159",
+        "Key":{"$id":"160","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "161",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":5},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "162",
+        "Key":{"$id":"163","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "164",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":6},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "165",
+        "Key":{"$id":"166","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "167",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":7},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "168",
+        "Key":{"$id":"169","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "170",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":8},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "171",
+        "Key":{"$id":"172","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "173",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":1},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "174",
+        "Key":{"$id":"175","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "176",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":2},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "177",
+        "Key":{"$id":"178","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "179",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":3},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "180",
+        "Key":{"$id":"181","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "182",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":4},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "183",
+        "Key":{"$id":"184","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "185",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":5},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "186",
+        "Key":{"$id":"187","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "188",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":6},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "189",
+        "Key":{"$id":"190","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "191",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":7},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "192",
+        "Key":{"$id":"193","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "194",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":8},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "195",
+        "Key":{"$id":"196","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "197",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":1},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "198",
+        "Key":{"$id":"199","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "200",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":2},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "201",
+        "Key":{"$id":"202","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "203",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":3},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "204",
+        "Key":{"$id":"205","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "206",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":4},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "207",
+        "Key":{"$id":"208","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "209",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":5},
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "$id": "210",
+        "Key":{"$id":"211","$type":"NM.EttResource, NM"},
+        "Value": {
+          "$id": "212",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":6},
+          "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}]
+        }
+      },
+      {
+        "$id": "213",
+        "Key":{"$id":"214","$type":"NM.EttResource, NM"},
+        "Value": {
+          "$id": "215",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":7},
+          "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}]
+        }
+      },
+      {
+        "$id": "216",
+        "Key":{"$id":"217","$type":"NM.EttResource, NM"},
+        "Value": {
+          "$id": "218",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":8},
+          "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}]
+        }
+      },
+      {
+        "$id": "219",
+        "Key":{"$id":"220","$type":"NM.EttResource, NM"},
+        "Value": {
+          "$id": "221",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":1},
+          "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}]
+        }
+      },
+      {
+        "$id": "222",
+        "Key":{"$id":"223","$type":"NM.EttResource, NM"},
+        "Value": {
+          "$id": "224",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":2},
+          "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}]
+        }
+      }
+    ]
+  },
+  "BelongNode": {
+    "$id": "225",
+    "savedVersion": 20260402.0,
+    "comDic": {
+      "$id": "226",
+      "$values": []
+    },
+    "state": {
+      "$ref": "1"
+    }
+  },
+  "PlayerName": "111",
+  "PlayTime": 2.445102009922266,
+  "Prop1": 0,
+  "Prop2": 0,
+  "Prop3": 0,
+  "Prop4": 0,
+  "Prop5": 0,
+  "Prop6": 0,
+  "Coin": 0,
+  "state": {
+    "$id": "227",
+    "$type": "NM.Data.PlaySpin, NM.Data",
+    "savedVersion": 20260402.0,
+    "comDic": {
+      "$id": "228",
+      "$values": [
+        {
+          "$id": "229",
+          "Key": {
+            "$ref": "4"
+          },
+          "Value": {
+            "$id": "230",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "231",
+          "Key": {
+            "$ref": "7"
+          },
+          "Value": {
+            "$id": "232",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "233",
+          "Key": {
+            "$ref": "10"
+          },
+          "Value": {
+            "$id": "234",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "235",
+          "Key": {
+            "$ref": "13"
+          },
+          "Value": {
+            "$id": "236",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "237",
+          "Key": {
+            "$ref": "16"
+          },
+          "Value": {
+            "$id": "238",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "239",
+          "Key": {
+            "$ref": "19"
+          },
+          "Value": {
+            "$id": "240",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "241",
+          "Key": {
+            "$ref": "22"
+          },
+          "Value": {
+            "$id": "242",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "243",
+          "Key": {
+            "$ref": "25"
+          },
+          "Value": {
+            "$id": "244",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "245",
+          "Key": {
+            "$ref": "28"
+          },
+          "Value": {
+            "$id": "246",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "247",
+          "Key": {
+            "$ref": "31"
+          },
+          "Value": {
+            "$id": "248",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "249",
+          "Key": {
+            "$ref": "34"
+          },
+          "Value": {
+            "$id": "250",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "251",
+          "Key": {
+            "$ref": "37"
+          },
+          "Value": {
+            "$id": "252",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "253",
+          "Key": {
+            "$ref": "40"
+          },
+          "Value": {
+            "$id": "254",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "255",
+          "Key": {
+            "$ref": "43"
+          },
+          "Value": {
+            "$id": "256",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "257",
+          "Key": {
+            "$ref": "46"
+          },
+          "Value": {
+            "$id": "258",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "259",
+          "Key": {
+            "$ref": "49"
+          },
+          "Value": {
+            "$id": "260",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "261",
+          "Key": {
+            "$ref": "52"
+          },
+          "Value": {
+            "$id": "262",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "263",
+          "Key": {
+            "$ref": "55"
+          },
+          "Value": {
+            "$id": "264",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "265",
+          "Key": {
+            "$ref": "58"
+          },
+          "Value": {
+            "$id": "266",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "267",
+          "Key": {
+            "$ref": "61"
+          },
+          "Value": {
+            "$id": "268",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "269",
+          "Key": {
+            "$ref": "64"
+          },
+          "Value": {
+            "$id": "270",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "271",
+          "Key": {
+            "$ref": "67"
+          },
+          "Value": {
+            "$id": "272",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "273",
+          "Key": {
+            "$ref": "70"
+          },
+          "Value": {
+            "$id": "274",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "275",
+          "Key": {
+            "$ref": "73"
+          },
+          "Value": {
+            "$id": "276",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "277",
+          "Key": {
+            "$ref": "76"
+          },
+          "Value": {
+            "$id": "278",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "279",
+          "Key": {
+            "$ref": "79"
+          },
+          "Value": {
+            "$id": "280",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "281",
+          "Key": {
+            "$ref": "82"
+          },
+          "Value": {
+            "$id": "282",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "283",
+          "Key": {
+            "$ref": "85"
+          },
+          "Value": {
+            "$id": "284",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "285",
+          "Key": {
+            "$ref": "88"
+          },
+          "Value": {
+            "$id": "286",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "287",
+          "Key": {
+            "$ref": "91"
+          },
+          "Value": {
+            "$id": "288",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "289",
+          "Key": {
+            "$ref": "94"
+          },
+          "Value": {
+            "$id": "290",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "291",
+          "Key": {
+            "$ref": "97"
+          },
+          "Value": {
+            "$id": "292",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "293",
+          "Key": {
+            "$ref": "100"
+          },
+          "Value": {
+            "$id": "294",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "295",
+          "Key": {
+            "$ref": "103"
+          },
+          "Value": {
+            "$id": "296",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "297",
+          "Key": {
+            "$ref": "106"
+          },
+          "Value": {
+            "$id": "298",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "299",
+          "Key": {
+            "$ref": "109"
+          },
+          "Value": {
+            "$id": "300",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "301",
+          "Key": {
+            "$ref": "112"
+          },
+          "Value": {
+            "$id": "302",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "303",
+          "Key": {
+            "$ref": "115"
+          },
+          "Value": {
+            "$id": "304",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "305",
+          "Key": {
+            "$ref": "118"
+          },
+          "Value": {
+            "$id": "306",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "307",
+          "Key": {
+            "$ref": "121"
+          },
+          "Value": {
+            "$id": "308",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "309",
+          "Key": {
+            "$ref": "124"
+          },
+          "Value": {
+            "$id": "310",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "311",
+          "Key": {
+            "$ref": "127"
+          },
+          "Value": {
+            "$id": "312",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "313",
+          "Key": {
+            "$ref": "130"
+          },
+          "Value": {
+            "$id": "314",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "315",
+          "Key": {
+            "$ref": "133"
+          },
+          "Value": {
+            "$id": "316",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "317",
+          "Key": {
+            "$ref": "136"
+          },
+          "Value": {
+            "$id": "318",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "319",
+          "Key": {
+            "$ref": "139"
+          },
+          "Value": {
+            "$id": "320",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "321",
+          "Key": {
+            "$ref": "142"
+          },
+          "Value": {
+            "$id": "322",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "323",
+          "Key": {
+            "$ref": "145"
+          },
+          "Value": {
+            "$id": "324",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "325",
+          "Key": {
+            "$ref": "148"
+          },
+          "Value": {
+            "$id": "326",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "327",
+          "Key": {
+            "$ref": "151"
+          },
+          "Value": {
+            "$id": "328",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "329",
+          "Key": {
+            "$ref": "154"
+          },
+          "Value": {
+            "$id": "330",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "331",
+          "Key": {
+            "$ref": "157"
+          },
+          "Value": {
+            "$id": "332",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "333",
+          "Key": {
+            "$ref": "160"
+          },
+          "Value": {
+            "$id": "334",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "335",
+          "Key": {
+            "$ref": "163"
+          },
+          "Value": {
+            "$id": "336",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "337",
+          "Key": {
+            "$ref": "166"
+          },
+          "Value": {
+            "$id": "338",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "339",
+          "Key": {
+            "$ref": "169"
+          },
+          "Value": {
+            "$id": "340",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "341",
+          "Key": {
+            "$ref": "172"
+          },
+          "Value": {
+            "$id": "342",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "343",
+          "Key": {
+            "$ref": "175"
+          },
+          "Value": {
+            "$id": "344",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "345",
+          "Key": {
+            "$ref": "178"
+          },
+          "Value": {
+            "$id": "346",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "347",
+          "Key": {
+            "$ref": "181"
+          },
+          "Value": {
+            "$id": "348",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "349",
+          "Key": {
+            "$ref": "184"
+          },
+          "Value": {
+            "$id": "350",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "351",
+          "Key": {
+            "$ref": "187"
+          },
+          "Value": {
+            "$id": "352",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "353",
+          "Key": {
+            "$ref": "190"
+          },
+          "Value": {
+            "$id": "354",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "355",
+          "Key": {
+            "$ref": "193"
+          },
+          "Value": {
+            "$id": "356",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "357",
+          "Key": {
+            "$ref": "196"
+          },
+          "Value": {
+            "$id": "358",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "359",
+          "Key": {
+            "$ref": "199"
+          },
+          "Value": {
+            "$id": "360",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "361",
+          "Key": {
+            "$ref": "202"
+          },
+          "Value": {
+            "$id": "362",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "363",
+          "Key": {
+            "$ref": "205"
+          },
+          "Value": {
+            "$id": "364",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "365",
+          "Key": {
+            "$ref": "208"
+          },
+          "Value": {
+            "$id": "366",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "367",
+          "Key": {
+            "$ref": "211"
+          },
+          "Value": {
+            "$id": "368",
+            "$type": "NM.Data.PlaySpin+Resource, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "369",
+          "Key": {
+            "$ref": "214"
+          },
+          "Value": {
+            "$id": "370",
+            "$type": "NM.Data.PlaySpin+Resource, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "371",
+          "Key": {
+            "$ref": "217"
+          },
+          "Value": {
+            "$id": "372",
+            "$type": "NM.Data.PlaySpin+Resource, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "373",
+          "Key": {
+            "$ref": "220"
+          },
+          "Value": {
+            "$id": "374",
+            "$type": "NM.Data.PlaySpin+Resource, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        },
+        {
+          "$id": "375",
+          "Key": {
+            "$ref": "223"
+          },
+          "Value": {
+            "$id": "376",
+            "$type": "NM.Data.PlaySpin+Resource, NM.Data",
+            "ModifyProp1": [],
+            "ModifyProp2": [],
+            "ModifyProp3": []
+          }
+        }
+      ]
+    },
+    "BelongNode": {
+      "$ref": "1"
+    },
+    "ToDoList": {
+      "$id": "377",
+      "$values": [
+        {
+          "$id": "378",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "26"
+          }
+        },
+        {
+          "$id": "379",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "218"
+          }
+        },
+        {
+          "$id": "380",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "50"
+          }
+        },
+        {
+          "$id": "381",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "74"
+          }
+        },
+        {
+          "$id": "382",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "98"
+          }
+        },
+        {
+          "$id": "383",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "122"
+          }
+        },
+        {
+          "$id": "384",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "146"
+          }
+        },
+        {
+          "$id": "385",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "170"
+          }
+        },
+        {
+          "$id": "386",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "194"
+          }
+        },
+        {
+          "$id": "387",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "23"
+          }
+        },
+        {
+          "$id": "388",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "215"
+          }
+        },
+        {
+          "$id": "389",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "47"
+          }
+        },
+        {
+          "$id": "390",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "71"
+          }
+        },
+        {
+          "$id": "391",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "95"
+          }
+        },
+        {
+          "$id": "392",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "119"
+          }
+        },
+        {
+          "$id": "393",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "143"
+          }
+        },
+        {
+          "$id": "394",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "167"
+          }
+        },
+        {
+          "$id": "395",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "191"
+          }
+        },
+        {
+          "$id": "396",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "20"
+          }
+        },
+        {
+          "$id": "397",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "212"
+          }
+        },
+        {
+          "$id": "398",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "44"
+          }
+        },
+        {
+          "$id": "399",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "68"
+          }
+        },
+        {
+          "$id": "400",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "92"
+          }
+        },
+        {
+          "$id": "401",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "116"
+          }
+        },
+        {
+          "$id": "402",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "140"
+          }
+        },
+        {
+          "$id": "403",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "164"
+          }
+        },
+        {
+          "$id": "404",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "188"
+          }
+        },
+        {
+          "$id": "405",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "17"
+          }
+        },
+        {
+          "$id": "406",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "209"
+          }
+        },
+        {
+          "$id": "407",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "41"
+          }
+        },
+        {
+          "$id": "408",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "65"
+          }
+        },
+        {
+          "$id": "409",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "89"
+          }
+        },
+        {
+          "$id": "410",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "113"
+          }
+        },
+        {
+          "$id": "411",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "137"
+          }
+        },
+        {
+          "$id": "412",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "161"
+          }
+        },
+        {
+          "$id": "413",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "185"
+          }
+        },
+        {
+          "$id": "414",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "14"
+          }
+        },
+        {
+          "$id": "415",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "206"
+          }
+        },
+        {
+          "$id": "416",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "38"
+          }
+        },
+        {
+          "$id": "417",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "62"
+          }
+        },
+        {
+          "$id": "418",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "86"
+          }
+        },
+        {
+          "$id": "419",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "110"
+          }
+        },
+        {
+          "$id": "420",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "134"
+          }
+        },
+        {
+          "$id": "421",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "158"
+          }
+        },
+        {
+          "$id": "422",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "182"
+          }
+        },
+        {
+          "$id": "423",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "11"
+          }
+        },
+        {
+          "$id": "424",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "203"
+          }
+        },
+        {
+          "$id": "425",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "35"
+          }
+        },
+        {
+          "$id": "426",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "59"
+          }
+        },
+        {
+          "$id": "427",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "83"
+          }
+        },
+        {
+          "$id": "428",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "107"
+          }
+        },
+        {
+          "$id": "429",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "131"
+          }
+        },
+        {
+          "$id": "430",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "155"
+          }
+        },
+        {
+          "$id": "431",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "179"
+          }
+        },
+        {
+          "$id": "432",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "8"
+          }
+        },
+        {
+          "$id": "433",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "200"
+          }
+        },
+        {
+          "$id": "434",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "32"
+          }
+        },
+        {
+          "$id": "435",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "224"
+          }
+        },
+        {
+          "$id": "436",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "56"
+          }
+        },
+        {
+          "$id": "437",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "80"
+          }
+        },
+        {
+          "$id": "438",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "104"
+          }
+        },
+        {
+          "$id": "439",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "128"
+          }
+        },
+        {
+          "$id": "440",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "152"
+          }
+        },
+        {
+          "$id": "441",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "176"
+          }
+        },
+        {
+          "$id": "442",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "5"
+          }
+        },
+        {
+          "$id": "443",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "197"
+          }
+        },
+        {
+          "$id": "444",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "29"
+          }
+        },
+        {
+          "$id": "445",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "221"
+          }
+        },
+        {
+          "$id": "446",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "53"
+          }
+        },
+        {
+          "$id": "447",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "77"
+          }
+        },
+        {
+          "$id": "448",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "101"
+          }
+        },
+        {
+          "$id": "449",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "125"
+          }
+        },
+        {
+          "$id": "450",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "149"
+          }
+        },
+        {
+          "$id": "451",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": {
+            "$ref": "227"
+          },
+          "Item": {
+            "$ref": "173"
+          }
+        }
+      ]
+    }
+  }
+}

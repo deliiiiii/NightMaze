@@ -1,8 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
+
 // using UnityEngine;
 
 namespace GeneralPreview;
-
 public record struct Vector2Int(int X, int Y) : IComparable<Vector2Int>
 {
     public int X = X;

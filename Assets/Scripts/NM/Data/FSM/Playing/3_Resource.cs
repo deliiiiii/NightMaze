@@ -5,6 +5,7 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
+    public MyOption<Resource> this[EttResource ettId] => GetEttComOptional<EttResource, Resource>(ettId);
     public partial class Resource : MyItem<EttResource, Resource, ResourceConfig>
     {
         public Resource(EttResource belongEtt, int id, Vector2Int pivotPos) : base(belongEtt, id, pivotPos) {}

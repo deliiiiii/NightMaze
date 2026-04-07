@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using Sirenix.Utilities;
 
 namespace GeneralPreview;
-
 public abstract record EttBase
 {
     internal static int CurID;
@@ -45,9 +44,9 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         }
     }
     [JsonIgnore]Dictionary<EttBase, INodeCom> comDic = [];
-    [JsonProperty("comDic", ObjectCreationHandling = ObjectCreationHandling.Replace)] List<KeyValuePair<EttBase, INodeCom>> SerializableComDic
+    [JsonProperty("comDic", ObjectCreationHandling = ObjectCreationHandling.Replace)] List<KeyCompactKvp<EttBase, INodeCom>> SerializableComDic
     {
-        get => comDic.ToList();
+        get => comDic.Select(pair => new KeyCompactKvp<EttBase, INodeCom>(pair.Key, pair.Value)).ToList();
         set
         {
             comDic = value.ToDictionary(x => x.Key, x => x.Value);

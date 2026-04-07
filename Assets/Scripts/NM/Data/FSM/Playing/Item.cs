@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using General;
 using GeneralPreview;
+using Newtonsoft.Json;
 using NM.Config;
 
 namespace NM.Data;
@@ -19,7 +21,7 @@ public partial class GamePlaying
             {
                 ItemPosRectangle rect => (
                     from x in Range(0, rect.Length)
-                    from y in Range(0, rect.Height) 
+                    from y in Range(0, rect.Height)
                     select new Vector2Int(x, y)).ToList(),
                 ItemPosCustom custom => custom.DeltaPosList,
                 _ => [Vector2Int.Zero],
@@ -27,15 +29,20 @@ public partial class GamePlaying
         }
 
         public int ID;
+
+        [JsonConverter(typeof(CompactFormatNoRefConverter))]
         public Vector2Int PivotPos;
+        [JsonConverter(typeof(CompactFormatNoRefConverter))]
         public List<Vector2Int> DeltaPosList { get; init; }
+
         public bool CoverPos(Vector2Int pos)
             => CoveredPosList.Contains(pos);
+
         public IEnumerable<Vector2Int> CoveredPosList
             => DeltaPosList.Select(d => d + PivotPos);
 
         public abstract TConfig Config { get; }
-        
+
         int IItem.ID => ID;
         Vector2Int IItem.PivotPos => PivotPos;
         IEnumerable<Vector2Int> IItem.DeltaPosList => DeltaPosList;

@@ -12,6 +12,8 @@ public class ResourceConfig : ItemConfigBase<ResourceConfig>
     protected override string PrefixName => "Resource";
     public override List<DetailTagInfo> DetailTagInfos =>
         [..base.DetailTagInfos, ..ResourceTag.ToValues().Select(e => Mgr.ResourceDic[e])];
+    public override int Order => 3;
+    
     [Header("—— 资源配置 ——")]
     [LabelText("资源标签")]public EResourceTag ResourceTag;
 }

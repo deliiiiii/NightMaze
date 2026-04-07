@@ -20,23 +20,30 @@ public abstract class ItemConfigBase<T> : ConfigMulti<T>, IItemConfig
     [Required, LabelText("通用标签")] public EItemTag Tag;
     [Required, LabelText("词条列表")] public List<ItemDesConfig> DesList = [];
     public virtual List<DetailTagInfo> DetailTagInfos => Tag.ToValues().Select(t => Mgr.ItemDic[t]).ToList();
+    public virtual int Order => 0;
     
+    string IItemConfig.Name => Name;
+    string IItemConfig.PrefixName => PrefixName;
     string IItemConfig.FlavorDes => FlavorDes;
     ERarity IItemConfig.Rarity => Rarity;
     ItemPos IItemConfig.Pos => Pos;
     EItemTag IItemConfig.Tag => Tag;
     List<ItemDesConfig> IItemConfig.DesList => DesList;
     List<DetailTagInfo> IItemConfig.DetailTagInfos => DetailTagInfos;
+    int IItemConfig.Order => Order;
 }
 
 public interface IItemConfig
 {
+    string Name { get; }
+    string PrefixName { get; }
     string FlavorDes { get; }
     ERarity Rarity { get; }
     ItemPos Pos { get; }
     EItemTag Tag { get; }
     List<ItemDesConfig> DesList { get; }
     List<DetailTagInfo> DetailTagInfos { get; }
+    int Order { get; }
 }
 public enum ERarity
 {
