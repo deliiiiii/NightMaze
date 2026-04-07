@@ -148,6 +148,9 @@ namespace General
 
     internal static class JsonIO
     {
+        // 【1. 增加这一行，声明预编译的正则】
+        static readonly System.Text.RegularExpressions.Regex refRegex = 
+            new (@"\{\s*""\$ref""\s*:\s*""([^""]+)""\s*\}", System.Text.RegularExpressions.RegexOptions.Compiled);
         static readonly JsonSerializerSettings settings = new()
         {
             Formatting = Formatting.Indented,
@@ -166,6 +169,7 @@ namespace General
             }
             // string str = JsonUtility.ToJson(curEntity, true);
             string str = JsonConvert.SerializeObject(obj, settings);
+            str = refRegex.Replace(str, "{ \"$ref\": \"$1\" }");
             File.WriteAllText(path, str);
         }
         public static async UniTask<T> ReadAsync<T>(string pathPre, string name, CancellationToken ct)
