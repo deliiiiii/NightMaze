@@ -111,24 +111,31 @@ public partial class PlaySpin
                 select itemInSpin,
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemSelectorBase)}类型: {itemSelector.GetType()}.")
         };
-        rawItems =
-            from itemInSpin in rawItems
-            from itemInPlay in BelongNode.GetItemByEtt(itemInSpin.BelongEtt).ToIEnumerable()
-            from selfItemInPlay in BelongNode.GetItemByEtt(selfItem.BelongEtt).ToIEnumerable()
-            where itemSelector.ItemFilter switch
-            {
-                null => true,
-                ItemFilterIn3X3 in3X3 => Math.Abs(itemInPlay.PivotPos.X - selfItemInPlay.PivotPos.X) <= 1 
-                                         && Math.Abs(itemInPlay.PivotPos.Y - selfItemInPlay.PivotPos.Y) <= 1,
-                ItemFilterInManDis inManDis => Math.Abs(itemInPlay.PivotPos.X - selfItemInPlay.PivotPos.X) 
-                                               + Math.Abs(itemInPlay.PivotPos.Y - selfItemInPlay.PivotPos.Y) 
-                                               <= inManDis.Dis,
-                ItemFilterNotSelf notSelf => itemInPlay != selfItemInPlay,
-                ItemFilterSelf self => itemInPlay == selfItemInPlay,
-                _ => throw new InvalidOperationException(
-                    $"没有匹配穷尽{nameof(ItemFilterBase)}类型: {itemSelector.ItemFilter.GetType()}.")
-            }
-            select itemInSpin;
+        var filter = itemSelector.ItemFilter;
+        while (filter != null)
+        {
+            var filter1 = filter;
+            rawItems =
+                from itemInSpin in rawItems
+                from itemInPlay in BelongNode.GetItemByEtt(itemInSpin.BelongEtt).ToIEnumerable()
+                from selfItemInPlay in BelongNode.GetItemByEtt(selfItem.BelongEtt).ToIEnumerable()
+                where filter1 switch
+                {
+                    null => true,
+                    ItemFilterIn3X3 in3X3 => Math.Abs(itemInPlay.PivotPos.X - selfItemInPlay.PivotPos.X) <= 1 
+                                             && Math.Abs(itemInPlay.PivotPos.Y - selfItemInPlay.PivotPos.Y) <= 1,
+                    ItemFilterInManDis inManDis => Math.Abs(itemInPlay.PivotPos.X - selfItemInPlay.PivotPos.X) 
+                                                   + Math.Abs(itemInPlay.PivotPos.Y - selfItemInPlay.PivotPos.Y) 
+                                                   <= inManDis.Dis,
+                    ItemFilterNotSelf notSelf => itemInSpin != selfItem,
+                    ItemFilterSelf self => itemInSpin == selfItem,
+                    _ => throw new InvalidOperationException(
+                        $"没有匹配穷尽{nameof(ItemFilterBase)}类型: {filter1.GetType()}.")
+                }
+                select itemInSpin;
+            filter = filter.ItemFilter;
+        }
+       
         if (itemSelector.Random)
             rawItems = rawItems.ToList().ShuffleTo();
         switch (itemSelector.ItemSort)

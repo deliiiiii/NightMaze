@@ -134,7 +134,7 @@ MonoBehaviour:
       type: {class: ItemFilterIn3X3, ns: NM.Config, asm: NM.Config}
       data:
         ItemFilter:
-          rid: -2
+          rid: 6212121036199034880
     - rid: 6212121012880539697
       type: {class: ItemSelectorItem, ns: NM.Config, asm: NM.Config}
       data:
@@ -160,3 +160,8 @@ MonoBehaviour:
     - rid: 6212121024638222482
       type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
       data: 
+    - rid: 6212121036199034880
+      type: {class: ItemFilterNotSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2

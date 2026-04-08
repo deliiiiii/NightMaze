@@ -9,22 +9,25 @@ using Newtonsoft.Json;
 using Sirenix.Utilities;
 
 namespace GeneralPreview;
+[DebuggerStepThrough]
 public abstract record EttBase
 {
     internal static int CurID;
 }
+[DebuggerStepThrough]
 public abstract record EttBase<T> : EttBase where T : EttBase<T>, new()
 //: IDisposable, IHasCt, IHasVersion
 {
     public int EttID { get; } = CurID++;
     public static T Create() => new();
 }
-
+[DebuggerStepThrough]
 public abstract class Node
 {
     public abstract UniTask OnCreateAsync(bool isThisFromLoad);
     public abstract void OnRemove();
 }
+[DebuggerStepThrough]
 public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where TThis : Node<TThis>
 {
     interface INodeCom
@@ -160,7 +163,7 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     }
 }
 public interface IUniAction : ICanAwait;
-
+[DebuggerStepThrough]
 public abstract class Node<TBelong, TThis> : Node<TThis>, IHasBelong<TBelong>
     where TBelong : class
     where TThis : Node<TBelong, TThis>
@@ -169,7 +172,6 @@ public abstract class Node<TBelong, TThis> : Node<TThis>, IHasBelong<TBelong>
     [JsonIgnore]TBelong IHasBelong<TBelong>.BelongNode { get => BelongNode; set => BelongNode = value; }
     protected TBelong BelongNode { get; set; } = null!;
 }
-
 public interface IHasBelong<TBelong> where TBelong : class
 {
     TBelong BelongNode { get; set; }
@@ -178,26 +180,3 @@ public interface ICanAwait
 {
     UniTask.Awaiter GetAwaiter();
 }
-//
-// public static class NodeExt
-// {
-//     extension<T>(List<T> self) where T : Node<T>
-//     {
-//         public void EachOnCreateFreshData()
-//         {
-//             foreach (var node in self) 
-//                 node.OnCreateFreshData();
-//         }
-//
-//         public async UniTask EachOnLaunchCom(bool isThisFromLoad)
-//         {
-//             foreach (var node in self) 
-//                 await node.OnLaunchCom(isThisFromLoad);
-//         }
-//         public void EachOnReleaseCom()
-//         {
-//             foreach (var node in self) 
-//                 node.OnReleaseCom();
-//         }
-//     }
-// }
