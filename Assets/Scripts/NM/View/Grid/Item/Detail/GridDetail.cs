@@ -22,7 +22,13 @@ public class GridDetail : MonoBehaviour
     public Trs TrsGridType;
     public Trs TrsGridInSpinLine;
 
+    const int GridHeadMax = 20;
+    const int TagMax = 20;
+    const int SpinLineMax = 50;
+
     List<GridDetailHead> headList;
+    List<GridType> tagList;
+    List<GridInSpinLine> inSpinLineList;
     GridDetailHead? curHead;
 
     void Awake()
@@ -34,6 +40,8 @@ public class GridDetail : MonoBehaviour
         }).Bind(destroyCancellationToken);
 
         headList = TrsGridHead.GetChildren().Select(c => c.GetComponent<GridDetailHead>()).ToList();
+        tagList = TrsGridType.GetChildren().Select(c => c.GetComponent<GridType>()).ToList();
+        inSpinLineList = TrsGridInSpinLine.GetChildren().Select(c => c.GetComponent<GridInSpinLine>()).ToList();
     }
 
 
@@ -44,12 +52,12 @@ public class GridDetail : MonoBehaviour
     public void Refresh(List<DetailInfo> detailList)
     {
         int headCount = 0;
-        int tarCount = detailList.Count;
-        for (int i = 0; i < tarCount; i++)
+        int gridHeadCount = detailList.Count;
+        for (int i = 0; i < Math.Min(GridHeadMax, gridHeadCount); i++)
         {
             headList[i].SetActiveTrue();
         }
-        for (int i = tarCount; i < TrsGridHead.childCount; i++)
+        for (int i = gridHeadCount; i < GridHeadMax; i++)
         {
             headList[i].SetActiveFalse();
         }
@@ -61,23 +69,30 @@ public class GridDetail : MonoBehaviour
             head.OnClick = () =>
             {
                 curHead = head;
-                TrsGridType.ClearChildren();
-                detail.TagInfoList.ForEach(tagInfo =>
+                int tagCount = detail.TagInfoList.Count;
+                for (int i = 0; i < Math.Min(TagMax, tagCount); i++)
                 {
-                    var item = Instantiate(pfbGridType, TrsGridType);
-                    item.SetActiveTrue();
-                    item.TxtType.text = tagInfo.TagName;
-                    item.ImgBack.color = tagInfo.BackColor;
-                    item.ImgIcon.sprite = tagInfo.Icon;
-                });
+                    tagList[i].SetActiveTrue();
+                    tagList[i].TxtType.text = detail.TagInfoList[i].TagName;
+                    tagList[i].ImgBack.color = detail.TagInfoList[i].BackColor;
+                    tagList[i].ImgIcon.sprite = detail.TagInfoList[i].Icon;
+                }
+                for (int i = tagCount; i < TagMax; i++)
+                {
+                    tagList[i].SetActiveFalse();
+                }
                 TxtDetail.text = detail.Detail;
-                TrsGridInSpinLine.ClearChildren();
-                detail.InSpinLineList.ForEach(inSpinLine =>
+                
+                int inSpinLineCount = detail.InSpinLineList.Count;
+                for (int i = 0; i < Math.Min(SpinLineMax, inSpinLineCount); i++)
                 {
-                    var line = Instantiate(pfbGridInSpinLine, TrsGridInSpinLine);
-                    line.SetActiveTrue();
-                    line.TxtLine.text = inSpinLine;
-                });
+                    inSpinLineList[i].SetActiveTrue();
+                    inSpinLineList[i].TxtLine.text = detail.InSpinLineList[i];
+                }
+                for (int i = inSpinLineCount; i < SpinLineMax; i++)
+                {
+                    inSpinLineList[i].SetActiveFalse();
+                }
             };
         });
         curHead ??= headList[0];

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using General;
 using GeneralPreview;
 using Newtonsoft.Json;
@@ -34,6 +35,7 @@ public partial class GamePlaying
         public Vector2Int PivotPos;
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
         public List<Vector2Int> DeltaPosList { get; init; }
+        public List<ItemDesConfig> EatConfigList = [];
 
         public bool CoverPos(Vector2Int pos)
             => CoveredPosList.Contains(pos);
@@ -42,6 +44,7 @@ public partial class GamePlaying
             => DeltaPosList.Select(d => d + PivotPos);
 
         public abstract TConfig Config { get; }
+        
 
         EttBase IItem.BelongEtt => BelongEtt;
         int IItem.ID => ID;
@@ -50,7 +53,9 @@ public partial class GamePlaying
         bool IItem.CoverPos(Vector2Int pos) => CoverPos(pos);
         IEnumerable<Vector2Int> IItem.CoveredPosList => CoveredPosList;
         IItemConfig IItem.Config => Config;
-
+        List<ItemDesConfig> IItem.EatConfigList => EatConfigList;
+        
+        [DebuggerStepThrough]
         public override string ToString()
         {
             return $"{GetType().Name}(ID: {ID}, PivotPos: {PivotPos}, DeltaPosList: [{string.Join(", ", DeltaPosList)}])";
@@ -66,5 +71,6 @@ public partial class GamePlaying
         bool CoverPos(Vector2Int pos);
         IEnumerable<Vector2Int> CoveredPosList { get; }
         IItemConfig Config { get; }
+        List<ItemDesConfig> EatConfigList { get; }
     }
 }

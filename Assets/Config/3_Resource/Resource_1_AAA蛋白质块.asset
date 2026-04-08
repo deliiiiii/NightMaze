@@ -38,8 +38,82 @@ MonoBehaviour:
   FlavorDes: "\u4E0D\u8981\u591A\u60F3\u8FD9\u662F\u4EC0\u4E48"
   Rarity: 0
   Tag: 4
-  DesList: []
+  DesList:
+  - Trigger:
+      rid: 6212121036199034886
+    Result:
+      rid: 6212121036199034887
+  - Trigger:
+      rid: 6212121036199034891
+    Result:
+      rid: 6212121036199034892
   ResourceTag: 4
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6212121036199034886
+      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121036199034887
+      type: {class: ItemDesResultMulXPropX, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: -2
+        ItemSelector:
+          rid: 6212121036199034888
+        PropType: 0
+        IntSelector:
+          rid: 6212121036199034889
+    - rid: 6212121036199034888
+      type: {class: ItemSelectorSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+        Random: 0
+        TakeMax:
+          rid: 6212121036199034890
+        ItemSort:
+          rid: -2
+    - rid: 6212121036199034889
+      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
+      data:
+        Value: 2
+    - rid: 6212121036199034890
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121036199034891
+      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121036199034892
+      type: {class: ItemDesResultMulXPropX, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: -2
+        ItemSelector:
+          rid: 6212121036199034893
+        PropType: 1
+        IntSelector:
+          rid: 6212121036199034894
+    - rid: 6212121036199034893
+      type: {class: ItemSelectorSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+        Random: 0
+        TakeMax:
+          rid: 6212121036199034895
+        ItemSort:
+          rid: -2
+    - rid: 6212121036199034894
+      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
+      data:
+        Value: 2
+    - rid: 6212121036199034895
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 

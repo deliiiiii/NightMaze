@@ -23,6 +23,7 @@ public abstract class ItemConfigBase<T> : ConfigMulti<T>, IItemConfig
     public virtual int Order => 0;
     
     string IItemConfig.Name => Name;
+    int IItemConfig.ID => ID;
     string IItemConfig.PrefixName => PrefixName;
     string IItemConfig.FlavorDes => FlavorDes;
     ERarity IItemConfig.Rarity => Rarity;
@@ -33,9 +34,10 @@ public abstract class ItemConfigBase<T> : ConfigMulti<T>, IItemConfig
     int IItemConfig.Order => Order;
 }
 
-public interface IItemConfig
+public interface IItemConfig : IRefMulti
 {
     string Name { get; }
+    int ID { get; }
     string PrefixName { get; }
     string FlavorDes { get; }
     ERarity Rarity { get; }

@@ -21,16 +21,23 @@ public partial class GamePlaying
     }
 
     [Obsolete("在某位置生成某物体")]
-    UniTask SpawnItemAtPosAsync(IItem item, Vector2Int pos, CancellationToken ct)
+    UniTask SpawnItemAtPosAsync(IItem toSpawn, Vector2Int pos, CancellationToken ct)
     {
         // TODO
         return UniTask.CompletedTask;
     }
     
     [Obsolete("移除某物体")]
-    UniTask RemoveItemAsync(IItem item, CancellationToken ct)
+    UniTask RemoveItemAsync(IItem toRemove, CancellationToken ct)
     {
         // TODO
+        return UniTask.CompletedTask;
+    }
+
+    [Obsolete("某物添加某物的词条")]
+    UniTask ItemEatItemConfigAsync(IItem whoEat, IItem toEat, CancellationToken ct)
+    {
+        whoEat.EatConfigList.AddRange(toEat.Config.DesList);
         return UniTask.CompletedTask;
     }
     

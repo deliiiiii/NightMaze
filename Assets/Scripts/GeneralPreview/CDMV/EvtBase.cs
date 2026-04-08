@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -9,7 +10,7 @@ using Sirenix.Utilities;
 using UnityEngine;
 
 namespace GeneralPreview;
-
+[DebuggerStepThrough]
 public static class Bus
 {
     [HideInInspector]
@@ -40,6 +41,7 @@ public static class Bus
 
     internal static void FireAndForget<T>(T evt, bool debug = true) where T : IEvtBase
         => FireAsync(evt, CancellationToken.None, debug).Forget();
+    [DebuggerStepThrough]
     internal static async UniTask FireAsync<T>(T evt, CancellationToken ct, bool debug = true) where T : IEvtBase
     {
         var evtType = evt.GetType();
@@ -87,7 +89,7 @@ public static class Bus
         }
     }
 }
-
+[DebuggerStepThrough]
 public abstract record EvtBase<THasCt>(THasCt WhoHasCt)
     : IEvtBase, ICanAwait
     where THasCt : IHasCt
@@ -99,7 +101,7 @@ public abstract record EvtBase<THasCt>(THasCt WhoHasCt)
     public UniTask.Awaiter GetAwaiter() 
         => WhoHasCt.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : Bus.FireAsync(this, WhoHasCt.CurCt, getDebug).GetAwaiter();
 }
-
+[DebuggerStepThrough]
 public abstract record EvtForgetBase : IEvtBase
 {
     public void Forget(bool debug = true) => Bus.FireAndForget(this, debug);

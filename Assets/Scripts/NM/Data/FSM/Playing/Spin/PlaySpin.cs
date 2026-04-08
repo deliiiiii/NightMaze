@@ -10,6 +10,7 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
 {
     List<IUniAction> toDoList = [];
     public IEnumerable<IUniAction> ToDoList => toDoList;
+    public bool CanHarvest => !toDoList.Any();
     int FindAfterId(Func<IUniAction, bool>? beforeWho = null)
     {
         beforeWho ??= RTrue1;

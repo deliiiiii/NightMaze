@@ -5,7 +5,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using NM.Config;
-
 namespace NM.Data;
 [ActContainer]
 public partial class PlaySpin
@@ -35,7 +34,15 @@ public partial class PlaySpin
         }
         InsertAfter(result switch
         {
-            ItemDesResultAddItemDesToSelf addItemDesToSelf => throw new NotImplementedException(),
+            ItemDesResultAddItemDesToSelf addItemDesToSelf => 
+                from toEat in ResolveItemSelector(selfItem, addItemDesToSelf.ItemSelector)
+                from whoEatInPlay in BelongNode.GetItemByEtt(selfItem.BelongEtt).ToIEnumerable()
+                from toEatInPlay in BelongNode.GetItemByEtt(toEat.BelongEtt).ToIEnumerable()
+                select new GamePlaying.ActItemEatItemConfig(BelongNode)
+                {
+                    WhoEat = whoEatInPlay,
+                    ToEat = toEatInPlay
+                },
             ItemDesResultAddXPropX addXProp =>
                 from toItem in ResolveItemSelector(selfItem, addXProp.ItemSelector)
                 select new ActEttAddSymbolModifyProp(this)
@@ -45,12 +52,21 @@ public partial class PlaySpin
                     PropType = addXProp.PropType,
                     Value = ResolveIntSelector(selfItem, addXProp.IntSelector)
                 },
+            ItemDesResultMulXPropX mulXPropX => 
+                from toItem in ResolveItemSelector(selfItem, mulXPropX.ItemSelector)
+                select new ActEttMulSymbolModifyProp(this)
+                {
+                    From = selfItem,
+                    To = toItem,
+                    PropType = mulXPropX.PropType,
+                    Value = ResolveIntSelector(selfItem, mulXPropX.IntSelector)
+                },
             ItemDesResultRemoveItem removeItem =>
                 from toRemove in ResolveItemSelector(selfItem, removeItem.ItemSelector)
                 from toRemoveInPlay in BelongNode.GetItemByEtt(toRemove.BelongEtt).ToIEnumerable()
                 select new GamePlaying.ActRemoveItem(BelongNode)
                 {
-                    Item = toRemoveInPlay
+                    ToRemove = toRemoveInPlay
                 },
             ItemDesResultSpawnXAtX spawnXAtX =>
                 from toSpawn in ResolveItemSelector(selfItem, spawnXAtX.ItemSelector).FirstOptional().ToIEnumerable()
@@ -58,7 +74,7 @@ public partial class PlaySpin
                 from pos in ResolvePosSelector(selfItem, spawnXAtX.PosSelector).FirstOptional().ToIEnumerable()
                 select new GamePlaying.ActSpawnItemAtPos(BelongNode)
                 {
-                    Item = toSpawnInPlay,
+                    ToSpawn = toSpawnInPlay,
                     Pos = pos
                 },
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemDesResultBase)}类型: {result.GetType()}.")
@@ -211,36 +227,26 @@ public partial class PlaySpin
         return rawList.Take(ResolveIntSelector(selfItem, posSelector.TakeMax));
     }
 
-    [Obsolete("某物让某物属性变化")]
-    UniTask EttAddSymbolModifyPropAsync(IItem from, IItem to, EPropType propType, int value, CancellationToken ct)
+    [Obsolete("某物让某物属性变化(加算)")]
+    UniTask EttAddSymbolModifyPropAsync(IItem from, IItem to, EPropType propType, long value, CancellationToken ct)
     {
-        switch (propType)
+        to.ModifyPropList.Add(new ModifyPropInfo
         {
-            case EPropType.Prop1:
-                to.ModifyProp1.Add(new ModifyPropInfo
-                {
-                    Ett = from,
-                    Value = value
-                });
-                break;
-            case EPropType.Prop2:
-                to.ModifyProp2.Add(new ModifyPropInfo
-                {
-                    Ett = from,
-                    Value = value
-                });
-                break;
-            case EPropType.Prop3:
-                to.ModifyProp3.Add(new ModifyPropInfo
-                {
-                    Ett = from,
-                    Value = value
-                });
-                break;
-            default:
-                throw new InvalidOperationException($"没有匹配穷尽{nameof(EPropType)}类型: {propType}.");
-        }
+            PropType = propType,
+            Ett = from,
+            AddValue = value
+        });
         return UniTask.CompletedTask;
     }
-    
+    [Obsolete("某物让某物属性变化(乘算)")]
+    UniTask EttMulSymbolModifyPropAsync(IItem from, IItem to, EPropType propType, long value, CancellationToken ct)
+    {
+        to.ModifyPropList.Add(new ModifyPropInfo
+        {
+            PropType = propType,
+            Ett = from,
+            MultiValue = value
+        });
+        return UniTask.CompletedTask;
+    }
 }

@@ -1,0 +1,1839 @@
+{
+  "$id": "1",
+  "savedVersion": 20260402.0,
+  "comDic": {
+    "$id": "2",
+    "$values": [
+      {
+        "Key":{"$id":"3","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "4",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":1},
+          "EatConfigList": {
+            "$id": "5",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"6","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "7",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":2},
+          "EatConfigList": {
+            "$id": "8",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"9","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "10",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":3},
+          "EatConfigList": {
+            "$id": "11",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"12","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "13",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":4},
+          "EatConfigList": {
+            "$id": "14",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"15","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "16",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":5},
+          "EatConfigList": {
+            "$id": "17",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"18","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "19",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":6},
+          "EatConfigList": {
+            "$id": "20",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"21","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "22",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":7},
+          "EatConfigList": {
+            "$id": "23",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"24","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "25",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":8},
+          "EatConfigList": {
+            "$id": "26",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"27","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "28",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":1},
+          "EatConfigList": {
+            "$id": "29",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"30","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "31",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":2},
+          "EatConfigList": {
+            "$id": "32",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"33","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "34",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":3},
+          "EatConfigList": {
+            "$id": "35",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"36","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "37",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":4},
+          "EatConfigList": {
+            "$id": "38",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"39","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "40",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":5},
+          "EatConfigList": {
+            "$id": "41",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"42","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "43",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":6},
+          "EatConfigList": {
+            "$id": "44",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"45","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "46",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":7},
+          "EatConfigList": {
+            "$id": "47",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"48","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "49",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":8},
+          "EatConfigList": {
+            "$id": "50",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"51","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "52",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":1},
+          "EatConfigList": {
+            "$id": "53",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"54","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "55",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":2},
+          "EatConfigList": {
+            "$id": "56",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"57","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "58",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":3},
+          "EatConfigList": {
+            "$id": "59",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"60","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "61",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":4},
+          "EatConfigList": {
+            "$id": "62",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"63","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "64",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":5},
+          "EatConfigList": {
+            "$id": "65",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"66","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "67",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":6},
+          "EatConfigList": {
+            "$id": "68",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"69","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "70",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":7},
+          "EatConfigList": {
+            "$id": "71",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"72","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "73",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":3,"Y":8},
+          "EatConfigList": {
+            "$id": "74",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"75","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "76",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":1},
+          "EatConfigList": {
+            "$id": "77",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"78","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "79",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":2},
+          "EatConfigList": {
+            "$id": "80",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"81","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "82",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":3},
+          "EatConfigList": {
+            "$id": "83",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"84","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "85",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":4},
+          "EatConfigList": {
+            "$id": "86",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"87","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "88",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":5},
+          "EatConfigList": {
+            "$id": "89",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"90","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "91",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":6},
+          "EatConfigList": {
+            "$id": "92",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"93","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "94",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":7},
+          "EatConfigList": {
+            "$id": "95",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"96","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "97",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":8},
+          "EatConfigList": {
+            "$id": "98",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"99","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "100",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":1},
+          "EatConfigList": {
+            "$id": "101",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"102","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "103",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":2},
+          "EatConfigList": {
+            "$id": "104",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"105","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "106",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":3},
+          "EatConfigList": {
+            "$id": "107",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"108","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "109",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":4},
+          "EatConfigList": {
+            "$id": "110",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"111","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "112",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":5},
+          "EatConfigList": {
+            "$id": "113",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"114","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "115",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":6},
+          "EatConfigList": {
+            "$id": "116",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"117","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "118",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":7},
+          "EatConfigList": {
+            "$id": "119",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"120","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "121",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":5,"Y":8},
+          "EatConfigList": {
+            "$id": "122",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"123","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "124",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":1},
+          "EatConfigList": {
+            "$id": "125",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"126","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "127",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":2},
+          "EatConfigList": {
+            "$id": "128",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"129","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "130",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":3},
+          "EatConfigList": {
+            "$id": "131",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"132","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "133",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":4},
+          "EatConfigList": {
+            "$id": "134",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"135","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "136",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":5},
+          "EatConfigList": {
+            "$id": "137",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"138","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "139",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":6},
+          "EatConfigList": {
+            "$id": "140",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"141","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "142",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":7},
+          "EatConfigList": {
+            "$id": "143",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"144","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "145",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":6,"Y":8},
+          "EatConfigList": {
+            "$id": "146",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"147","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "148",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":1},
+          "EatConfigList": {
+            "$id": "149",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"150","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "151",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":2},
+          "EatConfigList": {
+            "$id": "152",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"153","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "154",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":3},
+          "EatConfigList": {
+            "$id": "155",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"156","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "157",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":4},
+          "EatConfigList": {
+            "$id": "158",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"159","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "160",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":5},
+          "EatConfigList": {
+            "$id": "161",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"162","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "163",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":6},
+          "EatConfigList": {
+            "$id": "164",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"165","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "166",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":7},
+          "EatConfigList": {
+            "$id": "167",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"168","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "169",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":7,"Y":8},
+          "EatConfigList": {
+            "$id": "170",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"171","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "172",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":1},
+          "EatConfigList": {
+            "$id": "173",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"174","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "175",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":2},
+          "EatConfigList": {
+            "$id": "176",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"177","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "178",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":3},
+          "EatConfigList": {
+            "$id": "179",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"180","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "181",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":4},
+          "EatConfigList": {
+            "$id": "182",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"183","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "184",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":5},
+          "EatConfigList": {
+            "$id": "185",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"186","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "187",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":6},
+          "EatConfigList": {
+            "$id": "188",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"189","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "190",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":7},
+          "EatConfigList": {
+            "$id": "191",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"192","$type":"NM.EttGrid, NM"},
+        "Value": {
+          "$id": "193",
+          "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":8,"Y":8},
+          "EatConfigList": {
+            "$id": "194",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"195","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "196",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":1},
+          "EatConfigList": {
+            "$id": "197",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"198","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "199",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":2},
+          "EatConfigList": {
+            "$id": "200",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"201","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "202",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":3},
+          "EatConfigList": {
+            "$id": "203",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"204","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "205",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":4},
+          "EatConfigList": {
+            "$id": "206",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"207","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "208",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":4,"Y":7},
+          "EatConfigList": {
+            "$id": "209",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"210","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "211",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 6,
+          "PivotPos":{"X":5,"Y":6},
+          "EatConfigList": {
+            "$id": "212",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"213","$type":"NM.EttSymbol, NM"},
+        "Value": {
+          "$id": "214",
+          "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+          "ID": 6,
+          "PivotPos":{"X":8,"Y":4},
+          "EatConfigList": {
+            "$id": "215",
+            "$values": [
+              {
+                "$id": "216",
+                "Trigger": {
+                  "$id": "217",
+                  "$type": "NM.Config.ItemDesTriggerEnterSpin, NM.Config"
+                },
+                "Result": {
+                  "$id": "218",
+                  "$type": "NM.Config.ItemDesResultMulXPropX, NM.Config",
+                  "Condition": null,
+                  "Next": null,
+                  "ItemSelector": {
+                    "$id": "219",
+                    "$type": "NM.Config.ItemSelectorSelf, NM.Config",
+                    "ItemFilter": null,
+                    "Random": false,
+                    "TakeMax": {
+                      "$id": "220",
+                      "$type": "NM.Config.IntSelectorInfinite, NM.Config"
+                    },
+                    "ItemSort": null
+                  },
+                  "PropType": 0,
+                  "IntSelector": {
+                    "$id": "221",
+                    "$type": "NM.Config.IntSelectorConst, NM.Config",
+                    "Value": 2
+                  }
+                }
+              },
+              {
+                "$id": "222",
+                "Trigger": {
+                  "$id": "223",
+                  "$type": "NM.Config.ItemDesTriggerEnterSpin, NM.Config"
+                },
+                "Result": {
+                  "$id": "224",
+                  "$type": "NM.Config.ItemDesResultMulXPropX, NM.Config",
+                  "Condition": null,
+                  "Next": null,
+                  "ItemSelector": {
+                    "$id": "225",
+                    "$type": "NM.Config.ItemSelectorSelf, NM.Config",
+                    "ItemFilter": null,
+                    "Random": false,
+                    "TakeMax": {
+                      "$id": "226",
+                      "$type": "NM.Config.IntSelectorInfinite, NM.Config"
+                    },
+                    "ItemSort": null
+                  },
+                  "PropType": 1,
+                  "IntSelector": {
+                    "$id": "227",
+                    "$type": "NM.Config.IntSelectorConst, NM.Config",
+                    "Value": 2
+                  }
+                }
+              },
+              { "$ref": "216" },
+              { "$ref": "222" },
+              { "$ref": "216" },
+              { "$ref": "222" }
+            ]
+          },
+          "DeltaPosList":[{"X":0,"Y":0}]
+        }
+      },
+      {
+        "Key":{"$id":"228","$type":"NM.EttResource, NM"},
+        "Value": {
+          "$id": "229",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":1,"Y":8},
+          "EatConfigList": {
+            "$id": "230",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}]
+        }
+      },
+      {
+        "Key":{"$id":"231","$type":"NM.EttResource, NM"},
+        "Value": {
+          "$id": "232",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":1},
+          "EatConfigList": {
+            "$id": "233",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}]
+        }
+      },
+      {
+        "Key":{"$id":"234","$type":"NM.EttResource, NM"},
+        "Value": {
+          "$id": "235",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":2},
+          "EatConfigList": {
+            "$id": "236",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}]
+        }
+      },
+      {
+        "Key":{"$id":"237","$type":"NM.EttResource, NM"},
+        "Value": {
+          "$id": "238",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":3},
+          "EatConfigList": {
+            "$id": "239",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}]
+        }
+      },
+      {
+        "Key":{"$id":"240","$type":"NM.EttResource, NM"},
+        "Value": {
+          "$id": "241",
+          "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+          "ID": 1,
+          "PivotPos":{"X":2,"Y":4},
+          "EatConfigList": {
+            "$id": "242",
+            "$values": []
+          },
+          "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}]
+        }
+      }
+    ]
+  },
+  "BelongNode": {
+    "$id": "243",
+    "savedVersion": 20260402.0,
+    "comDic": {
+      "$id": "244",
+      "$values": []
+    },
+    "state": { "$ref": "1" }
+  },
+  "PlayerName": "11",
+  "PlayTime": 293.167700889986,
+  "Prop1": 0,
+  "Prop2": 0,
+  "Prop3": 0,
+  "Prop4": 0,
+  "Prop5": 0,
+  "Prop6": 0,
+  "Coin": 0,
+  "state": {
+    "$id": "245",
+    "$type": "NM.Data.PlaySpin, NM.Data",
+    "savedVersion": 20260402.0,
+    "comDic": {
+      "$id": "246",
+      "$values": [
+        {
+          "Key": { "$ref": "3" },
+          "Value": {
+            "$id": "247",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "6" },
+          "Value": {
+            "$id": "248",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "9" },
+          "Value": {
+            "$id": "249",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "12" },
+          "Value": {
+            "$id": "250",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "15" },
+          "Value": {
+            "$id": "251",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "18" },
+          "Value": {
+            "$id": "252",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "21" },
+          "Value": {
+            "$id": "253",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "24" },
+          "Value": {
+            "$id": "254",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "27" },
+          "Value": {
+            "$id": "255",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "30" },
+          "Value": {
+            "$id": "256",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "33" },
+          "Value": {
+            "$id": "257",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "36" },
+          "Value": {
+            "$id": "258",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "39" },
+          "Value": {
+            "$id": "259",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "42" },
+          "Value": {
+            "$id": "260",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "45" },
+          "Value": {
+            "$id": "261",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "48" },
+          "Value": {
+            "$id": "262",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "51" },
+          "Value": {
+            "$id": "263",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "54" },
+          "Value": {
+            "$id": "264",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "57" },
+          "Value": {
+            "$id": "265",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "60" },
+          "Value": {
+            "$id": "266",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "63" },
+          "Value": {
+            "$id": "267",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "66" },
+          "Value": {
+            "$id": "268",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "69" },
+          "Value": {
+            "$id": "269",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "72" },
+          "Value": {
+            "$id": "270",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "75" },
+          "Value": {
+            "$id": "271",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "78" },
+          "Value": {
+            "$id": "272",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "81" },
+          "Value": {
+            "$id": "273",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "84" },
+          "Value": {
+            "$id": "274",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "87" },
+          "Value": {
+            "$id": "275",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "90" },
+          "Value": {
+            "$id": "276",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "93" },
+          "Value": {
+            "$id": "277",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "96" },
+          "Value": {
+            "$id": "278",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "99" },
+          "Value": {
+            "$id": "279",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "102" },
+          "Value": {
+            "$id": "280",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "105" },
+          "Value": {
+            "$id": "281",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "108" },
+          "Value": {
+            "$id": "282",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "111" },
+          "Value": {
+            "$id": "283",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "114" },
+          "Value": {
+            "$id": "284",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "117" },
+          "Value": {
+            "$id": "285",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "120" },
+          "Value": {
+            "$id": "286",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "123" },
+          "Value": {
+            "$id": "287",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "126" },
+          "Value": {
+            "$id": "288",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "129" },
+          "Value": {
+            "$id": "289",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "132" },
+          "Value": {
+            "$id": "290",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "135" },
+          "Value": {
+            "$id": "291",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "138" },
+          "Value": {
+            "$id": "292",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "141" },
+          "Value": {
+            "$id": "293",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "144" },
+          "Value": {
+            "$id": "294",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "147" },
+          "Value": {
+            "$id": "295",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "150" },
+          "Value": {
+            "$id": "296",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "153" },
+          "Value": {
+            "$id": "297",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "156" },
+          "Value": {
+            "$id": "298",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "159" },
+          "Value": {
+            "$id": "299",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "162" },
+          "Value": {
+            "$id": "300",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "165" },
+          "Value": {
+            "$id": "301",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "168" },
+          "Value": {
+            "$id": "302",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "171" },
+          "Value": {
+            "$id": "303",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "174" },
+          "Value": {
+            "$id": "304",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "177" },
+          "Value": {
+            "$id": "305",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "180" },
+          "Value": {
+            "$id": "306",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "183" },
+          "Value": {
+            "$id": "307",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "186" },
+          "Value": {
+            "$id": "308",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "189" },
+          "Value": {
+            "$id": "309",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "192" },
+          "Value": {
+            "$id": "310",
+            "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "195" },
+          "Value": {
+            "$id": "311",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyPropList": [
+              {
+                "Ett": null,
+                "PropType": 0,
+                "AddValue": 3,
+                "MultiValue": 0
+              }
+            ]
+          }
+        },
+        {
+          "Key": { "$ref": "198" },
+          "Value": {
+            "$id": "312",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyPropList": [
+              {
+                "Ett": null,
+                "PropType": 0,
+                "AddValue": 3,
+                "MultiValue": 0
+              }
+            ]
+          }
+        },
+        {
+          "Key": { "$ref": "201" },
+          "Value": {
+            "$id": "313",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyPropList": [
+              {
+                "Ett": null,
+                "PropType": 0,
+                "AddValue": 3,
+                "MultiValue": 0
+              }
+            ]
+          }
+        },
+        {
+          "Key": { "$ref": "204" },
+          "Value": {
+            "$id": "314",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyPropList": [
+              {
+                "Ett": null,
+                "PropType": 0,
+                "AddValue": 3,
+                "MultiValue": 0
+              }
+            ]
+          }
+        },
+        {
+          "Key": { "$ref": "207" },
+          "Value": {
+            "$id": "315",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyPropList": [
+              {
+                "Ett": null,
+                "PropType": 0,
+                "AddValue": 3,
+                "MultiValue": 0
+              }
+            ]
+          }
+        },
+        {
+          "Key": { "$ref": "210" },
+          "Value": {
+            "$id": "316",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "213" },
+          "Value": {
+            "$id": "317",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "ModifyPropList": [
+              {
+                "Ett": null,
+                "PropType": 0,
+                "AddValue": 0,
+                "MultiValue": 2
+              },
+              {
+                "Ett": null,
+                "PropType": 1,
+                "AddValue": 0,
+                "MultiValue": 2
+              },
+              {
+                "Ett": null,
+                "PropType": 0,
+                "AddValue": 0,
+                "MultiValue": 2
+              },
+              {
+                "Ett": null,
+                "PropType": 1,
+                "AddValue": 0,
+                "MultiValue": 2
+              }
+            ]
+          }
+        },
+        {
+          "Key": { "$ref": "228" },
+          "Value": {
+            "$id": "318",
+            "$type": "NM.Data.PlaySpin+Resource, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "231" },
+          "Value": {
+            "$id": "319",
+            "$type": "NM.Data.PlaySpin+Resource, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "234" },
+          "Value": {
+            "$id": "320",
+            "$type": "NM.Data.PlaySpin+Resource, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "237" },
+          "Value": {
+            "$id": "321",
+            "$type": "NM.Data.PlaySpin+Resource, NM.Data",
+            "ModifyPropList": []
+          }
+        },
+        {
+          "Key": { "$ref": "240" },
+          "Value": {
+            "$id": "322",
+            "$type": "NM.Data.PlaySpin+Resource, NM.Data",
+            "ModifyPropList": []
+          }
+        }
+      ]
+    },
+    "BelongNode": { "$ref": "1" },
+    "toDoList": {
+      "$id": "323",
+      "$values": []
+    }
+  }
+}

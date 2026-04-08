@@ -67,17 +67,9 @@ public static class RefPoolMulti<T> where T : class, IRefMulti
         }
         allInList = listDataDic[type].ToList();
     }
-    public static List<T> AcquireAll()
-    {
-        var type = typeof(T);
-        if (listDataDic.TryGetValue(type, out var data))
-        {
-            return data.ToList();
-        }
-        MyDebug.LogError("DataBase: AcquireList<" + typeof(T).Name + "> Not Exist");
-        return [];
-    }
+    public static List<T> AcquireAll() => listDataDic.Where(p => p.Key.IsAssignableFrom(typeof(T))).SelectMany(p => p.Value).ToList();
     public static T? AcquireOne(Func<T, bool> pred) => AcquireAll().FirstOrDefault(pred);
+    public static MyOption<T> AcquireOneOptional(Func<T, bool> pred) => AcquireAll().FirstOptional(pred);
     public static T? AcquireFirst() => AcquireAll().FirstOrDefault();
 
     public static void ReleaseOne(T toRemove)

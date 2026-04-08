@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using Newtonsoft.Json;
 
 // using UnityEngine;
 
 namespace GeneralPreview;
+[DebuggerStepThrough]
 public record struct Vector2Int(int X, int Y) : IComparable<Vector2Int>
 {
     public int X = X;
@@ -45,7 +47,7 @@ public record struct Vector2Int(int X, int Y) : IComparable<Vector2Int>
     {
         return new Vector2Int(a.X / b, a.Y / b);
     }
-
+    [DebuggerStepThrough]
     public override string ToString()
     {
         return $"({X}, {Y})";

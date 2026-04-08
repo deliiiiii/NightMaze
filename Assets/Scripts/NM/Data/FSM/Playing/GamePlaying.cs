@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
@@ -17,7 +18,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     {
         PlayerName = playerName;
     }
-    public override string ToString() => nameof(GamePlaying);
+    [DebuggerStepThrough]public override string ToString() => nameof(GamePlaying);
     public string PlayerName { get; private set;}= "Deli";
     public double PlayTime { get; private set;}
     [EvtChanged]public partial long Prop1 { get;private set; }
@@ -77,7 +78,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
             EttSymbol symbol => GetEttComOptional<EttSymbol, Symbol>(symbol).Map<IItem>(x => x),
             EttBuilding building => GetEttComOptional<EttBuilding, Building>(building).Map<IItem>(x => x),
             EttResource resource => GetEttComOptional<EttResource, Resource>(resource).Map<IItem>(x => x),
-            _ => throw new System.Exception($"没有匹配穷尽EttBase{nameof(EttBase)}类型: {ett.GetType()}.")
+            _ => throw new Exception($"没有匹配穷尽EttBase{nameof(EttBase)}类型: {ett.GetType()}.")
         };
     }
 
@@ -113,6 +114,11 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
             .ToList()
             .Take(5)
             .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(EttSymbol.Create(), 1, grid.PivotPos)));
+        
+        EmptyGrids
+            .ToList()
+            .Take(2)
+            .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(EttSymbol.Create(), 6, grid.PivotPos)));
         
         EmptyGrids
             .ToList()

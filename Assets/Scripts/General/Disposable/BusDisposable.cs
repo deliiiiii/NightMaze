@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace General
 {
+    [DebuggerStepThrough]
     public static class BusDisposable
     {
         static readonly HashSet<string> muteSet = new();

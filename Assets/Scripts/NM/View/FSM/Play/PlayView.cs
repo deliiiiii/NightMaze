@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using NM.Config;
 using NM.Data;
 using NM.ViewEvt;
+using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
@@ -48,6 +50,13 @@ public class PlayView : ViewBase<GamePlaying>
         {
             ShowGridDetailAtPos(LockedPosDetail.Value);
         }
+
+        BtnSpin.interactable = (
+            from play in GamePlayData
+            select play.IsState<PlayIdle>()) | false;
+        BtnHarvest.interactable = (
+            from spin in PlaySpinData
+            select spin.CanHarvest) | false;
     }
 
     #region OnEvt
@@ -108,75 +117,59 @@ public class PlayView : ViewBase<GamePlaying>
             ..
             from item in Data.Items
             where item.CoverPos(gridPos)
+            // from config in (List<IItemConfig>)[item.Config, .. item.EatConfigs]
             select new DetailInfo
             {
                 Type = item.Config.PrefixName,
                 Name = item.Config.Name,
                 TagInfoList = item.Config.DetailTagInfos,
-                // TODO 不仅仅是风味文本.
-                Detail = item.Config.FlavorDes + $" {item.PivotPos}",
+                // TODO 不仅仅是风味文本.还有描述文本.
+                Detail = $"""
+                          {item.PivotPos}{ResolveItemDesList(item.Config.DesList)}{ResolveItemDesList(item.EatConfigList)}
+                          <color=grey>{item.Config.FlavorDes}</color>
+                          """,
                 InSpinLineList =
                 [
                     ..
                     from spin in PlaySpinData.ToIEnumerable()
                     from itemInSpin in spin.GetItemByEtt(item.BelongEtt).ToIEnumerable()
-                    from modProp1 in itemInSpin.ModifyProp1
-                    select $"{item.Config.Name} {modProp1.Value.ToStringWithSymbol()}"
+                    from modProp in itemInSpin.ModifyPropList
+                    orderby modProp.PropType, modProp.AddValue, modProp.MultiValue
+                    select $"{item.Config.Name} " +
+                           (modProp.AddValue != 0 ? modProp.AddValue.ToStringWithSymbol() : string.Empty) +
+                           (modProp.MultiValue != 0 ? $"<color=green>x{modProp.MultiValue}</color>" : string.Empty)
                 ]
             }
         ];
-        
-        // var detailList = new List<DetailInfo>();
-        // detailList.AddRange(
-        // [
-        //     .. 
-        //     from grid in Data.Grids
-        //     where grid.CoverPos(gridPos)
-        //     select new DetailInfo
-        //     {
-        //         Type = "地块",
-        //         Name = grid.Config.Name,
-        //         TagInfoList = grid.Config.DetailTagInfos,
-        //         Detail = $"DDD...Nothing but pos {grid.PivotPos.ToString()}",
-        //         InSpinLineList = []
-        //     }, 
-        //     ..
-        //     from symbol in Data.Symbols
-        //     where symbol.CoverPos(gridPos)
-        //     select new DetailInfo
-        //     {
-        //         Type = "符号",
-        //         Name = symbol.Config.Name,
-        //         TagInfoList = symbol.Config.DetailTagInfos,
-        //         Detail = $"事符号. 白值{string.Join(", ",
-        //             symbol.Config.Prop1.ToStringWithSymbol(),
-        //             symbol.Config.Prop2.ToStringWithSymbol(),
-        //             symbol.Config.Prop3.ToStringWithSymbol()
-        //         )}",
-        //         InSpinLineList = (
-        //             from spin in PlaySpinData.ToIEnumerable()
-        //             from symbolInSpin in spin[symbol.BelongEtt].ToIEnumerable()
-        //             from modProp1 in symbolInSpin.ModifyProp1
-        //             select $"{symbol.Config.name} {modProp1.Value.ToStringWithSymbol()}"
-        //             ).ToList()
-        //     },
-        //     ..
-        //     from resource in Data.Resources
-        //     where resource.CoverPos(gridPos)
-        //     select new DetailInfo
-        //     {
-        //         Type = "资源",
-        //         Name = resource.Config.Name,
-        //         TagInfoList = resource.Config.DetailTagInfos,
-        //         Detail = $"RRResource...",
-        //         InSpinLineList = []
-        //     }
-        // ]);
         GridDetail.SetActiveTrue();
         GridDetail.transform.position = GridToWorld(gridPos + new Vector2Int(1,1) * Const.GridSize);
         GridDetail.transform.SetLocalPositionZ(0);
         GridDetail.Refresh(detailList);
     }
+
+    string ResolveItemDesList(List<ItemDesConfig> desConfigList)
+    {
+        var ret = string.Join("\n", desConfigList.Select(ResolveItemDes));
+        if (ret != string.Empty)
+            return $"\n{ret}";
+        return string.Empty;
+    }
+    string ResolveItemDes(ItemDesConfig desConfig)
+    {
+        var sb = new StringBuilder();
+        var result = desConfig.Result;
+        bool isFirst = true;
+        while (result != null)
+        {
+            if(!isFirst)
+                sb.Append("<color=red> & </color>");
+            isFirst = false;
+            sb.Append(result.GetType().GetCustomAttribute<TypeRegistryItemAttribute>()?.Name ?? result.GetType().Name);
+            result = result.Next;
+        }
+        return sb.ToString();
+    }
+    
 
     public void HideGridDetail()
     {
@@ -231,10 +224,12 @@ public class PlayView : ViewBase<GamePlaying>
 
 internal static class IntExt
 {
-    extension(int self)
+    extension(long self)
     {
         public string ToStringWithSymbol()
         {
+            // if(ignoreZero && self == 0)
+                // return string.Empty;
             string symbol = self switch
             {
                 > 0 => "+",

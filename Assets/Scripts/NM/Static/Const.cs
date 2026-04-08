@@ -14,4 +14,9 @@ public static class Const
         public const string Name2 = "理智(Sans)";
         public const string Name3 = "智识(Lore)";
     }
+
+    public static class TMPResource
+    {
+        
+    }
 }

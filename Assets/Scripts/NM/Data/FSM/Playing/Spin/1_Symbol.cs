@@ -1,4 +1,5 @@
 ﻿using GeneralPreview;
+using NM.Config;
 
 namespace NM.Data;
 
@@ -17,21 +18,33 @@ public partial class PlaySpin
             playSpin.BelongNode[BelongEtt].MatchA(some =>
             {
                 var config = some.Config;
-                ModifyProp1.Add(new ModifyPropInfo
+                if (config.Prop1 != 0)
                 {
-                    Ett = this,
-                    Value = config.Prop1
-                });
-                ModifyProp2.Add(new ModifyPropInfo
+                    ModifyPropList.Add(new ModifyPropInfo
+                    {
+                        Ett = this,
+                        PropType = EPropType.Prop1,
+                        AddValue = config.Prop1
+                    });
+                }
+                if (config.Prop2 != 0)
                 {
-                    Ett = this,
-                    Value = config.Prop2
-                });
-                ModifyProp3.Add(new ModifyPropInfo
+                    ModifyPropList.Add(new ModifyPropInfo
+                    {
+                        Ett = this,
+                        PropType = EPropType.Prop2,
+                        AddValue = config.Prop2
+                    });
+                }
+                if (config.Prop3 != 0)
                 {
-                    Ett = this,
-                    Value = config.Prop3
-                });
+                    ModifyPropList.Add(new ModifyPropInfo
+                    {
+                        Ett = this,
+                        PropType = EPropType.Prop3,
+                        AddValue = config.Prop3
+                    });
+                }
             });
         }
     }
