@@ -71,11 +71,12 @@ public partial class PlaySpin
             ItemDesResultSpawnXAtX spawnXAtX =>
                 from toSpawn in ResolveItemSelector(selfItem, spawnXAtX.ItemSelector).FirstOptional().ToIEnumerable()
                 from toSpawnInPlay in BelongNode.GetItemByEtt(toSpawn.BelongEtt).ToIEnumerable()
-                from pos in ResolvePosSelector(selfItem, spawnXAtX.PosSelector).FirstOptional().ToIEnumerable()
+                from pos in ResolvePosSelector(selfItem, spawnXAtX.PosSelector, p => BelongNode.TrySetItem(toSpawnInPlay, p)).FirstOptional().ToIEnumerable()
                 select new GamePlaying.ActSpawnItemAtPos(BelongNode)
                 {
-                    ToSpawn = toSpawnInPlay,
-                    Pos = pos
+                    Pos = pos,
+                    Type = toSpawnInPlay.ItemType,
+                    Id = toSpawnInPlay.Config.ID
                 },
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemDesResultBase)}类型: {result.GetType()}.")
         });
@@ -101,14 +102,22 @@ public partial class PlaySpin
     {
         var rawItems = itemSelector switch
         {
+            ItemSelectorAllPresentItem allPresentItem => Items,
             ItemSelectorFromResult selectorFromResult => ResolveItemSelector(selfItem, selectorFromResult.IOutItem.ItemSelector),
-            ItemSelectorItem selectorItem => from itemInSpin in Items
-                from itemInPlay in BelongNode.GetItemByEtt(itemInSpin.BelongEtt).ToIEnumerable()
-                where (itemInPlay is GamePlaying.Grid grid && selectorItem.GridList.Contains(grid.Config)) 
-                      || (itemInPlay is GamePlaying.Symbol symbol && selectorItem.SymbolList.Contains(symbol.Config)) 
-                      || (itemInPlay is GamePlaying.Building building && selectorItem.BuildingList.Contains(building.Config)) 
-                      || (itemInPlay is GamePlaying.Resource resource && selectorItem.ResourceList.Contains(resource.Config))
-                select itemInSpin,
+            ItemSelectorItem selectorItem => 
+                from iItemConfig in (List<IItemConfig>)[
+                ..selectorItem.GridList,
+                ..selectorItem.SymbolList, 
+                ..selectorItem.BuildingList,
+                ..selectorItem.ResourceList]
+                select (IItem)(iItemConfig switch
+                {
+                    GridConfig gridConfig => new Grid(EttGrid.Create()),
+                    BuildingConfig buildingConfig => new Building(EttBuilding.Create()),
+                    ResourceConfig resourceConfig => new Resource(EttResource.Create()),
+                    SymbolConfig symbolConfig => new Symbol(EttSymbol.Create()),
+                    _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IItemConfig)}类型: {iItemConfig.GetType()}.")
+                }),
             ItemSelectorItemSet selectorItemSet => from itemInSpin in Items
                 from itemInPlay in BelongNode.GetItemByEtt(itemInSpin.BelongEtt).ToIEnumerable()
                 let set = selectorItemSet.Set
@@ -143,6 +152,7 @@ public partial class PlaySpin
                     ItemFilterInManDis inManDis => Math.Abs(itemInPlay.PivotPos.X - selfItemInPlay.PivotPos.X) 
                                                    + Math.Abs(itemInPlay.PivotPos.Y - selfItemInPlay.PivotPos.Y) 
                                                    <= inManDis.Dis,
+                    ItemFilterIsItemType isItemType => isItemType.ItemType != 0 && isItemType.ItemType.HasFlag(itemInPlay.ItemType),
                     ItemFilterNotSelf notSelf => itemInSpin != selfItem,
                     ItemFilterSelf self => itemInSpin == selfItem,
                     _ => throw new InvalidOperationException(
@@ -187,7 +197,7 @@ public partial class PlaySpin
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IntSelectorBase)}类型: {intSelector.GetType()}.")
         };
 
-    IEnumerable<Vector2Int> ResolvePosSelector(IItem selfItem, PosSelectorBase posSelector)
+    IEnumerable<Vector2Int> ResolvePosSelector(IItem selfItem, PosSelectorBase posSelector, Func<Vector2Int, bool>? extraFilter = null)
     {
         var rawList = posSelector switch
         {
@@ -214,6 +224,9 @@ public partial class PlaySpin
                 throw new InvalidOperationException
                     ($"没有匹配穷尽{nameof(PosFilterBase)}类型: {posSelector.PosFilter.GetType()}.");
         }
+
+        extraFilter ??= RTrue1;
+        rawList = rawList.Where(extraFilter);
         if(posSelector.Random)
             rawList = rawList.ToList().ShuffleTo();
         switch (posSelector.PosSort)

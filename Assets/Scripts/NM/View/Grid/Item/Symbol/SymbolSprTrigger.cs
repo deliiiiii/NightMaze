@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using General;
+using NM.Config;
 using NM.Data;
 using NM.View.ZZZTest;
 using UnityEngine;
@@ -41,10 +42,11 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
         {
             if (some.EmptyGrids.Any(grid => grid.CoverPos(mouseGridPos)))
             {
-                new GamePlaying.ActSetSymbolAtPos(some)
+                new GamePlaying.ActMoveItemToPos(some)
                 {
-                    Symbol = BelongView.DataT,
-                    Pos = mouseGridPos
+                    OldPos = BelongView.Data.PivotPos,
+                    Pos = mouseGridPos,
+                    Item = BelongView.Data
                 }.Forget();
             }
         });

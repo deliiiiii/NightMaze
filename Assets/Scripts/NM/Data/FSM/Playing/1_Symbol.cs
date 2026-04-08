@@ -14,5 +14,6 @@ public partial class GamePlaying
             RefPoolMulti<SymbolConfig>.AcquireOne(c => c.ID == ID)
             ?? RefPoolMulti<SymbolConfig>.AcquireFirst() 
             ?? throw new System.Exception($"SymbolConfig 一个配置也没有.");
+        public sealed override EItemType ItemType => EItemType.Symbol;
     }
 }

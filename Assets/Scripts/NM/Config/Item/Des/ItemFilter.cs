@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace NM.Config;
@@ -18,3 +19,17 @@ public class ItemFilterInManDis : ItemFilterBase
 }
 [TypeRegistryItem("在自身周围3x3格范围内")]
 public class ItemFilterIn3X3 : ItemFilterBase;
+
+[TypeRegistryItem("属于地块/棋子/建筑/资源")]
+public class ItemFilterIsItemType : ItemFilterBase
+{
+    public EItemType ItemType;
+}
+[Flags]
+public enum EItemType
+{
+    [LabelText("0_地块")]Grid = 1 << 1,
+    [LabelText("1_棋子")]Symbol = 1 << 2,
+    [LabelText("2_建筑")]Building = 1 << 3,
+    [LabelText("3_资源")]Resource = 1 << 4,
+}

@@ -66,10 +66,7 @@ public class PlayView : ViewBase<GamePlaying>
         {
             Data = evt.WhoHasCt;
             // ClearAllGrid();
-            Data.Items.ForEach(SetItemAtPos);
-            // Data.Grids.ForEach(SetGridAtPos);
-            // Data.Symbols.ForEach(SetSymbolAtPos);
-            // Data.Resources.ForEach(SetResourceAtPos);
+            Data.Items.ForEach(SpawnItem);
             gameObject.SetActiveTrue();
             return UniTask.CompletedTask;
         },
@@ -90,23 +87,24 @@ public class PlayView : ViewBase<GamePlaying>
         Des = "(退出Root - Playing状态时) 隐藏界面"
     };
 
-    UniEvt<GamePlaying.EvtSetGridAtPos> OnSetGridAtPos => new()
+    UniEvt<GamePlaying.EvtSpawnItem> OnSpawnItemAtPos => new()
     {
         Invoke = (evt, ct) =>
         {
-            SetItemAtPos(evt.Grid);
+            SpawnItem(evt.Item);
             return UniTask.CompletedTask;
         },
-        Des = "显示地块",
+        Des = "生成物体",
     };
-    UniEvt<GamePlaying.EvtSetSymbolAtPos> OnSetSymbolAtPos => new()
+    
+    UniEvt<GamePlaying.EvtMoveItem> OnMoveItem => new()
     {
         Invoke = (evt, ct) =>
         {
-            SetItemAtPos(evt.Symbol);
+            MoveItem(evt.Item);
             return UniTask.CompletedTask;
         },
-        Des = "显示符号",
+        Des = "显示物体",
     };
     #endregion
     
@@ -146,7 +144,6 @@ public class PlayView : ViewBase<GamePlaying>
         GridDetail.transform.SetLocalPositionZ(0);
         GridDetail.Refresh(detailList);
     }
-
     string ResolveItemDesList(List<ItemDesConfig> desConfigList)
     {
         var ret = string.Join("\n", desConfigList.Select(ResolveItemDes));
@@ -170,7 +167,6 @@ public class PlayView : ViewBase<GamePlaying>
         return sb.ToString();
     }
     
-
     public void HideGridDetail()
     {
         if (LockedPosDetail != null)
@@ -184,37 +180,45 @@ public class PlayView : ViewBase<GamePlaying>
         itemList.Clear();
     }
 
-    void SetItemAtPos(GamePlaying.IItem item)
+    void SpawnItem(GamePlaying.IItem item)
     {
         ItemViewBase pfb = item switch
         {
             GamePlaying.Grid => gridPfb,
             GamePlaying.Symbol => symbolPfb,
-            GamePlaying.Resource => resourcePfb,
             GamePlaying.Building => buildingPfb,
+            GamePlaying.Resource => resourcePfb,
             _ => throw new Exception($"未适配的Item类型 {item.GetType()}")
         };
-        
+        ItemViewBase ins = Instantiate(pfb);
+        ins.Data = item;
+        SetViewPosInternal(ins);
+        ins.SetActiveTrue();
+        ins.OnCreateView();
+        itemList.Add(ins);
+    }
+    void MoveItem(GamePlaying.IItem item)
+    {
         ItemViewBase? ins = itemList.FirstOrDefault(s => s.Data == item);
         if (ins == null)
         {
-            ins = Instantiate(pfb);
-            ins.Data = item;
-            ins.SetActiveTrue();
-            ins.OnCreateView();
+            MyDebug.LogError($"没有找到物体 {item} 对应的View.");
+            return;
         }
-
-        if (ins is GridView)
+        SetViewPosInternal(ins);
+    }
+    void SetViewPosInternal(ItemViewBase item)
+    {
+        if (item is GridView)
         {
-            ins.transform.parent = GridTrs;
-            ins.transform.position = GridToWorld(item.PivotPos);
+            item.transform.parent = GridTrs;
+            item.transform.position = GridToWorld(item.Data.PivotPos);
         }
         else
         {
-            ins.transform.parent = Grids.FirstOrDefault(g => g.Data.PivotPos == item.PivotPos)?.TrsSymbol;
-            ins.transform.localPosition = Vector3.zero;
+            item.transform.parent = Grids.FirstOrDefault(g => g.Data.PivotPos == item.Data.PivotPos)?.TrsSymbol;
+            item.transform.localPosition = Vector3.zero;
         }
-        itemList.Add(ins);
     }
     public static Vector2Int ScreenToGrid(Vector2 screenPos) => WorldToGrid(MyCamera.Main.ScreenToWorldPoint(screenPos));
     static Vector2 GridToScreen(Vector2Int gridPos) => MyCamera.Main.WorldToScreenPoint(GridToWorld(gridPos));

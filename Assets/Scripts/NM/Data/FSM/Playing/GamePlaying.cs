@@ -82,18 +82,24 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         };
     }
 
+    public IEnumerable<Vector2Int> GridPoses =>
+        from item in Items
+        where item is Grid && item.ReallyInWorld
+        from coveredPos in item.CoveredPosList
+        select coveredPos;
+    public IEnumerable<Vector2Int> NonGridPoses =>
+        from item in Items
+        where item is not Grid && item.ReallyInWorld
+        from coveredPos in item.CoveredPosList
+        select coveredPos;
     public IEnumerable<Grid> EmptyGrids
     {
         get
         {
-            var posSet = (
-                from item in Items
-                where item is not Grid
-                from coveredPos in item.CoveredPosList
-                select coveredPos).ToHashSet();
+            var occupiedPoses = NonGridPoses.ToHashSet();
             return 
                 from grid in Grids
-                where !posSet.Contains(grid.PivotPos)
+                where !occupiedPoses.Contains(grid.PivotPos)
                 select grid;
         }
     }
@@ -110,15 +116,15 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
             from y in Range(1, 8)
             select new Vector2Int(x, y))
             .ForEach(pos => AddEttCom<EttGrid, Grid>(new Grid(EttGrid.Create(), 1, pos)));
-        EmptyGrids
-            .ToList()
-            .Take(5)
-            .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(EttSymbol.Create(), 1, grid.PivotPos)));
+        // EmptyGrids
+        //     .ToList()
+        //     .Take(5)
+        //     .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(EttSymbol.Create(), 1, grid.PivotPos)));
         
         EmptyGrids
             .ToList()
             .Take(2)
-            .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(EttSymbol.Create(), 6, grid.PivotPos)));
+            .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(EttSymbol.Create(), 1111, grid.PivotPos)));
         
         EmptyGrids
             .ToList()

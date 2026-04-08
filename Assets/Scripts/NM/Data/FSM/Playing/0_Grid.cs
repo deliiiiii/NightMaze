@@ -16,5 +16,6 @@ public partial class GamePlaying
             field ??= RefPoolMulti<GridConfig>.AcquireOne(c => c.ID == ID) 
                       ?? RefPoolMulti<GridConfig>.AcquireFirst()
                       ?? throw new Exception($"GridConfig 一个配置也没有.");
+        public sealed override EItemType ItemType => EItemType.Grid;
     }
 }

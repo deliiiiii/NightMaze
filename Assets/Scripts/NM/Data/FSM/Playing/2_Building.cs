@@ -13,5 +13,6 @@ public partial class GamePlaying
             RefPoolMulti<BuildingConfig>.AcquireOne(c => c.ID == ID)
             ?? RefPoolMulti<BuildingConfig>.AcquireFirst()
             ?? throw new System.Exception($"BuildingConfig 一个配置也没有.");
+        public sealed override EItemType ItemType => EItemType.Building;
     }
 }

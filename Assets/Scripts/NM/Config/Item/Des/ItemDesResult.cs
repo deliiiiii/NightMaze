@@ -30,8 +30,9 @@ public class ItemDesResultMulXPropX : ItemDesResultBase, IItemDesOutItem
 [TypeRegistryItem("在位置{0}生成物体{1}")][DebuggerStepThrough]
 public class ItemDesResultSpawnXAtX : ItemDesResultBase, IItemDesOutPos, IItemDesOutItem
 {
+    [Header("注：{0}会固定筛选出能放置该物体的坐标")]
     [SerializeReference, LabelText("{0}: 生成位置 (数量多于1的部分暂时舍弃.)")] public PosSelectorBase PosSelector = new PosSelectorConst();
-    [SerializeReference, LabelText("{1}: 生成物体 (数量多于1的部分暂时舍弃.)")] public ItemSelectorBase ItemSelector = new ItemSelectorItem();
+    [SerializeReference, LabelText("{1}: 生成物体 (只根据配置生成原型, 数量多于1的部分暂时舍弃.)")] public ItemSelectorBase ItemSelector = new ItemSelectorItem();
     PosSelectorBase IItemDesOutPos.PosSelector => PosSelector;
     ItemSelectorBase IItemDesOutItem.ItemSelector => ItemSelector;
 }
