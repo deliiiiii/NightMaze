@@ -5,7 +5,7 @@ using NM.Config;
 namespace NM.Data;
 public partial class GamePlaying
 {
-    public partial class Grid : MyItem<Grid, GridConfig>
+    public partial record Grid : MyItem<Grid, GridConfig>
     {
         public Grid(int id, Vector2Int pivotPos) : base(id, pivotPos) { }
         public override GridConfig Config => 

@@ -5,7 +5,7 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
-    public partial class Symbol : MyItem<Symbol, SymbolConfig>
+    public partial record Symbol : MyItem<Symbol, SymbolConfig>
     {
         public Symbol(int id, Vector2Int pivotPos) : base(id, pivotPos) {}
         public override SymbolConfig Config => field ??= 

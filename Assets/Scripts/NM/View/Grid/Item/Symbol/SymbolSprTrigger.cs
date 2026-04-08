@@ -46,7 +46,8 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
                 {
                     OldPos = BelongView.Data.PivotPos,
                     Pos = mouseGridPos,
-                    Item = BelongView.Data
+                    Item = BelongView.Data,
+                    ResultWrap = null!
                 }.Forget();
             }
         });

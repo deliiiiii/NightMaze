@@ -4,24 +4,24 @@ using UnityEngine;
 
 namespace NM.Config;
 
-public abstract class ItemFilterBase
+public abstract record ItemFilterBase
 {
     [SerializeReference, LabelText("且满足"), PropertyOrder(9999)] public ItemFilterBase? ItemFilter;
 }
 [TypeRegistryItem("是自身")]
-public class ItemFilterSelf : ItemFilterBase;
+public record ItemFilterSelf : ItemFilterBase;
 [TypeRegistryItem("不是自身")]
-public class ItemFilterNotSelf : ItemFilterBase;
+public record ItemFilterNotSelf : ItemFilterBase;
 [TypeRegistryItem("距离自身{0}格范围内(曼哈顿距离)")]
-public class ItemFilterInManDis : ItemFilterBase
+public record ItemFilterInManDis : ItemFilterBase
 {
     [LabelText("{0}: 距离格数") ,MinValue(0)]public int Dis;
 }
 [TypeRegistryItem("在自身周围3x3格范围内")]
-public class ItemFilterIn3X3 : ItemFilterBase;
+public record ItemFilterIn3X3 : ItemFilterBase;
 
 [TypeRegistryItem("属于地块/棋子/建筑/资源")]
-public class ItemFilterIsItemType : ItemFilterBase
+public record ItemFilterIsItemType : ItemFilterBase
 {
     public EItemType ItemType;
 }

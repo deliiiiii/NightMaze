@@ -24,7 +24,7 @@ namespace NM.Config;
 //     
 // }
 //
-public abstract class ItemSelectorBase
+public abstract record ItemSelectorBase
 {
     [SerializeReference, LabelText("且物体满足"), PropertyOrder(9996)] public ItemFilterBase? ItemFilter;
     [LabelText("随机选择"), PropertyOrder(9997f), HideIf(nameof(IsSelf))] public bool Random;
@@ -34,15 +34,12 @@ public abstract class ItemSelectorBase
     bool IsSelf() => this is ItemSelectorSelf;
 }
 [TypeRegistryItem("场上所有物体")]
-public class ItemSelectorAllPresentItem : ItemSelectorBase;
+public record ItemSelectorAllPresentItem : ItemSelectorBase;
+
 [TypeRegistryItem(ItemDesConfig.FromLast + ": 棋子")]
-public class ItemSelectorFromResult : ItemSelectorBase
-{
-    [SerializeReference, Required, HideLabel]
-    public IItemDesOutItem IOutItem = null!;
-}
+public record ItemSelectorFromResult : ItemSelectorBase;
 [TypeRegistryItem("指定物体(拖入: 物体Config)")]
-public class ItemSelectorItem : ItemSelectorBase
+public record ItemSelectorItem : ItemSelectorBase
 {
     [LabelText("0_地块列表")][JsonIgnore] public List<GridConfig> GridList = [];
     [LabelText("1_棋子列表")][JsonIgnore] public List<SymbolConfig> SymbolList = [];
@@ -84,7 +81,7 @@ public class ItemSelectorItem : ItemSelectorBase
     }
 }
 [TypeRegistryItem("指定物体组(拖入: 物体组Config)")]
-public class ItemSelectorItemSet : ItemSelectorBase
+public record ItemSelectorItemSet : ItemSelectorBase
 {
     [Required("物体组Config不能为空"), LabelText("物体组")]public ItemConfigSet Set = null!;
     
@@ -98,9 +95,9 @@ public class ItemSelectorItemSet : ItemSelectorBase
 }
 
 [TypeRegistryItem("自身")]
-public class ItemSelectorSelf : ItemSelectorBase;
+public record ItemSelectorSelf : ItemSelectorBase;
 [TypeRegistryItem("指定标签")]
-public class ItemSelectorTag : ItemSelectorBase
+public record ItemSelectorTag : ItemSelectorBase
 {
     [LabelText("通用标签")] public EItemTag ItemTag;
     [LabelText("地形标签")] public EGridTag GridTag;
@@ -117,9 +114,3 @@ public class ItemSelectorTag : ItemSelectorBase
         return sb.ToString();
     }
 }
-
-public interface IItemDesOutItem
-{
-    public ItemSelectorBase ItemSelector { get; }
-}
-

@@ -8,6 +8,11 @@ namespace NM.Data;
 
 public partial class PlaySpin : PlayStateBase<PlaySpin>
 {
+    public override string ToString()
+    {
+        return "Spin";
+    }
+
     List<IUniAction> toDoList = [];
     public IEnumerable<IUniAction> ToDoList => toDoList;
     public bool CanHarvest => !toDoList.Any();

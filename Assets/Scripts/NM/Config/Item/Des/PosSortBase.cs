@@ -1,3 +1,3 @@
 ﻿namespace NM.Config;
 
-public abstract class PosSortBase;
+public abstract record PosSortBase;

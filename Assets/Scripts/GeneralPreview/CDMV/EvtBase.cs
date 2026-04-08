@@ -54,10 +54,11 @@ public static class Bus
             typeName = typeName.Replace("Node<TThis>.", string.Empty);
             if (typeName.StartsWith("Evt"))
                 typeName = typeName[3..];
-            var details = evt.ToString();
-            var leftBracketIndex = details.IndexOf('{');
-            var rightBracketIndex = details.IndexOf('}');
-            MyDebug.Log($"Fired - {typeName} {details.Substring(leftBracketIndex, rightBracketIndex - leftBracketIndex + 1)}");
+            // var details = evt.ToString();
+            // var leftBracketIndex = details.IndexOf('{');
+            // var rightBracketIndex = details.IndexOf('}');
+            MyDebug.Log($"Fired - {typeName} {evt.ToString()}");
+            // MyDebug.Log($"Fired - {typeName} {details.Substring(leftBracketIndex, rightBracketIndex - leftBracketIndex + 1)}");
         }
         if (!evtDic.TryGetValue(evtType, out var list)) 
             return;

@@ -26,10 +26,10 @@ MonoBehaviour:
       Data: 0|NM.Config.ItemPosRectangle, NM.Config
     - Name: Length
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: Height
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 8
       Data: 

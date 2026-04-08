@@ -4,7 +4,7 @@ namespace NM.Data;
 
 public partial class PlaySpin
 {
-    public partial class Symbol : MyItem<Symbol, GamePlaying.Symbol>
+    public partial record Symbol : MyItem<Symbol, GamePlaying.Symbol>
     {
         public Symbol(PlaySpin spin, GamePlaying.Symbol inPlay) : base(spin, inPlay) { }
         protected override void SelfAddBaseValue()

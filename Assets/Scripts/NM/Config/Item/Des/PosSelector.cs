@@ -4,7 +4,7 @@ using Vector2Int = GeneralPreview.Vector2Int;
 
 namespace NM.Config;
 
-public abstract class PosSelectorBase
+public abstract record PosSelectorBase
 {
     [SerializeReference, LabelText("且坐标满足"), PropertyOrder(9996)] public PosFilterBase? PosFilter;
     [LabelText("随机选择"), HideIf(nameof(IsConst)), PropertyOrder(9997f)] public bool Random;
@@ -13,27 +13,15 @@ public abstract class PosSelectorBase
     bool IsConst => this is PosSelectorConst;
 }
 [TypeRegistryItem("固定数值{0}")]
-public class PosSelectorConst : PosSelectorBase
+public record PosSelectorConst : PosSelectorBase
 {
     [LabelText("{0}: 数值")] public Vector2Int Value;
 }
+
 [TypeRegistryItem(ItemDesConfig.FromLast + ": 位置")]
-public class PosSelectorFromResult : PosSelectorBase
-{
-    [SerializeReference, Required, HideLabel]
-    public IItemDesOutPos IOutPos = null!;
-}
+public record PosSelectorFromResult : PosSelectorBase;
 [TypeRegistryItem("3X3范围")]
-public class PosSelector3X3 : PosSelectorBase;
+public record PosSelector3X3 : PosSelectorBase;
 
-[TypeRegistryItem(ItemDesConfig.FromLast + ": 棋子")]
-public class PosSelectorFromResultItem : PosSelectorBase
-{
-    [SerializeReference, Required, HideLabel]
-    public IItemDesOutItem IOutItem = null!;
-}
-
-public interface IItemDesOutPos
-{
-    public PosSelectorBase PosSelector { get; }
-}
+[TypeRegistryItem(ItemDesConfig.FromLast + ": 棋子的位置")]
+public record PosSelectorFromResultItem : PosSelectorBase;

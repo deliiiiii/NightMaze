@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace NM.Config;
 
-public abstract class ItemDesConditionBase
+public abstract record ItemDesConditionBase
 {
     [Header("且满足.."), HideLabel]
     [SerializeReference, PropertyOrder(9999)] public ItemDesConditionBase? Next;
 }
 [TypeRegistryItem("若物体{0}满足个数{1}")]
-public class ItemDesConditionCollectXItem : ItemDesConditionBase
+public record ItemDesConditionCollectXItem : ItemDesConditionBase
 {
     [Required, SerializeReference, LabelText("{0}: 目标物体"), OnValueChanged(nameof(OnChanged))]
     public ItemSelectorBase ItemSelector = new ItemSelectorTag()

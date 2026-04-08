@@ -17,7 +17,7 @@ public partial class PlaySpin
         
         UniTask OnSpin(CancellationToken ct);
     }
-    public abstract class MyItem<TSub, TSubInPlay> : IItem
+    public abstract record MyItem<TSub, TSubInPlay> : IItem
         where TSub : MyItem<TSub, TSubInPlay>
         where TSubInPlay : GamePlaying.IItem
     {
@@ -27,7 +27,7 @@ public partial class PlaySpin
             InPlay = inPlay;
         }
         protected PlaySpin Spin;
-        public TSubInPlay InPlay {[DebuggerStepThrough] get;}
+        public TSubInPlay InPlay {[DebuggerStepThrough] get; init; }
         GamePlaying.IItem IItem.InPlay { [DebuggerStepThrough] get => InPlay; }
         public long GetProp(EPropType propType)
         {
@@ -43,17 +43,15 @@ public partial class PlaySpin
             SelfAddBaseValue();
             Spin.InsertAfter(
                 from itemDes in (List<ItemDesConfig>)[..InPlay.Config.DesList, ..InPlay.EatConfigList]
-                where itemDes.Trigger is ItemDesTriggerEnterSpin
+                where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEnterSpin
                 select new ActDoItemDesResult(Spin)
                 {
                     SelfItem = this,
-                    Result = itemDes.Result,
+                    ResultWrap = new ResultWrap(itemDes.Result!, null),
                 });
             return UniTask.CompletedTask;
         }
         protected virtual void SelfAddBaseValue() { }
-        [DebuggerStepThrough] public override string ToString() 
-            => $"{GetType().Name} belong {InPlay})";
     }
     public class ModifyPropInfo 
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace NM.Config;
 [Serializable]
-public class ItemDesConfig
+public record ItemDesConfig
 {
     // [SerializeReference, ValueDropdown(nameof(GetEvtList), NumberOfItemsBeforeEnablingSearch = 1)]
     // public required Type UniEvtType;
@@ -31,7 +31,7 @@ public class ItemDesConfig
     //     }
     // }
 
-    public const string FromLast = "(需粘贴引用)执行语句的";
+    public const string FromLast = "上一步";
 
     [Required, SerializeReference, LabelText("触发器"), OnValueChanged(nameof(OnChanged))]
     public ItemDesTriggerBase Trigger = new ItemDesTriggerEnterSpin();

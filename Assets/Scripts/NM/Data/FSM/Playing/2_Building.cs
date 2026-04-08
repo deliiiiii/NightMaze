@@ -5,7 +5,7 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
-    public partial class Building : MyItem<Building, BuildingConfig>
+    public partial record Building : MyItem<Building, BuildingConfig>
     {
         public Building(int id, Vector2Int pivotPos) : base(id, pivotPos) {}
         public override BuildingConfig Config => field ??= 

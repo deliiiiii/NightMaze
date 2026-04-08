@@ -2,6 +2,6 @@
 
 namespace NM.Config;
 
-public abstract class ItemDesTriggerBase;
+public abstract record ItemDesTriggerBase;
 [TypeRegistryItem("结算时")]
-public class ItemDesTriggerEnterSpin : ItemDesTriggerBase;
+public record ItemDesTriggerEnterSpin : ItemDesTriggerBase;

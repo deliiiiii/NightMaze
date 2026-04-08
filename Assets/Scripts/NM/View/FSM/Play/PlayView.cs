@@ -104,7 +104,17 @@ public class PlayView : ViewBase<GamePlaying>
             MoveItem(evt.Item);
             return UniTask.CompletedTask;
         },
-        Des = "显示物体",
+        Des = "移动物体",
+    };
+
+    UniEvt<GamePlaying.EvtRemoveItem> OnRemoveItem => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            RemoveItem(evt.ToRemove);
+            return UniTask.CompletedTask;
+        },
+        Des = "移除物体",
     };
     #endregion
     
@@ -148,7 +158,7 @@ public class PlayView : ViewBase<GamePlaying>
     {
         var ret = string.Join("\n", desConfigList.Select(ResolveItemDes));
         if (ret != string.Empty)
-            return $"\n{ret}";
+            return $"\n{ret}<sprite name=\"GridBack\">";
         return string.Empty;
     }
     string ResolveItemDes(ItemDesConfig desConfig)
@@ -219,6 +229,18 @@ public class PlayView : ViewBase<GamePlaying>
             item.transform.parent = Grids.FirstOrDefault(g => g.Data.PivotPos == item.Data.PivotPos)?.TrsSymbol;
             item.transform.localPosition = Vector3.zero;
         }
+    }
+
+    void RemoveItem(GamePlaying.IItem item)
+    {
+        ItemViewBase? ins = itemList.FirstOrDefault(s => s.Data == item);
+        if (ins == null)
+        {
+            MyDebug.LogError($"没有找到物体 {item} 对应的View.");
+            return;
+        }
+        Destroy(ins.gameObject);
+        itemList.Remove(ins);
     }
     public static Vector2Int ScreenToGrid(Vector2 screenPos) => WorldToGrid(MyCamera.Main.ScreenToWorldPoint(screenPos));
     static Vector2 GridToScreen(Vector2Int gridPos) => MyCamera.Main.WorldToScreenPoint(GridToWorld(gridPos));

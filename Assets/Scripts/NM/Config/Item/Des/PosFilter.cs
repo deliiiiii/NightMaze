@@ -1,3 +1,3 @@
 ﻿namespace NM.Config;
 
-public abstract class PosFilterBase;
+public abstract record PosFilterBase;

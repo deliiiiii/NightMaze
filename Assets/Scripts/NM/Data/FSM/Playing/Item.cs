@@ -9,7 +9,7 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
-    public abstract partial class MyItem<TSub, TConfig> : IItem
+    public abstract partial record MyItem<TSub, TConfig> : IItem
         where TSub : MyItem<TSub, TConfig>
         where TConfig : ItemConfigBase<TConfig>, new()
     {
@@ -28,7 +28,6 @@ public partial class GamePlaying
             };
             EatConfigList = [];
         }
-        
         [DebuggerStepThrough] public bool CoverPos(Vector2Int pos) => CoveredPosList.Contains(pos);
         public IEnumerable<Vector2Int> CoveredPosList => DeltaPosList.Select(d => d + ((IItem)this).PivotPos);
 
@@ -51,9 +50,6 @@ public partial class GamePlaying
         public PlaySpin.IItem InSpin(PlaySpin spin) => inSpin ??= CreateInSpin(spin);
         void IItem.DestroyInSpin() => inSpin = null;
         protected abstract PlaySpin.IItem CreateInSpin(PlaySpin spin);
-
-        [DebuggerStepThrough] public override string ToString() 
-            => $"{GetType().Name}(ID: {ID}, PivotPos: {((IItem)this).PivotPos}, DeltaPosList: [{string.Join(", ", DeltaPosList)}])";
     }
 
     public interface IItem

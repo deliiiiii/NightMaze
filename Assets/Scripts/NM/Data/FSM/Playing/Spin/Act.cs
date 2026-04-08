@@ -5,103 +5,163 @@ using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using NM.Config;
 namespace NM.Data;
+
+public record ResultWrap(ItemDesResultBase Result, ResultWrap? PreResult)
+{
+    public readonly ItemDesResultBase Result = Result;
+    public bool Success = true;
+    public readonly ResultWrap? PreResult = PreResult;
+    public List<ResultItemWrap> ItemWraps = [];
+    public List<ResultPosWrap> PosWraps = [];
+}
+
+public record ResultItemWrap(GamePlaying.IItem Item)
+{
+    public GamePlaying.IItem Item = Item;
+    public List<CtxBase> CtxList = [];
+    public abstract record CtxBase;
+    
+    public record CtxSpawned : CtxBase;
+    public record CtxRemoved : CtxBase;
+    public record CtxSuccessMoved : CtxBase
+    {
+        public Vector2Int OldPos;
+    }
+    public record CtxFailMoved : CtxBase;
+    public record CtxAddPropX : CtxBase
+    {
+        public EPropType PropType;
+        public long Value;
+    }
+    public record CtxMulPropX : CtxBase
+    {
+        public EPropType PropType;
+        public long Value;
+    }
+}
+public record ResultPosWrap(Vector2Int Pos)
+{
+    public Vector2Int Pos = Pos;
+    public List<CtxBase> CtxList = [];
+    public abstract record CtxBase;
+}
+
 [ActContainer]
 public partial class PlaySpin
 {
     [Obsolete("准备执行物体整个词条")]
     async UniTask CheckItemAsync(IItem item, CancellationToken ct)
     {
+        if (!BelongNode.Items.Contains(item.InPlay))
+            return;
         // MyDebug.Log($"执行物体 pos:{item.PivotPos}");
         await item.OnSpin(ct);
         await UniTask.Delay(1000, cancellationToken: ct);
     }
     public record EvtBeforeCheckSymbol(PlaySpin WhoHasCt, IItem Item) : EvtBase<PlaySpin>(WhoHasCt);
 
+   
     [Obsolete("准备执行物体单个词条Result")]
-    UniTask DoItemDesResultAsync(IItem selfItem, ItemDesResultBase result, CancellationToken ct)
+    UniTask DoItemDesResultAsync(IItem selfItem, ResultWrap resultWrap, CancellationToken ct)
     {
-        var conditionRet = ResolveCondition(selfItem, result.Condition);
-        if (!conditionRet)
+        if (!BelongNode.Items.Contains(selfItem.InPlay))
             return UniTask.CompletedTask;
+        var result = resultWrap.Result;
+        var conditionRet = ResolveCondition(selfItem, result.Condition, resultWrap);
+        if (!conditionRet)
+        {
+            resultWrap.Success = false;
+            return UniTask.CompletedTask;
+        }
         if (result.Next != null)
         {
             InsertAfter(new ActDoItemDesResult(this)
             {
                 SelfItem = selfItem,
-                Result = result.Next
+                ResultWrap = new ResultWrap(result.Next, resultWrap)
             });
         }
         InsertAfter(result switch
         {
             ItemDesResultAddItemDesToSelf addItemDesToSelf => 
-                from toEat in ResolveItemSelector(selfItem, addItemDesToSelf.ItemSelector)
+                from toEat in ResolveItemSelector(selfItem, addItemDesToSelf.ItemSelector, resultWrap)
                 let whoEatInPlay = selfItem.InPlay
                 let toEatInPlay = toEat.InPlay
                 select new GamePlaying.ActItemEatItemConfig(BelongNode)
                 {
                     WhoEat = whoEatInPlay,
-                    ToEat = toEatInPlay
+                    ToEat = toEatInPlay,
+                    ResultWrap = resultWrap
                 },
             ItemDesResultAddXPropX addXProp =>
-                from toItem in ResolveItemSelector(selfItem, addXProp.ItemSelector)
+                from toItem in ResolveItemSelector(selfItem, addXProp.ItemSelector, resultWrap)
                 select new ActEttAddSymbolModifyProp(this)
                 {
                     From = selfItem,
                     To = toItem,
                     PropType = addXProp.PropType,
-                    Value = ResolveIntSelector(selfItem, addXProp.IntSelector)
+                    Value = ResolveIntSelector(selfItem, addXProp.IntSelector, resultWrap),
+                    ResultWrap = resultWrap
                 },
             ItemDesResultMulXPropX mulXPropX => 
-                from toItem in ResolveItemSelector(selfItem, mulXPropX.ItemSelector)
+                from toItem in ResolveItemSelector(selfItem, mulXPropX.ItemSelector, resultWrap)
                 select new ActEttMulSymbolModifyProp(this)
                 {
                     From = selfItem,
                     To = toItem,
                     PropType = mulXPropX.PropType,
-                    Value = ResolveIntSelector(selfItem, mulXPropX.IntSelector)
+                    Value = ResolveIntSelector(selfItem, mulXPropX.IntSelector, resultWrap),
+                    ResultWrap = resultWrap
                 },
             ItemDesResultRemoveItem removeItem =>
-                from toRemove in ResolveItemSelector(selfItem, removeItem.ItemSelector)
+                from toRemove in ResolveItemSelector(selfItem, removeItem.ItemSelector, resultWrap)
                 select new GamePlaying.ActRemoveItem(BelongNode)
                 {
-                    ToRemove = toRemove.InPlay
+                    ToRemove = toRemove.InPlay,
+                    ResultWrap = resultWrap
                 },
             ItemDesResultSpawnXAtX spawnXAtX =>
-                from toSpawn in ResolveItemSelector(selfItem, spawnXAtX.ItemSelector).FirstOptional().ToIEnumerable()
+                from toSpawn in ResolveItemSelector(selfItem, spawnXAtX.ItemSelector, resultWrap).FirstOptional().ToIEnumerable()
                 let toSpawnInPlay = toSpawn.InPlay
-                from pos in ResolvePosSelector(selfItem, spawnXAtX.PosSelector, p => BelongNode.TrySetItem(toSpawnInPlay, p)).FirstOptional().ToIEnumerable()
+                from pos in ResolvePosSelector(selfItem, spawnXAtX.PosSelector, resultWrap, p =>
+                {
+                    toSpawnInPlay.PivotPos = p;
+                    return BelongNode.TrySetItem(toSpawnInPlay);
+                }).FirstOptional().ToIEnumerable()
                 select new GamePlaying.ActSpawnItemAtPos(BelongNode)
                 {
                     Pos = pos,
                     Type = toSpawnInPlay.ItemType,
-                    Id = toSpawnInPlay.Config.ID
+                    Id = toSpawnInPlay.Config.ID,
+                    ResultWrap = resultWrap
                 },
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemDesResultBase)}类型: {result.GetType()}.")
         });
         return UniTask.CompletedTask;
     }
 
-    bool ResolveCondition(IItem selfItem, ItemDesConditionBase? conditionBase)
+    bool ResolveCondition(IItem selfItem, ItemDesConditionBase? conditionBase, ResultWrap? resultWrap)
     {
         if (conditionBase == null)
             return true;
         var thisRet = conditionBase switch
         {
             ItemDesConditionCollectXItem collectXItem => 
-                ResolveItemSelector(selfItem, collectXItem.ItemSelector).Sum(_ => 1) 
-                >= ResolveIntSelector(selfItem, collectXItem.MinValueSelector),
+                ResolveItemSelector(selfItem, collectXItem.ItemSelector, resultWrap).Sum(_ => 1) 
+                >= ResolveIntSelector(selfItem, collectXItem.MinValueSelector, resultWrap),
             _ => throw new InvalidOperationException
                 ($"没有匹配穷尽{nameof(ItemDesConditionBase)}类型: {conditionBase.GetType()}.")
         };
-        var nextRet = ResolveCondition(selfItem, conditionBase.Next);
+        var nextRet = ResolveCondition(selfItem, conditionBase.Next, resultWrap);
         return thisRet && nextRet;
     }
-    IEnumerable<IItem> ResolveItemSelector(IItem selfItem, ItemSelectorBase itemSelector)
+    IEnumerable<IItem> ResolveItemSelector(IItem selfItem, ItemSelectorBase itemSelector, ResultWrap? resultWrap)
     {
         var rawItems = itemSelector switch
         {
             ItemSelectorAllPresentItem allPresentItem => Items,
-            ItemSelectorFromResult selectorFromResult => ResolveItemSelector(selfItem, selectorFromResult.IOutItem.ItemSelector),
+            // TODO 丰富结果选项
+            ItemSelectorFromResult selectorFromResult => resultWrap?.PreResult?.ItemWraps.Select(w => w.Item.InSpin(this)) ?? [],
             ItemSelectorItem selectorItem => 
                 from iItemConfig in (List<IItemConfig>)[
                 ..selectorItem.GridList,
@@ -184,19 +244,19 @@ public partial class PlaySpin
             default:
                 throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemSortBase)}类型: {itemSelector.ItemSort.GetType()}.");
         }
-        return rawItems.Take(ResolveIntSelector(selfItem, itemSelector.TakeMax));
+        return rawItems.Take(ResolveIntSelector(selfItem, itemSelector.TakeMax, resultWrap));
     }
-    int ResolveIntSelector(IItem selfItem, IntSelectorBase intSelector) =>
+    int ResolveIntSelector(IItem selfItem, IntSelectorBase intSelector, ResultWrap? resultWrap) =>
         intSelector switch
         {
             IntSelectorConst selectorConst => selectorConst.Value,
             IntSelectorInfinite selectorInfinite => int.MaxValue,
-            IntSelectorSumBy selectorSumBy => ResolveItemSelector(selfItem, selectorSumBy.ItemSelector)
+            IntSelectorSumBy selectorSumBy => ResolveItemSelector(selfItem, selectorSumBy.ItemSelector, resultWrap)
                 .Sum(_ => selectorSumBy.Value),
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IntSelectorBase)}类型: {intSelector.GetType()}.")
         };
 
-    IEnumerable<Vector2Int> ResolvePosSelector(IItem selfItem, PosSelectorBase posSelector, Func<Vector2Int, bool>? extraFilter = null)
+    IEnumerable<Vector2Int> ResolvePosSelector(IItem selfItem, PosSelectorBase posSelector, ResultWrap? resultWrap, Func<Vector2Int, bool>? extraFilter = null)
     {
         var rawList = posSelector switch
         {
@@ -206,11 +266,10 @@ public partial class PlaySpin
                 let itemInPlay = selfItem.InPlay
                 select new Vector2Int(itemInPlay.PivotPos.X + dx, itemInPlay.PivotPos.Y + dy),
             PosSelectorConst selectorConst => [selectorConst.Value],
-            PosSelectorFromResult selectorFromResult => ResolvePosSelector(selfItem,
-                selectorFromResult.IOutPos.PosSelector),
-            PosSelectorFromResultItem selectorFromResultItem =>
-                from itemInResult in ResolveItemSelector(selfItem, selectorFromResultItem.IOutItem.ItemSelector)
-                select itemInResult.InPlay.PivotPos,
+            // TODO 丰富结果选项
+            PosSelectorFromResult selectorFromResult => resultWrap?.PreResult?.PosWraps.Select(w => w.Pos) ?? [],
+            // TODO 丰富结果选项
+            PosSelectorFromResultItem selectorFromResultItem => resultWrap?.PreResult?.ItemWraps.Select(w => w.Item.PivotPos) ?? [],
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(PosSelectorBase)}类型: {posSelector.GetType()}.")
         };
         
@@ -235,11 +294,11 @@ public partial class PlaySpin
                 throw new InvalidOperationException
                     ($"没有匹配穷尽{nameof(PosSortBase)}类型: {posSelector.PosSort.GetType()}.");
         }
-        return rawList.Take(ResolveIntSelector(selfItem, posSelector.TakeMax));
+        return rawList.Take(ResolveIntSelector(selfItem, posSelector.TakeMax, resultWrap));
     }
 
     [Obsolete("某物让某物属性变化(加算)")]
-    UniTask EttAddSymbolModifyPropAsync(IItem from, IItem to, EPropType propType, long value, CancellationToken ct)
+    UniTask EttAddSymbolModifyPropAsync(IItem from, IItem to, EPropType propType, long value, ResultWrap? resultWrap, CancellationToken ct)
     {
         to.ModifyPropList.Add(new ModifyPropInfo
         {
@@ -247,16 +306,24 @@ public partial class PlaySpin
             Ett = from,
             AddValue = value
         });
+        resultWrap?.ItemWraps.Add(new ResultItemWrap(to.InPlay)
+        {
+            CtxList = [new ResultItemWrap.CtxAddPropX{PropType = propType,Value = value}]
+        });
         return UniTask.CompletedTask;
     }
     [Obsolete("某物让某物属性变化(乘算)")]
-    UniTask EttMulSymbolModifyPropAsync(IItem from, IItem to, EPropType propType, long value, CancellationToken ct)
+    UniTask EttMulSymbolModifyPropAsync(IItem from, IItem to, EPropType propType, long value, ResultWrap? resultWrap, CancellationToken ct)
     {
         to.ModifyPropList.Add(new ModifyPropInfo
         {
             PropType = propType,
             Ett = from,
             MultiValue = value
+        });
+        resultWrap?.ItemWraps.Add(new ResultItemWrap(to.InPlay)
+        {
+            CtxList = [new ResultItemWrap.CtxMulPropX{PropType = propType,Value = value}]
         });
         return UniTask.CompletedTask;
     }

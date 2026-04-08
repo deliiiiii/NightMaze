@@ -5,7 +5,7 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
-    public partial class Resource : MyItem<Resource, ResourceConfig>
+    public partial record Resource : MyItem<Resource, ResourceConfig>
     {
         public Resource(int id, Vector2Int pivotPos) : base(id, pivotPos) {}
         public override ResourceConfig Config => field ??= 
