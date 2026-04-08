@@ -41,6 +41,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80a214ecc44de0840b343ab3e3b6d447
+    m_Address: "ItemSet_114514_\u6D4B\u8BD5"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84786e3bab1fe7649826bb0da67fae69
+    m_Address: "Symbol_1111_\u6D4B\u8BD5\u751F\u6210\u7269\u4F53\u8BCD\u6761"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8f14482c353452845bea3f23e05ac2b3
     m_Address: "Grid_1_\u666E\u901A"
     m_ReadOnly: 0
