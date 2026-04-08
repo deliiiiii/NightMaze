@@ -10,18 +10,6 @@ using Sirenix.Utilities;
 
 namespace GeneralPreview;
 [DebuggerStepThrough]
-public abstract record EttBase
-{
-    internal static int CurID;
-    public int EttID { get; } = CurID++;
-}
-[DebuggerStepThrough]
-public abstract record EttBase<T> : EttBase where T : EttBase<T>, new()
-//: IDisposable, IHasCt, IHasVersion
-{
-    public static T Create() => new();
-}
-[DebuggerStepThrough]
 public abstract class Node
 {
     public abstract UniTask OnCreateAsync(bool isThisFromLoad);
@@ -32,70 +20,7 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
 {
     interface INodeCom
     {
-        EttBase BelongEtt { get; set; }
     }
-    public abstract class ComBase<TEtt, TCom>(TEtt belongEtt) : INodeCom
-        where TEtt : EttBase<TEtt>, new()
-        where TCom : ComBase<TEtt, TCom>
-    {
-        [JsonIgnore]public TEtt BelongEtt { get; private set; } = belongEtt;
-
-        [JsonIgnore]EttBase INodeCom.BelongEtt
-        {
-            get => BelongEtt;
-            set => BelongEtt = (TEtt)value;
-        }
-    }
-    [JsonIgnore]Dictionary<EttBase, INodeCom> comDic = [];
-    [JsonProperty("comDic",
-        ObjectCreationHandling = ObjectCreationHandling.Replace,
-        ItemIsReference = false
-        )]
-    List<KeyCompactKvp<EttBase, INodeCom>> SerializableComDic
-    {
-        get => comDic.Select(pair => new KeyCompactKvp<EttBase, INodeCom>(pair.Key, pair.Value)).ToList();
-        set
-        {
-            comDic = value.ToDictionary(x => x.Key, x => x.Value);
-            comDic.ForEach(pair =>
-            {
-                pair.Value.BelongEtt = pair.Key;
-            });
-        }
-    }
-
-    protected MyOption<TCom> GetEttComOptional<TEtt, TCom>(TEtt ett)
-        where TEtt : EttBase<TEtt>, new()
-        where TCom : ComBase<TEtt, TCom>
-    {
-        if (comDic.TryGetValue(ett, out var com))
-            return (TCom)com;
-        // MyDebug.LogError($"{GetType().GetNiceName()}中未找到EttID:{ett.EttID}的组件. 将提供默认值");
-        return None;
-    }
-
-    public TCom AddEttCom<TEtt, TCom>(TCom com)
-        where TEtt : EttBase<TEtt>, new()
-        where TCom : ComBase<TEtt, TCom>
-    {
-        // if(comDic.TryGetValue(ett, out var oldCom))
-        // {
-        //     MyDebug.LogError($"在{GetType().GetNiceName()}中EttID:{ett.EttID}已有组件{oldCom.GetType().GetNiceName()}.");
-        //     comDic[ett] = com;
-        //     return (TCom)oldCom;
-        // }
-        comDic[com.BelongEtt] = com;
-        OnAddEtt?.Invoke(com.BelongEtt);
-        return com;
-    }
-    public void RemoveEttCom(EttBase ett)
-    {
-        OnRemoveEtt?.Invoke(ett);
-        if (comDic.Remove(ett))
-            return;
-        MyDebug.LogError($"在{GetType().GetNiceName()}中未找到EttID:{ett.EttID}的组件，无法移除.");
-    }
-    protected IEnumerable<TCom> GetComs<TCom>() => comDic.Values.OfType<TCom>();
     protected UniTask _ChangeAsync<TNode, TNodeSub>(ref TNode? field, TNodeSub node, bool isNewFromLoad) 
         where TNode : Node
         where TNodeSub : TNode
@@ -145,12 +70,6 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     public record EvtOnEnter(TThis WhoHasCt) : EvtBase<TThis>(WhoHasCt);
     /// 仅为了通知UI.
     public record EvtOnExit : EvtForgetBase;
-    public delegate Action<TEtt> OnAddCom<in TEtt, in TCom>(TCom com)
-        where TEtt : EttBase<TEtt>, new()
-        where TCom : ComBase<TEtt, TCom>;
-
-    public event Action<EttBase>? OnAddEtt;
-    public event Action<EttBase>? OnRemoveEtt;
     [DebuggerStepThrough]
     public abstract record UniAction(TThis Self) : IUniAction
     {

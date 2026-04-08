@@ -130,7 +130,7 @@ public class PlayView : ViewBase<GamePlaying>
                 [
                     ..
                     from spin in PlaySpinData.ToIEnumerable()
-                    from itemInSpin in spin.GetItemByEtt(item.BelongEtt).ToIEnumerable()
+                    let itemInSpin = item.InSpin(spin)
                     from modProp in itemInSpin.ModifyPropList
                     orderby modProp.PropType, modProp.AddValue, modProp.MultiValue
                     select $"{item.Config.Name} " +

@@ -2,10 +2,8 @@
 using System.Diagnostics;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using GeneralPreview;
 using Newtonsoft.Json;
 using NM.Config;
-using Sirenix.Utilities;
 
 namespace NM.Data;
 
@@ -13,63 +11,49 @@ public partial class PlaySpin
 {
     public interface IItem
     {
-        EttBase BelongEtt { get; }
+        GamePlaying.IItem InPlay { get; }
         long GetProp(EPropType propType);
         List<ModifyPropInfo> ModifyPropList { get; }
         
-        UniTask OnSpin(PlaySpin playSpin, CancellationToken ct);
+        UniTask OnSpin(CancellationToken ct);
     }
-    public abstract class MyItem<TEtt, TSub> : ComBase<TEtt, TSub>, IItem
-        where TEtt : EttBase<TEtt>, new()
-        where TSub : ComBase<TEtt, TSub>
+    public abstract class MyItem<TSub, TSubInPlay> : IItem
+        where TSub : MyItem<TSub, TSubInPlay>
+        where TSubInPlay : GamePlaying.IItem
     {
-        public MyItem(TEtt belongEtt) : base(belongEtt) {}
-        
-        
-        [JsonProperty(IsReference = false, ItemIsReference = false)]
-        public List<ModifyPropInfo> ModifyPropList = [];
-        
-        EttBase IItem.BelongEtt => BelongEtt;
-        long IItem.GetProp(EPropType propType)
+        protected MyItem(PlaySpin spin, TSubInPlay inPlay)
         {
-            var filteredList = ModifyPropList.Where(m => m.PropType == propType).ToList();
+            Spin = spin;
+            InPlay = inPlay;
+        }
+        protected PlaySpin Spin;
+        public TSubInPlay InPlay {[DebuggerStepThrough] get;}
+        GamePlaying.IItem IItem.InPlay { [DebuggerStepThrough] get => InPlay; }
+        public long GetProp(EPropType propType)
+        {
+            var filteredList = ((IItem)this).ModifyPropList.Where(m => m.PropType == propType).ToList();
             var addSum = filteredList.Sum(m => m.AddValue);
             var multiSum = filteredList.Aggregate(1L, (cur, m) => cur * m.AddValue);
             return addSum * multiSum;
         }
-        List<ModifyPropInfo> IItem.ModifyPropList => ModifyPropList;
-        
-        [DebuggerStepThrough]UniTask IItem.OnSpin(PlaySpin playSpin, CancellationToken ct) => OnSpin(playSpin, ct);
-
-        protected virtual UniTask OnSpin(PlaySpin playSpin, CancellationToken ct)
+        [JsonProperty(IsReference = false, ItemIsReference = false)] 
+        public List<ModifyPropInfo> ModifyPropList { [DebuggerStepThrough] get; } = [];
+        public virtual UniTask OnSpin(CancellationToken ct)
         {
-            pplaySpin = playSpin;
-            SelfAddBaseValue(playSpin);
-            playSpin.InsertAfter(
-                from itemInPlay in playSpin.BelongNode.GetItemByEtt(BelongEtt).ToIEnumerable()
-                from itemDes in (List<ItemDesConfig>)[..itemInPlay.Config.DesList, ..itemInPlay.EatConfigList]
+            SelfAddBaseValue();
+            Spin.InsertAfter(
+                from itemDes in (List<ItemDesConfig>)[..InPlay.Config.DesList, ..InPlay.EatConfigList]
                 where itemDes.Trigger is ItemDesTriggerEnterSpin
-                select new ActDoItemDesResult(playSpin)
+                select new ActDoItemDesResult(Spin)
                 {
                     SelfItem = this,
                     Result = itemDes.Result,
                 });
             return UniTask.CompletedTask;
         }
-        protected virtual void SelfAddBaseValue(PlaySpin playSpin)
-        {
-        }
-
-        [JsonIgnore] MyOption<PlaySpin> pplaySpin = null!;
-        [DebuggerStepThrough]
-        public override string ToString()
-        {
-            return
-                (from p in pplaySpin
-                    from itemInPlay in p.BelongNode.GetItemByEtt(BelongEtt)
-                    select $"{GetType().Name} belong {itemInPlay})") 
-                | GetType().GetNiceName();
-        }
+        protected virtual void SelfAddBaseValue() { }
+        [DebuggerStepThrough] public override string ToString() 
+            => $"{GetType().Name} belong {InPlay})";
     }
     public class ModifyPropInfo 
     {

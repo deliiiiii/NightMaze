@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -13,7 +12,7 @@ public partial class PlaySpin
     async UniTask CheckItemAsync(IItem item, CancellationToken ct)
     {
         // MyDebug.Log($"执行物体 pos:{item.PivotPos}");
-        await item.OnSpin(this, ct);
+        await item.OnSpin(ct);
         await UniTask.Delay(1000, cancellationToken: ct);
     }
     public record EvtBeforeCheckSymbol(PlaySpin WhoHasCt, IItem Item) : EvtBase<PlaySpin>(WhoHasCt);
@@ -36,8 +35,8 @@ public partial class PlaySpin
         {
             ItemDesResultAddItemDesToSelf addItemDesToSelf => 
                 from toEat in ResolveItemSelector(selfItem, addItemDesToSelf.ItemSelector)
-                from whoEatInPlay in BelongNode.GetItemByEtt(selfItem.BelongEtt).ToIEnumerable()
-                from toEatInPlay in BelongNode.GetItemByEtt(toEat.BelongEtt).ToIEnumerable()
+                let whoEatInPlay = selfItem.InPlay
+                let toEatInPlay = toEat.InPlay
                 select new GamePlaying.ActItemEatItemConfig(BelongNode)
                 {
                     WhoEat = whoEatInPlay,
@@ -63,14 +62,13 @@ public partial class PlaySpin
                 },
             ItemDesResultRemoveItem removeItem =>
                 from toRemove in ResolveItemSelector(selfItem, removeItem.ItemSelector)
-                from toRemoveInPlay in BelongNode.GetItemByEtt(toRemove.BelongEtt).ToIEnumerable()
                 select new GamePlaying.ActRemoveItem(BelongNode)
                 {
-                    ToRemove = toRemoveInPlay
+                    ToRemove = toRemove.InPlay
                 },
             ItemDesResultSpawnXAtX spawnXAtX =>
                 from toSpawn in ResolveItemSelector(selfItem, spawnXAtX.ItemSelector).FirstOptional().ToIEnumerable()
-                from toSpawnInPlay in BelongNode.GetItemByEtt(toSpawn.BelongEtt).ToIEnumerable()
+                let toSpawnInPlay = toSpawn.InPlay
                 from pos in ResolvePosSelector(selfItem, spawnXAtX.PosSelector, p => BelongNode.TrySetItem(toSpawnInPlay, p)).FirstOptional().ToIEnumerable()
                 select new GamePlaying.ActSpawnItemAtPos(BelongNode)
                 {
@@ -110,16 +108,17 @@ public partial class PlaySpin
                 ..selectorItem.SymbolList, 
                 ..selectorItem.BuildingList,
                 ..selectorItem.ResourceList]
-                select (IItem)(iItemConfig switch
+                select iItemConfig switch
                 {
-                    GridConfig gridConfig => new Grid(EttGrid.Create()),
-                    BuildingConfig buildingConfig => new Building(EttBuilding.Create()),
-                    ResourceConfig resourceConfig => new Resource(EttResource.Create()),
-                    SymbolConfig symbolConfig => new Symbol(EttSymbol.Create()),
+                    GridConfig gridConfig => new GamePlaying.Grid(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
+                    BuildingConfig buildingConfig => new GamePlaying.Building(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
+                    ResourceConfig resourceConfig => new GamePlaying.Resource(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
+                    SymbolConfig symbolConfig => new GamePlaying.Symbol(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
                     _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IItemConfig)}类型: {iItemConfig.GetType()}.")
-                }),
-            ItemSelectorItemSet selectorItemSet => from itemInSpin in Items
-                from itemInPlay in BelongNode.GetItemByEtt(itemInSpin.BelongEtt).ToIEnumerable()
+                },
+            ItemSelectorItemSet selectorItemSet => 
+                from itemInSpin in Items
+                let itemInPlay = itemInSpin.InPlay
                 let set = selectorItemSet.Set
                 where set.GridList.Contains(itemInPlay.Config) 
                       || set.SymbolList.Contains(itemInPlay.Config) 
@@ -128,7 +127,7 @@ public partial class PlaySpin
                 select itemInSpin,
             ItemSelectorSelf selectorSelf => [selfItem],
             ItemSelectorTag selectorTag => from itemInSpin in Items
-                from itemInPlay in BelongNode.GetItemByEtt(itemInSpin.BelongEtt).ToIEnumerable()
+                let itemInPlay = itemInSpin.InPlay
                 where (itemInPlay is GamePlaying.Grid grid && selectorTag.GridTag != 0 && selectorTag.GridTag.HasFlag(grid.Config.GridTag)) 
                       || (itemInPlay is GamePlaying.Symbol symbol && selectorTag.SymbolTag != 0 && selectorTag.SymbolTag.HasFlag(symbol.Config.SymbolTag))
                       || (itemInPlay is GamePlaying.Building building && selectorTag.BuildingTag != 0 && selectorTag.BuildingTag.HasFlag(building.Config.BuildingTag))
@@ -142,8 +141,8 @@ public partial class PlaySpin
             var filter1 = filter;
             rawItems =
                 from itemInSpin in rawItems
-                from itemInPlay in BelongNode.GetItemByEtt(itemInSpin.BelongEtt).ToIEnumerable()
-                from selfItemInPlay in BelongNode.GetItemByEtt(selfItem.BelongEtt).ToIEnumerable()
+                let itemInPlay = itemInSpin.InPlay
+                let selfItemInPlay = selfItem.InPlay
                 where filter1 switch
                 {
                     null => true,
@@ -169,14 +168,14 @@ public partial class PlaySpin
             case ItemSortPosLeftDown sort:
                 rawItems =
                     from itemInSpin in rawItems
-                    from itemInPlay in BelongNode.GetItemByEtt(itemInSpin.BelongEtt).ToIEnumerable()
+                    let itemInPlay = itemInSpin.InPlay
                     orderby itemInPlay.PivotPos.X * sort.DescendingValue, itemInPlay.PivotPos.Y * sort.DescendingValue
                     select itemInSpin;
                 break;
             case ItemSortPosUpLeft sort:
                 rawItems =
                     from itemInSpin in rawItems
-                    from itemInPlay in BelongNode.GetItemByEtt(itemInSpin.BelongEtt).ToIEnumerable()
+                    let itemInPlay = itemInSpin.InPlay
                     orderby -itemInPlay.PivotPos.Y * sort.DescendingValue, itemInPlay.PivotPos.X * sort.DescendingValue
                     select itemInSpin;
                 break;
@@ -202,17 +201,16 @@ public partial class PlaySpin
         var rawList = posSelector switch
         {
             PosSelector3X3 selector3X3 =>
-                from itemInPlay in BelongNode.GetItemByEtt(selfItem.BelongEtt).ToIEnumerable()
                 from dx in Range(-1, 3)
                 from dy in Range(-1, 3)
+                let itemInPlay = selfItem.InPlay
                 select new Vector2Int(itemInPlay.PivotPos.X + dx, itemInPlay.PivotPos.Y + dy),
             PosSelectorConst selectorConst => [selectorConst.Value],
             PosSelectorFromResult selectorFromResult => ResolvePosSelector(selfItem,
                 selectorFromResult.IOutPos.PosSelector),
             PosSelectorFromResultItem selectorFromResultItem =>
                 from itemInResult in ResolveItemSelector(selfItem, selectorFromResultItem.IOutItem.ItemSelector)
-                from itemInResultInPlay in BelongNode.GetItemByEtt(itemInResult.BelongEtt).ToIEnumerable()
-                select itemInResultInPlay.PivotPos,
+                select itemInResult.InPlay.PivotPos,
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(PosSelectorBase)}类型: {posSelector.GetType()}.")
         };
         

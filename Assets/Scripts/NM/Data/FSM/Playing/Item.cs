@@ -9,15 +9,14 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
-    public abstract partial class MyItem<TEtt, TSub, TConfig> : ComBase<TEtt, TSub>, IItem
-        where TEtt : EttBase<TEtt>, new()
-        where TSub : MyItem<TEtt, TSub, TConfig>
+    public abstract partial class MyItem<TSub, TConfig> : IItem
+        where TSub : MyItem<TSub, TConfig>
         where TConfig : ItemConfigBase<TConfig>, new()
     {
-        protected MyItem(TEtt belongEtt, int id, Vector2Int pivotPos) : base(belongEtt)
+        protected MyItem(int id, Vector2Int pivotPos)
         {
             ID = id;
-            PivotPos = pivotPos;
+            ((IItem)this).PivotPos = pivotPos;
             DeltaPosList = Config.Pos switch
             {
                 ItemPosRectangle rect => (
@@ -27,47 +26,38 @@ public partial class GamePlaying
                 ItemPosCustom custom => custom.DeltaPosList,
                 _ => [Vector2Int.Zero],
             };
+            EatConfigList = [];
         }
-
-        public int ID;
-        public bool Dragging;
-        public bool Spawning;
-
-        [JsonConverter(typeof(CompactFormatNoRefConverter))]
-        public Vector2Int PivotPos;
-        [JsonConverter(typeof(CompactFormatNoRefConverter))]
-        public List<Vector2Int> DeltaPosList { get; init; }
-        public List<ItemDesConfig> EatConfigList = [];
-
-        public bool CoverPos(Vector2Int pos) => CoveredPosList.Contains(pos);
-        public IEnumerable<Vector2Int> CoveredPosList => DeltaPosList.Select(d => d + PivotPos);
+        
+        [DebuggerStepThrough] public bool CoverPos(Vector2Int pos) => CoveredPosList.Contains(pos);
+        public IEnumerable<Vector2Int> CoveredPosList => DeltaPosList.Select(d => d + ((IItem)this).PivotPos);
 
         public abstract TConfig Config { get; }
         public abstract EItemType ItemType { get; }
         
 
-        EttBase IItem.BelongEtt { [DebuggerStepThrough]get => BelongEtt; }
-        int IItem.ID { [DebuggerStepThrough]get => ID; }
-        bool IItem.Dragging { [DebuggerStepThrough]get => Dragging; [DebuggerStepThrough]set => Dragging = value; }
-        bool IItem.Spawning { [DebuggerStepThrough]get => Spawning; [DebuggerStepThrough]set => Spawning = value; }
-        Vector2Int IItem.PivotPos
-        {
-            [DebuggerStepThrough] get => PivotPos;
-            [DebuggerStepThrough] set => PivotPos = value;
-        }
-        IEnumerable<Vector2Int> IItem.DeltaPosList { [DebuggerStepThrough]get => DeltaPosList; }
-        [DebuggerStepThrough] bool IItem.CoverPos(Vector2Int pos) => CoverPos(pos);
-        IEnumerable<Vector2Int> IItem.CoveredPosList { [DebuggerStepThrough]get => CoveredPosList; }
+        public int ID { [DebuggerStepThrough] get; [DebuggerStepThrough] private init; }
         IItemConfig IItem.Config { [DebuggerStepThrough]get => Config; }
-        EItemType IItem.ItemType { [DebuggerStepThrough]get => ItemType; }
-        List<ItemDesConfig> IItem.EatConfigList { [DebuggerStepThrough]get => EatConfigList; }
+        public bool Dragging { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
+        public bool Spawning { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
+        [JsonConverter(typeof(CompactFormatNoRefConverter))]
+        public Vector2Int PivotPos { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
+        [JsonConverter(typeof(CompactFormatNoRefConverter))]
+        public IEnumerable<Vector2Int> DeltaPosList { [DebuggerStepThrough] get; private init; }
+        public List<ItemDesConfig> EatConfigList { [DebuggerStepThrough] get; private init; }
+
+
+        PlaySpin.IItem? inSpin;
+        public PlaySpin.IItem InSpin(PlaySpin spin) => inSpin ??= CreateInSpin(spin);
+        void IItem.DestroyInSpin() => inSpin = null;
+        protected abstract PlaySpin.IItem CreateInSpin(PlaySpin spin);
+
         [DebuggerStepThrough] public override string ToString() 
-            => $"{GetType().Name}(ID: {ID}, PivotPos: {PivotPos}, DeltaPosList: [{string.Join(", ", DeltaPosList)}])";
+            => $"{GetType().Name}(ID: {ID}, PivotPos: {((IItem)this).PivotPos}, DeltaPosList: [{string.Join(", ", DeltaPosList)}])";
     }
 
     public interface IItem
     {
-        EttBase BelongEtt { get; }
         int ID { get; }
         bool Dragging { get; set; }
         bool Spawning { get; set; }
@@ -79,5 +69,8 @@ public partial class GamePlaying
         IItemConfig Config { get; }
         EItemType ItemType { get; }
         List<ItemDesConfig> EatConfigList { get; }
+
+        PlaySpin.IItem InSpin(PlaySpin spin);
+        void DestroyInSpin();
     }
 }

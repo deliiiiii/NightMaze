@@ -1,0 +1,1124 @@
+{
+  "$id": "1",
+  "savedVersion": 20260402.0,
+  "BelongNode": {
+    "$id": "2",
+    "savedVersion": 20260402.0,
+    "state": { "$ref": "1" }
+  },
+  "PlayerName": "1111",
+  "PlayTime": 47.078282435424626,
+  "Prop1": 0,
+  "Prop2": 0,
+  "Prop3": 0,
+  "Prop4": 0,
+  "Prop5": 0,
+  "Prop6": 0,
+  "Coin": 0,
+  "state": {
+    "$id": "3",
+    "$type": "NM.Data.PlaySpin, NM.Data",
+    "savedVersion": 20260402.0,
+    "BelongNode": { "$ref": "1" },
+    "toDoList": {
+      "$id": "4",
+      "$values": [
+        {
+          "$id": "5",
+          "$type": "NM.Data.PlaySpin+ActCheckItem, NM.Data",
+          "Self": { "$ref": "3" },
+          "Item": {
+            "$id": "6",
+            "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+            "Spin": { "$ref": "3" }
+          }
+        },
+        {
+          "$id": "7",
+          "$type": "NM.Data.PlaySpin+ActDoItemDesResult, NM.Data",
+          "Self": { "$ref": "3" },
+          "SelfItem": { "$ref": "6" },
+          "Result": {
+            "$id": "8",
+            "$type": "NM.Config.ItemDesResultSpawnXAtX, NM.Config",
+            "Condition": null,
+            "Next": null,
+            "PosSelector": {
+              "$id": "9",
+              "$type": "NM.Config.PosSelectorConst, NM.Config",
+              "PosFilter": null,
+              "Random": false,
+              "TakeMax": {
+                "$id": "10",
+                "$type": "NM.Config.IntSelectorInfinite, NM.Config"
+              },
+              "PosSort": null,
+              "Value": {
+                "$id": "11",
+                "X": 9,
+                "Y": 1
+              }
+            },
+            "ItemSelector": {
+              "$id": "12",
+              "$type": "NM.Config.ItemSelectorItem, NM.Config",
+              "ItemFilter": null,
+              "Random": false,
+              "TakeMax": {
+                "$id": "13",
+                "$type": "NM.Config.IntSelectorInfinite, NM.Config"
+              },
+              "ItemSort": null
+            }
+          }
+        }
+      ]
+    }
+  },
+  "itemList": [
+    {
+      "$id": "14",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "15",
+        "$values": []
+      },
+      "inSpin": {
+        "$id": "16",
+        "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+        "Spin": { "$ref": "3" }
+      }
+    },
+    {
+      "$id": "17",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "18",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "19",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "20",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "21",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "22",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "23",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "24",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "25",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "26",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "27",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "28",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "29",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "30",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "31",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "32",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "33",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "34",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "35",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "36",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "37",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "38",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "39",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "40",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "41",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "42",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "43",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "44",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "45",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "46",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "47",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "48",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "49",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "50",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "51",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "52",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "53",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "54",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "55",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "56",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "57",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "58",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "59",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "60",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "61",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "62",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "63",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "64",
+        "$values": []
+      },
+      "inSpin": {
+        "$id": "65",
+        "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+        "Spin": { "$ref": "3" }
+      }
+    },
+    {
+      "$id": "66",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "67",
+        "$values": []
+      },
+      "inSpin": {
+        "$id": "68",
+        "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+        "Spin": { "$ref": "3" }
+      }
+    },
+    {
+      "$id": "69",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "70",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "71",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "72",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "73",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "74",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "75",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "76",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "77",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "78",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "79",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "80",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "81",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "82",
+        "$values": []
+      },
+      "inSpin": {
+        "$id": "83",
+        "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+        "Spin": { "$ref": "3" }
+      }
+    },
+    {
+      "$id": "84",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "85",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "86",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "87",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "88",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "89",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "90",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "91",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "92",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "93",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "94",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "95",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "96",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "97",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "98",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "99",
+        "$values": []
+      },
+      "inSpin": {
+        "$id": "100",
+        "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+        "Spin": { "$ref": "3" }
+      }
+    },
+    {
+      "$id": "101",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "102",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "103",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "104",
+        "$values": []
+      },
+      "inSpin": {
+        "$id": "105",
+        "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+        "Spin": { "$ref": "3" }
+      }
+    },
+    {
+      "$id": "106",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "107",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "108",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "109",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "110",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "111",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "112",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "113",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "114",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "115",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "116",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "117",
+        "$values": []
+      },
+      "inSpin": {
+        "$id": "118",
+        "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+        "Spin": { "$ref": "3" }
+      }
+    },
+    {
+      "$id": "119",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "120",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "121",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "122",
+        "$values": []
+      },
+      "inSpin": {
+        "$id": "123",
+        "$type": "NM.Data.PlaySpin+Grid, NM.Data",
+        "Spin": { "$ref": "3" }
+      }
+    },
+    {
+      "$id": "124",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "125",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "126",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "127",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "128",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "129",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "130",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "131",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "132",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "133",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "134",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "135",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "136",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "137",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "138",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "139",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "140",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "141",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "142",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "143",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "144",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "145",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "146",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "147",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "148",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "149",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "150",
+      "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+      "ID": 1111,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "151",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "152",
+      "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+      "ID": 1111,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "153",
+        "$values": []
+      },
+      "inSpin": {
+        "$id": "154",
+        "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
+        "Spin": { "$ref": "3" }
+      }
+    },
+    {
+      "$id": "155",
+      "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}],
+      "EatConfigList": {
+        "$id": "156",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "157",
+      "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}],
+      "EatConfigList": {
+        "$id": "158",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "159",
+      "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}],
+      "EatConfigList": {
+        "$id": "160",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "161",
+      "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}],
+      "EatConfigList": {
+        "$id": "162",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "163",
+      "$type": "NM.Data.GamePlaying+Resource, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}],
+      "EatConfigList": {
+        "$id": "164",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "165",
+      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":9,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "166",
+        "$values": []
+      },
+      "inSpin": null
+    }
+  ]
+}

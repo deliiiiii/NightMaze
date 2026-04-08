@@ -1,13 +1,12 @@
-﻿using GeneralPreview;
+﻿using NM.Config;
 
 namespace NM.Data;
 
 public partial class PlaySpin
 {
-    public MyOption<Grid> this[EttGrid ettId] => GetEttComOptional<EttGrid, Grid>(ettId);
-    public partial class Grid : MyItem<EttGrid, Grid>
+    public partial class Grid : MyItem<Grid, GamePlaying.Grid>
     {
-        public Grid(EttGrid belongEtt) : base(belongEtt)
+        public Grid(PlaySpin spin, GamePlaying.Grid inPlay) : base(spin, inPlay)
         {
         }
     }

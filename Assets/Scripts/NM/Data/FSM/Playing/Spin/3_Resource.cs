@@ -4,11 +4,8 @@ namespace NM.Data;
 
 public partial class PlaySpin
 {
-    public MyOption<Resource> this[EttResource ettId] => GetEttComOptional<EttResource, Resource>(ettId);
-    public partial class Resource : MyItem<EttResource, Resource>
+    public partial class Resource : MyItem<Resource, GamePlaying.Resource>
     {
-        public Resource(EttResource belongEtt) : base(belongEtt)
-        {
-        }
+        public Resource(PlaySpin spin, GamePlaying.Resource inPlay) : base(spin, inPlay) { }
     }
 }

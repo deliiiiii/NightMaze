@@ -27,33 +27,19 @@ public partial class GamePlaying
     [Obsolete("在某位置 生成 某物体")][MuteActEvt]
     async UniTask SpawnItemAtPosAsync(EItemType type, int id, Vector2Int pos, CancellationToken ct)
     {
-        IItem item;
-        switch (type)
+        IItem item = type switch
         {
-            case EItemType.Grid:
-                item = AddEttCom<EttGrid, Grid>(new Grid(EttGrid.Create(), id, pos));
-                break;
-            case EItemType.Symbol:
-                item = AddEttCom<EttSymbol, Symbol>(new Symbol(EttSymbol.Create(), id, pos));
-                break;
-            case EItemType.Building:
-                item = AddEttCom<EttBuilding, Building>(new Building(EttBuilding.Create(), id, pos));
-                break;
-            case EItemType.Resource:
-                item = AddEttCom<EttResource, Resource>(new Resource(EttResource.Create(), id, pos));
-                break;
-            default:
-                throw new InvalidOperationException($"没有匹配穷尽{nameof(EItemType)}类型: {type}.");
-        }
-
+            EItemType.Grid => new Grid(id, pos),
+            EItemType.Symbol => new Symbol(id, pos),
+            EItemType.Building => new Building(id, pos),
+            EItemType.Resource => new Resource(id, pos),
+            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(EItemType)}类型: {type}.")
+        };
         item.Spawning = true;
         if (!TrySetItem(item, item.PivotPos))
-        {
-            RemoveEttCom(item.BelongEtt);
             return;
-        }
-
         item.Spawning = false;
+        itemList.Add(item);
         await new EvtSpawnItem(this, item);
     }
     public record EvtSpawnItem(GamePlaying WhoHasCt, IItem Item) : EvtBase<GamePlaying>(WhoHasCt);
@@ -63,7 +49,7 @@ public partial class GamePlaying
         return item switch
         {
             Grid => item.CoveredPosList.All(pos => !GridPoses.Contains(pos)),
-            _ => item.CoveredPosList.All(pos => EmptyGrids.Any(g => g.PivotPos == pos))
+            _ => item.CoveredPosList.All(pos => EmptyGrids.Any(g => ((IItem)g).PivotPos == pos))
         };
     }
 
