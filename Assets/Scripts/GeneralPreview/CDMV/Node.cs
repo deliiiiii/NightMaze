@@ -13,12 +13,12 @@ namespace GeneralPreview;
 public abstract record EttBase
 {
     internal static int CurID;
-    public int EttID { get; } = CurID++;
 }
 [DebuggerStepThrough]
 public abstract record EttBase<T> : EttBase where T : EttBase<T>, new()
 //: IDisposable, IHasCt, IHasVersion
 {
+    public int EttID { get; } = CurID++;
     public static T Create() => new();
 }
 [DebuggerStepThrough]
@@ -88,7 +88,8 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         OnAddEtt?.Invoke(com.BelongEtt);
         return com;
     }
-    public void RemoveEttCom(EttBase ett)
+    public void RemoveEttCom<TEtt>(TEtt ett)
+        where TEtt : EttBase<TEtt>, new()
     {
         OnRemoveEtt?.Invoke(ett);
         if (comDic.Remove(ett))

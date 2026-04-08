@@ -6,5 +6,3 @@ namespace NM;
 public sealed class EvtChangedAttribute : Attribute;
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class ActContainerAttribute : Attribute;
-[AttributeUsage(AttributeTargets.Method)]
-public sealed class MuteActEvtAttribute : Attribute;

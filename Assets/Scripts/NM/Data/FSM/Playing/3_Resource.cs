@@ -13,6 +13,5 @@ public partial class GamePlaying
             RefPoolMulti<ResourceConfig>.AcquireOne(c => c.ID == ID)
             ?? RefPoolMulti<ResourceConfig>.AcquireFirst()
             ?? throw new System.Exception($"ResourceConfig 一个配置也没有.");
-        public sealed override EItemType ItemType => EItemType.Resource;
     }
 }

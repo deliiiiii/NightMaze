@@ -51,7 +51,7 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
             EttSymbol ettSymbol => GetEttComOptional<EttSymbol, Symbol>(ettSymbol).Map<IItem>(x => x),
             EttBuilding ettBuilding => GetEttComOptional<EttBuilding, Building>(ettBuilding).Map<IItem>(x => x),
             EttResource ettResource => GetEttComOptional<EttResource, Resource>(ettResource).Map<IItem>(x => x),
-            _ => throw new Exception($"没有匹配穷尽EttBase{nameof(EttBase)}类型: {ett.GetType()}.")
+            _ => throw new System.Exception($"没有匹配穷尽EttBase{nameof(EttBase)}类型: {ett.GetType()}.")
         };
     }
     protected override async UniTask OnLaunchCom(bool isThisFromLoad)
@@ -90,7 +90,7 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
                 AddEttCom<EttResource, Resource>(new Resource(ettResource));
                 break;
             default:
-                throw new Exception($"没有匹配穷尽{nameof(EttBase)}类型: {ett.GetType()}.");
+                throw new System.Exception($"没有匹配穷尽{nameof(EttBase)}类型: {ett.GetType()}.");
         }
     }
     void OnBelongRemoveEtt(EttBase ett)

@@ -15,10 +15,10 @@ public abstract class ItemViewBase<TSub, TData> : ItemViewBase
     where TSub : ItemViewBase<TSub, TData>
     where TData : class, GamePlaying.IItem
 {
-    // [ShowInInspector, ReadOnly]
-    // public TData DataT
-    // {
-    //     get => (TData)Data;
-    //     set => Data = value;
-    // }
+    [ShowInInspector, ReadOnly]
+    public TData DataT
+    {
+        get => (TData)Data;
+        set => Data = value;
+    }
 }

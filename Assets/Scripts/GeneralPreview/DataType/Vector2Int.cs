@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
+using Newtonsoft.Json;
+
+// using UnityEngine;
 
 namespace GeneralPreview;
-[DebuggerStepThrough][Serializable]
+[DebuggerStepThrough]
 public record struct Vector2Int(int X, int Y) : IComparable<Vector2Int>
 {
     public int X = X;

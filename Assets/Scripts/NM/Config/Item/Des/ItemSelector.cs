@@ -33,8 +33,7 @@ public abstract class ItemSelectorBase
 
     bool IsSelf() => this is ItemSelectorSelf;
 }
-[TypeRegistryItem("场上所有物体")]
-public class ItemSelectorAllPresentItem : ItemSelectorBase;
+
 [TypeRegistryItem(ItemDesConfig.FromLast + ": 棋子")]
 public class ItemSelectorFromResult : ItemSelectorBase
 {
