@@ -7,7 +7,7 @@
     "state": { "$ref": "1" }
   },
   "PlayerName": "111",
-  "PlayTime": 305.07598869828507,
+  "PlayTime": 320.38273336505517,
   "Prop1": 0,
   "Prop2": 0,
   "Prop3": 0,
@@ -1092,7 +1092,7 @@
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
-      "PivotPos":{"X":3,"Y":4},
+      "PivotPos":{"X":6,"Y":5},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
         "$id": "157",
@@ -1130,11 +1130,11 @@
     },
     {
       "$id": "162",
-      "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
+      "$type": "NM.Data.GamePlaying+Resource, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
-      "PivotPos":{"X":8,"Y":1},
+      "PivotPos":{"X":7,"Y":4},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
         "$id": "163",

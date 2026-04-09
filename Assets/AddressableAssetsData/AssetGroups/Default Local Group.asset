@@ -65,12 +65,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf7342787d920764a9ead576bd58c948
-    m_Address: "Symbol_1111_\u6D4B\u8BD5\u751F\u6210\u7269\u4F53\u8BCD\u6761"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - NMConfig
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dbcd6bd4618a90e4cb772c61c42264db
     m_Address: "Symbol_6_\u541E\u566C\u8005"
     m_ReadOnly: 0

@@ -12,18 +12,15 @@ public abstract record ItemDesConditionBase
 public record ItemDesConditionCollectXItem : ItemDesConditionBase
 {
     [Required, SerializeReference, LabelText("{0}: 目标物体"), OnValueChanged(nameof(OnChanged))]
-    public ItemSelectorBase ItemSelector = new ItemSelectorTag()
-    {
-        ItemFilter = new ItemFilterNotSelf()
-    };
+    public ItemSelectorBase ItemSelector = new ItemSelectorFromConfigCustom();
     [Required, SerializeReference, LabelText("{1}: 满足条件的最少个数")]public IntSelectorBase MinValueSelector = new IntSelectorConst { Value = 1 };
     
     void OnChanged()
     {
-        ItemSelector ??= new ItemSelectorTag()
-        {
-            ItemFilter = new ItemFilterNotSelf()
-        };
+        ItemSelector ??= new ItemSelectorFromConfigCustom();
         MinValueSelector ??= new IntSelectorConst { Value = 1 };
     }
 }
+
+[TypeRegistryItem("恒为false")]
+public record ItemDesConditionAlwaysFalse : ItemDesConditionBase;

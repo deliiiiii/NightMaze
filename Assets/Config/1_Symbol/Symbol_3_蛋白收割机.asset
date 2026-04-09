@@ -63,80 +63,30 @@ MonoBehaviour:
         Next:
           rid: -2
         ItemSelector:
-          rid: 6212121012880539650
+          rid: 6212121062356549657
         PropType: 0
-        IntSelectorBase:
-          rid: 6212121012880539660
-    - rid: 6212121012880539650
-      type: {class: ItemSelectorSelf, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemSort:
-          rid: -2
-        TakeMax:
-          rid: 6212121012880539652
-        ItemFilter:
-          rid: -2
-    - rid: 6212121012880539652
-      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
-      data: 
+        IntSelector:
+          rid: 6212121062356549660
     - rid: 6212121012880539653
       type: {class: ItemDesConditionCollectXItem, ns: NM.Config, asm: NM.Config}
       data:
         Next:
           rid: -2
         ItemSelector:
-          rid: 6212121012880539654
+          rid: 6212121062356549656
         MinValueSelector:
           rid: 6212121012880539655
-    - rid: 6212121012880539654
-      type: {class: ItemSelectorTag, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemSort:
-          rid: -2
-        TakeMax:
-          rid: 6212121012880539656
-        ItemFilter:
-          rid: 6212121012880539659
-        ItemTag: 0
-        SymbolTag: 0
-        ResourceTag: 2
-        BuildingTag: 0
     - rid: 6212121012880539655
       type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
       data:
-        Value: 1
-    - rid: 6212121012880539656
-      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+        Value: 14
+    - rid: 6212121062356549656
+      type: {class: ItemSelectorAtPresentAll, ns: NM.Config, asm: NM.Config}
       data: 
-    - rid: 6212121012880539659
-      type: {class: ItemFilterIn3X3, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: -2
-    - rid: 6212121012880539660
-      type: {class: IntSelectorSumBy, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemSelector:
-          rid: 6212121012880539663
-        Value: 2
-    - rid: 6212121012880539663
-      type: {class: ItemSelectorTag, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemSort:
-          rid: -2
-        TakeMax:
-          rid: 6212121012880539667
-        ItemFilter:
-          rid: 6212121012880539666
-        ItemTag: 0
-        SymbolTag: 0
-        ResourceTag: 4
-        BuildingTag: 0
-    - rid: 6212121012880539666
-      type: {class: ItemFilterIn3X3, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: -2
-    - rid: 6212121012880539667
-      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+    - rid: 6212121062356549657
+      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
       data: 
+    - rid: 6212121062356549660
+      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
+      data:
+        Value: 6

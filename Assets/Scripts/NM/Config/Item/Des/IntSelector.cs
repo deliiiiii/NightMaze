@@ -14,6 +14,6 @@ public record IntSelectorInfinite : IntSelectorBase;
 [TypeRegistryItem("每有一个物体{0}, 获得{1}数值")]
 public record IntSelectorSumBy : IntSelectorBase
 {
-    [SerializeReference, LabelText("{0}: 来源物体")] public ItemSelectorBase ItemSelector = new ItemSelectorSelf();
+    [SerializeReference, LabelText("{0}: 来源物体")] public ItemSelectorBase ItemSelector = new ItemSelectorAtPresentSelf();
     [LabelText("{1}: 数值倍数")] public int Value;
 }

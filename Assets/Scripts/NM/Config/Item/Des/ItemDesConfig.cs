@@ -31,7 +31,7 @@ public record ItemDesConfig
     //     }
     // }
 
-    public const string FromLast = "上一步";
+    public const string FromLast = "上{0}步中的: ";
 
     [Required, SerializeReference, LabelText("触发器"), OnValueChanged(nameof(OnChanged))]
     public ItemDesTriggerBase Trigger = new ItemDesTriggerEnterSpin();

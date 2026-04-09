@@ -63,29 +63,7 @@ MonoBehaviour:
         Next:
           rid: 6212121012880539668
         ItemSelector:
-          rid: 6212121000547450906
-    - rid: 6212121000547450906
-      type: {class: ItemSelectorTag, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemSort:
           rid: -2
-        TakeMax:
-          rid: 6212121000547450907
-        ItemFilter:
-          rid: 6212121000547450908
-        ItemTag: 0
-        SymbolTag: 0
-        ResourceTag: 4
-        BuildingTag: 0
-    - rid: 6212121000547450907
-      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
-      data: 
-    - rid: 6212121000547450908
-      type: {class: ItemFilterInManDis, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: -2
-        Dis: 1
     - rid: 6212121012880539668
       type: {class: ItemDesResultAddItemDesToSelf, ns: NM.Config, asm: NM.Config}
       data:
@@ -98,14 +76,9 @@ MonoBehaviour:
     - rid: 6212121012880539671
       type: {class: ItemSelectorFromResult, ns: NM.Config, asm: NM.Config}
       data:
-        ItemSort:
-          rid: -2
-        TakeMax:
-          rid: 6212121012880539672
-        ItemFilter:
-          rid: -2
-        IOutItem:
-          rid: 6212121000547450905
-    - rid: 6212121012880539672
-      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+        LastStepCount: 1
+        FromResultFilter:
+          rid: 6212121062356549661
+    - rid: 6212121062356549661
+      type: {class: ItemSelectorFromResultFilterRemoved, ns: NM.Config, asm: NM.Config}
       data: 

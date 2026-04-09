@@ -8,31 +8,35 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace NM.Config;
-// public interface ITSelector<T>
-// {
-//     ITFilter<T> Filter { get; }
-//     ITSorter<T> Sorter { get; }
-// }
-//
-// public interface ITSorter<T>
-// {
-//     
-// }
-//
-// public interface ITFilter<T>
-// {
-//     
-// }
-//
-public abstract record ItemSelectorBase
+public interface ICanSelect
 {
-    [SerializeReference, LabelText("且物体满足"), PropertyOrder(9996)] public ItemFilterBase? ItemFilter;
-    [LabelText("随机选择"), PropertyOrder(9997f), HideIf(nameof(IsSelf))] public bool Random;
-    [SerializeReference, LabelText("选择数量上限"), HideIf(nameof(IsSelf)), PropertyOrder(9998)] public IntSelectorBase TakeMax = new IntSelectorInfinite();
-    [SerializeReference, LabelText("排序"), HideIf(nameof(IsSelf)), PropertyOrder(9999)] public ItemSortBase? ItemSort;
+    bool Random { get; }
+    IntSelectorBase TakeMax { get; }
+}
 
-    bool IsSelf() => this is ItemSelectorSelf;
+public interface ICanSelectPos : ICanSelect
+{
+    PosFilterBase? PosFilter { get; }
+    PosSortBase? PosSort { get; }
+}
 
+public interface ICanSelectItem : ICanSelectPos
+{
+    ItemFilterBase? ItemFilter { get; }
+    ItemSortBase? ItemSort { get; }
+}
+
+public abstract record ItemSelectorBase : ICanSelectItem
+{
+    [field: SerializeReference, LabelText("且物体满足"), PropertyOrder(9994)] public ItemFilterBase? ItemFilter { get; init; }
+    [field: SerializeReference, LabelText("物体排序"), HideIf(nameof(IsSelf)), PropertyOrder(9995)] public ItemSortBase? ItemSort { get; init; }
+    [field: SerializeReference, LabelText("且物体的位置满足"), PropertyOrder(9996)] public PosFilterBase? PosFilter { get; init; }
+    [field: SerializeReference, LabelText("物体的位置排序"), HideIf(nameof(IsSelf)), PropertyOrder(9997)] public PosSortBase? PosSort { get; init; }
+    
+    [LabelText("随机选择"), HideIf(nameof(IsSelf)), PropertyOrder(9998)] public bool Random { get; set; }
+    [field: SerializeReference, LabelText("选择数量上限"), HideIf(nameof(IsSelf)), PropertyOrder(9999)]
+    public IntSelectorBase TakeMax {get; } = new IntSelectorInfinite();
+    bool IsSelf() => this is ItemSelectorAtPresentSelf;
     protected virtual bool PrintMembers(StringBuilder sb)
     {
         sb.Append(ItemFilter);
@@ -43,12 +47,33 @@ public abstract record ItemSelectorBase
     }
 }
 [TypeRegistryItem("场上所有物体")]
-public record ItemSelectorAllPresentItem : ItemSelectorBase;
+public record ItemSelectorAtPresentAll : ItemSelectorBase;
+[TypeRegistryItem("自身")]
+public record ItemSelectorAtPresentSelf : ItemSelectorBase;
+public abstract record ItemSelectorFromConfigBase : ItemSelectorBase;
 
 [TypeRegistryItem(ItemDesConfig.FromLast + ": 棋子")]
-public record ItemSelectorFromResult : ItemSelectorBase;
-[TypeRegistryItem("指定物体(拖入: 物体Config)")]
-public record ItemSelectorItem : ItemSelectorBase
+public record ItemSelectorFromResult : ItemSelectorBase
+{
+    [LabelText("{0}: 之前第n步(限1~3步)"),Range(1,3)]public int LastStepCount = 1;
+    [SerializeReference, LabelText("从结果中筛选")]public ItemSelectorFromResultFilterBase? FromResultFilter;
+}
+public abstract record ItemSelectorFromResultFilterBase;
+[TypeRegistryItem("被生成的")]
+public record ItemSelectorFromResultFilterSpawned : ItemSelectorFromResultFilterBase;
+[TypeRegistryItem("被移除的")]
+public record ItemSelectorFromResultFilterRemoved : ItemSelectorFromResultFilterBase;
+[TypeRegistryItem("尝试移动且成功了的")]
+public record ItemSelectorFromResultFilterSuccessMoved : ItemSelectorFromResultFilterBase;
+[TypeRegistryItem("尝试移动且失败了的")]
+public record ItemSelectorFromResultFilterFailMoved : ItemSelectorFromResultFilterBase;
+[TypeRegistryItem("被加算属性了的")]
+public record ItemSelectorFromResultFilterAddPropX : ItemSelectorFromResultFilterBase;
+[TypeRegistryItem("被乘算属性了的")]
+public record ItemSelectorFromResultFilterMulPropX : ItemSelectorFromResultFilterBase;
+
+[TypeRegistryItem("从配置中选择任意")]
+public record ItemSelectorFromConfigCustom : ItemSelectorFromConfigBase
 {
     [LabelText("0_地块列表")][JsonIgnore] public List<GridConfig> GridList = [];
     [LabelText("1_棋子列表")][JsonIgnore] public List<SymbolConfig> SymbolList = [];
@@ -59,9 +84,9 @@ public record ItemSelectorItem : ItemSelectorBase
     [JsonProperty] List<int> SymbolIds => SymbolList.Select(x => x.ID).ToList();
     [JsonProperty] List<int> BuildingIds => BuildingList.Select(x => x.ID).ToList();
     [JsonProperty] List<int> ResourceIds => ResourceList.Select(x => x.ID).ToList();
-    public ItemSelectorItem(){}
+    public ItemSelectorFromConfigCustom(){}
     [JsonConstructor]
-    public ItemSelectorItem(int xx)
+    public ItemSelectorFromConfigCustom(int xx)
     {
         GridList = 
         [..
@@ -99,15 +124,21 @@ public record ItemSelectorItem : ItemSelectorBase
         return true;
     }
 }
-[TypeRegistryItem("指定物体组(拖入: 物体组Config)")]
-public record ItemSelectorItemSet : ItemSelectorBase
+
+[TypeRegistryItem("从配置中选择物体组")]
+public record ItemSelectorItemFromConfigSet : ItemSelectorFromConfigBase
 {
-    [Required("物体组Config不能为空"), LabelText("物体组")]public ItemConfigSet Set = null!;
-    
+    [Required("物体组Config不能为空"), LabelText("物体组")]
+    public ItemConfigSet Set = null!;
+
     [JsonProperty] int ConfigSetId => Set.ID;
-    public ItemSelectorItemSet(){}
+
+    public ItemSelectorItemFromConfigSet()
+    {
+    }
+
     [JsonConstructor]
-    public ItemSelectorItemSet(int xx)
+    public ItemSelectorItemFromConfigSet(int xx)
     {
         Set = RefPoolMulti<ItemConfigSet>.AcquireOne(x => x.ID == ConfigSetId)!;
     }
@@ -122,26 +153,5 @@ public record ItemSelectorItemSet : ItemSelectorBase
         sb.Append(string.Join(", ", Set.ResourceList.Select(c => c.Name)));
         sb.Append("]");
         return true;
-    }
-}
-
-[TypeRegistryItem("自身")]
-public record ItemSelectorSelf : ItemSelectorBase;
-[TypeRegistryItem("指定标签")]
-public record ItemSelectorTag : ItemSelectorBase
-{
-    [LabelText("通用标签")] public EItemTag ItemTag;
-    [LabelText("地形标签")] public EGridTag GridTag;
-    [LabelText("棋子标签")] public ESymbolTag SymbolTag;
-    [LabelText("资源标签")] public EResourceTag ResourceTag;
-    [LabelText("建筑标签")] public EBuildingTag BuildingTag;
-    [DebuggerStepThrough]
-    public override string ToString()
-    {
-        var sb = new StringBuilder();
-        // sb.Append(ItemTag.ToValues());
-        sb.Append(SymbolTag);
-        sb.Append(ResourceTag);
-        return sb.ToString();
     }
 }

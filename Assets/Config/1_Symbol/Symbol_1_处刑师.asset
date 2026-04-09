@@ -63,35 +63,7 @@ MonoBehaviour:
         Next:
           rid: 6212121036199034938
         ItemSelector:
-          rid: 6212121000547450914
-    - rid: 6212121000547450914
-      type: {class: ItemSelectorTag, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: 6212121012880539673
-        Random: 0
-        TakeMax:
-          rid: 6212121000547450915
-        ItemSort:
-          rid: -2
-        ItemTag: 0
-        GridTag: 0
-        SymbolTag: 2
-        ResourceTag: 0
-        BuildingTag: 0
-    - rid: 6212121000547450915
-      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
-      data: 
-    - rid: 6212121012880539673
-      type: {class: ItemFilterIn3X3, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: 6212121036199034880
-    - rid: 6212121036199034880
-      type: {class: ItemFilterNotSelf, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: -2
+          rid: 6212121062356549664
     - rid: 6212121036199034938
       type: {class: ItemDesResultSpawnXAtX, ns: NM.Config, asm: NM.Config}
       data:
@@ -100,40 +72,9 @@ MonoBehaviour:
         Next:
           rid: 6212121062356549636
         PosSelector:
-          rid: 6212121036199034939
+          rid: 6212121062356549665
         ItemSelector:
-          rid: 6212121036199034940
-    - rid: 6212121036199034939
-      type: {class: PosSelectorFromResultItem, ns: NM.Config, asm: NM.Config}
-      data:
-        PosFilter:
-          rid: -2
-        Random: 0
-        TakeMax:
-          rid: 6212121036199034941
-        PosSort:
-          rid: -2
-    - rid: 6212121036199034940
-      type: {class: ItemSelectorItem, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: -2
-        Random: 0
-        TakeMax:
-          rid: 6212121036199034942
-        ItemSort:
-          rid: -2
-        GridList: []
-        SymbolList: []
-        BuildingList: []
-        ResourceList:
-        - {fileID: 11400000, guid: 52dfffd32de856844bcff5999a9cb10c, type: 2}
-    - rid: 6212121036199034941
-      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
-      data: 
-    - rid: 6212121036199034942
-      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
-      data: 
+          rid: 6212121062356549650
     - rid: 6212121062356549636
       type: {class: ItemDesResultMulXPropX, ns: NM.Config, asm: NM.Config}
       data:
@@ -142,24 +83,28 @@ MonoBehaviour:
         Next:
           rid: -2
         ItemSelector:
-          rid: 6212121062356549637
+          rid: -2
         PropType: 0
         IntSelector:
           rid: 6212121062356549638
-    - rid: 6212121062356549637
-      type: {class: ItemSelectorSelf, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: -2
-        Random: 0
-        TakeMax:
-          rid: 6212121062356549639
-        ItemSort:
-          rid: -2
     - rid: 6212121062356549638
       type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
       data:
         Value: 2
-    - rid: 6212121062356549639
-      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+    - rid: 6212121062356549650
+      type: {class: ItemSelectorFromConfigCustom, ns: NM.Config, asm: NM.Config}
+      data:
+        GridList: []
+        SymbolList: []
+        BuildingList: []
+        ResourceList:
+        - {fileID: 11400000, guid: 52dfffd32de856844bcff5999a9cb10c, type: 2}
+    - rid: 6212121062356549664
+      type: {class: ItemSelectorAtPresentAll, ns: NM.Config, asm: NM.Config}
       data: 
+    - rid: 6212121062356549665
+      type: {class: PosSelectorConst, ns: NM.Config, asm: NM.Config}
+      data:
+        Value:
+          X: 2
+          Y: 2

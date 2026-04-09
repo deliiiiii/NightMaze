@@ -72,6 +72,7 @@ public record ResultPosWrap(Vector2Int Pos)
     public Vector2Int Pos = Pos;
     public List<CtxBase> CtxList = [];
     public abstract record CtxBase;
+    public record CtxFalse : CtxBase;
     protected virtual bool PrintMembers(StringBuilder sb)
     {
         sb.Append($"Pos = {Pos}, ");
@@ -182,6 +183,7 @@ public partial class PlaySpin
             return true;
         var thisRet = conditionBase switch
         {
+            ItemDesConditionAlwaysFalse => false,
             ItemDesConditionCollectXItem collectXItem => 
                 ResolveItemSelector(selfItem, collectXItem.ItemSelector, resultWrap).Sum(_ => 1) 
                 >= ResolveIntSelector(selfItem, collectXItem.MinValueSelector, resultWrap),
@@ -191,19 +193,64 @@ public partial class PlaySpin
         var nextRet = ResolveCondition(selfItem, conditionBase.Next, resultWrap);
         return thisRet && nextRet;
     }
-    IEnumerable<IItem> ResolveItemSelector(IItem selfItem, ItemSelectorBase itemSelector, ResultWrap? resultWrap)
+
+    IEnumerable<IItem> ResolveItemSelectorFromResult(ItemSelectorFromResultFilterBase? fromResultFilter, ResultWrap? resultWrap)
     {
-        var rawItems = itemSelector switch
+        if (resultWrap == null)
+            return [];
+        return 
+            from itemWrap in resultWrap.ItemWraps
+            where fromResultFilter switch
+            {
+                ItemSelectorFromResultFilterAddPropX => itemWrap.CtxList.OfType<ResultItemWrap.CtxAddPropX>().Any(),
+                ItemSelectorFromResultFilterFailMoved => itemWrap.CtxList.OfType<ResultItemWrap.CtxFailMoved>().Any(),
+                ItemSelectorFromResultFilterMulPropX => itemWrap.CtxList.OfType<ResultItemWrap.CtxMulPropX>().Any(),
+                ItemSelectorFromResultFilterRemoved => itemWrap.CtxList.OfType<ResultItemWrap.CtxRemoved>().Any(),
+                ItemSelectorFromResultFilterSpawned => itemWrap.CtxList.OfType<ResultItemWrap.CtxSpawned>().Any(),
+                ItemSelectorFromResultFilterSuccessMoved => itemWrap.CtxList.OfType<ResultItemWrap.CtxSuccessMoved>().Any(),
+                null => true,
+                _ => throw new InvalidOperationException(
+                    $"没有匹配穷尽{nameof(ItemSelectorFromResultFilterBase)}类型: {fromResultFilter.GetType()}.")
+            }
+            select itemWrap.Item.InSpin(this);
+    }
+
+    IEnumerable<Vector2Int> ResolvePosSelectorFromResult(PosSelectorFromResultFilterBase? fromResultFilter,
+        ResultWrap? resultWrap)
+    {
+        if (resultWrap == null)
+            return [];
+        return
+            from posWrap in resultWrap.PosWraps
+            where fromResultFilter switch
+            {
+                PosSelectorFromResultFilterFalse => posWrap.CtxList.OfType<ResultPosWrap.CtxFalse>().Any(),
+                null => true,
+                _ => throw new InvalidOperationException(
+                    $"没有匹配穷尽{nameof(PosSelectorFromResultFilterBase)}类型: {fromResultFilter.GetType()}.")
+            }
+            select posWrap.Pos;
+    }
+    
+    IEnumerable<IItem> ResolveItemSelector(IItem selfItem, ICanSelectItem? iCanSelectItem, ResultWrap? resultWrap)
+    {
+        if (iCanSelectItem == null)
+            return [];
+        var rawItems = iCanSelectItem switch
         {
-            ItemSelectorAllPresentItem allPresentItem => Items,
-            // TODO 丰富结果选项
-            ItemSelectorFromResult selectorFromResult => resultWrap?.PreResult?.ItemWraps.Select(w => w.Item.InSpin(this)) ?? [],
-            ItemSelectorItem selectorItem => 
+            ItemSelectorAtPresentAll => Items,
+            ItemSelectorAtPresentSelf => [selfItem],
+            ItemSelectorFromResult fromResult => [
+                ..fromResult.LastStepCount == 1 ? ResolveItemSelectorFromResult(fromResult.FromResultFilter, resultWrap?.PreResult) : [],
+                ..fromResult.LastStepCount == 2 ? ResolveItemSelectorFromResult(fromResult.FromResultFilter, resultWrap?.PreResult?.PreResult) : [],
+                ..fromResult.LastStepCount == 3 ? ResolveItemSelectorFromResult(fromResult.FromResultFilter, resultWrap?.PreResult?.PreResult?.PreResult) : [],
+            ],
+            ItemSelectorFromConfigCustom fromConfigCustom => 
                 from iItemConfig in (List<IItemConfig>)[
-                ..selectorItem.GridList,
-                ..selectorItem.SymbolList, 
-                ..selectorItem.BuildingList,
-                ..selectorItem.ResourceList]
+                ..fromConfigCustom.GridList,
+                ..fromConfigCustom.SymbolList, 
+                ..fromConfigCustom.BuildingList,
+                ..fromConfigCustom.ResourceList]
                 select iItemConfig switch
                 {
                     GridConfig gridConfig => new GamePlaying.Grid(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
@@ -212,26 +259,18 @@ public partial class PlaySpin
                     SymbolConfig symbolConfig => new GamePlaying.Symbol(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
                     _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IItemConfig)}类型: {iItemConfig.GetType()}.")
                 },
-            ItemSelectorItemSet selectorItemSet => 
+            ItemSelectorItemFromConfigSet fromConfigSet => 
                 from itemInSpin in Items
                 let itemInPlay = itemInSpin.InPlay
-                let set = selectorItemSet.Set
+                let set = fromConfigSet.Set
                 where set.GridList.Contains(itemInPlay.Config) 
                       || set.SymbolList.Contains(itemInPlay.Config) 
                       || set.BuildingList.Contains(itemInPlay.Config)
                       || set.ResourceList.Contains(itemInPlay.Config)
                 select itemInSpin,
-            ItemSelectorSelf selectorSelf => [selfItem],
-            ItemSelectorTag selectorTag => from itemInSpin in Items
-                let itemInPlay = itemInSpin.InPlay
-                where (itemInPlay is GamePlaying.Grid grid && selectorTag.GridTag != 0 && selectorTag.GridTag.HasFlag(grid.Config.GridTag)) 
-                      || (itemInPlay is GamePlaying.Symbol symbol && selectorTag.SymbolTag != 0 && selectorTag.SymbolTag.HasFlag(symbol.Config.SymbolTag))
-                      || (itemInPlay is GamePlaying.Building building && selectorTag.BuildingTag != 0 && selectorTag.BuildingTag.HasFlag(building.Config.BuildingTag))
-                      || (itemInPlay is GamePlaying.Resource resource && selectorTag.ResourceTag != 0 && selectorTag.ResourceTag.HasFlag(resource.Config.ResourceTag))
-                select itemInSpin,
-            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemSelectorBase)}类型: {itemSelector.GetType()}.")
+            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemSelectorBase)}类型: {iCanSelectItem.GetType()}.")
         };
-        var filter = itemSelector.ItemFilter;
+        var filter = iCanSelectItem.ItemFilter;
         while (filter != null)
         {
             var filter1 = filter;
@@ -241,15 +280,15 @@ public partial class PlaySpin
                 let selfItemInPlay = selfItem.InPlay
                 where filter1 switch
                 {
-                    null => true,
-                    ItemFilterIn3X3 in3X3 => Math.Abs(itemInPlay.PivotPos.X - selfItemInPlay.PivotPos.X) <= 1 
-                                             && Math.Abs(itemInPlay.PivotPos.Y - selfItemInPlay.PivotPos.Y) <= 1,
-                    ItemFilterInManDis inManDis => Math.Abs(itemInPlay.PivotPos.X - selfItemInPlay.PivotPos.X) 
-                                                   + Math.Abs(itemInPlay.PivotPos.Y - selfItemInPlay.PivotPos.Y) 
-                                                   <= inManDis.Dis,
                     ItemFilterIsItemType isItemType => isItemType.ItemType != 0 && isItemType.ItemType.HasFlag(itemInPlay.ItemType),
-                    ItemFilterNotSelf notSelf => itemInSpin != selfItem,
-                    ItemFilterSelf self => itemInSpin == selfItem,
+                    ItemFilterNotSelf => itemInSpin != selfItem,
+                    ItemFilterSelf => itemInSpin == selfItem,
+                    ItemFilterTag filterTag => 
+                         (itemInPlay is GamePlaying.Grid grid && filterTag.GridTag != 0 && filterTag.GridTag.HasFlag(grid.Config.GridTag)) 
+                              || (itemInPlay is GamePlaying.Symbol symbol && filterTag.SymbolTag != 0 && filterTag.SymbolTag.HasFlag(symbol.Config.SymbolTag))
+                              || (itemInPlay is GamePlaying.Building building && filterTag.BuildingTag != 0 && filterTag.BuildingTag.HasFlag(building.Config.BuildingTag))
+                              || (itemInPlay is GamePlaying.Resource resource && filterTag.ResourceTag != 0 && filterTag.ResourceTag.HasFlag(resource.Config.ResourceTag)),
+                    null => true,
                     _ => throw new InvalidOperationException(
                         $"没有匹配穷尽{nameof(ItemFilterBase)}类型: {filter1.GetType()}.")
                 }
@@ -257,81 +296,121 @@ public partial class PlaySpin
             filter = filter.ItemFilter;
         }
        
-        if (itemSelector.Random)
+        if (iCanSelectItem.Random)
             rawItems = rawItems.ToList().ShuffleTo();
-        switch (itemSelector.ItemSort)
+        switch (iCanSelectItem.ItemSort)
         {
-            case ItemSortPosLeftDown sort:
-                rawItems =
-                    from itemInSpin in rawItems
-                    let itemInPlay = itemInSpin.InPlay
-                    orderby itemInPlay.PivotPos.X * sort.DescendingValue, itemInPlay.PivotPos.Y * sort.DescendingValue
-                    select itemInSpin;
-                break;
-            case ItemSortPosUpLeft sort:
-                rawItems =
-                    from itemInSpin in rawItems
-                    let itemInPlay = itemInSpin.InPlay
-                    orderby -itemInPlay.PivotPos.Y * sort.DescendingValue, itemInPlay.PivotPos.X * sort.DescendingValue
-                    select itemInSpin;
-                break;
             case null:
                 break;
             default:
-                throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemSortBase)}类型: {itemSelector.ItemSort.GetType()}.");
+                throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemSortBase)}类型: {iCanSelectItem.ItemSort.GetType()}.");
         }
-        return rawItems.Take(ResolveIntSelector(selfItem, itemSelector.TakeMax, resultWrap));
+        rawItems = rawItems.Take(ResolveIntSelector(selfItem, iCanSelectItem.TakeMax, resultWrap));
+        return ApplyPosFilterAndSort(rawItems, p => p.InPlay.PivotPos, iCanSelectItem , selfItem, resultWrap);
     }
-    int ResolveIntSelector(IItem selfItem, IntSelectorBase intSelector, ResultWrap? resultWrap) =>
+    int ResolveIntSelector(IItem selfItem, IntSelectorBase? intSelector, ResultWrap? resultWrap) =>
         intSelector switch
         {
             IntSelectorConst selectorConst => selectorConst.Value,
             IntSelectorInfinite selectorInfinite => int.MaxValue,
             IntSelectorSumBy selectorSumBy => ResolveItemSelector(selfItem, selectorSumBy.ItemSelector, resultWrap)
                 .Sum(_ => selectorSumBy.Value),
+            null => 0,
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IntSelectorBase)}类型: {intSelector.GetType()}.")
         };
 
-    IEnumerable<Vector2Int> ResolvePosSelector(IItem selfItem, PosSelectorBase posSelector, ResultWrap? resultWrap, Func<Vector2Int, bool>? extraFilter = null)
+    IEnumerable<Vector2Int> ResolvePosSelector(IItem selfItem, ICanSelectPos? iCanSelectPos, ResultWrap? resultWrap, Func<Vector2Int, bool>? extraFilter = null)
     {
-        var rawList = posSelector switch
+        var rawList = iCanSelectPos switch
         {
-            PosSelector3X3 selector3X3 =>
+            PosSelector3X3 =>
                 from dx in Range(-1, 3)
                 from dy in Range(-1, 3)
                 let itemInPlay = selfItem.InPlay
                 select new Vector2Int(itemInPlay.PivotPos.X + dx, itemInPlay.PivotPos.Y + dy),
-            PosSelectorConst selectorConst => [selectorConst.Value],
-            // TODO 丰富结果选项
-            PosSelectorFromResult selectorFromResult => resultWrap?.PreResult?.PosWraps.Select(w => w.Pos) ?? [],
-            // TODO 丰富结果选项
-            PosSelectorFromResultItem selectorFromResultItem => resultWrap?.PreResult?.ItemWraps.Select(w => w.Item.PivotPos) ?? [],
-            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(PosSelectorBase)}类型: {posSelector.GetType()}.")
+            PosSelectorConst @const => [@const.Value],
+            PosSelectorFromResult fromResult => [
+                .. fromResult.LastStepCount == 1 ? ResolvePosSelectorFromResult(fromResult.FromResultFilter, resultWrap?.PreResult) : [],
+                .. fromResult.LastStepCount == 2 ? ResolvePosSelectorFromResult(fromResult.FromResultFilter, resultWrap?.PreResult?.PreResult) : [],
+                .. fromResult.LastStepCount == 3 ? ResolvePosSelectorFromResult(fromResult.FromResultFilter, resultWrap?.PreResult?.PreResult?.PreResult) : [],
+            ],
+            PosSelectorFromResultItem fromResultItem => 
+                from item in
+                (IEnumerable<IItem>)[
+                    .. fromResultItem.LastStepCount == 1 ? ResolveItemSelectorFromResult(fromResultItem.FromResultFilter, resultWrap?.PreResult) : [],
+                    .. fromResultItem.LastStepCount == 2 ? ResolveItemSelectorFromResult(fromResultItem.FromResultFilter, resultWrap?.PreResult?.PreResult) : [],
+                    .. fromResultItem.LastStepCount == 3 ? ResolveItemSelectorFromResult(fromResultItem.FromResultFilter, resultWrap?.PreResult?.PreResult?.PreResult) : [],
+                ]
+                select item.InPlay.PivotPos,
+            null => [],
+            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(PosSelectorBase)}类型: {iCanSelectPos.GetType()}.")
         };
-        
-        switch (posSelector.PosFilter)
+        return ApplyPosFilterAndSort(rawList, p => p, iCanSelectPos, selfItem, resultWrap);
+    }
+    
+    IEnumerable<T> ApplyPosFilterAndSort<T>(IEnumerable<T> source, Func<T, Vector2Int> getPos, ICanSelectPos? iCanSelectPos, IItem selfItem, ResultWrap? resultWrap)
+    {
+        if(iCanSelectPos == null)
+            return source;
+        switch (iCanSelectPos.PosFilter)
         {
+            case PosFilterIn3X3 in3X3:
+                if (in3X3.ItemSelector == null) 
+                    break;
+                source =
+                    from element in source
+                    where ResolveItemSelector(selfItem, in3X3.ItemSelector, resultWrap).Select(item => item.InPlay)
+                        .All(item => 
+                            Math.Abs(getPos(element).X - item.PivotPos.X) <= 1 
+                            && Math.Abs(getPos(element).Y - item.PivotPos.Y) <= 1) // 注意：这里修复了你原来代码里的 item.PivotPos.X - item.PivotPos.X 的问题
+                    select element;
+                break;
+            case PosFilterInManDis inManDis:
+                if (inManDis.ItemSelector == null) 
+                    break;
+                source =
+                    from element in source
+                    where ResolveItemSelector(selfItem, inManDis.ItemSelector, resultWrap).Select(item => item.InPlay)
+                        .All(item => 
+                            Math.Abs(getPos(element).X - item.PivotPos.X) 
+                            + Math.Abs(getPos(element).Y - item.PivotPos.Y) 
+                            <= inManDis.Dis) // 同上
+                    select element;
+                break;
             case null:
                 break;
             default:
-                throw new InvalidOperationException
-                    ($"没有匹配穷尽{nameof(PosFilterBase)}类型: {posSelector.PosFilter.GetType()}.");
+                throw new InvalidOperationException(
+                    $"没有匹配穷尽{nameof(PosFilterBase)}类型: {iCanSelectPos.PosFilter.GetType()}.");
         }
 
-        extraFilter ??= RTrue1;
-        rawList = rawList.Where(extraFilter);
-        if(posSelector.Random)
-            rawList = rawList.ToList().ShuffleTo();
-        switch (posSelector.PosSort)
+        if(iCanSelectPos.Random)
+            source = source.ToList().ShuffleTo();
+        
+        switch (iCanSelectPos.PosSort)
         {
+            case PosSortPosLeftDown itemSortPosLeftDown:
+                source =
+                    from element in source
+                    orderby getPos(element).X * itemSortPosLeftDown.DescendingValue, getPos(element).Y * itemSortPosLeftDown.DescendingValue
+                    select element;
+                break;
+            case PosSortPosUpLeft sort:
+                source =
+                    from element in source
+                    orderby -getPos(element).Y * sort.DescendingValue, getPos(element).X * sort.DescendingValue
+                    select element;
+                break;
             case null:
                 break;
             default:
-                throw new InvalidOperationException
-                    ($"没有匹配穷尽{nameof(PosSortBase)}类型: {posSelector.PosSort.GetType()}.");
+                throw new InvalidOperationException(
+                    $"没有匹配穷尽{nameof(PosSortBase)}类型: {iCanSelectPos.PosSort.GetType()}.");
         }
-        return rawList.Take(ResolveIntSelector(selfItem, posSelector.TakeMax, resultWrap));
+        return source.Take(ResolveIntSelector(selfItem, iCanSelectPos.TakeMax, resultWrap));
     }
+
+    
 
     [Obsolete("某物让某物属性变化(加算)")]
     UniTask EttAddSymbolModifyPropAsync(IItem from, IItem to, EPropType propType, long value, ResultWrap? resultWrap, CancellationToken ct)
