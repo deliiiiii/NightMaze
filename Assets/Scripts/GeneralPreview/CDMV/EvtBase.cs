@@ -94,7 +94,7 @@ public static class Bus
         }
     }
     
-    static string FormatRecordDetails(string text)
+    public static string FormatRecordDetails(string text)
     {                                       
         var sb = new StringBuilder();
         int indent = 0;

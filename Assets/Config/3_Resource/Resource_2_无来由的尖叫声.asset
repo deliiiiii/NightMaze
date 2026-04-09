@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d68e3271dfc48e892c16b30d66ff012, type: 3}
-  m_Name: "Symbol_3_\u86CB\u767D\u6536\u5272\u673A"
+  m_Script: {fileID: 11500000, guid: 6d162adc8b51468185b5e616604b748a, type: 3}
+  m_Name: "Resource_2_\u65E0\u6765\u7531\u7684\u5C16\u53EB\u58F0"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -33,29 +33,26 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  Name: "\u86CB\u767D\u6536\u5272\u673A"
-  ID: 3
-  FlavorDes: "\u6D53\u90C1\u7684\u8840\u8089\u6C14\u606F\u603B\u662F\u8BA9\u4EBA\u4E0D\u9002\u5E94\u7684\uFF0C\u4F46\u597D\u5728\u5B83\u4E0D\u662F\u4EBA"
+  Name: "\u65E0\u6765\u7531\u7684\u5C16\u53EB\u58F0"
+  ID: 2
+  FlavorDes: "\u66FE\u7ECF\u6709\u4EBA\u53BB\u5BFB\u627E\u5B83\u7684\u6765\u6E90\uFF0C\u540E\u6765\u5927\u5BB6\u770B\u5230\u4E86\u4ED6\u7684\u86CB\u767D\u8D28\u5757"
   Rarity: 0
-  Tag: 0
+  Tag: 4
   DesList:
   - Trigger:
-      rid: 6212121012880539648
+      rid: 6212121067978489890
     Result:
-      rid: 6212121012880539649
-  SymbolTag: 4
-  Prop1: 0
-  Prop2: 0
-  Prop3: 0
+      rid: 6212121067978489891
+  ResourceTag: 0
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 6212121012880539648
+    - rid: 6212121067978489890
       type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
       data: 
-    - rid: 6212121012880539649
+    - rid: 6212121067978489891
       type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
       data:
         Condition:
@@ -63,56 +60,42 @@ MonoBehaviour:
         Next:
           rid: -2
         ItemSelector:
-          rid: 6212121062356549657
+          rid: 6212121067978489894
         PropType: 0
         IntSelector:
-          rid: 6212121067978489865
-    - rid: 6212121062356549657
-      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+          rid: 6212121067978489893
+    - rid: 6212121067978489893
+      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
       data:
-        <ItemFilter>k__BackingField:
-          rid: -2
-        <ItemSort>k__BackingField:
-          rid: -2
-        <PosFilter>k__BackingField:
-          rid: -2
-        <PosSort>k__BackingField:
-          rid: -2
-        <Random>k__BackingField: 0
-    - rid: 6212121067978489865
-      type: {class: IntSelectorSumBy, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemSelector:
-          rid: 6212121067978489867
-        Value: 2
-    - rid: 6212121067978489867
+        Value: -1
+    - rid: 6212121067978489894
       type: {class: ItemSelectorAtPresentAll, ns: NM.Config, asm: NM.Config}
       data:
         <ItemFilter>k__BackingField:
-          rid: 6212121067978489868
+          rid: 6212121067978489895
         <ItemSort>k__BackingField:
           rid: -2
         <PosFilter>k__BackingField:
-          rid: 6212121067978489869
+          rid: 6212121067978489896
         <PosSort>k__BackingField:
           rid: -2
         <Random>k__BackingField: 0
-    - rid: 6212121067978489868
+    - rid: 6212121067978489895
       type: {class: ItemFilterTag, ns: NM.Config, asm: NM.Config}
       data:
         ItemFilter:
           rid: -2
         ItemTag: 0
         GridTag: 0
-        SymbolTag: 0
-        ResourceTag: 4
+        SymbolTag: 2
+        ResourceTag: 0
         BuildingTag: 0
-    - rid: 6212121067978489869
+    - rid: 6212121067978489896
       type: {class: PosFilterIn3X3, ns: NM.Config, asm: NM.Config}
       data:
         ItemSelector:
-          rid: 6212121067978489870
-    - rid: 6212121067978489870
+          rid: 6212121067978489897
+    - rid: 6212121067978489897
       type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
       data:
         <ItemFilter>k__BackingField:

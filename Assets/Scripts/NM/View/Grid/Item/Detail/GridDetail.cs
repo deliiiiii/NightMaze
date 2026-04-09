@@ -30,6 +30,7 @@ public class GridDetail : MonoBehaviour
     List<GridType> tagList;
     List<GridInSpinLine> inSpinLineList;
     GridDetailHead? curHead;
+    int? curIndex;
 
     void Awake()
     {
@@ -69,6 +70,7 @@ public class GridDetail : MonoBehaviour
             head.OnClick = () =>
             {
                 curHead = head;
+                curIndex = detailList.IndexOf(detail);
                 int tagCount = detail.TagInfoList.Count;
                 for (int i = 0; i < Math.Min(TagMax, tagCount); i++)
                 {
@@ -95,7 +97,13 @@ public class GridDetail : MonoBehaviour
                 }
             };
         });
+        if (curIndex >= gridHeadCount)
+        {
+            curHead = null;
+            curIndex = null;
+        }
         curHead ??= headList[0];
+        curIndex ??= 0;
         curHead.OnClick?.Invoke();
     }
 }

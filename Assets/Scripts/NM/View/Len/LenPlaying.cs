@@ -1,23 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Cysharp.Threading.Tasks;
-using General;
+﻿using System.Linq;
 using GeneralPreview;
-using NM.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace NM.View;
+namespace NM.View.Len;
 
 public class LenPlaying : MonoBehaviour
 {
-    [ShowInInspector] public static MyOption<GamePlaying> Playing => GameRoot.GetStateOptional<GamePlaying>();
-    public void Save() => Playing.MatchA(some => Saver.SaveAsync(NameC.SlotFolder, some.PlayerName, some).Forget());
-
-    [ShowInInspector]
-    public List<IUniAction> DelayDo =>
-        (from playing in Playing.ToIEnumerable()
-            from spin in playing.GetStateOptional<PlaySpin>().ToIEnumerable()
-            from add in spin.ToDoList
-            select add).ToList();
+    // [ShowInInspector, ListDrawerSettings(DefaultExpandedState = true)]
+    // public List<string> DelayDo =>(
+            // from spin in PlaySpinData.ToIEnumerable()
+            // from add in spin.ToDoList
+            // select add.ToString()).ToList();
+    
+    
+    [ShowInInspector][GUIColor(1f,1f,1f)]
+    [MultiLineProperty(Lines = 20)]
+    public string DelayDo2 => string.Join("\n\n",
+        from spin in PlaySpinData.ToIEnumerable()
+        from add in spin.ToDoList
+        select Bus.FormatRecordDetails(add.ToString()));
 }

@@ -39,7 +39,7 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
         // BelongNode.Items.ForEach(item => item.CreateInSpin(this));
         toDoList = [..
             from itemInThis in Items
-            where itemInThis is Symbol
+            where itemInThis.InPlay.AllConfigList.Any()
             let itemInPlay = itemInThis.InPlay
             orderby itemInPlay.PivotPos.Y descending, itemInPlay.PivotPos.X, itemInPlay.Config.Order ascending 
             select new ActCheckItem(this)

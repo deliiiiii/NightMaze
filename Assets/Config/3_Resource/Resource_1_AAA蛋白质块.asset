@@ -38,8 +38,45 @@ MonoBehaviour:
   FlavorDes: "\u4E0D\u8981\u591A\u60F3\u8FD9\u662F\u4EC0\u4E48"
   Rarity: 0
   Tag: 4
-  DesList: []
+  DesList:
+  - Trigger:
+      rid: 6212121067978489883
+    Result:
+      rid: 6212121067978489887
   ResourceTag: 4
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6212121067978489883
+      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121067978489887
+      type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: -2
+        ItemSelector:
+          rid: 6212121067978489888
+        PropType: 0
+        IntSelector:
+          rid: 6212121067978489889
+    - rid: 6212121067978489888
+      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: -2
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
+    - rid: 6212121067978489889
+      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
+      data:
+        Value: 1

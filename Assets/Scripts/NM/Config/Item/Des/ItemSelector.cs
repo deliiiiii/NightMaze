@@ -28,14 +28,13 @@ public interface ICanSelectItem : ICanSelectPos
 
 public abstract record ItemSelectorBase : ICanSelectItem
 {
-    [field: SerializeReference, LabelText("且物体满足"), PropertyOrder(9994)] public ItemFilterBase? ItemFilter { get; init; }
-    [field: SerializeReference, LabelText("物体排序"), HideIf(nameof(IsSelf)), PropertyOrder(9995)] public ItemSortBase? ItemSort { get; init; }
-    [field: SerializeReference, LabelText("且物体的位置满足"), PropertyOrder(9996)] public PosFilterBase? PosFilter { get; init; }
-    [field: SerializeReference, LabelText("物体的位置排序"), HideIf(nameof(IsSelf)), PropertyOrder(9997)] public PosSortBase? PosSort { get; init; }
+    [field: SerializeReference, LabelText("且物体满足"), PropertyOrder(9994)] public ItemFilterBase? ItemFilter { get; private set; }
+    [field: SerializeReference, LabelText("物体排序"), HideIf(nameof(IsSelf)), PropertyOrder(9995)] public ItemSortBase? ItemSort { get;  private set; }
+    [field: SerializeReference, LabelText("且物体的位置满足"), PropertyOrder(9996)] public PosFilterBase? PosFilter { get; private set; }
+    [field: SerializeReference, LabelText("物体的位置排序"), HideIf(nameof(IsSelf)), PropertyOrder(9997)] public PosSortBase? PosSort { get; private set; }
     
-    [LabelText("随机选择"), HideIf(nameof(IsSelf)), PropertyOrder(9998)] public bool Random { get; set; }
-    [field: SerializeReference, LabelText("选择数量上限"), HideIf(nameof(IsSelf)), PropertyOrder(9999)]
-    public IntSelectorBase TakeMax {get; } = new IntSelectorInfinite();
+    [field: SerializeField, LabelText("随机选择"), HideIf(nameof(IsSelf)), PropertyOrder(9998)] public bool Random { get; private set; }
+    [field: SerializeReference, LabelText("选择数量上限"), HideIf(nameof(IsSelf)), PropertyOrder(9999)] public IntSelectorBase TakeMax {get; } = new IntSelectorInfinite();
     bool IsSelf() => this is ItemSelectorAtPresentSelf;
     protected virtual bool PrintMembers(StringBuilder sb)
     {
@@ -75,15 +74,15 @@ public record ItemSelectorFromResultFilterMulPropX : ItemSelectorFromResultFilte
 [TypeRegistryItem("从配置中选择任意")]
 public record ItemSelectorFromConfigCustom : ItemSelectorFromConfigBase
 {
-    [LabelText("0_地块列表")][JsonIgnore] public List<GridConfig> GridList = [];
-    [LabelText("1_棋子列表")][JsonIgnore] public List<SymbolConfig> SymbolList = [];
-    [LabelText("2_建筑列表")][JsonIgnore] public List<BuildingConfig> BuildingList = [];
-    [LabelText("3_资源列表")][JsonIgnore] public List<ResourceConfig> ResourceList = [];
+    [LabelText("0_地块列表")][JsonIgnore] public List<GridConfig?> GridList = [];
+    [LabelText("1_棋子列表")][JsonIgnore] public List<SymbolConfig?> SymbolList = [];
+    [LabelText("2_建筑列表")][JsonIgnore] public List<BuildingConfig?> BuildingList = [];
+    [LabelText("3_资源列表")][JsonIgnore] public List<ResourceConfig?> ResourceList = [];
 
-    [JsonProperty] List<int> GridIds => GridList.Select(x => x.ID).ToList();
-    [JsonProperty] List<int> SymbolIds => SymbolList.Select(x => x.ID).ToList();
-    [JsonProperty] List<int> BuildingIds => BuildingList.Select(x => x.ID).ToList();
-    [JsonProperty] List<int> ResourceIds => ResourceList.Select(x => x.ID).ToList();
+    [JsonProperty] List<int> GridIds => GridList.Where(g => g!=null).Select(x => x!.ID).ToList();
+    [JsonProperty] List<int> SymbolIds => SymbolList.Where(g => g!=null).Select(x => x!.ID).ToList();
+    [JsonProperty] List<int> BuildingIds => BuildingList.Where(g => g!=null).Select(x => x!.ID).ToList();
+    [JsonProperty] List<int> ResourceIds => ResourceList.Where(g => g!=null).Select(x => x!.ID).ToList();
     public ItemSelectorFromConfigCustom(){}
     [JsonConstructor]
     public ItemSelectorFromConfigCustom(int xx)
@@ -117,10 +116,10 @@ public record ItemSelectorFromConfigCustom : ItemSelectorFromConfigBase
     protected override bool PrintMembers(StringBuilder sb)
     {
         base.PrintMembers(sb);
-        sb.Append($"GridList = [{string.Join(", ", GridList.Select(c => c.Name))}], ");
-        sb.Append($"SymbolList = [{string.Join(", ", SymbolList.Select(c => c.Name))}], ");
-        sb.Append($"BuildingList = [{string.Join(", ", BuildingList.Select(c => c.Name))}], ");
-        sb.Append($"ResourceList = [{string.Join(", ", ResourceList.Select(c => c.Name))}], ");
+        sb.Append($"GridList = [{string.Join(", ", GridList.Where(g => g!=null).Select(c => c!.Name))}], ");
+        sb.Append($"SymbolList = [{string.Join(", ", SymbolList.Where(g => g!=null).Select(c => c!.Name))}], ");
+        sb.Append($"BuildingList = [{string.Join(", ", BuildingList.Where(g => g!=null).Select(c => c!.Name))}], ");
+        sb.Append($"ResourceList = [{string.Join(", ", ResourceList.Where(g => g!=null).Select(c => c!.Name))}], ");
         return true;
     }
 }
@@ -129,22 +128,20 @@ public record ItemSelectorFromConfigCustom : ItemSelectorFromConfigBase
 public record ItemSelectorItemFromConfigSet : ItemSelectorFromConfigBase
 {
     [Required("物体组Config不能为空"), LabelText("物体组")]
-    public ItemConfigSet Set = null!;
+    public ItemConfigSet? Set;
+    [JsonProperty] int? ConfigSetId => Set?.ID;
 
-    [JsonProperty] int ConfigSetId => Set.ID;
-
-    public ItemSelectorItemFromConfigSet()
-    {
-    }
-
+    public ItemSelectorItemFromConfigSet() { }
     [JsonConstructor]
     public ItemSelectorItemFromConfigSet(int xx)
     {
-        Set = RefPoolMulti<ItemConfigSet>.AcquireOne(x => x.ID == ConfigSetId)!;
+        Set = RefPoolMulti<ItemConfigSet>.AcquireOne(x => x.ID == ConfigSetId);
     }
 
     protected override bool PrintMembers(StringBuilder sb)
     {
+        if (Set == null)
+            return true;
         base.PrintMembers(sb);
         sb.Append($"Set =[");
         sb.Append(string.Join(", ", Set.GridList.Select(c => c.Name)));

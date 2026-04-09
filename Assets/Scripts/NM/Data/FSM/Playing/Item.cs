@@ -79,6 +79,8 @@ public partial class GamePlaying
         IItemConfig Config { get; }
         EItemType ItemType { get; }
         List<ItemDesConfig> EatConfigList { get; }
+        
+        List<ItemDesConfig> AllConfigList => [..Config.DesList, ..EatConfigList];
 
         PlaySpin.IItem InSpin(PlaySpin spin);
         void DestroyInSpin();

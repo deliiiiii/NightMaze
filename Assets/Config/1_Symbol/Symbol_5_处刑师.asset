@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d68e3271dfc48e892c16b30d66ff012, type: 3}
-  m_Name: "Symbol_1_\u5904\u5211\u5E08"
+  m_Name: "Symbol_5_\u5904\u5211\u5E08"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -34,7 +34,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   Name: "\u5904\u5211\u5E08"
-  ID: 1
+  ID: 5
   FlavorDes: "\u6CA1\u4EBA\u77E5\u9053\u90A3\u4E9B\u86CB\u767D\u5757\u54EA\u6765\u7684\uFF0C\u9664\u4E86\u4ED6"
   Rarity: 0
   Tag: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
     Result:
       rid: 6212121000547450913
   SymbolTag: 0
-  Prop1: 0
+  Prop1: 2
   Prop2: 0
   Prop3: 0
   references:
@@ -72,7 +72,7 @@ MonoBehaviour:
         Next:
           rid: 6212121062356549636
         PosSelector:
-          rid: 6212121062356549665
+          rid: 6212121062356549666
         ItemSelector:
           rid: 6212121062356549650
     - rid: 6212121062356549636
@@ -83,17 +83,26 @@ MonoBehaviour:
         Next:
           rid: -2
         ItemSelector:
-          rid: -2
+          rid: 6212121062356549668
         PropType: 0
         IntSelector:
           rid: 6212121062356549638
     - rid: 6212121062356549638
       type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
       data:
-        Value: 2
+        Value: 3
     - rid: 6212121062356549650
       type: {class: ItemSelectorFromConfigCustom, ns: NM.Config, asm: NM.Config}
       data:
+        <ItemFilter>k__BackingField:
+          rid: -2
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
         GridList: []
         SymbolList: []
         BuildingList: []
@@ -101,10 +110,59 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 52dfffd32de856844bcff5999a9cb10c, type: 2}
     - rid: 6212121062356549664
       type: {class: ItemSelectorAtPresentAll, ns: NM.Config, asm: NM.Config}
-      data: 
-    - rid: 6212121062356549665
-      type: {class: PosSelectorConst, ns: NM.Config, asm: NM.Config}
       data:
-        Value:
-          X: 2
-          Y: 2
+        <ItemFilter>k__BackingField:
+          rid: 6212121067978489857
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
+    - rid: 6212121062356549666
+      type: {class: PosSelectorFromResultItem, ns: NM.Config, asm: NM.Config}
+      data:
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
+        <TakeMax>k__BackingField:
+          rid: 6212121067978489856
+        LastStepCount: 1
+        FromResultFilter:
+          rid: 6212121062356549667
+    - rid: 6212121062356549667
+      type: {class: ItemSelectorFromResultFilterRemoved, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121062356549668
+      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: -2
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
+    - rid: 6212121067978489856
+      type: {class: IntSelectorInfinite, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121067978489857
+      type: {class: ItemFilterTag, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: 6212121067978489858
+        ItemTag: 0
+        GridTag: 0
+        SymbolTag: 2
+        ResourceTag: 0
+        BuildingTag: 0
+    - rid: 6212121067978489858
+      type: {class: ItemFilterNotSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2

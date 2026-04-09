@@ -1,6 +1,5 @@
 ﻿using GeneralPreview;
 using NM.Data;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace NM.View;

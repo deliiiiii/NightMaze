@@ -22,6 +22,7 @@ public class PlayView : ViewBase<GamePlaying>
     public Trs GridTrs;
     public Btn BtnSpin;
     public Btn BtnHarvest;
+    public Btn BtnSave;
     public Btn BtnExit;
 
     [SerializeField] GridView gridPfb;
@@ -41,6 +42,7 @@ public class PlayView : ViewBase<GamePlaying>
     {
         yield return BtnSpin.onClick.EvtBindTo(() => new EvtPlayViewClickSpin().Forget());
         yield return BtnHarvest.onClick.EvtBindTo(() => new EvtPlayViewClickHarvest().Forget());
+        yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(NameC.SlotFolder, Data.PlayerName, Data));
         yield return BtnExit.onClick.EvtBindTo(() => new EvtPlayViewClickExit().Forget());
     }
 
@@ -131,9 +133,8 @@ public class PlayView : ViewBase<GamePlaying>
                 Type = item.Config.PrefixName,
                 Name = item.Config.Name,
                 TagInfoList = item.Config.DetailTagInfos,
-                // TODO 不仅仅是风味文本.还有描述文本.
                 Detail = $"""
-                          {item.PivotPos}{ResolveItemDesList(item.Config.DesList)}{ResolveItemDesList(item.EatConfigList)}
+                          {item.PivotPos}{(!Data.Items.Contains(item) ? "已不复存在" : string.Empty)}{ResolveItemDesList(item.Config.DesList)}{ResolveItemDesList(item.EatConfigList)}
                           <color=grey>{item.Config.FlavorDes}</color>
                           """,
                 InSpinLineList =
@@ -142,10 +143,12 @@ public class PlayView : ViewBase<GamePlaying>
                     from spin in PlaySpinData.ToIEnumerable()
                     let itemInSpin = item.InSpin(spin)
                     from modProp in itemInSpin.ModifyPropList
-                    orderby modProp.PropType, modProp.AddValue, modProp.MultiValue
-                    select $"{item.Config.Name} " +
+                    where modProp.HasValue
+                    orderby modProp.PropType, modProp.AddValue descending, modProp.MultiValue descending
+                    select $"{modProp.From.InPlay.Config.Name} " +
+                           modProp.PropType.GetLabelText() +
                            (modProp.AddValue != 0 ? modProp.AddValue.ToStringWithSymbol() : string.Empty) +
-                           (modProp.MultiValue != 0 ? $"<color=green>x{modProp.MultiValue}</color>" : string.Empty)
+                           (modProp.MultiValue != 1 ? $"<color=green>x{modProp.MultiValue}</color>" : string.Empty)
                 ]
             }
         ];
@@ -179,7 +182,8 @@ public class PlayView : ViewBase<GamePlaying>
     
     public void HideGridDetail()
     {
-        if (LockedPosDetail != null)
+        // 如果删除了地块...
+        if (LockedPosDetail != null && Data.GridPoses.Contains(LockedPosDetail.Value))
             return;
         GridDetail.SetActiveFalse();
     }
@@ -259,7 +263,7 @@ internal static class IntExt
             string symbol = self switch
             {
                 > 0 => "+",
-                < 0 => "-",
+                // < 0 => "-",
                 _ => string.Empty
             };
             return $"{symbol}{self}";

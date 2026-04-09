@@ -10,9 +10,9 @@ public static class Const
     
     public static class Property
     {
-        public const string Name1 = "体魄(Body)";
-        public const string Name2 = "理智(Sans)";
-        public const string Name3 = "智识(Lore)";
+        public const string Name1 = "体魄";
+        public const string Name2 = "理智";
+        public const string Name3 = "智识";
     }
 
     public static class TMPResource

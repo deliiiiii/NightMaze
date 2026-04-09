@@ -6,10 +6,10 @@ namespace NM.Config;
 
 public abstract record PosSelectorBase : ICanSelectPos
 {
-    [field: SerializeReference, LabelText("且坐标满足"), PropertyOrder(9996)] public PosFilterBase? PosFilter { get; init; }
-    [field: SerializeReference, LabelText("选择数量上限"), HideIf(nameof(IsConst)), PropertyOrder(9997)] public IntSelectorBase TakeMax { get; init; } = new IntSelectorInfinite();
-    [LabelText("随机选择"), HideIf(nameof(IsConst)), PropertyOrder(9998)] public bool Random { get; init; }
-    [field: SerializeReference, LabelText("排序"), HideIf(nameof(IsConst)), PropertyOrder(9999)] public PosSortBase? PosSort { get; init; }
+    [field: SerializeReference, LabelText("且坐标满足"), PropertyOrder(9996)] public PosFilterBase? PosFilter { get; private set; }
+    [field: SerializeReference, LabelText("排序"), HideIf(nameof(IsConst)), PropertyOrder(9997)] public PosSortBase? PosSort { get; private set; }
+    [field: SerializeField, LabelText("随机选择"), HideIf(nameof(IsConst)), PropertyOrder(9998)] public bool Random { get; private set; }
+    [field: SerializeReference, LabelText("选择数量上限"), HideIf(nameof(IsConst)), PropertyOrder(9999)] public IntSelectorBase TakeMax { get; private set; } = new IntSelectorInfinite();
     bool IsConst => this is PosSelectorConst;
 }
 [TypeRegistryItem("固定数值{0}")]

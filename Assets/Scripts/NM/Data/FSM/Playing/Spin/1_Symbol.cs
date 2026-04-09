@@ -15,7 +15,7 @@ public partial class PlaySpin
             {
                 ((IItem)this).ModifyPropList.Add(new ModifyPropInfo
                 {
-                    Ett = this,
+                    From = this,
                     PropType = EPropType.Prop1,
                     AddValue = config.Prop1
                 });
@@ -24,7 +24,7 @@ public partial class PlaySpin
             {
                 ((IItem)this).ModifyPropList.Add(new ModifyPropInfo
                 {
-                    Ett = this,
+                    From = this,
                     PropType = EPropType.Prop2,
                     AddValue = config.Prop2
                 });
@@ -33,7 +33,7 @@ public partial class PlaySpin
             {
                 ((IItem)this).ModifyPropList.Add(new ModifyPropInfo
                 {
-                    Ett = this,
+                    From = this,
                     PropType = EPropType.Prop3,
                     AddValue = config.Prop3
                 });

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using General;
-using NM.Config;
 using NM.Data;
 using NM.View.ZZZTest;
 using UnityEngine;

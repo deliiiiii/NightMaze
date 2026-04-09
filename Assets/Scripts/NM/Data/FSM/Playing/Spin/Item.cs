@@ -64,14 +64,15 @@ public partial class PlaySpin
     }
     public record ModifyPropInfo 
     {
-        public required IItem Ett;
+        public required IItem From;
         public required EPropType PropType;
         public long AddValue;
-        public long MultiValue;
+        public long MultiValue = 1;
+        public bool HasValue => AddValue != 0 || MultiValue != 1;
 
         protected virtual bool PrintMembers(StringBuilder sb)
         {
-            sb.Append($"Ett = {Ett.InPlay.Config.Name},");
+            sb.Append($"Ett = {From.InPlay.Config.Name},");
             sb.Append($"PropType = {PropType.GetLabelText()}, ");
             sb.Append($"AddValue = {AddValue}, ");
             sb.Append($"MultiValue = {MultiValue}");

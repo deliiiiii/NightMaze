@@ -89,10 +89,10 @@ public partial class PlaySpin
     {
         if (!BelongNode.Items.Contains(item.InPlay))
             return;
-        // MyDebug.Log($"执行物体 pos:{item.PivotPos}");
         await item.OnSpin(ct);
-        await UniTask.Delay(1000, cancellationToken: ct);
+        await UniTask.Delay(200, cancellationToken: ct);
     }
+    [EvtName("物体执行 ALL 词条前.")]
     public record EvtBeforeCheckSymbol(PlaySpin WhoHasCt, IItem Item) : EvtBase<PlaySpin>(WhoHasCt);
 
    
@@ -158,13 +158,14 @@ public partial class PlaySpin
                     ResultWrap = resultWrap
                 },
             ItemDesResultSpawnXAtX spawnXAtX =>
+                from pos in ResolvePosSelector(selfItem, spawnXAtX.PosSelector, resultWrap)
+                    // , p =>
+                // {
+                    // toSpawnInPlay.PivotPos = p;
+                    // return BelongNode.TrySetItem(toSpawnInPlay);
+                // })
                 from toSpawn in ResolveItemSelector(selfItem, spawnXAtX.ItemSelector, resultWrap).FirstOptional().ToIEnumerable()
                 let toSpawnInPlay = toSpawn.InPlay
-                from pos in ResolvePosSelector(selfItem, spawnXAtX.PosSelector, resultWrap, p =>
-                {
-                    toSpawnInPlay.PivotPos = p;
-                    return BelongNode.TrySetItem(toSpawnInPlay);
-                }).FirstOptional().ToIEnumerable()
                 select new GamePlaying.ActSpawnItemAtPos(BelongNode)
                 {
                     Pos = pos,
@@ -251,6 +252,7 @@ public partial class PlaySpin
                 ..fromConfigCustom.SymbolList, 
                 ..fromConfigCustom.BuildingList,
                 ..fromConfigCustom.ResourceList]
+                where iItemConfig != null
                 select iItemConfig switch
                 {
                     GridConfig gridConfig => new GamePlaying.Grid(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
@@ -262,11 +264,11 @@ public partial class PlaySpin
             ItemSelectorItemFromConfigSet fromConfigSet => 
                 from itemInSpin in Items
                 let itemInPlay = itemInSpin.InPlay
-                let set = fromConfigSet.Set
-                where set.GridList.Contains(itemInPlay.Config) 
-                      || set.SymbolList.Contains(itemInPlay.Config) 
-                      || set.BuildingList.Contains(itemInPlay.Config)
-                      || set.ResourceList.Contains(itemInPlay.Config)
+                where fromConfigSet.Set != null &&
+                        (fromConfigSet.Set.GridList.Contains(itemInPlay.Config)
+                       || fromConfigSet.Set.SymbolList.Contains(itemInPlay.Config)
+                       || fromConfigSet.Set.BuildingList.Contains(itemInPlay.Config)
+                       || fromConfigSet.Set.ResourceList.Contains(itemInPlay.Config))
                 select itemInSpin,
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemSelectorBase)}类型: {iCanSelectItem.GetType()}.")
         };
@@ -418,7 +420,7 @@ public partial class PlaySpin
         to.ModifyPropList.Add(new ModifyPropInfo
         {
             PropType = propType,
-            Ett = from,
+            From = from,
             AddValue = value
         });
         resultWrap?.Success = true;
@@ -434,7 +436,7 @@ public partial class PlaySpin
         to.ModifyPropList.Add(new ModifyPropInfo
         {
             PropType = propType,
-            Ett = from,
+            From = from,
             MultiValue = value
         });
         resultWrap?.Success = true;

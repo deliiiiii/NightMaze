@@ -26,12 +26,12 @@ public record ItemDesResultMulXPropX : ItemDesResultBase
     [SerializeReference, LabelText("{2}: 属性乘算数值")] public IntSelectorBase? IntSelector = new IntSelectorConst();
 }
 
-[TypeRegistryItem("在位置{0}生成物体{1}的原型")][DebuggerStepThrough]
+[TypeRegistryItem("在位置{0}生成某一个物体{1}的原型")][DebuggerStepThrough]
 public record ItemDesResultSpawnXAtX : ItemDesResultBase
 {
     [Header("注：{0}会固定筛选出能放置该物体的坐标")]
-    [SerializeReference, LabelText("{0}: 生成位置(暂限制1个)")] public PosSelectorBase? PosSelector = new PosSelectorConst();
-    [SerializeReference, LabelText("{1}: 生成物体(暂限制1个)")] public ItemSelectorBase? ItemSelector = new ItemSelectorFromConfigCustom();
+    [SerializeReference, LabelText("{0}: 生成位置(可多个)")] public PosSelectorBase? PosSelector = new PosSelectorConst();
+    [SerializeReference, LabelText("{1}: 生成物体(无论如何, 最终只会选择一种)")] public ItemSelectorBase? ItemSelector = new ItemSelectorFromConfigCustom();
 }
 
 public enum EPropType

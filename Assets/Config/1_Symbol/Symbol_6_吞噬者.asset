@@ -63,7 +63,7 @@ MonoBehaviour:
         Next:
           rid: 6212121012880539668
         ItemSelector:
-          rid: -2
+          rid: 6212121067978489879
     - rid: 6212121012880539668
       type: {class: ItemDesResultAddItemDesToSelf, ns: NM.Config, asm: NM.Config}
       data:
@@ -76,9 +76,57 @@ MonoBehaviour:
     - rid: 6212121012880539671
       type: {class: ItemSelectorFromResult, ns: NM.Config, asm: NM.Config}
       data:
+        <ItemFilter>k__BackingField:
+          rid: -2
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
         LastStepCount: 1
         FromResultFilter:
           rid: 6212121062356549661
     - rid: 6212121062356549661
       type: {class: ItemSelectorFromResultFilterRemoved, ns: NM.Config, asm: NM.Config}
       data: 
+    - rid: 6212121067978489879
+      type: {class: ItemSelectorAtPresentAll, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: 6212121067978489880
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: 6212121067978489881
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
+    - rid: 6212121067978489880
+      type: {class: ItemFilterTag, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+        ItemTag: 0
+        GridTag: 0
+        SymbolTag: 0
+        ResourceTag: 4
+        BuildingTag: 0
+    - rid: 6212121067978489881
+      type: {class: PosFilterIn3X3, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSelector:
+          rid: 6212121067978489882
+    - rid: 6212121067978489882
+      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: -2
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
