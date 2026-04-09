@@ -127,6 +127,7 @@ public class PlayView : ViewBase<GamePlaying>
             ..
             from item in Data.Items
             where item.CoverPos(gridPos)
+            orderby (int)item.ItemType + (item.ItemType == EItemType.Grid ? int.MaxValue/2 : 0)
             // from config in (List<IItemConfig>)[item.Config, .. item.EatConfigs]
             select new DetailInfo
             {

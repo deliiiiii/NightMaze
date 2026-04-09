@@ -7,7 +7,7 @@
     "state": { "$ref": "1" }
   },
   "PlayerName": "111",
-  "PlayTime": 943.82915698969737,
+  "PlayTime": 986.07409654604271,
   "Prop1": 0,
   "Prop2": 0,
   "Prop3": 0,
@@ -41,7 +41,7 @@
       "inSpin": {
         "$id": "7",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "5" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -60,7 +60,7 @@
       "inSpin": {
         "$id": "10",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "8" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -79,7 +79,7 @@
       "inSpin": {
         "$id": "13",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "11" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -98,7 +98,7 @@
       "inSpin": {
         "$id": "16",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "14" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -117,7 +117,7 @@
       "inSpin": {
         "$id": "19",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "17" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -136,7 +136,7 @@
       "inSpin": {
         "$id": "22",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "20" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -155,7 +155,7 @@
       "inSpin": {
         "$id": "25",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "23" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -174,7 +174,7 @@
       "inSpin": {
         "$id": "28",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "26" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -193,7 +193,7 @@
       "inSpin": {
         "$id": "31",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "29" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -212,7 +212,7 @@
       "inSpin": {
         "$id": "34",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "32" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -231,7 +231,7 @@
       "inSpin": {
         "$id": "37",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "35" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -250,7 +250,7 @@
       "inSpin": {
         "$id": "40",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "38" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -269,7 +269,7 @@
       "inSpin": {
         "$id": "43",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "41" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -288,7 +288,7 @@
       "inSpin": {
         "$id": "46",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "44" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -307,7 +307,7 @@
       "inSpin": {
         "$id": "49",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "47" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -326,7 +326,7 @@
       "inSpin": {
         "$id": "52",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "50" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -345,7 +345,7 @@
       "inSpin": {
         "$id": "55",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "53" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -364,7 +364,7 @@
       "inSpin": {
         "$id": "58",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "56" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -383,7 +383,7 @@
       "inSpin": {
         "$id": "61",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "59" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -402,7 +402,7 @@
       "inSpin": {
         "$id": "64",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "62" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -421,7 +421,7 @@
       "inSpin": {
         "$id": "67",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "65" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -440,7 +440,7 @@
       "inSpin": {
         "$id": "70",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "68" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -459,7 +459,7 @@
       "inSpin": {
         "$id": "73",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "71" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -478,7 +478,7 @@
       "inSpin": {
         "$id": "76",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "74" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -497,7 +497,7 @@
       "inSpin": {
         "$id": "79",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "77" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -516,7 +516,7 @@
       "inSpin": {
         "$id": "82",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "80" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -535,7 +535,7 @@
       "inSpin": {
         "$id": "85",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "83" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -554,7 +554,7 @@
       "inSpin": {
         "$id": "88",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "86" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -573,7 +573,7 @@
       "inSpin": {
         "$id": "91",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "89" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -592,7 +592,7 @@
       "inSpin": {
         "$id": "94",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "92" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -611,7 +611,7 @@
       "inSpin": {
         "$id": "97",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "95" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -630,7 +630,7 @@
       "inSpin": {
         "$id": "100",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "98" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -649,7 +649,7 @@
       "inSpin": {
         "$id": "103",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "101" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -668,7 +668,7 @@
       "inSpin": {
         "$id": "106",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "104" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -687,7 +687,7 @@
       "inSpin": {
         "$id": "109",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "107" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -706,7 +706,7 @@
       "inSpin": {
         "$id": "112",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "110" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -725,7 +725,7 @@
       "inSpin": {
         "$id": "115",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "113" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -744,7 +744,7 @@
       "inSpin": {
         "$id": "118",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "116" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -763,7 +763,7 @@
       "inSpin": {
         "$id": "121",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "119" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -782,7 +782,7 @@
       "inSpin": {
         "$id": "124",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "122" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -801,7 +801,7 @@
       "inSpin": {
         "$id": "127",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "125" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -820,7 +820,7 @@
       "inSpin": {
         "$id": "130",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "128" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -839,7 +839,7 @@
       "inSpin": {
         "$id": "133",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "131" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -858,7 +858,7 @@
       "inSpin": {
         "$id": "136",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "134" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -877,7 +877,7 @@
       "inSpin": {
         "$id": "139",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "137" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -896,7 +896,7 @@
       "inSpin": {
         "$id": "142",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "140" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -915,7 +915,7 @@
       "inSpin": {
         "$id": "145",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "143" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -934,7 +934,7 @@
       "inSpin": {
         "$id": "148",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "146" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -953,7 +953,7 @@
       "inSpin": {
         "$id": "151",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "149" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -972,7 +972,7 @@
       "inSpin": {
         "$id": "154",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "152" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -991,7 +991,7 @@
       "inSpin": {
         "$id": "157",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "155" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1010,7 +1010,7 @@
       "inSpin": {
         "$id": "160",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "158" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1029,7 +1029,7 @@
       "inSpin": {
         "$id": "163",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "161" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1048,7 +1048,7 @@
       "inSpin": {
         "$id": "166",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "164" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1067,7 +1067,7 @@
       "inSpin": {
         "$id": "169",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "167" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1086,7 +1086,7 @@
       "inSpin": {
         "$id": "172",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "170" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1105,7 +1105,7 @@
       "inSpin": {
         "$id": "175",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "173" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1124,7 +1124,7 @@
       "inSpin": {
         "$id": "178",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "176" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1143,7 +1143,7 @@
       "inSpin": {
         "$id": "181",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "179" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1162,7 +1162,7 @@
       "inSpin": {
         "$id": "184",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "182" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1181,7 +1181,7 @@
       "inSpin": {
         "$id": "187",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "185" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1200,7 +1200,7 @@
       "inSpin": {
         "$id": "190",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "188" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1219,7 +1219,7 @@
       "inSpin": {
         "$id": "193",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "191" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1238,7 +1238,7 @@
       "inSpin": {
         "$id": "196",
         "$type": "NM.Data.PlaySpin+Grid, NM.Data",
-        "InPlay": { "$ref": "194" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1257,7 +1257,7 @@
       "inSpin": {
         "$id": "199",
         "$type": "NM.Data.PlaySpin+Resource, NM.Data",
-        "InPlay": { "$ref": "197" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1276,7 +1276,7 @@
       "inSpin": {
         "$id": "202",
         "$type": "NM.Data.PlaySpin+Resource, NM.Data",
-        "InPlay": { "$ref": "200" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1295,7 +1295,7 @@
       "inSpin": {
         "$id": "205",
         "$type": "NM.Data.PlaySpin+Resource, NM.Data",
-        "InPlay": { "$ref": "203" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1314,7 +1314,7 @@
       "inSpin": {
         "$id": "208",
         "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
-        "InPlay": { "$ref": "206" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     },
@@ -1440,7 +1440,7 @@
       "inSpin": {
         "$id": "229",
         "$type": "NM.Data.PlaySpin+Symbol, NM.Data",
-        "InPlay": { "$ref": "209" },
+        "InPlay": null,
         "Spin": { "$ref": "3" }
       }
     }
