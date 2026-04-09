@@ -83,7 +83,7 @@ public record ResultPosWrap(Vector2Int Pos)
 [ActContainer]
 public partial class PlaySpin
 {
-    [Obsolete("准备执行物体 ALL 词条")]
+    [Obsolete("将执行物体 ALL 词条")]
     async UniTask CheckItemAsync(IItem item, CancellationToken ct)
     {
         if (!BelongNode.Items.Contains(item.InPlay))
@@ -95,7 +95,7 @@ public partial class PlaySpin
     public record EvtBeforeCheckSymbol(PlaySpin WhoHasCt, IItem Item) : EvtBase<PlaySpin>(WhoHasCt);
 
    
-    [Obsolete("准备执行物体单行词条")]
+    [Obsolete("将执行物体单行词条")]
     UniTask DoItemDesResultAsync(IItem selfItem, ResultWrap resultWrap, CancellationToken ct)
     {
         if (!BelongNode.Items.Contains(selfItem.InPlay))

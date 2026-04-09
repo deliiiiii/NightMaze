@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading;
 using General;
-using JetBrains.Annotations;
-using PlasticGui.WorkspaceWindow.PendingChanges;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
