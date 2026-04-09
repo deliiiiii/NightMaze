@@ -55,9 +55,9 @@ public static class Bus
             typeName = typeName.Replace("Node<TThis>.", string.Empty);
             if (typeName.StartsWith("Evt"))
                 typeName = typeName[3..];
+            typeName = typeName.Replace("OnEnter", "进入状态");
+            typeName = typeName.Replace("OnExit", "退出状态");
             var details = evt.ToString();
-            details = details.Replace("OnEnter", "进入状态");
-            details = details.Replace("OnExit", "退出状态");
             var leftBracketIndex = details.IndexOf('{');
             var rightBracketIndex = details.LastIndexOf('}');
             details = details.Substring(leftBracketIndex, rightBracketIndex - leftBracketIndex + 1);
