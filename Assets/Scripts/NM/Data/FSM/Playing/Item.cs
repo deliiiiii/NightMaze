@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 using General;
 using GeneralPreview;
 using Newtonsoft.Json;
@@ -42,10 +43,23 @@ public partial class GamePlaying
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
         public Vector2Int PivotPos { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
-        public IEnumerable<Vector2Int> DeltaPosList { [DebuggerStepThrough] get; private init; }
+        public List<Vector2Int> DeltaPosList { [DebuggerStepThrough] get; private init; }
         public List<ItemDesConfig> EatConfigList { [DebuggerStepThrough] get; private init; }
 
-
+        protected virtual bool PrintMembers(StringBuilder builder)
+        {
+            builder.Append($"Name = {Config.Name}, ");
+            builder.Append($"PivotPos = {PivotPos}, ");
+            builder.Append($"DeltaPosList = [{string.Join(", ", DeltaPosList)}]");
+            return true;
+        }
+        string IItem.PrintMembers()     
+        {
+            var sb = new StringBuilder();
+            PrintMembers(sb);
+            return sb.ToString();
+        }
+        
         PlaySpin.IItem? inSpin;
         public PlaySpin.IItem InSpin(PlaySpin spin) => inSpin ??= CreateInSpin(spin);
         void IItem.DestroyInSpin() => inSpin = null;
@@ -59,7 +73,7 @@ public partial class GamePlaying
         bool Spawning { get; set; }
         bool ReallyInWorld => !Dragging && !Spawning;
         Vector2Int PivotPos { get; set; }
-        IEnumerable<Vector2Int> DeltaPosList { get; }
+        List<Vector2Int> DeltaPosList { get; }
         bool CoverPos(Vector2Int pos);
         IEnumerable<Vector2Int> CoveredPosList { get; }
         IItemConfig Config { get; }
@@ -68,5 +82,7 @@ public partial class GamePlaying
 
         PlaySpin.IItem InSpin(PlaySpin spin);
         void DestroyInSpin();
+
+        string PrintMembers();
     }
 }

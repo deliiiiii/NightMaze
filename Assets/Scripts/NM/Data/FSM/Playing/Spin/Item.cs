@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using General;
 using Newtonsoft.Json;
 using NM.Config;
 
@@ -27,7 +29,7 @@ public partial class PlaySpin
             InPlay = inPlay;
         }
         protected PlaySpin Spin;
-        public TSubInPlay InPlay {[DebuggerStepThrough] get; init; }
+        protected TSubInPlay InPlay {[DebuggerStepThrough] get; init; }
         GamePlaying.IItem IItem.InPlay { [DebuggerStepThrough] get => InPlay; }
         public long GetProp(EPropType propType)
         {
@@ -52,12 +54,28 @@ public partial class PlaySpin
             return UniTask.CompletedTask;
         }
         protected virtual void SelfAddBaseValue() { }
+        
+        protected virtual bool PrintMembers(StringBuilder sb)
+        {
+            sb.Append($"{InPlay.PrintMembers()}, ");
+            sb.Append($"ModifyPropList = [{string.Join(", ", ModifyPropList)}]");
+            return true;
+        }
     }
-    public class ModifyPropInfo 
+    public record ModifyPropInfo 
     {
         public required IItem Ett;
         public required EPropType PropType;
         public long AddValue;
         public long MultiValue;
+
+        protected virtual bool PrintMembers(StringBuilder sb)
+        {
+            sb.Append($"Ett = {Ett.InPlay.Config.Name},");
+            sb.Append($"PropType = {PropType.GetLabelText()}, ");
+            sb.Append($"AddValue = {AddValue}, ");
+            sb.Append($"MultiValue = {MultiValue}");
+            return true; 
+        }
     }
 }

@@ -1,18 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
+using Newtonsoft.Json;
 using NM.Config;
 namespace NM.Data;
 
 public record ResultWrap(ItemDesResultBase Result, ResultWrap? PreResult)
 {
     public readonly ItemDesResultBase Result = Result;
-    public bool Success = true;
+    public bool Success;
+    [JsonIgnore] bool hasNext;
     public readonly ResultWrap? PreResult = PreResult;
     public List<ResultItemWrap> ItemWraps = [];
     public List<ResultPosWrap> PosWraps = [];
+
+    protected virtual bool PrintMembers(StringBuilder sb)
+    {
+        sb.Append($"Result = {Result.GetType()}, ");
+        if (PreResult != null)
+        {
+            PreResult.hasNext = true;
+            var preSb = new StringBuilder();
+            PreResult.PrintMembers(preSb);
+            sb.Append($"PreResult = {{ {preSb} }}, ");
+        }
+        if (hasNext)
+        {
+            sb.Append($"Success = {Success}, ");
+            sb.Append($"ItemWraps = [{string.Join(", ", ItemWraps.Select(w => w))}], ");
+            sb.Append($"PosWraps = [{string.Join(", ", PosWraps.Select(w => w))}]");
+        }
+        return true;
+    }
 }
 
 public record ResultItemWrap(GamePlaying.IItem Item)
@@ -38,18 +60,30 @@ public record ResultItemWrap(GamePlaying.IItem Item)
         public EPropType PropType;
         public long Value;
     }
+    protected virtual bool PrintMembers(StringBuilder sb)
+    {
+        sb.Append($"Item = {Item}, ");
+        sb.Append($"CtxList = [{string.Join(", ", CtxList.Select(c => c.GetType()))}], ");
+        return true;
+    }
 }
 public record ResultPosWrap(Vector2Int Pos)
 {
     public Vector2Int Pos = Pos;
     public List<CtxBase> CtxList = [];
     public abstract record CtxBase;
+    protected virtual bool PrintMembers(StringBuilder sb)
+    {
+        sb.Append($"Pos = {Pos}, ");
+        sb.Append($"CtxList = [{string.Join(", ", CtxList.Select(c => c.GetType()))}], ");
+        return true;
+    }
 }
 
 [ActContainer]
 public partial class PlaySpin
 {
-    [Obsolete("准备执行物体整个词条")]
+    [Obsolete("准备执行物体 ALL 词条")]
     async UniTask CheckItemAsync(IItem item, CancellationToken ct)
     {
         if (!BelongNode.Items.Contains(item.InPlay))
@@ -61,7 +95,7 @@ public partial class PlaySpin
     public record EvtBeforeCheckSymbol(PlaySpin WhoHasCt, IItem Item) : EvtBase<PlaySpin>(WhoHasCt);
 
    
-    [Obsolete("准备执行物体单个词条Result")]
+    [Obsolete("准备执行物体单行词条")]
     UniTask DoItemDesResultAsync(IItem selfItem, ResultWrap resultWrap, CancellationToken ct)
     {
         if (!BelongNode.Items.Contains(selfItem.InPlay))
@@ -81,6 +115,8 @@ public partial class PlaySpin
                 ResultWrap = new ResultWrap(result.Next, resultWrap)
             });
         }
+        if (!(resultWrap.PreResult?.Success ?? true))
+            return UniTask.CompletedTask;
         InsertAfter(result switch
         {
             ItemDesResultAddItemDesToSelf addItemDesToSelf => 
@@ -306,6 +342,7 @@ public partial class PlaySpin
             Ett = from,
             AddValue = value
         });
+        resultWrap?.Success = true;
         resultWrap?.ItemWraps.Add(new ResultItemWrap(to.InPlay)
         {
             CtxList = [new ResultItemWrap.CtxAddPropX{PropType = propType,Value = value}]
@@ -321,6 +358,7 @@ public partial class PlaySpin
             Ett = from,
             MultiValue = value
         });
+        resultWrap?.Success = true;
         resultWrap?.ItemWraps.Add(new ResultItemWrap(to.InPlay)
         {
             CtxList = [new ResultItemWrap.CtxMulPropX{PropType = propType,Value = value}]

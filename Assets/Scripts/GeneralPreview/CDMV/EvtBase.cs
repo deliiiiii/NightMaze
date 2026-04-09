@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
@@ -54,11 +55,14 @@ public static class Bus
             typeName = typeName.Replace("Node<TThis>.", string.Empty);
             if (typeName.StartsWith("Evt"))
                 typeName = typeName[3..];
-            // var details = evt.ToString();
-            // var leftBracketIndex = details.IndexOf('{');
-            // var rightBracketIndex = details.IndexOf('}');
-            MyDebug.Log($"Fired - {typeName} {evt.ToString()}");
-            // MyDebug.Log($"Fired - {typeName} {details.Substring(leftBracketIndex, rightBracketIndex - leftBracketIndex + 1)}");
+            var details = evt.ToString();
+            details = details.Replace("OnEnter", "进入状态");
+            details = details.Replace("OnExit", "退出状态");
+            var leftBracketIndex = details.IndexOf('{');
+            var rightBracketIndex = details.LastIndexOf('}');
+            details = details.Substring(leftBracketIndex, rightBracketIndex - leftBracketIndex + 1);
+            details = FormatRecordDetails(details);
+            MyDebug.Log($"Fired - {typeName}{details}");
         }
         if (!evtDic.TryGetValue(evtType, out var list)) 
             return;
@@ -89,6 +93,59 @@ public static class Bus
             evtDic.Remove(typeof(T));
         }
     }
+    
+    static string FormatRecordDetails(string text)
+    {                                       
+        var sb = new StringBuilder();
+        int indent = 0;
+        int inParentheses = 0; // 记录当前是否在小括号内
+        string indentStr = "    ";
+        
+        for (int i = 0; i < text.Length; i++)
+        {
+            char c = text[i];
+
+            if (c == '(')
+            {
+                inParentheses++;
+                sb.Append(c);
+            }
+            else if (c == ')')
+            {
+                inParentheses = Math.Max(0, inParentheses - 1);
+                sb.Append(c);
+            }
+            else if (c == '{')
+            {
+                sb.Append(c);
+                sb.AppendLine();
+                indent++;
+                for (int j = 0; j < indent; j++) sb.Append(indentStr);
+                if (i + 1 < text.Length && text[i + 1] == ' ') i++;
+            }
+            else if (c == '}')
+            {
+                sb.AppendLine();
+                indent = Math.Max(0, indent - 1);
+                for (int j = 0; j < indent; j++) sb.Append(indentStr);
+                sb.Append(c);
+            }
+            // 只有当 inParentheses == 0 时，逗号才会引起换行
+            else if (c == ',' && inParentheses == 0)
+            {
+                sb.Append(c);
+                sb.AppendLine();
+                for (int j = 0; j < indent; j++) sb.Append(indentStr);
+                if (i + 1 < text.Length && text[i + 1] == ' ') i++;
+            }
+            else
+            {
+                sb.Append(c);
+            }
+        }
+        return sb.ToString();
+    }
+
 }
 [DebuggerStepThrough]
 public abstract record EvtBase<THasCt>(THasCt WhoHasCt)

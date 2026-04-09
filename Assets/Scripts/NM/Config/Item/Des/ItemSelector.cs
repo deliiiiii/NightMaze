@@ -32,6 +32,15 @@ public abstract record ItemSelectorBase
     [SerializeReference, LabelText("排序"), HideIf(nameof(IsSelf)), PropertyOrder(9999)] public ItemSortBase? ItemSort;
 
     bool IsSelf() => this is ItemSelectorSelf;
+
+    protected virtual bool PrintMembers(StringBuilder sb)
+    {
+        sb.Append(ItemFilter);
+        sb.Append(Random);
+        sb.Append(TakeMax);
+        sb.Append(ItemSort);
+        return true;
+    }
 }
 [TypeRegistryItem("场上所有物体")]
 public record ItemSelectorAllPresentItem : ItemSelectorBase;
@@ -79,6 +88,16 @@ public record ItemSelectorItem : ItemSelectorBase
             select config
         ];
     }
+
+    protected override bool PrintMembers(StringBuilder sb)
+    {
+        base.PrintMembers(sb);
+        sb.Append($"GridList = [{string.Join(", ", GridList.Select(c => c.Name))}], ");
+        sb.Append($"SymbolList = [{string.Join(", ", SymbolList.Select(c => c.Name))}], ");
+        sb.Append($"BuildingList = [{string.Join(", ", BuildingList.Select(c => c.Name))}], ");
+        sb.Append($"ResourceList = [{string.Join(", ", ResourceList.Select(c => c.Name))}], ");
+        return true;
+    }
 }
 [TypeRegistryItem("指定物体组(拖入: 物体组Config)")]
 public record ItemSelectorItemSet : ItemSelectorBase
@@ -91,6 +110,18 @@ public record ItemSelectorItemSet : ItemSelectorBase
     public ItemSelectorItemSet(int xx)
     {
         Set = RefPoolMulti<ItemConfigSet>.AcquireOne(x => x.ID == ConfigSetId)!;
+    }
+
+    protected override bool PrintMembers(StringBuilder sb)
+    {
+        base.PrintMembers(sb);
+        sb.Append($"Set =[");
+        sb.Append(string.Join(", ", Set.GridList.Select(c => c.Name)));
+        sb.Append(string.Join(", ", Set.SymbolList.Select(c => c.Name)));
+        sb.Append(string.Join(", ", Set.BuildingList.Select(c => c.Name)));
+        sb.Append(string.Join(", ", Set.ResourceList.Select(c => c.Name)));
+        sb.Append("]");
+        return true;
     }
 }
 

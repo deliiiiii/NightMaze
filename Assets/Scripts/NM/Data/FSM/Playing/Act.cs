@@ -9,7 +9,7 @@ namespace NM.Data;
 [ActContainer]
 public partial class GamePlaying
 {
-    [Obsolete("移动 某物体 到 某位置")][MuteActEvt]
+    [Obsolete("尝试移动某物体")][MuteActEvt]
     async UniTask MoveItemToPosAsync(IItem item, Vector2Int oldPos, Vector2Int pos, ResultWrap? resultWrap, CancellationToken ct)
     {
         if(oldPos == pos)
@@ -19,20 +19,18 @@ public partial class GamePlaying
         {
             item.PivotPos = pos;
             await new EvtMoveItem(this, item);
+            resultWrap?.Success = true;
             resultWrap?.ItemWraps.Add(new ResultItemWrap(item)
             {
                 CtxList = [new ResultItemWrap.CtxSuccessMoved{OldPos = oldPos}]
             });
         }
-        else
-        {
-            resultWrap?.Success = false;
-        }
         item.Dragging = false;
-    }   
+    }
+    [EvtName("移动了某物体")]
     public record EvtMoveItem(GamePlaying WhoHasCt, IItem Item) : EvtBase<GamePlaying>(WhoHasCt);
 
-    [Obsolete("在某位置 生成 某物体")][MuteActEvt]
+    [Obsolete("尝试在某位置生成某物体")][MuteActEvt]
     async UniTask SpawnItemAtPosAsync(EItemType type, int id, Vector2Int pos, ResultWrap? resultWrap, CancellationToken ct)
     {
         IItem item = type switch
@@ -46,17 +44,18 @@ public partial class GamePlaying
         item.Spawning = true;
         if (!TrySetItem(item))
         {
-            resultWrap?.Success = false;
             return;
         }
         item.Spawning = false;
         itemList.Add(item);
         await new EvtSpawnItem(this, item);
+        resultWrap?.Success = true;
         resultWrap?.ItemWraps.Add(new ResultItemWrap(item)
         {
             CtxList = [new ResultItemWrap.CtxSpawned()]
         });
     }
+    [EvtName("生成了某物体")]
     public record EvtSpawnItem(GamePlaying WhoHasCt, IItem Item) : EvtBase<GamePlaying>(WhoHasCt);
 
     public bool TrySetItem(IItem item)
@@ -73,14 +72,11 @@ public partial class GamePlaying
     {
         if (itemList.Remove(toRemove))
         {
+            resultWrap?.Success = true;
             resultWrap?.ItemWraps.Add(new ResultItemWrap(toRemove)
             {
                 CtxList = [new ResultItemWrap.CtxRemoved()]
             });
-        }
-        else
-        {
-            resultWrap?.Success = false;
         }
         return UniTask.CompletedTask;
     }
@@ -89,6 +85,7 @@ public partial class GamePlaying
     UniTask ItemEatItemConfigAsync(IItem whoEat, IItem toEat, ResultWrap? resultWrap, CancellationToken ct)
     {
         whoEat.EatConfigList.AddRange(toEat.Config.DesList);
+        resultWrap?.Success = true;
         return UniTask.CompletedTask;
     }
 }
