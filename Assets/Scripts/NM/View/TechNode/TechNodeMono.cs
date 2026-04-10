@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using General;
 using Sirenix.OdinInspector;
@@ -31,8 +32,8 @@ public class TechNodeMono : Singleton<TechNodeMono>
     [SerializeField] TechLine pfbTechLine;
     [SerializeField] Trs trsTechNode;
     [SerializeField] Trs trsTechLine;
-    [SerializeField, ReadOnly] List<TechNode> techNodeList = [];
-    [SerializeField, ReadOnly] List<TechLine> techLineList = [];
+    [NonSerialized, ShowInInspector, ReadOnly] List<TechNode> techNodeList = [];
+    [NonSerialized, ShowInInspector, ReadOnly] List<TechLine> techLineList = [];
 
     [Header("开始/结束编辑")]
     [LabelText("正在编辑"), ReadOnly, PropertyOrder(10)] public bool Editing;
@@ -107,7 +108,7 @@ public class TechNodeMono : Singleton<TechNodeMono>
         });
         
         
-        foreach (var line in techLineList.OfType<TechLine>())
+        foreach (var line in techLineList.Where(l => l != null))
         {
             line.OnCreate();
         }
@@ -178,24 +179,22 @@ public class TechNodeMono : Singleton<TechNodeMono>
     public int LeftOutPort;
     [Label("右输入端口ID"), Range(1, 5), PropertyOrder(LineOrder + 20), ShowIf(nameof(Editing))]
     public int RightInPort;
-    [Button, EnableIf(nameof(TryGetTwoNodeIgnore)), PropertyOrder(LineOrder + 30), ShowIf(nameof(Editing))]
+    [Button("创建连线 (要求:选中两个节点,并在上面指定两个端口)"), EnableIf(nameof(TryGetTwoNodeIgnore)), PropertyOrder(LineOrder + 30), ShowIf(nameof(Editing))]
     void CreateLine()
     {
         if (!TryGetTwoNode(out var pair))
             return;
-        var l = pair.l;
-        var r = pair.r;
-        // if(techLineList.Any(line => line.Left == pair.l && line.Right == pair.r))
-        // {
-        //     UnityEditor.EditorUtility.DisplayDialog(
-        //         "已存在 !", 
-        //         $"已存在这两个节点之间的连线.", 
-        //         "返回"
-        //     );
-        //     return;
-        // }
+        if(techLineList.Any(line => line.Left == pair.l && line.Right == pair.r))
+        {
+            UnityEditor.EditorUtility.DisplayDialog(
+                "已存在 !", 
+                $"已存在这两个节点之间的连线.", 
+                "返回"
+            );
+            return;
+        }
         
-        if (techLineList.Any(line => line.Left == l && line.LeftOutPort == LeftOutPort))
+        if (techLineList.Any(line => line.Left == pair.l && line.LeftOutPort == LeftOutPort))
         {
             UnityEditor.EditorUtility.DisplayDialog(
                 "重叠 !", 
@@ -204,7 +203,7 @@ public class TechNodeMono : Singleton<TechNodeMono>
             );
             return;
         }
-        if (techLineList.Any(line => line.Right == r && line.RightInPort == RightInPort))
+        if (techLineList.Any(line => line.Right == pair.r && line.RightInPort == RightInPort))
         {
             UnityEditor.EditorUtility.DisplayDialog(
                 "重叠 !", 
@@ -215,14 +214,34 @@ public class TechNodeMono : Singleton<TechNodeMono>
         }
         
         var ins = Instantiate(pfbTechLine, trsTechLine);
-        UnityEditor.Undo.RegisterCreatedObjectUndo(ins, "CreateLine");
-        ins.Left = l;
-        ins.Right = r;
+        UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, "CreateLine");
+        ins.Left = pair.l;
+        ins.Right = pair.r;
         ins.LeftOutPort = LeftOutPort;
         ins.RightInPort = RightInPort;
         ins.OnCreate();
     }
 
+    [Button("移除连线 (要求：选中两个节点)"), EnableIf(nameof(TryGetTwoNodeIgnore)), PropertyOrder(LineOrder + 40), ShowIf(nameof(Editing))]
+    public void RemoveAllLines()
+    {
+        if (!TryGetTwoNode(out var pair))
+            return;
+        var line = techLineList.FirstOrDefault(line => line.Left == pair.l && line.Right == pair.r);
+        if(line == null)
+        {
+            UnityEditor.EditorUtility.DisplayDialog(
+                "不存在 !", 
+                $"不存在这两个节点之间的连线.", 
+                "返回"
+            );
+            return;
+        }
+        UnityEditor.Undo.DestroyObjectImmediate(line.gameObject);
+    }
+
+    
+    
     // [Button]
     // public void CreateNode(Vector2 tarPos)
     // {
