@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2751463944744366696}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trs Symbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 753489301699468890}
   - component: {fileID: 8643485576451584329}
   - component: {fileID: 51266567040877737}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GridSpr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7465287358283997466}
   - component: {fileID: 5723720930624285385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OnEnterTween
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8263690162580485163}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trs Resource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7726976850546557868}
   - component: {fileID: 3271188090210110331}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,15 +353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875015b9749e43a1a38ba13bcc9d29f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Data>k__BackingField:
-    rid: -2
   TrsSymbol: {fileID: 2751463944744366696}
   TrsResource: {fileID: 8263690162580485163}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
 --- !u!1 &7549130322489371067
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4152657891613823942}
   - component: {fileID: 3519878133573709586}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OnExitTween
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,9 +497,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5916420251184453429, guid: 1630b19ca22923d4aa305b5d2da14306, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7187888423295095985, guid: 1630b19ca22923d4aa305b5d2da14306, type: 3}
       propertyPath: m_Name
       value: Resource
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187888423295095985, guid: 1630b19ca22923d4aa305b5d2da14306, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7187888423295095985, guid: 1630b19ca22923d4aa305b5d2da14306, type: 3}
       propertyPath: m_IsActive
@@ -570,13 +571,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5916420251184453429, guid: ce6be8f02411a834cb72168ea56fb189, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930656607081276174, guid: ce6be8f02411a834cb72168ea56fb189, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7187888423295095985, guid: ce6be8f02411a834cb72168ea56fb189, type: 3}
       propertyPath: m_Name
       value: Symbol
       objectReference: {fileID: 0}
     - target: {fileID: 7187888423295095985, guid: ce6be8f02411a834cb72168ea56fb189, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187888423295095985, guid: ce6be8f02411a834cb72168ea56fb189, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214346528495853628, guid: ce6be8f02411a834cb72168ea56fb189, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

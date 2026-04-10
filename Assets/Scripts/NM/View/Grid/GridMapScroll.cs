@@ -1,13 +1,15 @@
 ﻿using System;
 using GeneralPreview;
+using NM.View.ZZZTest;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace NM.View;
 
-public class GridMapScroll : MonoBehaviour
+public class GridMapScroll : MonoBehaviour, IMultiScrollHandler
 {
+    [SerializeField] bool enablePena = true;
     public int MinSeenGrid = 2;
     public int MaxSeenGrid = 24;
     public int TarSeenGrid = 12;
@@ -20,28 +22,16 @@ public class GridMapScroll : MonoBehaviour
             () => TarOrtho, Duration,
             Tween.CubicOut,
             destroyCancellationToken);
-        this.BindEvtTrg(EventTriggerType.Scroll, _ =>
-        {
-            int y = (int)Math.Clamp(Input.mouseScrollDelta.y, -1, 1);
-            // MyDebug.Log($"scroll {y}");
-            TarSeenGrid = Math.Clamp(TarSeenGrid - y, MinSeenGrid, MaxSeenGrid);
-        });
+        // this.BindEvtTrg(EventTriggerType.Scroll, _ =>
+        // {
+        // });
     }
-    
-    // UniEvt<MyInput.EvtKeyDown> EvtMouseDown => new()
-    // {
-    //     Des = "按下鼠标键",
-    //     Invoke = (evt, ct) =>
-    //     {
-    //         if (evt.Key == KeyCode.Mouse0)
-    //         {
-    //             MyDebug.Log("0");
-    //         }
-    //         else if(evt.Key == KeyCode.Mouse1)
-    //         {
-    //             MyDebug.Log("1");
-    //         }
-    //         return UniTask.CompletedTask;
-    //     },
-    // };
+    public void OnMultiScroll(PointerEventData eventData)
+    {
+        int y = (int)Math.Clamp(eventData.scrollDelta.y, -1, 1);
+        // MyDebug.Log($"scroll {y}");
+        TarSeenGrid = Math.Clamp(TarSeenGrid - y, MinSeenGrid, MaxSeenGrid);
+    }
+
+    bool IPointerPena.EnablePena => enablePena;
 }

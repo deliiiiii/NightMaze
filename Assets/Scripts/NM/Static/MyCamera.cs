@@ -7,19 +7,25 @@ namespace NM;
 
 public class MyCamera : Singleton<MyCamera>
 {
-    [SerializeField] CinemachineVirtualCamera mainIns;
-    public static CinemachineVirtualCamera MainV => Instance.mainIns;
+    [SerializeField] Camera main;
+    [SerializeField] CinemachineVirtualCamera mainV;
+    [SerializeField] Camera ui;
+    [SerializeField] CinemachineVirtualCamera uiV;
+    public static CinemachineVirtualCamera MainV => Instance.mainV;
+    // ReSharper disable once InconsistentNaming
+    public static CinemachineVirtualCamera UIV => Instance.uiV;
     public static Camera Main => field ??= Camera.main!;
+    public static Camera UI => field ??= Instance.ui;
 
-    public static Vector3 ScreenDeltaToWorldDelta(Vector3 screenDelta)
+    public static Vector3 ScreenDeltaToWorldDelta(Camera camera, Vector3 screenDelta)
     {
         var curScreenPos = Input.mousePosition;
         var preScreenPos = curScreenPos - screenDelta;
-        float zDepth = -Main.transform.position.z; 
+        float zDepth = -camera.transform.position.z; 
         curScreenPos.z = zDepth;
         preScreenPos.z = zDepth;
-        Vector3 curWorldPos = Main.ScreenToWorldPoint(curScreenPos);
-        Vector3 prevWorldPos = Main.ScreenToWorldPoint(preScreenPos);
+        Vector3 curWorldPos = camera.ScreenToWorldPoint(curScreenPos);
+        Vector3 prevWorldPos = camera.ScreenToWorldPoint(preScreenPos);
         return curWorldPos - prevWorldPos;
     }
 }

@@ -48,8 +48,8 @@ public class MultiEventRaycaster : MonoBehaviour
         foreach (RaycastResult result in results)
         {
             currentHits.Add(result.gameObject);
-            
-            if (result.gameObject.GetComponent<IPointerPena>() == null)
+            var iPointerPena = result.gameObject.GetComponent<IPointerPena>();
+            if (iPointerPena is not { EnablePena: true })
             {
                 break;
             }
@@ -128,6 +128,17 @@ public class MultiEventRaycaster : MonoBehaviour
                 draggedObjects[i].Clear();
             }
             
+            Vector2 scrollDelta = Input.mouseScrollDelta;
+            if (scrollDelta != Vector2.zero)
+            {
+                hoverEventData.scrollDelta = scrollDelta;
+                foreach (GO obj in currentHits)
+                {
+                    ExecuteEvents.Execute<IMultiScrollHandler>(obj, hoverEventData,
+                        (handler, data) => handler.OnMultiScroll((PointerEventData)data));
+                }
+            }
+
         }
     }
 }

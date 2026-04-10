@@ -37,4 +37,12 @@ public interface IMultiPointerClickHandler : IEventSystemHandler, IPointerPena
     void OnMultiPointerClick(PointerEventData eventData);
 }
 
-public interface IPointerPena;
+public interface IMultiScrollHandler : IEventSystemHandler, IPointerPena
+{
+    void OnMultiScroll(PointerEventData eventData);
+}
+
+public interface IPointerPena
+{
+    public virtual bool EnablePena => true;
+}
