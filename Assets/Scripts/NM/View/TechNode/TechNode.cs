@@ -1,69 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;   
-using System.Linq;
-using GeneralPreview;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using Sirenix.OdinInspector;
+using NM.Config;
 using UnityEngine;
+using UnityEngine.UI.Extensions;
 
 namespace NM.View;
 
-public class TechNode : MonoBehaviour
+public class TechNode : MonoBehaviour, ITechObj
 {
     [NonSerialized, JsonIgnore] int @int;
-    [ValidateInput(nameof(CheckAll))]
-    public List<AdjNodeInfo> PreNodeList = [];
-    public List<AdjNodeInfo> NextNodeList = [];
 
-    [Button]
-    bool CheckAll(List<AdjNodeInfo> preNodeList, ref string defaultMessage, ref InfoMessageType messageType)
+    [SerializeField] Trs trsInPort;
+    [SerializeField] Trs trsOutPort;
+    public UICircle? ImgHandle;
+    // [Sirenix.OdinInspector.ReadOnly] public List<GO> InPortHandleList;
+    // [Sirenix.OdinInspector.ReadOnly] public List<GO> OutPortHandleList;
+
+    public Trs? GetOutPortTrs(int id) => trsOutPort.GetChild(id - 1);
+    public Trs? GetInPortTrs(int id) => trsInPort.GetChild(id - 1);
+
+    public void OnCreate()
     {
-        var e =
-            from eIn in CheckInPort()
-            from eOut in CheckOutPort()
-            select eOut;
-        if (e.IsLeft(out _, out var r))
-        {
-            defaultMessage = string.Blank;
-            messageType = InfoMessageType.Info;
-        }
-        else
-        {
-            defaultMessage = r;
-            messageType = InfoMessageType.Error;
-        }
-        return false;
+        // InPortHandleList = trsInPort.GetChildren().Select(t => t.gameObject).ToList();
+        // OutPortHandleList = trsOutPort.GetChildren().Select(t => t.gameObject).ToList();
     }
-    MyEither<bool, string> CheckInPort()
+
+    public void OnStartEdit()
     {
-        var inPortGroup =
-            from preNode in PreNodeList
-            group preNode by preNode.InPortID into g
-            select g;
-        return inPortGroup.Any(g => g.Count() > 1) ? "输入端口中有ID重复" : true;
+        ImgHandle?.enabled = true;
+        OnDeSelect();
     }
-    MyEither<bool, string> CheckOutPort()
+
+    public void OnEndEdit()
     {
-        var outPortGroup =
-            from nextNode in NextNodeList
-            group nextNode by nextNode.OutPortID into g
-            select g;
-        return outPortGroup.Any(g => g.Count() > 1) ? "输出端口中有ID重复" : true;
+        ImgHandle?.enabled = false;
+    }
+
+    public void OnSelect()
+    {
+        ImgHandle?.color = Color.blue;
+    }
+
+    public void OnDeSelect()
+    {
+        ImgHandle?.color = Color.white;
     }
 }
-[PublicAPI][Serializable]
-public class AdjNodeInfo
+
+public class TechNodeInfo
 {
-    [Required] public TechNode TechNode = null!;
-    [Range(1, 5)] public int OutPortID = 3;
-    [Range(1, 5)] public int InPortID = 3;
+    public List<(EPropType, int)> PropRequireList;
+    public List<(EPropType, int)> PropEarnedList;
+    public bool UnLocked;
 }
 
-[PublicAPI]
-[Serializable]
+
+[PublicAPI] [Serializable]
 public class NodeLineInfo
 {
-    public TechNode Left = null!;
-    public TechNode Right = null!;
+    public TechNode Left;
+    public int LeftOutPortID;
+    public TechNode Right;
+    public int RightInPortID;
 }

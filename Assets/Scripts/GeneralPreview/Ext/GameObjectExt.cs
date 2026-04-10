@@ -18,7 +18,6 @@ public static class GameObjectExt
             var com = self.GetComponent<T>();
             return com != null ? com : None;
         }
-
         public T GetOrAddCom<T>() where T : Component => self.GetComponent<T>() ?? self.AddComponent<T>();
     }
 
@@ -26,6 +25,7 @@ public static class GameObjectExt
     {
         public void SetActiveTrue() => self.gameObject.SetActive(true);
         public void SetActiveFalse() => self.gameObject.SetActive(false);
+        public T GetOrAddCom<T>() where T : Component => self.GetComponent<T>() ?? self.gameObject.AddComponent<T>();
     }
     
     extension(MonoBehaviour self)

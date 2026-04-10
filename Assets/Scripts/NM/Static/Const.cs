@@ -19,4 +19,9 @@ public static class Const
     {
         
     }
+
+    public static class Layer
+    {
+        public const string TechUI = "TechUI";
+    }
 }
