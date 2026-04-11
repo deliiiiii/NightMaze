@@ -10,8 +10,8 @@ namespace NM.View;
 
 public class TechNode : MonoBehaviour, ITechObj
 {
-    [NonSerialized, JsonIgnore] int @int;
-
+    [SerializeReference, ReadOnly] public TechNodeConfig Config;
+    
     [SerializeField] Trs trsInPort;
     [SerializeField] Trs trsOutPort;
     public UICircle? ImgHandle;

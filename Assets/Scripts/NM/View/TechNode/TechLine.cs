@@ -1,4 +1,5 @@
 ﻿using GeneralPreview;
+using NM.Config;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 
@@ -6,17 +7,19 @@ namespace NM.View;
 
 public class TechLine : MonoBehaviour, ITechObj
 {
+    [SerializeReference, ReadOnly] public TechLineConfig Config;
     UILineRenderer lineRenderer;
-    [ReadOnly] public TechNode Left;
-    public int LeftOutPort;
-    [ReadOnly] public TechNode Right;
-    public int RightInPort;
+    
+    public TechNode? Left => TechTreeEditor.GetNodeByID(Config.LeftNodeID);
+    public int LeftOutPort => Config.LeftPortID;
+    public TechNode? Right => TechTreeEditor.GetNodeByID(Config.RightNodeID);
+    public int RightInPort => Config.RightPortID;
 
     public void OnCreate()
     {
         lineRenderer = this.GetOrAddCom<UILineRenderer>();
-        var trsLeft = Left.GetOutPortTrs(LeftOutPort);
-        var trsRight = Right.GetInPortTrs(RightInPort);
+        var trsLeft = Left?.GetOutPortTrs(LeftOutPort);
+        var trsRight = Right?.GetInPortTrs(RightInPort);
         if (trsLeft == null || trsRight == null) 
             return;
         Vector2 startLocal = transform.InverseTransformPoint(trsLeft.position);

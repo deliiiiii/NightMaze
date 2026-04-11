@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using General;
+using NM.Config;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
 // #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 
 namespace NM.View;
-public class TechNodeMono : Singleton<TechNodeMono>
+public class TechTreeEditor : Singleton<TechTreeEditor>
 {
 #if UNITY_EDITOR
     [UnityEditor.InitializeOnLoad]
-    static class TechNodeEditor
+    static class TechTreeEditorSta
     {
-        static TechNodeEditor()
+        static TechTreeEditorSta()
         {
             if (Instance == null)
                 return;
@@ -33,6 +34,7 @@ public class TechNodeMono : Singleton<TechNodeMono>
     [SerializeField] Trs trsTechNode;
     [SerializeField] Trs trsTechLine;
     [NonSerialized, ShowInInspector, ReadOnly] List<TechNode> techNodeList = [];
+    public static TechNode? GetNodeByID(int id) => Instance.techNodeList.FirstOrDefault(node => node.Config.ID == id);
     [NonSerialized, ShowInInspector, ReadOnly] List<TechLine> techLineList = [];
 
     [Header("开始/结束编辑")]
@@ -106,12 +108,17 @@ public class TechNodeMono : Singleton<TechNodeMono>
                 lastSelected.Add(t);
             }
         });
-        
-        
+
+        foreach (var node in techNodeList.Where(n => n != null))
+        {
+            node.Config.Pos = node.transform.position;
+        }
         foreach (var line in techLineList.Where(l => l != null))
         {
             line.OnCreate();
         }
+
+        RefreshCurSelectedNode();
         UnityEditor.SceneView.RepaintAll();
         UnityEditor.EditorUtility.SetDirty(this);
     }
@@ -173,7 +180,63 @@ public class TechNodeMono : Singleton<TechNodeMono>
             where l != r && Vector3.Distance(l.transform.position, r.transform.position) < 1f
             select (List<TechNode>)[l, r]).SelectMany(x => x).Distinct().ToList();
 
-    const int LineOrder = 1000;
+    [Header("节点")]
+    const int NodeOrder = 1000;
+    TechNode? CurSelectedNode
+    {
+        get
+        {
+            if (!Editing)
+                return null;
+            return UnityEditor.Selection.gameObjects.Length == 1
+                ? UnityEditor.Selection.gameObjects[0].GetComponent<TechNode>()
+                : null;
+        }
+    }
+
+    bool CurSelectOneNode => Editing && CurSelectedNode != null;
+
+    [Label("当前节点信息"), PropertyOrder(NodeOrder + 14), ShowIf(nameof(CurSelectOneNode))]
+    [SerializeReference] TechNodeConfig? curNodeConfig;
+    void RefreshCurSelectedNode()
+    {
+        if (CurSelectedNode == null)
+            return;
+        var newConfig = CurSelectedNode.Config;
+        if (curNodeConfig != null && newConfig == curNodeConfig)
+            return;
+        curNodeConfig = newConfig;
+    }
+    [LabelText("附近位置倍率"), PropertyOrder(NodeOrder + 14), ShowIf(nameof(CurSelectOneNode))]
+    public int PosDelta = 100;
+    [Button("在当前节点附近创建新节点"), PropertyOrder(NodeOrder + 15), ShowIf(nameof(CurSelectOneNode))]
+    void CreateNodeNearCur()
+    {
+        if (CurSelectedNode == null)
+            return;
+        var tarPos = CurSelectedNode.transform.position + Vector3.up * PosDelta + Vector3.right * PosDelta;
+        NodePos = new Vector2Int((int)tarPos.x, (int)tarPos.y);
+        CreateNode();
+    }
+    [LabelText("创建节点位置"), PropertyOrder(NodeOrder + 18), ShowIf(nameof(Editing))]
+    public Vector2Int NodePos;
+    [Button("创建新节点"), PropertyOrder(NodeOrder + 20), ShowIf(nameof(Editing))]
+    void CreateNode()
+    {
+        var ins = Instantiate(pfbTechNode, trsTechNode);
+        UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, nameof(CreateNode));
+        ins.transform.position = new Vector3(NodePos.x, NodePos.y, 0);
+        UnityEditor.Selection.activeGameObject = ins.gameObject;
+        ins.Config = new TechNodeConfig
+        {
+            ID = 0,
+            Name = "新节点",
+            Pos = NodePos,
+            ToLockItems = [],
+            RequireLineList = []
+        };
+    }
+    const int LineOrder = 2000;
     [Header("线")]
     [Label("左输出端口ID"), Range(1, 5), PropertyOrder(LineOrder + 10), ShowIf(nameof(Editing))]
     public int LeftOutPort;
@@ -214,11 +277,14 @@ public class TechNodeMono : Singleton<TechNodeMono>
         }
         
         var ins = Instantiate(pfbTechLine, trsTechLine);
-        UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, "CreateLine");
-        ins.Left = pair.l;
-        ins.Right = pair.r;
-        ins.LeftOutPort = LeftOutPort;
-        ins.RightInPort = RightInPort;
+        UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, nameof(CreateLine));
+        ins.Config = new TechLineConfig
+        {
+            LeftNodeID = pair.l.Config.ID,
+            LeftPortID = LeftOutPort,
+            RightNodeID = pair.r.Config.ID,
+            RightPortID = RightInPort,
+        };
         ins.OnCreate();
     }
 
