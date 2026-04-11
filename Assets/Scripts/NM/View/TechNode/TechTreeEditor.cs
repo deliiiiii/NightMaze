@@ -6,6 +6,8 @@ using NM.Config;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
+using Object = UnityEngine.Object;
+
 // #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 
 namespace NM.View;
@@ -29,7 +31,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         }
     }
     
-    [SerializeField] TechNode pfbTechNode;
+    [SerializeField, HideInInspector] TechNode pfbTechNode;
     [SerializeField] TechLine pfbTechLine;
     [SerializeField] Trs trsTechNode;
     [SerializeField] Trs trsTechLine;
@@ -46,6 +48,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         Editing = true;
         OnHierarchyChanged();
         LockLayer(Const.Layer.TechUI);
+        UnlockLayer(Const.Layer.TechUIHandle);
         UnityEditor.Selection.activeGameObject = null;
         techNodeList.ForEach(t => t.OnStartEdit());
         techLineList.ForEach(t => t.OnStartEdit());
@@ -58,19 +61,23 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         {
             UnityEditor.EditorUtility.DisplayDialog(
                 "重叠 !", 
-                $"检测到 {overlapNodes.Count} 个节点位置几乎重叠, 强制回到编辑模式修正.", 
+                $"检测到 {overlapNodes.Count} 个节点位置几乎重叠, 强制退回到编辑模式(将自动选中第一个重叠的物体).", 
                 "返回"
             );
-            // UnityEditor.Selection.gameObjects = overlapNodes.Select(t => t.gameObject).ToArray();
+            UnityEditor.Selection.activeGameObject = overlapNodes.First().gameObject;
             return;
         }
+        
+        if (CheckHasRepeatID("结束编辑"))
+            return;
         OnEndEdit();
     }
 
     public void OnEndEdit()
     {
         OnHierarchyChanged();
-        UnlockLayer(Const.Layer.TechUI);
+        LockLayer(Const.Layer.TechUI);
+        LockLayer(Const.Layer.TechUIHandle);
         UnityEditor.Selection.activeGameObject = null;
         techNodeList.ForEach(t => t.OnEndEdit());
         techLineList.ForEach(t => t.OnEndEdit());
@@ -93,7 +100,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         }
 
         lastTickTime = curTime;
-        lastSelected.ForEach(t => t.OnDeSelect());
+        lastSelected.Where(n => n != null).ForEach(t => t.OnDeSelect());
         lastSelected.Clear();
         UnityEditor.Selection.gameObjects.ForEach(g =>
         {
@@ -174,11 +181,18 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
             // return false;
         // return techLineList.Any(line => line.Left == pair.l && line.Right == pair.r);
     // }
-    List<TechNode> GetOverlapNodes() =>
-        (from l in techNodeList
-            from r in techNodeList
-            where l != r && Vector3.Distance(l.transform.position, r.transform.position) < 1f
-            select (List<TechNode>)[l, r]).SelectMany(x => x).Distinct().ToList();
+    List<TechNode> GetOverlapNodes() => (
+        from l in techNodeList
+        from r in techNodeList
+        where l != r && Vector3.Distance(l.transform.position, r.transform.position) < 1f
+        select (List<TechNode>)[l, r]
+        ).SelectMany(x => x).Distinct().ToList();
+    
+    IEnumerable<IGrouping<int, TechNode>> GetIDRepeatNodes() => 
+        from n in techNodeList
+        group n by n.Config.ID into g
+        where g.Count() > 1
+        select g;
 
     [Header("节点")]
     const int NodeOrder = 1000;
@@ -242,11 +256,30 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
     public int LeftOutPort;
     [Label("右输入端口ID"), Range(1, 5), PropertyOrder(LineOrder + 20), ShowIf(nameof(Editing))]
     public int RightInPort;
+
+    bool CheckHasRepeatID(string wantToDo)
+    {
+        var groups = GetIDRepeatNodes().ToList();
+        if (groups.Any())
+        {
+            UnityEditor.EditorUtility.DisplayDialog(
+                "ID重复 !",
+                $"存在节点的ID重复, 无法{wantToDo}. 请先解决ID冲突(将自动选中ID重复的第一组物体).",
+                "返回"
+            );
+            UnityEditor.Selection.objects = groups[0].Select(n => n.gameObject as Object).ToArray();
+            return true;
+        }
+        return false;
+    }
     [Button("创建连线 (要求:选中两个节点,并在上面指定两个端口)"), EnableIf(nameof(TryGetTwoNodeIgnore)), PropertyOrder(LineOrder + 30), ShowIf(nameof(Editing))]
     void CreateLine()
     {
         if (!TryGetTwoNode(out var pair))
             return;
+        if (CheckHasRepeatID("创建连线"))
+            return;
+
         if(techLineList.Any(line => line.Left == pair.l && line.Right == pair.r))
         {
             UnityEditor.EditorUtility.DisplayDialog(
@@ -292,6 +325,8 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
     public void RemoveAllLines()
     {
         if (!TryGetTwoNode(out var pair))
+            return;
+        if (CheckHasRepeatID("移除连线"))
             return;
         var line = techLineList.FirstOrDefault(line => line.Left == pair.l && line.Right == pair.r);
         if(line == null)

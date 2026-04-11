@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;   
 using JetBrains.Annotations;
-using Newtonsoft.Json;
 using NM.Config;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
@@ -10,7 +9,7 @@ namespace NM.View;
 
 public class TechNode : MonoBehaviour, ITechObj
 {
-    [SerializeReference, ReadOnly] public TechNodeConfig Config;
+    [SerializeReference] public TechNodeConfig Config;
     
     [SerializeField] Trs trsInPort;
     [SerializeField] Trs trsOutPort;
@@ -45,6 +44,8 @@ public class TechNode : MonoBehaviour, ITechObj
 
     public void OnDeSelect()
     {
+        if(ImgHandle == null)
+            return;
         ImgHandle?.color = Color.white;
     }
 }
