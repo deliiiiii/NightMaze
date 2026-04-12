@@ -38,11 +38,20 @@ MonoBehaviour:
   FlavorDes: "\u8EBA\u8EBA\u53C8\u5E73\u5E73"
   Rarity: 0
   Tag: 0
-  DesList: []
+  DesList:
+  - Trigger:
+      rid: 6212121131550507009
+    Result:
+      rid: -2
   BuildingTag: 2
   Prop1Cost: 0
   Prop2Cost: 0
   Prop3Cost: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6212121131550507009
+      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
+      data: 

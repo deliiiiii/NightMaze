@@ -24,29 +24,29 @@ MonoBehaviour:
   NodeList:
   - ID: 13
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 650, y: 100}
+    Pos: {x: 1000, y: 50}
     RequireLineList: []
   - ID: 2
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 900, y: -200}
+    Pos: {x: 700, y: -200}
     RequireLineList: []
   - ID: 26
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 1100, y: 650}
+    Pos: {x: 750, y: 800}
     RequireLineList:
     - PropType: 0
       Value: 0
   - ID: 46
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 1750, y: 100}
+    Pos: {x: 1650, y: 250}
     RequireLineList: []
   - ID: 12
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 712.08997, y: 400}
+    Pos: {x: 1000, y: 400}
     RequireLineList: []
   - ID: 0
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 1500, y: 450}
+    Pos: {x: 1400, y: -500}
     RequireLineList: []
   LineList:
   - LeftNodeID: 12

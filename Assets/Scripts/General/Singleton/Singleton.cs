@@ -1,4 +1,6 @@
 ﻿//Mono单例
+
+using System;
 using System.Diagnostics;
 using UnityEngine;
 
@@ -15,13 +17,12 @@ namespace General
         {
             get
             {
-                // MyDebug.Log($"{typeof(T)} GET ins");
-                // if (!Application.isPlaying)
-                    // return instance;
-                // MyDebug.Log($"{typeof(T)} TrySpawn ins");
-                instance ??= FindObjectOfType<T>();
-                instance ??= new GameObject().AddComponent<T>();
-                return instance;
+                instance ??= FindAnyObjectByType<T>();
+#if UNITY_EDITOR
+                if (!Application.isPlaying)
+                    return instance;
+#endif
+                return instance ??= new GameObject(typeof(T).Name).AddComponent<T>();
             }
         }
 

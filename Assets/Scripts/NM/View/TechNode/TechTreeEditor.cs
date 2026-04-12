@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using General;
-using GeneralPreview;
 using NM.Config;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
@@ -16,22 +15,6 @@ namespace NM.View;
 public class TechTreeEditor : Singleton<TechTreeEditor>
 {
 #if UNITY_EDITOR
-    [UnityEditor.InitializeOnLoad]
-    static class TechTreeEditorSta
-    {
-        static TechTreeEditorSta()
-        {
-            if (Instance == null)
-                return;
-            Instance.OnEndEdit();
-            UnityEditor.EditorApplication.update -= Instance.OnEditorUpdate;
-            UnityEditor.EditorApplication.update += Instance.OnEditorUpdate;
-            UnityEditor.EditorApplication.hierarchyChanged -= Instance.OnHierarchyChanged;
-            UnityEditor.EditorApplication.hierarchyChanged += Instance.OnHierarchyChanged;
-            UnityEditor.EditorApplication.playModeStateChanged -= Instance.OnPlayModeStateChanged;
-            UnityEditor.EditorApplication.playModeStateChanged += Instance.OnPlayModeStateChanged;
-        }
-    }
     public static TechNode? GetNodeByID(int id) => Instance.techNodeList.FirstOrDefault(node => node.Config.ID == id);
     [SerializeField, HideInInspector] TechNode pfbTechNode;
     [SerializeField, HideInInspector] TechLine pfbTechLine;
@@ -40,9 +23,26 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
     [NonSerialized] List<TechNode> techNodeList = [];
     [NonSerialized] List<TechLine> techLineList = [];
 
-    [Header("开始/结束编辑")] 
+    bool hasOnValidate;
+    void OnValidate()
+    {
+        if (hasOnValidate)
+            return;
+        MyDebug.Log($"{nameof(TechTreeEditor)} OnValidate()");
+        hasOnValidate = true;
+        UnityEditor.EditorApplication.update -= OnEditorUpdate;
+        UnityEditor.EditorApplication.update += OnEditorUpdate;
+        UnityEditor.EditorApplication.hierarchyChanged -= OnHierarchyChanged;
+        UnityEditor.EditorApplication.hierarchyChanged += OnHierarchyChanged;
+        UnityEditor.EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+        UnityEditor.EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        OnEndEdit();
+    }
+    
     [LabelText("正在编辑"), ReadOnly, PropertyOrder(10)] public bool Editing;
 
+    
+    [Header("开始/结束编辑")] 
     [SerializeField] TechTreeConfig treeConfig;
     bool NotEditing => !Editing;
     [Button, EnableIf(nameof(NotEditing)), PropertyOrder(20)]
@@ -99,7 +99,6 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
     {
         
     }
-    
 
     readonly Dictionary<GO, ITechObj> goDic = [];
     readonly List<ITechObj> lastSelected = [];
