@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using General;
+using GeneralPreview;
 using NM.Config;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Vector2Int = UnityEngine.Vector2Int;
 
 // #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 
@@ -30,17 +32,18 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
             UnityEditor.EditorApplication.playModeStateChanged += Instance.OnPlayModeStateChanged;
         }
     }
-    
-    [SerializeField, HideInInspector] TechNode pfbTechNode;
-    [SerializeField] TechLine pfbTechLine;
-    [SerializeField] Trs trsTechNode;
-    [SerializeField] Trs trsTechLine;
-    [NonSerialized, ShowInInspector, ReadOnly] List<TechNode> techNodeList = [];
     public static TechNode? GetNodeByID(int id) => Instance.techNodeList.FirstOrDefault(node => node.Config.ID == id);
-    [NonSerialized, ShowInInspector, ReadOnly] List<TechLine> techLineList = [];
+    [SerializeField, HideInInspector] TechNode pfbTechNode;
+    [SerializeField, HideInInspector] TechLine pfbTechLine;
+    [SerializeField, HideInInspector] Trs trsTechNode;
+    [SerializeField, HideInInspector] Trs trsTechLine;
+    [NonSerialized] List<TechNode> techNodeList = [];
+    [NonSerialized] List<TechLine> techLineList = [];
 
-    [Header("开始/结束编辑")]
+    [Header("开始/结束编辑")] 
     [LabelText("正在编辑"), ReadOnly, PropertyOrder(10)] public bool Editing;
+
+    [SerializeField] TechTreeConfig treeConfig;
     bool NotEditing => !Editing;
     [Button, EnableIf(nameof(NotEditing)), PropertyOrder(20)]
     public void StartEdit()
@@ -71,6 +74,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         if (CheckHasRepeatID("结束编辑"))
             return;
         OnEndEdit();
+        SaveToConfig();
     }
 
     public void OnEndEdit()
@@ -83,6 +87,19 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         techLineList.ForEach(t => t.OnEndEdit());
         Editing = false;
     }
+
+    void SaveToConfig()
+    {
+        treeConfig.NodeList = techNodeList.Select(n => n.Config).ToList();
+        treeConfig.LineList = techLineList.Select(l => l.Config).ToList();
+        UnityEditor.EditorUtility.SetDirty(treeConfig);
+    }
+
+    void LoadFromConfig()
+    {
+        
+    }
+    
 
     readonly Dictionary<GO, ITechObj> goDic = [];
     readonly List<ITechObj> lastSelected = [];

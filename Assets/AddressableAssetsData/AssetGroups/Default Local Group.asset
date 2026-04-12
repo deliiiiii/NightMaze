@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 33647833f4609c242af2cd4ca232b882
   m_SerializeEntries:
+  - m_GUID: 03a914574305b7f488d57a6da5b15bd7
+    m_Address: "\u65B0\u79D1\u6280\u6811"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 10ed6c8933283f14e8b8127e1a5cca6d
     m_Address: "Building_2_\u6D3B\u4F53\u6536\u5BB9\u6808"
     m_ReadOnly: 0

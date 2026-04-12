@@ -14,16 +14,12 @@ public class TechNode : MonoBehaviour, ITechObj
     [SerializeField] Trs trsInPort;
     [SerializeField] Trs trsOutPort;
     public UICircle? ImgHandle;
-    // [Sirenix.OdinInspector.ReadOnly] public List<GO> InPortHandleList;
-    // [Sirenix.OdinInspector.ReadOnly] public List<GO> OutPortHandleList;
 
     public Trs? GetOutPortTrs(int id) => trsOutPort.GetChild(id - 1);
     public Trs? GetInPortTrs(int id) => trsInPort.GetChild(id - 1);
 
     public void OnCreate()
     {
-        // InPortHandleList = trsInPort.GetChildren().Select(t => t.gameObject).ToList();
-        // OutPortHandleList = trsOutPort.GetChildren().Select(t => t.gameObject).ToList();
     }
 
     public void OnStartEdit()
