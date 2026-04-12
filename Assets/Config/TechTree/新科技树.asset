@@ -24,11 +24,11 @@ MonoBehaviour:
   NodeList:
   - ID: 13
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 1000, y: 50}
+    Pos: {x: 900, y: 150}
     RequireLineList: []
   - ID: 2
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 700, y: -200}
+    Pos: {x: 900, y: -250}
     RequireLineList: []
   - ID: 26
     Name: "\u65B0\u8282\u70B9"
@@ -38,22 +38,18 @@ MonoBehaviour:
       Value: 0
   - ID: 46
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 1650, y: 250}
+    Pos: {x: 1600, y: 300}
     RequireLineList: []
-  - ID: 12
+  - ID: 47
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 1000, y: 400}
+    Pos: {x: 700, y: 450}
     RequireLineList: []
   - ID: 0
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 1400, y: -500}
+    Pos: {x: 1600, y: -200}
     RequireLineList: []
   LineList:
-  - LeftNodeID: 12
+  - LeftNodeID: 47
     LeftPortID: 1
     RightNodeID: 46
-    RightPortID: 5
-  - LeftNodeID: 13
-    LeftPortID: 3
-    RightNodeID: 46
-    RightPortID: 3
+    RightPortID: 1

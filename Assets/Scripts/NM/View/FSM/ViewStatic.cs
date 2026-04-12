@@ -1,5 +1,6 @@
 ﻿global using static NM.View.ViewStatic;
 using System.Diagnostics;
+using System.Threading;
 using General;
 using GeneralPreview;
 using NM.Data;
@@ -29,10 +30,10 @@ public class ViewStatic : Singleton<ViewStatic>
         from spin in play.GetStateOptional<PlaySpin>()
         select spin;
 
-    public static void BindAll()
+    public static void BindAll(CancellationToken ct)
     {
-        TitleViewIns.Bind();
-        PlayViewIns.Bind();
+        TitleViewIns.Bind(ct);
+        PlayViewIns.Bind(ct);
     }
 
     public static void UnBindAll()

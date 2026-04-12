@@ -86,12 +86,17 @@ namespace General
                 assetHandle = Addressables.LoadAssetAsync<Object>(address);
                 await assetHandle.ToUniTask(cancellationToken: ct ?? CancellationToken.None);
             }
+            catch (OperationCanceledException e)
+            {
+                MyDebug.Log($"加载路径为:{address}的资源被取消.");
+                throw;
+            }
             catch (Exception e)
             {
                 MyDebug.LogError($"加载路径为:{address}的资源失败:{e.Message},{e.StackTrace}");
                 return null;
             }
-
+            
             if (assetHandle.Status != AsyncOperationStatus.Succeeded)
             {
                 MyDebug.LogError($"加载路径为:{address}的资源失败");
@@ -210,6 +215,11 @@ namespace General
                     var results = await UniTask.WhenAll(tasks);
                     loadedAssets.AddRange(results.Where(asset => asset != null));
                 }
+            }
+            catch (OperationCanceledException)
+            {
+                MyDebug.Log($"标签组{label}资源加载已取消");
+                throw;
             }
             catch (Exception e)
             {

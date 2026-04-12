@@ -23,13 +23,14 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
     [NonSerialized] List<TechNode> techNodeList = [];
     [NonSerialized] List<TechLine> techLineList = [];
 
-    bool hasOnValidate;
-    void OnValidate()
+     
+    [UnityEditor.InitializeOnLoadMethod]
+    static void InitOnStart() 
+        => UnityEditor.EditorApplication.delayCall += () => Instance.OnDelayCall();
+
+    void OnDelayCall()
     {
-        if (hasOnValidate)
-            return;
-        MyDebug.Log($"{nameof(TechTreeEditor)} OnValidate()");
-        hasOnValidate = true;
+        MyDebug.Log($"{nameof(TechTreeEditor)} OnDelayCall()");
         UnityEditor.EditorApplication.update -= OnEditorUpdate;
         UnityEditor.EditorApplication.update += OnEditorUpdate;
         UnityEditor.EditorApplication.hierarchyChanged -= OnHierarchyChanged;
@@ -37,7 +38,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         UnityEditor.EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
         UnityEditor.EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         OnEndEdit();
-    }
+    } 
     
     [LabelText("正在编辑"), ReadOnly, PropertyOrder(10)] public bool Editing;
 
@@ -91,7 +92,13 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
     void SaveToConfig()
     {
         treeConfig.NodeList = techNodeList.Select(n => n.Config).ToList();
-        treeConfig.LineList = techLineList.Select(l => l.Config).ToList();
+        treeConfig.LineList = techLineList.Select(l => new TechLineConfig
+        {
+            LeftNodeID = l.Left.Config.ID,
+            LeftPortID = l.LeftOutPort,
+            RightNodeID = l.Right.Config.ID,
+            RightPortID = l.RightInPort,
+        }).ToList();
         UnityEditor.EditorUtility.SetDirty(treeConfig);
     }
 
@@ -155,13 +162,18 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
 
     public void OnPlayModeStateChanged(UnityEditor.PlayModeStateChange state)
     {
-        if (state == UnityEditor.PlayModeStateChange.ExitingEditMode && Editing)
+        switch (state)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
-            _ = UnityEditor.EditorUtility.DisplayDialog(
-                "你忘了..:",
-                "科技树未结束编辑.不能启动游戏",
-                "继续编辑.");
+            case UnityEditor.PlayModeStateChange.EnteredEditMode:
+                OnEndEdit();
+                break;
+            case UnityEditor.PlayModeStateChange.ExitingEditMode when Editing:
+                UnityEditor.EditorApplication.isPlaying = false;
+                _ = UnityEditor.EditorUtility.DisplayDialog(
+                    "你忘了..:",
+                    "科技树未结束编辑.不能启动游戏",
+                    "继续编辑.");
+                break;
         }
     }
     bool TryGetTwoNodeIgnore() => TryGetTwoNode(out _);
@@ -327,13 +339,17 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         
         var ins = Instantiate(pfbTechLine, trsTechLine);
         UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, nameof(CreateLine));
-        ins.Config = new TechLineConfig
-        {
-            LeftNodeID = pair.l.Config.ID,
-            LeftPortID = LeftOutPort,
-            RightNodeID = pair.r.Config.ID,
-            RightPortID = RightInPort,
-        };
+        // ins.Config = new TechLineConfig
+        // {
+        //     LeftNodeID = pair.l.Config.ID,
+        //     LeftPortID = LeftOutPort,
+        //     RightNodeID = pair.r.Config.ID,
+        //     RightPortID = RightInPort,
+        // };
+        ins.Left = pair.l;
+        ins.LeftOutPort = LeftOutPort;
+        ins.Right = pair.r;
+        ins.RightInPort = RightInPort;
         ins.OnCreate();
     }
 

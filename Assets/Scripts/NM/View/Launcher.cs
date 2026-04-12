@@ -8,19 +8,19 @@ using NM.Data;
 namespace NM.View;
 public class Launcher : Singleton<Launcher>
 {
-    static Launcher()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.playModeStateChanged += state =>
-        {
-            if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
-            {
-                // Instance.ViewList.Where(v => v != null).ForEach(v => v.Unbind());
-                ViewStatic.UnBindAll();
-            }
-        };
-#endif
-    }
+//     static Launcher()
+//     {
+// #if UNITY_EDITOR
+//         UnityEditor.EditorApplication.playModeStateChanged += state =>
+//         {
+//             if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
+//             {
+//                 // Instance.ViewList.Where(v => v != null).ForEach(v => v.Unbind());
+//                 ViewStatic.UnBindAll();
+//             }
+//         };
+// #endif
+//     }
     
     public List<ViewBase> ViewList = [];
     protected override void Awake()
@@ -42,9 +42,14 @@ public class Launcher : Singleton<Launcher>
             MyInput.Init(destroyCancellationToken);
             await Loader.LoadAllAsync(destroyCancellationToken);
             MigrateStepRegister.Init();
-            ViewStatic.BindAll();
+            ViewStatic.BindAll(destroyCancellationToken);
             GameRoot.AddTo(destroyCancellationToken);
             await GameRoot.ChangeStateAsync(new GameTitle(), false);
+        }
+        catch (OperationCanceledException e)
+        {
+            MyDebug.Log("关闭地太快...将结束各种异步加载.");
+            throw;
         }
         catch (Exception e)
         {

@@ -30,6 +30,8 @@ public class TechNode : MonoBehaviour, ITechObj
 
     public void OnEndEdit()
     {
+        if(ImgHandle == null)
+            return;
         ImgHandle?.enabled = false;
     }
 
