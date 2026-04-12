@@ -46,7 +46,7 @@ public class Launcher : Singleton<Launcher>
             GameRoot.AddTo(destroyCancellationToken);
             await GameRoot.ChangeStateAsync(new GameTitle(), false);
         }
-        catch (OperationCanceledException e)
+        catch (OperationCanceledException)
         {
             MyDebug.Log("关闭地太快...将结束各种异步加载.");
             throw;

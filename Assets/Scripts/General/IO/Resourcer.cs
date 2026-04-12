@@ -81,22 +81,8 @@ namespace General
             // Stopwatch st = new Stopwatch();
             // st.Start();
             AsyncOperationHandle<Object> assetHandle = default;
-            try
-            {
-                assetHandle = Addressables.LoadAssetAsync<Object>(address);
-                await assetHandle.ToUniTask(cancellationToken: ct ?? CancellationToken.None);
-            }
-            catch (OperationCanceledException e)
-            {
-                MyDebug.Log($"加载路径为:{address}的资源被取消.");
-                throw;
-            }
-            catch (Exception e)
-            {
-                MyDebug.LogError($"加载路径为:{address}的资源失败:{e.Message},{e.StackTrace}");
-                return null;
-            }
-            
+            assetHandle = Addressables.LoadAssetAsync<Object>(address);
+            await assetHandle.ToUniTask(cancellationToken: ct ?? CancellationToken.None);
             if (assetHandle.Status != AsyncOperationStatus.Succeeded)
             {
                 MyDebug.LogError($"加载路径为:{address}的资源失败");
@@ -190,40 +176,28 @@ namespace General
 
             Stopwatch st = new Stopwatch();
             st.Start();
-            List<T> loadedAssets = new List<T>();
-            List<UniTask<T>> tasks = parallel ? new List<UniTask<T>>() : null;
-            try
+            var loadedAssets = new List<T>();
+            var tasks = parallel ? new List<UniTask<T>>() : null;
+            foreach (var location in resourceLocations)
             {
-                foreach (var location in resourceLocations)
-                {
                     
-                    if (!parallel)
+                if (!parallel)
+                {
+                    var asset = await LoadAssetAsync<T>(location.PrimaryKey, ct);
+                    if (asset != null)
                     {
-                        var asset = await LoadAssetAsync<T>(location.PrimaryKey, ct);
-                        if (asset != null)
-                        {
-                            loadedAssets.Add(asset);
-                        }
-                        continue;
+                        loadedAssets.Add(asset);
                     }
-                    tasks.Add(LoadAssetAsync<T>(location.PrimaryKey, ct));
+                    continue;
+                }
+                tasks.Add(LoadAssetAsync<T>(location.PrimaryKey, ct));
                     
-                }
+            }
 
-                if (parallel)
-                {
-                    var results = await UniTask.WhenAll(tasks);
-                    loadedAssets.AddRange(results.Where(asset => asset != null));
-                }
-            }
-            catch (OperationCanceledException)
+            if (parallel)
             {
-                MyDebug.Log($"标签组{label}资源加载已取消");
-                throw;
-            }
-            catch (Exception e)
-            {
-                MyDebug.LogError($"{typeof(T)} {e.Message}");
+                var results = await UniTask.WhenAll(tasks);
+                loadedAssets.AddRange(results.Where(asset => asset != null));
             }
 
             st.Stop();

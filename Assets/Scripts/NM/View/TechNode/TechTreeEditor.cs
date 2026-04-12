@@ -30,7 +30,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
 
     void OnDelayCall()
     {
-        MyDebug.Log($"{nameof(TechTreeEditor)} OnDelayCall()");
+        // MyDebug.Log($"{nameof(TechTreeEditor)} OnDelayCall()");
         UnityEditor.EditorApplication.update -= OnEditorUpdate;
         UnityEditor.EditorApplication.update += OnEditorUpdate;
         UnityEditor.EditorApplication.hierarchyChanged -= OnHierarchyChanged;
