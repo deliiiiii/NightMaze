@@ -66,16 +66,16 @@ public partial class PlaySpin
             return true;
         }
     }
-    public record struct ModifyPropInfo(MyItem From, EPropType PropType)
+    public record ModifyPropInfo
     {
-        public required MyItem From = From;
-        public required EPropType PropType = PropType;
+        public required MyItem From;
+        public required EPropType PropType;
         public long AddValue;
         public double MultiValue = 1;
 
         public bool HasValue => AddValue != 0 || Math.Abs(MultiValue - 1) > 1e-5;
 
-        bool PrintMembers(StringBuilder sb)
+        protected virtual bool PrintMembers(StringBuilder sb)
         {
             sb.Append($"Ett = {From.InPlay.Config.Name},");
             sb.Append($"PropType = {PropType.GetLabelText()}, ");

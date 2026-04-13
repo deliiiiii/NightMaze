@@ -37143,7 +37143,7 @@ MonoBehaviour:
     X: 0
     Y: 0
   itemConfig: {fileID: 11400000, guid: 40f8bd5cba016b245aa789f434044b6f, type: 2}
-  itemType: 02000000030000000400000001000000
+  itemType: 01000000020000000400000003000000
 --- !u!1001 &1971517557
 PrefabInstance:
   m_ObjectHideFlags: 0

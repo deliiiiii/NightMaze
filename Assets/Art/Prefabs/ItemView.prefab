@@ -486,13 +486,13 @@ MonoBehaviour:
   - AddType: 0
     AnimationType: 4
     Target: {fileID: 4729715011672502026}
-    ToValue: {x: 0, y: 0.2, z: 0, w: 0}
+    ToValue: {x: 0.5, y: 0.7, z: 0, w: 0}
     UseToTarget: 0
     ToTarget: {fileID: 0}
     UseFromValue: 0
     FromValue: {x: 0, y: 0, z: 0, w: 0}
     SpeedBased: 0
-    DurationOrSpeed: 0.5
+    DurationOrSpeed: 0.05
     Delay: 0
     UpdateType: 0
     CustomEase: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
     UseFromValue: 0
     FromValue: {x: 0, y: 0, z: 0, w: 0}
     SpeedBased: 0
-    DurationOrSpeed: 0.5
+    DurationOrSpeed: 0.05
     Delay: 0
     UpdateType: 0
     CustomEase: 0
@@ -556,7 +556,7 @@ MonoBehaviour:
     UseFromValue: 0
     FromValue: {x: 0, y: 0, z: 0, w: 0}
     SpeedBased: 0
-    DurationOrSpeed: 0.5
+    DurationOrSpeed: 0.05
     Delay: 0
     UpdateType: 0
     CustomEase: 0
@@ -582,13 +582,13 @@ MonoBehaviour:
   - AddType: 0
     AnimationType: 4
     Target: {fileID: 4729715011672502026}
-    ToValue: {x: 0, y: 0, z: 0, w: 0}
+    ToValue: {x: 0.5, y: 0.5, z: 0, w: 0}
     UseToTarget: 0
     ToTarget: {fileID: 0}
     UseFromValue: 0
     FromValue: {x: 0, y: 0, z: 0, w: 0}
     SpeedBased: 0
-    DurationOrSpeed: 0.5
+    DurationOrSpeed: 0.05
     Delay: 0
     UpdateType: 0
     CustomEase: 0

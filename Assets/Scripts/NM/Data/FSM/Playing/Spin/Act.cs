@@ -86,13 +86,13 @@ public record ResultPosWrap(Vector2Int Pos)
 [ActContainer]
 public partial class PlaySpin
 {
-    [Obsolete("将执行物体 ALL 词条")]
+    [Obsolete("将执行物体 ALL 词条")][MuteActEvt]
     async UniTask CheckItemAsync(MyItem item, CancellationToken ct)
     {
         if (!BelongNode.Items.Contains(item.InPlay))
             return;
+        await new EvtBeforeCheckSymbol(this, item);
         await item.OnSpin(ct);
-        await UniTask.Delay(200, cancellationToken: ct);
     }
     [EvtName("物体执行 ALL 词条前.")]
     public record EvtBeforeCheckSymbol(PlaySpin WhoHasCt, MyItem Item) : EvtBase<PlaySpin>(WhoHasCt);
@@ -408,7 +408,7 @@ public partial class PlaySpin
         {
             PropType = propType,
             From = from,
-            AddValue = value
+            AddValue = value,
         });
         resultWrap?.Success = true;
         resultWrap?.ItemWraps.Add(new ResultItemWrap(to.InPlay)
