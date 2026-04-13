@@ -10,7 +10,7 @@ namespace NM.Data;
 public partial class GamePlaying
 {
     [Obsolete("尝试移动某物体")][MuteActEvt]
-    async UniTask MoveItemToPosAsync(IItem item, Vector2Int oldPos, Vector2Int pos, ResultWrap? resultWrap, CancellationToken ct)
+    async UniTask MoveItemToPosAsync(MyItem item, Vector2Int oldPos, Vector2Int pos, ResultWrap? resultWrap, CancellationToken ct)
     {
         if(oldPos == pos)
             return;
@@ -28,19 +28,12 @@ public partial class GamePlaying
         item.Dragging = false;
     }
     [EvtName("移动了某物体")]
-    public record EvtMoveItem(GamePlaying WhoHasCt, IItem Item) : EvtBase<GamePlaying>(WhoHasCt);
+    public record EvtMoveItem(GamePlaying WhoHasCt, MyItem Item) : EvtBase<GamePlaying>(WhoHasCt);
 
     [Obsolete("尝试在某位置生成某物体")][MuteActEvt]
-    async UniTask SpawnItemAtPosAsync(EItemType type, int id, Vector2Int pos, ResultWrap? resultWrap, CancellationToken ct)
+    async UniTask SpawnItemAtPosAsync(int id, Vector2Int pos, ResultWrap? resultWrap, CancellationToken ct)
     {
-        IItem item = type switch
-        {
-            EItemType.Grid => new Grid(id, pos),
-            EItemType.Symbol => new Symbol(id, pos),
-            EItemType.Building => new Building(id, pos),
-            EItemType.Resource => new Resource(id, pos),
-            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(EItemType)}类型: {type}.")
-        };
+        MyItem item = new MyItem(id, pos);
         item.Spawning = true;
         if (!TrySetItem(item))
         {
@@ -56,19 +49,17 @@ public partial class GamePlaying
         });
     }
     [EvtName("生成了某物体")]
-    public record EvtSpawnItem(GamePlaying WhoHasCt, IItem Item) : EvtBase<GamePlaying>(WhoHasCt);
+    public record EvtSpawnItem(GamePlaying WhoHasCt, MyItem Item) : EvtBase<GamePlaying>(WhoHasCt);
 
-    public bool TrySetItem(IItem item)
-    {
-        return item switch
+    public bool TrySetItem(MyItem item) =>
+        item switch
         {
-            Grid => item.CoveredPosList.All(pos => !GridPoses.Contains(pos)),
-            _ => item.CoveredPosList.All(pos => EmptyGrids.Any(g => ((IItem)g).PivotPos == pos))
+            _ when item.Config.IsGrid => item.CoveredPosList.All(pos => !GridPoses.Contains(pos)),
+            _ => item.CoveredPosList.All(pos => EmptyGrids.Any(g => g.PivotPos == pos))
         };
-    }
-    
+
     [Obsolete("移除某物体")]
-    UniTask RemoveItemAsync(IItem toRemove, ResultWrap? resultWrap, CancellationToken ct)
+    UniTask RemoveItemAsync(MyItem toRemove, ResultWrap? resultWrap, CancellationToken ct)
     {
         if (itemList.Remove(toRemove))
         {
@@ -82,7 +73,7 @@ public partial class GamePlaying
     }
 
     [Obsolete("某物添加某物的词条")]
-    UniTask ItemEatItemConfigAsync(IItem whoEat, IItem toEat, ResultWrap? resultWrap, CancellationToken ct)
+    UniTask ItemEatItemConfigAsync(MyItem whoEat, MyItem toEat, ResultWrap? resultWrap, CancellationToken ct)
     {
         whoEat.EatConfigList.AddRange(toEat.Config.DesList);
         resultWrap?.Success = true;

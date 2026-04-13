@@ -25,16 +25,10 @@ public class PlayView : ViewBase<GamePlaying>
     public Btn BtnSave;
     public Btn BtnExit;
 
-    [SerializeField] GridView gridPfb;
-    [SerializeField] SymbolView symbolPfb;
-    [SerializeField] ResourceView resourcePfb;
-    [SerializeField] BuildingView buildingPfb;
+    [SerializeField] ItemView itemPfb;
 
-    readonly List<ItemViewBase> itemList = [];
-    IEnumerable<GridView> Grids => itemList.OfType<GridView>();
-    IEnumerable<SymbolView> Symbols => itemList.OfType<SymbolView>();
-    IEnumerable<BuildingView> Buildings => itemList.OfType<BuildingView>();
-    IEnumerable<ResourceView> Resources => itemList.OfType<ResourceView>();
+    readonly List<ItemView> itemViewList = [];
+    IEnumerable<ItemView> Grids => itemViewList.Where(i => i.Data.Config.IsGrid);
     
     public Vector2Int? LockedPosDetail;
     
@@ -149,7 +143,7 @@ public class PlayView : ViewBase<GamePlaying>
                     select $"{modProp.From.InPlay.Config.Name} " +
                            modProp.PropType.GetLabelText() +
                            (modProp.AddValue != 0 ? modProp.AddValue.ToStringWithSymbol() : string.Empty) +
-                           (modProp.MultiValue != 1 ? $"<color=green>x{modProp.MultiValue}</color>" : string.Empty)
+                           (Math.Abs(modProp.MultiValue - 1) > 1e-5 ? $"<color=green>x{modProp.MultiValue}</color>" : string.Empty)
                 ]
             }
         ];
@@ -191,30 +185,23 @@ public class PlayView : ViewBase<GamePlaying>
 
     void ClearAllGrid()
     {
-        itemList.ForEach(item => Destroy(item.gameObject));
-        itemList.Clear();
+        itemViewList.ForEach(item => Destroy(item.gameObject));
+        itemViewList.Clear();
     }
 
-    void SpawnItem(GamePlaying.IItem item)
+    void SpawnItem(GamePlaying.MyItem item)
     {
-        ItemViewBase pfb = item switch
-        {
-            GamePlaying.Grid => gridPfb,
-            GamePlaying.Symbol => symbolPfb,
-            GamePlaying.Building => buildingPfb,
-            GamePlaying.Resource => resourcePfb,
-            _ => throw new Exception($"未适配的Item类型 {item.GetType()}")
-        };
-        ItemViewBase ins = Instantiate(pfb);
+        ItemView ins = Instantiate(itemPfb);
         ins.Data = item;
+        ins.name += $" {item.PivotPos.ToString()}";
         SetViewPosInternal(ins);
         ins.SetActiveTrue();
         ins.OnCreateView();
-        itemList.Add(ins);
+        itemViewList.Add(ins);
     }
-    void MoveItem(GamePlaying.IItem item)
+    void MoveItem(GamePlaying.MyItem item)
     {
-        ItemViewBase? ins = itemList.FirstOrDefault(s => s.Data == item);
+        ItemView? ins = itemViewList.FirstOrDefault(s => s.Data == item);
         if (ins == null)
         {
             MyDebug.LogError($"没有找到物体 {item} 对应的View.");
@@ -222,30 +209,30 @@ public class PlayView : ViewBase<GamePlaying>
         }
         SetViewPosInternal(ins);
     }
-    void SetViewPosInternal(ItemViewBase item)
+    void SetViewPosInternal(ItemView item)
     {
-        if (item is GridView)
+        if (item.Data.Config.IsGrid)
         {
             item.transform.parent = GridTrs;
             item.transform.position = GridToWorld(item.Data.PivotPos);
         }
         else
         {
-            item.transform.parent = Grids.FirstOrDefault(g => g.Data.PivotPos == item.Data.PivotPos)?.TrsSymbol;
+            item.transform.parent = Grids.FirstOrDefault(g => g.Data.PivotPos == item.Data.PivotPos)?.TrsOnGrid;
             item.transform.localPosition = Vector3.zero;
         }
     }
 
-    void RemoveItem(GamePlaying.IItem item)
+    void RemoveItem(GamePlaying.MyItem item)
     {
-        ItemViewBase? ins = itemList.FirstOrDefault(s => s.Data == item);
+        ItemView? ins = itemViewList.FirstOrDefault(s => s.Data == item);
         if (ins == null)
         {
             MyDebug.LogError($"没有找到物体 {item} 对应的View.");
             return;
         }
         Destroy(ins.gameObject);
-        itemList.Remove(ins);
+        itemViewList.Remove(ins);
     }
     public static Vector2Int ScreenToGrid(Vector2 screenPos) => WorldToGrid(MyCamera.Main.ScreenToWorldPoint(screenPos));
     static Vector2 GridToScreen(Vector2Int gridPos) => MyCamera.Main.WorldToScreenPoint(GridToWorld(gridPos));

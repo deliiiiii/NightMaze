@@ -74,52 +74,24 @@ public record ItemSelectorFromResultFilterMulPropX : ItemSelectorFromResultFilte
 [TypeRegistryItem("从配置中选择任意")]
 public record ItemSelectorFromConfigCustom : ItemSelectorFromConfigBase
 {
-    [LabelText("0_地块列表")][JsonIgnore] public List<GridConfig?> GridList = [];
-    [LabelText("1_棋子列表")][JsonIgnore] public List<SymbolConfig?> SymbolList = [];
-    [LabelText("2_建筑列表")][JsonIgnore] public List<BuildingConfig?> BuildingList = [];
-    [LabelText("3_资源列表")][JsonIgnore] public List<ResourceConfig?> ResourceList = [];
+    [LabelText("物体列表")][JsonIgnore] public List<ItemConfig?> ItemList = [];
 
-    [JsonProperty] List<int> GridIds => GridList.Where(g => g!=null).Select(x => x!.ID).ToList();
-    [JsonProperty] List<int> SymbolIds => SymbolList.Where(g => g!=null).Select(x => x!.ID).ToList();
-    [JsonProperty] List<int> BuildingIds => BuildingList.Where(g => g!=null).Select(x => x!.ID).ToList();
-    [JsonProperty] List<int> ResourceIds => ResourceList.Where(g => g!=null).Select(x => x!.ID).ToList();
+    [JsonProperty] List<int> ItemIds => ItemList.Where(i => i != null).Select(x => x!.ID).ToList();
     public ItemSelectorFromConfigCustom(){}
     [JsonConstructor]
     public ItemSelectorFromConfigCustom(int xx)
     {
-        GridList = 
+        ItemList = 
         [..
-            from id in GridIds
-            from config in RefPoolMulti<GridConfig>.AcquireOneOptional(x => x.ID == id).ToIEnumerable()
-            select config
-        ];
-        SymbolList =
-        [..
-            from id in SymbolIds
-            from config in RefPoolMulti<SymbolConfig>.AcquireOneOptional(x => x.ID == id).ToIEnumerable()
-            select config
-        ];
-        BuildingList =
-        [..
-            from id in BuildingIds
-            from config in RefPoolMulti<BuildingConfig>.AcquireOneOptional(x => x.ID == id).ToIEnumerable()
-            select config
-        ];
-        ResourceList =
-        [..
-            from id in ResourceIds
-            from config in RefPoolMulti<ResourceConfig>.AcquireOneOptional(x => x.ID == id).ToIEnumerable()
+            from id in ItemIds
+            from config in RefPoolMulti<ItemConfig>.AcquireOneOptional(x => x.ID == id).ToIEnumerable()
             select config
         ];
     }
-
     protected override bool PrintMembers(StringBuilder sb)
     {
         base.PrintMembers(sb);
-        sb.Append($"GridList = [{string.Join(", ", GridList.Where(g => g!=null).Select(c => c!.Name))}], ");
-        sb.Append($"SymbolList = [{string.Join(", ", SymbolList.Where(g => g!=null).Select(c => c!.Name))}], ");
-        sb.Append($"BuildingList = [{string.Join(", ", BuildingList.Where(g => g!=null).Select(c => c!.Name))}], ");
-        sb.Append($"ResourceList = [{string.Join(", ", ResourceList.Where(g => g!=null).Select(c => c!.Name))}], ");
+        sb.Append($"ItemList = [{string.Join(", ", ItemList.Where(i => i != null).Select(c => c!.Name))}], ");
         return true;
     }
 }
@@ -144,10 +116,7 @@ public record ItemSelectorItemFromConfigSet : ItemSelectorFromConfigBase
             return true;
         base.PrintMembers(sb);
         sb.Append($"Set =[");
-        sb.Append(string.Join(", ", Set.GridList.Select(c => c.Name)));
-        sb.Append(string.Join(", ", Set.SymbolList.Select(c => c.Name)));
-        sb.Append(string.Join(", ", Set.BuildingList.Select(c => c.Name)));
-        sb.Append(string.Join(", ", Set.ResourceList.Select(c => c.Name)));
+        sb.Append(string.Join(", ", Set.ItemList.Select(i => i.Name)));
         sb.Append("]");
         return true;
     }

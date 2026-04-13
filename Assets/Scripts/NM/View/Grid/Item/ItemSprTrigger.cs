@@ -7,16 +7,18 @@ using UnityEngine.EventSystems;
 
 namespace NM.View;
 
-public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragHandler, IMultiEndDragHandler,
+public class ItemSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragHandler, IMultiEndDragHandler,
     IMultiPointerEnterHandler, IMultiPointerExitHandler
 {
-    [field:SerializeReference] public SymbolView BelongView { get; set; }
+    [field:SerializeReference] public ItemView BelongView { get; set; }
     Vector2 initThisScreenPos;
     Vector2 initThisWorldPos;
     
     public void OnMultiBeginDrag(PointerEventData eventData)
     {
-        if(eventData.button != PointerEventData.InputButton.Left)
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+        if (!BelongView.Data.Config.CanDrag)
             return;
         initThisScreenPos = MyCamera.Main.WorldToScreenPoint(transform.position);
         initThisWorldPos = transform.position;
@@ -26,7 +28,8 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
     {
         if(eventData.button != PointerEventData.InputButton.Left)
             return;
-        
+        if (!BelongView.Data.Config.CanDrag)
+            return;
         // MyDebug.Log(mouseGridPos);
         var tarPos = MyCamera.Main.ScreenToWorldPoint(initThisScreenPos + eventData.position - eventData.pressPosition);
         transform.SetPositionXY(tarPos); 
@@ -35,6 +38,8 @@ public class SymbolSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDra
     public void OnMultiEndDrag(PointerEventData eventData)
     {
         if(eventData.button != PointerEventData.InputButton.Left)
+            return;
+        if (!BelongView.Data.Config.CanDrag)
             return;
         var mouseGridPos = PlayView.ScreenToGrid(eventData.position);
         GamePlayData.MatchA(some =>

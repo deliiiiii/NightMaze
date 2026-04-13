@@ -274,7 +274,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
             ID = 0,
             Name = "新节点",
             Pos = NodePos,
-            ToLockItems = [],
+            ToUnLockItems = [],
             RequireLineList = []
         };
     }

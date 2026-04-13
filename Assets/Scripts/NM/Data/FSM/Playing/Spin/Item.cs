@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading;
@@ -6,41 +7,28 @@ using Cysharp.Threading.Tasks;
 using General;
 using Newtonsoft.Json;
 using NM.Config;
+using Sirenix.Utilities;
 
 namespace NM.Data;
 
 public partial class PlaySpin
 {
-    public interface IItem
+    public class MyItem(PlaySpin spin, GamePlaying.MyItem inPlay)
     {
-        GamePlaying.IItem InPlay { get; }
-        long GetProp(EPropType propType);
-        List<ModifyPropInfo> ModifyPropList { get; }
-        
-        UniTask OnSpin(CancellationToken ct);
-    }
-    public abstract record MyItem<TSub, TSubInPlay> : IItem
-        where TSub : MyItem<TSub, TSubInPlay>
-        where TSubInPlay : GamePlaying.IItem
-    {
-        protected MyItem(PlaySpin spin, TSubInPlay inPlay)
-        {
-            Spin = spin;
-            InPlay = inPlay;
-        }
-        protected PlaySpin Spin;
-        protected TSubInPlay InPlay {[DebuggerStepThrough] get; init; }
-        GamePlaying.IItem IItem.InPlay { [DebuggerStepThrough] get => InPlay; }
+        public PlaySpin Spin = spin;
+        public GamePlaying.MyItem InPlay {[DebuggerStepThrough] get; init; } = inPlay;
+
         public long GetProp(EPropType propType)
         {
-            var filteredList = ((IItem)this).ModifyPropList.Where(m => m.PropType == propType).ToList();
+            var filteredList = ModifyPropList.Where(m => m.PropType == propType).ToList();
             var addSum = filteredList.Sum(m => m.AddValue);
             var multiSum = filteredList.Aggregate(1L, (cur, m) => cur * m.AddValue);
             return addSum * multiSum;
         }
-        [JsonProperty(IsReference = false, ItemIsReference = false)] 
-        public List<ModifyPropInfo> ModifyPropList { [DebuggerStepThrough] get; } = [];
-        public virtual UniTask OnSpin(CancellationToken ct)
+
+        [JsonProperty(IsReference = false, ItemIsReference = false)]
+        public List<ModifyPropInfo> ModifyPropList { [DebuggerStepThrough] get; init; } = [];
+        public UniTask OnSpin(CancellationToken ct)
         {
             SelfAddBaseValue();
             Spin.InsertAfter(
@@ -53,7 +41,23 @@ public partial class PlaySpin
                 });
             return UniTask.CompletedTask;
         }
-        protected virtual void SelfAddBaseValue() { }
+
+        void SelfAddBaseValue()
+        {
+            var config = InPlay.Config;
+            if (config.IsSymbol)
+            {
+                config.SymbolPropValueList.ForEach(pair =>
+                {
+                    ModifyPropList.Add(new ModifyPropInfo
+                    {
+                        From = this,
+                        PropType = pair.Key,
+                        AddValue = pair.Value,
+                    });
+                });
+            }
+        }
         
         protected virtual bool PrintMembers(StringBuilder sb)
         {
@@ -62,15 +66,16 @@ public partial class PlaySpin
             return true;
         }
     }
-    public record ModifyPropInfo 
+    public record struct ModifyPropInfo(MyItem From, EPropType PropType)
     {
-        public required IItem From;
-        public required EPropType PropType;
+        public required MyItem From = From;
+        public required EPropType PropType = PropType;
         public long AddValue;
-        public long MultiValue = 1;
-        public bool HasValue => AddValue != 0 || MultiValue != 1;
+        public double MultiValue = 1;
 
-        protected virtual bool PrintMembers(StringBuilder sb)
+        public bool HasValue => AddValue != 0 || Math.Abs(MultiValue - 1) > 1e-5;
+
+        bool PrintMembers(StringBuilder sb)
         {
             sb.Append($"Ett = {From.InPlay.Config.Name},");
             sb.Append($"PropType = {PropType.GetLabelText()}, ");

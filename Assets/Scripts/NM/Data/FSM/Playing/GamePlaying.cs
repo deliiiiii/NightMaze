@@ -42,32 +42,29 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     // public record EvtCoinChanged(GamePlaying gamePlaying,
     //              long OldValue,
     //              long NewValue): EvtForgetBase;
-    [JsonProperty(IsReference = false, Order = 9999)]List<IItem> itemList = [];
+    [JsonProperty(IsReference = false, Order = 9999)]List<MyItem> itemList = [];
     
-    public IEnumerable<IItem> Items => itemList;
-    public IEnumerable<Grid> Grids => itemList.OfType<Grid>();
-    public IEnumerable<Symbol> Symbols => itemList.OfType<Symbol>();
-    public IEnumerable<Building> Buildings => itemList.OfType<Building>();
-    public IEnumerable<Resource> Resources => itemList.OfType<Resource>();
+    public IEnumerable<MyItem> Items => itemList;
+    public IEnumerable<MyItem> Grids => itemList.Where(item => item.Config.IsGrid);
     
     public IEnumerable<Vector2Int> GridPoses =>
         from item in itemList
-        where item is Grid && item.ReallyInWorld
+        where item.Config.IsGrid && item.ReallyInWorld
         from coveredPos in item.CoveredPosList
         select coveredPos;
     public IEnumerable<Vector2Int> NonGridPoses =>
         from item in itemList
-        where item is not Grid && item.ReallyInWorld
+        where !item.Config.IsGrid && item.ReallyInWorld
         from coveredPos in item.CoveredPosList
         select coveredPos;
-    public IEnumerable<Grid> EmptyGrids
+    public IEnumerable<MyItem> EmptyGrids
     {
         get
         {
             var occupiedPoses = NonGridPoses.ToHashSet();
             return 
                 from grid in Grids
-                where !occupiedPoses.Contains(((IItem)grid).PivotPos)
+                where !occupiedPoses.Contains(grid.PivotPos)
                 select grid;
         }
     }
@@ -83,21 +80,21 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         (from x in Range(1, 8) 
             from y in Range(1, 8)
             select new Vector2Int(x, y))
-            .ForEach(pos => itemList.Add(new Grid(1, pos)));
+            .ForEach(pos => itemList.Add(new MyItem(1, pos)));
         // EmptyGrids
         //     .ToList()
         //     .Take(5)
         //     .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(EttSymbol.Create(), 1, grid.PivotPos)));
         
-        EmptyGrids
-            .ToList()
-            .Take(2)
-            .ForEach(grid => itemList.Add(new Symbol(1111, ((IItem)grid).PivotPos)));
+        // EmptyGrids
+        //     .ToList()
+        //     .Take(2)
+        //     .ForEach(grid => itemList.Add(new MyItem(1111, grid.PivotPos)));
         
-        EmptyGrids
-            .ToList()
-            .Take(5)
-            .ForEach(grid => itemList.Add(new Resource(1, ((IItem)grid).PivotPos)));
+        // EmptyGrids
+        //     .ToList()
+        //     .Take(5)
+        //     .ForEach(grid => itemList.Add(new MyItem(1, grid.PivotPos)));
         
         state = new PlayIdle();
     }

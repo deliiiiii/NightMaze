@@ -31,7 +31,7 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
         toDoList.InsertRange(FindAfterId(afterWho) + 1, actList);
     }
     
-    IEnumerable<IItem> Items =>
+    IEnumerable<MyItem> Items =>
         from itemInPlay in BelongNode.Items
         select itemInPlay.InSpin(this);
     protected override void OnCreateFreshData()

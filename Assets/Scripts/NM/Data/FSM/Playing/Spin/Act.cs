@@ -6,6 +6,8 @@ using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using Newtonsoft.Json;
 using NM.Config;
+using Sirenix.Serialization;
+
 namespace NM.Data;
 
 public record ResultWrap(ItemDesResultBase Result, ResultWrap? PreResult)
@@ -37,9 +39,9 @@ public record ResultWrap(ItemDesResultBase Result, ResultWrap? PreResult)
     }
 }
 
-public record ResultItemWrap(GamePlaying.IItem Item)
+public record ResultItemWrap(GamePlaying.MyItem Item)
 {
-    public GamePlaying.IItem Item = Item;
+    public GamePlaying.MyItem Item = Item;
     public List<CtxBase> CtxList = [];
     public abstract record CtxBase;
     
@@ -58,7 +60,7 @@ public record ResultItemWrap(GamePlaying.IItem Item)
     public record CtxMulPropX : CtxBase
     {
         public EPropType PropType;
-        public long Value;
+        public double Value;
     }
     protected virtual bool PrintMembers(StringBuilder sb)
     {
@@ -85,7 +87,7 @@ public record ResultPosWrap(Vector2Int Pos)
 public partial class PlaySpin
 {
     [Obsolete("将执行物体 ALL 词条")]
-    async UniTask CheckItemAsync(IItem item, CancellationToken ct)
+    async UniTask CheckItemAsync(MyItem item, CancellationToken ct)
     {
         if (!BelongNode.Items.Contains(item.InPlay))
             return;
@@ -93,11 +95,11 @@ public partial class PlaySpin
         await UniTask.Delay(200, cancellationToken: ct);
     }
     [EvtName("物体执行 ALL 词条前.")]
-    public record EvtBeforeCheckSymbol(PlaySpin WhoHasCt, IItem Item) : EvtBase<PlaySpin>(WhoHasCt);
+    public record EvtBeforeCheckSymbol(PlaySpin WhoHasCt, MyItem Item) : EvtBase<PlaySpin>(WhoHasCt);
 
    
     [Obsolete("将执行物体单行词条")]
-    UniTask DoItemDesResultAsync(IItem selfItem, ResultWrap resultWrap, CancellationToken ct)
+    UniTask DoItemDesResultAsync(MyItem selfItem, ResultWrap resultWrap, CancellationToken ct)
     {
         if (!BelongNode.Items.Contains(selfItem.InPlay))
             return UniTask.CompletedTask;
@@ -169,7 +171,6 @@ public partial class PlaySpin
                 select new GamePlaying.ActSpawnItemAtPos(BelongNode)
                 {
                     Pos = pos,
-                    Type = toSpawnInPlay.ItemType,
                     Id = toSpawnInPlay.Config.ID,
                     ResultWrap = resultWrap
                 },
@@ -178,7 +179,7 @@ public partial class PlaySpin
         return UniTask.CompletedTask;
     }
 
-    bool ResolveCondition(IItem selfItem, ItemDesConditionBase? conditionBase, ResultWrap? resultWrap)
+    bool ResolveCondition(MyItem selfItem, ItemDesConditionBase? conditionBase, ResultWrap? resultWrap)
     {
         if (conditionBase == null)
             return true;
@@ -195,7 +196,7 @@ public partial class PlaySpin
         return thisRet && nextRet;
     }
 
-    IEnumerable<IItem> ResolveItemSelectorFromResult(ItemSelectorFromResultFilterBase? fromResultFilter, ResultWrap? resultWrap)
+    IEnumerable<MyItem> ResolveItemSelectorFromResult(ItemSelectorFromResultFilterBase? fromResultFilter, ResultWrap? resultWrap)
     {
         if (resultWrap == null)
             return [];
@@ -233,7 +234,7 @@ public partial class PlaySpin
             select posWrap.Pos;
     }
     
-    IEnumerable<IItem> ResolveItemSelector(IItem selfItem, ICanSelectItem? iCanSelectItem, ResultWrap? resultWrap)
+    IEnumerable<MyItem> ResolveItemSelector(MyItem selfItem, ICanSelectItem? iCanSelectItem, ResultWrap? resultWrap)
     {
         if (iCanSelectItem == null)
             return [];
@@ -247,28 +248,13 @@ public partial class PlaySpin
                 ..fromResult.LastStepCount == 3 ? ResolveItemSelectorFromResult(fromResult.FromResultFilter, resultWrap?.PreResult?.PreResult?.PreResult) : [],
             ],
             ItemSelectorFromConfigCustom fromConfigCustom => 
-                from iItemConfig in (List<IItemConfig>)[
-                ..fromConfigCustom.GridList,
-                ..fromConfigCustom.SymbolList, 
-                ..fromConfigCustom.BuildingList,
-                ..fromConfigCustom.ResourceList]
-                where iItemConfig != null
-                select iItemConfig switch
-                {
-                    GridConfig gridConfig => new GamePlaying.Grid(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
-                    BuildingConfig buildingConfig => new GamePlaying.Building(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
-                    ResourceConfig resourceConfig => new GamePlaying.Resource(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
-                    SymbolConfig symbolConfig => new GamePlaying.Symbol(iItemConfig.ID, Vector2Int.Zero).InSpin(this),
-                    _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IItemConfig)}类型: {iItemConfig.GetType()}.")
-                },
+                from itemConfig in fromConfigCustom.ItemList
+                where itemConfig != null
+                select new GamePlaying.MyItem(itemConfig!.ID, Vector2Int.Zero).InSpin(this),
             ItemSelectorItemFromConfigSet fromConfigSet => 
                 from itemInSpin in Items
                 let itemInPlay = itemInSpin.InPlay
-                where fromConfigSet.Set != null &&
-                        (fromConfigSet.Set.GridList.Contains(itemInPlay.Config)
-                       || fromConfigSet.Set.SymbolList.Contains(itemInPlay.Config)
-                       || fromConfigSet.Set.BuildingList.Contains(itemInPlay.Config)
-                       || fromConfigSet.Set.ResourceList.Contains(itemInPlay.Config))
+                where fromConfigSet.Set != null && fromConfigSet.Set.ItemList.Contains(itemInPlay.Config)
                 select itemInSpin,
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemSelectorBase)}类型: {iCanSelectItem.GetType()}.")
         };
@@ -286,10 +272,11 @@ public partial class PlaySpin
                     ItemFilterNotSelf => itemInSpin != selfItem,
                     ItemFilterSelf => itemInSpin == selfItem,
                     ItemFilterTag filterTag => 
-                         (itemInPlay is GamePlaying.Grid grid && filterTag.GridTag != 0 && filterTag.GridTag.HasFlag(grid.Config.GridTag)) 
-                              || (itemInPlay is GamePlaying.Symbol symbol && filterTag.SymbolTag != 0 && filterTag.SymbolTag.HasFlag(symbol.Config.SymbolTag))
-                              || (itemInPlay is GamePlaying.Building building && filterTag.BuildingTag != 0 && filterTag.BuildingTag.HasFlag(building.Config.BuildingTag))
-                              || (itemInPlay is GamePlaying.Resource resource && filterTag.ResourceTag != 0 && filterTag.ResourceTag.HasFlag(resource.Config.ResourceTag)),
+                         filterTag.GridTagList.Intersect(itemInPlay.Config.GridTagList).Any()
+                         || filterTag.SymbolTagList.Intersect(itemInPlay.Config.SymbolTagList).Any()
+                         || filterTag.BuildingTagList.Intersect(itemInPlay.Config.BuildingTagList).Any()
+                         || filterTag.ResourceTagList.Intersect(itemInPlay.Config.ResourceTagList).Any()
+                         || filterTag.EventTagList.Intersect(itemInPlay.Config.EventTagList).Any(),
                     null => true,
                     _ => throw new InvalidOperationException(
                         $"没有匹配穷尽{nameof(ItemFilterBase)}类型: {filter1.GetType()}.")
@@ -310,7 +297,7 @@ public partial class PlaySpin
         rawItems = rawItems.Take(ResolveIntSelector(selfItem, iCanSelectItem.TakeMax, resultWrap));
         return ApplyPosFilterAndSort(rawItems, p => p.InPlay.PivotPos, iCanSelectItem , selfItem, resultWrap);
     }
-    int ResolveIntSelector(IItem selfItem, IntSelectorBase? intSelector, ResultWrap? resultWrap) =>
+    int ResolveIntSelector(MyItem selfItem, IntSelectorBase? intSelector, ResultWrap? resultWrap) =>
         intSelector switch
         {
             IntSelectorConst selectorConst => selectorConst.Value,
@@ -321,7 +308,7 @@ public partial class PlaySpin
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IntSelectorBase)}类型: {intSelector.GetType()}.")
         };
 
-    IEnumerable<Vector2Int> ResolvePosSelector(IItem selfItem, ICanSelectPos? iCanSelectPos, ResultWrap? resultWrap, Func<Vector2Int, bool>? extraFilter = null)
+    IEnumerable<Vector2Int> ResolvePosSelector(MyItem selfItem, ICanSelectPos? iCanSelectPos, ResultWrap? resultWrap, Func<Vector2Int, bool>? extraFilter = null)
     {
         var rawList = iCanSelectPos switch
         {
@@ -338,7 +325,7 @@ public partial class PlaySpin
             ],
             PosSelectorFromResultItem fromResultItem => 
                 from item in
-                (IEnumerable<IItem>)[
+                (IEnumerable<MyItem>)[
                     .. fromResultItem.LastStepCount == 1 ? ResolveItemSelectorFromResult(fromResultItem.FromResultFilter, resultWrap?.PreResult) : [],
                     .. fromResultItem.LastStepCount == 2 ? ResolveItemSelectorFromResult(fromResultItem.FromResultFilter, resultWrap?.PreResult?.PreResult) : [],
                     .. fromResultItem.LastStepCount == 3 ? ResolveItemSelectorFromResult(fromResultItem.FromResultFilter, resultWrap?.PreResult?.PreResult?.PreResult) : [],
@@ -350,7 +337,7 @@ public partial class PlaySpin
         return ApplyPosFilterAndSort(rawList, p => p, iCanSelectPos, selfItem, resultWrap);
     }
     
-    IEnumerable<T> ApplyPosFilterAndSort<T>(IEnumerable<T> source, Func<T, Vector2Int> getPos, ICanSelectPos? iCanSelectPos, IItem selfItem, ResultWrap? resultWrap)
+    IEnumerable<T> ApplyPosFilterAndSort<T>(IEnumerable<T> source, Func<T, Vector2Int> getPos, ICanSelectPos? iCanSelectPos, MyItem selfItem, ResultWrap? resultWrap)
     {
         if(iCanSelectPos == null)
             return source;
@@ -415,7 +402,7 @@ public partial class PlaySpin
     
 
     [Obsolete("某物让某物属性变化(加算)")]
-    UniTask EttAddSymbolModifyPropAsync(IItem from, IItem to, EPropType propType, long value, ResultWrap? resultWrap, CancellationToken ct)
+    UniTask EttAddSymbolModifyPropAsync(MyItem from, MyItem to, EPropType propType, long value, ResultWrap? resultWrap, CancellationToken ct)
     {
         to.ModifyPropList.Add(new ModifyPropInfo
         {
@@ -431,7 +418,7 @@ public partial class PlaySpin
         return UniTask.CompletedTask;
     }
     [Obsolete("某物让某物属性变化(乘算)")]
-    UniTask EttMulSymbolModifyPropAsync(IItem from, IItem to, EPropType propType, long value, ResultWrap? resultWrap, CancellationToken ct)
+    UniTask EttMulSymbolModifyPropAsync(MyItem from, MyItem to, EPropType propType, double value, ResultWrap? resultWrap, CancellationToken ct)
     {
         to.ModifyPropList.Add(new ModifyPropInfo
         {

@@ -18,23 +18,29 @@ public class DOTweeSequenceInspector : Editor
 
     void OnEnable()
     {
+        if (target == null)
+            return;
         mPlayBtnContent = EditorGUIUtility.TrIconContent("d_PlayButton@2x", "播放");
         mRewindBtnContent = EditorGUIUtility.TrIconContent("d_preAudioAutoPlayOff@2x", "倒放");
         mResetBtnContent = EditorGUIUtility.TrIconContent("d_preAudioLoopOff@2x", "重置");
         mBtnHeight = GUILayout.Height(35);
         mSequence = serializedObject.FindProperty("mSequence");
-        mSequenceList = new ReorderableList(serializedObject, mSequence);
-        mSequenceList.drawElementCallback = OnDrawSequenceItem;
-        mSequenceList.elementHeightCallback = index =>
+        mSequenceList = new ReorderableList(serializedObject, mSequence)
         {
-            var item = mSequence.GetArrayElementAtIndex(index);
-            return EditorGUI.GetPropertyHeight(item);
+            drawElementCallback = OnDrawSequenceItem,
+            elementHeightCallback = index =>
+            {
+                var item = mSequence.GetArrayElementAtIndex(index);
+                return EditorGUI.GetPropertyHeight(item);
+            },
+            drawHeaderCallback = OnDrawSequenceHeader
         };
-        mSequenceList.drawHeaderCallback = OnDrawSequenceHeader;
     }
 
     public override void OnInspectorGUI()
     {
+        if (target == null)
+            return;
         if (!EditorApplication.isPlaying)
         {
             EditorGUILayout.BeginHorizontal();

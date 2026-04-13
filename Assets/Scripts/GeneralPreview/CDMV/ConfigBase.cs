@@ -37,8 +37,8 @@ namespace GeneralPreview;
         [OnValueChanged(nameof(OnNameAndIdChanged))]
         [ValidateInput(nameof(CheckNameAndIdIdentical), "名称格式有误，或ID在当前文件夹(配置类相同)有重复")]
         public int ID;
-        
-        protected abstract string PrefixName { get; }
+
+        public abstract string PrefixName { get; }
 
         bool CheckAll() => CheckName() && CheckNameAndIdIdentical();
         // bool CheckId() => true;
@@ -71,7 +71,7 @@ namespace GeneralPreview;
         }
         [JsonIgnore]string NewName => $"{PrefixName}_{ID}_{Name}.asset";
         
-        void OnNameAndIdChanged()
+        protected void OnNameAndIdChanged()
         {
     #if UNITY_EDITOR
             if (!CheckAll())

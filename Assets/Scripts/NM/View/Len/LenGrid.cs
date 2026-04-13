@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using GeneralPreview;
 using NM.Config;
 using NM.Data;
 using Sirenix.OdinInspector;
@@ -9,8 +11,11 @@ namespace NM.View.Len;
 
 public class LenGrid : MonoBehaviour
 {
-    [Button]
-    public void Add(IItemConfig? itemConfig)
+    [SerializeField, LabelText("欲生成/移除位置(可左键点击)"), PropertyOrder(0)]Vector2Int curMos;
+    [SerializeReference, LabelText("欲生成物体"), PropertyOrder(5)]ItemConfig? itemConfig;
+    bool IsPlaying => GamePlayData.HasValue;
+    [Button("生成物体"), EnableIf(nameof(IsPlaying)), PropertyOrder(10)]
+    public void Add()
     {
         if (itemConfig == null)
             return;
@@ -18,29 +23,29 @@ public class LenGrid : MonoBehaviour
         {
             new GamePlaying.ActSpawnItemAtPos(some)
             {
-                Type = itemConfig switch
-                {
-                    GridConfig => EItemType.Grid,
-                    BuildingConfig => EItemType.Building,
-                    ResourceConfig => EItemType.Resource,
-                    SymbolConfig => EItemType.Symbol,
-                    _ => throw new Exception($"不支持的物体类型: {itemConfig.GetType()}")
-                },
                 Id = itemConfig.ID,
-                Pos = CurMos,
+                Pos = curMos,
                 ResultWrap = null
             }.Forget();
         });
     }
 
-    [Button]
-    public void Remove(EItemType itemType = EItemType.Symbol | EItemType.Building | EItemType.Resource)
+    static ValueDropdownList<EItemType> GetItemTypes() => ItemConfig.GetItemTypes();
+    [SerializeField, LabelText("筛选欲移除的类型"), ValueDropdown(nameof(GetItemTypes), IsUniqueList = true)
+     , PropertyOrder(20)
+    ] List<EItemType> itemType = [EItemType.Symbol, EItemType.Building, EItemType.Resource, EItemType.Event];
+    int ToRemoveCount => ToRemoveItems.Count();
+    IEnumerable<GamePlaying.MyItem> ToRemoveItems =>
+        from play in GamePlayData.ToIEnumerable()
+        from item in play.Items
+        where itemType.Contains(item.ItemType) && item.PivotPos == curMos
+        select item;
+    [Button("@\"移除物体(共\" + ToRemoveCount + \"个)\""), EnableIf(nameof(IsPlaying)), PropertyOrder(30)]
+    public void Remove()
     {
         GamePlayData.MatchA(some =>
         {
-            some.Items
-                .Where(i => itemType != 0 && itemType.HasFlag(i.ItemType) && i.PivotPos == CurMos)
-                .ToList()
+            ToRemoveItems.ToList()
                 .ForEach(toRemove =>
                 {
                     new GamePlaying.ActRemoveItem(some)
@@ -51,13 +56,11 @@ public class LenGrid : MonoBehaviour
                 });
         });
     }
-    // List<GamePlaying.IItem> selectedItemList = [];
-    public Vector2Int CurMos;
     void Update()
     {
         if(Input.GetMouseButtonDown(0))        
         {
-            CurMos = PlayView.ScreenToGrid(Input.mousePosition);
+            curMos = PlayView.ScreenToGrid(Input.mousePosition);
         }
     }
 }

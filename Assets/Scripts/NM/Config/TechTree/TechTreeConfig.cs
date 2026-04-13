@@ -18,7 +18,7 @@ public class TechNodeConfig
     public required int ID;
     public required string Name;
     [ReadOnly] public required Vector2 Pos;
-    public required List<IItemConfig> ToLockItems;
+    public required List<ItemConfig> ToUnLockItems;
     public required List<TechRequireLine> RequireLineList;
 }
 

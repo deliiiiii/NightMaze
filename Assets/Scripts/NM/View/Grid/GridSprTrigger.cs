@@ -12,7 +12,7 @@ public class GridSprTrigger : MonoBehaviour,
     IMultiPointerExitHandler,
     IMultiPointerClickHandler
 {
-    [SerializeField] GridView belongView;
+    [SerializeField] ItemView belongView;
     [SerializeField] DOTweenSequence onEnterTween;
     [SerializeField] DOTweenSequence onExitTween;
     readonly DoTweenSeqMutex enterExitTween = new();

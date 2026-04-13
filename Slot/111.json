@@ -7,7 +7,7 @@
     "state": { "$ref": "1" }
   },
   "PlayerName": "111",
-  "PlayTime": 1004.1374106323346,
+  "PlayTime": 11.215690185781568,
   "Prop1": 0,
   "Prop2": 0,
   "Prop3": 0,
@@ -19,12 +19,11 @@
     "$id": "3",
     "$type": "NM.Data.PlayIdle, NM.Data",
     "savedVersion": 20260402.0,
-    "BelongNode": { "$ref": "1" }
+    "BelongNode": null
   },
   "itemList": [
     {
       "$id": "4",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -38,7 +37,6 @@
     },
     {
       "$id": "6",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -52,7 +50,6 @@
     },
     {
       "$id": "8",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -66,7 +63,6 @@
     },
     {
       "$id": "10",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -80,7 +76,6 @@
     },
     {
       "$id": "12",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -94,7 +89,6 @@
     },
     {
       "$id": "14",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -108,7 +102,6 @@
     },
     {
       "$id": "16",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -122,7 +115,6 @@
     },
     {
       "$id": "18",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -136,7 +128,6 @@
     },
     {
       "$id": "20",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -150,7 +141,6 @@
     },
     {
       "$id": "22",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -164,7 +154,6 @@
     },
     {
       "$id": "24",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -178,7 +167,6 @@
     },
     {
       "$id": "26",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -192,7 +180,6 @@
     },
     {
       "$id": "28",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -206,7 +193,6 @@
     },
     {
       "$id": "30",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -220,7 +206,6 @@
     },
     {
       "$id": "32",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -234,7 +219,6 @@
     },
     {
       "$id": "34",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -248,7 +232,6 @@
     },
     {
       "$id": "36",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -262,7 +245,6 @@
     },
     {
       "$id": "38",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -276,7 +258,6 @@
     },
     {
       "$id": "40",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -290,7 +271,6 @@
     },
     {
       "$id": "42",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -304,7 +284,6 @@
     },
     {
       "$id": "44",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -318,7 +297,6 @@
     },
     {
       "$id": "46",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -332,7 +310,6 @@
     },
     {
       "$id": "48",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -346,7 +323,6 @@
     },
     {
       "$id": "50",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -360,7 +336,6 @@
     },
     {
       "$id": "52",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -374,7 +349,6 @@
     },
     {
       "$id": "54",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -388,7 +362,6 @@
     },
     {
       "$id": "56",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -402,7 +375,6 @@
     },
     {
       "$id": "58",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -416,7 +388,6 @@
     },
     {
       "$id": "60",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -430,7 +401,6 @@
     },
     {
       "$id": "62",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -444,7 +414,6 @@
     },
     {
       "$id": "64",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -458,7 +427,6 @@
     },
     {
       "$id": "66",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -472,7 +440,6 @@
     },
     {
       "$id": "68",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -486,7 +453,6 @@
     },
     {
       "$id": "70",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -500,7 +466,6 @@
     },
     {
       "$id": "72",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -514,7 +479,6 @@
     },
     {
       "$id": "74",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -528,7 +492,6 @@
     },
     {
       "$id": "76",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -542,7 +505,6 @@
     },
     {
       "$id": "78",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -556,7 +518,6 @@
     },
     {
       "$id": "80",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -570,7 +531,6 @@
     },
     {
       "$id": "82",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -584,7 +544,6 @@
     },
     {
       "$id": "84",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -598,7 +557,6 @@
     },
     {
       "$id": "86",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -612,7 +570,6 @@
     },
     {
       "$id": "88",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -626,7 +583,6 @@
     },
     {
       "$id": "90",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -640,7 +596,6 @@
     },
     {
       "$id": "92",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -654,7 +609,6 @@
     },
     {
       "$id": "94",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -668,7 +622,6 @@
     },
     {
       "$id": "96",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -682,7 +635,6 @@
     },
     {
       "$id": "98",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -696,7 +648,6 @@
     },
     {
       "$id": "100",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -710,7 +661,6 @@
     },
     {
       "$id": "102",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -724,7 +674,6 @@
     },
     {
       "$id": "104",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -738,7 +687,6 @@
     },
     {
       "$id": "106",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -752,7 +700,6 @@
     },
     {
       "$id": "108",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -766,7 +713,6 @@
     },
     {
       "$id": "110",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -780,7 +726,6 @@
     },
     {
       "$id": "112",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -794,7 +739,6 @@
     },
     {
       "$id": "114",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -808,7 +752,6 @@
     },
     {
       "$id": "116",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -822,7 +765,6 @@
     },
     {
       "$id": "118",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -836,7 +778,6 @@
     },
     {
       "$id": "120",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -850,7 +791,6 @@
     },
     {
       "$id": "122",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -864,7 +804,6 @@
     },
     {
       "$id": "124",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -878,7 +817,6 @@
     },
     {
       "$id": "126",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -892,7 +830,6 @@
     },
     {
       "$id": "128",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -906,7 +843,6 @@
     },
     {
       "$id": "130",
-      "$type": "NM.Data.GamePlaying+Grid, NM.Data",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
@@ -915,183 +851,6 @@
       "EatConfigList": {
         "$id": "131",
         "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "132",
-      "$type": "NM.Data.GamePlaying+Resource, NM.Data",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":1,"Y":1},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "133",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "134",
-      "$type": "NM.Data.GamePlaying+Resource, NM.Data",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":1,"Y":2},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "135",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "136",
-      "$type": "NM.Data.GamePlaying+Resource, NM.Data",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":1,"Y":3},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "137",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "138",
-      "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
-      "ID": 3,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":3,"Y":5},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "139",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "140",
-      "$type": "NM.Data.GamePlaying+Symbol, NM.Data",
-      "ID": 6,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":3,"Y":3},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "141",
-        "$values": [
-          {
-            "$id": "142",
-            "Trigger": {
-              "$id": "143",
-              "$type": "NM.Config.ItemDesTriggerEnterSpin, NM.Config"
-            },
-            "Result": {
-              "$id": "144",
-              "$type": "NM.Config.ItemDesResultAddXPropX, NM.Config",
-              "Condition": null,
-              "Next": null,
-              "ItemSelector": {
-                "$id": "145",
-                "$type": "NM.Config.ItemSelectorAtPresentSelf, NM.Config",
-                "ItemFilter": null,
-                "ItemSort": null,
-                "PosFilter": null,
-                "PosSort": null,
-                "Random": false
-              },
-              "PropType": 0,
-              "IntSelector": {
-                "$id": "146",
-                "$type": "NM.Config.IntSelectorConst, NM.Config",
-                "Value": 1
-              }
-            }
-          },
-          {
-            "$id": "147",
-            "Trigger": {
-              "$id": "148",
-              "$type": "NM.Config.ItemDesTriggerEnterSpin, NM.Config"
-            },
-            "Result": {
-              "$id": "149",
-              "$type": "NM.Config.ItemDesResultAddXPropX, NM.Config",
-              "Condition": null,
-              "Next": null,
-              "ItemSelector": {
-                "$id": "150",
-                "$type": "NM.Config.ItemSelectorAtPresentAll, NM.Config",
-                "ItemFilter": {
-                  "$id": "151",
-                  "$type": "NM.Config.ItemFilterTag, NM.Config",
-                  "ItemFilter": null,
-                  "ItemTag": 0,
-                  "GridTag": 0,
-                  "SymbolTag": 2,
-                  "ResourceTag": 0,
-                  "BuildingTag": 0
-                },
-                "ItemSort": null,
-                "PosFilter": {
-                  "$id": "152",
-                  "$type": "NM.Config.PosFilterIn3X3, NM.Config",
-                  "ItemSelector": {
-                    "$id": "153",
-                    "$type": "NM.Config.ItemSelectorAtPresentSelf, NM.Config",
-                    "ItemFilter": null,
-                    "ItemSort": null,
-                    "PosFilter": null,
-                    "PosSort": null,
-                    "Random": false
-                  }
-                },
-                "PosSort": null,
-                "Random": false
-              },
-              "PropType": 0,
-              "IntSelector": {
-                "$id": "154",
-                "$type": "NM.Config.IntSelectorConst, NM.Config",
-                "Value": -1
-              }
-            }
-          },
-          {
-            "$id": "155",
-            "Trigger": {
-              "$id": "156",
-              "$type": "NM.Config.ItemDesTriggerEnterSpin, NM.Config"
-            },
-            "Result": {
-              "$id": "157",
-              "$type": "NM.Config.ItemDesResultAddXPropX, NM.Config",
-              "Condition": null,
-              "Next": null,
-              "ItemSelector": {
-                "$id": "158",
-                "$type": "NM.Config.ItemSelectorAtPresentSelf, NM.Config",
-                "ItemFilter": null,
-                "ItemSort": null,
-                "PosFilter": null,
-                "PosSort": null,
-                "Random": false
-              },
-              "PropType": 0,
-              "IntSelector": {
-                "$id": "159",
-                "$type": "NM.Config.IntSelectorConst, NM.Config",
-                "Value": 1
-              }
-            }
-          },
-          { "$ref": "155" }
-        ]
       },
       "inSpin": null
     }

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using General;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace NM.Config;
@@ -23,34 +26,35 @@ public record ItemFilterIsItemType : ItemFilterBase
 [TypeRegistryItem("属于指定标签")]
 public record ItemFilterTag : ItemFilterBase
 {
-    [LabelText("通用标签")] public EItemTag ItemTag;
-    [LabelText("地形标签")] public EGridTag GridTag;
-    [LabelText("棋子标签")] public ESymbolTag SymbolTag;
-    [LabelText("资源标签")] public EResourceTag ResourceTag;
-    [LabelText("建筑标签")] public EBuildingTag BuildingTag;
+    public static ValueDropdownList<EItemTag> GetItemTags() => ItemConfig.GetItemTags();
+    public static ValueDropdownList<EGridTag> GetGridTags() => ItemConfig.GetGridTags();
+    public static ValueDropdownList<ESymbolTag> GetSymbolTags() => ItemConfig.GetSymbolTags();
+    public static ValueDropdownList<EResourceTag> GetResourceTags() => ItemConfig.GetResourceTags();
+    public static ValueDropdownList<EBuildingTag> GetBuildingTags() => ItemConfig.GetBuildingTags();
+    public static ValueDropdownList<EEventTag> GetEventTags() => ItemConfig.GetEventTags();
+    
+    [LabelText("通用标签"), ValueDropdown(nameof(GetItemTags), IsUniqueList = true)] public List<EItemTag> ItemTagList = [];
+    [LabelText("地形标签"), ValueDropdown(nameof(GetGridTags), IsUniqueList = true)] public List<EGridTag> GridTagList = [];
+    [LabelText("棋子标签"), ValueDropdown(nameof(GetSymbolTags), IsUniqueList = true)] public List<ESymbolTag> SymbolTagList = [];
+    [LabelText("资源标签"), ValueDropdown(nameof(GetResourceTags), IsUniqueList = true)] public List<EResourceTag> ResourceTagList = [];
+    [LabelText("建筑标签"), ValueDropdown(nameof(GetBuildingTags), IsUniqueList = true)] public List<EBuildingTag> BuildingTagList = [];
+    [LabelText("事件标签"), ValueDropdown(nameof(GetEventTags), IsUniqueList = true)] public List<EEventTag> EventTagList = [];
     [DebuggerStepThrough]
     public override string ToString()
     {
         var sb = new StringBuilder();
-        if (ItemTag != 0)
-            sb.Append(ItemTag);
-        if (GridTag != 0)
-            sb.Append(GridTag);
-        if (SymbolTag != 0)
-            sb.Append(SymbolTag);
-        if (ResourceTag != 0)
-            sb.Append(ResourceTag);
-        if (BuildingTag != 0)
-            sb.Append(BuildingTag);
+        if (ItemTagList.Any())
+            sb.Append(string.Join(",", ItemTagList));
+        if (GridTagList.Any())
+            sb.Append(string.Join(",", GridTagList));
+        if (SymbolTagList.Any())
+            sb.Append(string.Join(",", SymbolTagList));
+        if (ResourceTagList.Any())
+            sb.Append(string.Join(",", ResourceTagList));
+        if (BuildingTagList.Any())
+            sb.Append(string.Join(",", BuildingTagList));
+        if (EventTagList.Any())
+            sb.Append(string.Join(",", EventTagList));
         return sb.ToString();
     }
-}
-
-[Flags]
-public enum EItemType
-{
-    [LabelText("0_地块")]Grid = 1 << 1,
-    [LabelText("1_棋子")]Symbol = 1 << 2,
-    [LabelText("2_建筑")]Building = 1 << 3,
-    [LabelText("3_资源")]Resource = 1 << 4,
 }

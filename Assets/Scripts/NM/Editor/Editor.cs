@@ -15,7 +15,7 @@ public static class ScriptableObjectOModifier
     static void FilterAndDo(IEnumerable<ScriptableObject> sos, out List<ScriptableObject> modified)
     {
         var tar = sos
-            .OfType<SymbolConfig>()
+            .OfType<ItemConfig>()
             // .Where(x => x.Color == ECardColor.Green)
             .ToList();
         tar.ForEach(x =>

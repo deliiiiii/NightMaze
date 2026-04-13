@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using General;
@@ -10,15 +11,13 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
-    public abstract partial record MyItem<TSub, TConfig> : IItem
-        where TSub : MyItem<TSub, TConfig>
-        where TConfig : ItemConfigBase<TConfig>, new()
+    public partial record MyItem
     {
-        protected MyItem(int id, Vector2Int pivotPos)
+        public MyItem(int id, Vector2Int pivotPos)
         {
             ID = id;
-            ((IItem)this).PivotPos = pivotPos;
-            DeltaPosList = Config.Pos switch
+            PivotPos = pivotPos;
+            DeltaPosList = Config!.Pos switch
             {
                 ItemPosRectangle rect => (
                     from x in Range(0, rect.Length)
@@ -30,21 +29,23 @@ public partial class GamePlaying
             EatConfigList = [];
         }
         [DebuggerStepThrough] public bool CoverPos(Vector2Int pos) => CoveredPosList.Contains(pos);
-        public IEnumerable<Vector2Int> CoveredPosList => DeltaPosList.Select(d => d + ((IItem)this).PivotPos);
-
-        public abstract TConfig Config { get; }
-        public abstract EItemType ItemType { get; }
+        public IEnumerable<Vector2Int> CoveredPosList => DeltaPosList.Select(d => d + PivotPos);
+        public ItemConfig Config => field ??= RefPoolMulti<ItemConfig>.AcquireOne(c => c.ID == ID) 
+                                        ?? RefPoolMulti<ItemConfig>.AcquireFirst()
+                                        ?? throw new Exception($"ItemConfig 一个配置也没有.");
+        public EItemType ItemType => Config.ItemType;
         
-
         public int ID { [DebuggerStepThrough] get; [DebuggerStepThrough] private init; }
-        IItemConfig IItem.Config { [DebuggerStepThrough]get => Config; }
         public bool Dragging { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
         public bool Spawning { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
+        public bool ReallyInWorld => !Dragging && !Spawning;
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
         public Vector2Int PivotPos { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
         public List<Vector2Int> DeltaPosList { [DebuggerStepThrough] get; private init; }
         public List<ItemDesConfig> EatConfigList { [DebuggerStepThrough] get; private init; }
+        public List<ItemDesConfig> AllConfigList => [..Config.DesList, ..EatConfigList];
+        
 
         protected virtual bool PrintMembers(StringBuilder builder)
         {
@@ -53,38 +54,21 @@ public partial class GamePlaying
             builder.Append($"DeltaPosList = [{string.Join(", ", DeltaPosList)}]");
             return true;
         }
-        string IItem.PrintMembers()     
+        public string PrintMembers()     
         {
             var sb = new StringBuilder();
             PrintMembers(sb);
             return sb.ToString();
         }
         
-        PlaySpin.IItem? inSpin;
-        public PlaySpin.IItem InSpin(PlaySpin spin) => inSpin ??= CreateInSpin(spin);
-        void IItem.DestroyInSpin() => inSpin = null;
-        protected abstract PlaySpin.IItem CreateInSpin(PlaySpin spin);
-    }
+        PlaySpin.MyItem? inSpin;
+        public PlaySpin.MyItem InSpin(PlaySpin spin) => inSpin ??= CreateInSpin(spin);
+        public void DestroyInSpin() => inSpin = null;
 
-    public interface IItem
-    {
-        int ID { get; }
-        bool Dragging { get; set; }
-        bool Spawning { get; set; }
-        bool ReallyInWorld => !Dragging && !Spawning;
-        Vector2Int PivotPos { get; set; }
-        List<Vector2Int> DeltaPosList { get; }
-        bool CoverPos(Vector2Int pos);
-        IEnumerable<Vector2Int> CoveredPosList { get; }
-        IItemConfig Config { get; }
-        EItemType ItemType { get; }
-        List<ItemDesConfig> EatConfigList { get; }
+        protected PlaySpin.MyItem CreateInSpin(PlaySpin spin)
+        {
+            return new PlaySpin.MyItem(spin, this);
+        }
         
-        List<ItemDesConfig> AllConfigList => [..Config.DesList, ..EatConfigList];
-
-        PlaySpin.IItem InSpin(PlaySpin spin);
-        void DestroyInSpin();
-
-        string PrintMembers();
     }
 }
