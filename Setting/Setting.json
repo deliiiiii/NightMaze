@@ -1,0 +1,9 @@
+{
+  "$id": "1",
+  "SpinTweenSpeed": {
+    "$id": "2",
+    "$type": "NM.Data.SettingData+SpinTweenSpeedNormal, NM.Data",
+    "Value": 1
+  },
+  "MouseScrollMapSpeed": 0.2
+}

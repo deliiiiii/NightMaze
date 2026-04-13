@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -186,6 +187,20 @@ namespace General
             str = refRegex.Replace(str, "{ \"$ref\": \"$1\" }");
             await File.WriteAllTextAsync(path, str);
             await UniTask.SwitchToMainThread();
+        }
+
+        [return:MaybeNull]public static T Read<T>(string pathPre, string name)
+        {
+            string path = pathPre + "/" + name + ".json";
+            if (!File.Exists(path))
+            {
+                MyDebug.Log("path :" + path + " not exist");
+                return default;
+            }
+            string str = File.ReadAllText(path);
+            using var _ = BusDisposable.MuteScope(typeof(T).Name);
+            using var _2 = BusDisposable.MuteScope("Data");
+            return JsonConvert.DeserializeObject<T>(str, settings);
         }
         public static async UniTask<T> ReadAsync<T>(string pathPre, string name, CancellationToken ct)
         {

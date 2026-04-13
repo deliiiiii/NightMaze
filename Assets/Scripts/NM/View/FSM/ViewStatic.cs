@@ -17,6 +17,8 @@ public class ViewStatic : Singleton<ViewStatic>
     public static SLView SLViewIns => Instance.sLView;
     [SerializeField] PlayView playView;
     public static PlayView PlayViewIns => Instance.playView;
+    [SerializeField] SettingView settingView;
+    public static SettingView SettingViewIns => Instance.settingView;
     
     public static MyOption<GamePlaying> GamePlayData => 
         from play in GameRoot.GetStateOptional<GamePlaying>()
@@ -34,11 +36,7 @@ public class ViewStatic : Singleton<ViewStatic>
     {
         TitleViewIns.Bind(ct);
         PlayViewIns.Bind(ct);
-    }
-
-    public static void UnBindAll()
-    {
-        TitleViewIns.Unbind();
-        PlayViewIns.Unbind();
+        SLViewIns.Bind(ct);
+        SettingViewIns.Bind(ct);
     }
 }

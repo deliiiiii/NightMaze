@@ -36,7 +36,7 @@ public static class ScriptableObjectOModifier
     }
     
     
-    [MenuItem("Tools/" + NameC.Name + "/Modify ScriptableObjects in Folder: ")]
+    [MenuItem("Tools/" + Const.ProjName + "/Modify ScriptableObjects in Folder: ")]
     public static void ModifyScriptableObjectsInFolder()
     {
         if (!Directory.Exists(TargetFolderPath))

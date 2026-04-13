@@ -1,5 +1,6 @@
 ﻿using System;
 using GeneralPreview;
+using NM.Data;
 using NM.View.ZZZTest;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class GridMapScroll : MonoBehaviour, IMultiScrollHandler
     [SerializeField] bool enablePena = true;
     public int MinSeenGrid = 2;
     public int MaxSeenGrid = 24;
-    public int TarSeenGrid = 12;
+    public float TarSeenGrid = 12;
     public float Duration = 0.4f;
     [ShowInInspector]float TarOrtho => TarSeenGrid * Const.GridSize / 2f;
     void Awake()
@@ -28,8 +29,7 @@ public class GridMapScroll : MonoBehaviour, IMultiScrollHandler
     }
     public void OnMultiScroll(PointerEventData eventData)
     {
-        int y = (int)Math.Clamp(eventData.scrollDelta.y, -1, 1);
-        // MyDebug.Log($"scroll {y}");
+        float y = Math.Clamp(eventData.scrollDelta.y, -1f, 1f) * GameRoot.Setting.MouseScrollMapSpeed;
         TarSeenGrid = Math.Clamp(TarSeenGrid - y, MinSeenGrid, MaxSeenGrid);
     }
 

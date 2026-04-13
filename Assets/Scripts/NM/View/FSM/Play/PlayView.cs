@@ -36,7 +36,7 @@ public class PlayView : ViewBase<GamePlaying>
     {
         yield return BtnSpin.onClick.EvtBindTo(() => new EvtPlayViewClickSpin().Forget());
         yield return BtnHarvest.onClick.EvtBindTo(() => new EvtPlayViewClickHarvest().Forget());
-        yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(NameC.SlotFolder, Data.PlayerName, Data));
+        yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.SaveName.SlotFolder, Data.PlayerName, Data));
         yield return BtnExit.onClick.EvtBindTo(() => new EvtPlayViewClickExit().Forget());
     }
 

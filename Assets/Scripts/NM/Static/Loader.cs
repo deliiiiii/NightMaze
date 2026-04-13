@@ -12,7 +12,7 @@ public static class Loader
     {
         ct ??= CancellationToken.None;
         var configAll = new List<ConfigBase>(1000);
-        configAll.AddRange(await Resourcer.LoadAssetsAsyncByLabel<ConfigBase>(NameC.ConfigTag, ct: ct));
+        configAll.AddRange(await Resourcer.LoadAssetsAsyncByLabel<ConfigBase>(Const.AddrResTag.ConfigTag, ct: ct));
         
         foreach (var config in configAll)
         {

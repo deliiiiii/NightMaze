@@ -29,6 +29,8 @@ public class ItemView : ViewBase
         {
             if (evt.Item.InPlay != Data)
                 return;
+            if (GameRoot.Setting.SpinTweenSpeed is SettingData.SpinTweenSpeedImmediate)
+                return;
             await onSpinTween.PlayAsync(ct);
         },
         Des = "符号结算前播放动画.",

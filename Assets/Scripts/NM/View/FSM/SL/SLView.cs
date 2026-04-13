@@ -45,7 +45,7 @@ public class SLView : ViewBase
         gameObject.SetActiveTrue();
         curSelected = null;
         tranContent.ClearChildren();
-        var dataList = await Saver.LoadAllWithVerAsync<GamePlaying>(NameC.SlotFolder, ct);
+        var dataList = await Saver.LoadAllWithVerAsync<GamePlaying>(Const.SaveName.SlotFolder, ct);
         foreach (var data in dataList)
         {
             var ins = Instantiate(pfbSlotView, tranContent);

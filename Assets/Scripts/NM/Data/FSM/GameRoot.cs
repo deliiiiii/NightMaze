@@ -1,5 +1,7 @@
-﻿using System.Threading;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using General;
 using GeneralPreview;
 
 namespace NM.Data;
@@ -14,12 +16,32 @@ public partial class GameRoot : Node<GameRoot>
             if (state == UnityEditor.PlayModeStateChange.ExitingEditMode)
             {
                 instance.state = null;
+                instance.SettingData = null!;
             }
         };
 #endif
     }
     static readonly GameRoot instance = new();
     Node? state;
+
+    [field:MaybeNull]SettingData SettingData
+    {
+        get
+        {
+            if (field == null)
+            {
+                var data = Saver.Load<SettingData>(Const.SaveName.SettingFolder, Const.SaveName.SettingName);
+                if (data == null)
+                {
+                    data = new SettingData();
+                    Saver.SaveAsync(Const.SaveName.SettingFolder, Const.SaveName.SettingName, data).Forget();
+                }
+                field = data;
+            }
+            return field;
+        }
+        set;
+    }
 
     public static CancellationTokenRegistration AddTo(CancellationToken ct)
         => instance.AddTo(ct);
@@ -29,6 +51,8 @@ public partial class GameRoot : Node<GameRoot>
         => instance.state is T s ? s : None;
     public static bool IsState<T>() where T : RootStateBase<T>
         => instance.state is T;
+
+    public static SettingData Setting => instance.SettingData;
     
     protected override void OnReleaseCom()
     {

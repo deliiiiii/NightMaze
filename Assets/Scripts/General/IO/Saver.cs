@@ -9,7 +9,8 @@ namespace General
     {
         public static UniTask SaveAsync<T>(string pathPre, string name, T curEntity) 
             => JsonIO.WriteAsync(pathPre, name, curEntity);
-
+        public static T Load<T>(string pathPre, string name)
+            => JsonIO.Read<T>(pathPre, name);
         public static UniTask<T> LoadAsync<T>(string pathPre, string name, CancellationToken ct)
             => JsonIO.ReadAsync<T>(pathPre, name, ct);
         public static UniTask<T> LoadWithVerAsync<T>(string pathPre, string name, CancellationToken ct) 
