@@ -15,9 +15,6 @@ public abstract class Node
 [DebuggerStepThrough]
 public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where TThis : Node<TThis>
 {
-    interface INodeCom
-    {
-    }
     protected UniTask _ChangeAsync<TNode, TNodeSub>(ref TNode? field, TNodeSub node, bool isNewFromLoad) 
         where TNode : Node
         where TNodeSub : TNode
@@ -61,12 +58,17 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
         cts.Cancel();
         new EvtOnExit().Forget();
     }
-    protected virtual void OnSelfTick(float dt){}
+
+    protected virtual void OnSelfTick(float dt)
+    {
+        new EvtOnTick((TThis)this, dt).Forget();
+    }
 
     /// 仅为了通知UI.
     public record EvtOnEnter(TThis WhoHasCt) : EvtBase<TThis>(WhoHasCt);
     /// 仅为了通知UI.
     public record EvtOnExit : EvtForgetBase;
+    public record EvtOnTick(TThis Self, float Dt) : EvtForgetBase;
     [DebuggerStepThrough]
     public abstract record UniAction(TThis Self) : IUniAction
     {

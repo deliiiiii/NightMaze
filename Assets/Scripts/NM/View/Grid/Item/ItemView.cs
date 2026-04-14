@@ -23,11 +23,11 @@ public class ItemView : ViewBase
         gridSr.gameObject.SetActive(Data.Config.IsGrid);
     }
     
-    UniEvt<PlaySpin.EvtBeforeCheckSymbol> OnBeforeCheckSymbol => new()
+    UniEvt<PlaySpin.EvtBeforeCheckSymbolTween> OnBeforeCheckSymbol => new()
     {
         Invoke = async (evt, ct) =>
         {
-            if (evt.Item.InPlay != Data)
+            if (evt.Item != Data)
                 return;
             if (GameRoot.Setting.SpinTweenSpeed is SettingData.SpinTweenSpeedImmediate)
                 return;

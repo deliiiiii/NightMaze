@@ -17,14 +17,35 @@ using Vector2Int = GeneralPreview.Vector2Int;
 namespace NM.View;
 public class PlayView : ViewBase<GamePlaying>
 {
+    [Header("上左")]
+    public Txt TxtBody;
+    public Txt TxtBodyAdd;
+    public Txt TxtSans;
+    public Txt TxtSansAdd;
+    public Txt TxtLore;
+    public Txt TxtLoreAdd;
+    public List<PropValueView> PropValueViewList = [];
+    
+    [Header("上中")]
+    public Txt TxtTurnCount;
+    public Txt TxtNextSoftDdl;
+    [Header("上右")]
+    public Txt TxtLoyalty;
+    public Txt TxtHostility;
+    
+    [Header("中")]
     public GridDetail GridDetail;
     
+    [Header("Trs")]
     public Trs GridTrs;
+    
+    [Header("Btn")]
     public Btn BtnSpin;
     public Btn BtnHarvest;
     public Btn BtnSave;
     public Btn BtnExit;
 
+    [Header("Pfb")]
     [SerializeField] ItemView itemPfb;
 
     readonly List<ItemView> itemViewList = [];
@@ -39,7 +60,6 @@ public class PlayView : ViewBase<GamePlaying>
         yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.SaveName.SlotFolder, Data.PlayerName, Data));
         yield return BtnExit.onClick.EvtBindTo(() => new EvtPlayViewClickExit().Forget());
     }
-
     void Update()
     {
         if (LockedPosDetail != null)
@@ -47,9 +67,9 @@ public class PlayView : ViewBase<GamePlaying>
             ShowGridDetailAtPos(LockedPosDetail.Value);
         }
 
-        BtnSpin.interactable = (
-            from play in GamePlayData
-            select play.IsState<PlayIdle>()) | false;
+        // BtnSpin.interactable = (
+            // from play in GamePlayData
+            // select play.IsState<PlayIdle>()) | false;
         BtnHarvest.interactable = (
             from spin in PlaySpinData
             select spin.CanHarvest) | false;
@@ -63,6 +83,7 @@ public class PlayView : ViewBase<GamePlaying>
             Data = evt.WhoHasCt;
             // ClearAllGrid();
             Data.Items.ForEach(SpawnItem);
+            PropValueViewList.ForEach(view => view.Refresh(Data));
             gameObject.SetActiveTrue();
             return UniTask.CompletedTask;
         },
@@ -81,6 +102,35 @@ public class PlayView : ViewBase<GamePlaying>
             return UniTask.CompletedTask;
         },
         Des = "(退出Root - Playing状态时) 隐藏界面"
+    };
+
+    UniEvt<PlaySpin.EvtOnTick> OnTickSpin => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            PropValueViewList.ForEach(view => view.Refresh(Data));
+            return UniTask.CompletedTask;
+        },
+        Des = "刷新属性显示"
+    };
+
+    UniEvt<PlayIdle.EvtOnEnter> OnEnterPlayIdle => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            BtnSpin.interactable = true;
+            return UniTask.CompletedTask;
+        },
+        Des = "激活spin按钮"
+    };
+    UniEvt<PlayIdle.EvtOnExit> OnExitPlayIdle => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            BtnSpin.interactable = false;
+            return UniTask.CompletedTask;
+        },
+        Des = "取消激活spin按钮"
     };
 
     UniEvt<GamePlaying.EvtSpawnItem> OnSpawnItemAtPos => new()
@@ -140,7 +190,7 @@ public class PlayView : ViewBase<GamePlaying>
                     from modProp in itemInSpin.ModifyPropList
                     where modProp.HasValue
                     orderby modProp.PropType, modProp.AddValue descending, modProp.MultiValue descending
-                    select $"{modProp.From.InPlay.Config.Name} " +
+                    select $"{modProp.From.Config.Name} " +
                            modProp.PropType.GetLabelText() +
                            (modProp.AddValue != 0 ? modProp.AddValue.ToStringWithSymbol() : string.Empty) +
                            (Math.Abs(modProp.MultiValue - 1) > 1e-5 ? $"<color=green>x{modProp.MultiValue}</color>" : string.Empty)

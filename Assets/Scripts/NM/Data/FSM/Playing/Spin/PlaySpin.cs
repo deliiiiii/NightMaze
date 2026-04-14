@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
+using Newtonsoft.Json;
 using Sirenix.Utilities;
 
 namespace NM.Data;
@@ -13,7 +14,7 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
         return "Spin";
     }
 
-    List<IUniAction> toDoList = [];
+    [JsonProperty(Order = 9999)]List<IUniAction> toDoList = [];
     public IEnumerable<IUniAction> ToDoList => toDoList;
     public bool CanHarvest => !toDoList.Any();
     int FindAfterId(Func<IUniAction, bool>? beforeWho = null)
@@ -31,20 +32,19 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
         toDoList.InsertRange(FindAfterId(afterWho) + 1, actList);
     }
     
-    IEnumerable<MyItem> Items =>
+    public IEnumerable<MyItem> Items =>
         from itemInPlay in BelongNode.Items
         select itemInPlay.InSpin(this);
     protected override void OnCreateFreshData()
     {
         // BelongNode.Items.ForEach(item => item.CreateInSpin(this));
         toDoList = [..
-            from itemInThis in Items
-            where itemInThis.InPlay.AllConfigList.Any()
-            let itemInPlay = itemInThis.InPlay
+            from itemInPlay in BelongNode.Items
+            where itemInPlay.AllConfigList.Any()
             orderby itemInPlay.PivotPos.Y descending, itemInPlay.PivotPos.X, itemInPlay.Config.Order ascending 
             select new ActCheckItem(this)
             {
-                Item = itemInThis
+                Item = itemInPlay
             }
         ];
     }

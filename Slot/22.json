@@ -6,758 +6,862 @@
     "savedVersion": 20260402.0,
     "SettingData": {
       "$id": "3",
+      "MouseScrollMapSpeed": 0.2,
       "SpinTweenSpeed": {
         "$id": "4",
         "$type": "NM.Data.SettingData+SpinTweenSpeedNormal, NM.Data",
         "Value": 1
-      },
-      "MouseScrollMapSpeed": 0.2
+      }
     },
     "state": { "$ref": "1" }
   },
-  "PlayerName": "111",
-  "PlayTime": 349.18626057961956,
-  "Prop1": 0,
-  "Prop2": 0,
-  "Prop3": 0,
-  "Prop4": 0,
-  "Prop5": 0,
-  "Prop6": 0,
+  "TurnCount": 0,
+  "PlayerName": "22",
+  "PlayTime": 18.861423798371106,
+  "PropBody": 0,
+  "PropSans": 0,
+  "PropLore": 0,
+  "PropLoyalty": 0,
+  "PropHostility": 0,
   "Coin": 0,
-  "state": {
-    "$id": "5",
-    "$type": "NM.Data.PlayIdle, NM.Data",
-    "savedVersion": 20260402.0,
-    "BelongNode": { "$ref": "1" }
-  },
   "itemList": [
     {
-      "$id": "6",
+      "$id": "5",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":1,"Y":1},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "7",
+        "$id": "6",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "8",
+      "$id": "7",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":1,"Y":2},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "9",
+        "$id": "8",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "10",
+      "$id": "9",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":1,"Y":3},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "11",
+        "$id": "10",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "12",
+      "$id": "11",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":1,"Y":4},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "13",
+        "$id": "12",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "14",
+      "$id": "13",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":1,"Y":5},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "15",
+        "$id": "14",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "16",
+      "$id": "15",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":1,"Y":6},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "17",
+        "$id": "16",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "18",
+      "$id": "17",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":1,"Y":7},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "19",
+        "$id": "18",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "20",
+      "$id": "19",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":1,"Y":8},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "21",
+        "$id": "20",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "22",
+      "$id": "21",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":2,"Y":1},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "23",
+        "$id": "22",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "24",
+      "$id": "23",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":2,"Y":2},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "25",
+        "$id": "24",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "26",
+      "$id": "25",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":2,"Y":3},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "27",
+        "$id": "26",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "28",
+      "$id": "27",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":2,"Y":4},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "29",
+        "$id": "28",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "30",
+      "$id": "29",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "30",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "31",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":2,"Y":6},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "31",
+        "$id": "32",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "32",
+      "$id": "33",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":2,"Y":7},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "33",
+        "$id": "34",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "34",
+      "$id": "35",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":2,"Y":8},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "35",
+        "$id": "36",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "36",
+      "$id": "37",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":3,"Y":1},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "37",
+        "$id": "38",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "38",
+      "$id": "39",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":3,"Y":2},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "39",
+        "$id": "40",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "40",
+      "$id": "41",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":3,"Y":3},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "41",
+        "$id": "42",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "42",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":3,"Y":6},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "43",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "44",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":3,"Y":7},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "45",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "46",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":3,"Y":8},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "47",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "48",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":4,"Y":1},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "49",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "50",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":4,"Y":2},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "51",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "52",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":4,"Y":8},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "53",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "54",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":5,"Y":1},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "55",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "56",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":5,"Y":2},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "57",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "58",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":5,"Y":3},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "59",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "60",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":5,"Y":4},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "61",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "62",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":5,"Y":6},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "63",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "64",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":5,"Y":7},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "65",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "66",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":5,"Y":8},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "67",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "68",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":6,"Y":1},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "69",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "70",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":6,"Y":2},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "71",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "72",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":6,"Y":3},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "73",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "74",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":6,"Y":4},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "75",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "76",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":6,"Y":6},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "77",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "78",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":6,"Y":7},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "79",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "80",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":6,"Y":8},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "81",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "82",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":7,"Y":1},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "83",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "84",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":7,"Y":2},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "85",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "86",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":7,"Y":3},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "87",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "88",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":7,"Y":4},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "89",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "90",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":7,"Y":5},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "91",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "92",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":7,"Y":6},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "93",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "94",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":7,"Y":7},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "95",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "96",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":7,"Y":8},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "97",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "98",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":8,"Y":1},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "99",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "100",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":8,"Y":2},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "101",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "102",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":8,"Y":3},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "103",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "104",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":8,"Y":4},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "105",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "106",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":8,"Y":5},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "107",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "108",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":8,"Y":6},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "109",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "110",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":8,"Y":7},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "111",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "112",
-      "ID": 1,
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":8,"Y":8},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "113",
-        "$values": []
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "114",
+      "$id": "43",
       "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":3,"Y":4},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "115",
+        "$id": "44",
         "$values": []
       },
       "inSpin": null
     },
     {
-      "$id": "116",
-      "ID": 10001,
+      "$id": "45",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "46",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "47",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "48",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "49",
+      "ID": 1,
       "Dragging": false,
       "Spawning": false,
       "PivotPos":{"X":3,"Y":7},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
-        "$id": "117",
+        "$id": "50",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "51",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "52",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "53",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "54",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "55",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "56",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "57",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "58",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "59",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "60",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "61",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "62",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "63",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "64",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "65",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "66",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "67",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "68",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "69",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "70",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "71",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "72",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "73",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "74",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "75",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "76",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "77",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "78",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "79",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "80",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "81",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "82",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "83",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "84",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "85",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "86",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "87",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "88",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "89",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "90",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "91",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "92",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "93",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "94",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "95",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "96",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "97",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "98",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "99",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "100",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "101",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "102",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "103",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "104",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "105",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "106",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "107",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "108",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "109",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "110",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "111",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "112",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "113",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "114",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "115",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "116",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "117",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "118",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "119",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "120",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "121",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "122",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "123",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "124",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "125",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "126",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "127",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "128",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "129",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "130",
+        "$values": []
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "131",
+      "ID": 1,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "132",
         "$values": []
       },
       "inSpin": null
     }
-  ]
+  ],
+  "state": {
+    "$id": "133",
+    "$type": "NM.Data.PlayIdle, NM.Data",
+    "savedVersion": 20260402.0,
+    "BelongNode": { "$ref": "1" }
+  }
 }

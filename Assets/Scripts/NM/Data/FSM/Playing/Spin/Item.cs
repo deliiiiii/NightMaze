@@ -13,62 +13,52 @@ namespace NM.Data;
 
 public partial class PlaySpin
 {
-    public class MyItem(PlaySpin spin, GamePlaying.MyItem inPlay)
+    public class MyItem
     {
-        public PlaySpin Spin = spin;
-        public GamePlaying.MyItem InPlay {[DebuggerStepThrough] get; init; } = inPlay;
-
         public long GetProp(EPropType propType)
         {
             var filteredList = ModifyPropList.Where(m => m.PropType == propType).ToList();
             var addSum = filteredList.Sum(m => m.AddValue);
-            var multiSum = filteredList.Aggregate(1L, (cur, m) => cur * m.AddValue);
-            return addSum * multiSum;
+            var multiSum = filteredList.Aggregate((double)1, (cur, m) => cur * m.MultiValue);
+            return (long)(addSum * multiSum);
         }
 
         [JsonProperty(IsReference = false, ItemIsReference = false)]
         public List<ModifyPropInfo> ModifyPropList { [DebuggerStepThrough] get; init; } = [];
-        public UniTask OnSpin(CancellationToken ct)
+        public UniTask OnSpinAsync(PlaySpin spin, GamePlaying.MyItem inPlay, CancellationToken ct)
         {
-            SelfAddBaseValue();
-            Spin.InsertAfter(
-                from itemDes in (List<ItemDesConfig>)[..InPlay.Config.DesList, ..InPlay.EatConfigList]
+            SelfAddBaseValue(spin, inPlay);
+            spin.InsertAfter(
+                from itemDes in (List<ItemDesConfig>)[..inPlay.Config.DesList, ..inPlay.EatConfigList]
                 where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEnterSpin
-                select new ActDoItemDesResult(Spin)
+                select new ActDoItemDesResult(spin)
                 {
-                    SelfItem = this,
+                    Item = inPlay,
                     ResultWrap = new ResultWrap(itemDes.Result!, null),
                 });
             return UniTask.CompletedTask;
         }
 
-        void SelfAddBaseValue()
+        void SelfAddBaseValue(PlaySpin spin, GamePlaying.MyItem inPlay)
         {
-            var config = InPlay.Config;
+            var config = inPlay.Config;
             if (config.IsSymbol)
             {
                 config.SymbolPropValueList.ForEach(pair =>
                 {
                     ModifyPropList.Add(new ModifyPropInfo
                     {
-                        From = this,
+                        From = inPlay,
                         PropType = pair.Key,
                         AddValue = pair.Value,
                     });
                 });
             }
         }
-        
-        protected virtual bool PrintMembers(StringBuilder sb)
-        {
-            sb.Append($"{InPlay.PrintMembers()}, ");
-            sb.Append($"ModifyPropList = [{string.Join(", ", ModifyPropList)}]");
-            return true;
-        }
     }
-    public record ModifyPropInfo
+    public class ModifyPropInfo
     {
-        public required MyItem From;
+        public required GamePlaying.MyItem From;
         public required EPropType PropType;
         public long AddValue;
         public double MultiValue = 1;
@@ -77,7 +67,7 @@ public partial class PlaySpin
 
         protected virtual bool PrintMembers(StringBuilder sb)
         {
-            sb.Append($"Ett = {From.InPlay.Config.Name},");
+            sb.Append($"Ett = {From.Config.Name},");
             sb.Append($"PropType = {PropType.GetLabelText()}, ");
             sb.Append($"AddValue = {AddValue}, ");
             sb.Append($"MultiValue = {MultiValue}");

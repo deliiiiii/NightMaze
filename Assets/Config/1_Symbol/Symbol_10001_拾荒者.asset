@@ -109,7 +109,7 @@ MonoBehaviour:
           rid: -2
         ItemSelector:
           rid: 6212121151727206410
-        PropType: 0
+        PropType: 2
         IntSelector:
           rid: 6212121151727206413
     - rid: 6212121151727206410
@@ -134,7 +134,7 @@ MonoBehaviour:
       type: {class: ItemSelectorAtPresentAll, ns: NM.Config, asm: NM.Config}
       data:
         <ItemFilter>k__BackingField:
-          rid: 6212121151727206417
+          rid: 6212121162749313025
         <ItemSort>k__BackingField:
           rid: -2
         <PosFilter>k__BackingField:
@@ -142,17 +142,6 @@ MonoBehaviour:
         <PosSort>k__BackingField:
           rid: -2
         <Random>k__BackingField: 0
-    - rid: 6212121151727206417
-      type: {class: ItemFilterTag, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: -2
-        ItemTagList: 
-        GridTagList: 00000000
-        SymbolTagList: 
-        ResourceTagList: 
-        BuildingTagList: 
-        EventTagList: 
     - rid: 6212121151727206418
       type: {class: PosFilterIn3X3, ns: NM.Config, asm: NM.Config}
       data:
@@ -170,3 +159,14 @@ MonoBehaviour:
         <PosSort>k__BackingField:
           rid: -2
         <Random>k__BackingField: 0
+    - rid: 6212121162749313025
+      type: {class: ItemFilterTag, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+        ItemTagList: 
+        GridTagList: 00000000
+        SymbolTagList: 
+        ResourceTagList: 
+        BuildingTagList: 
+        EventTagList: 

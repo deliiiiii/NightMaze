@@ -11,8 +11,14 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
-    public partial record MyItem
+    public partial class MyItem
     {
+        [JsonConstructor]
+        MyItem()
+        {
+            DeltaPosList = [];
+            EatConfigList = [];
+        }
         public MyItem(int id, Vector2Int pivotPos)
         {
             ID = id;
@@ -45,30 +51,24 @@ public partial class GamePlaying
         public List<Vector2Int> DeltaPosList { [DebuggerStepThrough] get; private init; }
         public List<ItemDesConfig> EatConfigList { [DebuggerStepThrough] get; private init; }
         public List<ItemDesConfig> AllConfigList => [..Config.DesList, ..EatConfigList];
-        
 
-        protected virtual bool PrintMembers(StringBuilder builder)
+
+        public override string ToString()
         {
+            StringBuilder builder = new();
             builder.Append($"Name = {Config.Name}, ");
+            builder.Append($"Config = {Config}, ");
             builder.Append($"PivotPos = {PivotPos}, ");
             builder.Append($"DeltaPosList = [{string.Join(", ", DeltaPosList)}]");
-            return true;
-        }
-        public string PrintMembers()     
-        {
-            var sb = new StringBuilder();
-            PrintMembers(sb);
-            return sb.ToString();
+            if (inSpin != null)
+            {
+                builder.Append($"ModifyPropList = [{string.Join(", ", inSpin.ModifyPropList)}]");
+            }
+            return builder.ToString();
         }
         
         PlaySpin.MyItem? inSpin;
-        public PlaySpin.MyItem InSpin(PlaySpin spin) => inSpin ??= CreateInSpin(spin);
+        public PlaySpin.MyItem InSpin(PlaySpin spin) => inSpin ??= new();
         public void DestroyInSpin() => inSpin = null;
-
-        protected PlaySpin.MyItem CreateInSpin(PlaySpin spin)
-        {
-            return new PlaySpin.MyItem(spin, this);
-        }
-        
     }
 }

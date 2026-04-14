@@ -21,12 +21,13 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     [DebuggerStepThrough]public override string ToString() => nameof(GamePlaying);
     public string PlayerName { get; private set;}= "Deli";
     public double PlayTime { get; private set;}
-    [EvtChanged]public partial long Prop1 { get;private set; }
-    [EvtChanged]public partial long Prop2 { get;private set; }
-    [EvtChanged]public partial long Prop3 { get;private set; }
-    [EvtChanged]public partial long Prop4 { get;private set; }
-    [EvtChanged]public partial long Prop5 { get;private set; }
-    [EvtChanged]public partial long Prop6 { get;private set; }
+    public int TurnCount;
+    [EvtChanged]public partial long PropBody { get;private set; }
+    [EvtChanged]public partial long PropSans { get;private set; }
+    [EvtChanged]public partial long PropLore { get;private set; }
+    [EvtChanged]public partial long PropLoyalty { get;private set; }
+    [EvtChanged]public partial long PropHostility { get;private set; }
+    // [EvtChanged]public partial long Prop6 { get;private set; }
     [EvtChanged]
     public partial long Coin { get; private set;}
     // 标注[EvtChanged]则源生↓↓↓
@@ -42,7 +43,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     // public record EvtCoinChanged(GamePlaying gamePlaying,
     //              long OldValue,
     //              long NewValue): EvtForgetBase;
-    [JsonProperty(IsReference = false, Order = 9999)]List<MyItem> itemList = [];
+    [JsonProperty(IsReference = false, Order = 9000)]List<MyItem> itemList = [];
     
     public IEnumerable<MyItem> Items => itemList;
     public IEnumerable<MyItem> Grids => itemList.Where(item => item.Config.IsGrid);
@@ -112,9 +113,11 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
 
     protected override void OnSelfTick(float dt)
     {
+        base.OnSelfTick(dt);
         PlayTime += dt;
     }
 
+    [JsonProperty(Order = 10000)]
     Node? state;
     public UniTask ChangeStateAsync<T>(T node, bool isNewFromLoad) where T : PlayStateBase<T>
         => _ChangeAsync(ref state, node, isNewFromLoad);
@@ -124,7 +127,4 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         => state is T;
 }
 
-public abstract class PlayStateBase<T> : Node<GamePlaying, T> where T : PlayStateBase<T>
-{
-    
-}
+public abstract class PlayStateBase<T> : Node<GamePlaying, T> where T : PlayStateBase<T>;

@@ -48,28 +48,33 @@ public static class Bus
         var evtType = evt.GetType();
         if (BusDisposable.IsMute(evtType.FullName))
             return;
-        if (debug)
-        {
-            var attr = evtType.GetCustomAttribute<EvtNameAttribute>();
-            var typeName = attr != null ? $"{attr.Name}" : evtType.GetNiceName();
-            typeName = typeName.Replace("Node<TThis>.", string.Empty);
-            if (typeName.StartsWith("Evt"))
-                typeName = typeName[3..];
-            typeName = typeName.Replace("OnEnter", "进入状态");
-            typeName = typeName.Replace("OnExit", "退出状态");
-            var details = evt.ToString();
-            var leftBracketIndex = details.IndexOf('{');
-            var rightBracketIndex = details.LastIndexOf('}');
-            details = details.Substring(leftBracketIndex, rightBracketIndex - leftBracketIndex + 1);
-            details = FormatRecordDetails(details);
-            MyDebug.Log($"Fired - {typeName}{details}");
-        }
+        if (debug) 
+            Debug(evt);
         if (!evtDic.TryGetValue(evtType, out var list)) 
             return;
         foreach (var dele in list.Where(_ => !ct.IsCancellationRequested).ToList())
         {
             await dele.InvokeAsync(evt, ct);
         }
+    }
+    static void Debug<T>(T evt) where T : IEvtBase
+    {
+        var evtType = evt.GetType();
+        var attr = evtType.GetCustomAttribute<EvtNameAttribute>();
+        var typeName = attr != null ? $"{attr.Name}" : evtType.GetNiceName();
+        if (typeName.Contains("Tick"))
+            return;
+        typeName = typeName.Replace("Node<TThis>.", string.Empty);
+        if (typeName.StartsWith("Evt"))
+            typeName = typeName[3..];
+        typeName = typeName.Replace("OnEnter", "进入状态");
+        typeName = typeName.Replace("OnExit", "退出状态");
+        var details = evt.ToString();
+        var leftBracketIndex = details.IndexOf('{');
+        var rightBracketIndex = details.LastIndexOf('}');
+        details = details.Substring(leftBracketIndex, rightBracketIndex - leftBracketIndex + 1);
+        details = FormatRecordDetails(details);
+        MyDebug.Log($"Fired - {typeName}{details}");
     }
     internal static void Register<T>(UniEvt<T> act) where T : IEvtBase
     {

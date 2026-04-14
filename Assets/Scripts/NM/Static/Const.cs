@@ -29,6 +29,8 @@ public static class Const
         public const string Name1 = "体魄";
         public const string Name2 = "理智";
         public const string Name3 = "智识";
+        public const string NameA1 = "忠诚度";
+        public const string NameA2 = "敌意值";
     }
 
     public static class TMPResource

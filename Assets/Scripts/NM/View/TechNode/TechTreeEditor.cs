@@ -26,7 +26,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
      
     [UnityEditor.InitializeOnLoadMethod]
     static void InitOnStart() 
-        => UnityEditor.EditorApplication.delayCall += () => Instance.OnDelayCall();
+        => UnityEditor.EditorApplication.delayCall += () => FindObjectOfType<TechTreeEditor>()?.OnDelayCall();
 
     void OnDelayCall()
     {
