@@ -14,7 +14,7 @@ public abstract record ItemDesResultBase
 public record ItemDesResultAddXPropX : ItemDesResultBase
 {
     [SerializeReference, LabelText("{0}: 目标物体")] public ItemSelectorBase? ItemSelector = new ItemSelectorAtPresentSelf();
-    [LabelText("{1}: 属性类型")] public EPropType PropType;
+    [LabelText("{1}: 属性类型")] public EPropType PropType = EPropType.Prop1;
     [SerializeReference, LabelText("{2}: 属性加算数值")] public IntSelectorBase? IntSelector = new IntSelectorConst();
 
 }
@@ -22,7 +22,7 @@ public record ItemDesResultAddXPropX : ItemDesResultBase
 public record ItemDesResultMulXPropX : ItemDesResultBase
 {
     [SerializeReference, LabelText("{0}: 目标物体")] public ItemSelectorBase? ItemSelector = new ItemSelectorAtPresentSelf();
-    [LabelText("{1}: 属性类型")] public EPropType PropType;
+    [LabelText("{1}: 属性类型")] public EPropType PropType = EPropType.Prop1;
     [SerializeReference, LabelText("{2}: 属性乘算数值")] public IntSelectorBase? IntSelector = new IntSelectorConst();
 }
 
@@ -36,9 +36,9 @@ public record ItemDesResultSpawnXAtX : ItemDesResultBase
 
 public enum EPropType
 {
-    [LabelText(Const.Property.Name1)] Prop1 = 1,
-    [LabelText(Const.Property.Name2)] Prop2 = 2,
-    [LabelText(Const.Property.Name3)] Prop3 = 3,
+    [LabelText(Const.Property.Name1)] Prop1 = 0,
+    [LabelText(Const.Property.Name2)] Prop2 = 1,
+    [LabelText(Const.Property.Name3)] Prop3 = 2,
     [LabelText(Const.Property.NameA1)] PropA1 = 10,
     [LabelText(Const.Property.NameA2)] PropA2 = 11,
 }
@@ -56,4 +56,8 @@ public record ItemDesResultAddItemDesToSelf : ItemDesResultBase
 {
     [SerializeReference, LabelText("{0} 指定目标物体")] public ItemSelectorBase? ItemSelector = new ItemSelectorFromResult();
 }
+
+[TypeRegistryItem("解锁下一层")]
+[DebuggerStepThrough]
+public record ItemDesResultUnlockNextLayer : ItemDesResultBase;
 #endregion

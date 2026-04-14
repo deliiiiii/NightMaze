@@ -7,8 +7,6 @@ namespace NM.Config.Editor;
 public static class ItemConfigCreator
 {
     const string Path = "Assets/Create/NM/";
-    [MenuItem(Path + "0_新地块", false, 0)]
-    public static void Create0() => Create(EItemType.Grid);
     [MenuItem(Path + "1_新棋子", false, 1)]
     public static void Create1() => Create(EItemType.Symbol);
     [MenuItem(Path + "2_新建筑", false, 2)]
@@ -17,6 +15,8 @@ public static class ItemConfigCreator
     public static void Create3() => Create(EItemType.Resource);
     [MenuItem(Path + "4_新事件", false, 4)]
     public static void Create4() => Create(EItemType.Event);
+    [MenuItem(Path + "5_新地块", false, 5)]
+    public static void Create5() => Create(EItemType.Grid);
 
     static void Create(EItemType itemType)
     {

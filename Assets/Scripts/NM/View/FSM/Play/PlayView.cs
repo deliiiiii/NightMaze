@@ -21,6 +21,7 @@ public class PlayView : ViewBase<GamePlaying>
     public List<PropValueView> PropValueViewList = [];
     
     [Header("上中")]
+    public Txt TxtLayerCount;
     public Txt TxtTurnCount;
     public Txt TxtNextSoftDdl;
     [Header("上右")]
@@ -39,6 +40,7 @@ public class PlayView : ViewBase<GamePlaying>
     public Btn BtnHarvest;
     public Btn BtnSave;
     public Btn BtnExit;
+    public Btn BtnSetting;
 
     [Header("Pfb")]
     [SerializeField] ItemView itemPfb;
@@ -54,6 +56,7 @@ public class PlayView : ViewBase<GamePlaying>
         yield return BtnHarvest.onClick.EvtBindTo(() => new EvtPlayViewClickHarvest().Forget());
         yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.SaveName.SlotFolder, Data.PlayerName, Data));
         yield return BtnExit.onClick.EvtBindTo(() => new EvtPlayViewClickExit().Forget());
+        yield return BtnSetting.onClick.EvtBindTo(() => SettingViewIns.SetActiveTrue());
     }
     void Update()
     {
@@ -77,12 +80,18 @@ public class PlayView : ViewBase<GamePlaying>
             Data = evt.WhoHasCt;
             // ClearAllGrid();
             Data.Items.ForEach(SpawnItem);
+            RefreshTurnAndSoOn(Data);
             PropValueViewList.ForEach(view => view.Refresh(Data));
             gameObject.SetActiveTrue();
             return UniTask.CompletedTask;
         },
         Des = "(进入Root - Playing状态时) 恢复游戏"
     };
+
+    void RefreshTurnAndSoOn(GamePlaying play)
+    {
+        TxtTurnCount.text = play.TurnCount.ToString();
+    }
 
     UniEvt<GamePlaying.EvtOnExit> OnExit => new()
     {
@@ -97,6 +106,27 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "(退出Root - Playing状态时) 隐藏界面"
     };
+
+    
+    UniEvt<GamePlaying.EvtCurLayerChanged> OnCurLayerChanged => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            TxtLayerCount.text = evt.GamePlaying.CurLayer.ToString();
+            return UniTask.CompletedTask;
+        },
+        Des = "更新文本",
+    };
+    UniEvt<GamePlaying.EvtTurnCountChanged> OnTurnCountChanged => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            TxtTurnCount.text = evt.GamePlaying.TurnCount.ToString();
+            return UniTask.CompletedTask;
+        },
+        Des = "更新文本",
+    };
+    
 
     UniEvt<PlaySpin.EvtOnTick> OnTickSpin => new()
     {
@@ -164,7 +194,7 @@ public class PlayView : ViewBase<GamePlaying>
             ..
             from item in Data.Items
             where item.CoverPos(gridPos)
-            orderby (int)item.ItemType + (item.ItemType == EItemType.Grid ? int.MaxValue/2 : 0)
+            orderby (int)item.ItemType
             // from config in (List<IItemConfig>)[item.Config, .. item.EatConfigs]
             select new DetailInfo
             {
@@ -172,7 +202,7 @@ public class PlayView : ViewBase<GamePlaying>
                 Name = item.Config.Name,
                 TagInfoList = item.Config.DetailTagInfos,
                 Detail = $"""
-                          {item.PivotPos}{(!Data.Items.Contains(item) ? "已不复存在" : string.Empty)}{ResolveItemDesList(item.Config.DesList)}{ResolveItemDesList(item.EatConfigList)}
+                          {item.PivotPos}{ResolveBuildingOrEvt(item)}{(!Data.Items.Contains(item) ? "已不复存在" : string.Empty)}{ResolveItemDesList(item.Config.DesList)}{ResolveItemDesList(item.EatConfigList)}
                           <color=grey>{item.Config.FlavorDes}</color>
                           """,
                 InSpinLineList =
@@ -186,7 +216,13 @@ public class PlayView : ViewBase<GamePlaying>
                     select $"{modProp.From.Config.Name} " +
                            modProp.PropType.GetLabelText() +
                            (modProp.AddValue != 0 ? modProp.AddValue.ToStringWithSymbol() : string.Empty) +
-                           (Math.Abs(modProp.MultiValue - 1) > 1e-5 ? $"<color=green>x{modProp.MultiValue}</color>" : string.Empty)
+                           (Math.Abs(modProp.MultiValue - 1) > 1e-5 ? $"<color=green>x{modProp.MultiValue}</color>" : string.Empty),
+                    ..
+                    from spin in PlaySpinData.ToIEnumerable()
+                    let itemInSpin = item[spin]
+                    from distributeProp in itemInSpin.DistributePropList
+                    orderby distributeProp.Value
+                    select $"->{distributeProp.ToItem?.Config.Name ?? "YOU"}{distributeProp.PropType.GetLabelText()}{distributeProp.Value.ToStringWithSymbol()}"
                 ]
             }
         ];
@@ -195,26 +231,31 @@ public class PlayView : ViewBase<GamePlaying>
         GridDetail.transform.SetLocalPositionZ(0);
         GridDetail.Refresh(detailList);
     }
+
+    string ResolveBuildingOrEvt(GamePlaying.MyItem item)
+    {
+        if (!item.Config.IsBuildingOrEvent)
+            return string.Empty;
+        if (item.IsBuildingOrEventKanSei)
+            return "建造/事件已完成.";
+        return string.Join(',', item.BuildingOrEventProgress.Select(pair =>
+        {
+            return $"需要{pair.Key.GetLabelText()} {pair.Value}/{item.Config.BuildPropValueList.First(p => p.Key == pair.Key).Value}";
+        }));
+    }
     string ResolveItemDesList(List<ItemDesConfig> desConfigList)
     {
         var ret = string.Join("\n", desConfigList.Select(ResolveItemDes));
         if (ret != string.Empty)
-            return $"\n{ret}<sprite name=\"GridBack\">";
-        return string.Empty;
+        {
+            ret = $"\n{ret}<sprite name=\"GridBack\">";
+        }
+        return ret;
     }
     string ResolveItemDes(ItemDesConfig desConfig)
     {
         var sb = new StringBuilder();
-        var result = desConfig.Result;
-        bool isFirst = true;
-        while (result != null)
-        {
-            if(!isFirst)
-                sb.Append("<color=red> & </color>");
-            isFirst = false;
-            sb.Append(result.GetType().GetCustomAttribute<TypeRegistryItemAttribute>()?.Name ?? result.GetType().Name);
-            result = result.Next;
-        }
+        sb.Append(desConfig.DesToPlayer);
         return sb.ToString();
     }
     
@@ -228,7 +269,7 @@ public class PlayView : ViewBase<GamePlaying>
 
     void ClearAllGrid()
     {
-        itemViewList.ForEach(item => Destroy(item.gameObject));
+        itemViewList.Where(item => item != null).ForEach(item => Destroy(item.gameObject));
         itemViewList.Clear();
     }
 
@@ -261,8 +302,8 @@ public class PlayView : ViewBase<GamePlaying>
         }
         else
         {
-            item.transform.parent = Grids.FirstOrDefault(g => g.Data.PivotPos == item.Data.PivotPos)?.TrsOnGrid;
-            item.transform.localPosition = Vector3.zero;
+            item.transform.parent = Grids.FirstOrDefault(g => g.Data.PivotPos == item.Data.PivotPos)?.transform;
+            item.transform.localPosition = new Vector3(0.5f, 0.5f) * Const.GridSize;
         }
     }
 

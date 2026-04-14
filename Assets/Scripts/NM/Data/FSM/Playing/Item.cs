@@ -6,6 +6,7 @@ using General;
 using GeneralPreview;
 using Newtonsoft.Json;
 using NM.Config;
+using Sirenix.Utilities;
 
 namespace NM.Data;
 
@@ -18,6 +19,7 @@ public partial class GamePlaying
         {
             DeltaPosList = [];
             EatConfigList = [];
+            BuildingOrEventProgress = [];
         }
         public MyItem(int id, Vector2Int pivotPos)
         {
@@ -33,6 +35,9 @@ public partial class GamePlaying
                 _ => [Vector2Int.Zero],
             };
             EatConfigList = [];
+            BuildingOrEventProgress = Config.IsBuildingOrEvent 
+                ? Config.BuildPropValueList.ToDictionary(p => p.Key, _ => 0L) 
+                : [];
         }
         [DebuggerStepThrough] public bool CoverPos(Vector2Int pos) => CoveredPosList.Contains(pos);
         public IEnumerable<Vector2Int> CoveredPosList => DeltaPosList.Select(d => d + PivotPos);
@@ -52,6 +57,19 @@ public partial class GamePlaying
         public List<ItemDesConfig> EatConfigList { [DebuggerStepThrough] get; private init; }
         public List<ItemDesConfig> AllConfigList => [..Config.DesList, ..EatConfigList];
 
+        public Dictionary<EPropType, long> BuildingOrEventProgress
+        {
+            get
+            {
+                Config.BuildPropValueList.ForEach(pair => field.TryAdd(pair.Key, 0));
+                return field;
+            }
+            private init;
+        }
+
+        public bool IsBuildingOrEventKanSei =>
+            Config.IsBuildingOrEvent && Config.BuildPropValueList.All(pair =>
+                BuildingOrEventProgress.TryGetValue(pair.Key, out var progress) && progress >= pair.Value);
 
         public override string ToString()
         {
@@ -59,10 +77,10 @@ public partial class GamePlaying
             builder.Append($"Name = {Config.Name}, ");
             builder.Append($"Config = {Config}, ");
             builder.Append($"PivotPos = {PivotPos}, ");
-            builder.Append($"DeltaPosList = [{string.Join(", ", DeltaPosList)}]");
+            builder.Append($"DeltaPosList = [{string.Join("|", DeltaPosList)}],");
             if (inSpin != null)
             {
-                builder.Append($"ModifyPropList = [{string.Join(", ", inSpin.ModifyPropList)}]");
+                builder.Append($"ModifyPropList = [{string.Join("| ", inSpin.ModifyPropList)}]");
             }
             return builder.ToString();
         }

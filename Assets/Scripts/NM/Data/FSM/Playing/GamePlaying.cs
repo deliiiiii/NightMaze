@@ -21,7 +21,8 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     [DebuggerStepThrough]public override string ToString() => nameof(GamePlaying);
     public string PlayerName { get; private set;} = "Deli";
     public double PlayTime { get; private set;}
-    [EvtChanged] public partial int TurnCount { get; private set; }
+    [EvtChanged] public partial int TurnCount { get; private set; } = 1;
+    [EvtChanged] public partial int CurLayer { get; private set; } = 1;
     [EvtChanged]public partial long PropBody { get;private set; }
     [EvtChanged]public partial long PropSans { get;private set; }
     [EvtChanged]public partial long PropLore { get;private set; }
@@ -58,16 +59,19 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         where item.Config.IsGrid && item.ReallyInWorld
         from coveredPos in item.CoveredPosList
         select coveredPos;
-    public IEnumerable<Vector2Int> NonGridPoses =>
-        from item in itemList
-        where !item.Config.IsGrid && item.ReallyInWorld
-        from coveredPos in item.CoveredPosList
-        select coveredPos;
     public IEnumerable<MyItem> EmptyGrids
     {
         get
         {
-            var occupiedPoses = NonGridPoses.ToHashSet();
+            var occupiedPoses = 
+                // 非grid的, 且不能放置的位置
+                (from item in itemList
+                where item is { 
+                    ReallyInWorld: true, 
+                    Config.IsGrid: false, 
+                    Config.IsBuildingOrEvent: false }
+                from coveredPos in item.CoveredPosList
+                select coveredPos).ToHashSet();
             return 
                 from grid in Grids
                 where !occupiedPoses.Contains(grid.PivotPos)
@@ -85,7 +89,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         (from x in Range(1, 8) 
             from y in Range(1, 8)
             select new Vector2Int(x, y))
-            .ForEach(pos => itemList.Add(new MyItem(1, pos)));
+            .ForEach(pos => itemList.Add(new MyItem(50001, pos)));
         // EmptyGrids
         //     .ToList()
         //     .Take(5)

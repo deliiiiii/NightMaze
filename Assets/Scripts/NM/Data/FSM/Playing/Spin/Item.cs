@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using Cysharp.Threading.Tasks;
 using General;
+using GeneralPreview;
 using Newtonsoft.Json;
 using NM.Config;
 using Sirenix.Utilities;
@@ -22,13 +23,64 @@ public partial class PlaySpin
 
         [JsonProperty(IsReference = false, ItemIsReference = false)]
         public List<ModifyPropInfo> ModifyPropList { [DebuggerStepThrough] get; init; } = [];
+        public List<DistributePropInfo> DistributePropList { [DebuggerStepThrough] get; init; } = [];
 
-        public long GetProp(EPropType propType)
+        public long GetAllProp(EPropType propType)
         {
             var filteredList = ModifyPropList.Where(m => m.PropType == propType).ToList();
             var addSum = filteredList.Sum(m => m.AddValue);
             var multiSum = filteredList.Aggregate((double)1, (cur, m) => cur * m.MultiValue);
             return (long)(addSum * multiSum);
+        }
+
+        public long GetToPlayerProp(EPropType propType)
+        {
+            if(!DistributePropList.Any())
+                return GetAllProp(propType);
+            return DistributePropList
+                .Where(d => d.ToItem == null && d.PropType == propType)
+                .Sum(d => d.Value);
+        }
+
+        public void DistributeProp()
+        {
+            var tarBuildingOrEvt =
+                (from pos in inPlay.CoveredPosList
+                    from tarItem in spin.BelongNode.Items
+                    where tarItem.Config.IsBuildingOrEvent && tarItem.CoveredPosList.Contains(pos)
+                    select tarItem).ToList();
+            EPropType.GetValues().ForEach(propType =>
+            {
+                var remain = GetAllProp(propType);
+                while (remain > 0 && tarBuildingOrEvt.Any())
+                {
+                    var tarItem = tarBuildingOrEvt.First();
+                    var inProgress = tarItem.BuildingOrEventProgress.GetValueOrDefault(propType, 0);
+                    var tarProgress = tarItem.Config.BuildPropValueList.GetValueOrDefault(propType, 0);
+                    var require = Math.Max(tarProgress - inProgress, 0);
+                    var use = Math.Min(remain, require);
+                    if (use > 0)
+                    {
+                        DistributePropList.Add(new DistributePropInfo
+                        {
+                            PropType = propType,
+                            Value = use,
+                            ToItem = tarItem,
+                        });
+                    }
+                    remain -= use;
+                    tarBuildingOrEvt.RemoveAt(0);
+                }
+                if (remain != 0)
+                {
+                    DistributePropList.Add(new DistributePropInfo
+                    {
+                        PropType = propType,
+                        Value = remain,
+                    });
+                }
+            });
+         
         }
         public UniTask OnSpinAsync()
         {

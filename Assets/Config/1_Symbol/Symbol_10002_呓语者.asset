@@ -1,0 +1,228 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
+  m_Name: "Symbol_10002_\u5453\u8BED\u8005"
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Pos
+      Entry: 7
+      Data: 0|NM.Config.ItemPosRectangle, NM.Config
+    - Name: Length
+      Entry: 3
+      Data: 1
+    - Name: Height
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SymbolPropValueList
+      Entry: 7
+      Data: 1|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 2|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: BuildPropValueList
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 2
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: RunPropValueList
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  Name: "\u5453\u8BED\u8005"
+  ID: 10002
+  FlavorDes: "\u5728\u611F\u53D7\u5230\u201C\u51DD\u89C6\u201D\u7684\u7B2C\u4E00\u4E2A\u591C\u665A\uFF0C\u4ED6\u8BF4\u8D77\u4E86\u81EA\u5DF1\u4E5F\u4E0D\u7406\u89E3\u7684\u8BDD\u8BED"
+  Rarity: 0
+  TagList: 
+  CanDrag: 1
+  ItemType: 1
+  GridTagList: 
+  SymbolTagList: 00000000
+  BuildingTagList: 
+  ResourceTagList: 
+  EventTagList: 
+  DesList:
+  - DesToPlayer: "\u7ED3\u7B97\u65F6\uFF0C\u5468\u56F43x3\u8303\u56F4\u5185\uFF0C\u6BCF\u6709\u4E00\u4E2A\u3010\u5F02\u8C61\u3011\uFF0C\u989D\u5916\u4EA7\u51FA1\u70B9\u7406\u667A"
+    Trigger:
+      rid: 6212121151727206408
+    Result:
+      rid: 6212121176462065664
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6212121151727206408
+      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121176462065664
+      type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: -2
+        ItemSelector:
+          rid: 6212121176462065665
+        PropType: 1
+        IntSelector:
+          rid: 6212121176462065673
+    - rid: 6212121176462065665
+      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: -2
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: 6212121176462065668
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
+    - rid: 6212121176462065668
+      type: {class: PosFilterIn3X3, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSelector:
+          rid: 6212121176462065669
+    - rid: 6212121176462065669
+      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: -2
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
+    - rid: 6212121176462065673
+      type: {class: IntSelectorSumBy, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSelector:
+          rid: 6212121176462065675
+        Value: 1
+    - rid: 6212121176462065675
+      type: {class: ItemSelectorAtPresentAll, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: 6212121176462065676
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: 6212121176462065677
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
+    - rid: 6212121176462065676
+      type: {class: ItemFilterTag, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+        ItemTagList: 
+        GridTagList: 
+        SymbolTagList: 
+        ResourceTagList: 
+        BuildingTagList: 
+        EventTagList: 
+    - rid: 6212121176462065677
+      type: {class: PosFilterIn3X3, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSelector:
+          rid: 6212121176462065678
+    - rid: 6212121176462065678
+      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: -2
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0

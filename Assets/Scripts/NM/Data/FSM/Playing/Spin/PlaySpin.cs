@@ -33,8 +33,9 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
     IEnumerable<MyItem> Items =>
         from itemInPlay in BelongNode.Items
         select itemInPlay[this];
-    public long GetModifyPropValue(EPropType propType) =>
-        Items.Sum(item => item.GetProp(propType)) +
+    // TODO 临时拿GamePlaying.AddHostilityPerTurn
+    public long GetToPlayerPropValue(EPropType propType) =>
+        Items.Sum(item => item.GetToPlayerProp(propType)) +
         (propType == EPropType.PropA2 ? GamePlaying.AddHostilityPerTurn : 0);
     #region Node
     protected override void OnCreateFreshData()
@@ -45,6 +46,11 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
             where itemInPlay.AllConfigList.Any()
             orderby itemInPlay.PivotPos.Y descending, itemInPlay.PivotPos.X, itemInPlay.Config.Order ascending 
             select new ActCheckItem(this)
+            {
+                Item = itemInPlay
+            }, ..
+            from itemInPlay in BelongNode.Items
+            select new ActDistributePropForItem(this)
             {
                 Item = itemInPlay
             }

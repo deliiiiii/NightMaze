@@ -29,15 +29,19 @@ public partial class GamePlaying
         if(oldPos == pos)
             return;
         item.Dragging = true;
+        item.PivotPos = pos;
         if (TrySetItem(item))
         {
-            item.PivotPos = pos;
             await new EvtMoveItem(this, item);
             resultWrap?.Success = true;
             resultWrap?.ItemWraps.Add(new ResultItemWrap(item)
             {
                 CtxList = [new ResultItemWrap.CtxSuccessMoved{OldPos = oldPos}]
             });
+        }
+        else
+        {
+            item.PivotPos = oldPos;
         }
         item.Dragging = false;
     }
@@ -91,6 +95,19 @@ public partial class GamePlaying
     {
         whoEat.EatConfigList.AddRange(toEat.Config.DesList);
         resultWrap?.Success = true;
+        return UniTask.CompletedTask;
+    }
+
+    [Obsolete("增加回合数")]
+    UniTask AddTurnCountAsync(CancellationToken ct)
+    {
+        TurnCount++;
+        return UniTask.CompletedTask;
+    }
+    [Obsolete("解锁下一层")]
+    UniTask UnlockNextLayerAsync(CancellationToken ct)
+    {
+        CurLayer++;
         return UniTask.CompletedTask;
     }
 }

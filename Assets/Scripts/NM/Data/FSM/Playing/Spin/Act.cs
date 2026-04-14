@@ -95,7 +95,7 @@ public partial class PlaySpin
         await new EvtBeforeCheckSymbolTween(this, item);
         await item[this].OnSpinAsync();
     }
-    [EvtName("(仅View)物体执行 ALL 词条前.")]
+    [EvtName("物体执行 ALL 词条前.")]
     public record EvtBeforeCheckSymbolTween(PlaySpin WhoHasCt, GamePlaying.MyItem Item) : EvtBase<PlaySpin>(WhoHasCt);
    
     [Obsolete("将执行物体单行词条")]
@@ -171,22 +171,46 @@ public partial class PlaySpin
                     Id = toSpawn.Config.ID,
                     ResultWrap = resultWrap
                 },
+            ItemDesResultUnlockNextLayer => [new GamePlaying.ActUnlockNextLayer(BelongNode)],
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemDesResultBase)}类型: {result.GetType()}.")
         });
         return UniTask.CompletedTask;
     }
 
+    [Obsolete("计算物体属性去向")][MuteActEvt]
+    UniTask DistributePropForItemAsync(GamePlaying.MyItem item, CancellationToken ct)
+    {
+        item[this].DistributeProp();
+        return UniTask.CompletedTask;    
+    }
     [Obsolete("结算")][MuteActEvt]
     async UniTask HarvestAsync(CancellationToken ct)
     {
-        foreach (var propType in EPropType.GetValues())
+        foreach (var item in Items)
         {
-            await new GamePlaying.ActChangeProp(BelongNode)
+            foreach (var distributeProp in item.DistributePropList)
             {
-                PropType = propType,
-                Delta = GetModifyPropValue(propType)
-            };
+                if (distributeProp.ToItem == null)
+                {
+                    await new GamePlaying.ActChangeProp(BelongNode)
+                    {
+                        PropType = distributeProp.PropType,
+                        Delta = distributeProp.Value,
+                    };
+                }
+                else
+                {
+                    distributeProp.ToItem.BuildingOrEventProgress[distributeProp.PropType]
+                        += distributeProp.Value;
+                }
+            }
         }
+        await new GamePlaying.ActChangeProp(BelongNode)
+        {
+            PropType = EPropType.PropA2,
+            Delta = GamePlaying.AddHostilityPerTurn
+        };
+        await new GamePlaying.ActAddTurnCount(BelongNode);
         await BelongNode.ChangeStateAsync(new PlayIdle(), false);
     }
     

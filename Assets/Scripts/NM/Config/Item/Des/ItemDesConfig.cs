@@ -33,6 +33,7 @@ public record ItemDesConfig
 
     public const string FromLast = "上{0}步中的: ";
 
+    [LabelText("人话描述"), MultiLineProperty(2)] public string DesToPlayer = "输入人话...";
     [Required, SerializeReference, LabelText("触发器"), OnValueChanged(nameof(OnChanged))]
     public ItemDesTriggerBase Trigger = new ItemDesTriggerEnterSpin();
     [Header("尝试执行.."), HideLabel]

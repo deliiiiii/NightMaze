@@ -1,4 +1,6 @@
-﻿namespace NM;
+﻿using System.Collections.Generic;
+
+namespace NM;
 
 public static class Const
 {
@@ -38,6 +40,14 @@ public static class Const
         
     }
 
+    public static class SortingLayer
+    {
+        public const string GridBack = "Grid Back";
+        public const string GridBuilding = "Grid Building";
+        public const string GridEvent = "Grid Building";
+        public const string GridSymbol = "Grid Symbol";
+        public const string GridResource = "Grid Resource";
+    }
     public static class Layer
     {
         public const string TechUI = "TechUI";

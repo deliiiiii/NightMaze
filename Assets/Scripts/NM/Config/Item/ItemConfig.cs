@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using GeneralPreview;
 using System.Linq;
 using General;
@@ -15,11 +14,11 @@ public class ItemConfig : ConfigMulti<ItemConfig>
 {
     public override string PrefixName => ItemType switch
     {
-        EItemType.Grid => "Grid",
         EItemType.Symbol => "Symbol",
         EItemType.Building => "Building",
         EItemType.Resource => "Resource",
         EItemType.Event => "Event",
+        EItemType.Grid => "Grid",
         _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(EItemType)}类型: {ItemType}.")
     };
     // ReSharper disable once StaticMemberInGenericType
@@ -28,7 +27,8 @@ public class ItemConfig : ConfigMulti<ItemConfig>
     [LabelText("风味文本")] public string FlavorDes = string.Empty;
     [LabelText("稀有度")] public ERarity Rarity;
     [Required, LabelText("占据位置")] public ItemPos Pos = new ItemPosRectangle();
-    [Required, LabelText("通用Tag"), ValueDropdown(nameof(GetItemTags), IsUniqueList = true)] public EItemTag Tag;
+    [Required, LabelText("通用Tag"), ValueDropdown(nameof(GetItemTags), IsUniqueList = true)] public List<EItemTag> TagList = [];
+
     [LabelText("可拖动")] public bool CanDrag;
     [LabelText("类型"), OnValueChanged(nameof(OnItemTypeChanged))] public EItemType ItemType;
     void OnItemTypeChanged()
@@ -43,36 +43,38 @@ public class ItemConfig : ConfigMulti<ItemConfig>
     public bool IsResource => ItemType == EItemType.Resource;
     public bool IsEvent => ItemType == EItemType.Event;
     public bool IsBuildingOrEvent => IsBuilding || IsEvent;
-    [ShowIf(nameof(IsGrid)), LabelText("地形Tag"), ValueDropdown(nameof(GetGridTags), IsUniqueList = true)] public List<EGridTag> GridTagList = [];
+    [ShowIf(nameof(IsGrid)), Required, LabelText("地形Tag"), ValueDropdown(nameof(GetGridTags), IsUniqueList = true)] public List<EGridTag> GridTagList = [];
     
-    [ShowIf(nameof(IsSymbol)), LabelText("棋子Tag"), ValueDropdown(nameof(GetSymbolTags), IsUniqueList = true)] public List<ESymbolTag> SymbolTagList = [];
-    [ShowIf(nameof(IsSymbol)), LabelText("棋子: 属性白值")] public Dictionary<EPropType, long> SymbolPropValueList = [];
+    [ShowIf(nameof(IsSymbol)), Required, LabelText("棋子Tag"), ValueDropdown(nameof(GetSymbolTags), IsUniqueList = true)] public List<ESymbolTag> SymbolTagList = [];
+    [ShowIf(nameof(IsSymbol)), Required, LabelText("棋子: 属性白值")] public Dictionary<EPropType, long> SymbolPropValueList = [];
     
-    [ShowIf(nameof(IsBuilding)), LabelText("建筑Tag"), ValueDropdown(nameof(GetBuildingTags), IsUniqueList = true)] public List<EBuildingTag> BuildingTagList = [];
-    [ShowIf(nameof(IsResource)), LabelText("资源Tag"), ValueDropdown(nameof(GetResourceTags), IsUniqueList = true)] public List<EResourceTag> ResourceTagList = [];
-    [ShowIf(nameof(IsEvent)), LabelText("事件Tag"), ValueDropdown(nameof(GetEventTags), IsUniqueList = true)] public List<EEventTag> EventTagList = [];
-    [ShowIf(nameof(IsBuildingOrEvent)), LabelText("建筑/事件: 交互消耗")]public Dictionary<EPropType, long> BuildPropValueList = [];
+    [ShowIf(nameof(IsBuilding)), Required, LabelText("建筑Tag"), ValueDropdown(nameof(GetBuildingTags), IsUniqueList = true)] public List<EBuildingTag> BuildingTagList = [];
+    [ShowIf(nameof(IsResource)), Required, LabelText("资源Tag"), ValueDropdown(nameof(GetResourceTags), IsUniqueList = true)] public List<EResourceTag> ResourceTagList = [];
+    [ShowIf(nameof(IsEvent)), Required, LabelText("事件Tag"), ValueDropdown(nameof(GetEventTags), IsUniqueList = true)] public List<EEventTag> EventTagList = [];
+    [ShowIf(nameof(IsBuildingOrEvent)), Required, LabelText("建筑/事件: 交互消耗")]public Dictionary<EPropType, long> BuildPropValueList = [];
+    [ShowIf(nameof(IsBuilding)), Required, LabelText("建筑: 运营消耗")]public Dictionary<EPropType, long> RunPropValueList = [];
     
     [Required, LabelText("词条列表")] public List<ItemDesConfig> DesList = [];
     
     public List<DetailTagInfo> DetailTagInfos =>
     [
-        ..Tag.ToValues().Select(t => Mgr.ItemDic[t]),
+        ..TagList.Select(t => Mgr.ItemDic[t]),
         ..GridTagList.Select(t => Mgr.GridDic[t]),
         ..SymbolTagList.Select(t =>Mgr.SymbolDic[t]),
         ..BuildingTagList.Select(t => Mgr.BuildingDic[t]),
         ..ResourceTagList.Select(t => Mgr.ResourceDic[t]),
         ..EventTagList.Select(t => Mgr.EventDic[t]),
     ];
-    public int Order => ItemType switch
-    {
-        EItemType.Grid => 10,
-        EItemType.Symbol => 1,
-        EItemType.Building => 2,
-        EItemType.Resource => 3,
-        EItemType.Event => 4,
-        _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(EItemType)}类型: {ItemType}.")
-    };
+    public int Order => (int)ItemType;
+        // switch
+    // {
+        // EItemType.Symbol => 1,
+        // EItemType.Building => 2,
+        // EItemType.Resource => 3,
+        // EItemType.Event => 4,
+        // EItemType.Grid => 5,
+        // _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(EItemType)}类型: {ItemType}.")
+    // };
 
     public static ValueDropdownList<EItemType> GetItemTypes() => GetEnumDropdownList<EItemType>();
     public static ValueDropdownList<EItemTag> GetItemTags() => GetEnumDropdownList<EItemTag>();
@@ -96,11 +98,12 @@ public enum ERarity
 
 public enum EItemType
 {
-    [LabelText("0_地块")]Grid = 0,
+    [LabelText("无")]None = 0,
     [LabelText("1_棋子")]Symbol = 1,
     [LabelText("2_建筑")]Building = 2,
     [LabelText("3_资源")]Resource = 3,
     [LabelText("4_事件")]Event = 4,
+    [LabelText("5_地块")]Grid = 5,
 }
 public enum EItemTag
 {

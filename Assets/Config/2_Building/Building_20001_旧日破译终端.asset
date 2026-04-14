@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
-  m_Name: "Grid_1_\u666E\u901A"
+  m_Name: "Building_20001_\u65E7\u65E5\u7834\u8BD1\u7EC8\u7AEF"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -26,10 +26,10 @@ MonoBehaviour:
       Data: 0|NM.Config.ItemPosRectangle, NM.Config
     - Name: Length
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: Height
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -68,6 +68,47 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: RunPropValueList
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
       Data: 0
     - Name: 
       Entry: 13
@@ -75,56 +116,38 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  Name: "\u666E\u901A"
-  ID: 1
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  Name: "\u65E7\u65E5\u7834\u8BD1\u7EC8\u7AEF"
+  ID: 20001
   FlavorDes: 
   Rarity: 0
   Tag: 0
   CanDrag: 0
-  ItemType: 0
-  GridTagList: 00000000
+  ItemType: 2
+  GridTagList: 
   SymbolTagList: 
-  BuildingTagList: 
+  BuildingTagList: 01000000
   ResourceTagList: 
   EventTagList: 
   DesList:
-  - Trigger:
-      rid: 6212121151727206404
+  - DesToPlayer: "\u6D88\u8017\u5EFA\u7B51\u4E2D\u7684\u68CB\u5B50\u7684\u4EA7\u80FD\uFF0C\u7528\u4E8E\u79D1\u6280\u6811\u7814\u7A76"
+    Trigger:
+      rid: 6212121176462065728
     Result:
-      rid: 6212121151727206405
+      rid: -2
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 6212121151727206404
+    - rid: 6212121176462065728
       type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
       data: 
-    - rid: 6212121151727206405
-      type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
-      data:
-        Condition:
-          rid: -2
-        Next:
-          rid: -2
-        ItemSelector:
-          rid: 6212121151727206406
-        PropType: 1
-        IntSelector:
-          rid: 6212121151727206407
-    - rid: 6212121151727206406
-      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
-      data:
-        <ItemFilter>k__BackingField:
-          rid: -2
-        <ItemSort>k__BackingField:
-          rid: -2
-        <PosFilter>k__BackingField:
-          rid: -2
-        <PosSort>k__BackingField:
-          rid: -2
-        <Random>k__BackingField: 0
-    - rid: 6212121151727206407
-      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
-      data:
-        Value: 5

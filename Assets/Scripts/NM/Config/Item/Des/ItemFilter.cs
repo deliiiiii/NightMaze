@@ -18,7 +18,7 @@ public abstract record ItemFilterBase
 public record ItemFilterSelf : ItemFilterBase;
 [TypeRegistryItem("不是自身")]
 public record ItemFilterNotSelf : ItemFilterBase;
-[TypeRegistryItem("属于物体类型: 地块/棋子/建筑/资源")]
+[TypeRegistryItem("属于物体类型: 棋子/建筑/资源/事件/地块")]
 public record ItemFilterIsItemType : ItemFilterBase
 {
     public EItemType ItemType;

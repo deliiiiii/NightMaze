@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
-  m_Name: "Symbol_10001_\u62FE\u8352\u8005"
+  m_Name: "Resource_30001_A\u7EA7\u86CB\u767D\u8D28\u5757"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -52,19 +52,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
       Data: 0
-    - Name: $v
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -87,17 +75,43 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  Name: "\u62FE\u8352\u8005"
-  ID: 10001
-  FlavorDes: "\u957F\u671F\u7684\u52B3\u7D2F\u8BA9\u4ED6\u82E6\u4E0D\u582A\u8A00"
+    - Name: RunPropValueList
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  Name: "A\u7EA7\u86CB\u767D\u8D28\u5757"
+  ID: 30001
+  FlavorDes: "\u4E0D\u8981\u591A\u60F3\u8FD9\u662F\u4EC0\u4E48"
   Rarity: 0
   Tag: 0
-  CanDrag: 1
-  ItemType: 1
+  CanDrag: 0
+  ItemType: 3
   GridTagList: 
-  SymbolTagList: 00000000
+  SymbolTagList: 
   BuildingTagList: 
-  ResourceTagList: 
+  ResourceTagList: 01000000
   EventTagList: 
   DesList: []
   references:

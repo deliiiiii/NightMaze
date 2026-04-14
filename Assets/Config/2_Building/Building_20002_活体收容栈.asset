@@ -1,0 +1,214 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
+  m_Name: "Building_20002_\u6D3B\u4F53\u6536\u5BB9\u6808"
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Pos
+      Entry: 7
+      Data: 0|NM.Config.ItemPosRectangle, NM.Config
+    - Name: Length
+      Entry: 3
+      Data: 1
+    - Name: Height
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SymbolPropValueList
+      Entry: 7
+      Data: 1|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 2|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: BuildPropValueList
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 2
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: RunPropValueList
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 2
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  Name: "\u6D3B\u4F53\u6536\u5BB9\u6808"
+  ID: 20002
+  FlavorDes: 
+  Rarity: 0
+  Tag: 0
+  CanDrag: 0
+  ItemType: 2
+  GridTagList: 
+  SymbolTagList: 
+  BuildingTagList: 
+  ResourceTagList: 
+  EventTagList: 
+  DesList:
+  - DesToPlayer: "\u7ED3\u7B97\u65F6\uFF0C\u8DDD\u79BB2\u683C\u8303\u56F4\u5185\u7684\u6BCF\u4E00\u4E2A\u3010\u4EBA\u7C7B\u3011\u63D0\u4F9B1\u70B9\u5FE0\u8BDA\u5EA6"
+    Trigger:
+      rid: 6212121176462065729
+    Result:
+      rid: 6212121176462065730
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6212121176462065729
+      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121176462065730
+      type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: -2
+        ItemSelector:
+          rid: 6212121176462065731
+        PropType: 10
+        IntSelector:
+          rid: 6212121176462065733
+    - rid: 6212121176462065731
+      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: -2
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
+    - rid: 6212121176462065733
+      type: {class: IntSelectorSumBy, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSelector:
+          rid: 6212121176462065734
+        Value: 1
+    - rid: 6212121176462065734
+      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: 6212121176462065735
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: 6212121176462065736
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0
+    - rid: 6212121176462065735
+      type: {class: ItemFilterTag, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemFilter:
+          rid: -2
+        ItemTagList: 
+        GridTagList: 
+        SymbolTagList: 00000000
+        ResourceTagList: 
+        BuildingTagList: 
+        EventTagList: 
+    - rid: 6212121176462065736
+      type: {class: PosFilterInManDis, ns: NM.Config, asm: NM.Config}
+      data:
+        ItemSelector:
+          rid: 6212121176462065737
+        Dis: 2
+    - rid: 6212121176462065737
+      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+      data:
+        <ItemFilter>k__BackingField:
+          rid: -2
+        <ItemSort>k__BackingField:
+          rid: -2
+        <PosFilter>k__BackingField:
+          rid: -2
+        <PosSort>k__BackingField:
+          rid: -2
+        <Random>k__BackingField: 0

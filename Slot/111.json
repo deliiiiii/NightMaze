@@ -1,0 +1,2644 @@
+{
+  "$id": "1",
+  "savedVersion": 20260402.0,
+  "BelongNode": {
+    "$id": "2",
+    "savedVersion": 20260402.0,
+    "SettingData": {
+      "$id": "3",
+      "MouseScrollMapSpeed": 0.2,
+      "SpinTweenSpeed": {
+        "$id": "4",
+        "$type": "NM.Data.SettingData+SpinTweenSpeedImmediate, NM.Data"
+      }
+    },
+    "state": { "$ref": "1" }
+  },
+  "PlayerName": "111",
+  "PlayTime": 739.446222816594,
+  "TurnCount": 49,
+  "CurLayer": 1,
+  "PropBody": 5,
+  "PropSans": 15337,
+  "PropLore": 0,
+  "PropLoyalty": 0,
+  "PropLoyaltyMax": 1000,
+  "PropHostility": 110,
+  "PropHostilityMax": 1000,
+  "itemList": [
+    {
+      "$id": "5",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "6",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "7"
+      },
+      "inSpin": {
+        "$id": "8",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "5" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "9",
+          "$values": [
+            {
+              "$id": "10",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": {
+          "$id": "11",
+          "savedVersion": 20260402.0,
+          "BelongNode": { "$ref": "1" },
+          "toDoList": {
+            "$id": "12",
+            "$values": []
+          }
+        },
+        "inPlay": { "$ref": "5" }
+      }
+    },
+    {
+      "$id": "13",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "14",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "15"
+      },
+      "inSpin": {
+        "$id": "16",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "13" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "17",
+          "$values": [
+            {
+              "$id": "18",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "13" }
+      }
+    },
+    {
+      "$id": "19",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "20",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "21"
+      },
+      "inSpin": {
+        "$id": "22",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "19" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "23",
+          "$values": [
+            {
+              "$id": "24",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "19" }
+      }
+    },
+    {
+      "$id": "25",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "26",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "27"
+      },
+      "inSpin": {
+        "$id": "28",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "25" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "29",
+          "$values": [
+            {
+              "$id": "30",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "25" }
+      }
+    },
+    {
+      "$id": "31",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "32",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "33"
+      },
+      "inSpin": {
+        "$id": "34",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "31" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "35",
+          "$values": [
+            {
+              "$id": "36",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "31" }
+      }
+    },
+    {
+      "$id": "37",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "38",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "39"
+      },
+      "inSpin": {
+        "$id": "40",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "37" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "41",
+          "$values": [
+            {
+              "$id": "42",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "37" }
+      }
+    },
+    {
+      "$id": "43",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "44",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "45"
+      },
+      "inSpin": {
+        "$id": "46",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "43" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "47",
+          "$values": [
+            {
+              "$id": "48",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "43" }
+      }
+    },
+    {
+      "$id": "49",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "50",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "51"
+      },
+      "inSpin": {
+        "$id": "52",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "49" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "53",
+          "$values": [
+            {
+              "$id": "54",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "49" }
+      }
+    },
+    {
+      "$id": "55",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "56",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "57"
+      },
+      "inSpin": {
+        "$id": "58",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "55" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "59",
+          "$values": [
+            {
+              "$id": "60",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "55" }
+      }
+    },
+    {
+      "$id": "61",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "62",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "63"
+      },
+      "inSpin": {
+        "$id": "64",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "61" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "65",
+          "$values": [
+            {
+              "$id": "66",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "61" }
+      }
+    },
+    {
+      "$id": "67",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "68",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "69"
+      },
+      "inSpin": {
+        "$id": "70",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "67" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "71",
+          "$values": [
+            {
+              "$id": "72",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "67" }
+      }
+    },
+    {
+      "$id": "73",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "74",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "75"
+      },
+      "inSpin": {
+        "$id": "76",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "73" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "77",
+          "$values": [
+            {
+              "$id": "78",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "73" }
+      }
+    },
+    {
+      "$id": "79",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "80",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "81"
+      },
+      "inSpin": {
+        "$id": "82",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "79" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "83",
+          "$values": [
+            {
+              "$id": "84",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "79" }
+      }
+    },
+    {
+      "$id": "85",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "86",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "87"
+      },
+      "inSpin": {
+        "$id": "88",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "85" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "89",
+          "$values": [
+            {
+              "$id": "90",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "85" }
+      }
+    },
+    {
+      "$id": "91",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "92",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "93"
+      },
+      "inSpin": {
+        "$id": "94",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "91" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "95",
+          "$values": [
+            {
+              "$id": "96",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "91" }
+      }
+    },
+    {
+      "$id": "97",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "98",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "99"
+      },
+      "inSpin": {
+        "$id": "100",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "97" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "101",
+          "$values": [
+            {
+              "$id": "102",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "97" }
+      }
+    },
+    {
+      "$id": "103",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "104",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "105"
+      },
+      "inSpin": {
+        "$id": "106",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "103" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "107",
+          "$values": [
+            {
+              "$id": "108",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "103" }
+      }
+    },
+    {
+      "$id": "109",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "110",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "111"
+      },
+      "inSpin": {
+        "$id": "112",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "109" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "113",
+          "$values": [
+            {
+              "$id": "114",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "109" }
+      }
+    },
+    {
+      "$id": "115",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "116",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "117"
+      },
+      "inSpin": {
+        "$id": "118",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "115" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "119",
+          "$values": [
+            {
+              "$id": "120",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "115" }
+      }
+    },
+    {
+      "$id": "121",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "122",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "123"
+      },
+      "inSpin": {
+        "$id": "124",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "121" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "125",
+          "$values": [
+            {
+              "$id": "126",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "121" }
+      }
+    },
+    {
+      "$id": "127",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "128",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "129"
+      },
+      "inSpin": {
+        "$id": "130",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "127" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "131",
+          "$values": [
+            {
+              "$id": "132",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "127" }
+      }
+    },
+    {
+      "$id": "133",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "134",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "135"
+      },
+      "inSpin": {
+        "$id": "136",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "133" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "137",
+          "$values": [
+            {
+              "$id": "138",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "133" }
+      }
+    },
+    {
+      "$id": "139",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "140",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "141"
+      },
+      "inSpin": {
+        "$id": "142",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "139" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "143",
+          "$values": [
+            {
+              "$id": "144",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "139" }
+      }
+    },
+    {
+      "$id": "145",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "146",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "147"
+      },
+      "inSpin": {
+        "$id": "148",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "145" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "149",
+          "$values": [
+            {
+              "$id": "150",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "145" }
+      }
+    },
+    {
+      "$id": "151",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "152",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "153"
+      },
+      "inSpin": {
+        "$id": "154",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "151" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "155",
+          "$values": [
+            {
+              "$id": "156",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "151" }
+      }
+    },
+    {
+      "$id": "157",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "158",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "159"
+      },
+      "inSpin": {
+        "$id": "160",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "157" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "161",
+          "$values": [
+            {
+              "$id": "162",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "157" }
+      }
+    },
+    {
+      "$id": "163",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "164",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "165"
+      },
+      "inSpin": {
+        "$id": "166",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "163" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "167",
+          "$values": [
+            {
+              "$id": "168",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "163" }
+      }
+    },
+    {
+      "$id": "169",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "170",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "171"
+      },
+      "inSpin": {
+        "$id": "172",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "169" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "173",
+          "$values": [
+            {
+              "$id": "174",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "169" }
+      }
+    },
+    {
+      "$id": "175",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "176",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "177"
+      },
+      "inSpin": {
+        "$id": "178",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "175" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "179",
+          "$values": [
+            {
+              "$id": "180",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "175" }
+      }
+    },
+    {
+      "$id": "181",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "182",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "183"
+      },
+      "inSpin": {
+        "$id": "184",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "181" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "185",
+          "$values": [
+            {
+              "$id": "186",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": {
+                "$id": "187",
+                "ID": 40001,
+                "Dragging": false,
+                "Spawning": false,
+                "PivotPos":{"X":4,"Y":6},
+                "DeltaPosList":[{"X":0,"Y":0},{"X":1,"Y":0},{"X":2,"Y":0}],
+                "EatConfigList": {
+                  "$id": "188",
+                  "$values": []
+                },
+                "BuildingOrEventProgress": {
+                  "$id": "189",
+                  "Prop2": 0,
+                  "Prop3": 0
+                },
+                "inSpin": {
+                  "$id": "190",
+                  "ModifyPropList": [],
+                  "DistributePropList": {
+                    "$id": "191",
+                    "$values": []
+                  },
+                  "spin": { "$ref": "11" },
+                  "inPlay": { "$ref": "187" }
+                }
+              }
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "181" }
+      }
+    },
+    {
+      "$id": "192",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "193",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "194"
+      },
+      "inSpin": {
+        "$id": "195",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "192" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "196",
+          "$values": [
+            {
+              "$id": "197",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "192" }
+      }
+    },
+    {
+      "$id": "198",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":4,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "199",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "200"
+      },
+      "inSpin": {
+        "$id": "201",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "198" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "202",
+          "$values": [
+            {
+              "$id": "203",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "198" }
+      }
+    },
+    {
+      "$id": "204",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "205",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "206"
+      },
+      "inSpin": {
+        "$id": "207",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "204" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "208",
+          "$values": [
+            {
+              "$id": "209",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "204" }
+      }
+    },
+    {
+      "$id": "210",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "211",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "212"
+      },
+      "inSpin": {
+        "$id": "213",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "210" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "214",
+          "$values": [
+            {
+              "$id": "215",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "210" }
+      }
+    },
+    {
+      "$id": "216",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "217",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "218"
+      },
+      "inSpin": {
+        "$id": "219",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "216" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "220",
+          "$values": [
+            {
+              "$id": "221",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "216" }
+      }
+    },
+    {
+      "$id": "222",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "223",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "224"
+      },
+      "inSpin": {
+        "$id": "225",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "222" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "226",
+          "$values": [
+            {
+              "$id": "227",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "222" }
+      }
+    },
+    {
+      "$id": "228",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "229",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "230"
+      },
+      "inSpin": {
+        "$id": "231",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "228" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "232",
+          "$values": [
+            {
+              "$id": "233",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "228" }
+      }
+    },
+    {
+      "$id": "234",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "235",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "236"
+      },
+      "inSpin": {
+        "$id": "237",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "234" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "238",
+          "$values": [
+            {
+              "$id": "239",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": { "$ref": "187" }
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "234" }
+      }
+    },
+    {
+      "$id": "240",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "241",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "242"
+      },
+      "inSpin": {
+        "$id": "243",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "240" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "244",
+          "$values": [
+            {
+              "$id": "245",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "240" }
+      }
+    },
+    {
+      "$id": "246",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "247",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "248"
+      },
+      "inSpin": {
+        "$id": "249",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "246" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "250",
+          "$values": [
+            {
+              "$id": "251",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "246" }
+      }
+    },
+    {
+      "$id": "252",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "253",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "254"
+      },
+      "inSpin": {
+        "$id": "255",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "252" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "256",
+          "$values": [
+            {
+              "$id": "257",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "252" }
+      }
+    },
+    {
+      "$id": "258",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "259",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "260"
+      },
+      "inSpin": {
+        "$id": "261",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "258" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "262",
+          "$values": [
+            {
+              "$id": "263",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "258" }
+      }
+    },
+    {
+      "$id": "264",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "265",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "266"
+      },
+      "inSpin": {
+        "$id": "267",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "264" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "268",
+          "$values": [
+            {
+              "$id": "269",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "264" }
+      }
+    },
+    {
+      "$id": "270",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "271",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "272"
+      },
+      "inSpin": {
+        "$id": "273",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "270" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "274",
+          "$values": [
+            {
+              "$id": "275",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "270" }
+      }
+    },
+    {
+      "$id": "276",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "277",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "278"
+      },
+      "inSpin": {
+        "$id": "279",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "276" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "280",
+          "$values": [
+            {
+              "$id": "281",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "276" }
+      }
+    },
+    {
+      "$id": "282",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "283",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "284"
+      },
+      "inSpin": {
+        "$id": "285",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "282" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "286",
+          "$values": [
+            {
+              "$id": "287",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": { "$ref": "187" }
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "282" }
+      }
+    },
+    {
+      "$id": "288",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "289",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "290"
+      },
+      "inSpin": {
+        "$id": "291",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "288" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "292",
+          "$values": [
+            {
+              "$id": "293",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "288" }
+      }
+    },
+    {
+      "$id": "294",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "295",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "296"
+      },
+      "inSpin": {
+        "$id": "297",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "294" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "298",
+          "$values": [
+            {
+              "$id": "299",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "294" }
+      }
+    },
+    {
+      "$id": "300",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "301",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "302"
+      },
+      "inSpin": {
+        "$id": "303",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "300" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "304",
+          "$values": [
+            {
+              "$id": "305",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "300" }
+      }
+    },
+    {
+      "$id": "306",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "307",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "308"
+      },
+      "inSpin": {
+        "$id": "309",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "306" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "310",
+          "$values": [
+            {
+              "$id": "311",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "306" }
+      }
+    },
+    {
+      "$id": "312",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "313",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "314"
+      },
+      "inSpin": {
+        "$id": "315",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "312" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "316",
+          "$values": [
+            {
+              "$id": "317",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "312" }
+      }
+    },
+    {
+      "$id": "318",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "319",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "320"
+      },
+      "inSpin": {
+        "$id": "321",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "318" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "322",
+          "$values": [
+            {
+              "$id": "323",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "318" }
+      }
+    },
+    {
+      "$id": "324",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "325",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "326"
+      },
+      "inSpin": {
+        "$id": "327",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "324" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "328",
+          "$values": [
+            {
+              "$id": "329",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "324" }
+      }
+    },
+    {
+      "$id": "330",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "331",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "332"
+      },
+      "inSpin": {
+        "$id": "333",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "330" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "334",
+          "$values": [
+            {
+              "$id": "335",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "330" }
+      }
+    },
+    {
+      "$id": "336",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "337",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "338"
+      },
+      "inSpin": {
+        "$id": "339",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "336" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "340",
+          "$values": [
+            {
+              "$id": "341",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "336" }
+      }
+    },
+    {
+      "$id": "342",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":7,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "343",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "344"
+      },
+      "inSpin": {
+        "$id": "345",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "342" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "346",
+          "$values": [
+            {
+              "$id": "347",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "342" }
+      }
+    },
+    {
+      "$id": "348",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "349",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "350"
+      },
+      "inSpin": {
+        "$id": "351",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "348" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "352",
+          "$values": [
+            {
+              "$id": "353",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "348" }
+      }
+    },
+    {
+      "$id": "354",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "355",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "356"
+      },
+      "inSpin": {
+        "$id": "357",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "354" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "358",
+          "$values": [
+            {
+              "$id": "359",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "354" }
+      }
+    },
+    {
+      "$id": "360",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "361",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "362"
+      },
+      "inSpin": {
+        "$id": "363",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "360" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "364",
+          "$values": [
+            {
+              "$id": "365",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "360" }
+      }
+    },
+    {
+      "$id": "366",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "367",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "368"
+      },
+      "inSpin": {
+        "$id": "369",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "366" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "370",
+          "$values": [
+            {
+              "$id": "371",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "366" }
+      }
+    },
+    {
+      "$id": "372",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "373",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "374"
+      },
+      "inSpin": {
+        "$id": "375",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "372" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "376",
+          "$values": [
+            {
+              "$id": "377",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "372" }
+      }
+    },
+    {
+      "$id": "378",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "379",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "380"
+      },
+      "inSpin": {
+        "$id": "381",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "378" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "382",
+          "$values": [
+            {
+              "$id": "383",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "378" }
+      }
+    },
+    {
+      "$id": "384",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "385",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "386"
+      },
+      "inSpin": {
+        "$id": "387",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "384" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "388",
+          "$values": [
+            {
+              "$id": "389",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "384" }
+      }
+    },
+    {
+      "$id": "390",
+      "ID": 50001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":8,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "391",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "392"
+      },
+      "inSpin": {
+        "$id": "393",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "390" },
+            "PropType": 1,
+            "AddValue": 5,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "394",
+          "$values": [
+            {
+              "$id": "395",
+              "PropType": 1,
+              "Value": 5,
+              "ToItem": null
+            }
+          ]
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "390" }
+      }
+    },
+    {
+      "$id": "396",
+      "ID": 10005,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "397",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "398"
+      },
+      "inSpin": {
+        "$id": "399",
+        "ModifyPropList": [],
+        "DistributePropList": {
+          "$id": "400",
+          "$values": []
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "396" }
+      }
+    },
+    {
+      "$id": "401",
+      "ID": 10003,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "402",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "403"
+      },
+      "inSpin": {
+        "$id": "404",
+        "ModifyPropList": [
+          {
+            "From": { "$ref": "401" },
+            "PropType": 0,
+            "AddValue": 0,
+            "MultiValue": 1.0
+          }
+        ],
+        "DistributePropList": {
+          "$id": "405",
+          "$values": []
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "401" }
+      }
+    },
+    {
+      "$id": "406",
+      "ID": 30001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":3,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "407",
+        "$values": []
+      },
+      "BuildingOrEventProgress": {
+        "$id": "408"
+      },
+      "inSpin": {
+        "$id": "409",
+        "ModifyPropList": [],
+        "DistributePropList": {
+          "$id": "410",
+          "$values": []
+        },
+        "spin": { "$ref": "11" },
+        "inPlay": { "$ref": "406" }
+      }
+    },
+    { "$ref": "187" }
+  ],
+  "state": { "$ref": "11" }
+}
