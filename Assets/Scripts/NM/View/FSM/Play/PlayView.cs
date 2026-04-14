@@ -18,12 +18,6 @@ namespace NM.View;
 public class PlayView : ViewBase<GamePlaying>
 {
     [Header("上左")]
-    public Txt TxtBody;
-    public Txt TxtBodyAdd;
-    public Txt TxtSans;
-    public Txt TxtSansAdd;
-    public Txt TxtLore;
-    public Txt TxtLoreAdd;
     public List<PropValueView> PropValueViewList = [];
     
     [Header("上中")]
@@ -66,10 +60,6 @@ public class PlayView : ViewBase<GamePlaying>
         {
             ShowGridDetailAtPos(LockedPosDetail.Value);
         }
-
-        // BtnSpin.interactable = (
-            // from play in GamePlayData
-            // select play.IsState<PlayIdle>()) | false;
         BtnHarvest.interactable = (
             from spin in PlaySpinData
             select spin.CanHarvest) | false;
@@ -119,6 +109,7 @@ public class PlayView : ViewBase<GamePlaying>
         Invoke = (evt, ct) =>
         {
             BtnSpin.interactable = true;
+            PropValueViewList.ForEach(view => view.Refresh(Data));
             return UniTask.CompletedTask;
         },
         Des = "激活spin按钮"
@@ -186,7 +177,7 @@ public class PlayView : ViewBase<GamePlaying>
                 [
                     ..
                     from spin in PlaySpinData.ToIEnumerable()
-                    let itemInSpin = item.InSpin(spin)
+                    let itemInSpin = item[spin]
                     from modProp in itemInSpin.ModifyPropList
                     where modProp.HasValue
                     orderby modProp.PropType, modProp.AddValue descending, modProp.MultiValue descending

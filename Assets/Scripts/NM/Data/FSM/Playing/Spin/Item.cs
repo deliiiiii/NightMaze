@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
 using Newtonsoft.Json;
@@ -13,8 +12,17 @@ namespace NM.Data;
 
 public partial class PlaySpin
 {
-    public class MyItem
+    public class MyItem(PlaySpin spin, GamePlaying.MyItem inPlay)
     {
+        [JsonConstructor]
+        MyItem() : this(null!, null!){}
+
+        PlaySpin spin = spin;
+        GamePlaying.MyItem inPlay = inPlay;
+
+        [JsonProperty(IsReference = false, ItemIsReference = false)]
+        public List<ModifyPropInfo> ModifyPropList { [DebuggerStepThrough] get; init; } = [];
+
         public long GetProp(EPropType propType)
         {
             var filteredList = ModifyPropList.Where(m => m.PropType == propType).ToList();
@@ -22,12 +30,9 @@ public partial class PlaySpin
             var multiSum = filteredList.Aggregate((double)1, (cur, m) => cur * m.MultiValue);
             return (long)(addSum * multiSum);
         }
-
-        [JsonProperty(IsReference = false, ItemIsReference = false)]
-        public List<ModifyPropInfo> ModifyPropList { [DebuggerStepThrough] get; init; } = [];
-        public UniTask OnSpinAsync(PlaySpin spin, GamePlaying.MyItem inPlay, CancellationToken ct)
+        public UniTask OnSpinAsync()
         {
-            SelfAddBaseValue(spin, inPlay);
+            SelfAddBaseValue();
             spin.InsertAfter(
                 from itemDes in (List<ItemDesConfig>)[..inPlay.Config.DesList, ..inPlay.EatConfigList]
                 where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEnterSpin
@@ -39,7 +44,7 @@ public partial class PlaySpin
             return UniTask.CompletedTask;
         }
 
-        void SelfAddBaseValue(PlaySpin spin, GamePlaying.MyItem inPlay)
+        void SelfAddBaseValue()
         {
             var config = inPlay.Config;
             if (config.IsSymbol)
@@ -64,14 +69,14 @@ public partial class PlaySpin
         public double MultiValue = 1;
 
         public bool HasValue => AddValue != 0 || Math.Abs(MultiValue - 1) > 1e-5;
-
-        protected virtual bool PrintMembers(StringBuilder sb)
+        public override string ToString()
         {
+            var sb = new StringBuilder();
             sb.Append($"Ett = {From.Config.Name},");
             sb.Append($"PropType = {PropType.GetLabelText()}, ");
             sb.Append($"AddValue = {AddValue}, ");
             sb.Append($"MultiValue = {MultiValue}");
-            return true; 
+            return sb.ToString();
         }
     }
 }

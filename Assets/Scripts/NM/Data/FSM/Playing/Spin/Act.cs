@@ -7,6 +7,7 @@ using GeneralPreview;
 using Newtonsoft.Json;
 using NM.Config;
 using Sirenix.Serialization;
+using Sirenix.Utilities;
 
 namespace NM.Data;
 
@@ -92,7 +93,7 @@ public partial class PlaySpin
         if (!BelongNode.Items.Contains(item))
             return;
         await new EvtBeforeCheckSymbolTween(this, item);
-        await item.InSpin(this).OnSpinAsync(this, item, ct);
+        await item[this].OnSpinAsync();
     }
     [EvtName("(仅View)物体执行 ALL 词条前.")]
     public record EvtBeforeCheckSymbolTween(PlaySpin WhoHasCt, GamePlaying.MyItem Item) : EvtBase<PlaySpin>(WhoHasCt);
@@ -175,6 +176,21 @@ public partial class PlaySpin
         return UniTask.CompletedTask;
     }
 
+    [Obsolete("结算")][MuteActEvt]
+    async UniTask HarvestAsync(CancellationToken ct)
+    {
+        foreach (var propType in EPropType.GetValues())
+        {
+            long value = Items.Sum(item => item.GetProp(propType));
+            await new GamePlaying.ActChangeProp(BelongNode)
+            {
+                PropType = propType,
+                Delta = value
+            };
+        }
+        await BelongNode.ChangeStateAsync(new PlayIdle(), false);
+    }
+    
     bool ResolveCondition(GamePlaying.MyItem selfItem, ItemDesConditionBase? conditionBase, ResultWrap? resultWrap)
     {
         if (conditionBase == null)
@@ -396,7 +412,7 @@ public partial class PlaySpin
     [Obsolete("某物让某物属性变化(加算)")]
     UniTask EttAddSymbolModifyPropAsync(GamePlaying.MyItem from, GamePlaying.MyItem to, EPropType propType, long value, ResultWrap? resultWrap, CancellationToken ct)
     {
-        to.InSpin(this).ModifyPropList.Add(new ModifyPropInfo
+        to[this].ModifyPropList.Add(new ModifyPropInfo
         {
             PropType = propType,
             From = from,
@@ -412,7 +428,7 @@ public partial class PlaySpin
     [Obsolete("某物让某物属性变化(乘算)")]
     UniTask EttMulSymbolModifyPropAsync(GamePlaying.MyItem from, GamePlaying.MyItem to, EPropType propType, double value, ResultWrap? resultWrap, CancellationToken ct)
     {
-        to.InSpin(this).ModifyPropList.Add(new ModifyPropInfo
+        to[this].ModifyPropList.Add(new ModifyPropInfo
         {
             PropType = propType,
             From = from,

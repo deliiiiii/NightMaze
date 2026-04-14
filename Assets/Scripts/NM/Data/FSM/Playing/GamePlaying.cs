@@ -26,7 +26,29 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     [EvtChanged]public partial long PropSans { get;private set; }
     [EvtChanged]public partial long PropLore { get;private set; }
     [EvtChanged]public partial long PropLoyalty { get;private set; }
-    [EvtChanged]public partial long PropHostility { get;private set; }
+    [EvtChanged] public partial long PropLoyaltyMax { get; private set; } = 1000;
+    [EvtChanged] public partial long PropHostility { get; private set; } = 100;
+    [EvtChanged] public partial long PropHostilityMax { get; private set; } = 1000;
+
+    public long GetProp(EPropType propType)
+        => propType switch
+        {
+            EPropType.Prop1 => PropBody,
+            EPropType.Prop2 => PropSans,
+            EPropType.Prop3 => PropLore,
+            EPropType.PropA1 => PropLoyalty,
+            EPropType.PropA2 => PropHostility,
+            _ => throw new ArgumentOutOfRangeException(nameof(propType), propType, null)
+        };
+    public long GetMaxProp(EPropType propType)
+        => propType switch
+        {
+            EPropType.PropA1 => PropLoyaltyMax,
+            EPropType.PropA2 => PropHostilityMax,
+            _ => throw new ArgumentOutOfRangeException(nameof(propType), propType, null)
+        };
+
+
     // [EvtChanged]public partial long Prop6 { get;private set; }
     [EvtChanged]
     public partial long Coin { get; private set;}

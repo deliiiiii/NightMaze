@@ -9,6 +9,20 @@ namespace NM.Data;
 [ActContainer]
 public partial class GamePlaying
 {
+    [Obsolete("写入属性")]
+    UniTask ChangePropAsync(EPropType propType, long delta, CancellationToken ct)
+    {
+        switch (propType)
+        {
+            case EPropType.Prop1: PropBody += delta; break;
+            case EPropType.Prop2: PropSans += delta; break;
+            case EPropType.Prop3: PropLore += delta; break;
+            case EPropType.PropA1: PropLoyalty += delta; break;
+            case EPropType.PropA2: PropHostility += delta; break;
+            default: throw new ArgumentOutOfRangeException(nameof(propType), propType, null);
+        }
+        return UniTask.CompletedTask;
+    }
     [Obsolete("尝试移动某物体")][MuteActEvt]
     async UniTask MoveItemToPosAsync(MyItem item, Vector2Int oldPos, Vector2Int pos, ResultWrap? resultWrap, CancellationToken ct)
     {

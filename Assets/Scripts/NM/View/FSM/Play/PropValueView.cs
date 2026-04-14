@@ -8,22 +8,16 @@ namespace NM.View;
 
 public class PropValueView : ViewBase
 {
-    [SerializeField] Txt txtValue;
-    [SerializeField] Txt txtLastValueDes;
-    [SerializeField] EPropType propType;
+    [SerializeField] protected Txt TxtValue;
+    [SerializeField] protected Txt TxtLastValueDes;
+    [SerializeField] protected EPropType PropType;
 
-    public void Refresh(GamePlaying play)
+    public virtual void Refresh(GamePlaying play)
     {
-        txtValue.text = propType switch
-        {
-            EPropType.Prop1 => play.PropBody.ToString(),
-            EPropType.Prop2 => play.PropSans.ToString(),
-            EPropType.Prop3 => play.PropLore.ToString(),
-            _ => "NaN"
-        };
-        txtLastValueDes.text = (
+        TxtValue.text = play.GetProp(PropType).ToString();
+        TxtLastValueDes.text = (
             from spin in play.GetStateOptional<PlaySpin>()
-            select $"({spin.Items.Sum(item => item.GetProp(propType)).ToStringWithSymbol()})"
+            select $"({spin.Items.Sum(item => item.GetProp(PropType)).ToStringWithSymbol()})"
         ) | string.Empty;
     }
 }

@@ -68,7 +68,7 @@ public partial class GamePlaying
         }
         
         PlaySpin.MyItem? inSpin;
-        public PlaySpin.MyItem InSpin(PlaySpin spin) => inSpin ??= new();
+        public PlaySpin.MyItem this[PlaySpin spin] => inSpin ??= new(spin, this);
         public void DestroyInSpin() => inSpin = null;
     }
 }

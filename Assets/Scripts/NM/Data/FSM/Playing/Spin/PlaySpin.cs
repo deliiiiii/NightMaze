@@ -34,7 +34,7 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
     
     public IEnumerable<MyItem> Items =>
         from itemInPlay in BelongNode.Items
-        select itemInPlay.InSpin(this);
+        select itemInPlay[this];
     protected override void OnCreateFreshData()
     {
         // BelongNode.Items.ForEach(item => item.CreateInSpin(this));
