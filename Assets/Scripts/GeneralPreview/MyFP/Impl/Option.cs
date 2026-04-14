@@ -67,7 +67,7 @@ public abstract record MyOption<T1>
             MySome<T1> s => UniTask.FromResult(s.Value),
             _ => elseValue
         };
-    TR Match<TR>(Func<T1, TR> some, Func<TR> none)
+    public TR Match<TR>(Func<T1, TR> some, Func<TR> none)
         => this switch
         {
             MySome<T1> s => some.Invoke(s.Value),

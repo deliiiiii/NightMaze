@@ -29,6 +29,7 @@ public class PlayView : ViewBase<GamePlaying>
     
     [Header("中")]
     public GridDetail GridDetail;
+    public InstantInfoView InstantInfoView;
     
     [Header("Trs")]
     public Trs GridTrs;

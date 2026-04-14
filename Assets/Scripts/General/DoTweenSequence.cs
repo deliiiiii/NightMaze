@@ -254,10 +254,6 @@ namespace General
             sequence.SetAutoKill(true);
             return sequence;
         }
-        public void Play()
-        {
-            DOPlay();
-        }
         public Tween DOPlay()
         {
             mTween = CreateTween();
@@ -808,12 +804,18 @@ namespace General
     
         public async UniTask PlayAsync(CancellationToken ct)
         {
-            mTween?.Kill(true);
+            if (mTween != null && mTween.IsActive())
+            {
+                mTween.Rewind(); 
+                mTween.Kill(true);
+            }
             mTween = CreateTween();
             if (mTween == null) return;
             if (ct.IsCancellationRequested)
             {
-                mTween.Complete(true);
+                // mTween.Complete(true);
+                if (mTween.IsActive())
+                    mTween.Rewind();
                 mTween.Kill();
                 ct.ThrowIfCancellationRequested();
             }
@@ -826,6 +828,7 @@ namespace General
             catch (OperationCanceledException)
             {
                 // mTween?.Complete(true);
+                mTween?.Rewind();
                 mTween?.Kill(true);
                 throw;
             }

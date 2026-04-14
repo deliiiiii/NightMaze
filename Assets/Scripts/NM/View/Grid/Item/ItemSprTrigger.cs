@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Cysharp.Threading.Tasks;
 using General;
 using NM.Data;
 using NM.View.ZZZTest;
@@ -13,23 +14,44 @@ public class ItemSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragH
     [field:SerializeReference] public ItemView BelongView { get; set; }
     Vector2 initThisScreenPos;
     Vector2 initThisWorldPos;
+
+    bool CheckDrag(PointerEventData eventData, bool isBeginDrag, out string? failInfo)
+    {
+        failInfo = null;
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return false;
+        if (!BelongView.Data.Config.CanDrag)
+        {
+            failInfo = isBeginDrag ? $"物体{BelongView.Data.Config.Name}不可拖动" : null;
+            return false;
+        }
+        var inSpin = PlaySpinData.HasValue;
+        if (inSpin)
+        {
+            failInfo = isBeginDrag ? $"正在结算/未收获, 不能拖动物体." : null;
+            return false;
+        }
+        return true;
+    }
     
     public void OnMultiBeginDrag(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left)
+        if (!CheckDrag(eventData, true, out var failInfo))
+        {
+            if(failInfo != null)
+                PlayViewIns.InstantInfoView.ShowAsync(failInfo).Forget();
             return;
-        if (!BelongView.Data.Config.CanDrag)
-            return;
+        }
         initThisScreenPos = MyCamera.Main.WorldToScreenPoint(transform.position);
         initThisWorldPos = transform.position;
     }
 
     public void OnMultiDrag(PointerEventData eventData)
     {
-        if(eventData.button != PointerEventData.InputButton.Left)
+        if (!CheckDrag(eventData, true, out var failInfo))
+        {
             return;
-        if (!BelongView.Data.Config.CanDrag)
-            return;
+        }
         // MyDebug.Log(mouseGridPos);
         var tarPos = MyCamera.Main.ScreenToWorldPoint(initThisScreenPos + eventData.position - eventData.pressPosition);
         transform.SetPositionXY(tarPos); 
@@ -37,10 +59,10 @@ public class ItemSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragH
 
     public void OnMultiEndDrag(PointerEventData eventData)
     {
-        if(eventData.button != PointerEventData.InputButton.Left)
+        if (!CheckDrag(eventData, true, out var failInfo))
+        {
             return;
-        if (!BelongView.Data.Config.CanDrag)
-            return;
+        }
         var mouseGridPos = PlayView.ScreenToGrid(eventData.position);
         GamePlayData.MatchA(some =>
         {
