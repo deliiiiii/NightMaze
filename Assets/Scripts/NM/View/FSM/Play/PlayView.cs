@@ -60,6 +60,9 @@ public class PlayView : ViewBase<GamePlaying>
         {
             ShowGridDetailAtPos(LockedPosDetail.Value);
         }
+        BtnSpin.interactable = (
+            from play in GamePlayData
+            select play.IsState<PlayIdle>()) | false;
         BtnHarvest.interactable = (
             from spin in PlaySpinData
             select spin.CanHarvest) | false;
@@ -108,7 +111,6 @@ public class PlayView : ViewBase<GamePlaying>
     {
         Invoke = (evt, ct) =>
         {
-            BtnSpin.interactable = true;
             PropValueViewList.ForEach(view => view.Refresh(Data));
             return UniTask.CompletedTask;
         },
@@ -118,7 +120,6 @@ public class PlayView : ViewBase<GamePlaying>
     {
         Invoke = (evt, ct) =>
         {
-            BtnSpin.interactable = false;
             return UniTask.CompletedTask;
         },
         Des = "取消激活spin按钮"

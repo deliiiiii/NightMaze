@@ -19,9 +19,9 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         PlayerName = playerName;
     }
     [DebuggerStepThrough]public override string ToString() => nameof(GamePlaying);
-    public string PlayerName { get; private set;}= "Deli";
+    public string PlayerName { get; private set;} = "Deli";
     public double PlayTime { get; private set;}
-    public int TurnCount;
+    [EvtChanged] public partial int TurnCount { get; private set; }
     [EvtChanged]public partial long PropBody { get;private set; }
     [EvtChanged]public partial long PropSans { get;private set; }
     [EvtChanged]public partial long PropLore { get;private set; }
@@ -29,7 +29,9 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     [EvtChanged] public partial long PropLoyaltyMax { get; private set; } = 1000;
     [EvtChanged] public partial long PropHostility { get; private set; } = 100;
     [EvtChanged] public partial long PropHostilityMax { get; private set; } = 1000;
-
+    public const int AddHostilityPerTurn = 1;
+    [JsonProperty(IsReference = false, Order = 9000)]List<MyItem> itemList = [];
+    
     public long GetProp(EPropType propType)
         => propType switch
         {
@@ -47,25 +49,6 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
             EPropType.PropA2 => PropHostilityMax,
             _ => throw new ArgumentOutOfRangeException(nameof(propType), propType, null)
         };
-
-
-    // [EvtChanged]public partial long Prop6 { get;private set; }
-    [EvtChanged]
-    public partial long Coin { get; private set;}
-    // 标注[EvtChanged]则源生↓↓↓
-    // public long Coin
-    // {
-    //     get;
-    //     private set
-    //     {
-    //         field = value;
-    //         Bus.FireAndForget(new EvtCoinChanged(value));
-    //     }
-    // }
-    // public record EvtCoinChanged(GamePlaying gamePlaying,
-    //              long OldValue,
-    //              long NewValue): EvtForgetBase;
-    [JsonProperty(IsReference = false, Order = 9000)]List<MyItem> itemList = [];
     
     public IEnumerable<MyItem> Items => itemList;
     public IEnumerable<MyItem> Grids => itemList.Where(item => item.Config.IsGrid);
@@ -91,7 +74,6 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
                 select grid;
         }
     }
-
     public IEnumerable<ItemDesConfig> ItemDesConfigs =>
         from item in itemList
         orderby item.PivotPos.Y descending, item.PivotPos.X
@@ -124,21 +106,18 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     
     protected override async UniTask OnLaunchCom(bool isThisFromLoad)
     {
-        // await symbolDeckList.EachOnLaunchCom(isThisFromLoad);
         await state!.OnCreateAsync(isThisFromLoad);
     }
     protected override void OnReleaseCom()
     {
         state?.OnRemove();
-        // symbolDeckList.EachOnReleaseCom();
     }
-
     protected override void OnSelfTick(float dt)
     {
         base.OnSelfTick(dt);
         PlayTime += dt;
     }
-
+    #region state
     [JsonProperty(Order = 10000)]
     Node? state;
     public UniTask ChangeStateAsync<T>(T node, bool isNewFromLoad) where T : PlayStateBase<T>
@@ -147,6 +126,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         => state is T s ? s : None;
     public bool IsState<T>() where T : PlayStateBase<T>
         => state is T;
+    #endregion
 }
 
 public abstract class PlayStateBase<T> : Node<GamePlaying, T> where T : PlayStateBase<T>;

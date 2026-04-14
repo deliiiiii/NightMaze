@@ -181,11 +181,10 @@ public partial class PlaySpin
     {
         foreach (var propType in EPropType.GetValues())
         {
-            long value = Items.Sum(item => item.GetProp(propType));
             await new GamePlaying.ActChangeProp(BelongNode)
             {
                 PropType = propType,
-                Delta = value
+                Delta = GetModifyPropValue(propType)
             };
         }
         await BelongNode.ChangeStateAsync(new PlayIdle(), false);

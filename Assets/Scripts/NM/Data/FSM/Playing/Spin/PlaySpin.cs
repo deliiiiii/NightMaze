@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
 using Newtonsoft.Json;
+using NM.Config;
 using Sirenix.Utilities;
 
 namespace NM.Data;
 
 public partial class PlaySpin : PlayStateBase<PlaySpin>
 {
-    public override string ToString()
-    {
-        return "Spin";
-    }
-
+    public override string ToString() => "Spin";
     [JsonProperty(Order = 9999)]List<IUniAction> toDoList = [];
-    public IEnumerable<IUniAction> ToDoList => toDoList;
-    public bool CanHarvest => !toDoList.Any();
     int FindAfterId(Func<IUniAction, bool>? beforeWho = null)
     {
         beforeWho ??= RTrue1;
@@ -32,9 +27,16 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
         toDoList.InsertRange(FindAfterId(afterWho) + 1, actList);
     }
     
-    public IEnumerable<MyItem> Items =>
+    
+    public IEnumerable<IUniAction> ToDoList => toDoList;
+    public bool CanHarvest => !toDoList.Any();
+    IEnumerable<MyItem> Items =>
         from itemInPlay in BelongNode.Items
         select itemInPlay[this];
+    public long GetModifyPropValue(EPropType propType) =>
+        Items.Sum(item => item.GetProp(propType)) +
+        (propType == EPropType.PropA2 ? GamePlaying.AddHostilityPerTurn : 0);
+    #region Node
     protected override void OnCreateFreshData()
     {
         // BelongNode.Items.ForEach(item => item.CreateInSpin(this));
@@ -48,7 +50,6 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
             }
         ];
     }
-
     protected override async UniTask OnLaunchCom(bool isThisFromLoad)
     {
         while (toDoList.Count != 0)
@@ -58,10 +59,11 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
             toDoList.Remove(first);
         }
     }
-
     protected override void OnReleaseCom()
     {
         BelongNode.Items.ForEach(item => item.DestroyInSpin());
         base.OnReleaseCom();
     }
+    #endregion
+    
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using General;
 using GeneralPreview;
 using NM.Data;
@@ -18,20 +19,28 @@ public class SlotView : ViewBase
     
     [SerializeField] Txt txtPlayerName;
     [SerializeField] Txt txtPlayTime;
-    [SerializeField] Txt txtCoin;
-    [SerializeField] Txt txtSymbolCount;
+    [SerializeField] Txt txtProp1;
+    [SerializeField] Txt txtProp2;
+    [SerializeField] Txt txtProp3;
+    [SerializeField] Txt txtPropA1;
+    [SerializeField] Txt txtPropA2;
+    [SerializeField] Txt txtItemCount;
     [SerializeField] Btn btn;
     [SerializeField] GO goSelected;
     public event Action? OnClick;
     
-    public void Init(GamePlaying fData)
+    public void Init(GamePlaying data)
     {
-        Data = fData;
+        Data = data;
         txtPlayerName.text = Data.PlayerName;
         var hours = (int)(Data.PlayTime / 3600);
         txtPlayTime.text = $@"{hours}:{TimeSpan.FromSeconds(Data.PlayTime):mm\:ss\.ff}";
-        // txtCoin.text = Data.Coin.ToString();
-        // txtSymbolCount.text = Data.SymbolDeck.Count().ToString();
+        txtProp1.text = Data.PropBody.ToString();
+        txtProp2.text = Data.PropSans.ToString();
+        txtProp3.text = Data.PropLore.ToString();
+        txtPropA1.text = Data.PropLoyalty.ToString();
+        txtPropA2.text = Data.PropHostility.ToString();
+        txtItemCount.text = Data.Items.Count().ToString();
     }
     public void OnSelect()
     {

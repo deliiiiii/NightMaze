@@ -142,9 +142,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2089745294596049125, guid: 3c86d7cc8e610b548b58508dc53ea720, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729480826274919454, guid: 3c86d7cc8e610b548b58508dc53ea720, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3664118300299421316, guid: 3c86d7cc8e610b548b58508dc53ea720, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3776553747042348399, guid: 3c86d7cc8e610b548b58508dc53ea720, type: 3}
       propertyPath: m_Name
       value: SlotView Variant Empty
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935676854728762373, guid: 3c86d7cc8e610b548b58508dc53ea720, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7216185141694805211, guid: 3c86d7cc8e610b548b58508dc53ea720, type: 3}
       propertyPath: m_Pivot.x

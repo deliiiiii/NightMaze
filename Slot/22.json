@@ -15,17 +15,16 @@
     },
     "state": { "$ref": "1" }
   },
-  "TurnCount": 0,
   "PlayerName": "22",
-  "PlayTime": 289.07914303941652,
-  "PropBody": 1280,
-  "PropSans": 72,
+  "PlayTime": 314.01440466148779,
+  "TurnCount": 0,
+  "PropBody": 1600,
+  "PropSans": 108,
   "PropLore": 0,
   "PropLoyalty": 0,
   "PropLoyaltyMax": 1000,
-  "PropHostility": 0,
+  "PropHostility": 1,
   "PropHostilityMax": 1000,
-  "Coin": 0,
   "itemList": [
     {
       "$id": "5",
@@ -871,10 +870,23 @@
         "$values": []
       },
       "inSpin": null
+    },
+    {
+      "$id": "135",
+      "ID": 10001,
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":2,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "136",
+        "$values": []
+      },
+      "inSpin": null
     }
   ],
   "state": {
-    "$id": "135",
+    "$id": "137",
     "$type": "NM.Data.PlayIdle, NM.Data",
     "savedVersion": 20260402.0,
     "BelongNode": { "$ref": "1" }
