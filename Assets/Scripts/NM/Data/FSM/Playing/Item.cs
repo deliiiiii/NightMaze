@@ -41,9 +41,7 @@ public partial class GamePlaying
         }
         [DebuggerStepThrough] public bool CoverPos(Vector2Int pos) => CoveredPosList.Contains(pos);
         public IEnumerable<Vector2Int> CoveredPosList => DeltaPosList.Select(d => d + PivotPos);
-        public ItemConfig Config => field ??= RefPoolMulti<ItemConfig>.AcquireOne(c => c.ID == ID) 
-                                        ?? RefPoolMulti<ItemConfig>.AcquireFirst()
-                                        ?? throw new Exception($"ItemConfig 一个配置也没有.");
+        public ItemConfig Config => field ??= ConfigLoader.Acquire<ItemConfig>(ID); 
         public EItemType ItemType => Config.ItemType;
         
         public int ID { [DebuggerStepThrough] get; [DebuggerStepThrough] private init; }

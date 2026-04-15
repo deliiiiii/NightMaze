@@ -54,7 +54,7 @@ public class PlayView : ViewBase<GamePlaying>
     {
         yield return BtnSpin.onClick.EvtBindTo(() => new EvtPlayViewClickSpin().Forget());
         yield return BtnHarvest.onClick.EvtBindTo(() => new EvtPlayViewClickHarvest().Forget());
-        yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.SaveName.SlotFolder, Data.PlayerName, Data));
+        yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.Name.Save.SlotFolder, Data.PlayerName, Data));
         yield return BtnExit.onClick.EvtBindTo(() => new EvtPlayViewClickExit().Forget());
         yield return BtnSetting.onClick.EvtBindTo(() => SettingViewIns.SetActiveTrue());
     }
@@ -227,7 +227,7 @@ public class PlayView : ViewBase<GamePlaying>
             }
         ];
         GridDetail.SetActiveTrue();
-        GridDetail.transform.position = GridToWorld(gridPos + new Vector2Int(1,1) * Const.GridSize);
+        GridDetail.transform.position = GridToWorld(gridPos + new Vector2Int(1,1) * Const.World.GridSize);
         GridDetail.transform.SetLocalPositionZ(0);
         GridDetail.Refresh(detailList);
     }
@@ -303,7 +303,7 @@ public class PlayView : ViewBase<GamePlaying>
         else
         {
             item.transform.parent = Grids.FirstOrDefault(g => g.Data.PivotPos == item.Data.PivotPos)?.transform;
-            item.transform.localPosition = new Vector3(0.5f, 0.5f) * Const.GridSize;
+            item.transform.localPosition = new Vector3(0.5f, 0.5f) * Const.World.GridSize;
         }
     }
 

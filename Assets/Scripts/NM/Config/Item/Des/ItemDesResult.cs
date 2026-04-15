@@ -36,11 +36,11 @@ public record ItemDesResultSpawnXAtX : ItemDesResultBase
 
 public enum EPropType
 {
-    [LabelText(Const.Property.Name1)] Prop1 = 0,
-    [LabelText(Const.Property.Name2)] Prop2 = 1,
-    [LabelText(Const.Property.Name3)] Prop3 = 2,
-    [LabelText(Const.Property.NameA1)] PropA1 = 10,
-    [LabelText(Const.Property.NameA2)] PropA2 = 11,
+    [LabelText(Const.Name.Name1)] Prop1 = 0,
+    [LabelText(Const.Name.Name2)] Prop2 = 1,
+    [LabelText(Const.Name.Name3)] Prop3 = 2,
+    [LabelText(Const.Name.NameA1)] PropA1 = 10,
+    [LabelText(Const.Name.NameA2)] PropA2 = 11,
 }
 
 #region 独特

@@ -84,7 +84,7 @@ public record ItemSelectorFromConfigCustom : ItemSelectorFromConfigBase
         ItemList = 
         [..
             from id in ItemIds
-            from config in RefPoolMulti<ItemConfig>.AcquireOneOptional(x => x.ID == id).ToIEnumerable()
+            from config in ConfigLoader.AcquireOptional<ItemConfig>(id).ToIEnumerable()
             select config
         ];
     }
@@ -101,13 +101,13 @@ public record ItemSelectorItemFromConfigSet : ItemSelectorFromConfigBase
 {
     [Required("物体组Config不能为空"), LabelText("物体组")]
     public ItemConfigSet? Set;
-    [JsonProperty] int? ConfigSetId => Set?.ID;
+    [JsonProperty] int ConfigSetId => Set?.ID ?? 0;
 
     public ItemSelectorItemFromConfigSet() { }
     [JsonConstructor]
     public ItemSelectorItemFromConfigSet(int xx)
     {
-        Set = RefPoolMulti<ItemConfigSet>.AcquireOne(x => x.ID == ConfigSetId);
+        Set = ConfigLoader.Acquire<ItemConfigSet>(ConfigSetId);
     }
 
     protected override bool PrintMembers(StringBuilder sb)

@@ -10,29 +10,29 @@ namespace GeneralPreview;
 [Serializable]
     public abstract class ConfigBase : SerializedScriptableObject, IDisposable
     {
-        public abstract void OnLoad();
-        public abstract void OnUnload();
+        // public abstract void OnLoad();
+        // public abstract void OnUnload();
 
-        void IDisposable.Dispose() => OnUnload();
+        void IDisposable.Dispose(){} // => OnUnload();
     }
 
-    public abstract class ConfigSingle<T> : ConfigBase, IRefSingle
+    public abstract class ConfigSingle<T> : ConfigBase // , IRefSingle
         where T : ConfigSingle<T>
     {
-        public sealed override void OnLoad() => RefPoolSingle<T>.Register(() => (T)this);
-        public sealed override void OnUnload() => RefPoolSingle<T>.Release();
+        // public sealed override void OnLoad() => RefPoolSingle<T>.Register(() => (T)this);
+        // public sealed override void OnUnload() => RefPoolSingle<T>.Release();
     }
 
     [Serializable]
-    public abstract class ConfigMulti<T>: ConfigBase, IRefMulti
+    public abstract class ConfigMulti<T>: ConfigBase // , IRefMulti
         where T : ConfigMulti<T>
     {
         [OnValueChanged(nameof(OnNameAndIdChanged))] 
         [ValidateInput(nameof(CheckName), "名称不能为空，也不能包含斜杠/ \\")]
         public string Name = string.Empty;
 
-        public sealed override void OnLoad() => RefPoolMulti<T>.RegisterOne(() => (T)this);
-        public sealed override void OnUnload() => RefPoolMulti<T>.ReleaseOne((T)this);
+        // public sealed override void OnLoad() => RefPoolMulti<T>.RegisterOne(() => (T)this);
+        // public sealed override void OnUnload() => RefPoolMulti<T>.ReleaseOne((T)this);
 
         [OnValueChanged(nameof(OnNameAndIdChanged))]
         [ValidateInput(nameof(CheckNameAndIdIdentical), "名称格式有误，或ID在当前文件夹(配置类相同)有重复")]

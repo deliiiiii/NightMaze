@@ -30,11 +30,11 @@ public partial class GameRoot : Node<GameRoot>
         {
             if (field == null)
             {
-                var data = Saver.Load<SettingData>(Const.SaveName.SettingFolder, Const.SaveName.SettingName);
+                var data = Saver.Load<SettingData>(Const.Name.Save.SettingFolder, Const.Name.Save.SettingName);
                 if (data == null)
                 {
                     data = new SettingData();
-                    Saver.SaveAsync(Const.SaveName.SettingFolder, Const.SaveName.SettingName, data).Forget();
+                    Saver.SaveAsync(Const.Name.Save.SettingFolder, Const.Name.Save.SettingName, data).Forget();
                 }
                 field = data;
             }

@@ -1,50 +1,40 @@
-﻿using System.Collections.Generic;
-
-namespace NM;
+﻿namespace NM;
 
 public static class Const
 {
-    public const string ProjName = "NM";
-    
-    public const int SpinW = 5;
-    public const int SpinH = 4;
-    public const int SpinFirstID = 1;
-    public const int DeckMax = 20;
-    public const int GridSize = 1;
-
-    // 字段名必须以Tag结尾!
-    public static class AddrResTag
+    public static class Res
     {
-        public const string ConfigTag = "NMConfig";
-        public const string ArtTag = "NMArt";
+        // 字段名必须以Tag结尾!
+        public static class AddrTag
+        {
+            public const string ConfigTag = "NMConfig";
+            public const string ItemSpriteTag = "NMItemSprite";
+        }
+        public static class TMP
+        {
+        }
     }
-    
-    public static class TMPRes
+    public static class Name
     {
-        
-    }
-
-    public static class SpriteRes
-    {
-        const string Item = "Assets/Art/Sprite/Item";
-    }
-
-    public static class SaveName
-    {
-        public const string SlotFolder = "Slot";
-        public const string SettingFolder = "Setting";
-        public const string SettingName = "Setting";
-    }
-    
-    public static class Property
-    {
+        public const string Proj = "NM";
         public const string Name1 = "体魄";
         public const string Name2 = "理智";
         public const string Name3 = "智识";
         public const string NameA1 = "忠诚度";
         public const string NameA2 = "敌意值";
+        
+        public static class Save
+        {
+            public const string SlotFolder = "Slot";
+            public const string SettingFolder = "Setting";
+            public const string SettingName = "Setting";
+        }
     }
-    
+
+    public static class World
+    {
+        public const int GridSize = 1;
+    }
     
     public static class SortingLayer
     {

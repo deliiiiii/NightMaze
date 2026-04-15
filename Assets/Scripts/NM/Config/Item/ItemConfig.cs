@@ -22,7 +22,7 @@ public class ItemConfig : ConfigMulti<ItemConfig>
         _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(EItemType)}类型: {ItemType}.")
     };
     // ReSharper disable once StaticMemberInGenericType
-    protected static ItemTypeResourceMgr Mgr => field ??= RefPoolSingle<ItemTypeResourceMgr>.Acquire();
+    protected static ItemTypeResourceMgr Mgr => field ??= ConfigLoader.Acquire<ItemTypeResourceMgr>();
     [Header("—— 通用配置 ——")]
     [LabelText("风味文本")] public string FlavorDes = string.Empty;
     [LabelText("稀有度")] public ERarity Rarity;

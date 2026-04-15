@@ -15,7 +15,7 @@ public class GridMapScroll : MonoBehaviour, IMultiScrollHandler
     public int MaxSeenGrid = 24;
     public float TarSeenGrid = 12;
     public float Duration = 0.4f;
-    [ShowInInspector]float TarOrtho => TarSeenGrid * Const.GridSize / 2f;
+    [ShowInInspector]float TarOrtho => TarSeenGrid * Const.World.GridSize / 2f;
     void Awake()
     {
         IUniEvt.BindAll(this, destroyCancellationToken);

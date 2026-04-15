@@ -20,7 +20,7 @@ internal class AddressableBatchProcessor : EditorWindow
     string[] fieldNames = [];
     string[] fieldValues = [];
         
-    [MenuItem("Tools/" + Const.ProjName + "/" + nameof(AddressableBatchProcessor))]
+    [MenuItem("Tools/" + Const.Name.Proj + "/" + nameof(AddressableBatchProcessor))]
     public static void ShowWindow()
     {
         GetWindow<AddressableBatchProcessor>("Addressable Tool");
@@ -40,7 +40,7 @@ internal class AddressableBatchProcessor : EditorWindow
             MyAsset.TryLoadFirstAsset(out config);
         }
 
-        var fieldInfoList = typeof(Const.AddrResTag)
+        var fieldInfoList = typeof(Const.Res.AddrTag)
             .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
             .Where(f => f.IsLiteral && !f.IsInitOnly && f.Name.EndsWith("Tag"))
             .ToList();

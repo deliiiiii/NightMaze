@@ -31,7 +31,7 @@ namespace General
             #endif
         }
         
-        static readonly Dictionary<string, AsyncOperationHandle<Object>> assetHandleCache = new();
+        static readonly Dictionary<string, AsyncOperationHandle> assetHandleCache = new();
         static readonly Dictionary<string, IList<IResourceLocation>> labelLocationsCache = new();
 
         /// <summary>
@@ -44,12 +44,12 @@ namespace General
         {
             if (TryGetAssetFromCache(address, out T? asset))
                 return asset;
-            var handle = Addressables.LoadAssetAsync<Object>(address);
+            var handle = Addressables.LoadAssetAsync<T>(address);
             handle.WaitForCompletion();
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
                 assetHandleCache[address] = handle;
-                return handle.Result as T ?? null;
+                return handle.Result ?? null;
             }
             MyDebug.LogError($"加载路径为:{address}的资源失败");
             return null;
@@ -62,13 +62,13 @@ namespace General
         /// <param name="ct">token</param>
         /// <typeparam name="T">类型</typeparam>
         /// <returns>加载的资源</returns>
-        public static async UniTask<T?> LoadAssetAsync<T>(string address, CancellationToken? ct = null) where T : Object
+        static async UniTask<T?> LoadAssetAsync<T>(string address, CancellationToken? ct = null) where T : Object
         {
             if (TryGetAssetFromCache(address, out T? asset))
                 return asset;
             // Stopwatch st = new Stopwatch();
             // st.Start();
-            var assetHandle = Addressables.LoadAssetAsync<Object>(address);
+            var assetHandle = Addressables.LoadAssetAsync<T>(address);
             await assetHandle.ToUniTask(cancellationToken: ct ?? CancellationToken.None);
             if (assetHandle.Status != AsyncOperationStatus.Succeeded)
                 MyDebug.LogError($"加载路径为:{address}的资源失败");
@@ -120,9 +120,9 @@ namespace General
         {
             if (assetHandleCache.TryGetValue(address, out var handle))
             {
-                if (handle.IsValid() && handle.Status == AsyncOperationStatus.Succeeded)
+                if (handle.IsValid() && handle.Status == AsyncOperationStatus.Succeeded && handle.Result is T ret)
                 {
-                    asset = (T)handle.Result;
+                    asset = ret;
                     return true;
                 }
             }
@@ -163,7 +163,7 @@ namespace General
             }
         }
 
-        public static async UniTask<IList<IResourceLocation>> LoadResourceLocationsAsync(string label, CancellationToken? ct = null)
+        static async UniTask<IList<IResourceLocation>> LoadResourceLocationsAsync(string label, CancellationToken? ct = null)
         {
             if (labelLocationsCache.TryGetValue(label, out var value))
                 return value;
@@ -176,7 +176,7 @@ namespace General
             return labelLocationsCache[label];
         }
 
-        public static IList<IResourceLocation> LoadResourceLocations(string label)
+        static IList<IResourceLocation> LoadResourceLocations(string label)
         {
             if (labelLocationsCache.TryGetValue(label, out var value))
                 return value;

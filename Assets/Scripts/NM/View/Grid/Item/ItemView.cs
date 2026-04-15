@@ -24,6 +24,7 @@ public class ItemView : ViewBase
     public void OnCreateView()
     {
         onGridSr.gameObject.SetActive(!Data.Config.IsGrid);
+        onGridSr.sprite = ItemResLoader.Acquire(Data.Config.ID);
         onGridSr.sortingLayerID = SortingLayer.NameToID(Data.Config.ItemType switch
         {
             EItemType.None => "Default",
@@ -38,13 +39,13 @@ public class ItemView : ViewBase
         
         boxCollider2D.offset = Data.Config.Pos switch
         {
-            ItemPosRectangle rect => new Vector2((rect.Length - 1) / 2f, (rect.Height - 1) / 2f) * Const.GridSize,
+            ItemPosRectangle rect => new Vector2((rect.Length - 1) / 2f, (rect.Height - 1) / 2f) * Const.World.GridSize,
             _ => Vector2.zero
         };
         boxCollider2D.size = Data.Config.Pos switch
         {
-            ItemPosRectangle rect => new Vector2(rect.Length - 0.2f, rect.Height - 0.2f) * Const.GridSize,
-            _ => Vector2.one * Const.GridSize
+            ItemPosRectangle rect => new Vector2(rect.Length - 0.2f, rect.Height - 0.2f) * Const.World.GridSize,
+            _ => Vector2.one * Const.World.GridSize
         };
 
         if (Data.Config.IsBuildingOrEvent)
@@ -58,7 +59,7 @@ public class ItemView : ViewBase
                     foreach (var y in Enumerable.Range(0, rect2.Height))
                     {
                         var ins = Instantiate(pfbBuildingSlot, trsBuildingSlot);
-                        ins.transform.localPosition = new Vector2(x, y) * Const.GridSize;
+                        ins.transform.localPosition = new Vector2(x, y) * Const.World.GridSize;
                         ins.SetActiveTrue();
                     }
                 }
