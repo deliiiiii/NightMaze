@@ -18,6 +18,16 @@ public static class Const
         public const string ConfigTag = "NMConfig";
         public const string ArtTag = "NMArt";
     }
+    
+    public static class TMPRes
+    {
+        
+    }
+
+    public static class SpriteRes
+    {
+        const string Item = "Assets/Art/Sprite/Item";
+    }
 
     public static class SaveName
     {
@@ -34,12 +44,8 @@ public static class Const
         public const string NameA1 = "忠诚度";
         public const string NameA2 = "敌意值";
     }
-
-    public static class TMPResource
-    {
-        
-    }
-
+    
+    
     public static class SortingLayer
     {
         public const string GridBack = "Grid Back";

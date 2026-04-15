@@ -276,6 +276,7 @@ internal class AddressableBatchProcessor : EditorWindow
             {
                 string address = Path.GetFileNameWithoutExtension(assetPath);
                 entry.address = address;
+                entry.labels.Clear();
                 entry.labels.Add(labelName);
                 return true;
             }

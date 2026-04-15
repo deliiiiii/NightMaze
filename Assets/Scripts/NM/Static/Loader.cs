@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
@@ -12,12 +13,12 @@ public static class Loader
     {
         ct ??= CancellationToken.None;
         var configAll = new List<ConfigBase>(1000);
-        configAll.AddRange(await Resourcer.LoadAssetsAsyncByLabel<ConfigBase>(Const.AddrResTag.ConfigTag, ct: ct));
-        
-        foreach (var config in configAll)
+
+        foreach (var func in OnLoad?.GetInvocationList() ?? [])
         {
-            config.OnLoad();
-            config.AddTo(ct.Value);
+            await ((Func<CancellationToken, UniTask>)func)(ct.Value);
         }
     }
+
+    public static event Func<CancellationToken, UniTask>? OnLoad;
 }

@@ -25,3 +25,6 @@ MonoBehaviour:
   - Enable: 1
     FolderPath: Assets/Config
     TagName: NMConfig
+  - Enable: 1
+    FolderPath: Assets/Art/Sprite/Item
+    TagName: NMArt
