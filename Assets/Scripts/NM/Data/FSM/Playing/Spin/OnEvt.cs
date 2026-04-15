@@ -16,14 +16,15 @@ public partial class PlaySpin
         Des = "移除物体时, 移除\"执行它的词条\"行为.",
     };
     
-    UniEvt<EvtPlayViewClickHarvest> OnEvtClickHarvestAsync => new()
+    UniEvt<EvtPlayViewClickNextTurn> OnEvtClickHarvestAsync => new()
     {
-        Invoke = async (evt, ct) =>
+        Invoke = (evt, ct) =>
         {
             if (!ToDoList.Any())
             {
-                await new ActHarvest(this);
+                InsertAfter(new GamePlaying.ActEnterNextTurnAndIdle(BelongNode));
             }
+            return UniTask.CompletedTask;
         },
         Des = "收获"
     };

@@ -93,7 +93,15 @@ public partial class PlaySpin
         if (!BelongNode.Items.Contains(item))
             return;
         await new EvtBeforeCheckSymbolTween(this, item);
-        await item[this].OnSpinAsync();
+        item[this].SelfAddBaseValue();
+        InsertAfter(
+            from itemDes in item.AllConfigList
+            where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEnterSpin
+            select new ActDoItemDesResult(this)
+            {
+                Item = item,
+                ResultWrap = new ResultWrap(itemDes.Result!, null),
+            });
     }
     [EvtName("物体执行 ALL 词条前.")]
     public record EvtBeforeCheckSymbolTween(PlaySpin WhoHasCt, GamePlaying.MyItem Item) : EvtBase<PlaySpin>(WhoHasCt);
@@ -182,36 +190,6 @@ public partial class PlaySpin
     {
         item[this].DistributeProp();
         return UniTask.CompletedTask;    
-    }
-    [Obsolete("结算")][MuteActEvt]
-    async UniTask HarvestAsync(CancellationToken ct)
-    {
-        foreach (var item in Items)
-        {
-            foreach (var distributeProp in item.DistributePropList)
-            {
-                if (distributeProp.ToItem == null)
-                {
-                    await new GamePlaying.ActChangeProp(BelongNode)
-                    {
-                        PropType = distributeProp.PropType,
-                        Delta = distributeProp.Value,
-                    };
-                }
-                else
-                {
-                    distributeProp.ToItem.BuildingOrEventProgress[distributeProp.PropType]
-                        += distributeProp.Value;
-                }
-            }
-        }
-        await new GamePlaying.ActChangeProp(BelongNode)
-        {
-            PropType = EPropType.PropA2,
-            Delta = GamePlaying.AddHostilityPerTurn
-        };
-        await new GamePlaying.ActAddTurnCount(BelongNode);
-        await BelongNode.ChangeStateAsync(new PlayIdle(), false);
     }
     
     bool ResolveCondition(GamePlaying.MyItem selfItem, ItemDesConditionBase? conditionBase, ResultWrap? resultWrap)

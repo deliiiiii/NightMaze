@@ -40,31 +40,48 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
     #region Node
     protected override void OnCreateFreshData()
     {
-        // BelongNode.Items.ForEach(item => item.CreateInSpin(this));
         toDoList = [..
             from itemInPlay in BelongNode.Items
-            where itemInPlay.AllConfigList.Any()
+            // where itemInPlay.AllConfigList.Any()
             orderby itemInPlay.PivotPos.Y descending, itemInPlay.PivotPos.X, itemInPlay.Config.Order ascending 
             select new ActCheckItem(this)
             {
                 Item = itemInPlay
-            }, ..
+            },
+            ..
             from itemInPlay in BelongNode.Items
             select new ActDistributePropForItem(this)
             {
                 Item = itemInPlay
-            }
+            },
+            new GamePlaying.ActChangeProp(BelongNode)
+            {
+                PropType = EPropType.PropA2,
+                Delta = GamePlaying.AddHostilityPerTurn
+            },
         ];
     }
-    protected override async UniTask OnLaunchCom(bool isThisFromLoad)
+    protected override UniTask OnLaunchCom(bool isThisFromLoad)
     {
-        while (toDoList.Count != 0)
+        StartTodo().Forget();
+        return UniTask.CompletedTask;
+    }
+
+    async UniTask StartTodo()
+    {
+        while (true)
         {
+            if (!toDoList.Any())
+            {
+                await UniTask.Yield(CurCt);
+                continue;
+            }
             var first = toDoList[0];
             await first;
             toDoList.Remove(first);
         }
     }
+
     protected override void OnReleaseCom()
     {
         BelongNode.Items.ForEach(item => item.DestroyInSpin());

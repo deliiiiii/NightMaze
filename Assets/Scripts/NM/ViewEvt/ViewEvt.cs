@@ -3,5 +3,5 @@
 namespace NM.ViewEvt;
 
 public record EvtPlayViewClickSpin : EvtForgetBase;
-public record EvtPlayViewClickHarvest : EvtForgetBase;
+public record EvtPlayViewClickNextTurn : EvtForgetBase;
 public record EvtPlayViewClickExit : EvtForgetBase;

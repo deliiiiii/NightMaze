@@ -99,10 +99,10 @@ public partial class GamePlaying
     }
 
     [Obsolete("增加回合数")]
-    UniTask AddTurnCountAsync(CancellationToken ct)
+    async UniTask EnterNextTurnAndIdleAsync(CancellationToken ct)
     {
         TurnCount++;
-        return UniTask.CompletedTask;
+        await ChangeStateAsync(new PlayIdle(), false);
     }
     [Obsolete("解锁下一层")]
     UniTask UnlockNextLayerAsync(CancellationToken ct)

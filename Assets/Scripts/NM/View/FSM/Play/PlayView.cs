@@ -37,7 +37,7 @@ public class PlayView : ViewBase<GamePlaying>
     
     [Header("Btn")]
     public Btn BtnSpin;
-    public Btn BtnHarvest;
+    public Btn BtnNextTurn;
     public Btn BtnSave;
     public Btn BtnExit;
     public Btn BtnSetting;
@@ -53,7 +53,7 @@ public class PlayView : ViewBase<GamePlaying>
     protected override IEnumerable<BindDataBase> BindList()
     {
         yield return BtnSpin.onClick.EvtBindTo(() => new EvtPlayViewClickSpin().Forget());
-        yield return BtnHarvest.onClick.EvtBindTo(() => new EvtPlayViewClickHarvest().Forget());
+        yield return BtnNextTurn.onClick.EvtBindTo(() => new EvtPlayViewClickNextTurn().Forget());
         yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.Name.Save.SlotFolder, Data.PlayerName, Data));
         yield return BtnExit.onClick.EvtBindTo(() => new EvtPlayViewClickExit().Forget());
         yield return BtnSetting.onClick.EvtBindTo(() => SettingViewIns.SetActiveTrue());
@@ -67,7 +67,7 @@ public class PlayView : ViewBase<GamePlaying>
         BtnSpin.interactable = (
             from play in GamePlayData
             select play.IsState<PlayIdle>()) | false;
-        BtnHarvest.interactable = (
+        BtnNextTurn.interactable = (
             from spin in PlaySpinData
             select spin.CanHarvest) | false;
     }
@@ -195,14 +195,14 @@ public class PlayView : ViewBase<GamePlaying>
             from item in Data.Items
             where item.CoverPos(gridPos)
             orderby (int)item.ItemType
-            // from config in (List<IItemConfig>)[item.Config, .. item.EatConfigs]
             select new DetailInfo
             {
                 Type = item.Config.PrefixName,
                 Name = item.Config.Name,
                 TagInfoList = item.Config.DetailTagInfos,
                 Detail = $"""
-                          {item.PivotPos}{ResolveBuildingOrEvt(item)}{(!Data.Items.Contains(item) ? "已不复存在" : string.Empty)}{ResolveItemDesList(item.Config.DesList)}{ResolveItemDesList(item.EatConfigList)}
+                          {item.PivotPos}
+                          {ResolveBaseValue(item)}{ResolveBuildingOrEvt(item)}{(!Data.Items.Contains(item) ? "已不复存在" : string.Empty)}{ResolveItemDesList(item.AllConfigList)}
                           <color=grey>{item.Config.FlavorDes}</color>
                           """,
                 InSpinLineList =
@@ -232,6 +232,17 @@ public class PlayView : ViewBase<GamePlaying>
         GridDetail.Refresh(detailList);
     }
 
+    string ResolveBaseValue(GamePlaying.MyItem item)
+    {
+        if (!item.Config.IsSymbol)
+            return string.Empty;
+        var propValueList = item.Config.SymbolPropValueList;
+        if (propValueList.Count == 0)
+            return string.Empty;
+        return "白值" + string.Join(',', propValueList
+            .Select(pair => $"{pair.Key.GetLabelText()}{pair.Value.ToStringWithSymbol()}"))
+               + "\n";
+    }
     string ResolveBuildingOrEvt(GamePlaying.MyItem item)
     {
         if (!item.Config.IsBuildingOrEvent)
@@ -319,9 +330,9 @@ public class PlayView : ViewBase<GamePlaying>
         itemViewList.Remove(ins);
     }
     public static Vector2Int ScreenToGrid(Vector2 screenPos) => WorldToGrid(MyCamera.Main.ScreenToWorldPoint(screenPos));
-    static Vector2 GridToScreen(Vector2Int gridPos) => MyCamera.Main.WorldToScreenPoint(GridToWorld(gridPos));
-    static Vector2Int WorldToGrid(Vector2 worldPos) => new((int)worldPos.x, (int)worldPos.y);
-    static Vector2 GridToWorld(Vector2Int gridPos) => gridPos;
+    public static Vector2 GridToScreen(Vector2Int gridPos) => MyCamera.Main.WorldToScreenPoint(GridToWorld(gridPos));
+    public static Vector2Int WorldToGrid(Vector2 worldPos) => new((int)worldPos.x, (int)worldPos.y);
+    public static Vector2 GridToWorld(Vector2Int gridPos) => gridPos;
 }
 
 internal static class IntExt

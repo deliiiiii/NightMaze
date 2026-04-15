@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 33647833f4609c242af2cd4ca232b882
   m_SerializeEntries:
+  - m_GUID: 03a29c95068441249988c8ce8cf363a5
+    m_Address: "Symbol_19002_\u6D4B\u8BD52\u9AD8\u4E2A\u5B50"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 03a914574305b7f488d57a6da5b15bd7
     m_Address: "\u65B0\u79D1\u6280\u6811"
     m_ReadOnly: 0
@@ -77,8 +83,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f34aa68eb088d746a27b7b16417a193
+    m_Address: 19002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMItemSprite
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 80a214ecc44de0840b343ab3e3b6d447
     m_Address: "ItemSet_114514_\u6D4B\u8BD5"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9abb90ffb0872024fac1ce01bbb7c9a5
+    m_Address: "Symbol_19000_\u6D4B\u8BD50\u8FDC\u7A0B\u6DFB\u52A0\u5C5E\u6027"
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig

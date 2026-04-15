@@ -124,7 +124,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     #region state
     [JsonProperty(Order = 10000)]
     Node? state;
-    public UniTask ChangeStateAsync<T>(T node, bool isNewFromLoad) where T : PlayStateBase<T>
+    UniTask ChangeStateAsync<T>(T node, bool isNewFromLoad) where T : PlayStateBase<T>
         => _ChangeAsync(ref state, node, isNewFromLoad);
     public MyOption<T> GetStateOptional<T>() where T : PlayStateBase<T>
         => state is T s ? s : None;

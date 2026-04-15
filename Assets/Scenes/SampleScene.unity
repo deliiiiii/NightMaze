@@ -3952,7 +3952,7 @@ MonoBehaviour:
   InstantInfoView: {fileID: 1227153799}
   GridTrs: {fileID: 311023196}
   BtnSpin: {fileID: 1504976117}
-  BtnHarvest: {fileID: 686016289}
+  BtnNextTurn: {fileID: 686016289}
   BtnSave: {fileID: 785729442}
   BtnExit: {fileID: 1730101043}
   BtnSetting: {fileID: 1522634754}
@@ -14288,7 +14288,7 @@ GameObject:
   - component: {fileID: 686016290}
   - component: {fileID: 686016289}
   m_Layer: 5
-  m_Name: Btn Harvest
+  m_Name: Btn NextTurn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19828,7 +19828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u6536\u5272"
+  m_text: "\u4E0B\u4E00\u56DE\u5408"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 46e60c86b76fd98408571a6735f2db6e, type: 2}
   m_sharedMaterial: {fileID: -4982856474069735654, guid: 46e60c86b76fd98408571a6735f2db6e, type: 2}

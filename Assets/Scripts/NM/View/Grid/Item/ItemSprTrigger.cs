@@ -63,13 +63,14 @@ public class ItemSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragH
         {
             return;
         }
-        var mouseGridPos = PlayView.ScreenToGrid(eventData.position);
+        var tarPos = PlayView.WorldToGrid(transform.position);
+        // var mouseGridPos = PlayView.ScreenToGrid(eventData.position);
         GamePlayData.MatchA(some =>
         {
             new GamePlaying.ActMoveItemToPos(some)
             {
                 OldPos = BelongView.Data.PivotPos,
-                Pos = mouseGridPos,
+                Pos = tarPos,
                 Item = BelongView.Data,
                 ResultWrap = null!
             }.Forget();
