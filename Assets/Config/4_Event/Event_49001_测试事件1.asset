@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
-  m_Name: "Building_20002_\u6D3B\u4F53\u6536\u5BB9\u6808"
+  m_Name: "Event_49001_\u6D4B\u8BD5\u4E8B\u4EF61"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -26,7 +26,7 @@ MonoBehaviour:
       Data: 0|NM.Config.ItemPosRectangle, NM.Config
     - Name: Length
       Entry: 3
-      Data: 1
+      Data: 3
     - Name: Height
       Entry: 3
       Data: 1
@@ -68,16 +68,28 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: $v
       Entry: 3
-      Data: 4
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -96,100 +108,59 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
       Data: 0
-    - Name: $v
-      Entry: 3
-      Data: 20
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  Name: "\u6D3B\u4F53\u6536\u5BB9\u6808"
-  ID: 20002
-  FlavorDes: 
+  Name: "\u6D4B\u8BD5\u4E8B\u4EF61"
+  ID: 49001
+  FlavorDes: Test
   Rarity: 0
   TagList: 
   CanDrag: 0
-  ItemType: 2
+  ItemType: 4
   GridTagList: 
   SymbolTagList: 
   BuildingTagList: 
   ResourceTagList: 
   EventTagList: 
   DesList:
-  - DesToPlayer: "\u8FD0\u8425\uFF1A\u8DDD\u79BB2\u683C\u8303\u56F4\u5185\u7684\u6BCF\u4E00\u4E2A\u3010\u4EBA\u7C7B\u3011\u63D0\u4F9B1\u70B9\u5FE0\u8BDA\u5EA6"
+  - DesToPlayer: "\u6240\u6709\u7269\u4F53\u7406\u667A\u51CF\u534A"
     Trigger:
-      rid: 6212121221817434121
+      rid: 6212121176462065754
     Result:
-      rid: 6212121176462065730
+      rid: 6212121221817434122
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 6212121176462065730
-      type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
+    - rid: 6212121176462065754
+      type: {class: ItemDesTriggerEventMiKanSei, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121221817434122
+      type: {class: ItemDesResultMulXPropX, ns: NM.Config, asm: NM.Config}
       data:
         Condition:
           rid: -2
         Next:
           rid: -2
         ItemSelector:
-          rid: 6212121176462065731
-        PropType: 10
-        IntSelector:
-          rid: 6212121176462065733
-    - rid: 6212121176462065731
-      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
+          rid: 6212121221817434125
+        PropType: 1
+        DoubleSelector:
+          rid: 6212121221817434124
+    - rid: 6212121221817434124
+      type: {class: DoubleSelectorConst, ns: NM.Config, asm: NM.Config}
       data:
-        <ItemFilter>k__BackingField:
-          rid: -2
-        <ItemSort>k__BackingField:
-          rid: -2
-        <PosFilter>k__BackingField:
-          rid: -2
-        <PosSort>k__BackingField:
-          rid: -2
-        <Random>k__BackingField: 0
-    - rid: 6212121176462065733
-      type: {class: IntSelectorSumBy, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemSelector:
-          rid: 6212121221817434117
-        Value: 1
-    - rid: 6212121221817434117
+        Value: 0.5
+    - rid: 6212121221817434125
       type: {class: ItemSelectorAtPresentAll, ns: NM.Config, asm: NM.Config}
       data:
         <ItemFilter>k__BackingField:
-          rid: 6212121221817434120
-        <ItemSort>k__BackingField:
-          rid: -2
-        <PosFilter>k__BackingField:
-          rid: 6212121221817434118
-        <PosSort>k__BackingField:
-          rid: -2
-        <Random>k__BackingField: 0
-    - rid: 6212121221817434118
-      type: {class: PosFilterInManDis, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemSelector:
-          rid: 6212121221817434119
-        Dis: 2
-    - rid: 6212121221817434119
-      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
-      data:
-        <ItemFilter>k__BackingField:
           rid: -2
         <ItemSort>k__BackingField:
           rid: -2
@@ -198,17 +169,3 @@ MonoBehaviour:
         <PosSort>k__BackingField:
           rid: -2
         <Random>k__BackingField: 0
-    - rid: 6212121221817434120
-      type: {class: ItemFilterTag, ns: NM.Config, asm: NM.Config}
-      data:
-        ItemFilter:
-          rid: -2
-        ItemTagList: 
-        GridTagList: 
-        SymbolTagList: 00000000
-        ResourceTagList: 
-        BuildingTagList: 
-        EventTagList: 
-    - rid: 6212121221817434121
-      type: {class: ItemDesTriggerBuildingRun, ns: NM.Config, asm: NM.Config}
-      data: 

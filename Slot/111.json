@@ -15,15 +15,15 @@
     "state": { "$ref": "1" }
   },
   "PlayerName": "111",
-  "PlayTime": 2078.3369018496014,
-  "TurnCount": 89,
+  "PlayTime": 2171.1283990950324,
+  "TurnCount": 94,
   "CurLayer": 1,
   "PropBody": 20,
-  "PropSans": 28331,
-  "PropLore": 66,
+  "PropSans": 29143,
+  "PropLore": 80,
   "PropLoyalty": 1,
   "PropLoyaltyMax": 1000,
-  "PropHostility": 161,
+  "PropHostility": 166,
   "PropHostilityMax": 1000,
   "itemList": [
     {
@@ -2396,85 +2396,60 @@
     },
     {
       "$id": "389",
-      "ID": 20002,
+      "ID": 49001,
       "Dragging": false,
       "Spawning": false,
-      "PivotPos":{"X":2,"Y":4},
-      "DeltaPosList":[{"X":0,"Y":0}],
+      "PivotPos":{"X":2,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0},{"X":1,"Y":0},{"X":2,"Y":0}],
       "EatConfigList": {
         "$id": "390",
         "$values": []
       },
       "BuildingOrEventProgress": {
         "$id": "391",
-        "Prop1": 4
+        "Prop2": 20,
+        "Prop3": 10
       },
       "inSpin": {
         "$id": "392",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "389" },
-            "PropType": 10,
-            "AddValue": 1,
-            "MultiValue": 1.0
-          }
-        ],
+        "ModifyPropList": [],
         "DistributePropList": {
           "$id": "393",
-          "$values": [
-            {
-              "$id": "394",
-              "PropType": 0,
-              "Value": -1,
-              "ToItem": { "$ref": "389" }
-            },
-            {
-              "$id": "395",
-              "PropType": 1,
-              "Value": -100,
-              "ToItem": { "$ref": "389" }
-            },
-            {
-              "$id": "396",
-              "PropType": 10,
-              "Value": 1,
-              "ToItem": null
-            }
-          ]
+          "$values": []
         }
       }
     },
     {
-      "$id": "397",
-      "ID": 19003,
+      "$id": "394",
+      "ID": 19002,
       "Dragging": false,
       "Spawning": false,
-      "PivotPos":{"X":2,"Y":3},
-      "DeltaPosList":[{"X":0,"Y":0}],
+      "PivotPos":{"X":3,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1}],
       "EatConfigList": {
-        "$id": "398",
+        "$id": "395",
         "$values": []
       },
       "BuildingOrEventProgress": {
-        "$id": "399"
+        "$id": "396"
       },
       "inSpin": {
-        "$id": "400",
+        "$id": "397",
         "ModifyPropList": [
           {
-            "From": { "$ref": "397" },
-            "PropType": 0,
-            "AddValue": 2,
+            "From": { "$ref": "394" },
+            "PropType": 2,
+            "AddValue": 6,
             "MultiValue": 1.0
           }
         ],
         "DistributePropList": {
-          "$id": "401",
+          "$id": "398",
           "$values": [
             {
-              "$id": "402",
-              "PropType": 0,
-              "Value": 2,
+              "$id": "399",
+              "PropType": 2,
+              "Value": 6,
               "ToItem": null
             }
           ]
@@ -2483,15 +2458,15 @@
     }
   ],
   "state": {
-    "$id": "403",
+    "$id": "400",
     "$type": "NM.Data.PlaySpin, NM.Data",
     "savedVersion": 20260402.0,
     "BelongNode": { "$ref": "1" },
     "noSourceDistributePropList": {
-      "$id": "404",
+      "$id": "401",
       "$values": [
         {
-          "$id": "405",
+          "$id": "402",
           "PropType": 11,
           "Value": 1,
           "ToItem": null
@@ -2499,7 +2474,7 @@
       ]
     },
     "toDoList": {
-      "$id": "406",
+      "$id": "403",
       "$values": []
     }
   }

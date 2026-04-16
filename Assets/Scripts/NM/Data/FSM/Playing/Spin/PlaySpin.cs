@@ -67,13 +67,6 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
             select new ActDistributePropForItem(this)
             {
                 Item = itemInPlay
-            },..
-            // ReSharper disable once PossibleMultipleEnumeration
-            from itemInPlay in items
-            // from itemInPlay in BelongNode.Items
-            select new ActCheckEvent(this)
-            {
-                Item = itemInPlay
             },
         ]);
     }

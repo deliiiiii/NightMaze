@@ -33,7 +33,9 @@ public partial class PlaySpin
         
         InsertAfter([..
             from itemDes in item.AllConfigList
-            where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEnterSpin
+            where itemDes.Result != null && 
+                  (itemDes.Trigger is ItemDesTriggerEnterSpin
+                    || (item.Config.IsEvent && itemDes.Trigger is ItemDesTriggerEventMiKanSei && !item.IsBuildingOrEventKanSei))
             select new ActDoItemDesResult(this)
             {
                 Item = item,
@@ -59,6 +61,33 @@ public partial class PlaySpin
             select act,
         ]);
     }
+    
+    // [Obsolete("第3轮, 结算事件")]
+    // UniTask CheckEventAsync(GamePlaying.MyItem item, CancellationToken ct)
+    // {
+    //     if (!item.Config.IsEvent)
+    //         return UniTask.CompletedTask;
+    //     InsertAfter([..
+    //         // 未完成事件
+    //         from itemDes in item.AllConfigList
+    //         where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEventMiKanSei && !item.IsBuildingOrEventKanSei
+    //         select new ActDoItemDesResult(this)
+    //         {
+    //             Item = item,
+    //             ResultWrap = new ResultWrap(itemDes.Result!, null),
+    //         }, ..
+    //         // 已完成事件
+    //         from itemDes in item.AllConfigList
+    //         where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEventKanSei && item.IsBuildingOrEventKanSei
+    //         select new ActDoItemDesResult(this)
+    //         {
+    //             Item = item,
+    //             ResultWrap = new ResultWrap(itemDes.Result!, null),
+    //         },
+    //     ]);
+    //     return UniTask.CompletedTask;
+    // }
+    
     [EvtName("第1轮, 某物体执行 ALL 词条前")]
     public record EvtBeforeCheckSymbolTween(PlaySpin WhoHasCt, GamePlaying.MyItem Item) : EvtBase<PlaySpin>(WhoHasCt);
     [Obsolete("第1轮, 将执行物体单行词条")]
@@ -110,7 +139,7 @@ public partial class PlaySpin
                     From = item,
                     To = toItem,
                     PropType = mulXPropX.PropType,
-                    Value = ResolveIntSelector(item, mulXPropX.IntSelector, resultWrap),
+                    Value = ResolveDoubleSelector(item, mulXPropX.DoubleSelector, resultWrap),
                     ResultWrap = resultWrap
                 },
             ItemDesResultRemoveItem removeItem =>
@@ -221,31 +250,6 @@ public partial class PlaySpin
         });
         
         return UniTask.CompletedTask;    
-    }
-    [Obsolete("第3轮, 结算事件")]
-    UniTask CheckEventAsync(GamePlaying.MyItem item, CancellationToken ct)
-    {
-        if (!item.Config.IsEvent)
-            return UniTask.CompletedTask;
-        InsertAfter([..
-            // 未完成事件
-            from itemDes in item.AllConfigList
-            where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEventMiKanSei && !item.IsBuildingOrEventKanSei
-            select new ActDoItemDesResult(this)
-            {
-                Item = item,
-                ResultWrap = new ResultWrap(itemDes.Result!, null),
-            }, ..
-            // 已完成事件
-            from itemDes in item.AllConfigList
-            where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEventKanSei && item.IsBuildingOrEventKanSei
-            select new ActDoItemDesResult(this)
-            {
-                Item = item,
-                ResultWrap = new ResultWrap(itemDes.Result!, null),
-            },
-        ]);
-        return UniTask.CompletedTask;
     }
     
     bool ResolveCondition(GamePlaying.MyItem selfItem, ItemDesConditionBase? conditionBase, ResultWrap? resultWrap)
@@ -371,6 +375,14 @@ public partial class PlaySpin
                 .Sum(_ => selectorSumBy.Value),
             null => 0,
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IntSelectorBase)}类型: {intSelector.GetType()}.")
+        };
+    
+    double ResolveDoubleSelector(GamePlaying.MyItem selfItem, DoubleSelectorBase? doubleSelector, ResultWrap? resultWrap) =>
+        doubleSelector switch
+        {
+            DoubleSelectorConst selectorConst => selectorConst.Value,
+            null => 1f,
+            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(DoubleSelectorBase)}类型: {doubleSelector.GetType()}.")
         };
     IEnumerable<Vector2Int> ResolvePosSelector(GamePlaying.MyItem selfItem, ICanSelectPos? iCanSelectPos, ResultWrap? resultWrap, Func<Vector2Int, bool>? extraFilter = null)
     {

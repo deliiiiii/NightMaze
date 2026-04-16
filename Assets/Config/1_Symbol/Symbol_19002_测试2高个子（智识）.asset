@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
-  m_Name: "Symbol_19002_\u6D4B\u8BD52\u9AD8\u4E2A\u5B50"
+  m_Name: "Symbol_19002_\u6D4B\u8BD52\u9AD8\u4E2A\u5B50\uFF08\u667A\u8BC6\uFF09"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -52,19 +52,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
       Data: 1
-    - Name: $v
-      Entry: 3
-      Data: 6
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 7
       Data: 
@@ -115,7 +103,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  Name: "\u6D4B\u8BD52\u9AD8\u4E2A\u5B50"
+  Name: "\u6D4B\u8BD52\u9AD8\u4E2A\u5B50\uFF08\u667A\u8BC6\uFF09"
   ID: 19002
   FlavorDes: TTTEEESSSTTT
   Rarity: 0

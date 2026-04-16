@@ -23,7 +23,7 @@ public record ItemDesResultMulXPropX : ItemDesResultBase
 {
     [SerializeReference, LabelText("{0}: 目标物体")] public ItemSelectorBase? ItemSelector = new ItemSelectorAtPresentSelf();
     [LabelText("{1}: 属性类型")] public EPropType PropType = EPropType.Prop1;
-    [SerializeReference, LabelText("{2}: 属性乘算数值")] public IntSelectorBase? IntSelector = new IntSelectorConst();
+    [SerializeReference, LabelText("{2}: 属性乘算数值")] public DoubleSelectorBase? DoubleSelector = new DoubleSelectorConst();
 }
 
 [TypeRegistryItem("在位置{0}生成某一个物体{1}的原型")][DebuggerStepThrough]

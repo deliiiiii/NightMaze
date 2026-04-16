@@ -9,5 +9,5 @@ public record ItemDesTriggerEnterSpin : ItemDesTriggerBase;
 public record ItemDesTriggerBuildingRun : ItemDesTriggerBase;
 [TypeRegistryItem("结算第1轮时, 本事件未完成")]
 public record ItemDesTriggerEventMiKanSei : ItemDesTriggerBase;
-[TypeRegistryItem("结算第3轮时, 本事件完成")]
+[TypeRegistryItem("回合间隙. 本事件完成")]
 public record ItemDesTriggerEventKanSei : ItemDesTriggerBase;
