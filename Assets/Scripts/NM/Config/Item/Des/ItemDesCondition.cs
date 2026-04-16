@@ -5,8 +5,7 @@ namespace NM.Config;
 
 public abstract record ItemDesConditionBase
 {
-    [Header("且满足.."), HideLabel]
-    [SerializeReference, PropertyOrder(9999)] public ItemDesConditionBase? Next;
+    [SerializeReference, LabelText("且满足.."), PropertyOrder(9999)] public ItemDesConditionBase? Next;
 }
 [TypeRegistryItem("若物体{0}满足个数{1}")]
 public record ItemDesConditionCollectXItem : ItemDesConditionBase

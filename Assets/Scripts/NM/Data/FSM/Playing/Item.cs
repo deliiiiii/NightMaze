@@ -81,6 +81,7 @@ public partial class GamePlaying
             if (inSpin != null)
             {
                 builder.Append($"ModifyPropList = [{string.Join("| ", inSpin.ModifyPropList)}]");
+                builder.Append($"DistributePropList = [{string.Join("| ", inSpin.DistributePropList)}]");
             }
             return builder.ToString();
         }

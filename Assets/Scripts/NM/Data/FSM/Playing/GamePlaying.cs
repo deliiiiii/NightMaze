@@ -23,12 +23,12 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     public string PlayerName { get; private set;} = "Deli";
     public double PlayTime { get; private set;}
     [EvtChanged] public partial int TurnCount { get; private set; } = 1;
-    [EvtChanged] public partial int CurLayer { get; private set; } = 1;
-    [EvtChanged]public partial long PropBody { get;private set; }
-    [EvtChanged]public partial long PropSans { get;private set; }
-    [EvtChanged]public partial long PropLore { get;private set; }
-    [EvtChanged]public partial long PropLoyalty { get;private set; }
-    [EvtChanged] public partial long PropLoyaltyMax { get; private set; } = 1000;
+    public int CurLayer { get; private set; } = 1;
+    public long PropBody { get;private set; }
+    public long PropSans { get;private set; }
+    public long PropLore { get;private set; }
+    public long PropLoyalty { get;private set; }
+    public long PropLoyaltyMax { get; private set; } = 1000;
     [EvtChanged] public partial long PropHostility { get; private set; } = 100;
     [EvtChanged] public partial long PropHostilityMax { get; private set; } = 1000;
     public const int AddHostilityPerTurn = 1;

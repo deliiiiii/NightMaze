@@ -1,14 +1,18 @@
 ﻿using System.Diagnostics;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace NM.Config;
 public abstract record ItemDesResultBase
 {
-    [Header("若满足条件"), HideLabel]
-    [SerializeReference] public ItemDesConditionBase? Condition;
-    [Header("成功后执行")]
-    [SerializeReference, HideLabel, PropertyOrder(9999)]public ItemDesResultBase? Next;
+  public sealed override string ToString() => GetType().GetAttribute<TypeRegistryItemAttribute>()?.Name ?? GetType().Name;
+    
+    [SerializeReference, LabelText("若满足条件")] public ItemDesConditionBase? Condition;
+    [Header("成功后执行"), HideLabel]
+    [SerializeReference, PropertyOrder(9999)][Indent(-1)]
+    [ValueDropdown("@NM.Config.ItemDesConfig.GetOptionsDeep($property)", NumberOfItemsBeforeEnablingSearch = 1)]
+    public ItemDesResultBase? Next;
 }
 [TypeRegistryItem("使物体{0}的属性{1}加算{2}")][DebuggerStepThrough]
 public record ItemDesResultAddXPropX : ItemDesResultBase
@@ -56,8 +60,12 @@ public record ItemDesResultAddItemDesToSelf : ItemDesResultBase
 {
     [SerializeReference, LabelText("{0} 指定目标物体")] public ItemSelectorBase? ItemSelector = new ItemSelectorFromResult();
 }
+#endregion
 
-[TypeRegistryItem("解锁下一层")]
-[DebuggerStepThrough]
-public record ItemDesResultUnlockNextLayer : ItemDesResultBase;
+#region 事件
+internal interface IItemDesResultIsEvt;
+[TypeRegistryItem("解锁下一层")][DebuggerStepThrough]
+public record ItemDesResultUnlockNextLayer : ItemDesResultBase, IItemDesResultIsEvt;
+[TypeRegistryItem("清空敌意值")][DebuggerStepThrough]
+public record ItemDesResultClearHostility : ItemDesResultBase, IItemDesResultIsEvt;
 #endregion

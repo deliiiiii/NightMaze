@@ -133,6 +133,11 @@ MonoBehaviour:
       rid: 6212121176462065754
     Result:
       rid: 6212121221817434122
+  - DesToPlayer: "\u8F93\u5165\u4EBA\u8BDD..."
+    Trigger:
+      rid: 6212121227279466588
+    Result:
+      rid: 6212121227279466591
   references:
     version: 2
     RefIds:
@@ -169,3 +174,13 @@ MonoBehaviour:
         <PosSort>k__BackingField:
           rid: -2
         <Random>k__BackingField: 0
+    - rid: 6212121227279466588
+      type: {class: ItemDesTriggerEventKanSei, ns: NM.Config, asm: NM.Config}
+      data: 
+    - rid: 6212121227279466591
+      type: {class: ItemDesResultClearHostility, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        Next:
+          rid: -2

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using GeneralPreview;
+﻿using GeneralPreview;
 using NM.Config;
 using NM.Data;
 using UnityEngine;

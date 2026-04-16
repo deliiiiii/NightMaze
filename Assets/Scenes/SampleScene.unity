@@ -25181,11 +25181,11 @@ MonoBehaviour:
   - AddType: 1
     AnimationType: 19
     Target: {fileID: 1856974307}
-    ToValue: {x: 0, y: 0, z: 0, w: 1}
+    ToValue: {x: 1, y: 1, z: 1, w: 1}
     UseToTarget: 0
     ToTarget: {fileID: 727948603}
-    UseFromValue: 0
-    FromValue: {x: 0, y: 0, z: 0, w: 0}
+    UseFromValue: 1
+    FromValue: {x: 1, y: 1, z: 1, w: 0}
     SpeedBased: 0
     DurationOrSpeed: 1
     Delay: 0
@@ -38828,7 +38828,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 0
-  m_fontColor: {r: 0, g: 0, b: 0, a: 0}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

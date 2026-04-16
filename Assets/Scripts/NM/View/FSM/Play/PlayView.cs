@@ -70,8 +70,6 @@ public class PlayView : ViewBase<GamePlaying>
         BtnNextTurn.interactable = (
             from spin in PlaySpinData
             select spin.CanHarvest) | false;
-
-        // RefreshGridEdge();
     }
 
     #region OnEvt
@@ -80,10 +78,10 @@ public class PlayView : ViewBase<GamePlaying>
         Invoke = (evt, ct) =>
         {
             Data = evt.WhoHasCt;
-            // ClearAllGrid();
             Data.Items.ForEach(SpawnItem);
             RefreshTurnAndSoOn(Data);
             PropValueViewList.ForEach(view => view.Refresh(Data));
+            RefreshGridEdge();
             lr.SetActiveTrue();
             gameObject.SetActiveTrue();
             return UniTask.CompletedTask;
@@ -104,7 +102,8 @@ public class PlayView : ViewBase<GamePlaying>
             ClearAllGrid();
             GridDetail.SetActiveFalse();
             LockedPosDetail = null;
-            lr.SetActiveFalse();
+            if(lr != null)
+                lr.SetActiveFalse();
             gameObject.SetActiveFalse();
             return UniTask.CompletedTask;
         },
@@ -112,11 +111,11 @@ public class PlayView : ViewBase<GamePlaying>
     };
 
     
-    UniEvt<GamePlaying.EvtCurLayerChanged> OnCurLayerChanged => new()
+    UniEvt<GamePlaying.EvtUnlockNextLayer> OnCurLayerChanged => new()
     {
         Invoke = (evt, ct) =>
         {
-            TxtLayerCount.text = evt.GamePlaying.CurLayer.ToString();
+            TxtLayerCount.text = evt.WhoHasCt.CurLayer.ToString();
             return UniTask.CompletedTask;
         },
         Des = "更新文本",
@@ -212,18 +211,18 @@ public class PlayView : ViewBase<GamePlaying>
     void RefreshGridEdge()
     {
         var itemPosDic = itemViewList.Where(item => item.Data.Config.IsGrid).ToDictionary(item => item.Data.PivotPos);
-        var edgeList =
-            (from item in itemViewList
-                where item.Data.Config.IsGrid
-                from delta in (List<Vector2Int>)[Vector2Int.Up, Vector2Int.Down, Vector2Int.Left, Vector2Int.Right]
-                where !itemPosDic.TryGetValue(item.Data.PivotPos + delta, out _)
-                select new Edge
-                {
-                    Point1 = p1Dic[delta](item).position,
-                    Point2 = p2Dic[delta](item).position,
-                }).ToList();
+        var edgeList = (
+            from item in itemViewList
+            where item.Data.Config.IsGrid
+            from delta in (List<Vector2Int>)[Vector2Int.Up, Vector2Int.Down, Vector2Int.Left, Vector2Int.Right]
+            where !itemPosDic.TryGetValue(item.Data.PivotPos + delta, out _)
+            select new Edge
+            {
+                Point1 = p1Dic[delta](item).position,
+                Point2 = p2Dic[delta](item).position,
+            }).ToList();
         var lines = edgeList.ConnectToLines();
-        if (lines.Count > 0)
+        if (lines.Any())
         {
             lr.positionCount = lines[0].Count;
             lr.SetPositions(lines[0].ToArray());
@@ -340,6 +339,9 @@ public class PlayView : ViewBase<GamePlaying>
         ins.SetActiveTrue();
         ins.OnCreateView();
         itemViewList.Add(ins);
+        
+        if(item.Config.IsGrid)
+            RefreshGridEdge();
     }
     void MoveItem(GamePlaying.MyItem item)
     {
@@ -350,6 +352,9 @@ public class PlayView : ViewBase<GamePlaying>
             return;
         }
         SetViewPosInternal(ins);
+        
+        if(item.Config.IsGrid)
+            RefreshGridEdge();
     }
     void SetViewPosInternal(ItemView item)
     {
@@ -374,6 +379,9 @@ public class PlayView : ViewBase<GamePlaying>
         }
         Destroy(ins.gameObject);
         itemViewList.Remove(ins);
+        
+        if(item.Config.IsGrid)
+            RefreshGridEdge();
     }
     #endregion
     
@@ -403,7 +411,6 @@ internal static class IntExt
         }
     }
 }
-
 internal struct Edge
 {
     public required Vector3 Point1;
