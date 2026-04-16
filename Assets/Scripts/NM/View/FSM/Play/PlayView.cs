@@ -70,6 +70,8 @@ public class PlayView : ViewBase<GamePlaying>
         BtnNextTurn.interactable = (
             from spin in PlaySpinData
             select spin.CanHarvest) | false;
+
+        // RefreshGridEdge();
     }
 
     #region OnEvt
@@ -82,6 +84,7 @@ public class PlayView : ViewBase<GamePlaying>
             Data.Items.ForEach(SpawnItem);
             RefreshTurnAndSoOn(Data);
             PropValueViewList.ForEach(view => view.Refresh(Data));
+            lr.SetActiveTrue();
             gameObject.SetActiveTrue();
             return UniTask.CompletedTask;
         },
@@ -99,9 +102,10 @@ public class PlayView : ViewBase<GamePlaying>
         {
             Data = null!;
             ClearAllGrid();
-            this.SetActiveFalse();
             GridDetail.SetActiveFalse();
             LockedPosDetail = null;
+            lr.SetActiveFalse();
+            gameObject.SetActiveFalse();
             return UniTask.CompletedTask;
         },
         Des = "(退出Root - Playing状态时) 隐藏界面"
@@ -187,6 +191,47 @@ public class PlayView : ViewBase<GamePlaying>
     };
     #endregion
     
+    #region GridEdge
+    [Header("GridEdge")]
+    [SerializeField]LineRenderer lr;
+    static readonly Dictionary<Vector2Int, Func<ItemView, Trs>> p1Dic = new()
+    {
+        {Vector2Int.Up, v => v.Lu},
+        {Vector2Int.Right, v => v.Ru},
+        {Vector2Int.Down, v => v.Rd},
+        {Vector2Int.Left, v => v.Ld},
+    };
+    static readonly Dictionary<Vector2Int, Func<ItemView, Trs>> p2Dic = new()
+    {
+        {Vector2Int.Up, v => v.Ru},
+        {Vector2Int.Right, v => v.Rd},
+        {Vector2Int.Down, v => v.Ld},
+        {Vector2Int.Left, v => v.Lu},
+    };
+    [Button]
+    void RefreshGridEdge()
+    {
+        var itemPosDic = itemViewList.Where(item => item.Data.Config.IsGrid).ToDictionary(item => item.Data.PivotPos);
+        var edgeList =
+            (from item in itemViewList
+                where item.Data.Config.IsGrid
+                from delta in (List<Vector2Int>)[Vector2Int.Up, Vector2Int.Down, Vector2Int.Left, Vector2Int.Right]
+                where !itemPosDic.TryGetValue(item.Data.PivotPos + delta, out _)
+                select new Edge
+                {
+                    Point1 = p1Dic[delta](item).position,
+                    Point2 = p2Dic[delta](item).position,
+                }).ToList();
+        var lines = edgeList.ConnectToLines();
+        if (lines.Count > 0)
+        {
+            lr.positionCount = lines[0].Count;
+            lr.SetPositions(lines[0].ToArray());
+        }
+    }
+    #endregion
+    
+    #region GridDetail
     public void ShowGridDetailAtPos(Vector2Int gridPos)
     {
         List<DetailInfo> detailList =
@@ -231,7 +276,6 @@ public class PlayView : ViewBase<GamePlaying>
         GridDetail.transform.SetLocalPositionZ(0);
         GridDetail.Refresh(detailList);
     }
-
     string ResolveBaseValue(GamePlaying.MyItem item)
     {
         if (!item.Config.IsSymbol)
@@ -272,7 +316,6 @@ public class PlayView : ViewBase<GamePlaying>
         sb.Append(desConfig.DesToPlayer);
         return sb.ToString();
     }
-    
     public void HideGridDetail()
     {
         // 如果删除了地块...
@@ -280,13 +323,14 @@ public class PlayView : ViewBase<GamePlaying>
             return;
         GridDetail.SetActiveFalse();
     }
+    #endregion
 
+    #region Add/Remove Item
     void ClearAllGrid()
     {
         itemViewList.Where(item => item != null).ForEach(item => Destroy(item.gameObject));
         itemViewList.Clear();
     }
-
     void SpawnItem(GamePlaying.MyItem item)
     {
         ItemView ins = Instantiate(itemPfb);
@@ -320,7 +364,6 @@ public class PlayView : ViewBase<GamePlaying>
             item.transform.localPosition = new Vector3(0.5f, 0.5f) * Const.World.GridSize;
         }
     }
-
     void RemoveItem(GamePlaying.MyItem item)
     {
         ItemView? ins = itemViewList.FirstOrDefault(s => s.Data == item);
@@ -332,10 +375,14 @@ public class PlayView : ViewBase<GamePlaying>
         Destroy(ins.gameObject);
         itemViewList.Remove(ins);
     }
+    #endregion
+    
+    #region Screen/World/Grid pos transfrom
     public static Vector2Int ScreenToGrid(Vector2 screenPos) => WorldToGrid(MyCamera.Main.ScreenToWorldPoint(screenPos));
     public static Vector2 GridToScreen(Vector2Int gridPos) => MyCamera.Main.WorldToScreenPoint(GridToWorld(gridPos));
     public static Vector2Int WorldToGrid(Vector2 worldPos) => new((int)worldPos.x, (int)worldPos.y);
     public static Vector2 GridToWorld(Vector2Int gridPos) => gridPos;
+    #endregion
 }
 
 internal static class IntExt
@@ -354,5 +401,75 @@ internal static class IntExt
             };
             return $"{symbol}{self}";
         }
+    }
+}
+
+internal struct Edge
+{
+    public required Vector3 Point1;
+    public required Vector3 Point2;
+}
+internal static class EdgeExt
+{
+    extension(List<Edge> edges)
+    {
+        internal List<List<Vector3>> ConnectToLines() 
+        {
+            List<List<Vector3>> allPaths =[];
+            List<Edge> remainingEdges = [..edges];
+            while (remainingEdges.Count > 0)
+            {
+                LinkedList<Vector3> currentPath = new();
+                
+                Edge firstEdge = remainingEdges[0];
+                remainingEdges.RemoveAt(0);
+                
+                currentPath.AddLast(firstEdge.Point1);
+                currentPath.AddLast(firstEdge.Point2);
+
+                bool isGrowing = true;
+                while (isGrowing)
+                {
+                    isGrowing = false;
+                    for (int i = remainingEdges.Count - 1; i >= 0; i--)
+                    {
+                        Edge edge = remainingEdges[i];
+                        Vector3 head = currentPath.First.Value;
+                        Vector3 tail = currentPath.Last.Value;
+
+                        if (ArePointsEqual(edge.Point1, tail))
+                        {
+                            currentPath.AddLast(edge.Point2);
+                            remainingEdges.RemoveAt(i);
+                            isGrowing = true;
+                        }
+                        else if (ArePointsEqual(edge.Point2, tail))
+                        {
+                            currentPath.AddLast(edge.Point1);
+                            remainingEdges.RemoveAt(i);
+                            isGrowing = true;
+                        }
+                        else if (ArePointsEqual(edge.Point1, head))
+                        {
+                            currentPath.AddFirst(edge.Point2);
+                            remainingEdges.RemoveAt(i);
+                            isGrowing = true;
+                        }
+                        else if (ArePointsEqual(edge.Point2, head))
+                        {
+                            currentPath.AddFirst(edge.Point1);
+                            remainingEdges.RemoveAt(i);
+                            isGrowing = true;
+                        }
+                    }
+                }
+                allPaths.Add([..currentPath]);
+            }
+            return allPaths;
+        }   
+    }
+    internal static bool ArePointsEqual(Vector3 a, Vector3 b)
+    {
+        return (a - b).sqrMagnitude < 0.0001f;
     }
 }

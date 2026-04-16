@@ -13,7 +13,10 @@ public class ItemView : ViewBase
 {
     [ShowInInspector]public GamePlaying.MyItem Data { get; set; }
 
-    
+    public Trs Lu;
+    public Trs Ru;
+    public Trs Ld;
+    public Trs Rd;
     [SerializeField]Trs trsBuildingSlot;
     [SerializeField]GO pfbBuildingSlot;
 

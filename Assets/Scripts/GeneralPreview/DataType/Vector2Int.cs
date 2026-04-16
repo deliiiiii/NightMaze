@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using UnityEngine;
 
 namespace GeneralPreview;
 [DebuggerStepThrough][Serializable]
@@ -8,8 +9,8 @@ public record struct Vector2Int(int X, int Y) : IComparable<Vector2Int>
     public int X = X;
     public int Y = Y;
 
-    public static implicit operator UnityEngine.Vector3(Vector2Int v) => new(v.X, v.Y);
-    public static implicit operator UnityEngine.Vector2(Vector2Int v) => new(v.X, v.Y);
+    public static implicit operator Vector3(Vector2Int v) => new(v.X, v.Y);
+    public static implicit operator Vector2(Vector2Int v) => new(v.X, v.Y);
     
     public int LengthSquared => X * X + Y * Y;
     public double Length => Math.Sqrt(LengthSquared);
@@ -21,13 +22,18 @@ public record struct Vector2Int(int X, int Y) : IComparable<Vector2Int>
     }
     public static Vector2Int Zero = new (0, 0);
     public static Vector2Int One = new (1, 1);
+    public static Vector2Int MinusOne = new (-1, -1);
+    
+    public static Vector2Int Up = new (0, 1);
+    public static Vector2Int Down = new (0, -1);
+    public static Vector2Int Left = new (-1, 0);
+    public static Vector2Int Right = new (1, 0);
     public static Vector2Int MaxValue = new (int.MaxValue, int.MaxValue);
     public static Vector2Int MinValue = new (int.MinValue, int.MinValue);
     
-    public static Vector2Int operator +(Vector2Int a, Vector2Int b)
-    {
-        return new Vector2Int(a.X + b.X, a.Y + b.Y);
-    }
+    public static Vector2Int operator +(Vector2Int a, Vector2Int b) => new(a.X + b.X, a.Y + b.Y);
+    public static Vector2 operator +(Vector2Int a, Vector2 b) => new(a.X + b.x, a.Y + b.y);
+
     public static Vector2Int operator -(Vector2Int a, Vector2Int b)
     {
         return new Vector2Int(a.X - b.X, a.Y - b.Y);

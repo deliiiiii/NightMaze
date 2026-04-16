@@ -53,6 +53,9 @@ TagManager:
   - name: Grid Resource
     uniqueID: 1305963113
     locked: 0
+  - name: Grid Effect
+    uniqueID: 1105380033
+    locked: 0
   - name: UI
     uniqueID: 3023799083
     locked: 0

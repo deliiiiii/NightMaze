@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using General;
-using GeneralPreview;
 using Newtonsoft.Json;
 using NM.Config;
 using Sirenix.Utilities;
+using UnityEngine;
+using Vector2Int = GeneralPreview.Vector2Int;
 
 namespace NM.Data;
 
@@ -50,6 +50,10 @@ public partial class GamePlaying
         public bool ReallyInWorld => !Dragging && !Spawning;
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
         public Vector2Int PivotPos { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
+        // public Vector2 GridLeftUp => PivotPos + new Vector2(-0.5f, 0.5f);
+        // public Vector2 GridRightUp => PivotPos + new Vector2(0.5f, 0.5f);
+        // public Vector2 GridLeftDown => PivotPos + new Vector2(-0.5f, -0.5f);
+        // public Vector2 GridRightDown => PivotPos + new Vector2(0.5f, -0.5f);
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
         public List<Vector2Int> DeltaPosList { [DebuggerStepThrough] get; private init; }
         public List<ItemDesConfig> EatConfigList { [DebuggerStepThrough] get; private init; }
