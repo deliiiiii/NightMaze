@@ -19,6 +19,7 @@ public class ItemConfig : ConfigMulti<ItemConfig>
         EItemType.Resource => "Resource",
         EItemType.Event => "Event",
         EItemType.Grid => "Grid",
+        EItemType.None => "None",
         _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(EItemType)}类型: {ItemType}.")
     };
     // ReSharper disable once StaticMemberInGenericType
@@ -31,7 +32,7 @@ public class ItemConfig : ConfigMulti<ItemConfig>
 
     [LabelText("可拖动")] public bool CanDrag;
     [LabelText("类型"), OnValueChanged(nameof(OnItemTypeChanged))] public EItemType ItemType;
-    void OnItemTypeChanged()
+    public void OnItemTypeChanged()
     {
         OnNameAndIdChanged();
         CanDrag = IsSymbol;

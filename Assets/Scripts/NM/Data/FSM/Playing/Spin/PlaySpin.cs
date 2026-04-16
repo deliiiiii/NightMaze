@@ -11,55 +11,71 @@ namespace NM.Data;
 public partial class PlaySpin : PlayStateBase<PlaySpin>
 {
     public override string ToString() => "Spin";
-    [JsonProperty(Order = 9999)]List<IUniAction> toDoList = [];
+    #region toDoList
+    [JsonProperty(Order = 9999)]readonly List<IUniAction> toDoList = [];
+    readonly List<DistributePropInfo> noSourceDistributePropList = [];
     int FindAfterId(Func<IUniAction, bool>? beforeWho = null)
     {
         beforeWho ??= RTrue1;
         int beforeId = toDoList.IndexOf(toDoList.FirstOrDefault(beforeWho));
         return beforeId;
     }
-    public void InsertAfter(IUniAction act, Func<IUniAction, bool>? afterWho = null)
-    {
+    void InsertAfter(IUniAction act, Func<IUniAction, bool>? afterWho = null) => 
         toDoList.Insert(FindAfterId(afterWho) + 1, act);
-    }
-    public void InsertAfter(IEnumerable<IUniAction> actList, Func<IUniAction, bool>? afterWho = null)
-    {
+    void InsertAfter(IEnumerable<IUniAction> actList, Func<IUniAction, bool>? afterWho = null) => 
         toDoList.InsertRange(FindAfterId(afterWho) + 1, actList);
-    }
+    #endregion
     
-    
+    #region Getter
     public IEnumerable<IUniAction> ToDoList => toDoList;
     public bool CanHarvest => !toDoList.Any();
     IEnumerable<MyItem> Items =>
         from itemInPlay in BelongNode.Items
         select itemInPlay[this];
     // TODO 临时拿GamePlaying.AddHostilityPerTurn
-    public long GetToPlayerPropValue(EPropType propType) =>
-        Items.Sum(item => item.GetToPlayerProp(propType)) +
-        (propType == EPropType.PropA2 ? GamePlaying.AddHostilityPerTurn : 0);
+    public long GetDeltaPropValue(EPropType propType)
+    {
+        List<DistributePropInfo> list = [
+            ..Items.SelectMany(item => item.DistributePropList),
+            ..noSourceDistributePropList];
+        return list.Where(d => d.PropType == propType).Sum(d => d.Value);
+    }
+    #endregion
+    
     #region Node
     protected override void OnCreateFreshData()
     {
-        toDoList = [..
+        var items = 
             from itemInPlay in BelongNode.Items
-            // where itemInPlay.AllConfigList.Any()
-            orderby itemInPlay.PivotPos.Y descending, itemInPlay.PivotPos.X, itemInPlay.Config.Order ascending 
+            orderby itemInPlay.PivotPos.Y descending, itemInPlay.PivotPos.X, itemInPlay.Config.Order ascending
+            select itemInPlay;
+        toDoList.Clear();
+        toDoList.AddRange([
+            new ActDoNoSourceProp(this)
+            {
+                PropType = EPropType.PropA2,
+                Value = GamePlaying.AddHostilityPerTurn
+            }, ..
+            // ReSharper disable once PossibleMultipleEnumeration
+            from itemInPlay in items
             select new ActCheckItem(this)
             {
                 Item = itemInPlay
-            },
-            ..
-            from itemInPlay in BelongNode.Items
+            }, ..
+            // ReSharper disable once PossibleMultipleEnumeration
+            from itemInPlay in items
             select new ActDistributePropForItem(this)
             {
                 Item = itemInPlay
-            },
-            new GamePlaying.ActChangeProp(BelongNode)
+            },..
+            // ReSharper disable once PossibleMultipleEnumeration
+            from itemInPlay in items
+            // from itemInPlay in BelongNode.Items
+            select new ActCheckEvent(this)
             {
-                PropType = EPropType.PropA2,
-                Delta = GamePlaying.AddHostilityPerTurn
+                Item = itemInPlay
             },
-        ];
+        ]);
     }
     protected override UniTask OnLaunchCom(bool isThisFromLoad)
     {
@@ -88,5 +104,4 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
         base.OnReleaseCom();
     }
     #endregion
-    
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
-  m_Name: "Event_40001_\u51DD\u89C6"
+  m_Name: "Symbol_19003_\u6D4B\u8BD5\u52A0\u4F53\u9B44"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -26,7 +26,7 @@ MonoBehaviour:
       Data: 0|NM.Config.ItemPosRectangle, NM.Config
     - Name: Length
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: Height
       Entry: 3
       Data: 1
@@ -52,7 +52,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -68,31 +80,7 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 3
-      Data: 19
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 3
-      Data: 10
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -115,65 +103,19 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  Name: "\u51DD\u89C6"
-  ID: 40001
-  FlavorDes: "\u4E0D\u65AD\u5411\u4E0A\u6500\u767B\uFF0C\u5411\u4E0A\u7D22\u53D6\uFF0C\u76F4\u5230\u6700\u7EC8\u89E6\u6012\u201C\u4ED6\u4EEC\u201D\u7684\u5B58\u5728\uFF0C\u6216\u8005\u5F97\u5230\u771F\u6B63\u7684\u89E3\u8131"
+  Name: "\u6D4B\u8BD5\u52A0\u4F53\u9B44"
+  ID: 19003
+  FlavorDes: 
   Rarity: 0
   TagList: 
-  CanDrag: 0
-  ItemType: 4
+  CanDrag: 1
+  ItemType: 1
   GridTagList: 
-  SymbolTagList: 
+  SymbolTagList: 00000000
   BuildingTagList: 
   ResourceTagList: 
   EventTagList: 
-  DesList:
-  - DesToPlayer: "\u654C\u610F\u503C+10"
-    Trigger:
-      rid: 6212121176462065754
-    Result:
-      rid: 6212121221817434112
-  - DesToPlayer: "\u89E3\u9501\u4E0B\u4E00\u5C42\u7A7A\u95F4\uFF0C\u5E76\u5C06\u654C\u610F\u503C\u6E05\u7A7A"
-    Trigger:
-      rid: 6212121176462065756
-    Result:
-      rid: -2
+  DesList: []
   references:
     version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 6212121176462065754
-      type: {class: ItemDesTriggerEventMiKanSei, ns: NM.Config, asm: NM.Config}
-      data: 
-    - rid: 6212121176462065756
-      type: {class: ItemDesTriggerEventKanSei, ns: NM.Config, asm: NM.Config}
-      data: 
-    - rid: 6212121221817434112
-      type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
-      data:
-        Condition:
-          rid: -2
-        Next:
-          rid: -2
-        ItemSelector:
-          rid: 6212121221817434113
-        PropType: 11
-        IntSelector:
-          rid: 6212121221817434114
-    - rid: 6212121221817434113
-      type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
-      data:
-        <ItemFilter>k__BackingField:
-          rid: -2
-        <ItemSort>k__BackingField:
-          rid: -2
-        <PosFilter>k__BackingField:
-          rid: -2
-        <PosSort>k__BackingField:
-          rid: -2
-        <Random>k__BackingField: 0
-    - rid: 6212121221817434114
-      type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
-      data:
-        Value: -800
+    RefIds: []

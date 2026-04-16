@@ -51,12 +51,12 @@ public partial class GamePlaying
     [Obsolete("尝试在某位置生成某物体")][MuteActEvt]
     async UniTask SpawnItemAtPosAsync(int id, Vector2Int pos, ResultWrap? resultWrap, CancellationToken ct)
     {
-        MyItem item = new MyItem(id, pos);
-        item.Spawning = true;
-        if (!TrySetItem(item))
+        MyItem item = new MyItem(id, pos)
         {
+            Spawning = true
+        };
+        if (!TrySetItem(item))
             return;
-        }
         item.Spawning = false;
         itemList.Add(item);
         await new EvtSpawnItem(this, item);

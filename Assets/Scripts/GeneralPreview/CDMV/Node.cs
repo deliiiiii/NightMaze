@@ -72,7 +72,7 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     [DebuggerStepThrough]
     public abstract record UniAction(TThis Self) : IUniAction
     {
-        [UnityEngine.HideInInspector] protected readonly TThis Self = Self;
+        protected readonly TThis Self = Self;
         protected abstract UniTask InvokeAsync();
         public UniTask.Awaiter GetAwaiter() 
             => Self.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : InvokeAsync().GetAwaiter();
@@ -85,7 +85,6 @@ public abstract class Node<TBelong, TThis> : Node<TThis>, IHasBelong<TBelong>
     where TBelong : class
     where TThis : Node<TBelong, TThis>
 {
-    // public TBelong BelongNode { get; set; } = null!;
     [JsonIgnore]TBelong IHasBelong<TBelong>.BelongNode { get => BelongNode; set => BelongNode = value; }
     protected TBelong BelongNode { get; set; } = null!;
 }

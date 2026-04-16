@@ -1,112 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
-using Newtonsoft.Json;
 using NM.Config;
-using Sirenix.Serialization;
 using Sirenix.Utilities;
 
 namespace NM.Data;
-
-public record ResultWrap(ItemDesResultBase Result, ResultWrap? PreResult)
-{
-    public readonly ItemDesResultBase Result = Result;
-    public bool Success;
-    [JsonIgnore] bool hasNext;
-    public readonly ResultWrap? PreResult = PreResult;
-    public List<ResultItemWrap> ItemWraps = [];
-    public List<ResultPosWrap> PosWraps = [];
-
-    protected virtual bool PrintMembers(StringBuilder sb)
-    {
-        sb.Append($"Result = {Result.GetType()}, ");
-        if (PreResult != null)
-        {
-            PreResult.hasNext = true;
-            var preSb = new StringBuilder();
-            PreResult.PrintMembers(preSb);
-            sb.Append($"PreResult = {{ {preSb} }}, ");
-        }
-        if (hasNext)
-        {
-            sb.Append($"Success = {Success}, ");
-            sb.Append($"ItemWraps = [{string.Join(", ", ItemWraps.Select(w => w))}], ");
-            sb.Append($"PosWraps = [{string.Join(", ", PosWraps.Select(w => w))}]");
-        }
-        return true;
-    }
-}
-
-public record ResultItemWrap(GamePlaying.MyItem Item)
-{
-    public GamePlaying.MyItem Item = Item;
-    public List<CtxBase> CtxList = [];
-    public abstract record CtxBase;
-    
-    public record CtxSpawned : CtxBase;
-    public record CtxRemoved : CtxBase;
-    public record CtxSuccessMoved : CtxBase
-    {
-        public Vector2Int OldPos;
-    }
-    public record CtxFailMoved : CtxBase;
-    public record CtxAddPropX : CtxBase
-    {
-        public EPropType PropType;
-        public long Value;
-    }
-    public record CtxMulPropX : CtxBase
-    {
-        public EPropType PropType;
-        public double Value;
-    }
-    protected virtual bool PrintMembers(StringBuilder sb)
-    {
-        sb.Append($"Item = {Item}, ");
-        sb.Append($"CtxList = [{string.Join(", ", CtxList.Select(c => c.GetType()))}], ");
-        return true;
-    }
-}
-public record ResultPosWrap(Vector2Int Pos)
-{
-    public Vector2Int Pos = Pos;
-    public List<CtxBase> CtxList = [];
-    public abstract record CtxBase;
-    public record CtxFalse : CtxBase;
-    protected virtual bool PrintMembers(StringBuilder sb)
-    {
-        sb.Append($"Pos = {Pos}, ");
-        sb.Append($"CtxList = [{string.Join(", ", CtxList.Select(c => c.GetType()))}], ");
-        return true;
-    }
-}
-
 [ActContainer]
 public partial class PlaySpin
 {
-    [Obsolete("将执行物体 ALL 词条")][MuteActEvt]
+    [Obsolete("第1轮, 某物体执行 ALL 词条")][MuteActEvt]
     async UniTask CheckItemAsync(GamePlaying.MyItem item, CancellationToken ct)
     {
         if (!BelongNode.Items.Contains(item))
             return;
         await new EvtBeforeCheckSymbolTween(this, item);
-        item[this].SelfAddBaseValue();
-        InsertAfter(
+        var config = item.Config;
+        
+        if (config.IsSymbol)
+        {
+            config.SymbolPropValueList.ForEach(pair =>
+            {
+                item[this].ModifyPropList.Add(new ModifyPropInfo
+                {
+                    From = item,
+                    PropType = pair.Key,
+                    AddValue = pair.Value,
+                });
+            });
+        }
+        
+        InsertAfter([..
             from itemDes in item.AllConfigList
             where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEnterSpin
             select new ActDoItemDesResult(this)
             {
                 Item = item,
                 ResultWrap = new ResultWrap(itemDes.Result!, null),
-            });
+            },..
+            from itemDes in item.AllConfigList
+            where itemDes.Result != null && item.Config.IsBuilding && item.IsBuildingOrEventKanSei
+                && itemDes.Trigger is ItemDesTriggerBuildingRun && BelongNode.SatisfyBuildingRun(item)
+            from act in (List<IUniAction>)[..
+                from pair in item.Config.RunPropValueList
+                select new ActDoBuildingRun(this)
+                {
+                    Item = item,
+                    PropType = pair.Key,
+                    Value = pair.Value,
+                },
+                new ActDoItemDesResult(this)
+                {
+                    Item = item,
+                    ResultWrap = new ResultWrap(itemDes.Result!, null),
+                }
+            ]
+            select act,
+        ]);
     }
-    [EvtName("物体执行 ALL 词条前.")]
+    [EvtName("第1轮, 某物体执行 ALL 词条前")]
     public record EvtBeforeCheckSymbolTween(PlaySpin WhoHasCt, GamePlaying.MyItem Item) : EvtBase<PlaySpin>(WhoHasCt);
-   
-    [Obsolete("将执行物体单行词条")]
+    [Obsolete("第1轮, 将执行物体单行词条")]
     UniTask DoItemDesResultAsync(GamePlaying.MyItem item, ResultWrap resultWrap, CancellationToken ct)
     {
         if (!BelongNode.Items.Contains(item))
@@ -184,12 +139,113 @@ public partial class PlaySpin
         });
         return UniTask.CompletedTask;
     }
+    [Obsolete("第1轮, 扣除建筑运营消耗")]
+    UniTask DoBuildingRunAsync(GamePlaying.MyItem item, EPropType propType, long value, CancellationToken ct)
+    {
+        item[this].DistributePropList.Add(new DistributePropInfo
+        {
+            PropType = propType,
+            Value = -value,
+            ToItem = item
+        });
+        new GamePlaying.ActChangeProp(BelongNode)
+        {
+            PropType = propType,
+            Delta = -value
+        }.Forget();
+        return UniTask.CompletedTask;
+    }
 
-    [Obsolete("计算物体属性去向")][MuteActEvt]
+    [Obsolete("第1轮, 结算无来源属性")]
+    UniTask DoNoSourcePropAsync(EPropType propType, long value, CancellationToken ct)
+    {
+        noSourceDistributePropList.Add(new DistributePropInfo
+        {
+            PropType = propType,
+            Value = value
+        });
+        new GamePlaying.ActChangeProp(BelongNode)
+        {
+            PropType = propType,
+            Delta = value
+        }.Forget();
+        return UniTask.CompletedTask;
+    }
+    
+    [Obsolete("第2轮, 某物体分配属性去向")]
     UniTask DistributePropForItemAsync(GamePlaying.MyItem item, CancellationToken ct)
     {
-        item[this].DistributeProp();
+        var inSpin = item[this];
+        var tarBuildingOrEvtList =
+            (from pos in item.CoveredPosList
+                orderby pos.Y descending, pos.X ascending
+                from tarItem in BelongNode.Items
+                where tarItem.Config.IsBuildingOrEvent && tarItem.CoveredPosList.Contains(pos)
+                select tarItem).ToList();
+        EPropType.GetValues().ForEach(propType =>
+        {
+            var remain = inSpin.GetAllProp(propType);
+            foreach (var tarBuildOrEvt in tarBuildingOrEvtList)
+            {
+                if (remain <= 0)
+                    break;
+                var inProgress = tarBuildOrEvt.BuildingOrEventProgress.GetValueOrDefault(propType, 0);
+                var tarProgress = tarBuildOrEvt.Config.BuildPropValueList.GetValueOrDefault(propType, 0);
+                var require = Math.Max(tarProgress - inProgress, 0);
+                var use = Math.Min(remain, require);
+                if (use > 0)
+                {
+                    tarBuildOrEvt.BuildingOrEventProgress[propType] += use;
+                    inSpin.DistributePropList.Add(new DistributePropInfo
+                    {
+                        PropType = propType,
+                        Value = use,
+                        ToItem = tarBuildOrEvt,
+                    });
+                }
+                remain -= use;
+            }
+            if (remain != 0)
+            {
+                new GamePlaying.ActChangeProp(BelongNode)
+                {
+                    PropType = propType,
+                    Delta = remain,
+                }.Forget();
+                inSpin.DistributePropList.Add(new DistributePropInfo
+                {
+                    PropType = propType,
+                    Value = remain,
+                });
+            }
+        });
+        
         return UniTask.CompletedTask;    
+    }
+    [Obsolete("第3轮, 结算事件")]
+    UniTask CheckEventAsync(GamePlaying.MyItem item, CancellationToken ct)
+    {
+        if (!item.Config.IsEvent)
+            return UniTask.CompletedTask;
+        InsertAfter([..
+            // 未完成事件
+            from itemDes in item.AllConfigList
+            where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEventMiKanSei && !item.IsBuildingOrEventKanSei
+            select new ActDoItemDesResult(this)
+            {
+                Item = item,
+                ResultWrap = new ResultWrap(itemDes.Result!, null),
+            }, ..
+            // 已完成事件
+            from itemDes in item.AllConfigList
+            where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEventKanSei && item.IsBuildingOrEventKanSei
+            select new ActDoItemDesResult(this)
+            {
+                Item = item,
+                ResultWrap = new ResultWrap(itemDes.Result!, null),
+            },
+        ]);
+        return UniTask.CompletedTask;
     }
     
     bool ResolveCondition(GamePlaying.MyItem selfItem, ItemDesConditionBase? conditionBase, ResultWrap? resultWrap)
@@ -208,8 +264,7 @@ public partial class PlaySpin
         var nextRet = ResolveCondition(selfItem, conditionBase.Next, resultWrap);
         return thisRet && nextRet;
     }
-
-    IEnumerable<GamePlaying.MyItem> ResolveItemSelectorFromResult(ItemSelectorFromResultFilterBase? fromResultFilter, ResultWrap? resultWrap)
+    static IEnumerable<GamePlaying.MyItem> ResolveItemSelectorFromResult(ItemSelectorFromResultFilterBase? fromResultFilter, ResultWrap? resultWrap)
     {
         if (resultWrap == null)
             return [];
@@ -229,8 +284,7 @@ public partial class PlaySpin
             }
             select itemWrap.Item;
     }
-
-    IEnumerable<Vector2Int> ResolvePosSelectorFromResult(PosSelectorFromResultFilterBase? fromResultFilter,
+    static IEnumerable<Vector2Int> ResolvePosSelectorFromResult(PosSelectorFromResultFilterBase? fromResultFilter,
         ResultWrap? resultWrap)
     {
         if (resultWrap == null)
@@ -307,6 +361,7 @@ public partial class PlaySpin
         rawItems = rawItems.Take(ResolveIntSelector(selfItem, iCanSelectItem.TakeMax, resultWrap));
         return ApplyPosFilterAndSort(rawItems, p => p.PivotPos, iCanSelectItem, selfItem, resultWrap);
     }
+
     int ResolveIntSelector(GamePlaying.MyItem selfItem, IntSelectorBase? intSelector, ResultWrap? resultWrap) =>
         intSelector switch
         {
@@ -317,7 +372,6 @@ public partial class PlaySpin
             null => 0,
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IntSelectorBase)}类型: {intSelector.GetType()}.")
         };
-
     IEnumerable<Vector2Int> ResolvePosSelector(GamePlaying.MyItem selfItem, ICanSelectPos? iCanSelectPos, ResultWrap? resultWrap, Func<Vector2Int, bool>? extraFilter = null)
     {
         var rawList = iCanSelectPos switch
@@ -345,7 +399,6 @@ public partial class PlaySpin
         };
         return ApplyPosFilterAndSort(rawList, p => p, iCanSelectPos, selfItem, resultWrap);
     }
-    
     IEnumerable<T> ApplyPosFilterAndSort<T>(IEnumerable<T> source, Func<T, Vector2Int> getPos, ICanSelectPos? iCanSelectPos, GamePlaying.MyItem selfItem, ResultWrap? resultWrap)
     {
         if(iCanSelectPos == null)

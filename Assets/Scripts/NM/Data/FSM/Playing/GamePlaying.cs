@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
@@ -78,11 +79,17 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
                 select grid;
         }
     }
-    public IEnumerable<ItemDesConfig> ItemDesConfigs =>
-        from item in itemList
-        orderby item.PivotPos.Y descending, item.PivotPos.X
-        from desConfig in item.Config.DesList
-        select desConfig;
+    public bool SatisfyBuildingRun(MyItem item)
+    {
+        // if (!item.Config.IsBuilding)
+        //     return false;
+        var toRun = (from runProp in item.Config.RunPropValueList
+            let playerProp = GetProp(runProp.Key)
+            select (propType: runProp.Key, cur: playerProp, tar: runProp.Value)).ToList();
+        if(toRun.Any(r => r.cur < r.tar))
+            return false;
+        return true;
+    }
 
     protected override void OnCreateFreshData()
     {

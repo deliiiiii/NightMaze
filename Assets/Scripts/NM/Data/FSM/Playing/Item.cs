@@ -64,11 +64,9 @@ public partial class GamePlaying
             }
             private init;
         }
-
         public bool IsBuildingOrEventKanSei =>
             Config.IsBuildingOrEvent && Config.BuildPropValueList.All(pair =>
                 BuildingOrEventProgress.TryGetValue(pair.Key, out var progress) && progress >= pair.Value);
-
         public override string ToString()
         {
             StringBuilder builder = new();
@@ -84,7 +82,7 @@ public partial class GamePlaying
         }
         
         PlaySpin.MyItem? inSpin;
-        public PlaySpin.MyItem this[PlaySpin spin] => inSpin ??= new(spin, this);
+        public PlaySpin.MyItem this[PlaySpin spin] => inSpin ??= new PlaySpin.MyItem();
         public void DestroyInSpin() => inSpin = null;
     }
 }

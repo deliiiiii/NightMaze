@@ -22,6 +22,7 @@ public static class ItemConfigCreator
     {
         ItemConfig asset = ScriptableObject.CreateInstance<ItemConfig>();
         asset.ItemType = itemType;
+        asset.OnItemTypeChanged();
         ProjectWindowUtil.CreateAsset(asset, $"新{itemType.GetLabelText().Split('_')[1]}.asset");
     }
     

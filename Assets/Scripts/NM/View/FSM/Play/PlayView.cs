@@ -248,11 +248,14 @@ public class PlayView : ViewBase<GamePlaying>
         if (!item.Config.IsBuildingOrEvent)
             return string.Empty;
         if (item.IsBuildingOrEventKanSei)
-            return "建造/事件已完成.";
-        return string.Join(',', item.BuildingOrEventProgress.Select(pair =>
         {
-            return $"需要{pair.Key.GetLabelText()} {pair.Value}/{item.Config.BuildPropValueList.First(p => p.Key == pair.Key).Value}";
-        }));
+            return item.Config.IsEvent
+                ? "事件已完成."
+                : "建筑运营消耗" + string.Join(',', item.Config.RunPropValueList.Select(pair =>
+                    $"{pair.Key.GetLabelText()} {pair.Value}"));
+        }
+        return "建造/事件需要" + string.Join(',', item.BuildingOrEventProgress.Select(pair => 
+            $"{pair.Key.GetLabelText()} {pair.Value}/{item.Config.BuildPropValueList.First(p => p.Key == pair.Key).Value}"));
     }
     string ResolveItemDesList(List<ItemDesConfig> desConfigList)
     {
