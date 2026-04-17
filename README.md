@@ -1,2 +1,2 @@
 # NightMaze
-Target is making a LogicPuzzle&Strategy game.
+Turn-based strategy game.
