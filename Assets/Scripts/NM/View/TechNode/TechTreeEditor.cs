@@ -12,6 +12,7 @@ using Vector2Int = UnityEngine.Vector2Int;
 // #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 'required' 修饰符或声明为可以为 null。
 
 namespace NM.View;
+[ExecuteAlways]
 public class TechTreeEditor : Singleton<TechTreeEditor>
 {
 #if UNITY_EDITOR
@@ -23,25 +24,25 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
     [NonSerialized] List<TechNode> techNodeList = [];
     [NonSerialized] List<TechLine> techLineList = [];
 
-    [UnityEditor.InitializeOnLoadMethod]
-    static void OnEditorInit()
-    {
-        UnityEditor.EditorApplication.delayCall += () =>
-        {
-            if (Application.isPlaying) return;
-            var editors = FindObjectsOfType<TechTreeEditor>();
-            foreach (var editor in editors)
-            {
-                if (editor.gameObject.activeInHierarchy)
-                {
-                    editor.OnEnable();
-                }
-            }
-        };
-    }
+    // [UnityEditor.InitializeOnLoadMethod]
+    // static void OnEditorInit()
+    // {
+    //     UnityEditor.EditorApplication.delayCall += () =>
+    //     {
+    //         if (Application.isPlaying) return;
+    //         var editors = FindObjectsOfType<TechTreeEditor>();
+    //         foreach (var editor in editors)
+    //         {
+    //             if (editor.gameObject.activeInHierarchy)
+    //             {
+    //                 editor.OnEnable();
+    //             }
+    //         }
+    //     };
+    // }
     void OnEnable()
     {
-        // MyDebug.Log($"{nameof(TechTreeEditor)} OnEnable()");
+        MyDebug.Log($"{nameof(TechTreeEditor)} OnEnable()");
         UnityEditor.EditorApplication.update -= OnEditorUpdate;
         UnityEditor.EditorApplication.update += OnEditorUpdate;
         UnityEditor.EditorApplication.hierarchyChanged -= OnHierarchyChanged;

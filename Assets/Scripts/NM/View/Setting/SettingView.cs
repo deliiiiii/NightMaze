@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
+using General;
 using GeneralPreview;
 using JetBrains.Annotations;
 using NM.Data;
@@ -11,8 +13,15 @@ namespace NM.View;
 
 public class SettingView : ViewBase
 {
+    [SerializeField] Btn btnClose;
     [SerializeField] Slider sliderSpeed;
     readonly List<float> speedTar = [0, 0.25f, 0.5f, 0.75f, 1f];
+
+    protected override IEnumerable<BindDataBase> BindList()
+    {
+        yield return btnClose.onClick.EvtBindTo(() => 
+            Saver.SaveAsync(Const.Name.Save.SettingFolder, Const.Name.Save.SettingName, GameRoot.Setting).Forget());
+    }
 
     void Start()
     {

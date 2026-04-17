@@ -41,7 +41,7 @@ MonoBehaviour:
       Value: 0
   - ID: 201
     Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 2000, y: 450}
+    Pos: {x: 1950, y: 450}
     ToUnLockItems: []
     RequireLineList: []
   - ID: 100

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
-  m_Name: "Event_40001_\u51DD\u89C6"
+  m_Name: "Event_49001_\u51DD\u89C6"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -26,7 +26,7 @@ MonoBehaviour:
       Data: 0|NM.Config.ItemPosRectangle, NM.Config
     - Name: Length
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: Height
       Entry: 3
       Data: 1
@@ -59,49 +59,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: BuildPropValueList
-      Entry: 7
-      Data: 3|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 2
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 3
-      Data: 20
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 3
-      Data: 10
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: RunPropValueList
       Entry: 7
-      Data: 4|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+      Data: 3|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
@@ -117,11 +77,63 @@ MonoBehaviour:
       Data: 
     - Name: EvtDesResultList
       Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[NM.Config.EvtDesResultBase, NM.Config]],
+      Data: 4|System.Collections.Generic.List`1[[NM.Config.EvtDesResultBase, NM.Config]],
         mscorlib
     - Name: 
       Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 5|NM.Config.ItemDesResultClearHostility, NM.Config
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|NM.Config.ItemDesResultUnlockNextLayer, NM.Config
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: BuildPropValueList
+      Entry: 7
+      Data: 7|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 2
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -129,7 +141,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   Name: "\u51DD\u89C6"
-  ID: 40001
+  ID: 49001
   FlavorDes: "\u4E0D\u65AD\u5411\u4E0A\u6500\u767B\uFF0C\u5411\u4E0A\u7D22\u53D6\uFF0C\u76F4\u5230\u6700\u7EC8\u89E6\u6012\u201C\u4ED6\u4EEC\u201D\u7684\u5B58\u5728\uFF0C\u6216\u8005\u5F97\u5230\u771F\u6B63\u7684\u89E3\u8131"
   Rarity: 0
   TagList: 
@@ -141,27 +153,20 @@ MonoBehaviour:
   ResourceTagList: 
   EventTagList: 
   DesList:
-  - DesToPlayer: "\u654C\u610F\u503C+10"
+  - DesToPlayer: "\u4E8B\u4EF6\u89E6\u53D1\u8FC7\u7A0B\u4E2D\uFF0C\u654C\u610F\u503C\u6BCF\u56DE\u5408+10\u3002\u4E8B\u4EF6\u5B8C\u6210\u540E\uFF0C\u6E05\u7A7A\u654C\u610F\u503C\uFF0C\u89E3\u9501\u4E0B\u4E00\u5C42\u3002"
     Trigger:
-      rid: 6212121176462065754
+      rid: 6212121250259796176
     Result:
-      rid: 6212121221817434112
-  - DesToPlayer: "\u89E3\u9501\u4E0B\u4E00\u5C42\u7A7A\u95F4\uFF0C\u5E76\u5C06\u654C\u610F\u503C\u6E05\u7A7A"
-    Trigger:
-      rid: 6212121176462065756
-    Result:
-      rid: -2
+      rid: 6212121250259796177
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 6212121176462065754
-      type: {class: ItemDesTriggerEventMiKanSei, ns: NM.Config, asm: NM.Config}
+    - rid: 6212121250259796176
+      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
       data: 
-    - rid: 6212121176462065756
-      type: {class: ItemDesTriggerEventKanSei, ns: NM.Config, asm: NM.Config}
-    - rid: 6212121221817434112
+    - rid: 6212121250259796177
       type: {class: ItemDesResultAddXPropX, ns: NM.Config, asm: NM.Config}
       data:
         Condition:
@@ -169,11 +174,11 @@ MonoBehaviour:
         Next:
           rid: -2
         ItemSelector:
-          rid: 6212121221817434113
+          rid: 6212121250259796178
         PropType: 11
         IntSelector:
-          rid: 6212121221817434114
-    - rid: 6212121221817434113
+          rid: 6212121250259796179
+    - rid: 6212121250259796178
       type: {class: ItemSelectorAtPresentSelf, ns: NM.Config, asm: NM.Config}
       data:
         <ItemFilter>k__BackingField:
@@ -185,7 +190,7 @@ MonoBehaviour:
         <PosSort>k__BackingField:
           rid: -2
         <Random>k__BackingField: 0
-    - rid: 6212121221817434114
+    - rid: 6212121250259796179
       type: {class: IntSelectorConst, ns: NM.Config, asm: NM.Config}
       data:
-        Value: -800
+        Value: 10

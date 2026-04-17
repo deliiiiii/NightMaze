@@ -11,7 +11,6 @@ public abstract record ItemDesResultBase
     [SerializeReference, LabelText("若满足条件")] public ItemDesConditionBase? Condition;
     [Header("成功后执行"), HideLabel]
     [SerializeReference, PropertyOrder(9999)][Indent(-1)]
-    [ValueDropdown("@NM.Config.ItemDesConfig.GetOptionsDeep($property)", NumberOfItemsBeforeEnablingSearch = 1)]
     public ItemDesResultBase? Next;
 }
 [TypeRegistryItem("使物体{0}的属性{1}加算{2}")][DebuggerStepThrough]
