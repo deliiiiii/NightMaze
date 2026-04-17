@@ -29,7 +29,7 @@ public class LenGrid : MonoBehaviour
         });
     }
 
-    static ValueDropdownList<EItemType> GetItemTypes() => ItemConfig.GetItemTypes();
+    static List<ValueDropdownItem<EItemType>> GetItemTypes() => ItemConfig.GetItemTypes();
     [SerializeField, LabelText("筛选欲移除的类型"), ValueDropdown(nameof(GetItemTypes), IsUniqueList = true)
      , PropertyOrder(20)
     ] List<EItemType> itemType = [EItemType.Symbol, EItemType.Building, EItemType.Resource, EItemType.Event];

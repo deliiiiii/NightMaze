@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 33647833f4609c242af2cd4ca232b882
   m_SerializeEntries:
+  - m_GUID: 022c0c950dd4ce248bf65bbba5d0eca0
+    m_Address: "4_\u4E8B\u4EF6Tag"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 03a29c95068441249988c8ce8cf363a5
     m_Address: "Symbol_19002_\u6D4B\u8BD52\u9AD8\u4E2A\u5B50\uFF08\u667A\u8BC6\uFF09"
     m_ReadOnly: 0
@@ -71,6 +77,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50c80d0131f8a9d4abcd8860d686d3dc
+    m_Address: "0_\u7269\u4F53Tag"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59d9a6ff1b6f8e34e9bd4e1a0bdd2d40
+    m_Address: "3_\u8D44\u6E90Tag"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d870bcadded7c942807a90602268fc9
     m_Address: "Symbol_10004_\u8003\u53E4\u5B66\u5BB6"
     m_ReadOnly: 0
@@ -113,6 +131,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMItemSprite
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac3e3997eb954bc48965d915cc501097
+    m_Address: "1_\u68CB\u5B50Tag"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ae93fa36da62ceb40ba2968c7a72442b
     m_Address: "Event_40001_\u51DD\u89C6"
     m_ReadOnly: 0
@@ -127,6 +151,24 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b755cb4638e77384f9abec63ee38bc84
     m_Address: "Symbol_10002_\u5453\u8BED\u8005"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbbdac68bc0ee97438bcca6f512a2187
+    m_Address: "Symbol_19004_\u6D4B\u8BD5\u65B0\u6807\u7B7E"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0abf70abe32e934e87a678d55637309
+    m_Address: "2_\u5EFA\u7B51Tag"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d71e75c86433f2b4f810f91126a55a67
+    m_Address: "5_\u5730\u5757Tag"
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig

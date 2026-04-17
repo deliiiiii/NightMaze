@@ -338,8 +338,9 @@ public partial class PlaySpin
                     ItemFilterIsItemType isItemType => isItemType.ItemType != 0 && isItemType.ItemType.HasFlag(item.ItemType),
                     ItemFilterNotSelf => item != selfItem,
                     ItemFilterSelf => item == selfItem,
-                    ItemFilterTag filterTag => 
-                         filterTag.GridTagList.Intersect(item.Config.GridTagList).Any()
+                    ItemFilterTag filterTag =>
+                        filterTag.ItemTagList.Intersect(item.Config.TagList).Any()
+                         || filterTag.GridTagList.Intersect(item.Config.GridTagList).Any()
                          || filterTag.SymbolTagList.Intersect(item.Config.SymbolTagList).Any()
                          || filterTag.BuildingTagList.Intersect(item.Config.BuildingTagList).Any()
                          || filterTag.ResourceTagList.Intersect(item.Config.ResourceTagList).Any()

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using General;
 using GeneralPreview;
 using System.Linq;
-using General;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using EnumExt = GeneralPreview.EnumExt;
 using Vector2Int = GeneralPreview.Vector2Int;
 
 namespace NM.Config;
@@ -27,8 +26,10 @@ public class ItemConfig : ConfigMulti<ItemConfig>
     [LabelText("风味文本")] public string FlavorDes = string.Empty;
     [LabelText("稀有度")] public ERarity Rarity;
     [Required, LabelText("占据位置")] public ItemPos Pos = new ItemPosRectangle();
-    [Required, LabelText("通用Tag"), ValueDropdown(nameof(GetItemTags), IsUniqueList = true)] public List<EItemTag> TagList = [];
-
+#if UNITY_EDITOR
+    [Required, LabelText("通用Tag"), ValueDropdown(nameof(GetItemTags), IsUniqueList = true)]
+#endif
+    public List<int> TagList = [];
     [LabelText("可拖动")] public bool CanDrag;
     [LabelText("类型"), OnValueChanged(nameof(OnItemTypeChanged))] public EItemType ItemType;
     public void OnItemTypeChanged()
@@ -43,15 +44,28 @@ public class ItemConfig : ConfigMulti<ItemConfig>
     public bool IsResource => ItemType == EItemType.Resource;
     public bool IsEvent => ItemType == EItemType.Event;
     public bool IsBuildingOrEvent => IsBuilding || IsEvent;
-    [ShowIf(nameof(IsGrid)), Required, LabelText("地形Tag"), ValueDropdown(nameof(GetGridTags), IsUniqueList = true)] public List<EGridTag> GridTagList = [];
-    
-    [ShowIf(nameof(IsSymbol)), Required, LabelText("棋子Tag"), ValueDropdown(nameof(GetSymbolTags), IsUniqueList = true)] public List<ESymbolTag> SymbolTagList = [];
+#if UNITY_EDITOR
+    [ShowIf(nameof(IsGrid)), Required, LabelText("地形Tag"), ValueDropdown(nameof(GetGridTags), IsUniqueList = true)]
+#endif
+    public List<int> GridTagList = [];
+#if UNITY_EDITOR
+    [ShowIf(nameof(IsSymbol)), Required, LabelText("棋子Tag"), ValueDropdown(nameof(GetSymbolTags), IsUniqueList = true)]
+#endif
+    public List<int> SymbolTagList = [];
     [ShowIf(nameof(IsSymbol)), Required, LabelText("棋子: 属性白值")] public Dictionary<EPropType, long> SymbolPropValueList = [];
-    
-    [ShowIf(nameof(IsBuilding)), Required, LabelText("建筑Tag"), ValueDropdown(nameof(GetBuildingTags), IsUniqueList = true)] public List<EBuildingTag> BuildingTagList = [];
+#if UNITY_EDITOR
+    [ShowIf(nameof(IsBuilding)), Required, LabelText("建筑Tag"), ValueDropdown(nameof(GetBuildingTags), IsUniqueList = true)] 
+#endif
+    public List<int> BuildingTagList = [];
     [ShowIf(nameof(IsBuilding)), Required, LabelText("建筑: 运营消耗")]public Dictionary<EPropType, long> RunPropValueList = [];
-    [ShowIf(nameof(IsResource)), Required, LabelText("资源Tag"), ValueDropdown(nameof(GetResourceTags), IsUniqueList = true)] public List<EResourceTag> ResourceTagList = [];
-    [ShowIf(nameof(IsEvent)), Required, LabelText("事件Tag"), ValueDropdown(nameof(GetEventTags), IsUniqueList = true)] public List<EEventTag> EventTagList = [];
+#if UNITY_EDITOR
+    [ShowIf(nameof(IsResource)), Required, LabelText("资源Tag"), ValueDropdown(nameof(GetResourceTags), IsUniqueList = true)] 
+#endif
+    public List<int> ResourceTagList = [];
+#if UNITY_EDITOR
+    [ShowIf(nameof(IsEvent)), Required, LabelText("事件Tag"), ValueDropdown(nameof(GetEventTags), IsUniqueList = true)]
+#endif
+    public List<int> EventTagList = [];
     [ShowIf(nameof(IsEvent)), Required, LabelText("事件: 奖励列表")] public List<EvtDesResultBase> EvtDesResultList = [];
     
     [ShowIf(nameof(IsBuildingOrEvent)), Required, LabelText("建筑/事件: 交互消耗")]public Dictionary<EPropType, long> BuildPropValueList = [];
@@ -60,24 +74,25 @@ public class ItemConfig : ConfigMulti<ItemConfig>
     
     public List<DetailTagInfo> DetailTagInfos =>
     [
-        ..TagList.Select(t => Mgr.ItemDic[t]),
-        ..GridTagList.Select(t => Mgr.GridDic[t]),
-        ..SymbolTagList.Select(t =>Mgr.SymbolDic[t]),
-        ..BuildingTagList.Select(t => Mgr.BuildingDic[t]),
-        ..ResourceTagList.Select(t => Mgr.ResourceDic[t]),
-        ..EventTagList.Select(t => Mgr.EventDic[t]),
+        ..TagList.Select(t => Mgr.ItemDic.First(p => p.Key.ID == t).Value),
+        ..GridTagList.Select(t => Mgr.GridDic.First(p => p.Key.ID == t).Value),
+        ..SymbolTagList.Select(t =>Mgr.SymbolDic.First(p => p.Key.ID == t).Value),
+        ..BuildingTagList.Select(t => Mgr.BuildingDic.First(p => p.Key.ID == t).Value),
+        ..ResourceTagList.Select(t => Mgr.ResourceDic.First(p => p.Key.ID == t).Value),
+        ..EventTagList.Select(t => Mgr.EventDic.First(p => p.Key.ID == t).Value),
     ];
     public int Order => (int)ItemType;
-    public static ValueDropdownList<EItemType> GetItemTypes() => GetEnumDropdownList<EItemType>();
-    public static ValueDropdownList<EItemTag> GetItemTags() => GetEnumDropdownList<EItemTag>();
-    public static ValueDropdownList<EGridTag> GetGridTags() => GetEnumDropdownList<EGridTag>();
-    public static ValueDropdownList<ESymbolTag> GetSymbolTags() => GetEnumDropdownList<ESymbolTag>();
-    public static ValueDropdownList<EBuildingTag> GetBuildingTags() => GetEnumDropdownList<EBuildingTag>();
-    public static ValueDropdownList<EResourceTag> GetResourceTags() => GetEnumDropdownList<EResourceTag>();
-    public static ValueDropdownList<EEventTag> GetEventTags() => GetEnumDropdownList<EEventTag>();
-
-    static ValueDropdownList<T> GetEnumDropdownList<T>() where T : Enum 
-        => [..EnumExt.GetValues<T>().Select(t => new ValueDropdownItem<T>(t.GetLabelText(), t))];
+#if UNITY_EDITOR
+    static List<ValueDropdownItem<int>> GetItemTags() => Editor.MgrEditor.GetConfigEnumDropDownList(Const.Res.Config.ItemTag);
+    static List<ValueDropdownItem<int>> GetSymbolTags() => Editor.MgrEditor.GetConfigEnumDropDownList(Const.Res.Config.SymbolTag);
+    static List<ValueDropdownItem<int>> GetBuildingTags() => Editor.MgrEditor.GetConfigEnumDropDownList(Const.Res.Config.BuildingTag);
+    static List<ValueDropdownItem<int>> GetResourceTags() => Editor.MgrEditor.GetConfigEnumDropDownList(Const.Res.Config.ResourceTag);
+    static List<ValueDropdownItem<int>> GetEventTags() => Editor.MgrEditor.GetConfigEnumDropDownList(Const.Res.Config.EventTag);
+    static List<ValueDropdownItem<int>> GetGridTags() => Editor.MgrEditor.GetConfigEnumDropDownList(Const.Res.Config.GridTag);
+#endif
+    public static List<ValueDropdownItem<EItemType>> GetItemTypes() => GetEnumDropdownList<EItemType>();
+    static List<ValueDropdownItem<T>> GetEnumDropdownList<T>() where T : Enum 
+        => [..GeneralPreview.EnumExt.GetValues<T>().Select(t => new ValueDropdownItem<T>(t.GetLabelText(), t))];
 }
 
 public enum ERarity
@@ -102,10 +117,6 @@ public enum EItemTag
     [LabelText("自然")]Natural = 0,
     [LabelText("异象")]Anomaly = 1,
 }
-public enum EGridTag
-{
-    [LabelText("肥沃")]Rich = 0,
-}
 public enum ESymbolTag
 {
     [LabelText("人类")]People    = 0,
@@ -125,6 +136,10 @@ public enum EEventTag
 {
     [LabelText("测试")] Test = 42,
     [LabelText("测试2")] Test2 = 43,
+}
+public enum EGridTag
+{
+    [LabelText("肥沃")]Rich = 0,
 }
 public abstract class ItemPos
 {
