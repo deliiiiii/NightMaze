@@ -19,6 +19,8 @@ public class TechLine : MonoBehaviour, ITechObj
 
     public void OnCreate()
     {
+        if (Left == null || Right == null) 
+            return;
         lineRenderer = this.GetOrAddCom<UILineRenderer>();
         var trsLeft = Left.GetOutPortTrs(LeftOutPort);
         var trsRight = Right.GetInPortTrs(RightInPort);

@@ -48,14 +48,6 @@ public class TechNode : MonoBehaviour, ITechObj
     }
 }
 
-public class TechNodeInfo
-{
-    public List<(EPropType, int)> PropRequireList;
-    public List<(EPropType, int)> PropEarnedList;
-    public bool UnLocked;
-}
-
-
 [PublicAPI] [Serializable]
 public class NodeLineInfo
 {
