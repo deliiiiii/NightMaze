@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using GeneralPreview;
 using NM.Config;
@@ -38,7 +37,7 @@ public class LenGrid : MonoBehaviour
     IEnumerable<GamePlaying.MyItem> ToRemoveItems =>
         from play in GamePlayData.ToIEnumerable()
         from item in play.Items
-        where itemType.Contains(item.ItemType) && item.PivotPos == curMos
+        where itemType.Contains(item.ItemType) && item.CoverPos(curMos)
         select item;
     [Button("@\"移除物体(共\" + ToRemoveCount + \"个)\""), EnableIf(nameof(IsPlaying)), PropertyOrder(30)]
     public void Remove()

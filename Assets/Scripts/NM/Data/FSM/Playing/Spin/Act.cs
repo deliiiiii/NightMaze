@@ -151,10 +151,10 @@ public partial class PlaySpin
                 },
             ItemDesResultSpawnXAtX spawnXAtX =>
                 from pos in ResolvePosSelector(item, spawnXAtX.PosSelector, resultWrap)
-                    // , p =>
+                // , p =>
                 // {
-                    // toSpawnInPlay.PivotPos = p;
-                    // return BelongNode.TrySetItem(toSpawnInPlay);
+                //     toSpawnInPlay.PivotPos = p;
+                //     return BelongNode.TrySetItem(toSpawnInPlay);
                 // })
                 from toSpawn in ResolveItemSelector(item, spawnXAtX.ItemSelector, resultWrap).FirstOptional().ToIEnumerable()
                 select new GamePlaying.ActSpawnItemAtPos(BelongNode)
@@ -163,7 +163,6 @@ public partial class PlaySpin
                     Id = toSpawn.Config.ID,
                     ResultWrap = resultWrap
                 },
-            ItemDesResultUnlockNextLayer => [new GamePlaying.ActUnlockNextLayer(BelongNode)],
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemDesResultBase)}类型: {result.GetType()}.")
         });
         return UniTask.CompletedTask;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -9,6 +10,17 @@ namespace NM.Data;
 [ActContainer]
 public partial class GamePlaying
 {
+    [Obsolete("清空属性")]
+    [MuteActEvt]
+    UniTask ClearPropAsync(EPropType propType, CancellationToken ct)
+    {
+        new ActChangeProp(this)
+        {
+            Delta = -GetProp(propType),
+            PropType = propType
+        }.Forget();
+        return UniTask.CompletedTask;
+    }
     [Obsolete("写入属性")]
     UniTask ChangePropAsync(EPropType propType, long delta, CancellationToken ct)
     {
@@ -95,6 +107,33 @@ public partial class GamePlaying
     {
         whoEat.EatConfigList.AddRange(toEat.Config.DesList);
         resultWrap?.Success = true;
+        return UniTask.CompletedTask;
+    }
+
+    [Obsolete("领取事件奖励")]
+    UniTask ObtainEvtAsync(MyItem item, CancellationToken ct)
+    {
+        if (!item.Config.IsEvent || !item.IsBuildingOrEventKanSei)
+            return UniTask.CompletedTask;
+        item.Config.EvtDesResultList.ForEach(des =>
+        {
+            switch (des)
+            {
+                case ItemDesResultClearHostility:
+                    new ActClearProp(this) { PropType = EPropType.PropA2 }.Forget();
+                    break;
+                case ItemDesResultUnlockNextLayer:
+                    new ActUnlockNextLayer(this).Forget();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(des));
+            }
+        });
+        new ActRemoveItem(this)
+        {
+            ToRemove = item,
+            ResultWrap = null
+        }.Forget();
         return UniTask.CompletedTask;
     }
 

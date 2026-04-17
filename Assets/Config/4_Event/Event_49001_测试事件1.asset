@@ -115,6 +115,19 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: EvtDesResultList
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[NM.Config.EvtDesResultBase, NM.Config]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   Name: "\u6D4B\u8BD5\u4E8B\u4EF61"
   ID: 49001
   FlavorDes: Test
@@ -135,9 +148,9 @@ MonoBehaviour:
       rid: 6212121221817434122
   - DesToPlayer: "\u6E05\u7A7A\u654C\u610F\u503C\uFF0C\u8FDB\u5165\u4E0B\u4E00\u5C42"
     Trigger:
-      rid: 6212121227279466588
+      rid: 6212121239859494918
     Result:
-      rid: 6212121227279466591
+      rid: -2
   references:
     version: 2
     RefIds:
@@ -174,13 +187,5 @@ MonoBehaviour:
         <PosSort>k__BackingField:
           rid: -2
         <Random>k__BackingField: 0
-    - rid: 6212121227279466588
+    - rid: 6212121239859494918
       type: {class: ItemDesTriggerEventKanSei, ns: NM.Config, asm: NM.Config}
-      data: 
-    - rid: 6212121227279466591
-      type: {class: ItemDesResultClearHostility, ns: NM.Config, asm: NM.Config}
-      data:
-        Condition:
-          rid: -2
-        Next:
-          rid: -2

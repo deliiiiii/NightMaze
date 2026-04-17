@@ -22,8 +22,7 @@ public class ItemConfig : ConfigMulti<ItemConfig>
         EItemType.None => "None",
         _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(EItemType)}类型: {ItemType}.")
     };
-    // ReSharper disable once StaticMemberInGenericType
-    protected static ItemTypeResourceMgr Mgr => field ??= ConfigLoader.Acquire<ItemTypeResourceMgr>();
+    static ItemTypeResourceMgr Mgr => field ??= ConfigLoader.Acquire<ItemTypeResourceMgr>();
     [Header("—— 通用配置 ——")]
     [LabelText("风味文本")] public string FlavorDes = string.Empty;
     [LabelText("稀有度")] public ERarity Rarity;
@@ -50,12 +49,14 @@ public class ItemConfig : ConfigMulti<ItemConfig>
     [ShowIf(nameof(IsSymbol)), Required, LabelText("棋子: 属性白值")] public Dictionary<EPropType, long> SymbolPropValueList = [];
     
     [ShowIf(nameof(IsBuilding)), Required, LabelText("建筑Tag"), ValueDropdown(nameof(GetBuildingTags), IsUniqueList = true)] public List<EBuildingTag> BuildingTagList = [];
+    [ShowIf(nameof(IsBuilding)), Required, LabelText("建筑: 运营消耗")]public Dictionary<EPropType, long> RunPropValueList = [];
     [ShowIf(nameof(IsResource)), Required, LabelText("资源Tag"), ValueDropdown(nameof(GetResourceTags), IsUniqueList = true)] public List<EResourceTag> ResourceTagList = [];
     [ShowIf(nameof(IsEvent)), Required, LabelText("事件Tag"), ValueDropdown(nameof(GetEventTags), IsUniqueList = true)] public List<EEventTag> EventTagList = [];
-    [ShowIf(nameof(IsBuildingOrEvent)), Required, LabelText("建筑/事件: 交互消耗")]public Dictionary<EPropType, long> BuildPropValueList = [];
-    [ShowIf(nameof(IsBuilding)), Required, LabelText("建筑: 运营消耗")]public Dictionary<EPropType, long> RunPropValueList = [];
+    [ShowIf(nameof(IsEvent)), Required, LabelText("事件: 奖励列表")] public List<EvtDesResultBase> EvtDesResultList = [];
     
-    [Required, LabelText("词条列表")] public List<ItemDesConfig> DesList = [];
+    [ShowIf(nameof(IsBuildingOrEvent)), Required, LabelText("建筑/事件: 交互消耗")]public Dictionary<EPropType, long> BuildPropValueList = [];
+    [Required, LabelText("结算时: 词条列表")] public List<ItemDesConfig> DesList = [];
+
     
     public List<DetailTagInfo> DetailTagInfos =>
     [
@@ -67,16 +68,6 @@ public class ItemConfig : ConfigMulti<ItemConfig>
         ..EventTagList.Select(t => Mgr.EventDic[t]),
     ];
     public int Order => (int)ItemType;
-        // switch
-    // {
-        // EItemType.Symbol => 1,
-        // EItemType.Building => 2,
-        // EItemType.Resource => 3,
-        // EItemType.Event => 4,
-        // EItemType.Grid => 5,
-        // _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(EItemType)}类型: {ItemType}.")
-    // };
-
     public static ValueDropdownList<EItemType> GetItemTypes() => GetEnumDropdownList<EItemType>();
     public static ValueDropdownList<EItemTag> GetItemTags() => GetEnumDropdownList<EItemTag>();
     public static ValueDropdownList<EGridTag> GetGridTags() => GetEnumDropdownList<EGridTag>();
@@ -144,12 +135,10 @@ public class ItemPosRectangle : ItemPos
 {
     [LabelText("宽")]public int Length = 1;
     [LabelText("高")]public int Height = 1;
-    public override IEnumerable<Vector2Int> GetDeltaPos()
-    {
-        return from i in Enumerable.Range(0, Length)
-                from j in Enumerable.Range(0, Height)
-                select new Vector2Int(i, j);
-    }
+    public override IEnumerable<Vector2Int> GetDeltaPos() =>
+        from i in Enumerable.Range(0, Length)
+        from j in Enumerable.Range(0, Height)
+        select new Vector2Int(i, j);
 }
 [PublicAPI, TypeRegistryItem("自定义")]
 public class ItemPosCustom : ItemPos

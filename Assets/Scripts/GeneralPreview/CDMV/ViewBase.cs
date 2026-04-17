@@ -47,8 +47,7 @@ public abstract class ViewBase : MonoBehaviour
     }
 }
 
-public abstract class ViewBase<TData> : ViewBase
-    where TData : Node<TData>
+public abstract class ViewBase<TData> : ViewBase where TData : class
 {
-    [ReadOnly] protected TData Data = null!;
+    [ShowInInspector, ReadOnly] public TData Data { get; protected set; } = null!;
 }

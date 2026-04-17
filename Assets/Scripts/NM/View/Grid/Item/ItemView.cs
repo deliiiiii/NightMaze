@@ -4,15 +4,12 @@ using General;
 using GeneralPreview;
 using NM.Config;
 using NM.Data;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace NM.View;
 
-public class ItemView : ViewBase
+public class ItemView : ViewBase<GamePlaying.MyItem>
 {
-    [ShowInInspector]public GamePlaying.MyItem Data { get; set; }
-
     public Trs Lu;
     public Trs Ru;
     public Trs Ld;
@@ -24,8 +21,11 @@ public class ItemView : ViewBase
     [SerializeField]SpriteRenderer gridSr;
     [SerializeField]SpriteRenderer onGridSr;
     [SerializeField]DOTweenSequence onSpinTween;
-    public void OnCreateView()
+    public void OnCreateView(GamePlaying.MyItem item)
     {
+        Data = item;
+        name += $" {Data.Config.Name}";
+        
         onGridSr.gameObject.SetActive(!Data.Config.IsGrid);
         onGridSr.sprite = ItemResLoader.Acquire(Data.Config.ID);
         onGridSr.sortingLayerID = SortingLayer.NameToID(Data.Config.ItemType switch

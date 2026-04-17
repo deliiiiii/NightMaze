@@ -1,6 +1,4 @@
-﻿using System;
-using NM.Config;
-using NM.Data;
+﻿using NM.Data;
 using UnityEngine;
 
 namespace NM.View;

@@ -67,7 +67,7 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
             select new ActDistributePropForItem(this)
             {
                 Item = itemInPlay
-            },
+            }
         ]);
     }
     protected override UniTask OnLaunchCom(bool isThisFromLoad)

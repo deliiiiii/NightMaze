@@ -8,7 +8,6 @@ using GeneralPreview;
 using NM.Config;
 using NM.Data;
 using NM.ViewEvt;
-using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
@@ -28,12 +27,21 @@ public class PlayView : ViewBase<GamePlaying>
     public Txt TxtLoyalty;
     public Txt TxtHostility;
     
-    [Header("中")]
-    public GridDetail GridDetail;
+    [Header("中-地图")]
+    [SerializeField] Trs gridTrs;
+    [SerializeField] ItemView itemPfb;
+    [SerializeField] LineRenderer lr;
+    readonly List<ItemView> itemViewList = [];
+    IEnumerable<ItemView> Grids => itemViewList.Where(i => i.Data.Config.IsGrid);
+    [Header("中-地图格详情")]
+    public GridDetail GridDetail; 
+    public Vector2Int? LockedPosDetail;
+    [Header("中-即时信息")]
     public InstantInfoView InstantInfoView;
-    
-    [Header("Trs")]
-    public Trs GridTrs;
+    [Header("中-物体事件")]
+    [SerializeField] Trs trsItemEvtView;
+    [SerializeField] ItemEvtView pfbItemEvtView;
+    readonly List<ItemEvtView> itemEvtViewList = [];
     
     [Header("Btn")]
     public Btn BtnSpin;
@@ -41,14 +49,6 @@ public class PlayView : ViewBase<GamePlaying>
     public Btn BtnSave;
     public Btn BtnExit;
     public Btn BtnSetting;
-
-    [Header("Pfb")]
-    [SerializeField] ItemView itemPfb;
-
-    readonly List<ItemView> itemViewList = [];
-    IEnumerable<ItemView> Grids => itemViewList.Where(i => i.Data.Config.IsGrid);
-    
-    public Vector2Int? LockedPosDetail;
     
     protected override IEnumerable<BindDataBase> BindList()
     {
@@ -88,18 +88,18 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "(进入Root - Playing状态时) 恢复游戏"
     };
-
     void RefreshTurnAndSoOn(GamePlaying play)
     {
         TxtTurnCount.text = play.TurnCount.ToString();
+        TxtLayerCount.text = play.CurLayer.ToString();
     }
-
     UniEvt<GamePlaying.EvtOnExit> OnExit => new()
     {
         Invoke = (evt, ct) =>
         {
             Data = null!;
             ClearAllGrid();
+            ClearAllItemEvt();
             GridDetail.SetActiveFalse();
             LockedPosDetail = null;
             if(lr != null)
@@ -110,7 +110,28 @@ public class PlayView : ViewBase<GamePlaying>
         Des = "(退出Root - Playing状态时) 隐藏界面"
     };
 
+    UniEvt<PlayIdle.EvtOnEnter> OnEnterIdle => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            itemViewList
+                .Where(itemView => itemView.Data.Config.IsEvent && itemView.Data.IsBuildingOrEventKanSei)
+                .ForEach(SpawnItemEvt);
+            return UniTask.CompletedTask;
+        },
+        Des = "刷新已完成事件列表"
+    };
     
+    UniEvt<PlayIdle.EvtOnExit> OnExitIdle => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            ClearAllItemEvt();
+            return UniTask.CompletedTask;
+        },
+        Des = "清空已完成事件列表"
+    };
+
     UniEvt<GamePlaying.EvtUnlockNextLayer> OnCurLayerChanged => new()
     {
         Invoke = (evt, ct) =>
@@ -129,9 +150,7 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "更新文本",
     };
-    
-
-    UniEvt<PlaySpin.EvtOnTick> OnTickSpin => new()
+    UniEvt<GamePlaying.EvtOnTick> OnTickSpin => new()
     {
         Invoke = (evt, ct) =>
         {
@@ -140,25 +159,6 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "刷新属性显示"
     };
-
-    UniEvt<PlayIdle.EvtOnEnter> OnEnterPlayIdle => new()
-    {
-        Invoke = (evt, ct) =>
-        {
-            PropValueViewList.ForEach(view => view.Refresh(Data));
-            return UniTask.CompletedTask;
-        },
-        Des = "激活spin按钮"
-    };
-    UniEvt<PlayIdle.EvtOnExit> OnExitPlayIdle => new()
-    {
-        Invoke = (evt, ct) =>
-        {
-            return UniTask.CompletedTask;
-        },
-        Des = "取消激活spin按钮"
-    };
-
     UniEvt<GamePlaying.EvtSpawnItem> OnSpawnItemAtPos => new()
     {
         Invoke = (evt, ct) =>
@@ -168,7 +168,6 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "生成物体",
     };
-    
     UniEvt<GamePlaying.EvtMoveItem> OnMoveItem => new()
     {
         Invoke = (evt, ct) =>
@@ -178,7 +177,6 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "移动物体",
     };
-
     UniEvt<GamePlaying.EvtRemoveItem> OnRemoveItem => new()
     {
         Invoke = (evt, ct) =>
@@ -191,23 +189,21 @@ public class PlayView : ViewBase<GamePlaying>
     #endregion
     
     #region GridEdge
-    [Header("GridEdge")]
-    [SerializeField]LineRenderer lr;
+    [Header("中-GridEdge")]
     static readonly Dictionary<Vector2Int, Func<ItemView, Trs>> p1Dic = new()
     {
-        {Vector2Int.Up, v => v.Lu},
-        {Vector2Int.Right, v => v.Ru},
-        {Vector2Int.Down, v => v.Rd},
-        {Vector2Int.Left, v => v.Ld},
+        [Vector2Int.Up   ] = v => v.Lu,
+        [Vector2Int.Right] = v => v.Ru,
+        [Vector2Int.Down ] = v => v.Rd,
+        [Vector2Int.Left ] = v => v.Ld,
     };
     static readonly Dictionary<Vector2Int, Func<ItemView, Trs>> p2Dic = new()
     {
-        {Vector2Int.Up, v => v.Ru},
-        {Vector2Int.Right, v => v.Rd},
-        {Vector2Int.Down, v => v.Ld},
-        {Vector2Int.Left, v => v.Lu},
+        [Vector2Int.Up   ] = v => v.Ru,
+        [Vector2Int.Right] = v => v.Rd,
+        [Vector2Int.Down ] = v => v.Ld,
+        [Vector2Int.Left ] = v => v.Lu,
     };
-    [Button]
     void RefreshGridEdge()
     {
         var itemPosDic = itemViewList.Where(item => item.Data.Config.IsGrid).ToDictionary(item => item.Data.PivotPos);
@@ -329,17 +325,16 @@ public class PlayView : ViewBase<GamePlaying>
     {
         itemViewList.Where(item => item != null).ForEach(item => Destroy(item.gameObject));
         itemViewList.Clear();
+        RefreshGridEdge();
     }
     void SpawnItem(GamePlaying.MyItem item)
     {
         ItemView ins = Instantiate(itemPfb);
-        ins.Data = item;
-        ins.name += $" {item.PivotPos.ToString()}";
+        ins.OnCreateView(item);
         SetViewPosInternal(ins);
         ins.SetActiveTrue();
-        ins.OnCreateView();
-        itemViewList.Add(ins);
         
+        itemViewList.Add(ins);
         if(item.Config.IsGrid)
             RefreshGridEdge();
     }
@@ -360,7 +355,7 @@ public class PlayView : ViewBase<GamePlaying>
     {
         if (item.Data.Config.IsGrid)
         {
-            item.transform.parent = GridTrs;
+            item.transform.parent = gridTrs;
             item.transform.position = GridToWorld(item.Data.PivotPos);
         }
         else
@@ -377,11 +372,40 @@ public class PlayView : ViewBase<GamePlaying>
             MyDebug.LogError($"没有找到物体 {item} 对应的View.");
             return;
         }
-        Destroy(ins.gameObject);
-        itemViewList.Remove(ins);
-        
         if(item.Config.IsGrid)
             RefreshGridEdge();
+        if(item.Config.IsEvent)
+            RemoveItemEvt(item);
+        
+        Destroy(ins.gameObject);
+        itemViewList.Remove(ins);
+    }
+    #endregion
+    
+    #region Add/Remove ItemEvt
+    void ClearAllItemEvt()
+    {
+        itemEvtViewList.ForEach(itemEvtView => Destroy(itemEvtView.gameObject));
+        itemEvtViewList.Clear();
+    }
+    void SpawnItemEvt(ItemView itemView)
+    {
+        ItemEvtView itemEvtView = Instantiate(pfbItemEvtView, trsItemEvtView);
+        itemEvtView.OnCreateView(itemView);
+        itemEvtView.SetActiveTrue();
+        itemEvtViewList.Add(itemEvtView);
+    }
+
+    void RemoveItemEvt(GamePlaying.MyItem item)
+    {
+        ItemEvtView? ins = itemEvtViewList.FirstOrDefault(s => s.BelongView?.Data == item);
+        if (ins == null)
+        {
+            MyDebug.LogError($"没有找到物体事件 {item} 对应的View.");
+            return;
+        }
+        Destroy(ins.gameObject);
+        itemEvtViewList.Remove(ins);
     }
     #endregion
     
