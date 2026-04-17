@@ -23,12 +23,11 @@ public record ItemDesConfig
         if (!CheckResult())
             Result = null;
     }
-    bool TriggerIsEvtKanSei() => Trigger is ItemDesTriggerEventKanSei;
     bool CheckResult()
     {
-        if (Trigger is ItemDesTriggerEventKanSei)
-            return Result is null or IItemDesResultIsEvt;
-        return Result is null or not IItemDesResultIsEvt;
+        if (Trigger is IItemDesInPlay)
+            return Result is null or IItemDesInPlay;
+        return Result is null or not IItemDesInSpin;
     }
     
 #if UNITY_EDITOR
@@ -46,11 +45,11 @@ public record ItemDesConfig
             }
             parent = parent.Parent;
         }
-        bool isEvt = c is { Trigger: ItemDesTriggerEventKanSei };
+        bool inPlay = c is { Trigger: IItemDesInPlay };
         var subTypes = typeof(ItemDesResultBase).SubTypes();
-        subTypes = isEvt 
-            ? subTypes.Where(t => typeof(IItemDesResultIsEvt).IsAssignableFrom(t))
-            : subTypes.Where(t => !typeof(IItemDesResultIsEvt).IsAssignableFrom(t));
+        subTypes = inPlay 
+            ? subTypes.Where(t => typeof(IItemDesInPlay).IsAssignableFrom(t))
+            : subTypes.Where(t => typeof(IItemDesInSpin).IsAssignableFrom(t));
         return subTypes.Select(t =>
         {
             var attr = t.GetAttribute<TypeRegistryItemAttribute>();
