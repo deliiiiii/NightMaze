@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7427457931861878514}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trs Building Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 775109222244815321}
   - component: {fileID: 8249402621999599391}
   - component: {fileID: 4527430019879098795}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemSpr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 5859878413842771267}
   - component: {fileID: 6198069133924752550}
   - component: {fileID: 2533573609659947338}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemView
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -23,10 +23,6 @@ public class ViewStatic : Singleton<ViewStatic>
     public static MyOption<GamePlaying> GamePlayData => 
         from play in GameRoot.GetStateOptional<GamePlaying>()
         select play;
-    public static MyOption<PlayIdle> PlayIdleData =>
-        from play in GamePlayData
-        from idle in play.GetStateOptional<PlayIdle>()
-        select idle;
     public static MyOption<PlaySpin> PlaySpinData =>
         from play in GamePlayData
         from spin in play.GetStateOptional<PlaySpin>()

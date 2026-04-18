@@ -78,7 +78,6 @@ public class MultiEventRaycaster : MonoBehaviour
                 (handler, data) => handler.OnMultiPointerHover((PointerEventData)data));
         }
 
-        // 独立轮询并派发3个按键的拖拽状态流
         for (int i = 0; i < 3; i++)
         {
             draggedObjects[i].RemoveWhere(obj => obj == null);
@@ -91,34 +90,44 @@ public class MultiEventRaycaster : MonoBehaviour
             {
                 eventData.pressPosition = currentMousePosition;
                 eventData.dragging = false;
-                
-                // 捕获当前按键按下瞬间的命中集合
-                draggedObjects[i] = [..currentHits];
-
-                foreach (GO obj in draggedObjects[i])
-                {
-                    eventData.pointerDrag = obj;
-                    ExecuteEvents.Execute<IMultiBeginDragHandler>(obj, eventData, 
-                        (handler, data) => handler.OnMultiBeginDrag((PointerEventData)data));
-                }
+                draggedObjects[i] = new HashSet<GameObject>(currentHits);
             }
             else if (Input.GetMouseButton(i) && draggedObjects[i].Count > 0)
             {
-                eventData.dragging = true;
-                foreach (GO obj in draggedObjects[i])
+                float dragDistance = (currentMousePosition - eventData.pressPosition).magnitude;
+                if (!eventData.dragging && dragDistance >= EventSystem.current.pixelDragThreshold)
                 {
-                    eventData.pointerDrag = obj;
-                    ExecuteEvents.Execute<IMultiDragHandler>(obj, eventData, 
-                        (handler, data) => handler.OnMultiDrag((PointerEventData)data));
+                    eventData.dragging = true;
+                    foreach (var obj in draggedObjects[i])
+                    {
+                        eventData.pointerDrag = obj;
+                        ExecuteEvents.Execute<IMultiBeginDragHandler>(obj, eventData, 
+                            (handler, data) => handler.OnMultiBeginDrag((PointerEventData)data));
+                    }
+                }
+                if (eventData.dragging)
+                {
+                    foreach (var obj in draggedObjects[i])
+                    {
+                        eventData.pointerDrag = obj;
+                        ExecuteEvents.Execute<IMultiDragHandler>(obj, eventData, 
+                            (handler, data) => handler.OnMultiDrag((PointerEventData)data));
+                    }
                 }
             }
             else if (Input.GetMouseButtonUp(i) && draggedObjects[i].Count > 0)
             {
-                eventData.dragging = false;
-                foreach (GO obj in draggedObjects[i])
+                if (eventData.dragging)
                 {
-                    ExecuteEvents.Execute<IMultiEndDragHandler>(obj, eventData, 
-                        (handler, data) => handler.OnMultiEndDrag((PointerEventData)data));
+                    foreach (var obj in draggedObjects[i])
+                    {
+                        ExecuteEvents.Execute<IMultiEndDragHandler>(obj, eventData, 
+                            (handler, data) => handler.OnMultiEndDrag((PointerEventData)data));
+                    }
+                }
+                eventData.dragging = false;
+                foreach (var obj in draggedObjects[i])
+                {
                     if (currentHits.Contains(obj))
                     {
                         ExecuteEvents.Execute<IMultiPointerClickHandler>(obj, eventData, 
@@ -138,7 +147,6 @@ public class MultiEventRaycaster : MonoBehaviour
                         (handler, data) => handler.OnMultiScroll((PointerEventData)data));
                 }
             }
-
         }
     }
 }

@@ -7,6 +7,7 @@ using General;
 using GeneralPreview;
 using NM.Config;
 using NM.Data;
+using Sirenix.Serialization;
 using Sirenix.Utilities;
 using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
@@ -15,39 +16,40 @@ using Vector2Int = GeneralPreview.Vector2Int;
 namespace NM.View;
 public class PlayView : ViewBase<GamePlaying>
 {
-    [Header("上左")]
+    [Header("上-左")]
     public List<PropValueView> PropValueViewList = [];
-    
-    [Header("上中")]
+    [Header("上-中")]
     public Txt TxtLayerCount;
     public Txt TxtTurnCount;
     public Txt TxtNextSoftDdl;
-    [Header("上右")]
+    [Header("上-右")]
     public Txt TxtLoyalty;
     public Txt TxtHostility;
-    
+    [Header("上中-即时信息")]
+    public InstantInfoView InstantInfoView;
+    [Header("上右")]
+    public Btn BtnSave;
+    public Btn BtnExit;
+    public Btn BtnSetting;
     [Header("中-地图")]
     [SerializeField] Trs gridTrs;
-    [SerializeField] ItemView itemPfb;
+    public Trs TrsToBuild;
+    public ItemView PfbItemView;
     [SerializeField] LineRenderer lr;
     readonly List<ItemView> itemViewList = [];
     IEnumerable<ItemView> Grids => itemViewList.Where(i => i.Data.Config.IsGrid);
     [Header("中-地图格详情")]
     public GridDetail GridDetail; 
     public Vector2Int? LockedPosDetail;
-    [Header("中-即时信息")]
-    public InstantInfoView InstantInfoView;
     [Header("中-物体事件")]
     [SerializeField] Trs trsItemEvtView;
     [SerializeField] ItemEvtView pfbItemEvtView;
     readonly List<ItemEvtView> itemEvtViewList = [];
     
-    [Header("Btn")]
+    [Header("下")]
     public Btn BtnSpin;
     public Btn BtnNextTurn;
-    public Btn BtnSave;
-    public Btn BtnExit;
-    public Btn BtnSetting;
+    
     
     protected override IEnumerable<BindDataBase> BindList()
     {
@@ -59,15 +61,11 @@ public class PlayView : ViewBase<GamePlaying>
     }
     void Update()
     {
-        if (LockedPosDetail != null)
-        {
+        if (LockedPosDetail != null) 
             ShowGridDetailAtPos(LockedPosDetail.Value);
-        }
-        BtnSpin.interactable = (
-            from play in GamePlayData
-            select play.IsState<PlayIdle>()) | false;
+        BtnSpin.interactable = Data.IsState<PlayIdle>();
         BtnNextTurn.interactable = (
-            from spin in PlaySpinData
+            from spin in Data.GetStateOptional<PlaySpin>()
             select spin.CanHarvest) | false;
     }
 
@@ -327,7 +325,7 @@ public class PlayView : ViewBase<GamePlaying>
     }
     void SpawnItem(GamePlaying.MyItem item)
     {
-        ItemView ins = Instantiate(itemPfb);
+        ItemView ins = Instantiate(PfbItemView);
         ins.OnCreateView(item);
         SetViewPosInternal(ins);
         ins.SetActiveTrue();
