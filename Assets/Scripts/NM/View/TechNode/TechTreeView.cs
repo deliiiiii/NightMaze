@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using General;
+using GeneralPreview;
 using NM.Config;
+using NM.Data;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using Sirenix.Utilities;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -13,36 +16,53 @@ using Vector2Int = UnityEngine.Vector2Int;
 
 namespace NM.View;
 [ExecuteAlways]
-public class TechTreeEditor : Singleton<TechTreeEditor>
+public class TechTreeView : ViewBase
 {
-#if UNITY_EDITOR
-    public static TechNode? GetNodeByID(int id) => Instance.techNodeList.FirstOrDefault(node => node.Config.ID == id);
-    [SerializeField, HideInInspector] TechNode pfbTechNode;
-    [SerializeField, HideInInspector] TechLine pfbTechLine;
+    [SerializeField, HideInInspector] TechNodeView pfbTechNodeView;
+    [SerializeField, HideInInspector] TechLineView pfbTechLineView;
     [SerializeField, HideInInspector] Trs trsTechNode;
     [SerializeField, HideInInspector] Trs trsTechLine;
-    [NonSerialized] List<TechNode> techNodeList = [];
-    [NonSerialized] List<TechLine> techLineList = [];
+    [NonSerialized] List<TechNodeView> techNodeList = [];
+    [NonSerialized] List<TechLineView> techLineList = [];
+    TechTreeConfig ConfigRT => field ??= ConfigLoader.Acquire<TechTreeConfig>();
+    [Button]
+    void LoadFromConfig()
+    {
+        techNodeList.ToList().ForEach(n => Destroy(n.gameObject));
+        techNodeList.Clear();
+        techLineList.ToList().ForEach(l => Destroy(l.gameObject));
+        techLineList.Clear();
+        ConfigRT.NodeList.ForEach(CreateNodeRT);
+        ConfigRT.LineList.ForEach(CreateLineRT);
+    }
+    void CreateNodeRT(TechNodeConfig nodeConfig)
+    {
+        var ins = Instantiate(pfbTechNodeView, trsTechNode);
+        ins.transform.position = new Vector3(nodeConfig.Pos.x, nodeConfig.Pos.y, 0);
+        var techTreeData = GameRoot.TechTree;
+        var loadedNode = techTreeData.NodeList.FirstOrDefault(n => n.ID == nodeConfig.ID) 
+                         ?? new TechNodeData(nodeConfig);
+        ins.OnCreateView(loadedNode);
+        ins.SetActiveTrue();
+        techNodeList.Add(ins);
+    }
 
-    // [UnityEditor.InitializeOnLoadMethod]
-    // static void OnEditorInit()
-    // {
-    //     UnityEditor.EditorApplication.delayCall += () =>
-    //     {
-    //         if (Application.isPlaying) return;
-    //         var editors = FindObjectsOfType<TechTreeEditor>();
-    //         foreach (var editor in editors)
-    //         {
-    //             if (editor.gameObject.activeInHierarchy)
-    //             {
-    //                 editor.OnEnable();
-    //             }
-    //         }
-    //     };
-    // }
+    void CreateLineRT(TechLineConfig lineConfig)
+    {
+        var ins = Instantiate(pfbTechLineView, trsTechLine);
+        ins.Left = techNodeList.First(n => n.Data.Config.ID == lineConfig.LeftNodeID);
+        ins.LeftOutPort = lineConfig.LeftPortID;
+        ins.Right = techNodeList.First(n => n.Data.Config.ID == lineConfig.RightNodeID);
+        ins.RightInPort = lineConfig.RightPortID;
+        ins.OnCreate();
+        ins.SetActiveTrue();
+        techLineList.Add(ins);
+    }
+    
+#if UNITY_EDITOR
     void OnEnable()
     {
-        MyDebug.Log($"{nameof(TechTreeEditor)} OnEnable()");
+        // MyDebug.Log($"{nameof(TechTreeView)} OnEnable()");
         UnityEditor.EditorApplication.update -= OnEditorUpdate;
         UnityEditor.EditorApplication.update += OnEditorUpdate;
         UnityEditor.EditorApplication.hierarchyChanged -= OnHierarchyChanged;
@@ -52,10 +72,12 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         OnEndEdit();
     } 
     [Header("开始/结束编辑")] 
+    [SerializeField, LabelText("科技树配置资产"), ShowIf(nameof(IsRunning))] TechTreeConfig treeConfig;
     [LabelText("正在编辑"), ReadOnly, PropertyOrder(10)] public bool Editing;
-    [SerializeField, LabelText("科技树配置资产")] TechTreeConfig treeConfig;
-    bool NotEditing => !Editing;
-    [Button, EnableIf(nameof(NotEditing)), PropertyOrder(20)]
+    bool IsEditing => Editing && !IsRunning;
+    bool NotEditing => !Editing && !IsRunning;
+    bool IsRunning => Application.isPlaying;
+    [Button, HideIf(nameof(IsRunning)), EnableIf(nameof(NotEditing)), PropertyOrder(20)]
     void StartEdit()
     {
         Editing = true;
@@ -70,7 +92,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         techNodeList.ForEach(t => t.OnStartEdit());
         techLineList.ForEach(t => t.OnStartEdit());
     }
-    [Button, EnableIf(nameof(Editing)), PropertyOrder(30)]
+    [Button, HideIf(nameof(IsRunning)), EnableIf(nameof(IsEditing)), PropertyOrder(30)]
     void EndEdit()
     {
         var overlapNodes = GetOverlapNodes();
@@ -101,20 +123,15 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
     }
     void SaveToConfig()
     {
-        treeConfig.NodeList = techNodeList.Select(n => n.Config).ToList();
+        treeConfig.NodeList = techNodeList.Select(n => n.ConfigInEditor).ToList();
         treeConfig.LineList = techLineList.Select(l => new TechLineConfig
         {
-            LeftNodeID = l.Left.Config.ID,
+            LeftNodeID = l.Left.ConfigInEditor.ID,
             LeftPortID = l.LeftOutPort,
-            RightNodeID = l.Right.Config.ID,
+            RightNodeID = l.Right.ConfigInEditor.ID,
             RightPortID = l.RightInPort,
         }).ToList();
         UnityEditor.EditorUtility.SetDirty(treeConfig);
-    }
-
-    void LoadFromConfig()
-    {
-        
     }
 
     readonly Dictionary<GO, ITechObj> goDic = [];
@@ -146,7 +163,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         });
         foreach (var node in techNodeList.Where(n => n != null))
         {
-            node.Config.Pos = node.transform.position;
+            node.ConfigInEditor.Pos = node.transform.position;
         }
         foreach (var line in techLineList.Where(l => l != null))
         {
@@ -161,13 +178,13 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
     {
         if (UnityEditor.EditorApplication.isPlaying || !Editing)
             return;
-        techNodeList = trsTechNode.GetComponentsInChildren<TechNode>().ToList();
-        trsTechLine.GetComponentsInChildren<TechLine>()
+        techNodeList = trsTechNode.GetComponentsInChildren<TechNodeView>().ToList();
+        trsTechLine.GetComponentsInChildren<TechLineView>()
             .Where(line => line.Left == null || line.Right == null)
             .ToList()
             .ForEach(line => UnityEditor.Undo.DestroyObjectImmediate(line.gameObject));
 
-        techLineList = trsTechLine.GetComponentsInChildren<TechLine>().ToList();
+        techLineList = trsTechLine.GetComponentsInChildren<TechLineView>().ToList();
     }
     void OnPlayModeStateChanged(UnityEditor.PlayModeStateChange state)
     {
@@ -186,7 +203,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         }
     }
     bool TryGetTwoNodeIgnore() => TryGetTwoNode(out _);
-    bool TryGetTwoNode(out (TechNode l, TechNode r) nodePair)
+    bool TryGetTwoNode(out (TechNodeView l, TechNodeView r) nodePair)
     {
         var gos = UnityEditor.Selection.gameObjects;
         if (gos.Length != 2)
@@ -194,8 +211,8 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
             nodePair = default;
             return false;
         }
-        var l = gos[0].GetComponent<TechNode>();
-        var r = gos[1].GetComponent<TechNode>();
+        var l = gos[0].GetComponent<TechNodeView>();
+        var r = gos[1].GetComponent<TechNodeView>();
         if(l == null || r == null)
         {
             nodePair = default;
@@ -206,34 +223,34 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         nodePair = (l, r);
         return true;
     }
-    List<TechNode> GetOverlapNodes() => (
+    List<TechNodeView> GetOverlapNodes() => (
         from l in techNodeList
         from r in techNodeList
         where l != r && Vector3.Distance(l.transform.position, r.transform.position) < 1f
-        select (List<TechNode>)[l, r]
+        select (List<TechNodeView>)[l, r]
         ).SelectMany(x => x).Distinct().ToList();
-    IEnumerable<IGrouping<int, TechNode>> GetIDRepeatNodes() => 
+    IEnumerable<IGrouping<int, TechNodeView>> GetIDRepeatNodes() => 
         from n in techNodeList
-        group n by n.Config.ID into g
+        group n by n.ConfigInEditor.ID into g
         where g.Count() > 1
         select g;
 
     [Header("节点")]
     const int NodeOrder = 1000;
-    TechNode? CurSelectedNode =>
+    TechNodeView? CurSelectedNode =>
         !Editing
             ? null
             : UnityEditor.Selection.gameObjects.Length == 1
-                ? UnityEditor.Selection.gameObjects[0].GetComponent<TechNode>()
+                ? UnityEditor.Selection.gameObjects[0].GetComponent<TechNodeView>()
                 : null;
     bool CurSelectOneNode => Editing && CurSelectedNode != null;
     [LabelText("当前节点信息"), PropertyOrder(NodeOrder + 14), ShowIf(nameof(CurSelectOneNode))]
-    [SerializeReference] TechNodeConfig? curNodeConfig;
+    [ShowInInspector] TechNodeConfig? curNodeConfig;
     void RefreshCurSelectedNode()
     {
         if (CurSelectedNode == null)
             return;
-        var newConfig = CurSelectedNode.Config;
+        var newConfig = CurSelectedNode.ConfigInEditor;
         if (curNodeConfig != null && newConfig == curNodeConfig)
             return;
         curNodeConfig = newConfig;
@@ -254,18 +271,19 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
     [Button("创建新节点"), PropertyOrder(NodeOrder + 20), ShowIf(nameof(Editing))]
     void CreateNode()
     {
-        var ins = Instantiate(pfbTechNode, trsTechNode);
+        var ins = Instantiate(pfbTechNodeView, trsTechNode);
         UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, nameof(CreateNode));
         ins.transform.position = new Vector3(NodePos.x, NodePos.y, 0);
         UnityEditor.Selection.activeGameObject = ins.gameObject;
-        ins.Config = new TechNodeConfig
+        ins.ConfigInEditor = new TechNodeConfig
         {
             ID = 0,
             Name = "新节点",
             Pos = NodePos,
             ToUnLockItems = [],
-            RequireLineList = []
+            RequireDic = []
         };
+        ins.OnCreate();
     }
     const int LineOrder = 2000;
     [Header("线")]
@@ -296,7 +314,6 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
             return;
         if (CheckHasRepeatID("创建连线"))
             return;
-
         if(techLineList.Any(line => line.Left == pair.l && line.Right == pair.r))
         {
             UnityEditor.EditorUtility.DisplayDialog(
@@ -306,7 +323,6 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
             );
             return;
         }
-        
         if (techLineList.Any(line => line.Left == pair.l && line.LeftOutPort == LeftOutPort))
         {
             UnityEditor.EditorUtility.DisplayDialog(
@@ -325,8 +341,7 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
             );
             return;
         }
-        
-        var ins = Instantiate(pfbTechLine, trsTechLine);
+        var ins = Instantiate(pfbTechLineView, trsTechLine);
         UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, nameof(CreateLine));
         ins.Left = pair.l;
         ins.LeftOutPort = LeftOutPort;
@@ -334,7 +349,6 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         ins.RightInPort = RightInPort;
         ins.OnCreate();
     }
-
     [Button("移除连线 (要求：选中两个节点)"), EnableIf(nameof(TryGetTwoNodeIgnore)), PropertyOrder(LineOrder + 40), ShowIf(nameof(Editing))]
     public void RemoveAllLines()
     {
@@ -354,21 +368,6 @@ public class TechTreeEditor : Singleton<TechTreeEditor>
         }
         UnityEditor.Undo.DestroyObjectImmediate(line.gameObject);
     }
-    // [Button]
-    // public void CreateNode(Vector2 tarPos)
-    // {
-    //     var ins = Instantiate(pfbTechNode, nodeParent.transform);
-    //     ins.OnCreate();
-    //     UnityEditor.Selection.activeGameObject = ins.gameObject;
-    //     techNodeList.Add(ins);
-    //     ins.OnDestroyEvt += () =>
-    //     {
-    //         techNodeList.Remove(ins);
-    //         UnityEditor.Selection.activeGameObject = null;
-    //     };
-    //     UnityEditor.Undo.RegisterCreatedObjectUndo(ins, "Create Node");
-    // }
-    //
     static void LockLayer(string layerName)
     {
         int layer = LayerMask.NameToLayer(layerName);

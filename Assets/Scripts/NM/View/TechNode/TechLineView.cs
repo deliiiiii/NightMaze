@@ -5,17 +5,15 @@ using UnityEngine.UI.Extensions;
 
 namespace NM.View;
 
-public class TechLine : MonoBehaviour, ITechObj
+public class TechLineView : MonoBehaviour, ITechObj
 {
     [SerializeReference, ReadOnly] public TechLineConfig Config;
     UILineRenderer lineRenderer;
     
-    #region Editing...
-    public TechNode Left;
+    public TechNodeView Left;
     public int LeftOutPort;
-    public TechNode Right;
+    public TechNodeView Right;
     public int RightInPort;
-    #endregion
 
     public void OnCreate()
     {

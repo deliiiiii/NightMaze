@@ -14,8 +14,8 @@ public class MyCamera : Singleton<MyCamera>
     public static CinemachineVirtualCamera MainV => Instance.mainV;
     // ReSharper disable once InconsistentNaming
     public static CinemachineVirtualCamera UIV => Instance.uiV;
-    public static Camera Main => field ??= Camera.main!;
-    public static Camera UI => field ??= Instance.ui;
+    public static Camera Main => Instance.main;
+    public static Camera UI => Instance.ui;
 
     public static Vector3 ScreenDeltaToWorldDelta(Camera camera, Vector3 screenDelta)
     {

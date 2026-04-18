@@ -15,63 +15,344 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 3d81965a029d6794f969a5fc2cb68a79, type: 2}
+    - {fileID: 11400000, guid: 40f8bd5cba016b245aa789f434044b6f, type: 2}
+    - {fileID: 11400000, guid: f3b0d78a595c591498afbf46df09979d, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  NodeList:
-  - ID: 101
-    Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 900, y: 150}
-    ToUnLockItems: []
-    RequireLineList: []
-  - ID: 102
-    Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 900, y: -350}
-    ToUnLockItems: []
-    RequireLineList: []
-  - ID: 200
-    Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 1550, y: 800}
-    ToUnLockItems: []
-    RequireLineList:
-    - PropType: 0
-      Value: 0
-  - ID: 201
-    Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 1950, y: 450}
-    ToUnLockItems: []
-    RequireLineList: []
-  - ID: 100
-    Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 900, y: 500}
-    ToUnLockItems: []
-    RequireLineList: []
-  - ID: 202
-    Name: "\u65B0\u8282\u70B9"
-    Pos: {x: 2000, y: -150}
-    ToUnLockItems: []
-    RequireLineList: []
-  LineList:
-  - LeftNodeID: 100
-    LeftPortID: 3
-    RightNodeID: 200
-    RightPortID: 1
-  - LeftNodeID: 101
-    LeftPortID: 3
-    RightNodeID: 202
-    RightPortID: 1
-  - LeftNodeID: 101
-    LeftPortID: 2
-    RightNodeID: 201
-    RightPortID: 5
-  - LeftNodeID: 100
-    LeftPortID: 5
-    RightNodeID: 201
-    RightPortID: 3
-  - LeftNodeID: 102
-    LeftPortID: 3
-    RightNodeID: 202
-    RightPortID: 3
+    SerializationNodes:
+    - Name: NodeList
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[NM.Config.TechNodeConfig, NM.Config]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 1|NM.Config.TechNodeConfig, NM.Config
+    - Name: ID
+      Entry: 3
+      Data: 0
+    - Name: Name
+      Entry: 1
+      Data: 0
+    - Name: Pos
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 850
+    - Name: 
+      Entry: 4
+      Data: 250
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ToUnLockItems
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[NM.Config.ItemConfig, NM.Config]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: RequireDic
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 4|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|NM.Config.TechNodeConfig, NM.Config
+    - Name: ID
+      Entry: 3
+      Data: 100
+    - Name: Name
+      Entry: 1
+      Data: 100
+    - Name: Pos
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1700
+    - Name: 
+      Entry: 4
+      Data: 550
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ToUnLockItems
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[NM.Config.ItemConfig, NM.Config]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: RequireDic
+      Entry: 7
+      Data: 7|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 8|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 32
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: -9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|NM.Config.TechNodeConfig, NM.Config
+    - Name: ID
+      Entry: 3
+      Data: 101
+    - Name: Name
+      Entry: 1
+      Data: 101
+    - Name: Pos
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1700
+    - Name: 
+      Entry: 4
+      Data: 50
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ToUnLockItems
+      Entry: 7
+      Data: 10|System.Collections.Generic.List`1[[NM.Config.ItemConfig, NM.Config]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: RequireDic
+      Entry: 7
+      Data: 11|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 12|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 10
+    - Name: $v
+      Entry: 3
+      Data: 42
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 11
+    - Name: $v
+      Entry: 3
+      Data: 36
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: LineList
+      Entry: 7
+      Data: 13|System.Collections.Generic.List`1[[NM.Config.TechLineConfig, NM.Config]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 14|NM.Config.TechLineConfig, NM.Config
+    - Name: LeftNodeID
+      Entry: 3
+      Data: 0
+    - Name: LeftPortID
+      Entry: 3
+      Data: 3
+    - Name: RightNodeID
+      Entry: 3
+      Data: 100
+    - Name: RightPortID
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 15|NM.Config.TechLineConfig, NM.Config
+    - Name: LeftNodeID
+      Entry: 3
+      Data: 0
+    - Name: LeftPortID
+      Entry: 3
+      Data: 5
+    - Name: RightNodeID
+      Entry: 3
+      Data: 101
+    - Name: RightPortID
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

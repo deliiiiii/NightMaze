@@ -38,6 +38,8 @@ public static class Const
             public const string SlotFolder = "Slot";
             public const string SettingFolder = "Setting";
             public const string SettingName = "Setting";
+            public const string TechTreeName = "TechTree";
+            
         }
     }
 

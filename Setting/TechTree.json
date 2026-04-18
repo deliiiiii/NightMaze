@@ -1,0 +1,35 @@
+{
+  "$id": "1",
+  "NodeList": [
+    {
+      "ID": 0,
+      "CarValueDic": {
+        "Prop1": 5,
+        "Prop2": 15,
+        "Prop3": 0,
+        "PropA1": 0,
+        "PropA2": 0
+      }
+    },
+    {
+      "ID": 100,
+      "CarValueDic": {
+        "Prop1": 0,
+        "Prop2": 0,
+        "Prop3": 0,
+        "PropA1": 0,
+        "PropA2": 0
+      }
+    },
+    {
+      "ID": 101,
+      "CarValueDic": {
+        "Prop1": 0,
+        "Prop2": 0,
+        "Prop3": 0,
+        "PropA1": 0,
+        "PropA2": 0
+      }
+    }
+  ]
+}

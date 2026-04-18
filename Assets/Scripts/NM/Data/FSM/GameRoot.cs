@@ -17,6 +17,7 @@ public partial class GameRoot : Node<GameRoot>
             {
                 instance.state = null;
                 instance.SettingData = null!;
+                instance.TechTreeData = null!;
             }
         };
 #endif
@@ -42,6 +43,26 @@ public partial class GameRoot : Node<GameRoot>
         }
         set;
     }
+    
+    [field:MaybeNull]TechTreeData TechTreeData
+    {
+        get
+        {
+            if (field == null)
+            {
+                var data = Saver.Load<TechTreeData>(Const.Name.Save.SettingFolder, Const.Name.Save.TechTreeName);
+                if (data == null)
+                {
+                    data = new TechTreeData();
+                }
+                data.OnLoad();
+                Saver.SaveAsync(Const.Name.Save.SettingFolder, Const.Name.Save.TechTreeName, data).Forget();
+                field = data;
+            }
+            return field;
+        }
+        set;
+    }
 
     public static CancellationTokenRegistration AddTo(CancellationToken ct)
         => instance.AddTo(ct);
@@ -53,6 +74,7 @@ public partial class GameRoot : Node<GameRoot>
         => instance.state is T;
 
     public static SettingData Setting => instance.SettingData;
+    public static TechTreeData TechTree => instance.TechTreeData;
     
     protected override void OnReleaseCom()
     {
