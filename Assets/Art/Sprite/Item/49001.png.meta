@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 40001
+      name: 49001
       rect:
         serializedVersion: 2
         x: 34
@@ -128,7 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      40001: 1121680382
+      49001: 1121680382
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -34,7 +34,7 @@ public class TechNodeView : MonoBehaviour, ITechObj
         foreach (var itemConfig in Data.Config.ToUnLockItems)
         {
             var img = Instantiate(pfbBuildingPreView, trsBuildingPreView);
-            img.Img.sprite = ItemResLoader.Acquire(data.ID);
+            img.Img.sprite = ItemResLoader.Acquire(itemConfig.ID);
             img.SetActiveTrue();
         }
         trsRequire.ClearActiveChildren();
@@ -45,7 +45,7 @@ public class TechNodeView : MonoBehaviour, ITechObj
             var tarValue = lineConfig.Value;
             lineIns.TxtCurValue.text = curValue.ToString();
             lineIns.TxtTarValue.text = tarValue.ToString();
-            lineIns.ImgFill.fillAmount = tarValue == 0 ? 1 : Mathf.Clamp01((float)curValue / tarValue);
+            lineIns.ImgFill.fillAmount = tarValue <= 0 ? 1 : Mathf.Clamp01((float)curValue / tarValue);
             // TODO 根据属性来决定颜色
             lineIns.ImgFill.color = curValue >= tarValue ? Color.green : Color.red;
             lineIns.TxtPropType.text = lineConfig.Key.GetLabelText();

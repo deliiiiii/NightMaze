@@ -28,9 +28,9 @@ public class TechTreeView : ViewBase
     [Button]
     void LoadFromConfig()
     {
-        techNodeList.ToList().ForEach(n => Destroy(n.gameObject));
+        trsTechNode.GetChildren().ForEach(n => Destroy(n.gameObject));
         techNodeList.Clear();
-        techLineList.ToList().ForEach(l => Destroy(l.gameObject));
+        trsTechLine.GetChildren().ForEach(l => Destroy(l.gameObject));
         techLineList.Clear();
         ConfigRT.NodeList.ForEach(CreateNodeRT);
         ConfigRT.LineList.ForEach(CreateLineRT);
