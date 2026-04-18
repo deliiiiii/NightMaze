@@ -16,7 +16,7 @@ public class TechTreeData
     public bool IsItemLocked(ItemConfig itemConfig)
         => NodeList.Any(node => !node.Unlocked &&
             (Config.NodeList.FirstOrDefault(n => n.ID == node.ID)
-                ?.ToUnLockItems.Contains(itemConfig) 
+                ?.ToUnLockItems?.Contains(itemConfig) 
                 ?? true));
 
     public void OnLoad()
@@ -32,7 +32,6 @@ public class TechTreeData
         }
     }
 }
-
 [Serializable]
 public class TechNodeData
 {
@@ -48,6 +47,6 @@ public class TechNodeData
     public Dictionary<EPropType, long> CarValueDic = 
         EPropType.GetValues().ToDictionary(propType => propType, _ => 0L);
     
-    public bool Unlocked => Config?.RequireDic.All(line => 
-        line.Value >= CarValueDic.GetValueOrDefault(line.Key, 0)) ?? true;
+    public bool Unlocked => Config.RequireDic.All(line => 
+        line.Value >= CarValueDic.GetValueOrDefault(line.Key, 0));
 }

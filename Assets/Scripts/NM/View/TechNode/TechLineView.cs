@@ -1,13 +1,13 @@
 ﻿using GeneralPreview;
 using NM.Config;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 
 namespace NM.View;
 
-public class TechLineView : MonoBehaviour, ITechObj
+public class TechLineView : SerializedMonoBehaviour, ITechObj
 {
-    [SerializeReference, ReadOnly] public TechLineConfig Config;
     UILineRenderer lineRenderer;
     
     public TechNodeView Left;

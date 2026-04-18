@@ -60,6 +60,36 @@
         "PropA1": 0,
         "PropA2": 0
       }
+    },
+    {
+      "ID": 0,
+      "CarValueDic": {
+        "Prop1": 5,
+        "Prop2": 15,
+        "Prop3": 0,
+        "PropA1": 0,
+        "PropA2": 0
+      }
+    },
+    {
+      "ID": 42,
+      "CarValueDic": {
+        "Prop1": 0,
+        "Prop2": 0,
+        "Prop3": 0,
+        "PropA1": 0,
+        "PropA2": 0
+      }
+    },
+    {
+      "ID": 110,
+      "CarValueDic": {
+        "Prop1": 0,
+        "Prop2": 0,
+        "Prop3": 0,
+        "PropA1": 0,
+        "PropA2": 0
+      }
     }
   ]
 }

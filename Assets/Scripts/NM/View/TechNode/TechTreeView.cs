@@ -169,7 +169,8 @@ public class TechTreeView : ViewBase
         {
             line.OnCreate();
         }
-        RefreshCurSelectedNode();
+
+        curNodeConfig = CurSelectedNode?.ConfigInEditor;
         UnityEditor.SceneView.RepaintAll();
         UnityEditor.EditorUtility.SetDirty(this);
     }
@@ -245,19 +246,7 @@ public class TechTreeView : ViewBase
                 : null;
     bool CurSelectOneNode => Editing && CurSelectedNode != null;
     [LabelText("当前节点信息"), PropertyOrder(NodeOrder + 14), ShowIf(nameof(CurSelectOneNode))]
-    [OdinSerialize, NonSerialized, ShowInInspector] TechNodeConfig? curNodeConfig;
-    void RefreshCurSelectedNode()
-    {
-        if (CurSelectedNode == null)
-        {
-            // curNodeConfig = null;
-            return;
-        }
-        var newConfig = CurSelectedNode.ConfigInEditor;
-        if (curNodeConfig != null && newConfig == curNodeConfig)
-            return;
-        curNodeConfig = newConfig;
-    }
+    [OdinSerialize, ShowInInspector] TechNodeConfig? curNodeConfig;
     [LabelText("附近位置倍率"), PropertyOrder(NodeOrder + 14), ShowIf(nameof(CurSelectOneNode))]
     public int PosDelta = 100;
     [Button("在当前节点附近创建新节点"), PropertyOrder(NodeOrder + 15), ShowIf(nameof(CurSelectOneNode))]
@@ -276,7 +265,6 @@ public class TechTreeView : ViewBase
     {
         var go = UnityEditor.PrefabUtility.InstantiatePrefab(pfbTechNodeView.gameObject, trsTechNode) as GO;
         var ins = go!.GetComponent<TechNodeView>();
-        UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, nameof(CreateNode));
         ins.transform.position = new Vector3(NodePos.x, NodePos.y, 0);
         UnityEditor.Selection.activeGameObject = ins.gameObject;
         ins.ConfigInEditor = new TechNodeConfig
@@ -289,6 +277,7 @@ public class TechTreeView : ViewBase
         };
         ins.Data = new TechNodeData(ins.ConfigInEditor);
         ins.OnCreate();
+        UnityEditor.Undo.RegisterCreatedObjectUndo(go, nameof(CreateNode));
     }
     const int LineOrder = 2000;
     [Header("线")]
@@ -348,12 +337,12 @@ public class TechTreeView : ViewBase
         }
         var go = UnityEditor.PrefabUtility.InstantiatePrefab(pfbTechLineView.gameObject, trsTechLine) as GO;
         var ins = go!.GetComponent<TechLineView>();
-        UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, nameof(CreateLine));
         ins.Left = pair.l;
         ins.LeftOutPort = LeftOutPort;
         ins.Right = pair.r;
         ins.RightInPort = RightInPort;
         ins.OnCreate();
+        UnityEditor.Undo.RegisterCreatedObjectUndo(go, nameof(CreateLine));
     }
     [Button("移除连线 (要求：选中两个节点)"), EnableIf(nameof(TryGetTwoNodeIgnore)), PropertyOrder(LineOrder + 40), ShowIf(nameof(Editing))]
     public void RemoveAllLines()

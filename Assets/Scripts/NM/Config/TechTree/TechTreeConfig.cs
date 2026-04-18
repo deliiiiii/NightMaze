@@ -12,19 +12,3 @@ public class TechTreeConfig : ConfigSingle<TechTreeConfig>
     [ReadOnly, NonSerialized, OdinSerialize] public required List<TechNodeConfig> NodeList = [];
     [ReadOnly, NonSerialized, OdinSerialize] public required List<TechLineConfig> LineList = [];
 }
-public class TechNodeConfig
-{
-    public required int ID;
-    public required string Name;
-    [ReadOnly] public required Vector2 Pos;
-    public List<ItemConfig> ToUnLockItems = [];
-    public Dictionary<EPropType, long> RequireDic = [];
-}
-[Serializable]
-public class TechLineConfig
-{
-    public required int LeftNodeID;
-    public required int LeftPortID;
-    public required int RightNodeID;
-    public required int RightPortID;
-}

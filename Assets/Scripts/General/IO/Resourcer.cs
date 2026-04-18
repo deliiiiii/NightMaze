@@ -6,7 +6,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using JetBrains.Annotations;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
@@ -30,14 +29,21 @@ namespace General
             };
             #endif
         }
+#if UNITY_EDITOR
+        [UnityEditor.InitializeOnLoadMethod]
+#endif
+        static void InitializeOnLoad()
+        {
+            ForceClearAndReloadCacheEditor();
+        }
         
         static readonly Dictionary<string, AsyncOperationHandle> assetHandleCache = new();
         static readonly Dictionary<string, IList<IResourceLocation>> labelLocationsCache = new();
 
 #if UNITY_EDITOR
         /// <summary>
-        /// 仅在 Editor 环境下使用：强制清空资源和标签缓存，重新加载 Addressable Catalog，
-        /// 适用于游戏未停止运行时一键更新刚刚在资源面板修改的资源。
+        /// 仅在 Editor 环境下使用: 强制清空资源和标签缓存，
+        /// 不重新加载 Addressable Catalog.
         /// </summary>
         [UnityEditor.MenuItem("Tools/Reload Editor resources")]
         public static void ForceClearAndReloadCacheEditor()
