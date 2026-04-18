@@ -8,22 +8,21 @@
       "$id": "3",
       "MouseScrollMapSpeed": 0.2,
       "SpinTweenSpeed": {
-        "$type": "NM.Data.SettingData+SpinTweenSpeedNormal, NM.Data",
-        "Value": 1
+        "$type": "NM.Data.SettingData+SpinTweenSpeedImmediate, NM.Data"
       }
     },
     "state": { "$ref": "1" }
   },
   "PlayerName": "111",
-  "PlayTime": 2935.277940585278,
-  "TurnCount": 108,
-  "CurLayer": 2,
-  "PropBody": 20,
-  "PropSans": 32673,
-  "PropLore": 184,
+  "PlayTime": 3332.4030922888778,
+  "TurnCount": 113,
+  "CurLayer": 3,
+  "PropBody": 28,
+  "PropSans": 34143,
+  "PropLore": 208,
   "PropLoyalty": 1,
   "PropLoyaltyMax": 1000,
-  "PropHostility": 8,
+  "PropHostility": 0,
   "PropHostilityMax": 1000,
   "itemList": [
     {
@@ -990,13 +989,13 @@
       "$id": "184",
       "Dragging": false,
       "Spawning": false,
-      "PivotPos":{"X":4,"Y":4},
-      "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1}],
+      "PivotPos":{"X":3,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
         "$id": "185",
         "$values": []
       },
-      "ID": 19002,
+      "ID": 19003,
       "BuildingOrEventProgress": {
         "$id": "186"
       },
@@ -1006,13 +1005,13 @@
       "$id": "187",
       "Dragging": false,
       "Spawning": false,
-      "PivotPos":{"X":6,"Y":5},
-      "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1}],
+      "PivotPos":{"X":4,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
         "$id": "188",
         "$values": []
       },
-      "ID": 19002,
+      "ID": 19003,
       "BuildingOrEventProgress": {
         "$id": "189"
       },
@@ -1022,90 +1021,21 @@
       "$id": "190",
       "Dragging": false,
       "Spawning": false,
-      "PivotPos":{"X":2,"Y":3},
+      "PivotPos":{"X":5,"Y":2},
       "DeltaPosList":[{"X":0,"Y":0}],
       "EatConfigList": {
         "$id": "191",
         "$values": []
       },
-      "ID": 20002,
+      "ID": 19003,
       "BuildingOrEventProgress": {
-        "$id": "192",
-        "Prop1": 0
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "193",
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":2,"Y":2},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "194",
-        "$values": []
-      },
-      "ID": 20002,
-      "BuildingOrEventProgress": {
-        "$id": "195",
-        "Prop1": 0
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "196",
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":4,"Y":3},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "197",
-        "$values": []
-      },
-      "ID": 20002,
-      "BuildingOrEventProgress": {
-        "$id": "198",
-        "Prop1": 0
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "199",
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":5,"Y":3},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "200",
-        "$values": []
-      },
-      "ID": 20002,
-      "BuildingOrEventProgress": {
-        "$id": "201",
-        "Prop1": 0
-      },
-      "inSpin": null
-    },
-    {
-      "$id": "202",
-      "Dragging": false,
-      "Spawning": false,
-      "PivotPos":{"X":2,"Y":1},
-      "DeltaPosList":[{"X":0,"Y":0}],
-      "EatConfigList": {
-        "$id": "203",
-        "$values": []
-      },
-      "ID": 20002,
-      "BuildingOrEventProgress": {
-        "$id": "204",
-        "Prop1": 0
+        "$id": "192"
       },
       "inSpin": null
     }
   ],
   "state": {
-    "$id": "205",
+    "$id": "193",
     "$type": "NM.Data.PlayIdle, NM.Data",
     "savedVersion": 20260402.0,
     "BelongNode": { "$ref": "1" }

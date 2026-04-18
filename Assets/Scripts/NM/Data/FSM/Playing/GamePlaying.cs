@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GeneralPreview;
@@ -53,32 +52,46 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         };
     
     public IEnumerable<MyItem> Items => itemList;
-    public IEnumerable<MyItem> Grids => itemList.Where(item => item.Config.IsGrid);
-    
     public IEnumerable<Vector2Int> GridPoses =>
         from item in itemList
-        where item.Config.IsGrid && item.ReallyInWorld
-        from coveredPos in item.CoveredPosList
-        select coveredPos;
-    public IEnumerable<MyItem> EmptyGrids
-    {
-        get
+        where item is
         {
-            var occupiedPoses = 
-                // 非grid的, 且不能放置的位置
-                (from item in itemList
-                where item is { 
-                    ReallyInWorld: true, 
-                    Config.IsGrid: false, 
-                    Config.IsBuildingOrEvent: false }
-                from coveredPos in item.CoveredPosList
-                select coveredPos).ToHashSet();
-            return 
-                from grid in Grids
-                where !occupiedPoses.Contains(grid.PivotPos)
-                select grid;
+            ReallyInWorld : true,   
+            Config.IsGrid : true,
         }
-    }
+        from cov in item.CoveredPosList
+        select cov;
+    public IEnumerable<Vector2Int> BuildingOrEvtPoses =>
+        from item in itemList
+        where item is
+        {
+            ReallyInWorld: true,
+            Config.IsBuildingOrEvent: true
+        }
+        from cov in item.CoveredPosList
+        select cov;
+    public IEnumerable<Vector2Int> NotGridBuildingOrEvtPoses =>
+        from item in itemList
+        where item is
+        {
+            ReallyInWorld: true,
+            Config.IsGrid: false,
+            Config.IsBuildingOrEvent: false
+        }
+        from cov in item.CoveredPosList
+        select cov;
+    public bool TrySetItem(MyItem item) =>
+        item switch
+        {
+            _ when item.Config.IsGrid => item.CoveredPosList.All(pos => !GridPoses.Contains(pos)),
+            _ when item.Config.IsBuildingOrEvent => 
+                item.CoveredPosList.All(pos => GridPoses.Contains(pos)) &&
+                item.CoveredPosList.All(pos => !BuildingOrEvtPoses.Contains(pos)),
+            _ => 
+                item.CoveredPosList.All(pos => GridPoses.Contains(pos)) &&
+                item.CoveredPosList.All(pos => !NotGridBuildingOrEvtPoses.Contains(pos))
+        };
+    
     public bool SatisfyBuildingRun(MyItem item)
     {
         // if (!item.Config.IsBuilding)

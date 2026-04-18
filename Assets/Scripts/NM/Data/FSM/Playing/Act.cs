@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -80,14 +79,6 @@ public partial class GamePlaying
     }
     [EvtName("生成了某物体")]
     public record EvtSpawnItem(GamePlaying WhoHasCt, MyItem Item) : EvtBase<GamePlaying>(WhoHasCt);
-
-    public bool TrySetItem(MyItem item) =>
-        item switch
-        {
-            _ when item.Config.IsGrid => item.CoveredPosList.All(pos => !GridPoses.Contains(pos)),
-            _ => item.CoveredPosList.All(pos => EmptyGrids.Any(g => g.PivotPos == pos))
-        };
-
     [Obsolete("移除某物体")]
     UniTask RemoveItemAsync(MyItem toRemove, ResultWrap? resultWrap, CancellationToken ct)
     {
