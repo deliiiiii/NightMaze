@@ -7,7 +7,6 @@ using General;
 using GeneralPreview;
 using NM.Config;
 using NM.Data;
-using NM.ViewEvt;
 using Sirenix.Utilities;
 using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
@@ -52,10 +51,10 @@ public class PlayView : ViewBase<GamePlaying>
     
     protected override IEnumerable<BindDataBase> BindList()
     {
-        yield return BtnSpin.onClick.EvtBindTo(() => new EvtPlayViewClickSpin().Forget());
-        yield return BtnNextTurn.onClick.EvtBindTo(() => new EvtPlayViewClickNextTurn().Forget());
+        yield return BtnSpin.onClick.EvtBindTo(() => new GamePlaying.EvtClickSpin().Forget());
+        yield return BtnNextTurn.onClick.EvtBindTo(() => new GamePlaying.EvtClickNextTurn().Forget());
         yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.Name.Save.SlotFolder, Data.PlayerName, Data));
-        yield return BtnExit.onClick.EvtBindTo(() => new EvtPlayViewClickExit().Forget());
+        yield return BtnExit.onClick.EvtBindTo(() => new GamePlaying.EvtClickExit().Forget());
         yield return BtnSetting.onClick.EvtBindTo(() => SettingViewIns.SetActiveTrue());
     }
     void Update()

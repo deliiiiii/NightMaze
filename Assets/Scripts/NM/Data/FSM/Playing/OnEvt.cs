@@ -1,17 +1,18 @@
 ﻿using GeneralPreview;
-using NM.ViewEvt;
 
 namespace NM.Data;
 
 public partial class GamePlaying 
 {
-    UniEvt<EvtPlayViewClickExit> OnEvtClickExitAsync => new()
+    public record EvtClickSpin : EvtForgetBase;
+    public record EvtClickNextTurn : EvtForgetBase;
+    public record EvtClickExit : EvtForgetBase;
+    UniEvt<EvtClickExit> OnEvtClickExitAsync => new()
     {
         Invoke = (evt, ct) => GameRoot.ChangeStateAsync(new GameTitle(), false),
         Des = "(点击了退出按钮) ..直接退出游戏状态"
     };
-    
-    UniEvt<EvtPlayViewClickSpin> OnEvtClickSpinAsync => new()
+    UniEvt<EvtClickSpin> OnEvtClickSpinAsync => new()
     {
         Invoke = async (evt, ct) =>
         {

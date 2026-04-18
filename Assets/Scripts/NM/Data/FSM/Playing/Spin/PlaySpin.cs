@@ -28,11 +28,10 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
     
     #region Getter
     public IEnumerable<IUniAction> ToDoList => toDoList;
-    public bool CanHarvest => !toDoList.Any();
+    public bool CanHarvest => toDoList.FirstOrDefault() is ActWaitForClickNextTurn;
     IEnumerable<MyItem> Items =>
         from itemInPlay in BelongNode.Items
         select itemInPlay[this];
-    // TODO 临时拿GamePlaying.AddHostilityPerTurn
     public long GetDeltaPropValue(EPropType propType)
     {
         List<DistributePropInfo> list = [
@@ -67,7 +66,8 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
             select new ActDistributePropForItem(this)
             {
                 Item = itemInPlay
-            }
+            },
+            new ActWaitForClickNextTurn(this),
         ]);
     }
     protected override UniTask OnLaunchCom(bool isThisFromLoad)

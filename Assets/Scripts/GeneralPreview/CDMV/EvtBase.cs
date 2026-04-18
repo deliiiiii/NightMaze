@@ -98,7 +98,31 @@ public static class Bus
             evtDic.Remove(typeof(T));
         }
     }
-    
+
+    public static async UniTask WaitForAsync<TEvt>(string des, CancellationToken ct) 
+        where TEvt : EvtForgetBase
+    {
+        var tcs = new UniTaskCompletionSource<TEvt>();
+        UniEvt<TEvt> t = new()
+        {
+            Invoke = (evt, _) =>
+            {
+                tcs.TrySetResult(evt);
+                return UniTask.CompletedTask;
+            },
+            Des = des
+        };
+        Register(t);
+        try
+        {
+            await tcs.Task.AttachExternalCancellation(ct);
+        }
+        finally
+        {
+            UnRegister(t);
+        }
+    }
+
     public static string FormatRecordDetails(string text)
     {                                       
         var sb = new StringBuilder();

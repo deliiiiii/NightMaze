@@ -61,33 +61,6 @@ public partial class PlaySpin
             select act,
         ]);
     }
-    
-    // [Obsolete("第3轮, 结算事件")]
-    // UniTask CheckEventAsync(GamePlaying.MyItem item, CancellationToken ct)
-    // {
-    //     if (!item.Config.IsEvent)
-    //         return UniTask.CompletedTask;
-    //     InsertAfter([..
-    //         // 未完成事件
-    //         from itemDes in item.AllConfigList
-    //         where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEventMiKanSei && !item.IsBuildingOrEventKanSei
-    //         select new ActDoItemDesResult(this)
-    //         {
-    //             Item = item,
-    //             ResultWrap = new ResultWrap(itemDes.Result!, null),
-    //         }, ..
-    //         // 已完成事件
-    //         from itemDes in item.AllConfigList
-    //         where itemDes.Result != null && itemDes.Trigger is ItemDesTriggerEventKanSei && item.IsBuildingOrEventKanSei
-    //         select new ActDoItemDesResult(this)
-    //         {
-    //             Item = item,
-    //             ResultWrap = new ResultWrap(itemDes.Result!, null),
-    //         },
-    //     ]);
-    //     return UniTask.CompletedTask;
-    // }
-    
     [EvtName("第1轮, 某物体执行 ALL 词条前")]
     public record EvtBeforeCheckSymbolTween(PlaySpin WhoHasCt, GamePlaying.MyItem Item) : EvtBase<PlaySpin>(WhoHasCt);
     [Obsolete("第1轮, 将执行物体单行词条")]
@@ -183,7 +156,6 @@ public partial class PlaySpin
         }.Forget();
         return UniTask.CompletedTask;
     }
-
     [Obsolete("第1轮, 结算无来源属性")]
     UniTask DoNoSourcePropAsync(EPropType propType, long value, CancellationToken ct)
     {
@@ -199,7 +171,6 @@ public partial class PlaySpin
         }.Forget();
         return UniTask.CompletedTask;
     }
-    
     [Obsolete("第2轮, 某物体分配属性去向")]
     UniTask DistributePropForItemAsync(GamePlaying.MyItem item, CancellationToken ct)
     {
@@ -303,7 +274,6 @@ public partial class PlaySpin
             }
             select posWrap.Pos;
     }
-    
     IEnumerable<GamePlaying.MyItem> ResolveItemSelector(GamePlaying.MyItem selfItem, ICanSelectItem? iCanSelectItem, ResultWrap? resultWrap)
     {
         if (iCanSelectItem == null)
@@ -365,7 +335,6 @@ public partial class PlaySpin
         rawItems = rawItems.Take(ResolveIntSelector(selfItem, iCanSelectItem.TakeMax, resultWrap));
         return ApplyPosFilterAndSort(rawItems, p => p.PivotPos, iCanSelectItem, selfItem, resultWrap);
     }
-
     int ResolveIntSelector(GamePlaying.MyItem selfItem, IntSelectorBase? intSelector, ResultWrap? resultWrap) =>
         intSelector switch
         {
@@ -376,7 +345,6 @@ public partial class PlaySpin
             null => 0,
             _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(IntSelectorBase)}类型: {intSelector.GetType()}.")
         };
-    
     double ResolveDoubleSelector(GamePlaying.MyItem selfItem, DoubleSelectorBase? doubleSelector, ResultWrap? resultWrap) =>
         doubleSelector switch
         {
@@ -472,9 +440,7 @@ public partial class PlaySpin
         }
         return source.Take(ResolveIntSelector(selfItem, iCanSelectPos.TakeMax, resultWrap));
     }
-
     
-
     [Obsolete("某物让某物属性变化(加算)")]
     UniTask EttAddSymbolModifyPropAsync(GamePlaying.MyItem from, GamePlaying.MyItem to, EPropType propType, long value, ResultWrap? resultWrap, CancellationToken ct)
     {
@@ -506,5 +472,12 @@ public partial class PlaySpin
             CtxList = [new ResultItemWrap.CtxMulPropX{PropType = propType,Value = value}]
         });
         return UniTask.CompletedTask;
+    }
+
+    [Obsolete("等待点击下一回合按钮")]
+    async UniTask WaitForClickNextTurnAsync(CancellationToken ct)
+    {
+        await Bus.WaitForAsync<GamePlaying.EvtClickNextTurn>("点击下一回合按钮", ct);
+        new GamePlaying.ActEnterNextTurnAndIdle(BelongNode).Forget();
     }
 }
