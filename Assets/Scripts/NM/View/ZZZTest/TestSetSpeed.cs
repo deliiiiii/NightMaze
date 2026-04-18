@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace NM.View.ZZZTest;
+namespace NM.View;
 
 internal class TestSetSpeed : MonoBehaviour
 {

@@ -3,7 +3,7 @@ using GeneralPreview;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace NM.View.Len;
+namespace NM.View;
 
 public class LenPlaying : MonoBehaviour
 {

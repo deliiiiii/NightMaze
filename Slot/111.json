@@ -10,13 +10,13 @@
       "SpinTweenSpeed": {
         "$id": "4",
         "$type": "NM.Data.SettingData+SpinTweenSpeedNormal, NM.Data",
-        "Value": 1
+        "Value": 4
       }
     },
     "state": { "$ref": "1" }
   },
   "PlayerName": "111",
-  "PlayTime": 2630.9680902971886,
+  "PlayTime": 2642.3671884960495,
   "TurnCount": 100,
   "CurLayer": 2,
   "PropBody": 20,
@@ -992,7 +992,7 @@
       "ID": 19002,
       "Dragging": false,
       "Spawning": false,
-      "PivotPos":{"X":2,"Y":5},
+      "PivotPos":{"X":4,"Y":2},
       "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1}],
       "EatConfigList": {
         "$id": "186",
@@ -1008,7 +1008,7 @@
       "ID": 19002,
       "Dragging": false,
       "Spawning": false,
-      "PivotPos":{"X":3,"Y":5},
+      "PivotPos":{"X":6,"Y":5},
       "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1}],
       "EatConfigList": {
         "$id": "189",

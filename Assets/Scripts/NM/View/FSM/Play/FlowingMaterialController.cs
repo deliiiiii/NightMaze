@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+namespace NM.View;
+
 public class FlowingMaterialController : MonoBehaviour
 {
     static readonly int scrollXSpeed = Shader.PropertyToID("_ScrollXSpeed");

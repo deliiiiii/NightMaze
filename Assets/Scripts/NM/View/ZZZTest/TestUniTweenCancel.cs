@@ -4,7 +4,7 @@ using General;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace NM.View.ZZZTest;
+namespace NM.View;
 
 public class TestUniTweenCancel : MonoBehaviour
 {

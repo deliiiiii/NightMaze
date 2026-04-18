@@ -6,7 +6,7 @@ using NM.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
-namespace NM.View.Len;
+namespace NM.View;
 
 public class LenGrid : MonoBehaviour
 {

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
 
-namespace NM.View.ZZZTest;
+namespace NM.View;
 
 public class PointerPena : MonoBehaviour, IPointerPena;

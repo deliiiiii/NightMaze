@@ -1,6 +1,6 @@
 ﻿using UnityEngine.EventSystems;
 
-namespace NM.View.ZZZTest;
+namespace NM.View;
 
 public interface IMultiPointerEnterHandler : IEventSystemHandler, IPointerPena
 {

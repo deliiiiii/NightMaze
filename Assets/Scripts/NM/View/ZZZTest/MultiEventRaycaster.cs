@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace NM.View.ZZZTest;
+namespace NM.View;
 
 public class MultiEventRaycaster : MonoBehaviour
 {
