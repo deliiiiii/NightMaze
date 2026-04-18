@@ -108,7 +108,6 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "(退出Root - Playing状态时) 隐藏界面"
     };
-
     UniEvt<PlayIdle.EvtOnEnter> OnEnterIdle => new()
     {
         Invoke = (evt, ct) =>
@@ -397,7 +396,7 @@ public class PlayView : ViewBase<GamePlaying>
 
     void RemoveItemEvt(GamePlaying.MyItem item)
     {
-        ItemEvtView? ins = itemEvtViewList.FirstOrDefault(s => s.BelongView?.Data == item);
+        ItemEvtView? ins = itemEvtViewList.FirstOrDefault(s => s.BelongView.Data == item);
         if (ins == null)
         {
             MyDebug.LogError($"没有找到物体事件 {item} 对应的View.");

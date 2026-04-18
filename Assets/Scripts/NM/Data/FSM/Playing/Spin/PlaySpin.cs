@@ -78,13 +78,8 @@ public partial class PlaySpin : PlayStateBase<PlaySpin>
 
     async UniTask StartTodo()
     {
-        while (true)
+        while (toDoList.Any())
         {
-            if (!toDoList.Any())
-            {
-                await UniTask.Yield(CurCt);
-                continue;
-            }
             var first = toDoList[0];
             await first;
             toDoList.Remove(first);

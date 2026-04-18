@@ -112,7 +112,6 @@ public static class Bus
             },
             Des = des
         };
-        Register(t);
         try
         {
             await tcs.Task.AttachExternalCancellation(ct);

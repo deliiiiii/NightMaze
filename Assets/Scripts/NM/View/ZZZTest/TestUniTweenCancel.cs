@@ -8,7 +8,7 @@ namespace NM.View;
 
 public class TestUniTweenCancel : MonoBehaviour
 {
-    CancellationTokenSource cts => field ??= new CancellationTokenSource();
+    CancellationTokenSource Cts => field ??= new CancellationTokenSource();
     // [Button]
     // public void Cancel()
     // {
@@ -19,7 +19,7 @@ public class TestUniTweenCancel : MonoBehaviour
     async UniTask PlayAsync()
     {
         MyDebug.Log("tween start...");
-        await GetComponent<DOTweenSequence>().PlayAsync(cts.Token);
+        await GetComponent<DOTweenSequence>().PlayAsync(Cts.Token);
         MyDebug.Log("tween end...");
         
     }

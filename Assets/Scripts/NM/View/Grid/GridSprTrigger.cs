@@ -15,7 +15,7 @@ public class GridSprTrigger : MonoBehaviour,
     [SerializeField] DOTweenSequence onEnterTween;
     [SerializeField] DOTweenSequence onExitTween;
     readonly DoTweenSeqMutex enterExitTween = new();
-    bool isHovering = false;
+    bool isHovering;
     public void OnMultiPointerEnter(PointerEventData eventData)
     {
         isHovering = true;

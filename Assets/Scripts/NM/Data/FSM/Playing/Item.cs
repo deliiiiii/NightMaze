@@ -11,6 +11,7 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
+    [DebuggerStepThrough]
     public partial class MyItem
     {
         [JsonConstructor] MyItem()
@@ -37,26 +38,27 @@ public partial class GamePlaying
                 ? Config.BuildPropValueList.ToDictionary(p => p.Key, _ => 0L) 
                 : [];
         }
-        [DebuggerStepThrough] public bool CoverPos(Vector2Int pos) => CoveredPosList.Contains(pos);
+        public bool CoverPos(Vector2Int pos) => CoveredPosList.Contains(pos);
         public IEnumerable<Vector2Int> CoveredPosList => DeltaPosList.Select(d => d + PivotPos);
         public ItemConfig Config => field ??= ConfigLoader.Acquire<ItemConfig>(ID); 
         public EItemType ItemType => Config.ItemType;
-        
-        public int ID { [DebuggerStepThrough] get; [DebuggerStepThrough] private init; }
-        public bool Dragging { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
-        public bool Spawning { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
+
+        public int ID { get; private set; }
+        public bool Dragging;
+        public bool Spawning;
         public bool ReallyInWorld => !Dragging && !Spawning;
+
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
-        public Vector2Int PivotPos { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
+        public Vector2Int PivotPos;
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
-        public List<Vector2Int> DeltaPosList { [DebuggerStepThrough] get; private init; }
-        public List<ItemDesConfig> EatConfigList { [DebuggerStepThrough] get; private init; }
+        public List<Vector2Int> DeltaPosList;
+        public List<ItemDesConfig> EatConfigList;
         public List<ItemDesConfig> AllConfigList => [..Config.DesList, ..EatConfigList];
 
         public Dictionary<EPropType, long> BuildingOrEventProgress
         {
             get
-            {
+            {   
                 Config.BuildPropValueList.ForEach(pair => field.TryAdd(pair.Key, 0));
                 return field;
             }

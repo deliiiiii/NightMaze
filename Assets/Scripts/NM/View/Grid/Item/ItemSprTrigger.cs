@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace NM.View;
 
-public class ItemSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragHandler, IMultiEndDragHandler,
-    IMultiPointerEnterHandler, IMultiPointerExitHandler
+public class ItemSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragHandler, IMultiEndDragHandler
 {
     [field:SerializeReference] public ItemView BelongView { get; set; }
     Vector2 initThisScreenPos;
@@ -46,7 +45,7 @@ public class ItemSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragH
 
     public void OnMultiDrag(PointerEventData eventData)
     {
-        if (!CheckDrag(eventData, true, out var failInfo))
+        if (!CheckDrag(eventData, true, out _))
         {
             return;
         }
@@ -57,7 +56,7 @@ public class ItemSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragH
 
     public void OnMultiEndDrag(PointerEventData eventData)
     {
-        if (!CheckDrag(eventData, true, out var failInfo))
+        if (!CheckDrag(eventData, true, out _))
         {
             return;
         }
@@ -76,14 +75,4 @@ public class ItemSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragH
        
         transform.localPosition = Vector3.zero;
     }
-
-    public void OnMultiPointerEnter(PointerEventData eventData)
-    {
-    }
-
-    public void OnMultiPointerExit(PointerEventData eventData)
-    {
-        
-    }
-    
 }

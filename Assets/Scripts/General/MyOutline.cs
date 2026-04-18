@@ -100,15 +100,15 @@ namespace General
     }
 
     void OnEnable() {
-      foreach (var renderer in renderers) {
+      foreach (var r in renderers) {
 
         // Append outline shaders
-        var materials = renderer.sharedMaterials.ToList();
+        var materials = r.sharedMaterials.ToList();
 
         materials.Add(outlineMaskMaterial);
         materials.Add(outlineFillMaterial);
 
-        renderer.materials = materials.ToArray();
+        r.materials = materials.ToArray();
       }
     }
 
@@ -138,15 +138,15 @@ namespace General
     }
 
     void OnDisable() {
-      foreach (var renderer in renderers) {
+      foreach (var r in renderers) {
 
         // Remove outline shaders
-        var materials = renderer.sharedMaterials.ToList();
+        var materials = r.sharedMaterials.ToList();
 
         materials.Remove(outlineMaskMaterial);
         materials.Remove(outlineFillMaterial);
 
-        renderer.materials = materials.ToArray();
+        r.materials = materials.ToArray();
       }
     }
 

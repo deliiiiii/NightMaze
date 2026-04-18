@@ -75,7 +75,7 @@ namespace General
             assetHandleCache[address] = assetHandle;
             // st.Stop();
             // MyDebug.LogInfo($"加载资源{address}用时:{st.Elapsed.TotalMilliseconds}ms");
-            return assetHandle.Result as T ?? null;
+            return assetHandle.Result ?? null;
         }
         
         /// <summary>

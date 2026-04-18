@@ -44,5 +44,5 @@ public interface IMultiScrollHandler : IEventSystemHandler, IPointerPena
 
 public interface IPointerPena
 {
-    public virtual bool EnablePena => true;
+    public bool EnablePena => true;
 }

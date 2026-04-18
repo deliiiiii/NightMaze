@@ -1,5 +1,7 @@
 ﻿using System;
 using DG.Tweening;
+using General;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace NM.Data;
@@ -15,7 +17,7 @@ public class SettingData
         set => field = Math.Clamp(value, MouseScrollMapSpeedMin, MouseScrollMapSpeedMax);
     } = 1f;
 
-    [field: SerializeReference]
+    [field: SerializeReference][JsonProperty(IsReference = false)]
     public SpinTweenSpeedBase SpinTweenSpeed
     {
         get;
@@ -37,7 +39,7 @@ public class SettingData
         public int Value
         {
             get;
-            set
+            init
             {
                 field = Math.Clamp(value, 1, 4);
                 DOTween.timeScale = field;
