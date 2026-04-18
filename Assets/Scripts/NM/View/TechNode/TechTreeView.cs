@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using General;
 using GeneralPreview;
 using NM.Config;
 using NM.Data;
@@ -18,14 +17,14 @@ namespace NM.View;
 [ExecuteAlways]
 public class TechTreeView : ViewBase
 {
-    [SerializeField, HideInInspector] TechNodeView pfbTechNodeView;
-    [SerializeField, HideInInspector] TechLineView pfbTechLineView;
+    [SerializeField] TechNodeView pfbTechNodeView;
+    [SerializeField] TechLineView pfbTechLineView;
     [SerializeField, HideInInspector] Trs trsTechNode;
     [SerializeField, HideInInspector] Trs trsTechLine;
     [NonSerialized] List<TechNodeView> techNodeList = [];
     [NonSerialized] List<TechLineView> techLineList = [];
     TechTreeConfig ConfigRT => field ??= ConfigLoader.Acquire<TechTreeConfig>();
-    [Button]
+    [Button, ShowIf(nameof(IsRunning))]
     void LoadFromConfig()
     {
         trsTechNode.GetChildren().ForEach(n => Destroy(n.gameObject));
@@ -164,6 +163,7 @@ public class TechTreeView : ViewBase
         foreach (var node in techNodeList.Where(n => n != null))
         {
             node.ConfigInEditor.Pos = node.transform.position;
+            node.OnCreate();
         }
         foreach (var line in techLineList.Where(l => l != null))
         {
@@ -245,11 +245,14 @@ public class TechTreeView : ViewBase
                 : null;
     bool CurSelectOneNode => Editing && CurSelectedNode != null;
     [LabelText("当前节点信息"), PropertyOrder(NodeOrder + 14), ShowIf(nameof(CurSelectOneNode))]
-    [ShowInInspector] TechNodeConfig? curNodeConfig;
+    [OdinSerialize, NonSerialized, ShowInInspector] TechNodeConfig? curNodeConfig;
     void RefreshCurSelectedNode()
     {
         if (CurSelectedNode == null)
+        {
+            // curNodeConfig = null;
             return;
+        }
         var newConfig = CurSelectedNode.ConfigInEditor;
         if (curNodeConfig != null && newConfig == curNodeConfig)
             return;
@@ -271,7 +274,8 @@ public class TechTreeView : ViewBase
     [Button("创建新节点"), PropertyOrder(NodeOrder + 20), ShowIf(nameof(Editing))]
     void CreateNode()
     {
-        var ins = Instantiate(pfbTechNodeView, trsTechNode);
+        var go = UnityEditor.PrefabUtility.InstantiatePrefab(pfbTechNodeView.gameObject, trsTechNode) as GO;
+        var ins = go!.GetComponent<TechNodeView>();
         UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, nameof(CreateNode));
         ins.transform.position = new Vector3(NodePos.x, NodePos.y, 0);
         UnityEditor.Selection.activeGameObject = ins.gameObject;
@@ -283,6 +287,7 @@ public class TechTreeView : ViewBase
             ToUnLockItems = [],
             RequireDic = []
         };
+        ins.Data = new TechNodeData(ins.ConfigInEditor);
         ins.OnCreate();
     }
     const int LineOrder = 2000;
@@ -341,7 +346,8 @@ public class TechTreeView : ViewBase
             );
             return;
         }
-        var ins = Instantiate(pfbTechLineView, trsTechLine);
+        var go = UnityEditor.PrefabUtility.InstantiatePrefab(pfbTechLineView.gameObject, trsTechLine) as GO;
+        var ins = go!.GetComponent<TechLineView>();
         UnityEditor.Undo.RegisterCreatedObjectUndo(ins.gameObject, nameof(CreateLine));
         ins.Left = pair.l;
         ins.LeftOutPort = LeftOutPort;

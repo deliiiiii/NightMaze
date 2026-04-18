@@ -12,7 +12,6 @@ public class TechTreeConfig : ConfigSingle<TechTreeConfig>
     [ReadOnly, NonSerialized, OdinSerialize] public required List<TechNodeConfig> NodeList = [];
     [ReadOnly, NonSerialized, OdinSerialize] public required List<TechLineConfig> LineList = [];
 }
-[Serializable]
 public class TechNodeConfig
 {
     public required int ID;

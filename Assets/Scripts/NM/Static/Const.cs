@@ -6,6 +6,7 @@ public static class Const
     {
         public static class Config
         {
+            public const string Path = "Assets/Config";
             public const string EnumPre = "Assets/Config/Mgr/";
             public const string ItemTag = "0_物体Tag";
             public const string SymbolTag = "1_棋子Tag";
@@ -13,6 +14,11 @@ public static class Const
             public const string ResourceTag = "3_资源Tag";
             public const string EventTag = "4_事件Tag";
             public const string GridTag = "5_地块Tag";
+        }
+
+        public static class Item
+        {
+            public const string SpritePath = "Assets/Art/Sprite/Item";
         }
         // 字段名必须以Tag结尾!
         public static class AddrTag

@@ -15,10 +15,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 3d81965a029d6794f969a5fc2cb68a79, type: 2}
-    - {fileID: 11400000, guid: 40f8bd5cba016b245aa789f434044b6f, type: 2}
-    - {fileID: 11400000, guid: f3b0d78a595c591498afbf46df09979d, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -39,16 +36,16 @@ MonoBehaviour:
       Data: 0
     - Name: Name
       Entry: 1
-      Data: 0
+      Data: "\u65B0\u8282\u70B9"
     - Name: Pos
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 850
+      Data: 1200
     - Name: 
       Entry: 4
-      Data: 250
+      Data: 550
     - Name: 
       Entry: 8
       Data: 
@@ -58,9 +55,6 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 10
       Data: 0
     - Name: 
       Entry: 13
@@ -87,43 +81,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
       Data: 0
-    - Name: $v
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 3
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 3
-      Data: 3
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -138,19 +96,19 @@ MonoBehaviour:
       Data: 5|NM.Config.TechNodeConfig, NM.Config
     - Name: ID
       Entry: 3
-      Data: 100
+      Data: 42
     - Name: Name
       Entry: 1
-      Data: 100
+      Data: "\u65B0\u8282\u70B9"
     - Name: Pos
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 1700
+      Data: 2050
     - Name: 
       Entry: 4
-      Data: 550
+      Data: 750
     - Name: 
       Entry: 8
       Data: 
@@ -160,10 +118,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 1
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -179,7 +134,67 @@ MonoBehaviour:
       Data: 4
     - Name: 
       Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 69
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 24
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 10
+    - Name: $v
+      Entry: 3
+      Data: 47
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 11
+    - Name: $v
+      Entry: 3
+      Data: 102
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -194,19 +209,19 @@ MonoBehaviour:
       Data: 8|NM.Config.TechNodeConfig, NM.Config
     - Name: ID
       Entry: 3
-      Data: 101
+      Data: 110
     - Name: Name
       Entry: 1
-      Data: 101
+      Data: "\u65B0\u8282\u70B9"
     - Name: Pos
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 1700
+      Data: 2050
     - Name: 
       Entry: 4
-      Data: 50
+      Data: 200
     - Name: 
       Entry: 8
       Data: 
@@ -216,10 +231,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 2
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -235,7 +247,31 @@ MonoBehaviour:
       Data: 4
     - Name: 
       Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 24
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -266,10 +302,10 @@ MonoBehaviour:
       Data: 0
     - Name: LeftPortID
       Entry: 3
-      Data: 3
+      Data: 2
     - Name: RightNodeID
       Entry: 3
-      Data: 100
+      Data: 110
     - Name: RightPortID
       Entry: 3
       Data: 3
@@ -284,10 +320,10 @@ MonoBehaviour:
       Data: 0
     - Name: LeftPortID
       Entry: 3
-      Data: 5
+      Data: 1
     - Name: RightNodeID
       Entry: 3
-      Data: 101
+      Data: 42
     - Name: RightPortID
       Entry: 3
       Data: 5

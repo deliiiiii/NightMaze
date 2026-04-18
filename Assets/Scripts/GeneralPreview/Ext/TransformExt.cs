@@ -24,12 +24,22 @@ public static class TransformExt
             }
             return self;
         }
-        public Transform ClearActiveChildren()
+        public Transform ClearActiveChildren(bool isEditor = false)
         {
             for(int i = self.transform.childCount - 1; i >= 0; i--)
             {
-                if(self.transform.GetChild(i).gameObject.activeSelf)
-                    Object.Destroy(self.transform.GetChild(i).gameObject);
+                if (self.transform.GetChild(i).gameObject.activeSelf)
+                {
+                    if(!isEditor)
+                        Object.Destroy(self.transform.GetChild(i).gameObject);
+                    else
+                    {
+#if UNITY_EDITOR
+                        Object.DestroyImmediate(self.transform.GetChild(i).gameObject);
+#endif
+                    }
+                    
+                }
             }
             return self;
         }

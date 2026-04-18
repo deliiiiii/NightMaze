@@ -22,23 +22,29 @@ public class TechNodeView : MonoBehaviour, ITechObj
     
     [SerializeField] Trs trsInPort;
     [SerializeField] Trs trsOutPort;
-    public UICircle? ImgHandle;
+    public UICircle? UICircle;
+    public Txt? TxtID;
     
-    public void OnCreateView(TechNodeData data)
+    public void OnCreateView(TechNodeData data, TechNodeConfig? configInEditor = null)
     {
+        var isEditor = configInEditor != null;
+        TechNodeConfig tarConfig = data.Config;
         Data = data;
-        OnEndEdit();
-        
-        txtName.text = Data.Config.Name;
-        trsBuildingPreView.ClearActiveChildren();
-        foreach (var itemConfig in Data.Config.ToUnLockItems)
+        if (!isEditor)
+            OnEndEdit();
+        else
+            tarConfig = configInEditor!;
+        txtName.text = tarConfig.Name;
+        TxtID?.text = tarConfig.ID.ToString();
+        trsBuildingPreView.ClearActiveChildren(isEditor);
+        foreach (var itemConfig in tarConfig.ToUnLockItems)
         {
             var img = Instantiate(pfbBuildingPreView, trsBuildingPreView);
             img.Img.sprite = ItemResLoader.Acquire(itemConfig.ID);
             img.SetActiveTrue();
         }
-        trsRequire.ClearActiveChildren();
-        foreach (var lineConfig in Data.Config.RequireDic)
+        trsRequire.ClearActiveChildren(isEditor);
+        foreach (var lineConfig in tarConfig.RequireDic)
         {
             var lineIns = Instantiate(pfbLineView, trsRequire);
             var curValue = Data.CarValueDic.GetValueOrDefault(lineConfig.Key, 0);
@@ -61,28 +67,36 @@ public class TechNodeView : MonoBehaviour, ITechObj
 
     public void OnCreate()
     {
-        ImgHandle?.SetActiveTrue();
+        if(UICircle != null)
+            UICircle.enabled = true;
+        if(TxtID != null)
+            TxtID.enabled = true;
+        OnCreateView(Data, ConfigInEditor);
     }
     public void OnStartEdit()
     {
-        ImgHandle?.enabled = true;
+        if(UICircle != null)
+            UICircle.enabled = true;
+        if(TxtID != null)
+            TxtID.enabled = true;
         OnDeSelect();
     }
     public void OnEndEdit()
     {
-        if(ImgHandle == null)
-            return;
-        ImgHandle?.enabled = false;
+        if(UICircle != null)
+            UICircle.enabled = false;
+        if(TxtID != null)
+            TxtID.enabled = false;
     }
     public void OnSelect()
     {
-        ImgHandle?.color = Color.blue;
+        if(UICircle != null)
+            UICircle.color = Color.blue;
     }
     public void OnDeSelect()
     {
-        if(ImgHandle == null)
-            return;
-        ImgHandle?.color = Color.white;
+        if(UICircle != null)
+            UICircle.color = Color.white;
     }
 }
 

@@ -34,6 +34,25 @@ namespace General
         static readonly Dictionary<string, AsyncOperationHandle> assetHandleCache = new();
         static readonly Dictionary<string, IList<IResourceLocation>> labelLocationsCache = new();
 
+#if UNITY_EDITOR
+        /// <summary>
+        /// 仅在 Editor 环境下使用：强制清空资源和标签缓存，重新加载 Addressable Catalog，
+        /// 适用于游戏未停止运行时一键更新刚刚在资源面板修改的资源。
+        /// </summary>
+        [UnityEditor.MenuItem("Tools/Reload Editor resources")]
+        public static void ForceClearAndReloadCacheEditor()
+        {
+            foreach (var kvp in assetHandleCache
+                         .Where(kvp => kvp.Value.IsValid())) 
+                Addressables.Release(kvp.Value);
+            assetHandleCache.Clear();
+            labelLocationsCache.Clear();
+            OnReloadEditorResource?.Invoke(CancellationToken.None).Forget();
+            MyDebug.Log("<color=green>[Resourcer] 缓存已清空并重载目录，下次读取将拿取最新资源。</color>");
+        }
+        public static event Func<CancellationToken, UniTask>? OnReloadEditorResource;
+#endif
+            
         /// <summary>
         /// 使用Addressable同步加载资源
         /// </summary>
