@@ -7,7 +7,6 @@ using JetBrains.Annotations;
 using NM.Config;
 using NM.Data;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 

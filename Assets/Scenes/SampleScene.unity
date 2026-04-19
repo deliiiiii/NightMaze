@@ -28520,6 +28520,14 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 7061035398286301846, guid: ea11a2eddb70f384697c01230bea15ca, type: 3}
+    - target: {fileID: 7239771115920169797, guid: ea11a2eddb70f384697c01230bea15ca, type: 3}
+      propertyPath: m_Size.x
+      value: 3203.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239771115920169797, guid: ea11a2eddb70f384697c01230bea15ca, type: 3}
+      propertyPath: m_Size.y
+      value: 1813
+      objectReference: {fileID: 0}
     - target: {fileID: 7406064203661662319, guid: ea11a2eddb70f384697c01230bea15ca, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

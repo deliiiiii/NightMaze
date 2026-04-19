@@ -147,6 +147,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     
     protected override async UniTask OnLaunchCom(bool isThisFromLoad)
     {
+        TechTreeData.OnLoad();
         await state!.OnCreateAsync(isThisFromLoad);
     }
     protected override void OnReleaseCom()
@@ -167,6 +168,11 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         => state is T s ? s : None;
     public bool IsState<T>() where T : PlayStateBase<T>
         => state is T;
+    #endregion
+    
+    #region Tech
+
+    public TechTreeData TechTreeData = new();
     #endregion
 }
 
