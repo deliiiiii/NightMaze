@@ -30,7 +30,7 @@ public partial class GamePlaying
                     from x in Range(0, rect.Length)
                     from y in Range(0, rect.Height)
                     select new Vector2Int(x, y)).ToList(),
-                ItemPosCustom custom => custom.DeltaPosList,
+                // ItemPosCustom custom => custom.DeltaPosList,
                 _ => [Vector2Int.Zero],
             };
             EatConfigList = [];
@@ -75,7 +75,7 @@ public partial class GamePlaying
             sb.Append($"DeltaPosList = [{string.Join("|", DeltaPosList)}],");
             if (inSpin != null)
             {
-                sb.Append($"ModifyPropList = [{string.Join("| ", inSpin.ModifyPropList)}]");
+                sb.Append($"ModifyPropList = [{string.Join("| ", inSpin.ModifyPropList)}], ");
                 sb.Append($"DistributePropList = [{string.Join("| ", inSpin.DistributePropList)}]");
             }
             return true;

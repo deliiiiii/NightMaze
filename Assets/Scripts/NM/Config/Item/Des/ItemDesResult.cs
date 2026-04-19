@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using General;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -6,16 +7,17 @@ using UnityEngine;
 namespace NM.Config;
 public abstract record ItemDesResultBase
 {
-  public sealed override string ToString() => GetType().GetAttribute<TypeRegistryItemAttribute>()?.Name ?? GetType().Name;
-    
-    [SerializeReference, LabelText("若满足条件")] public ItemDesConditionBase? Condition;
-    [Header("成功后执行"), HideLabel]
-    [SerializeReference, PropertyOrder(9999)][Indent(-1)]
-    public ItemDesResultBase? Next;
+    [SerializeReference, LabelText("若满足条件", SdfIconType.Question, IconColor = "green")] public ItemDesConditionBase? Condition;
+    [SerializeReference, LabelText("条件满足后执行", SdfIconType.ArrowRight, IconColor = "green"), PropertyOrder(9997)] public ItemDesResultBase? Next;
+    [SerializeReference, LabelText("条件不满足时执行", SdfIconType.ArrowRight, IconColor = "red"), PropertyOrder(9998)] public ItemDesResultBase? ConditionFail;
+    [SerializeReference, LabelText("条件满足, 执行失败后执行", SdfIconType.ArrowRight, IconColor = "red"), PropertyOrder(9999)] public ItemDesResultBase? NextFail;
 }
 [TypeRegistryItem("使物体{0}的属性{1}加算{2}")][DebuggerStepThrough]
 public record ItemDesResultAddXPropX : ItemDesResultBase
 {
+    public override string ToString() => 
+        $"使某物体属性" + $" {PropType.GetLabelText()}加算{IntSelector}";
+
     [SerializeReference, LabelText("{0}: 目标物体")] public ItemSelectorBase? ItemSelector = new ItemSelectorAtPresentSelf();
     [LabelText("{1}: 属性类型")] public EPropType PropType = EPropType.Prop1;
     [SerializeReference, LabelText("{2}: 属性加算数值")] public IntSelectorBase? IntSelector = new IntSelectorConst();

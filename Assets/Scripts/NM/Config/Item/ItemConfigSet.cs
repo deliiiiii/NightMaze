@@ -10,6 +10,5 @@ namespace NM.Config;
 public class ItemConfigSet : ConfigMulti<ItemConfigSet>
 {
     public override string PrefixName => "ItemSet";
-    [LabelText("物体列表(不可重复)"), ValidateInput(nameof(CheckItem), "不可留空值")] public HashSet<ItemConfig> ItemList = [];
-    bool CheckItem() => ItemList.All(x => x != null);
+    [LabelText("物体列表(不可重复)")] public HashSet<ItemConfig?> ItemList = [];
 }

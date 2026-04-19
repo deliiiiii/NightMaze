@@ -39,7 +39,7 @@ public partial class PlaySpin
             select new ActDoItemDesResult(this)
             {
                 Item = item,
-                ResultWrap = new ResultWrap(itemDes.Result!, null),
+                ResultWrap = new ResultWrap(itemDes.Result, null),
             },..
             from itemDes in item.AllConfigList
             where itemDes.Result != null && item.Config.IsBuilding && item.IsBuildingOrEventKanSei
@@ -55,7 +55,7 @@ public partial class PlaySpin
                 new ActDoItemDesResult(this)
                 {
                     Item = item,
-                    ResultWrap = new ResultWrap(itemDes.Result!, null),
+                    ResultWrap = new ResultWrap(itemDes.Result, null),
                 }
             ]
             select act,
@@ -70,9 +70,18 @@ public partial class PlaySpin
             return UniTask.CompletedTask;
         var result = resultWrap.Result;
         var conditionRet = ResolveCondition(item, result?.Condition, resultWrap);
+        if (!resultWrap.DoIfPreFail && (!resultWrap.PreResult?.Success ?? false))
+            return UniTask.CompletedTask;
         if (!conditionRet)
         {
-            resultWrap.Success = false;
+            if (result?.ConditionFail != null)
+            {
+                InsertAfter(new ActDoItemDesResult(this)
+                {
+                    Item = item,
+                    ResultWrap = new ResultWrap(result.ConditionFail, null)
+                });
+            }
             return UniTask.CompletedTask;
         }
         if (result?.Next != null)
@@ -83,7 +92,15 @@ public partial class PlaySpin
                 ResultWrap = new ResultWrap(result.Next, resultWrap)
             });
         }
-        if (!(resultWrap.PreResult?.Success ?? true))
+        if (result?.NextFail != null)
+        {
+            InsertAfter(new ActDoItemDesResult(this)
+            {
+                Item = item,
+                ResultWrap = new ResultWrap(result.NextFail, resultWrap, DoIfPreFail: true)
+            });
+        }
+        if(resultWrap.DoIfPreFail && (resultWrap.PreResult?.Success ?? true))
             return UniTask.CompletedTask;
         InsertAfter(result switch
         {
@@ -137,7 +154,7 @@ public partial class PlaySpin
                     ResultWrap = resultWrap
                 },
             null => [],
-            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemDesResultBase)}类型: {result?.GetType()}.")
+            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemDesResultBase)}类型: {result.GetType()}.")
         });
         return UniTask.CompletedTask;
     }
@@ -317,6 +334,8 @@ public partial class PlaySpin
                          || filterTag.ResourceTagList.Intersect(item.Config.ResourceTagList).Any()
                          || filterTag.EventTagList.Intersect(item.Config.EventTagList).Any(),
                     null => true,
+                    ItemFilterIsItemCustom itemCustom => itemCustom.ItemList.Select(i => i?.ID).Contains(item.Config.ID),
+                    ItemFilterIsItemSet itemSet => itemSet.Set?.ItemList.Select(i => i?.ID).Contains(item.Config.ID) ?? false,
                     _ => throw new InvalidOperationException(
                         $"没有匹配穷尽{nameof(ItemFilterBase)}类型: {filter1.GetType()}.")
                 }
@@ -409,6 +428,16 @@ public partial class PlaySpin
                             <= inManDis.Dis) // 同上
                     select element;
                 break;
+            case PosFilterIsEmpty:
+                source =
+                    from element in source
+                    where !BelongNode.GridPoses.Contains(getPos(element))
+                    select element;
+                break;
+            // case PosFilterIsEmptyGrid:
+            //     source =
+            //         from 
+            //     break;
             case null:
                 break;
             default:

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
-  m_Name: "Symbol_19004_\u6D4B\u8BD5\u65B0\u6807\u7B7E"
+  m_Name: "Resource_30003_\u7834\u788E\u8BB0\u5FC6"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -104,16 +104,13 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  Name: "\u6D4B\u8BD5\u65B0\u6807\u7B7E"
-  ID: 19004
-  FlavorDes: 
+  Name: "\u7834\u788E\u8BB0\u5FC6"
+  ID: 30003
+  FlavorDes: "\u6742\u788E\uFF0C\u77AC\u65F6\uFF0C\u4E0D\u53EF\u5F52\u7C7B\uFF0C\u4E0D\u53EF\u56DE\u987E\u7684\u8BB0\u5FC6\u3002"
   Rarity: 0
-  TagList: 
-  TagList2:
-  - ID: 1
-    Tag: "\u5F02\u8C61"
-  CanDrag: 1
-  ItemType: 1
+  TagList: 01000000
+  CanDrag: 0
+  ItemType: 3
   GridTagList: 
   SymbolTagList: 
   BuildingTagList: 

@@ -155,14 +155,14 @@ public class ItemPosRectangle : ItemPos
         from j in Enumerable.Range(0, Height)
         select new Vector2Int(i, j);
 }
-[PublicAPI, TypeRegistryItem("自定义")]
-public class ItemPosCustom : ItemPos
-{
-    [LabelText("相对坐标列表"), OnValueChanged(nameof(OnChanged))]public List<Vector2Int> DeltaPosList = [new(0,0)];
-    public override IEnumerable<Vector2Int> GetDeltaPos() => DeltaPosList;
-
-    void OnChanged()
-    {
-        DeltaPosList ??= [];
-    }
-}
+// [PublicAPI, TypeRegistryItem("自定义")]
+// public class ItemPosCustom : ItemPos
+// {
+//     [LabelText("相对坐标列表"), OnValueChanged(nameof(OnChanged))]public List<Vector2Int> DeltaPosList = [new(0,0)];
+//     public override IEnumerable<Vector2Int> GetDeltaPos() => DeltaPosList;
+//
+//     void OnChanged()
+//     {
+//         DeltaPosList ??= [];
+//     }
+// }

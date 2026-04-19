@@ -7,6 +7,7 @@ public abstract record IntSelectorBase;
 [TypeRegistryItem("固定数值{0}")]
 public record IntSelectorConst : IntSelectorBase
 {
+    public override string ToString() => Value.ToString();
     [LabelText("{0}: 数值")] public int Value;
 }
 [TypeRegistryItem("无限大")]

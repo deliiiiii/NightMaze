@@ -70,7 +70,7 @@ public record ItemSelectorFromResultFilterAddPropX : ItemSelectorFromResultFilte
 [TypeRegistryItem("被乘算属性了的")]
 public record ItemSelectorFromResultFilterMulPropX : ItemSelectorFromResultFilterBase;
 
-[TypeRegistryItem("从配置中选择任意")]
+[TypeRegistryItem("从配置中选择任意物体")]
 public record ItemSelectorFromConfigCustom : ItemSelectorFromConfigBase
 {
     [LabelText("物体列表")][JsonIgnore] public List<ItemConfig?> ItemList = [];
@@ -115,7 +115,7 @@ public record ItemSelectorItemFromConfigSet : ItemSelectorFromConfigBase
             return true;
         base.PrintMembers(sb);
         sb.Append($"Set =[");
-        sb.Append(string.Join(", ", Set.ItemList.Select(i => i.Name)));
+        sb.Append(string.Join(", ", Set.ItemList.Where(i => i != null).Select(i => i!.Name)));
         sb.Append("]");
         return true;
     }

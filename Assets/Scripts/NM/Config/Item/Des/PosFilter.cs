@@ -16,3 +16,8 @@ public record PosFilterIn3X3 : PosFilterBase
 {
     [SerializeReference, LabelText("{0}: 指定物体")] public ItemSelectorBase? ItemSelector = new  ItemSelectorAtPresentSelf();
 }
+
+[TypeRegistryItem("位置为空(没有地块)")]
+public record PosFilterIsEmpty : PosFilterBase;
+// [TypeRegistryItem("位置为空地块")]
+// public record PosFilterIsEmptyGrid : PosFilterBase;

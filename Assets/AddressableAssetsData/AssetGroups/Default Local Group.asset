@@ -23,6 +23,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0283e98c74998c64db862ffe23901450
+    m_Address: 10007
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMItemSprite
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 03a29c95068441249988c8ce8cf363a5
     m_Address: "Symbol_19002_\u6D4B\u8BD52\u9AD8\u4E2A\u5B50\uFF08\u667A\u8BC6\uFF09"
     m_ReadOnly: 0
@@ -55,6 +61,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2777b5247064695479916966271ecce3
     m_Address: "Symbol_10005_\u5904\u5211\u5E08"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28a8373ce96e70b478a2b799f2143712
+    m_Address: "Symbol_19004_\u6D4B\u8BD5\u6761\u4EF6\u5224\u5B9A\u5931\u8D25"
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig
@@ -95,6 +107,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51167568b45ee4f409110f5e8a515ad6
+    m_Address: 30003
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMItemSprite
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 59d9a6ff1b6f8e34e9bd4e1a0bdd2d40
     m_Address: "3_\u8D44\u6E90Tag"
     m_ReadOnly: 0
@@ -113,8 +131,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6117b554670ee284c9cc95fbcb49b670
+    m_Address: "Symbol_10008_\u5F00\u62D3\u8005"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 77b7a6a82581e2244a26e5642237167e
     m_Address: 20001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMItemSprite
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79a550d5da4bebd4cb583db76e3d39ee
+    m_Address: 10008
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMItemSprite
@@ -124,6 +154,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMItemSprite
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fbeb0b067b783f4e97c7d6c7784354c
+    m_Address: "Resource_30003_\u7834\u788E\u8BB0\u5FC6"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 80a214ecc44de0840b343ab3e3b6d447
     m_Address: "ItemSet_114514_\u6D4B\u8BD5"
@@ -168,7 +204,7 @@ MonoBehaviour:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bbbdac68bc0ee97438bcca6f512a2187
-    m_Address: "Symbol_19004_\u6D4B\u8BD5\u65B0\u6807\u7B7E"
+    m_Address: "Symbol_10007_\u57A6\u8352\u8005"
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig
