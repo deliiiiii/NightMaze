@@ -52,7 +52,7 @@ public class PlayView : ViewBase<GamePlaying>
     
     protected override IEnumerable<BindDataBase> BindList()
     {
-        yield return BtnSpin.onClick.EvtBindTo(() => new GamePlaying.EvtClickSpin().Forget());
+        yield return BtnSpin.onClick.EvtBindTo(() => new GamePlaying.EvtClickStartTurn().Forget());
         yield return BtnNextTurn.onClick.EvtBindTo(() => new GamePlaying.EvtClickNextTurn().Forget());
         yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.Name.Save.SlotFolder, Data.PlayerName, Data));
         yield return BtnExit.onClick.EvtBindTo(() => new GamePlaying.EvtClickExit().Forget());
@@ -62,10 +62,12 @@ public class PlayView : ViewBase<GamePlaying>
     {
         if (LockedPosDetail != null) 
             ShowGridDetailAtPos(LockedPosDetail.Value);
-        BtnSpin.interactable = Data.IsState<PlayIdle>();
+        BtnSpin.interactable = Data.ToDoList.FirstOrDefault() 
+            is GamePlaying.ActWaitForClickStartTurn;
         BtnNextTurn.interactable = (
-            from spin in Data.GetStateOptional<PlaySpin>()
-            select spin.CanHarvest) | false;
+            from spin in Data.GetSpinOptional()
+            select spin.IsWaitClickNextTurn) 
+            | false;
     }
 
     #region OnEvt
@@ -75,7 +77,8 @@ public class PlayView : ViewBase<GamePlaying>
         {
             Data = evt.WhoHasCt;
             Data.Items.ForEach(SpawnItem);
-            RefreshTurnAndSoOn(Data);
+            RefreshTurnAndSoOn();
+            RefreshItemEvt();
             PropValueViewList.ForEach(view => view.Refresh(Data));
             RefreshGridEdge();
             lr.SetActiveTrue();
@@ -84,10 +87,10 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "(进入Root - Playing状态时) 恢复游戏"
     };
-    void RefreshTurnAndSoOn(GamePlaying play)
+    void RefreshTurnAndSoOn()
     {
-        TxtTurnCount.text = play.TurnCount.ToString();
-        TxtLayerCount.text = play.CurLayer.ToString();
+        TxtTurnCount.text = Data.TurnCount.ToString();
+        TxtLayerCount.text = Data.CurLayer.ToString();
     }
     UniEvt<GamePlaying.EvtOnExit> OnExit => new()
     {
@@ -105,19 +108,7 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "(退出Root - Playing状态时) 隐藏界面"
     };
-    UniEvt<PlayIdle.EvtOnEnter> OnEnterIdle => new()
-    {
-        Invoke = (evt, ct) =>
-        {
-            itemViewList
-                .Where(itemView => itemView.Data.Config.IsEvent && itemView.Data.IsBuildingOrEventKanSei)
-                .ForEach(SpawnItemEvt);
-            return UniTask.CompletedTask;
-        },
-        Des = "刷新已完成事件列表"
-    };
-    
-    UniEvt<PlayIdle.EvtOnExit> OnExitIdle => new()
+    UniEvt<GamePlaying.EvtStartSpin> OnStartSpin => new()
     {
         Invoke = (evt, ct) =>
         {
@@ -125,6 +116,16 @@ public class PlayView : ViewBase<GamePlaying>
             return UniTask.CompletedTask;
         },
         Des = "清空已完成事件列表"
+    };
+    // TODO 原状态机消失...
+    UniEvt<GamePlaying.EvtEndSpin> OnEndSpin => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            RefreshItemEvt();
+            return UniTask.CompletedTask;
+        },
+        Des = "刷新已完成事件列表"
     };
 
     UniEvt<GamePlaying.EvtUnlockNextLayer> OnCurLayerChanged => new()
@@ -379,6 +380,18 @@ public class PlayView : ViewBase<GamePlaying>
     #endregion
     
     #region Add/Remove ItemEvt
+
+    void RefreshItemEvt()
+    {
+        ClearAllItemEvt();
+        if (Data.InSpin is { IsWaitClickNextTurn: true })
+        {
+            return;
+        }
+        itemViewList
+            .Where(itemView => itemView.Data.Config.IsEvent && itemView.Data.IsBuildingOrEventKanSei)
+            .ForEach(SpawnItemEvt);
+    }
     void ClearAllItemEvt()
     {
         itemEvtViewList.ForEach(itemEvtView => Destroy(itemEvtView.gameObject));
@@ -397,7 +410,7 @@ public class PlayView : ViewBase<GamePlaying>
         ItemEvtView? ins = itemEvtViewList.FirstOrDefault(s => s.BelongView.Data == item);
         if (ins == null)
         {
-            MyDebug.LogError($"没有找到物体事件 {item} 对应的View.");
+            // MyDebug.LogError($"没有找到物体事件 {item} 对应的View.");
             return;
         }
         Destroy(ins.gameObject);

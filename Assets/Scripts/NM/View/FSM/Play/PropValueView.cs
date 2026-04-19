@@ -15,7 +15,7 @@ public class PropValueView : ViewBase
     {
         TxtValue.text = play.GetProp(PropType).ToString();
         TxtLastValueDes.text = (
-            from spin in play.GetStateOptional<PlaySpin>()
+            from spin in play.GetSpinOptional()
             select $"({spin.GetDeltaPropValue(PropType).ToStringWithSymbol()})"
         ) | string.Empty;
     }

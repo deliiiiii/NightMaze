@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Linq;
+using Cysharp.Threading.Tasks;
 using General;
 using NM.Data;
 using UnityEngine;
@@ -17,15 +18,14 @@ public class ItemSprTrigger : MonoBehaviour, IMultiBeginDragHandler, IMultiDragH
         failInfo = null;
         if (eventData.button != PointerEventData.InputButton.Left)
             return false;
+        if (PlayViewIns.Data.ToDoList.FirstOrDefault() is GamePlaying.ActWaitForSpin)
+        {
+            failInfo = isBeginDrag ? $"正在结算/未收获, 不能拖动物体." : null;
+            return false;
+        }
         if (!BelongView.Data.Config.CanDrag)
         {
             failInfo = isBeginDrag ? $"物体{BelongView.Data.Config.Name}不可拖动" : null;
-            return false;
-        }
-        var inSpin = PlaySpinData.HasValue;
-        if (inSpin)
-        {
-            failInfo = isBeginDrag ? $"正在结算/未收获, 不能拖动物体." : null;
             return false;
         }
         return true;

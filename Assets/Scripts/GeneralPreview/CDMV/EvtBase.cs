@@ -171,6 +171,10 @@ public static class Bus
                 sb.Append(c);
             }
         }
+        sb.Replace("{\r\n    ", "{\r\n");
+        sb.Replace("{\r\n  ", "{\r\n");
+        sb.Replace("{\r\n ", "{\r\n");
+        sb.Replace("{\r\n\r\n}", "{}");
         return sb.ToString();
     }
 

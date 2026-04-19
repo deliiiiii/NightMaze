@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Linq;
+using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using NM.Config;
@@ -24,9 +25,9 @@ public class BuildingPreView : ViewBase,
     }
     public void OnMultiBeginDrag(PointerEventData eventData)
     {
-        if (!from play in GamePlayData select play.IsState<PlayIdle>() | false)
+        if (PlayViewIns.Data.ToDoList.FirstOrDefault() is GamePlaying.ActWaitForSpin)
         {
-            PlayViewIns.InstantInfoView.ShowAsync("?").Forget();
+            PlayViewIns.InstantInfoView.ShowAsync("正在结算/未收获, 暂不能建造.").Forget();
             return;
         }
         DraggingView.SetActiveTrue();

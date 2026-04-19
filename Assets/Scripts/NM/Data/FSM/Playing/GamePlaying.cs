@@ -17,6 +17,13 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     public GamePlaying(string playerName)
     {
         PlayerName = playerName;
+        (from x in Range(1, 8) 
+                from y in Range(1, 8)
+                select new Vector2Int(x, y))
+            .ForEach(pos => itemList.Add(new MyItem(50001, pos)));
+        toDoList = [
+            new ActWaitForClickStartTurn(this)
+        ];
     }
     [DebuggerStepThrough]public override string ToString() => nameof(GamePlaying);
     public string PlayerName { get; private set;} = "Deli";
@@ -32,6 +39,20 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     [EvtChanged] public partial long PropHostilityMax { get; private set; } = 1000;
     public const int AddHostilityPerTurn = 1;
     [JsonProperty(IsReference = false, Order = 9000)]List<MyItem> itemList = [];
+    
+    
+    [JsonProperty(Order = 9999)]List<IUniAction> toDoList = [];
+    public IEnumerable<IUniAction> ToDoList => toDoList;
+    int FindAfterId(Func<IUniAction, bool>? beforeWho = null)
+    {
+        beforeWho ??= RTrue1;
+        int beforeId = toDoList.IndexOf(toDoList.FirstOrDefault(beforeWho));
+        return beforeId;
+    }
+    void InsertAfter(IUniAction act, Func<IUniAction, bool>? afterWho = null) => 
+        toDoList.Insert(FindAfterId(afterWho) + 1, act);
+    void InsertAfter(IEnumerable<IUniAction> actList, Func<IUniAction, bool>? afterWho = null) => 
+        toDoList.InsertRange(FindAfterId(afterWho) + 1, actList);
     
     public long GetProp(EPropType propType)
         => propType switch
@@ -120,60 +141,27 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
             return false;
         return true;
     }
-
-    protected override void OnCreateFreshData()
-    {
-        (from x in Range(1, 8) 
-            from y in Range(1, 8)
-            select new Vector2Int(x, y))
-            .ForEach(pos => itemList.Add(new MyItem(50001, pos)));
-        // EmptyGrids
-        //     .ToList()
-        //     .Take(5)
-        //     .ForEach(grid => AddEttCom<EttSymbol, Symbol> (new Symbol(EttSymbol.Create(), 1, grid.PivotPos)));
-        
-        // EmptyGrids
-        //     .ToList()
-        //     .Take(2)
-        //     .ForEach(grid => itemList.Add(new MyItem(1111, grid.PivotPos)));
-        
-        // EmptyGrids
-        //     .ToList()
-        //     .Take(5)
-        //     .ForEach(grid => itemList.Add(new MyItem(1, grid.PivotPos)));
-        
-        state = new PlayIdle();
-    }
-    
-    protected override async UniTask OnLaunchCom(bool isThisFromLoad)
+    protected override UniTask OnLaunchCom(bool isThisFromLoad)
     {
         TechTreeData.OnLoad();
-        await state!.OnCreateAsync(isThisFromLoad);
+        StartTodo().Forget();
+        return UniTask.CompletedTask;
     }
-    protected override void OnReleaseCom()
+    async UniTask StartTodo()
     {
-        state?.OnRemove();
+        while (toDoList.Any())
+        {
+            var first = toDoList[0];
+            await first;
+            toDoList.Remove(first);
+        }
     }
     protected override void OnSelfTick(float dt)
     {
         base.OnSelfTick(dt);
         PlayTime += dt;
     }
-    #region state
-    [JsonProperty(Order = 10000)]
-    Node? state;
-    UniTask ChangeStateAsync<T>(T node, bool isNewFromLoad) where T : PlayStateBase<T>
-        => _ChangeAsync(ref state, node, isNewFromLoad);
-    public MyOption<T> GetStateOptional<T>() where T : PlayStateBase<T>
-        => state is T s ? s : None;
-    public bool IsState<T>() where T : PlayStateBase<T>
-        => state is T;
-    #endregion
-    
-    #region Tech
-
+    [JsonProperty(Order = 10000)] public PlaySpin? InSpin;
+    public MyOption<PlaySpin> GetSpinOptional() => InSpin != null ? InSpin : None;
     public TechTreeData TechTreeData = new();
-    #endregion
 }
-
-public abstract class PlayStateBase<T> : Node<GamePlaying, T> where T : PlayStateBase<T>;

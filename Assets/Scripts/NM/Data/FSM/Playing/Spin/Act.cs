@@ -8,7 +8,7 @@ using Sirenix.Utilities;
 
 namespace NM.Data;
 [ActContainer]
-public partial class PlaySpin
+public partial class PlaySpin : IHasCt
 {
     [Obsolete("第1轮, 某物体执行 ALL 词条")][MuteActEvt]
     async UniTask CheckItemAsync(GamePlaying.MyItem item, CancellationToken ct)
@@ -508,6 +508,5 @@ public partial class PlaySpin
     async UniTask WaitForClickNextTurnAsync(CancellationToken ct)
     {
         await Bus.WaitForAsync<GamePlaying.EvtClickNextTurn>("点击下一回合按钮", ct);
-        new GamePlaying.ActEnterNextTurnAndIdle(BelongNode).Forget();
     }
 }

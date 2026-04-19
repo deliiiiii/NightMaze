@@ -69,15 +69,16 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     /// 仅为了通知UI.
     public record EvtOnExit : EvtForgetBase;
     public record EvtOnTick(TThis Self, float Dt) : EvtForgetBase;
-    [DebuggerStepThrough]
-    public abstract record UniAction(TThis Self) : IUniAction
-    {
-        protected readonly TThis Self = Self;
-        protected abstract UniTask InvokeAsync();
-        public UniTask.Awaiter GetAwaiter() 
-            => Self.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : InvokeAsync().GetAwaiter();
-        public void Forget() => InvokeAsync().Forget();
-    }
+}
+[DebuggerStepThrough]
+public abstract record UniAction<TThis>(TThis Self) : IUniAction
+    where TThis : IHasCt
+{
+    [JsonProperty] protected TThis Self = Self;
+    protected abstract UniTask InvokeAsync();
+    public UniTask.Awaiter GetAwaiter() 
+        => Self.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : InvokeAsync().GetAwaiter();
+    public void Forget() => InvokeAsync().Forget();
 }
 public interface IUniAction : ICanAwait;
 [DebuggerStepThrough]

@@ -25,7 +25,7 @@ public class ViewStatic : Singleton<ViewStatic>
         select play;
     public static MyOption<PlaySpin> PlaySpinData =>
         from play in GamePlayData
-        from spin in play.GetStateOptional<PlaySpin>()
+        from spin in play.GetSpinOptional()
         select spin;
 
     public static void BindAll(CancellationToken ct)
