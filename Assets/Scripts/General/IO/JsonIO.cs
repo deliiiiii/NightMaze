@@ -168,13 +168,15 @@ namespace General
                 }
                 else
                 {
-                    MyDebug.LogError($"类型{objType} 反序列化出现未知错误.");
+                    MyDebug.LogError($"类型{objType} 反序列化出现未知错误.{args.ErrorContext.Error.Message}");
                 }
                 args.ErrorContext.Handled = true;
             },
         };
         public static async UniTask WriteAsync<T>(string pathPre, string name, T obj)
         {
+            string str = JsonConvert.SerializeObject(obj, settings);
+            str = refRegex.Replace(str, "{ \"$ref\": \"$1\" }");
             await UniTask.SwitchToThreadPool();
             //Debug.Log("write"+curEntity);
             string path = pathPre +"/" + name + ".json";
@@ -183,8 +185,6 @@ namespace General
                 Directory.CreateDirectory(pathPre);
             }
             // string str = JsonUtility.ToJson(curEntity, true);
-            string str = JsonConvert.SerializeObject(obj, settings);
-            str = refRegex.Replace(str, "{ \"$ref\": \"$1\" }");
             await File.WriteAllTextAsync(path, str);
             await UniTask.SwitchToMainThread();
         }

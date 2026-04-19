@@ -24,7 +24,7 @@ public class LenGrid : MonoBehaviour
             {
                 Id = itemConfig.ID,
                 Pos = curMos,
-                ResultWrap = null
+                ResultWrap = new ResultWrap(null, null),
             }.Forget();
         });
     }
@@ -50,7 +50,7 @@ public class LenGrid : MonoBehaviour
                     new GamePlaying.ActRemoveItem(some)
                     {
                         ToRemove = toRemove,
-                        ResultWrap = null
+                        ResultWrap = new ResultWrap(null, null),
                     }.Forget();
                 });
         });

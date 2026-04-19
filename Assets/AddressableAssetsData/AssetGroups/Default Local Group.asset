@@ -83,6 +83,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ac43ee9c051c414ebc77b134b3f40c0
+    m_Address: 50002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMItemSprite
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 50c80d0131f8a9d4abcd8860d686d3dc
     m_Address: "0_\u7269\u4F53Tag"
     m_ReadOnly: 0
@@ -149,6 +155,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6937849826c7774e9a3072f9afccc7f
+    m_Address: 50001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMItemSprite
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b755cb4638e77384f9abec63ee38bc84
     m_Address: "Symbol_10002_\u5453\u8BED\u8005"
     m_ReadOnly: 0
@@ -187,6 +199,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3b0d78a595c591498afbf46df09979d
     m_Address: "Building_20001_\u65E7\u65E5\u7834\u8BD1\u7EC8\u7AEF"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f51aa7c1cc7faa94db000c5964f24760
+    m_Address: "Grid_50002_\u6025\u5207\u5757"
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig

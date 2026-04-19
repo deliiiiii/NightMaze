@@ -367,13 +367,14 @@ public class PlayView : ViewBase<GamePlaying>
             MyDebug.LogError($"没有找到物体 {item} 对应的View.");
             return;
         }
-        if(item.Config.IsGrid)
-            RefreshGridEdge();
         if(item.Config.IsEvent)
             RemoveItemEvt(item);
         
         Destroy(ins.gameObject);
         itemViewList.Remove(ins);
+        
+        if(item.Config.IsGrid)
+            RefreshGridEdge();
     }
     #endregion
     

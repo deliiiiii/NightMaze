@@ -69,13 +69,13 @@ public partial class PlaySpin
         if (!BelongNode.Items.Contains(item))
             return UniTask.CompletedTask;
         var result = resultWrap.Result;
-        var conditionRet = ResolveCondition(item, result.Condition, resultWrap);
+        var conditionRet = ResolveCondition(item, result?.Condition, resultWrap);
         if (!conditionRet)
         {
             resultWrap.Success = false;
             return UniTask.CompletedTask;
         }
-        if (result.Next != null)
+        if (result?.Next != null)
         {
             InsertAfter(new ActDoItemDesResult(this)
             {
@@ -136,7 +136,8 @@ public partial class PlaySpin
                     Id = toSpawn.Config.ID,
                     ResultWrap = resultWrap
                 },
-            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemDesResultBase)}类型: {result.GetType()}.")
+            null => [],
+            _ => throw new InvalidOperationException($"没有匹配穷尽{nameof(ItemDesResultBase)}类型: {result?.GetType()}.")
         });
         return UniTask.CompletedTask;
     }

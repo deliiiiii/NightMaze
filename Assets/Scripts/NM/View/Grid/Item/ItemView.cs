@@ -38,6 +38,7 @@ public class ItemView : ViewBase<GamePlaying.MyItem>
             EItemType.Grid => Const.SortingLayer.GridBack,
             _ => throw new ArgumentOutOfRangeException()
         });
+        gridSr.sprite = ItemResLoader.Acquire(Data.Config.ID);
         gridSr.gameObject.SetActive(Data.Config.IsGrid);
         
         boxCollider2D.offset = Data.Config.Pos switch

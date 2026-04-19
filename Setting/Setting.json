@@ -2,6 +2,7 @@
   "$id": "1",
   "MouseScrollMapSpeed": 0.2,
   "SpinTweenSpeed": {
-    "$type": "NM.Data.SettingData+SpinTweenSpeedImmediate, NM.Data"
+    "$type": "NM.Data.SettingData+SpinTweenSpeedNormal, NM.Data",
+    "Value": 4
   }
 }

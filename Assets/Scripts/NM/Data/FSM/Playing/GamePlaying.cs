@@ -91,7 +91,24 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
                 item.CoveredPosList.All(pos => GridPoses.Contains(pos)) &&
                 item.CoveredPosList.All(pos => !NotGridBuildingOrEvtPoses.Contains(pos))
         };
-    
+
+    public IEnumerable<MyItem> GetToRemove(MyItem firstRemove)
+    {
+        if (!itemList.Contains(firstRemove))
+            return [];
+        if (!firstRemove.Config.IsGrid)
+            return [firstRemove];
+        // 如果删除地块，则删去其上面所有的其他物体
+        return
+        [
+            firstRemove, ..
+            from onGridItem in itemList
+            where onGridItem != firstRemove 
+                  && onGridItem.CoveredPosList.Intersect(firstRemove.CoveredPosList).Any()
+            select onGridItem
+        ];
+    }
+
     public bool SatisfyBuildingRun(MyItem item)
     {
         // if (!item.Config.IsBuilding)
@@ -113,7 +130,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         // EmptyGrids
         //     .ToList()
         //     .Take(5)
-        //     .ForEach(grid => AddEttCom<EttSymbol, Symbol>(new Symbol(EttSymbol.Create(), 1, grid.PivotPos)));
+        //     .ForEach(grid => AddEttCom<EttSymbol, Symbol> (new Symbol(EttSymbol.Create(), 1, grid.PivotPos)));
         
         // EmptyGrids
         //     .ToList()

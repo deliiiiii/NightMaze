@@ -6,31 +6,31 @@ using NM.Config;
 
 namespace NM.Data;
 
-public record ResultWrap(ItemDesResultBase Result, ResultWrap? PreResult)
+public record ResultWrap(ItemDesResultBase? Result, ResultWrap? PreResult)
 {
-    public readonly ItemDesResultBase Result = Result;
+    public readonly ItemDesResultBase? Result = Result;
     public bool Success;
-    [JsonIgnore] bool hasNext;
+    // [JsonIgnore] bool hasNext;
     public readonly ResultWrap? PreResult = PreResult;
     public readonly List<ResultItemWrap> ItemWraps = [];
     public readonly List<ResultPosWrap> PosWraps = [];
-
+    
     protected virtual bool PrintMembers(StringBuilder sb)
     {
-        sb.Append($"Result = {Result.GetType()}, ");
+        sb.Append($"Result = {Result?.GetType().ToString() ?? string.Empty}, ");
         if (PreResult != null)
         {
-            PreResult.hasNext = true;
+            // PreResult.hasNext = true;
             var preSb = new StringBuilder();
             PreResult.PrintMembers(preSb);
             sb.Append($"PreResult = {{ {preSb} }}, ");
         }
-        if (hasNext)
-        {
+        // if (hasNext)
+        // {
             sb.Append($"Success = {Success}, ");
             sb.Append($"ItemWraps = [{string.Join(", ", ItemWraps.Select(w => w))}], ");
             sb.Append($"PosWraps = [{string.Join(", ", PosWraps.Select(w => w))}]");
-        }
+        // }
         return true;
     }
 }
@@ -60,7 +60,7 @@ public record ResultItemWrap(GamePlaying.MyItem Item)
     protected virtual bool PrintMembers(StringBuilder sb)
     {
         sb.Append($"Item = {Item}, ");
-        sb.Append($"CtxList = [{string.Join(", ", CtxList.Select(c => c.GetType()))}], ");
+        sb.Append($"CtxList = [{string.Join(", ", CtxList.Select(c => c.GetType()))}]");
         return true;
     }
 }
@@ -73,7 +73,7 @@ public record ResultPosWrap(Vector2Int Pos)
     protected virtual bool PrintMembers(StringBuilder sb)
     {
         sb.Append($"Pos = {Pos}, ");
-        sb.Append($"CtxList = [{string.Join(", ", CtxList.Select(c => c.GetType()))}], ");
+        sb.Append($"CtxList = [{string.Join(", ", CtxList.Select(c => c.GetType()))}]");
         return true;
     }
 }

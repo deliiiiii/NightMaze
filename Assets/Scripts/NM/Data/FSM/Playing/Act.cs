@@ -82,14 +82,18 @@ public partial class GamePlaying
     [Obsolete("移除某物体")]
     UniTask RemoveItemAsync(MyItem toRemove, ResultWrap? resultWrap, CancellationToken ct)
     {
-        if (itemList.Remove(toRemove))
+        var toRemoves = GetToRemove(toRemove);
+        toRemoves.ToList().ForEach(trueToRemove =>
         {
-            resultWrap?.Success = true;
-            resultWrap?.ItemWraps.Add(new ResultItemWrap(toRemove)
+            if (itemList.Remove(trueToRemove))
             {
-                CtxList = [new ResultItemWrap.CtxRemoved()]
-            });
-        }
+                resultWrap?.Success = true;
+                resultWrap?.ItemWraps.Add(new ResultItemWrap(trueToRemove)
+                {
+                    CtxList = [new ResultItemWrap.CtxRemoved()]
+                });
+            }
+        });
         return UniTask.CompletedTask;
     }
 

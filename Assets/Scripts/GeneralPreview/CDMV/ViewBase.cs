@@ -11,7 +11,7 @@ public abstract class ViewBase : SerializedMonoBehaviour
 {
     protected virtual IEnumerable<BindDataBase> BindList() => [];
     bool bind;
-    CancellationTokenSource manualCts;
+    CancellationTokenSource manualCts = new();
 
     public void Bind(CancellationToken? ct = null)
     {

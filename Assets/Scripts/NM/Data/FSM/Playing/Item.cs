@@ -12,7 +12,7 @@ namespace NM.Data;
 public partial class GamePlaying
 {
     [DebuggerStepThrough]
-    public partial class MyItem
+    public partial record MyItem
     {
         [JsonConstructor] MyItem()
         {
@@ -67,19 +67,18 @@ public partial class GamePlaying
         public bool IsBuildingOrEventKanSei =>
             Config.IsBuildingOrEvent && Config.BuildPropValueList.All(pair =>
                 BuildingOrEventProgress.TryGetValue(pair.Key, out var progress) && progress >= pair.Value);
-        public override string ToString()
+        protected virtual bool PrintMembers(StringBuilder sb)
         {
-            StringBuilder builder = new();
-            builder.Append($"Name = {Config.Name}, ");
-            builder.Append($"Config = {Config}, ");
-            builder.Append($"PivotPos = {PivotPos}, ");
-            builder.Append($"DeltaPosList = [{string.Join("|", DeltaPosList)}],");
+            sb.Append($"Name = {Config.Name}, ");
+            sb.Append($"Config = {Config}, ");
+            sb.Append($"PivotPos = {PivotPos}, ");
+            sb.Append($"DeltaPosList = [{string.Join("|", DeltaPosList)}],");
             if (inSpin != null)
             {
-                builder.Append($"ModifyPropList = [{string.Join("| ", inSpin.ModifyPropList)}]");
-                builder.Append($"DistributePropList = [{string.Join("| ", inSpin.DistributePropList)}]");
+                sb.Append($"ModifyPropList = [{string.Join("| ", inSpin.ModifyPropList)}]");
+                sb.Append($"DistributePropList = [{string.Join("| ", inSpin.DistributePropList)}]");
             }
-            return builder.ToString();
+            return true;
         }
         
         PlaySpin.MyItem? inSpin;

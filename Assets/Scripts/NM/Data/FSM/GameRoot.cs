@@ -56,6 +56,7 @@ public partial class GameRoot : Node<GameRoot>
                     data = new TechTreeData();
                 }
                 data.OnLoad();
+                // 每次读取后，都更新科技树的存档.
                 Saver.SaveAsync(Const.Name.Save.SettingFolder, Const.Name.Save.TechTreeName, data).Forget();
                 field = data;
             }
