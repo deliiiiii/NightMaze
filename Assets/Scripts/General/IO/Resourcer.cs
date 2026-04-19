@@ -53,9 +53,11 @@ namespace General
                 Addressables.Release(kvp.Value);
             assetHandleCache.Clear();
             labelLocationsCache.Clear();
+            OnBeforeReloadEditorResource?.Invoke(CancellationToken.None).Forget();
             OnReloadEditorResource?.Invoke(CancellationToken.None).Forget();
             MyDebug.Log("<color=green>[Resourcer] 缓存已清空并重载目录，下次读取将拿取最新资源。</color>");
         }
+        public static event Func<CancellationToken, UniTask>? OnBeforeReloadEditorResource;
         public static event Func<CancellationToken, UniTask>? OnReloadEditorResource;
 #endif
             

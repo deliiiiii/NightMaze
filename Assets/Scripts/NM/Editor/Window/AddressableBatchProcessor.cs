@@ -25,13 +25,6 @@ internal class AddressableBatchProcessor : EditorWindow
     {
         GetWindow<AddressableBatchProcessor>("Addressable Tool");
     }
-
-    public static void ShowWindowWithArg(AddressableBatchConfig config)
-    {
-        var window = GetWindow<AddressableBatchProcessor>("Addressable Tool");
-        window.config = config;
-    }
-
     void OnEnable()
     {
         IUniEvt.BindAll(this, CancellationToken.None);
@@ -197,6 +190,16 @@ internal class AddressableBatchProcessor : EditorWindow
     static void RegisterPlayModeStateChanged()
     {
         AutoApplyConfig();
+    }
+
+    [InitializeOnLoadMethod]
+    static void SubscribeToResourcer()
+    {
+        Resourcer.OnReloadEditorResource += _ =>
+        {
+            AutoApplyConfig();
+            return Cysharp.Threading.Tasks.UniTask.CompletedTask;
+        };
     }
     
     static void AutoApplyConfig()

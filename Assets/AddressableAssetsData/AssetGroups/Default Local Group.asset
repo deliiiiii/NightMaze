@@ -107,6 +107,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77b7a6a82581e2244a26e5642237167e
+    m_Address: 20001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMItemSprite
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7f34aa68eb088d746a27b7b16417a193
     m_Address: 19002
     m_ReadOnly: 0
@@ -172,6 +178,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8f8c19a06ec08541b148816a4d0092d
+    m_Address: 20002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMItemSprite
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3b0d78a595c591498afbf46df09979d
     m_Address: "Building_20001_\u65E7\u65E5\u7834\u8BD1\u7EC8\u7AEF"

@@ -7,7 +7,7 @@ public class TechNodeConfig
 {
     public required int ID;
     public required string Name;
-    [ReadOnly] public required Vector2 Pos;
-    public List<ItemConfig?>? ToUnLockItems = [];
-    public Dictionary<EPropType, long>? RequireDic = [];
+    [LabelText("位置"), ReadOnly] public required Vector2 Pos;
+    [LabelText("解锁物体")]public List<ItemConfig?>? ToUnLockItems = [];
+    [LabelText("属性需求")]public Dictionary<EPropType, long>? RequireDic = [];
 }
