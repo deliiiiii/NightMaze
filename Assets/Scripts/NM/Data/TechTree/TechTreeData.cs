@@ -4,7 +4,6 @@ using GeneralPreview;
 using Newtonsoft.Json;
 using NM.Config;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace NM.Data;
 [Serializable]
@@ -53,7 +52,7 @@ public partial class TechTreeData
         return[..
             from kvp in distanceDict
             where !kvp.Key.Unlocked
-            orderby kvp.Key.Config.Pos.y descending, kvp.Key.Config.Pos.x
+            orderby kvp.Value descending, kvp.Key.Config.Pos.y descending, kvp.Key.Config.Pos.x
             group kvp by kvp.Value into g
             select (Distance: g.Key, Nodes: g.Select(kvp => kvp.Key).ToList())];
     }
