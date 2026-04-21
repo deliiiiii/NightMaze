@@ -48,15 +48,20 @@ public class PlayView : ViewBase<GamePlaying>
     [Header("下")]
     public Btn BtnSpin;
     public Btn BtnNextTurn;
+    public Btn BtnTechTree;
+    public TechTreeView TechTreeView;
     
     
     protected override IEnumerable<BindDataBase> BindList()
     {
-        yield return BtnSpin.onClick.EvtBindTo(() => new GamePlaying.EvtClickStartTurn().Forget());
-        yield return BtnNextTurn.onClick.EvtBindTo(() => new GamePlaying.EvtClickNextTurn().Forget());
         yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.Name.Save.SlotFolder, Data.PlayerName, Data));
         yield return BtnExit.onClick.EvtBindTo(() => new GamePlaying.EvtClickExit().Forget());
         yield return BtnSetting.onClick.EvtBindTo(() => SettingViewIns.SetActiveTrue());
+        
+        yield return BtnSpin.onClick.EvtBindTo(() => new GamePlaying.EvtClickStartTurn().Forget());
+        yield return BtnNextTurn.onClick.EvtBindTo(() => new GamePlaying.EvtClickNextTurn().Forget());
+        
+        yield return BtnTechTree.onClick.EvtBindTo(() => TechTreeView.LoadFromConfigRT());
     }
     void Update()
     {
@@ -258,7 +263,8 @@ public class PlayView : ViewBase<GamePlaying>
                     let itemInSpin = item[spin]
                     from distributeProp in itemInSpin.DistributePropList
                     orderby distributeProp.Value
-                    select $"->{distributeProp.ToItem?.Config.Name ?? "YOU"}{distributeProp.PropType.GetLabelText()}{distributeProp.Value.ToStringWithSymbol()}"
+                    select $"->{(distributeProp.ToTech
+                        ? "TECH" : distributeProp.ToItem?.Config.Name ?? "YOU")}{distributeProp.PropType.GetLabelText()}{distributeProp.Value.ToStringWithSymbol()}"
                 ]
             }
         ];

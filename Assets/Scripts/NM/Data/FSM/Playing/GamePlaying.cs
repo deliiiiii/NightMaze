@@ -141,6 +141,23 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
             return false;
         return true;
     }
+    public CurTechInfo? GetCurTechInfo()
+    {
+        var curNodes = TechTreeData.GetCurNodesGroupByDis();
+        if (!curNodes.Any())
+            return null;
+        var curNode = curNodes.First().Nodes.First();
+        var nodeConfig = curNode.Config;
+        if (nodeConfig.RequireDic == null)
+            return null;
+        return new CurTechInfo
+        {
+            Node = curNode,
+            TarDic = nodeConfig.RequireDic.ToDictionary(kvp => kvp.Key, kvp => kvp.Value),
+            CurDic = curNode.CarValueDic
+        };
+    }
+    
     protected override UniTask OnLaunchCom(bool isThisFromLoad)
     {
         TechTreeData.OnLoad();
@@ -164,4 +181,11 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     [JsonProperty(Order = 10000)] public PlaySpin? InSpin;
     public MyOption<PlaySpin> GetSpinOptional() => InSpin != null ? InSpin : None;
     public TechTreeData TechTreeData = new();
+}
+
+public struct CurTechInfo
+{
+    public TechNodeData Node;
+    public Dictionary<EPropType, long> TarDic;
+    public Dictionary<EPropType, long> CurDic;
 }

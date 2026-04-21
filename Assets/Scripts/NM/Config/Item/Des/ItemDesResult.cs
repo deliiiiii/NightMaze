@@ -7,8 +7,8 @@ namespace NM.Config;
 public abstract record ItemDesResultBase
 {
     [SerializeReference, LabelText("若满足条件", SdfIconType.Question, IconColor = "green")] public ItemDesConditionBase? Condition;
-    [SerializeReference, LabelText("条件满足后执行", SdfIconType.ArrowRight, IconColor = "green"), PropertyOrder(9997)] public ItemDesResultBase? Next;
-    [SerializeReference, LabelText("条件不满足时执行", SdfIconType.ArrowRight, IconColor = "red"), PropertyOrder(9998)] public ItemDesResultBase? ConditionFail;
+    [SerializeReference, LabelText("条件不满足时执行", SdfIconType.ArrowRight, IconColor = "red"), PropertyOrder(9997)] public ItemDesResultBase? ConditionFail;
+    [SerializeReference, LabelText("条件满足, 执行成功后执行", SdfIconType.ArrowRight, IconColor = "green"), PropertyOrder(9998)] public ItemDesResultBase? Next;
     [SerializeReference, LabelText("条件满足, 执行失败后执行", SdfIconType.ArrowRight, IconColor = "red"), PropertyOrder(9999)] public ItemDesResultBase? NextFail;
 }
 [TypeRegistryItem("使物体{0}的属性{1}加算{2}")][DebuggerStepThrough]
@@ -60,4 +60,7 @@ public record ItemDesResultAddItemDesToSelf : ItemDesResultBase
 {
     [SerializeReference, LabelText("{0} 指定目标物体")] public ItemSelectorBase? ItemSelector = new ItemSelectorFromResult();
 }
+
+[TypeRegistryItem("消耗建筑中的棋子的产能，用于科技树研究", "独特")][DebuggerStepThrough] 
+public record ItemDesResultToTech : ItemDesResultBase;
 #endregion

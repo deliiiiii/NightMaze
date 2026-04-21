@@ -59,7 +59,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: BuildPropValueList
+    - Name: RunPropValueList
       Entry: 7
       Data: 3|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
         mscorlib]], mscorlib
@@ -77,7 +77,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 4
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -87,9 +87,22 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: RunPropValueList
+    - Name: EvtDesResultList
       Entry: 7
-      Data: 4|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+      Data: 4|System.Collections.Generic.List`1[[NM.Config.EvtDesResultBase, NM.Config]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: BuildPropValueList
+      Entry: 7
+      Data: 5|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
@@ -105,7 +118,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 20
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -143,7 +156,11 @@ MonoBehaviour:
       data:
         Condition:
           rid: -2
+        ConditionFail:
+          rid: -2
         Next:
+          rid: -2
+        NextFail:
           rid: -2
         ItemSelector:
           rid: 6212121176462065731

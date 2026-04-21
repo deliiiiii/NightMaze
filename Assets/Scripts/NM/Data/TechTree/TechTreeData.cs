@@ -3,20 +3,62 @@ using System.Collections.Generic;
 using GeneralPreview;
 using Newtonsoft.Json;
 using NM.Config;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace NM.Data;
 [Serializable]
-public class TechTreeData
+public partial class TechTreeData
 {
     public static TechTreeConfig Config => field ??= ConfigLoader.Acquire<TechTreeConfig>();
 
     [JsonProperty(IsReference = false, ItemIsReference = false)]
     public List<TechNodeData> NodeList = [];
+    [JsonProperty, ShowInInspector, EvtChanged] public partial int? CurID { get; set; }
     public bool IsItemLocked(ItemConfig itemConfig)
         => NodeList.Any(node => !node.Unlocked &&
             (Config.NodeList.FirstOrDefault(n => n.ID == node.ID)
                 ?.ToUnLockItems?.Contains(itemConfig) 
                 ?? true));
+    public List<(int Distance, List<TechNodeData> Nodes)> GetCurNodesGroupByDis()
+    {
+        if (!CurID.HasValue) 
+            return [];
+        var startNode = NodeList
+            .FirstOrDefault(n => n.ID == CurID.Value);
+        if (startNode == null) 
+            return [];
+        var lineConfigs = Config.LineList;
+        Dictionary<TechNodeData, int> distanceDict = new()
+        {
+            [startNode] = 0  
+        };
+        Queue<(TechNodeData Node, int Distance)> queue = [];
+        queue.Enqueue((startNode, 0));
+        while (queue.Count > 0)
+        {
+            var (currentNode, currentDist) = queue.Dequeue();
+            var predecessorIDs = lineConfigs
+                .Where(l => l.RightNodeID == currentNode.ID)
+                .Select(l => l.LeftNodeID);
+            foreach (var predID in predecessorIDs)
+            {
+                var predNode = NodeList.FirstOrDefault(n => n.ID == predID);
+                if (predNode == null) 
+                    continue;
+                if (distanceDict.TryAdd(predNode, currentDist + 1))
+                    queue.Enqueue((predNode, currentDist + 1));
+            }
+        }
+        return[..
+            from kvp in distanceDict
+            where !kvp.Key.Unlocked
+            group kvp by kvp.Value into g
+            orderby g.Key descending
+            select (Distance: g.Key, Nodes: g.Select(kvp => kvp.Key).ToList())];
+    }
+    
+    
 
     public void OnLoad()
     {
@@ -34,18 +76,17 @@ public class TechTreeData
 [Serializable]
 public class TechNodeData
 {
-    [JsonConstructor] TechNodeData() {}
+    [JsonConstructor] TechNodeData() {CarValueDic = [];}
     public TechNodeData(TechNodeConfig config) 
     {
         ID = config.ID;
         Config = config;
+        CarValueDic = EPropType.GetValues().ToDictionary(propType => propType, _ => 0L);
     }
     public int ID;
-    public TechNodeConfig Config => field ??= TechTreeData.Config.NodeList.First(c => c.ID == ID);
-    [JsonProperty(IsReference = false, ItemIsReference = false)]
-    public Dictionary<EPropType, long> CarValueDic = 
-        EPropType.GetValues().ToDictionary(propType => propType, _ => 0L);
-    
-    public bool Unlocked => Config.RequireDic.All(line => 
-        line.Value >= CarValueDic.GetValueOrDefault(line.Key, 0));
+    [JsonProperty(IsReference = false, ItemIsReference = false)] public Dictionary<EPropType, long> CarValueDic;
+    [field: JsonIgnore]public TechNodeConfig Config => field ??= TechTreeData.Config.NodeList.First(c => c.ID == ID);
+
+    public bool Unlocked => Config.RequireDic?.All(line =>
+        line.Value <= CarValueDic.GetValueOrDefault(line.Key, 0)) ?? true;
 }

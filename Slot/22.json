@@ -17,7 +17,47 @@
     "$id": "4",
     "NodeList": [
       {
-        "ID": 27,
+        "ID": 20,
+        "CarValueDic": {
+          "Prop1": 0,
+          "Prop2": 40,
+          "Prop3": 0,
+          "PropA1": 0,
+          "PropA2": 0
+        }
+      },
+      {
+        "ID": 110,
+        "CarValueDic": {
+          "Prop1": 0,
+          "Prop2": 80,
+          "Prop3": 0,
+          "PropA1": 0,
+          "PropA2": 0
+        }
+      },
+      {
+        "ID": 120,
+        "CarValueDic": {
+          "Prop1": 0,
+          "Prop2": 40,
+          "Prop3": 0,
+          "PropA1": 0,
+          "PropA2": 0
+        }
+      },
+      {
+        "ID": 10,
+        "CarValueDic": {
+          "Prop1": 0,
+          "Prop2": 40,
+          "Prop3": 0,
+          "PropA1": 0,
+          "PropA2": 0
+        }
+      },
+      {
+        "ID": 210,
         "CarValueDic": {
           "Prop1": 0,
           "Prop2": 0,
@@ -27,47 +67,28 @@
         }
       },
       {
-        "ID": 130,
+        "ID": 220,
         "CarValueDic": {
           "Prop1": 0,
-          "Prop2": 0,
-          "Prop3": 0,
-          "PropA1": 0,
-          "PropA2": 0
-        }
-      },
-      {
-        "ID": 140,
-        "CarValueDic": {
-          "Prop1": 0,
-          "Prop2": 0,
-          "Prop3": 0,
-          "PropA1": 0,
-          "PropA2": 0
-        }
-      },
-      {
-        "ID": 113,
-        "CarValueDic": {
-          "Prop1": 0,
-          "Prop2": 0,
+          "Prop2": 40,
           "Prop3": 0,
           "PropA1": 0,
           "PropA2": 0
         }
       }
-    ]
+    ],
+    "CurID": 210
   },
   "PlayerName": "22",
-  "PlayTime": 4783.9905351330526,
-  "TurnCount": 11,
+  "PlayTime": 5551.496143553406,
+  "TurnCount": 37,
   "CurLayer": 2,
-  "PropBody": 6,
-  "PropSans": 3500,
-  "PropLore": 0,
-  "PropLoyalty": 6,
+  "PropBody": 20,
+  "PropSans": 11129,
+  "PropLore": 146,
+  "PropLoyalty": 30,
   "PropLoyaltyMax": 1000,
-  "PropHostility": 1,
+  "PropHostility": 26,
   "PropHostilityMax": 1000,
   "itemList": [
     {
@@ -86,24 +107,14 @@
       },
       "inSpin": {
         "$id": "8",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "5" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "9",
-          "$values": [
-            {
-              "$id": "10",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "10",
+          "$values": []
         }
       }
     },
@@ -123,24 +134,14 @@
       },
       "inSpin": {
         "$id": "14",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "11" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "15",
-          "$values": [
-            {
-              "$id": "16",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "16",
+          "$values": []
         }
       }
     },
@@ -160,24 +161,14 @@
       },
       "inSpin": {
         "$id": "20",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "17" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "21",
-          "$values": [
-            {
-              "$id": "22",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "22",
+          "$values": []
         }
       }
     },
@@ -197,24 +188,14 @@
       },
       "inSpin": {
         "$id": "26",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "23" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "27",
-          "$values": [
-            {
-              "$id": "28",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "28",
+          "$values": []
         }
       }
     },
@@ -234,24 +215,14 @@
       },
       "inSpin": {
         "$id": "32",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "29" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "33",
-          "$values": [
-            {
-              "$id": "34",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "34",
+          "$values": []
         }
       }
     },
@@ -271,24 +242,14 @@
       },
       "inSpin": {
         "$id": "38",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "35" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "39",
-          "$values": [
-            {
-              "$id": "40",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "40",
+          "$values": []
         }
       }
     },
@@ -308,24 +269,14 @@
       },
       "inSpin": {
         "$id": "44",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "41" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "45",
-          "$values": [
-            {
-              "$id": "46",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "46",
+          "$values": []
         }
       }
     },
@@ -345,24 +296,14 @@
       },
       "inSpin": {
         "$id": "50",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "47" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "51",
-          "$values": [
-            {
-              "$id": "52",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "52",
+          "$values": []
         }
       }
     },
@@ -382,24 +323,14 @@
       },
       "inSpin": {
         "$id": "56",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "53" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "57",
-          "$values": [
-            {
-              "$id": "58",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "58",
+          "$values": []
         }
       }
     },
@@ -419,24 +350,14 @@
       },
       "inSpin": {
         "$id": "62",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "59" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "63",
-          "$values": [
-            {
-              "$id": "64",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "64",
+          "$values": []
         }
       }
     },
@@ -456,24 +377,14 @@
       },
       "inSpin": {
         "$id": "68",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "65" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "69",
-          "$values": [
-            {
-              "$id": "70",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "70",
+          "$values": []
         }
       }
     },
@@ -493,24 +404,14 @@
       },
       "inSpin": {
         "$id": "74",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "71" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "75",
-          "$values": [
-            {
-              "$id": "76",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "76",
+          "$values": []
         }
       }
     },
@@ -530,24 +431,14 @@
       },
       "inSpin": {
         "$id": "80",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "77" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "81",
-          "$values": [
-            {
-              "$id": "82",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "82",
+          "$values": []
         }
       }
     },
@@ -567,24 +458,14 @@
       },
       "inSpin": {
         "$id": "86",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "83" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "87",
-          "$values": [
-            {
-              "$id": "88",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "88",
+          "$values": []
         }
       }
     },
@@ -604,24 +485,14 @@
       },
       "inSpin": {
         "$id": "92",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "89" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "93",
-          "$values": [
-            {
-              "$id": "94",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "94",
+          "$values": []
         }
       }
     },
@@ -641,24 +512,14 @@
       },
       "inSpin": {
         "$id": "98",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "95" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "99",
-          "$values": [
-            {
-              "$id": "100",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "100",
+          "$values": []
         }
       }
     },
@@ -678,24 +539,14 @@
       },
       "inSpin": {
         "$id": "104",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "101" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "105",
-          "$values": [
-            {
-              "$id": "106",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "106",
+          "$values": []
         }
       }
     },
@@ -715,24 +566,14 @@
       },
       "inSpin": {
         "$id": "110",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "107" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "111",
-          "$values": [
-            {
-              "$id": "112",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "112",
+          "$values": []
         }
       }
     },
@@ -752,24 +593,14 @@
       },
       "inSpin": {
         "$id": "116",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "113" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "117",
-          "$values": [
-            {
-              "$id": "118",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "118",
+          "$values": []
         }
       }
     },
@@ -789,24 +620,14 @@
       },
       "inSpin": {
         "$id": "122",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "119" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "123",
-          "$values": [
-            {
-              "$id": "124",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "124",
+          "$values": []
         }
       }
     },
@@ -826,24 +647,14 @@
       },
       "inSpin": {
         "$id": "128",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "125" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "129",
-          "$values": [
-            {
-              "$id": "130",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "130",
+          "$values": []
         }
       }
     },
@@ -863,24 +674,14 @@
       },
       "inSpin": {
         "$id": "134",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "131" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "135",
-          "$values": [
-            {
-              "$id": "136",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "136",
+          "$values": []
         }
       }
     },
@@ -900,24 +701,14 @@
       },
       "inSpin": {
         "$id": "140",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "137" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "141",
-          "$values": [
-            {
-              "$id": "142",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "142",
+          "$values": []
         }
       }
     },
@@ -937,24 +728,14 @@
       },
       "inSpin": {
         "$id": "146",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "143" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "147",
-          "$values": [
-            {
-              "$id": "148",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "148",
+          "$values": []
         }
       }
     },
@@ -974,24 +755,14 @@
       },
       "inSpin": {
         "$id": "152",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "149" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "153",
-          "$values": [
-            {
-              "$id": "154",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "154",
+          "$values": []
         }
       }
     },
@@ -1011,24 +782,14 @@
       },
       "inSpin": {
         "$id": "158",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "155" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "159",
-          "$values": [
-            {
-              "$id": "160",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "160",
+          "$values": []
         }
       }
     },
@@ -1048,24 +809,14 @@
       },
       "inSpin": {
         "$id": "164",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "161" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "165",
-          "$values": [
-            {
-              "$id": "166",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "166",
+          "$values": []
         }
       }
     },
@@ -1085,24 +836,14 @@
       },
       "inSpin": {
         "$id": "170",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "167" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "171",
-          "$values": [
-            {
-              "$id": "172",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "172",
+          "$values": []
         }
       }
     },
@@ -1122,24 +863,14 @@
       },
       "inSpin": {
         "$id": "176",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "173" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "177",
-          "$values": [
-            {
-              "$id": "178",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "178",
+          "$values": []
         }
       }
     },
@@ -1159,24 +890,14 @@
       },
       "inSpin": {
         "$id": "182",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "179" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "183",
-          "$values": [
-            {
-              "$id": "184",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "184",
+          "$values": []
         }
       }
     },
@@ -1196,24 +917,14 @@
       },
       "inSpin": {
         "$id": "188",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "185" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "189",
-          "$values": [
-            {
-              "$id": "190",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "190",
+          "$values": []
         }
       }
     },
@@ -1233,24 +944,14 @@
       },
       "inSpin": {
         "$id": "194",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "191" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "195",
-          "$values": [
-            {
-              "$id": "196",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "196",
+          "$values": []
         }
       }
     },
@@ -1270,24 +971,14 @@
       },
       "inSpin": {
         "$id": "200",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "197" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "201",
-          "$values": [
-            {
-              "$id": "202",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "202",
+          "$values": []
         }
       }
     },
@@ -1307,24 +998,14 @@
       },
       "inSpin": {
         "$id": "206",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "203" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "207",
-          "$values": [
-            {
-              "$id": "208",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "208",
+          "$values": []
         }
       }
     },
@@ -1344,24 +1025,14 @@
       },
       "inSpin": {
         "$id": "212",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "209" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "213",
-          "$values": [
-            {
-              "$id": "214",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "214",
+          "$values": []
         }
       }
     },
@@ -1381,24 +1052,14 @@
       },
       "inSpin": {
         "$id": "218",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "215" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "219",
-          "$values": [
-            {
-              "$id": "220",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "220",
+          "$values": []
         }
       }
     },
@@ -1418,24 +1079,14 @@
       },
       "inSpin": {
         "$id": "224",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "221" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "225",
-          "$values": [
-            {
-              "$id": "226",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "226",
+          "$values": []
         }
       }
     },
@@ -1455,24 +1106,14 @@
       },
       "inSpin": {
         "$id": "230",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "227" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "231",
-          "$values": [
-            {
-              "$id": "232",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "232",
+          "$values": []
         }
       }
     },
@@ -1492,24 +1133,14 @@
       },
       "inSpin": {
         "$id": "236",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "233" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "237",
-          "$values": [
-            {
-              "$id": "238",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "238",
+          "$values": []
         }
       }
     },
@@ -1529,24 +1160,14 @@
       },
       "inSpin": {
         "$id": "242",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "239" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "243",
-          "$values": [
-            {
-              "$id": "244",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "244",
+          "$values": []
         }
       }
     },
@@ -1566,24 +1187,14 @@
       },
       "inSpin": {
         "$id": "248",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "245" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "249",
-          "$values": [
-            {
-              "$id": "250",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "250",
+          "$values": []
         }
       }
     },
@@ -1603,24 +1214,14 @@
       },
       "inSpin": {
         "$id": "254",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "251" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "255",
-          "$values": [
-            {
-              "$id": "256",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "256",
+          "$values": []
         }
       }
     },
@@ -1640,24 +1241,14 @@
       },
       "inSpin": {
         "$id": "260",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "257" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "261",
-          "$values": [
-            {
-              "$id": "262",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "262",
+          "$values": []
         }
       }
     },
@@ -1677,24 +1268,14 @@
       },
       "inSpin": {
         "$id": "266",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "263" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "267",
-          "$values": [
-            {
-              "$id": "268",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "268",
+          "$values": []
         }
       }
     },
@@ -1714,24 +1295,14 @@
       },
       "inSpin": {
         "$id": "272",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "269" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "273",
-          "$values": [
-            {
-              "$id": "274",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "274",
+          "$values": []
         }
       }
     },
@@ -1751,24 +1322,14 @@
       },
       "inSpin": {
         "$id": "278",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "275" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "279",
-          "$values": [
-            {
-              "$id": "280",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "280",
+          "$values": []
         }
       }
     },
@@ -1788,24 +1349,14 @@
       },
       "inSpin": {
         "$id": "284",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "281" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "285",
-          "$values": [
-            {
-              "$id": "286",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "286",
+          "$values": []
         }
       }
     },
@@ -1825,24 +1376,14 @@
       },
       "inSpin": {
         "$id": "290",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "287" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "291",
-          "$values": [
-            {
-              "$id": "292",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "292",
+          "$values": []
         }
       }
     },
@@ -1862,24 +1403,14 @@
       },
       "inSpin": {
         "$id": "296",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "293" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "297",
-          "$values": [
-            {
-              "$id": "298",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "298",
+          "$values": []
         }
       }
     },
@@ -1899,24 +1430,14 @@
       },
       "inSpin": {
         "$id": "302",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "299" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "303",
-          "$values": [
-            {
-              "$id": "304",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "304",
+          "$values": []
         }
       }
     },
@@ -1936,24 +1457,14 @@
       },
       "inSpin": {
         "$id": "308",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "305" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "309",
-          "$values": [
-            {
-              "$id": "310",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "310",
+          "$values": []
         }
       }
     },
@@ -1973,24 +1484,14 @@
       },
       "inSpin": {
         "$id": "314",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "311" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "315",
-          "$values": [
-            {
-              "$id": "316",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "316",
+          "$values": []
         }
       }
     },
@@ -2010,24 +1511,14 @@
       },
       "inSpin": {
         "$id": "320",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "317" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "321",
-          "$values": [
-            {
-              "$id": "322",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "322",
+          "$values": []
         }
       }
     },
@@ -2047,24 +1538,14 @@
       },
       "inSpin": {
         "$id": "326",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "323" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "327",
-          "$values": [
-            {
-              "$id": "328",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "328",
+          "$values": []
         }
       }
     },
@@ -2084,24 +1565,14 @@
       },
       "inSpin": {
         "$id": "332",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "329" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "333",
-          "$values": [
-            {
-              "$id": "334",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "334",
+          "$values": []
         }
       }
     },
@@ -2121,24 +1592,14 @@
       },
       "inSpin": {
         "$id": "338",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "335" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "339",
-          "$values": [
-            {
-              "$id": "340",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "340",
+          "$values": []
         }
       }
     },
@@ -2158,24 +1619,14 @@
       },
       "inSpin": {
         "$id": "344",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "341" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "345",
-          "$values": [
-            {
-              "$id": "346",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "346",
+          "$values": []
         }
       }
     },
@@ -2195,24 +1646,14 @@
       },
       "inSpin": {
         "$id": "350",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "347" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "351",
-          "$values": [
-            {
-              "$id": "352",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "352",
+          "$values": []
         }
       }
     },
@@ -2232,24 +1673,14 @@
       },
       "inSpin": {
         "$id": "356",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "353" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "357",
-          "$values": [
-            {
-              "$id": "358",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "358",
+          "$values": []
         }
       }
     },
@@ -2269,24 +1700,14 @@
       },
       "inSpin": {
         "$id": "362",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "359" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "363",
-          "$values": [
-            {
-              "$id": "364",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "364",
+          "$values": []
         }
       }
     },
@@ -2306,24 +1727,14 @@
       },
       "inSpin": {
         "$id": "368",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "365" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "369",
-          "$values": [
-            {
-              "$id": "370",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "370",
+          "$values": []
         }
       }
     },
@@ -2343,24 +1754,14 @@
       },
       "inSpin": {
         "$id": "374",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "371" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "375",
-          "$values": [
-            {
-              "$id": "376",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "376",
+          "$values": []
         }
       }
     },
@@ -2380,24 +1781,14 @@
       },
       "inSpin": {
         "$id": "380",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "377" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "381",
-          "$values": [
-            {
-              "$id": "382",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "382",
+          "$values": []
         }
       }
     },
@@ -2417,24 +1808,14 @@
       },
       "inSpin": {
         "$id": "386",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "383" },
-            "PropType": 1,
-            "AddValue": 5,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "387",
-          "$values": [
-            {
-              "$id": "388",
-              "PropType": 1,
-              "Value": 5,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "388",
+          "$values": []
         }
       }
     },
@@ -2454,24 +1835,14 @@
       },
       "inSpin": {
         "$id": "392",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "389" },
-            "PropType": 0,
-            "AddValue": 2,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "393",
-          "$values": [
-            {
-              "$id": "394",
-              "PropType": 0,
-              "Value": 2,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "394",
+          "$values": []
         }
       }
     },
@@ -2491,24 +1862,14 @@
       },
       "inSpin": {
         "$id": "398",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "395" },
-            "PropType": 0,
-            "AddValue": 2,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "399",
-          "$values": [
-            {
-              "$id": "400",
-              "PropType": 0,
-              "Value": 2,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "400",
+          "$values": []
         }
       }
     },
@@ -2528,24 +1889,14 @@
       },
       "inSpin": {
         "$id": "404",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "401" },
-            "PropType": 0,
-            "AddValue": 2,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "405",
-          "$values": [
-            {
-              "$id": "406",
-              "PropType": 0,
-              "Value": 2,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "406",
+          "$values": []
         }
       }
     },
@@ -2566,96 +1917,183 @@
       },
       "inSpin": {
         "$id": "410",
-        "ModifyPropList": [
-          {
-            "From": { "$ref": "407" },
-            "PropType": 10,
-            "AddValue": 3,
-            "MultiValue": 1.0
-          }
-        ],
-        "DistributePropList": {
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
           "$id": "411",
-          "$values": [
-            {
-              "$id": "412",
-              "PropType": 0,
-              "Value": -20,
-              "ToItem": { "$ref": "407" }
-            },
-            {
-              "$id": "413",
-              "PropType": 10,
-              "Value": 3,
-              "ToItem": null
-            }
-          ]
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "412",
+          "$values": []
         }
       }
     },
     {
-      "$id": "414",
+      "$id": "413",
       "Dragging": false,
       "Spawning": false,
-      "PivotPos":{"X":2,"Y":3},
-      "DeltaPosList":[{"X":0,"Y":0}],
+      "PivotPos":{"X":2,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1},{"X":1,"Y":0},{"X":1,"Y":1}],
       "EatConfigList": {
-        "$id": "415",
+        "$id": "414",
         "$values": []
       },
-      "ID": 20002,
+      "ID": 20001,
       "BuildingOrEventProgress": {
-        "$id": "416",
-        "Prop1": 0
+        "$id": "415",
+        "Prop2": 6,
+        "Prop3": 4
       },
       "inSpin": {
-        "$id": "417",
-        "ModifyPropList": [],
+        "$id": "416",
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
+          "$id": "417",
+          "$values": []
+        },
         "DistributePropList": {
           "$id": "418",
+          "$values": []
+        }
+      }
+    },
+    {
+      "$id": "419",
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":1,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0},{"X":0,"Y":1}],
+      "EatConfigList": {
+        "$id": "420",
+        "$values": []
+      },
+      "ID": 19002,
+      "BuildingOrEventProgress": {
+        "$id": "421"
+      },
+      "inSpin": {
+        "$id": "422",
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
+          "$id": "423",
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "424",
+          "$values": []
+        }
+      }
+    },
+    {
+      "$id": "425",
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":5,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "426",
+        "$values": []
+      },
+      "ID": 19003,
+      "BuildingOrEventProgress": {
+        "$id": "427"
+      },
+      "inSpin": {
+        "$id": "428",
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
+          "$id": "429",
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "430",
+          "$values": []
+        }
+      }
+    },
+    {
+      "$id": "431",
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "432",
+        "$values": []
+      },
+      "ID": 19003,
+      "BuildingOrEventProgress": {
+        "$id": "433"
+      },
+      "inSpin": {
+        "$id": "434",
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
+          "$id": "435",
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "436",
+          "$values": []
+        }
+      }
+    },
+    {
+      "$id": "437",
+      "Dragging": false,
+      "Spawning": false,
+      "PivotPos":{"X":6,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "438",
+        "$values": []
+      },
+      "ID": 19003,
+      "BuildingOrEventProgress": {
+        "$id": "439"
+      },
+      "inSpin": {
+        "$id": "440",
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
+          "$id": "441",
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "442",
           "$values": []
         }
       }
     }
   ],
   "toDoList": {
-    "$id": "419",
+    "$id": "443",
     "$values": [
       {
-        "$id": "420",
-        "$type": "NM.Data.GamePlaying+ActWaitForSpin, NM.Data",
-        "Self": { "$ref": "1" }
-      },
-      {
-        "$id": "421",
-        "$type": "NM.Data.GamePlaying+ActEndSpin, NM.Data",
+        "$id": "444",
+        "$type": "NM.Data.GamePlaying+ActWaitForClickStartTurn, NM.Data",
         "Self": { "$ref": "1" }
       }
     ]
   },
   "InSpin": {
-    "$id": "422",
+    "$id": "445",
     "BelongNode": { "$ref": "1" },
     "noSourceDistributePropList": {
-      "$id": "423",
+      "$id": "446",
       "$values": [
         {
-          "$id": "424",
+          "$id": "447",
           "PropType": 11,
           "Value": 1,
+          "ToTech": false,
           "ToItem": null
         }
       ]
     },
     "toDoList": {
-      "$id": "425",
-      "$values": [
-        {
-          "$id": "426",
-          "$type": "NM.Data.PlaySpin+ActWaitForClickNextTurn, NM.Data",
-          "Self": { "$ref": "422" }
-        }
-      ]
+      "$id": "448",
+      "$values": []
     }
   }
 }

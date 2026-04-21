@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using JetBrains.Annotations;
 using NM.Config;
 using NM.Data;
-using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 
 namespace NM.View;
 
-public class TechNodeView : SerializedMonoBehaviour, ITechObj
+public class TechNodeView : ViewBase, ITechObj
 {
     [Sirenix.OdinInspector.ReadOnly] public TechNodeData Data;
+    [SerializeField] Img imgCur;
+    [SerializeField] Btn btnCur;
+    [SerializeField] Outline outline;
     [SerializeField] Txt txtName;
     [SerializeField] Trs trsBuildingPreView;
     [SerializeField] TechNodeBuildingPreView pfbBuildingPreView;
@@ -26,8 +31,54 @@ public class TechNodeView : SerializedMonoBehaviour, ITechObj
     [SerializeField] Trs trsOutPort;
     public UICircle? UICircle;
     public Txt? TxtID;
-    
-    public void OnCreateView(TechNodeData data, TechNodeConfig? configInEditor = null)
+
+    protected override IEnumerable<BindDataBase> BindList()
+    {
+        yield return btnCur.onClick.EvtBindTo(() => PlayViewIns.Data.TechTreeData.CurID = Data.ID);
+    }
+    UniEvt<TechTreeData.EvtCurIDChanged> OnCurIdChanged => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            RefreshImgCur(IsCurIDIncludeThis(evt.NewValue));
+            return UniTask.CompletedTask;
+        },
+        Des = "刷新显示",
+    };
+    bool IsCurIDIncludeThis(int? curID)
+    {
+        if (!curID.HasValue)
+            return false;
+        if (Data.ID == curID.Value)
+            return true;
+        var lineConfigs = TechTreeData.Config.LineList;
+        var visited = new HashSet<int>();
+        var queue = new Queue<int>();
+        queue.Enqueue(curID.Value);
+        visited.Add(curID.Value);
+        while (queue.Count > 0)
+        {
+            var current = queue.Dequeue();
+            foreach (var line in lineConfigs.Where(line => line.RightNodeID == current))
+            {
+                if (line.LeftNodeID == Data.ID) 
+                    return true;
+                if (visited.Add(line.LeftNodeID)) 
+                    queue.Enqueue(line.LeftNodeID);
+            }
+        }
+        return false;
+    }
+    void RefreshImgCur(bool isCurIncludeThis)
+    {
+        if (Data.Unlocked)
+        {
+            imgCur.color = Color.green.SetAlpha(0.5f);
+            return;
+        }
+        imgCur.color = !isCurIncludeThis ? Color.gray.SetAlpha(0.5f) : new Color(0.9f, 0.6f, 0f, 0.5f);
+    }
+    public void OnCreateView(TechNodeData data, TechNodeConfig? configInEditor = null, int? curId = null)
     {
         var isEditor = configInEditor != null;
         TechNodeConfig tarConfig;
@@ -36,6 +87,7 @@ public class TechNodeView : SerializedMonoBehaviour, ITechObj
         {
             tarConfig = data.Config;
             OnEndEdit();
+            RefreshImgCur(IsCurIDIncludeThis(curId));
         }
         else
             tarConfig = configInEditor!;
@@ -43,11 +95,13 @@ public class TechNodeView : SerializedMonoBehaviour, ITechObj
         TxtID?.text = tarConfig.ID.ToString();
         trsBuildingPreView.ClearActiveChildren(isEditor);
         if(tarConfig.ToUnLockItems != null)
-            foreach (var itemConfig in tarConfig.ToUnLockItems.Where(itemConfig => itemConfig != null))
+            foreach (var itemConfig in tarConfig.ToUnLockItems)
             {
-                var img = Instantiate(pfbBuildingPreView, trsBuildingPreView);
-                img.Img.sprite = ItemResLoader.Acquire(itemConfig!.ID);
-                img.SetActiveTrue();
+                if(itemConfig == null)
+                    continue;
+                var buildingPreView = Instantiate(pfbBuildingPreView, trsBuildingPreView);
+                buildingPreView.OnCreateView(itemConfig);
+                buildingPreView.SetActiveTrue();
             }
         trsRequire.ClearActiveChildren(isEditor);
         if(tarConfig.RequireDic != null)
@@ -59,7 +113,6 @@ public class TechNodeView : SerializedMonoBehaviour, ITechObj
                 lineIns.TxtCurValue.text = curValue.ToString();
                 lineIns.TxtTarValue.text = tarValue.ToString();
                 lineIns.ImgFill.fillAmount = tarValue <= 0 ? 1 : Mathf.Clamp01((float)curValue / tarValue);
-                // TODO 根据属性来决定颜色
                 lineIns.ImgFill.color = curValue >= tarValue ? Color.green : Color.red;
                 lineIns.TxtPropType.text = lineConfig.Key.GetLabelText();
                 lineIns.SetActiveTrue();
@@ -67,9 +120,7 @@ public class TechNodeView : SerializedMonoBehaviour, ITechObj
     }
     public Trs? GetOutPortTrs(int id) => trsOutPort.GetChild(id - 1);
     public Trs? GetInPortTrs(int id) => trsInPort.GetChild(id - 1);
-    /// <summary>
     /// 编辑器创建的数据.
-    /// </summary>
     public TechNodeConfig ConfigInEditor;
 
     public void OnCreate()

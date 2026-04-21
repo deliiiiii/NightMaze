@@ -11,6 +11,7 @@ public partial class PlaySpin
     public class MyItem()
     {
         [JsonProperty(IsReference = false, ItemIsReference = false)]
+        public bool HasGivenBuildingRunCost;
         public List<ModifyPropInfo> ModifyPropList { [DebuggerStepThrough] get; init; } = [];
         public List<DistributePropInfo> DistributePropList { [DebuggerStepThrough] get; init; } = [];
         public long GetAllProp(EPropType propType)

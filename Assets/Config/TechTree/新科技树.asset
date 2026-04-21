@@ -30,13 +30,13 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 6
     - Name: 
       Entry: 7
       Data: 1|NM.Config.TechNodeConfig, NM.Config
     - Name: ID
       Entry: 3
-      Data: 27
+      Data: 20
     - Name: Name
       Entry: 1
       Data: "\u65B0\u8282\u70B9"
@@ -67,33 +67,21 @@ MonoBehaviour:
       Data: 
     - Name: RequireDic
       Entry: 7
-      Data: 3|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+      Data: 3|General.Dictionary.SerializableDictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], General
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: System.Collections.Generic.KeyValuePair`2[[NM.Config.EPropType, NM.Config],[System.Int64,
         mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 4|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
-        NM.Config]], mscorlib
     - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
       Entry: 3
       Data: 1
-    - Name: $v
+    - Name: 
       Entry: 3
-      Data: 71
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -108,10 +96,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 5|NM.Config.TechNodeConfig, NM.Config
+      Data: 4|NM.Config.TechNodeConfig, NM.Config
     - Name: ID
       Entry: 3
-      Data: 130
+      Data: 110
     - Name: Name
       Entry: 1
       Data: "\u65B0\u8282\u70B9"
@@ -129,7 +117,7 @@ MonoBehaviour:
       Data: 
     - Name: ToUnLockItems
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[NM.Config.ItemConfig, NM.Config]],
+      Data: 5|System.Collections.Generic.List`1[[NM.Config.ItemConfig, NM.Config]],
         mscorlib
     - Name: 
       Entry: 12
@@ -151,57 +139,21 @@ MonoBehaviour:
       Data: 
     - Name: RequireDic
       Entry: 7
-      Data: 7|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+      Data: 6|General.Dictionary.SerializableDictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], General
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: System.Collections.Generic.KeyValuePair`2[[NM.Config.EPropType, NM.Config],[System.Int64,
         mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 8|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
-        NM.Config]], mscorlib
     - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 3
-      Data: 29
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
       Entry: 3
       Data: 1
-    - Name: $v
-      Entry: 3
-      Data: 71
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
       Entry: 3
-      Data: 10
-    - Name: $v
-      Entry: 3
-      Data: 114
+      Data: 80
     - Name: 
       Entry: 8
       Data: 
@@ -216,10 +168,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 9|NM.Config.TechNodeConfig, NM.Config
+      Data: 7|NM.Config.TechNodeConfig, NM.Config
     - Name: ID
       Entry: 3
-      Data: 140
+      Data: 120
     - Name: Name
       Entry: 1
       Data: "\u65B0\u8282\u70B9"
@@ -228,16 +180,16 @@ MonoBehaviour:
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 1150
+      Data: 1350
     - Name: 
       Entry: 4
-      Data: -450
+      Data: -400
     - Name: 
       Entry: 8
       Data: 
     - Name: ToUnLockItems
       Entry: 7
-      Data: 10|System.Collections.Generic.List`1[[NM.Config.ItemConfig, NM.Config]],
+      Data: 8|System.Collections.Generic.List`1[[NM.Config.ItemConfig, NM.Config]],
         mscorlib
     - Name: 
       Entry: 12
@@ -259,12 +211,58 @@ MonoBehaviour:
       Data: 
     - Name: RequireDic
       Entry: 7
-      Data: 11|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
-        mscorlib]], mscorlib
-    - Name: comparer
+      Data: 9|General.Dictionary.SerializableDictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], General
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
       Entry: 7
-      Data: 12|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
-        NM.Config]], mscorlib
+      Data: System.Collections.Generic.KeyValuePair`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 40
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 10|NM.Config.TechNodeConfig, NM.Config
+    - Name: ID
+      Entry: 3
+      Data: 10
+    - Name: Name
+      Entry: 1
+      Data: "\u65B0\u8282\u70B9"
+    - Name: Pos
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 750
+    - Name: 
+      Entry: 4
+      Data: 750
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ToUnLockItems
+      Entry: 7
+      Data: 11|System.Collections.Generic.List`1[[NM.Config.ItemConfig, NM.Config]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -274,42 +272,23 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: RequireDic
+      Entry: 7
+      Data: 12|General.Dictionary.SerializableDictionary`2[[NM.Config.EPropType,
+        NM.Config],[System.Int64, mscorlib]], General
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 3
-      Data: 29
+      Data: System.Collections.Generic.KeyValuePair`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
       Entry: 3
       Data: 1
-    - Name: $v
-      Entry: 3
-      Data: 71
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
       Entry: 3
-      Data: 11
-    - Name: $v
-      Entry: 3
-      Data: 282
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -327,7 +306,7 @@ MonoBehaviour:
       Data: 13|NM.Config.TechNodeConfig, NM.Config
     - Name: ID
       Entry: 3
-      Data: 113
+      Data: 210
     - Name: Name
       Entry: 1
       Data: "\u65B0\u8282\u70B9"
@@ -336,10 +315,10 @@ MonoBehaviour:
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 899.999939
+      Data: 2000
     - Name: 
       Entry: 4
-      Data: 800
+      Data: 500
     - Name: 
       Entry: 8
       Data: 
@@ -358,12 +337,58 @@ MonoBehaviour:
       Data: 
     - Name: RequireDic
       Entry: 7
-      Data: 15|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
-        mscorlib]], mscorlib
-    - Name: comparer
+      Data: 15|General.Dictionary.SerializableDictionary`2[[NM.Config.EPropType,
+        NM.Config],[System.Int64, mscorlib]], General
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
       Entry: 7
-      Data: 16|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
-        NM.Config]], mscorlib
+      Data: System.Collections.Generic.KeyValuePair`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 40
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 16|NM.Config.TechNodeConfig, NM.Config
+    - Name: ID
+      Entry: 3
+      Data: 220
+    - Name: Name
+      Entry: 1
+      Data: "\u65B0\u8282\u70B9"
+    - Name: Pos
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 2000
+    - Name: 
+      Entry: 4
+      Data: -150
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ToUnLockItems
+      Entry: 7
+      Data: 17|System.Collections.Generic.List`1[[NM.Config.ItemConfig, NM.Config]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -373,18 +398,23 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: RequireDic
+      Entry: 7
+      Data: 18|General.Dictionary.SerializableDictionary`2[[NM.Config.EPropType,
+        NM.Config],[System.Int64, mscorlib]], General
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
+      Data: System.Collections.Generic.KeyValuePair`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: 
       Entry: 3
-      Data: 0
-    - Name: $v
+      Data: 1
+    - Name: 
       Entry: 3
-      Data: 29
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -405,23 +435,23 @@ MonoBehaviour:
       Data: 
     - Name: LineList
       Entry: 7
-      Data: 17|System.Collections.Generic.List`1[[NM.Config.TechLineConfig, NM.Config]],
+      Data: 19|System.Collections.Generic.List`1[[NM.Config.TechLineConfig, NM.Config]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 6
     - Name: 
       Entry: 7
-      Data: 18|NM.Config.TechLineConfig, NM.Config
+      Data: 20|NM.Config.TechLineConfig, NM.Config
     - Name: LeftNodeID
       Entry: 3
-      Data: 27
+      Data: 20
     - Name: LeftPortID
       Entry: 3
       Data: 1
     - Name: RightNodeID
       Entry: 3
-      Data: 130
+      Data: 110
     - Name: RightPortID
       Entry: 3
       Data: 5
@@ -430,16 +460,16 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 19|NM.Config.TechLineConfig, NM.Config
+      Data: 21|NM.Config.TechLineConfig, NM.Config
     - Name: LeftNodeID
       Entry: 3
-      Data: 27
+      Data: 20
     - Name: LeftPortID
       Entry: 3
       Data: 3
     - Name: RightNodeID
       Entry: 3
-      Data: 140
+      Data: 120
     - Name: RightPortID
       Entry: 3
       Data: 3
@@ -448,19 +478,73 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 20|NM.Config.TechLineConfig, NM.Config
+      Data: 22|NM.Config.TechLineConfig, NM.Config
     - Name: LeftNodeID
       Entry: 3
-      Data: 113
+      Data: 10
     - Name: LeftPortID
       Entry: 3
       Data: 1
     - Name: RightNodeID
       Entry: 3
-      Data: 130
+      Data: 110
     - Name: RightPortID
       Entry: 3
       Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 23|NM.Config.TechLineConfig, NM.Config
+    - Name: LeftNodeID
+      Entry: 3
+      Data: 110
+    - Name: LeftPortID
+      Entry: 3
+      Data: 2
+    - Name: RightNodeID
+      Entry: 3
+      Data: 210
+    - Name: RightPortID
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 24|NM.Config.TechLineConfig, NM.Config
+    - Name: LeftNodeID
+      Entry: 3
+      Data: 110
+    - Name: LeftPortID
+      Entry: 3
+      Data: 3
+    - Name: RightNodeID
+      Entry: 3
+      Data: 220
+    - Name: RightPortID
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 25|NM.Config.TechLineConfig, NM.Config
+    - Name: LeftNodeID
+      Entry: 3
+      Data: 120
+    - Name: LeftPortID
+      Entry: 3
+      Data: 2
+    - Name: RightNodeID
+      Entry: 3
+      Data: 220
+    - Name: RightPortID
+      Entry: 3
+      Data: 4
     - Name: 
       Entry: 8
       Data: 

@@ -24,6 +24,7 @@ public class ItemConfig : ConfigMulti<ItemConfig>
     static ItemTypeResourceMgr Mgr => field ??= ConfigLoader.Acquire<ItemTypeResourceMgr>();
     [Header("—— 通用配置 ——")]
     [LabelText("风味文本")] public string FlavorDes = string.Empty;
+    [LabelText("简略信息(暂用于科技树里)")] public string BriefDes = "请输入简略描述";
     [LabelText("稀有度")] public ERarity Rarity;
     [Required, LabelText("占据位置")] public ItemPos Pos = new ItemPosRectangle();
 #if UNITY_EDITOR
@@ -67,7 +68,6 @@ public class ItemConfig : ConfigMulti<ItemConfig>
 #endif
     public List<int> EventTagList = [];
     [ShowIf(nameof(IsEvent)), Required, LabelText("事件: 奖励列表")] public List<EvtDesResultBase> EvtDesResultList = [];
-    
     [ShowIf(nameof(IsBuildingOrEvent)), Required, LabelText("建筑/事件: 交互消耗")]public Dictionary<EPropType, long> BuildPropValueList = [];
     [Required, LabelText("结算时: 词条列表")] public List<ItemDesConfig> DesList = [];
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
 using NM.Config;
@@ -25,8 +26,17 @@ public class TechTreeView : ViewBase
     [NonSerialized] List<TechNodeView> techNodeList = [];
     [NonSerialized] List<TechLineView> techLineList = [];
     TechTreeConfig ConfigRT => field ??= ConfigLoader.Acquire<TechTreeConfig>();
-    [Button, ShowIf(nameof(IsRunning))]
-    void LoadFromConfig()
+    
+    UniEvt<GamePlaying.EvtEndSpin> OnEndSpin => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            techNodeList.ForEach(node => node.OnCreateView(node.Data, curId: PlayViewIns.Data.TechTreeData.CurID));
+            return UniTask.CompletedTask;
+        },
+        Des = "结束转动后刷新科技树显示",
+    };
+    public void LoadFromConfigRT()
     {
         trsTechNode.GetChildren().ForEach(n => Destroy(n.gameObject));
         techNodeList.Clear();
@@ -34,14 +44,19 @@ public class TechTreeView : ViewBase
         techLineList.Clear();
         ConfigRT.NodeList.ForEach(CreateNodeRT);
         ConfigRT.LineList.ForEach(CreateLineRT);
+        
+        gameObject.SetActiveTrue();
     }
+    
+    
     void CreateNodeRT(TechNodeConfig nodeConfig)
     {
         var ins = Instantiate(pfbTechNodeView, trsTechNode);
         ins.transform.position = new Vector3(nodeConfig.Pos.x, nodeConfig.Pos.y, 0);
-        var loadedNode = PlayViewIns.Data.TechTreeData.NodeList.FirstOrDefault(n => n.ID == nodeConfig.ID) 
+        var techTreeData = PlayViewIns.Data.TechTreeData;
+        var loadedNode = techTreeData.NodeList.FirstOrDefault(n => n.ID == nodeConfig.ID) 
                          ?? new TechNodeData(nodeConfig);
-        ins.OnCreateView(loadedNode);
+        ins.OnCreateView(loadedNode, curId: techTreeData.CurID);
         ins.SetActiveTrue();
         techNodeList.Add(ins);
     }
@@ -61,7 +76,7 @@ public class TechTreeView : ViewBase
 #if UNITY_EDITOR
     void OnEnable()
     {
-        MyDebug.Log($"{nameof(TechTreeView)} OnEnable()");
+        // MyDebug.Log($"{nameof(TechTreeView)} OnEnable()");
         UnityEditor.EditorApplication.update -= OnEditorUpdate;
         UnityEditor.EditorApplication.update += OnEditorUpdate;
         UnityEditor.EditorApplication.hierarchyChanged -= OnHierarchyChanged;
@@ -69,10 +84,10 @@ public class TechTreeView : ViewBase
         UnityEditor.EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
         UnityEditor.EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         // OnEndEdit();
-    } 
+    }
     [Header("开始/结束编辑")] 
-    [SerializeField, LabelText("科技树配置资产"), ShowIf(nameof(IsRunning))] TechTreeConfig treeConfig;
-
+    [SerializeField, LabelText("科技树配置资产")] 
+    TechTreeConfig treeConfig;
     [LabelText("正在编辑"), ReadOnly, PropertyOrder(10)]
     public bool Editing;
     bool IsEditing => Editing && !IsRunning;
@@ -135,12 +150,11 @@ public class TechTreeView : ViewBase
         }).ToList();
         UnityEditor.EditorUtility.SetDirty(treeConfig);
     }
-
     readonly Dictionary<GO, ITechObj> goDic = [];
     readonly List<ITechObj> lastSelected = [];
     double tickInterval = 0.1;
     double lastTickTime;
-    public void OnEditorUpdate()
+    void OnEditorUpdate()
     {
         if (!Editing || UnityEditor.EditorApplication.isPlaying)
             return;
@@ -167,17 +181,19 @@ public class TechTreeView : ViewBase
         { 
             node.ConfigInEditor.Pos = node.transform.position;
             node.OnCreate();
+            UnityEditor.EditorUtility.SetDirty(node);
             UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(node);
         }
         foreach (var line in techLineList.Where(l => l != null))
         {
             line.OnCreate();
+            UnityEditor.EditorUtility.SetDirty(line);
             UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(line);
         }
         curNodeConfig = CurSelectedNode?.ConfigInEditor;
         UnityEditor.SceneView.RepaintAll();
         UnityEditor.EditorUtility.SetDirty(this);
-    }
+    } 
     void OnHierarchyChanged()
     {
         if (UnityEditor.EditorApplication.isPlaying || !Editing)
@@ -267,8 +283,6 @@ public class TechTreeView : ViewBase
     void CreateNode()
     {
         var go = UnityEditor.PrefabUtility.InstantiatePrefab(pfbTechNodeView.gameObject, trsTechNode) as GO;
-        UnityEditor.Undo.RegisterCreatedObjectUndo(go, nameof(CreateNode));
-        UnityEditor.Undo.IncrementCurrentGroup();
         var ins = go!.GetComponent<TechNodeView>();
         ins.transform.position = new Vector3(NodePos.x, NodePos.y, 0);
         UnityEditor.Selection.activeGameObject = ins.gameObject;
@@ -281,6 +295,10 @@ public class TechTreeView : ViewBase
             RequireDic = []
         };
         ins.Data = new TechNodeData(ins.ConfigInEditor);
+        
+        UnityEditor.EditorUtility.SetDirty(ins);
+        UnityEditor.Undo.RegisterCreatedObjectUndo(go, nameof(CreateNode));
+        UnityEditor.Undo.IncrementCurrentGroup();
         ins.OnCreate();
     }
     const int LineOrder = 2000;
@@ -341,12 +359,14 @@ public class TechTreeView : ViewBase
         }
         var go = UnityEditor.PrefabUtility.InstantiatePrefab(pfbTechLineView.gameObject, trsTechLine) as GO;
         var ins = go!.GetComponent<TechLineView>();
-        UnityEditor.Undo.RegisterCreatedObjectUndo(go, nameof(CreateLine));
-        UnityEditor.Undo.IncrementCurrentGroup();
         ins.Left = pair.l;
         ins.LeftOutPort = LeftOutPort;
         ins.Right = pair.r;
         ins.RightInPort = RightInPort;
+        
+        UnityEditor.EditorUtility.SetDirty(ins);
+        UnityEditor.Undo.RegisterCreatedObjectUndo(go, nameof(CreateLine));
+        UnityEditor.Undo.IncrementCurrentGroup();
         ins.OnCreate();
     }
     [Button("移除连线 (要求：选中两个节点)"), EnableIf(nameof(TryGetTwoNodeIgnore)), PropertyOrder(LineOrder + 40), ShowIf(nameof(Editing))]

@@ -1,5 +1,4 @@
 ﻿using GeneralPreview;
-using NM.Config;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI.Extensions;

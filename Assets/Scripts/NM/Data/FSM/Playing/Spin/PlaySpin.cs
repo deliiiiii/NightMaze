@@ -84,7 +84,10 @@ public partial class PlaySpin
             from dProp in itemInPlay[this].DistributePropList
             select dProp,
             ..noSourceDistributePropList];
-        return list.Where(d => d.PropType == propType).Sum(d => d.Value);
+        return list
+            .Where(d => d.PropType == propType
+                        && d is { ToTech: false, ToItem: null })
+            .Sum(d => d.Value);
     }
     #endregion
 }

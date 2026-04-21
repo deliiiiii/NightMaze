@@ -59,9 +59,60 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: BuildPropValueList
+    - Name: RunPropValueList
       Entry: 7
       Data: 3|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 4|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
+        NM.Config]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EvtDesResultList
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[NM.Config.EvtDesResultBase, NM.Config]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: BuildPropValueList
+      Entry: 7
+      Data: 6|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
@@ -99,37 +150,12 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: RunPropValueList
-      Entry: 7
-      Data: 4|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
-        NM.Config]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
   Name: "\u65E7\u65E5\u7834\u8BD1\u7EC8\u7AEF"
   ID: 20001
   FlavorDes: 
+  BriefDes: "\u8BF7\u8F93\u5165\u7B80\u7565\u63CF\u8FF0"
   Rarity: 0
-  Tag: 0
+  TagList: 
   CanDrag: 0
   ItemType: 2
   GridTagList: 
@@ -140,14 +166,25 @@ MonoBehaviour:
   DesList:
   - DesToPlayer: "\u6D88\u8017\u5EFA\u7B51\u4E2D\u7684\u68CB\u5B50\u7684\u4EA7\u80FD\uFF0C\u7528\u4E8E\u79D1\u6280\u6811\u7814\u7A76"
     Trigger:
-      rid: 6212121176462065728
+      rid: 6212121309567778816
     Result:
-      rid: -2
+      rid: 6212121309567778817
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 6212121176462065728
-      type: {class: ItemDesTriggerEnterSpin, ns: NM.Config, asm: NM.Config}
+    - rid: 6212121309567778816
+      type: {class: ItemDesTriggerBuildingRun, ns: NM.Config, asm: NM.Config}
       data: 
+    - rid: 6212121309567778817
+      type: {class: ItemDesResultToTech, ns: NM.Config, asm: NM.Config}
+      data:
+        Condition:
+          rid: -2
+        ConditionFail:
+          rid: -2
+        Next:
+          rid: -2
+        NextFail:
+          rid: -2

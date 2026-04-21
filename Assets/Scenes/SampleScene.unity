@@ -2963,6 +2963,8 @@ MonoBehaviour:
   pfbItemEvtView: {fileID: 704384584}
   BtnSpin: {fileID: 1504976117}
   BtnNextTurn: {fileID: 686016289}
+  BtnTechTree: {fileID: 1410809560}
+  TechTreeView: {fileID: 6031704584005382116}
 --- !u!1 &198180981
 GameObject:
   m_ObjectHideFlags: 0
@@ -17900,7 +17902,7 @@ GameObject:
   - component: {fileID: 1410809561}
   - component: {fileID: 1410809560}
   m_Layer: 5
-  m_Name: Btn ???
+  m_Name: Btn Tech
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17965,7 +17967,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1410809561}
   m_OnClick:
     m_PersistentCalls:
@@ -28784,6 +28786,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -146.54701
       objectReference: {fileID: 0}
+    - target: {fileID: 8903547852156215067, guid: ea11a2eddb70f384697c01230bea15ca, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 8903547852156215067, guid: ea11a2eddb70f384697c01230bea15ca, type: 3}
     - target: {fileID: 8972480761994439174, guid: ea11a2eddb70f384697c01230bea15ca, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -28861,6 +28867,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea11a2eddb70f384697c01230bea15ca, type: 3}
+--- !u!114 &6031704584005382116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8903547852156215067, guid: ea11a2eddb70f384697c01230bea15ca, type: 3}
+  m_PrefabInstance: {fileID: 6031704584005382115}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ba598f4121e4879a81af5f29d6fb814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6836946758586186980
 PrefabInstance:
   m_ObjectHideFlags: 0
