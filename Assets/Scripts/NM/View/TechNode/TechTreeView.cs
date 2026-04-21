@@ -26,7 +26,6 @@ public class TechTreeView : ViewBase
     [NonSerialized] List<TechNodeView> techNodeList = [];
     [NonSerialized] List<TechLineView> techLineList = [];
     TechTreeConfig ConfigRT => field ??= ConfigLoader.Acquire<TechTreeConfig>();
-    
     UniEvt<GamePlaying.EvtEndSpin> OnEndSpin => new()
     {
         Invoke = (evt, ct) =>
@@ -265,7 +264,7 @@ public class TechTreeView : ViewBase
                 : null;
     bool CurSelectOneNode => Editing && CurSelectedNode != null;
     [LabelText("当前节点信息"), PropertyOrder(NodeOrder + 14), ShowIf(nameof(CurSelectOneNode))]
-    [OdinSerialize, ShowInInspector] TechNodeConfig? curNodeConfig;
+    [SerializeField] TechNodeConfig? curNodeConfig;
     [LabelText("附近位置倍率"), PropertyOrder(NodeOrder + 14), ShowIf(nameof(CurSelectOneNode))]
     public int PosDelta = 100;
     [Button("在当前节点附近创建新节点"), PropertyOrder(NodeOrder + 15), ShowIf(nameof(CurSelectOneNode))]
