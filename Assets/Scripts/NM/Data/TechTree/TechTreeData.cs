@@ -53,8 +53,8 @@ public partial class TechTreeData
         return[..
             from kvp in distanceDict
             where !kvp.Key.Unlocked
+            orderby kvp.Key.Config.Pos.y descending, kvp.Key.Config.Pos.x
             group kvp by kvp.Value into g
-            orderby g.Key descending
             select (Distance: g.Key, Nodes: g.Select(kvp => kvp.Key).ToList())];
     }
     
