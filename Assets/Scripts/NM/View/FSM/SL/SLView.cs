@@ -15,6 +15,7 @@ public class SLView : ViewBase
 {
     [SerializeField] Btn btnLoad;
     [SerializeField] Btn btnReturn;
+    [SerializeField] Btn btnOpenFolder;
     [SerializeField] SlotView pfbSlotView;
     [SerializeField] SlotEmptyView pfbSlotEmptyView;
     [SerializeField] Trs tranContent;
@@ -35,6 +36,12 @@ public class SLView : ViewBase
         {
             gameObject.SetActiveFalse();
             TitleViewIns.gameObject.SetActiveTrue();
+        });
+        yield return btnOpenFolder.onClick.EvtBindTo(() =>
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.RevealInFinder(Const.Name.Save.SlotFolder);
+#endif
         });
     }
 

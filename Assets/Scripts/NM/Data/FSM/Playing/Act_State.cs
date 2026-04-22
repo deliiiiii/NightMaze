@@ -35,6 +35,7 @@ public partial class GamePlaying
     {
         TurnCount++;
         Items.ForEach(item => item.DestroyInSpin());
+        InSpin = null;
         InsertAfter(new ActWaitForClickStartTurn(this), act => act is ActEndSpin);
         return UniTask.CompletedTask;
     }
