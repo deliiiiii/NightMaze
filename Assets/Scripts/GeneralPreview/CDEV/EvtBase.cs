@@ -14,10 +14,9 @@ namespace GeneralPreview;
 [DebuggerStepThrough]
 public static class Bus
 {
-    [HideInInspector]
+    [field: HideInInspector]
     public static bool TryClear
     {
-        get;
         set
         {
             field = value;
@@ -64,7 +63,7 @@ public static class Bus
         var typeName = attr != null ? $"{attr.Name}" : evtType.GetNiceName();
         if (typeName.Contains("Tick"))
             return;
-        typeName = typeName.Replace("Node<TThis>.", string.Empty);
+        typeName = typeName.Replace("DataBase<TThis>.", string.Empty);
         if (typeName.StartsWith("Evt"))
             typeName = typeName[3..];
         typeName = typeName.Replace("OnEnter", "进入状态");
@@ -132,43 +131,39 @@ public static class Bus
         for (int i = 0; i < text.Length; i++)
         {
             char c = text[i];
-
-            if (c == '(')
+            switch (c)
             {
-                inParentheses++;
-                sb.Append(c);
-            }
-            else if (c == ')')
-            {
-                inParentheses = Math.Max(0, inParentheses - 1);
-                sb.Append(c);
-            }
-            else if (c == '{')
-            {
-                sb.Append(c);
-                sb.AppendLine();
-                indent++;
-                for (int j = 0; j < indent; j++) sb.Append(indentStr);
-                if (i + 1 < text.Length && text[i + 1] == ' ') i++;
-            }
-            else if (c == '}')
-            {
-                sb.AppendLine();
-                indent = Math.Max(0, indent - 1);
-                for (int j = 0; j < indent; j++) sb.Append(indentStr);
-                sb.Append(c);
-            }
-            // 只有当 inParentheses == 0 时，逗号才会引起换行
-            else if (c == ',' && inParentheses == 0)
-            {
-                sb.Append(c);
-                sb.AppendLine();
-                for (int j = 0; j < indent; j++) sb.Append(indentStr);
-                if (i + 1 < text.Length && text[i + 1] == ' ') i++;
-            }
-            else
-            {
-                sb.Append(c);
+                case '(':
+                    inParentheses++;
+                    sb.Append(c);
+                    break;
+                case ')':
+                    inParentheses = Math.Max(0, inParentheses - 1);
+                    sb.Append(c);
+                    break;
+                case '{':
+                    sb.Append(c);
+                    sb.AppendLine();
+                    indent++;
+                    for (int j = 0; j < indent; j++) sb.Append(indentStr);
+                    if (i + 1 < text.Length && text[i + 1] == ' ') i++;
+                    break;
+                case '}':
+                    sb.AppendLine();
+                    indent = Math.Max(0, indent - 1);
+                    for (int j = 0; j < indent; j++) sb.Append(indentStr);
+                    sb.Append(c);
+                    break;
+                // 只有当 inParentheses == 0 时，逗号才会引起换行
+                case ',' when inParentheses == 0:
+                    sb.Append(c);
+                    sb.AppendLine();
+                    for (int j = 0; j < indent; j++) sb.Append(indentStr);
+                    if (i + 1 < text.Length && text[i + 1] == ' ') i++;
+                    break;
+                default:
+                    sb.Append(c);
+                    break;
             }
         }
         sb.Replace("{\r\n    ", "{\r\n");
@@ -177,19 +172,18 @@ public static class Bus
         sb.Replace("{\r\n\r\n}", "{}");
         return sb.ToString();
     }
-
 }
 [DebuggerStepThrough]
 public abstract record EvtBase<THasCt>(THasCt WhoHasCt)
     : IEvtBase, ICanAwait
     where THasCt : IHasCt
 {
-    bool getDebug = true;
-    public EvtBase<THasCt> Debug(bool debug) { getDebug = debug; return this; }
+    bool debug = true;
+    public EvtBase<THasCt> Debug(bool fDebug) { debug = fDebug; return this; }
     [HideInInspector] public THasCt WhoHasCt = WhoHasCt;
     [ShowInInspector] string EvtDes => ToString();
     public UniTask.Awaiter GetAwaiter() 
-        => WhoHasCt.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : Bus.FireAsync(this, WhoHasCt.CurCt, getDebug).GetAwaiter();
+        => WhoHasCt.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : Bus.FireAsync(this, WhoHasCt.CurCt, debug).GetAwaiter();
 }
 [DebuggerStepThrough]
 public abstract record EvtForgetBase : IEvtBase

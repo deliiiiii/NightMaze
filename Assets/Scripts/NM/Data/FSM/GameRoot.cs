@@ -6,7 +6,7 @@ using GeneralPreview;
 
 namespace NM.Data;
 
-public partial class GameRoot : Node<GameRoot>
+public partial class GameRoot : DataBase<GameRoot>
 {
     static GameRoot()
     {
@@ -22,7 +22,7 @@ public partial class GameRoot : Node<GameRoot>
 #endif
     }
     static readonly GameRoot instance = new();
-    Node? state;
+    DataBase? state;
 
     [field:MaybeNull]SettingData SettingData
     {
@@ -60,5 +60,5 @@ public partial class GameRoot : Node<GameRoot>
     }
 }
 
-public abstract class RootStateBase<T> : Node<GameRoot, T>
+public abstract class RootStateBase<T> : DataBase<GameRoot, T>
     where T : RootStateBase<T>;

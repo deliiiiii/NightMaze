@@ -41,7 +41,6 @@ namespace GeneralPreview;
         public abstract string PrefixName { get; }
 
         bool CheckAll() => CheckName() && CheckNameAndIdIdentical();
-        // bool CheckId() => true;
         bool CheckName()
         {
             if (Name.Contains('/'))

@@ -7,16 +7,16 @@ using Newtonsoft.Json;
 
 namespace GeneralPreview;
 [DebuggerStepThrough]
-public abstract class Node
+public abstract class DataBase
 {
     public abstract UniTask OnCreateAsync(bool isThisFromLoad);
     public abstract void OnRemove();
 }
 [DebuggerStepThrough]
-public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where TThis : Node<TThis>
+public abstract class DataBase<TThis> : DataBase, IDisposable, IHasCt, IHasVersion where TThis : DataBase<TThis>
 {
     protected UniTask _ChangeAsync<TNode, TNodeSub>(ref TNode? field, TNodeSub node, bool isNewFromLoad) 
-        where TNode : Node
+        where TNode : DataBase
         where TNodeSub : TNode
     {
         field?.OnRemove();
@@ -70,26 +70,16 @@ public abstract class Node<TThis> : Node, IDisposable, IHasCt, IHasVersion where
     public record EvtOnExit : EvtForgetBase;
     public record EvtOnTick(TThis Self, float Dt) : EvtForgetBase;
 }
+
 [DebuggerStepThrough]
-public abstract record UniAction<TThis>(TThis Self) : IUniAction
-    where TThis : IHasCt
-{
-    [JsonProperty] protected TThis Self = Self;
-    protected abstract UniTask InvokeAsync();
-    public UniTask.Awaiter GetAwaiter() 
-        => Self.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : InvokeAsync().GetAwaiter();
-    public void Forget() => InvokeAsync().Forget();
-}
-public interface IUniAction : ICanAwait;
-[DebuggerStepThrough]
-public abstract class Node<TBelong, TThis> : Node<TThis>, IHasBelong<TBelong>
+public abstract class DataBase<TBelong, TThis> : DataBase<TThis>, IHasBelong<TBelong>
     where TBelong : class
-    where TThis : Node<TBelong, TThis>
+    where TThis : DataBase<TBelong, TThis>
 {
     [JsonIgnore]TBelong IHasBelong<TBelong>.BelongNode { get => BelongNode; set => BelongNode = value; }
     protected TBelong BelongNode { get; set; } = null!;
 }
-public interface IHasBelong<TBelong> where TBelong : class
+interface IHasBelong<TBelong> where TBelong : class
 {
     TBelong BelongNode { get; set; }
 }
