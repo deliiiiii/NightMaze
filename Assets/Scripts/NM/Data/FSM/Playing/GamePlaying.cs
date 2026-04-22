@@ -26,7 +26,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         ];
     }
     [DebuggerStepThrough]public override string ToString() => nameof(GamePlaying);
-    public string PlayerName { get; private set;} = "Deli";
+    public string PlayerName { get; set;} = "Deli";
     public double PlayTime { get; private set;}
     [EvtChanged] public partial int TurnCount { get; private set; } = 1;
     public int CurLayer { get; private set; } = 1;

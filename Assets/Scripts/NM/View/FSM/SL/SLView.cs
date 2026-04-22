@@ -22,6 +22,14 @@ public class SLView : ViewBase
     [SerializeField] NewSlotParamView paramView;
 
     [SerializeField, ReadOnly] SlotView? curSelected;
+
+    [Header("复制存档")]
+    [SerializeField] GO pnlDuplicate;
+    [SerializeField] Ipt iptDuplicateName;
+    [SerializeField] Btn btnConfirmDuplicate;
+    [SerializeField] Btn btnCloseDuplicate;
+
+    GamePlaying? toDuplicateData;
     
     protected override IEnumerable<BindDataBase> BindList()
     {
@@ -43,6 +51,40 @@ public class SLView : ViewBase
             UnityEditor.EditorUtility.RevealInFinder(Const.Name.Save.SlotFolder);
 #endif
         });
+
+        yield return btnConfirmDuplicate.onClick.EvtBindTo(() =>
+        {
+            if (toDuplicateData != null)
+            {
+                var newData = toDuplicateData.DeepCopy();
+                var newName = iptDuplicateName.text.Trim();
+                if (newName == toDuplicateData.PlayerName)
+                {
+                    MyDebug.LogError("名称与已有的重复..");
+                }
+                else
+                {
+                    newData.PlayerName = newName;
+                    UniTask.Create(async () =>
+                    {
+                        await Saver.SaveAsync(Const.Name.Save.SlotFolder, newName, newData);
+                        await OnOpenAsync(CancellationToken.None);
+                    }).Forget();
+                }
+            }
+            else
+            {
+                MyDebug.LogError("没有选择要复制的存档..");
+            }
+            
+            pnlDuplicate.SetActiveFalse();
+            toDuplicateData = null;
+        });
+        yield return btnCloseDuplicate.onClick.EvtBindTo(() =>
+        {
+            pnlDuplicate.SetActiveFalse();
+            toDuplicateData = null;
+        });
     }
 
     public async UniTask OnOpenAsync(CancellationToken ct)
@@ -62,6 +104,12 @@ public class SLView : ViewBase
                 curSelected?.OnUnSelect();
                 curSelected = ins;
                 curSelected?.OnSelect();
+            };
+            ins.OnClickDuplicate += toData =>
+            {
+                toDuplicateData = toData;
+                iptDuplicateName.text = $"{toDuplicateData.PlayerName}(1)";
+                pnlDuplicate.SetActiveTrue();
             };
             await UniTask.WaitForSeconds(0.1f, cancellationToken: ct);
         }

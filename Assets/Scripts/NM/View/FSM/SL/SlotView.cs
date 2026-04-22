@@ -13,6 +13,7 @@ public class SlotView : ViewBase
     protected override IEnumerable<BindDataBase> BindList()
     {
         yield return btn.onClick.EvtBindTo(() => OnClick?.Invoke());
+        yield return btnDuplicate.onClick.EvtBindTo(() => OnClickDuplicate?.Invoke(Data));
     }
 
     public GamePlaying Data { get; private set; }
@@ -27,7 +28,10 @@ public class SlotView : ViewBase
     [SerializeField] Txt txtItemCount;
     [SerializeField] Btn btn;
     [SerializeField] GO goSelected;
+
+    [SerializeField] Btn btnDuplicate;
     public event Action? OnClick;
+    public event Action<GamePlaying>? OnClickDuplicate;
     
     public void Init(GamePlaying data)
     {
