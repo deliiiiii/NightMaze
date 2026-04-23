@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using General;
 using GeneralPreview;
 using Newtonsoft.Json;
 using NM.Config;
@@ -51,11 +50,8 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     public const int AreaHeight = 8;
     public const int CorridorWidth = 1;
     [JsonProperty(IsReference = false, Order = 9000)]List<MyItem> itemList = [];
-    
-    
     [JsonProperty(Order = 9999)]List<IUniAction> toDoList = [];
     public IEnumerable<IUniAction> ToDoList => toDoList;
-    [JsonIgnore] UniTask curtask;
     int FindAfterId(Func<IUniAction, bool>? beforeWho = null)
     {
         beforeWho ??= RFalse1;
@@ -63,21 +59,15 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         // 未找到返回-1, 代表头插
         return beforeId;
     }
-    void InsertAfter(IUniAction act, Func<IUniAction, bool>? afterWho = null)
-    {
-        // MyDebug.LogError("insert:" + act.GetType().Name);
+    void InsertAfter(IUniAction act, Func<IUniAction, bool>? afterWho = null) => 
         toDoList.Insert(FindAfterId(afterWho) + 1, act);
-    }
-
-    void InsertAfter(IEnumerable<IUniAction> actList, Func<IUniAction, bool>? afterWho = null)
-    {
-        // MyDebug.LogError("insert:" + string.Join(',', actList.Select(ac => ac.GetType().Name)));
+    void InsertAfter(IEnumerable<IUniAction> actList, Func<IUniAction, bool>? afterWho = null) =>
         toDoList.InsertRange(FindAfterId(afterWho) + 1, actList);
-    }
 
-    void InsertButCancelFirstAndDoFirst(IEnumerable<IUniAction> actList)
+    void InsertButCancelClickStartTurn(IEnumerable<IUniAction> actList)
     {
         var first = toDoList.First();
+        // 拷贝原来的等待按钮.
         IUniAction newFirst = first switch
         {
             ActWaitForClickStartTurn => new ActWaitForClickStartTurn(this),
@@ -217,8 +207,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     protected override UniTask OnLaunchCom(bool isThisFromLoad)
     {
         TechTreeData.OnLoad();
-        curtask = StartTodo();
-        curtask.Forget();
+        StartTodo().Forget();
         return UniTask.CompletedTask;
     }
     async UniTask StartTodo()

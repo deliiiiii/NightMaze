@@ -47,14 +47,11 @@ public class BuildingPreView : ViewBase,
         DraggingView.SetActiveFalse();
         var pos = PlayView.ScreenToGrid(eventData.position);
         DraggingView.Data.PivotPos = pos;
-        if (PlayViewIns.Data.TrySetItem(DraggingView.Data))
+        new GamePlaying.ActSpawnItemAtPos(PlayViewIns.Data)
         {
-            new GamePlaying.ActSpawnItemAtPos(PlayViewIns.Data)
-            {
-                Id = ToBuildConfig.ID,
-                Pos = pos,
-                ResultWrap = null
-            }.Forget();
-        }
+            Id = ToBuildConfig.ID,
+            Pos = pos,
+            ResultWrap = null
+        }.Forget();
     }
 }

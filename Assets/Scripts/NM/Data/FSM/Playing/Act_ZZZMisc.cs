@@ -25,7 +25,7 @@ public partial class GamePlaying
     {
         if (!item.Config.IsEvent || !item.IsBuildingOrEventKanSei)
             return UniTask.CompletedTask;
-        InsertButCancelFirstAndDoFirst([
+        InsertButCancelClickStartTurn([
             new ActRemoveItem(this)
             {
                 ToRemove = item,

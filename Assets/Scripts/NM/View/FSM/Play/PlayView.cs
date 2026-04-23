@@ -85,9 +85,16 @@ public class PlayView : ViewBase<GamePlaying>
         {
             Data = evt.WhoHasCt;
             
+            int tarCount = Data.Items.Count();
+            int curCount = 0;
+            LoadingViewIns.Register(
+                () => GameRoot.ChangeStateAsync(new GameTitle(), false).Forget(),
+                getProgress: () => curCount * 1f / tarCount
+                );
             await Data.Items.ForEachAsync(async item =>
             {
                 await SpawnItemAsync(item, ct);
+                curCount++;
                 if(spawnC++ % 3 == 0)
                     await UniTask.Yield(cancellationToken: ct);
             });
@@ -98,6 +105,7 @@ public class PlayView : ViewBase<GamePlaying>
             RefreshConfinerAndFog();
             lr.SetActiveTrue();
             gameObject.SetActiveTrue();
+            LoadingViewIns.Release();
         },
         Des = "(进入Root - Playing状态时) 恢复游戏"
     };

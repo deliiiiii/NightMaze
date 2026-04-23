@@ -21,8 +21,6 @@ public class Launcher : Singleton<Launcher>
 //         };
 // #endif
 //     }
-    
-    public List<ViewBase> ViewList = [];
     protected override void Awake()
     {
         base.Awake();
