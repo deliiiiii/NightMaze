@@ -46,6 +46,7 @@ public abstract class DataBase<TThis> : DataBase, IDisposable, IHasCt, IHasVersi
         await new EvtOnEnter((TThis)this);
         await OnLaunchCom(isThisFromLoad);
     }
+
     /// 如果是全新数据, 初始化子状态和非子状态的数据
     protected internal virtual void OnCreateFreshData(){}
     /// 根据反序列化与否、把数据初始化完后, 启动子状态.

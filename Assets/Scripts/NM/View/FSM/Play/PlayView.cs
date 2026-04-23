@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
@@ -32,11 +33,12 @@ public class PlayView : ViewBase<GamePlaying>
     public Btn BtnSetting;
     [Header("中-地图")]
     [SerializeField] Trs gridTrs;
+    [SerializeField] BoxCollider2D colliderConfiner;
     public Trs TrsToBuild;
     public ItemView PfbItemView;
     [SerializeField] LineRenderer lr;
     readonly List<ItemView> itemViewList = [];
-    IEnumerable<ItemView> Grids => itemViewList.Where(i => i.Data.Config.IsGrid);
+    IEnumerable<ItemView> GridViews => itemViewList.Where(i => i.Data.Config.IsGrid);
     [Header("中-地图格详情")]
     public GridDetail GridDetail; 
     public Vector2Int? LockedPosDetail;
@@ -76,19 +78,26 @@ public class PlayView : ViewBase<GamePlaying>
     }
 
     #region OnEvt
+    int spawnC = 0;
     UniEvt<GamePlaying.EvtOnEnter> OnEnter => new()
     {
-        Invoke = (evt, ct) =>
+        Invoke = async (evt, ct) =>
         {
             Data = evt.WhoHasCt;
-            Data.Items.ForEach(SpawnItem);
+            
+            await Data.Items.ForEachAsync(async item =>
+            {
+                await SpawnItemAsync(item, ct);
+                if(spawnC++ % 3 == 0)
+                    await UniTask.Yield(cancellationToken: ct);
+            });
             RefreshTurnAndSoOn();
             RefreshItemEvt();
             PropValueViewList.ForEach(view => view.Refresh(Data));
             RefreshGridEdge();
+            RefreshConfinerAndFog();
             lr.SetActiveTrue();
             gameObject.SetActiveTrue();
-            return UniTask.CompletedTask;
         },
         Des = "(进入Root - Playing状态时) 恢复游戏"
     };
@@ -122,7 +131,6 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "清空已完成事件列表"
     };
-    // TODO 原状态机消失...
     UniEvt<GamePlaying.EvtEndSpin> OnEndSpin => new()
     {
         Invoke = (evt, ct) =>
@@ -132,25 +140,27 @@ public class PlayView : ViewBase<GamePlaying>
         },
         Des = "刷新已完成事件列表"
     };
-
-    UniEvt<GamePlaying.EvtUnlockNextLayer> OnCurLayerChanged => new()
-    {
-        Invoke = (evt, ct) =>
-        {
-            TxtLayerCount.text = evt.WhoHasCt.CurLayer.ToString();
-            return UniTask.CompletedTask;
-        },
-        Des = "更新文本",
-    };
+    
     UniEvt<GamePlaying.EvtTurnCountChanged> OnTurnCountChanged => new()
     {
         Invoke = (evt, ct) =>
         {
-            TxtTurnCount.text = evt.GamePlaying.TurnCount.ToString();
+            TxtTurnCount.text = evt.NewValue.ToString();
             return UniTask.CompletedTask;
         },
         Des = "更新文本",
     };
+
+    UniEvt<GamePlaying.EvtCurLayerChanged> OnCurLayerChanged => new()
+    {
+        Invoke = (evt, ct) =>
+        {
+            TxtLayerCount.text = evt.NewValue.ToString();
+            return UniTask.CompletedTask;
+        },
+        Des = "更新文本",
+    };
+    
     UniEvt<GamePlaying.EvtOnTick> OnTickSpin => new()
     {
         Invoke = (evt, ct) =>
@@ -162,10 +172,11 @@ public class PlayView : ViewBase<GamePlaying>
     };
     UniEvt<GamePlaying.EvtSpawnItem> OnSpawnItemAtPos => new()
     {
-        Invoke = (evt, ct) =>
+        Invoke = async (evt, ct) =>
         {
-            SpawnItem(evt.Item);
-            return UniTask.CompletedTask;
+            await SpawnItemAsync(evt.Item, ct);
+            if(spawnC++ % 3 == 0)
+                await UniTask.Yield(cancellationToken: ct);
         },
         Des = "生成物体",
     };
@@ -186,6 +197,15 @@ public class PlayView : ViewBase<GamePlaying>
             return UniTask.CompletedTask;
         },
         Des = "移除物体",
+    };
+    UniEvt<GamePlaying.EvtUnlockArea> OnUnlockArea => new()
+    {
+        Invoke = (evt, ct) =>
+        { 
+            RefreshConfinerAndFog();
+            return UniTask.CompletedTask;
+        },
+        Des = "刷新迷雾",
     };
     #endregion
     
@@ -329,7 +349,7 @@ public class PlayView : ViewBase<GamePlaying>
         itemViewList.Clear();
         RefreshGridEdge();
     }
-    void SpawnItem(GamePlaying.MyItem item)
+    UniTask SpawnItemAsync(GamePlaying.MyItem item, CancellationToken ct)
     {
         ItemView ins = Instantiate(PfbItemView);
         ins.OnCreateView(item);
@@ -338,7 +358,9 @@ public class PlayView : ViewBase<GamePlaying>
         
         itemViewList.Add(ins);
         if(item.Config.IsGrid)
+            // TODO 如果同一帧创建与销毁大量物体, 疑似有性能问题.
             RefreshGridEdge();
+        return UniTask.CompletedTask;
     }
     void MoveItem(GamePlaying.MyItem item)
     {
@@ -362,7 +384,7 @@ public class PlayView : ViewBase<GamePlaying>
         }
         else
         {
-            item.transform.parent = Grids.FirstOrDefault(g => g.Data.PivotPos == item.Data.PivotPos)?.transform;
+            item.transform.parent = GridViews.FirstOrDefault(g => g.Data.PivotPos == item.Data.PivotPos)?.transform;
             item.transform.localPosition = new Vector3(0.5f, 0.5f) * Const.World.GridSize;
         }
     }
@@ -421,6 +443,37 @@ public class PlayView : ViewBase<GamePlaying>
         }
         Destroy(ins.gameObject);
         itemEvtViewList.Remove(ins);
+    }
+    #endregion
+    
+    #region Fog
+
+    void RefreshConfinerAndFog()
+    {
+        // colliderConfiner.size
+        var minX = int.MaxValue;
+        var maxX = int.MinValue;
+        var minY = int.MaxValue;
+        var maxY = int.MinValue;
+        Data.GridPoses.ForEach(pos =>
+        {
+            if (pos.X < minX)
+                minX = pos.X;
+            if (pos.X > maxX)
+                maxX = pos.X;
+            if (pos.Y < minY)
+                minY = pos.Y;
+            if (pos.Y > maxY)
+                maxY = pos.Y;
+        });
+        var width = maxX - minX + 4.2f;
+        var height = maxY - minY + 4.2f;
+        colliderConfiner.size = new(width, height);
+        colliderConfiner.offset = new Vector2(minX + maxX / 2f, minY + maxY / 2f);
+        GridViews.ForEach(itemView =>
+        {
+            itemView.RefreshFog();
+        });
     }
     #endregion
     

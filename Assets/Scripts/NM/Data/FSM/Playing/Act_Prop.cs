@@ -7,12 +7,6 @@ namespace NM.Data;
 
 public partial class GamePlaying
 {
-    [Obsolete("解锁下一层")]
-    UniTask UnlockNextLayerAsync(CancellationToken ct)
-    {
-        CurLayer++;
-        return UniTask.CompletedTask;
-    }
     [Obsolete("清空属性")]
     [MuteActEvt]
     UniTask ClearPropAsync(EPropType propType, CancellationToken ct)

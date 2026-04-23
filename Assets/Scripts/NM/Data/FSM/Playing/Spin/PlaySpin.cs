@@ -17,6 +17,8 @@ public partial class PlaySpin
         BelongNode = belongNode;
         var items = 
             from itemInPlay in BelongNode.Items
+            // 未解锁地块.
+            where itemInPlay is not {Config.IsGrid: true, GridRevealed: false}
             orderby itemInPlay.PivotPos.Y descending, itemInPlay.PivotPos.X, itemInPlay.Config.Order ascending
             select itemInPlay;
         InsertAfter((List<IUniAction>)[
@@ -54,8 +56,9 @@ public partial class PlaySpin
     [JsonProperty(Order = 9999)]readonly List<IUniAction> toDoList = [];
     int FindAfterId(Func<IUniAction, bool>? beforeWho = null)
     {
-        beforeWho ??= RTrue1;
+        beforeWho ??= RFalse1;
         int beforeId = toDoList.IndexOf(toDoList.FirstOrDefault(beforeWho));
+        // 未找到返回-1, 代表头插
         return beforeId;
     }
     void InsertAfter(IUniAction act, Func<IUniAction, bool>? afterWho = null) => 

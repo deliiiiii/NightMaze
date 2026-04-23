@@ -44,14 +44,16 @@ public class GridDetail : MonoBehaviour
         tagList = TrsGridType.GetChildren().Select(c => c.GetComponent<GridType>()).ToList();
         inSpinLineList = TrsGridInSpinLine.GetChildren().Select(c => c.GetComponent<GridInSpinLine>()).ToList();
     }
-
-
     public void SwitchToFirst()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
         headList[0].OnClick?.Invoke();
     }
     public void Refresh(List<DetailInfo> detailList)
     {
+        if (!gameObject.activeInHierarchy)
+            return;
         int headCount = 0;
         int gridHeadCount = detailList.Count;
         for (int i = 0; i < Math.Min(GridHeadMax, gridHeadCount); i++)

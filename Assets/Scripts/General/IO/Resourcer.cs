@@ -31,11 +31,11 @@ namespace General
         }
 #if UNITY_EDITOR
         [UnityEditor.InitializeOnLoadMethod]
-#endif
         static void InitializeOnLoad()
         {
             ForceClearAndReloadCacheEditor();
         }
+#endif
         
         static readonly Dictionary<string, AsyncOperationHandle> assetHandleCache = new();
         static readonly Dictionary<string, IList<IResourceLocation>> labelLocationsCache = new();

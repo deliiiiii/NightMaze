@@ -14,6 +14,8 @@ public partial class GamePlaying
     {
         if (oldPos == pos)
             return;
+        if(!IsRevealed(pos))
+            return;
         item.Dragging = true;
         item.PivotPos = pos;
         if (TrySetItem(item))
@@ -76,4 +78,5 @@ public partial class GamePlaying
         });
         return UniTask.CompletedTask;
     }
+    
 }

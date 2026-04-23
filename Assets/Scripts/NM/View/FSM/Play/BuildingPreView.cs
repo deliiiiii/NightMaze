@@ -34,12 +34,16 @@ public class BuildingPreView : ViewBase,
     }
     public void OnMultiDrag(PointerEventData eventData)
     {
+        if(!DraggingView.gameObject.activeSelf)
+            return;
         DraggingView.transform.position = MyCamera.Main.ScreenToWorldPoint(eventData.position);
         DraggingView.transform.SetPositionZ(0);
     }
 
     public void OnMultiEndDrag(PointerEventData eventData)
     {
+        if(!DraggingView.gameObject.activeSelf)
+            return;
         DraggingView.SetActiveFalse();
         var pos = PlayView.ScreenToGrid(eventData.position);
         DraggingView.Data.PivotPos = pos;

@@ -23,42 +23,32 @@ public partial class PlaySpin
         var nextRet = ResolveCondition(selfItem, conditionBase.Next, resultWrap);
         return thisRet && nextRet;
     }
-    static IEnumerable<GamePlaying.MyItem> ResolveItemSelectorFromResult(ItemSelectorFromResultFilterBase? fromResultFilter, ResultWrap? resultWrap)
-    {
-        if (resultWrap == null)
-            return [];
-        return 
-            from itemWrap in resultWrap.ItemWraps
-            where fromResultFilter switch
-            {
-                ItemSelectorFromResultFilterAddPropX => itemWrap.CtxList.OfType<ResultItemWrap.CtxAddPropX>().Any(),
-                ItemSelectorFromResultFilterFailMoved => itemWrap.CtxList.OfType<ResultItemWrap.CtxFailMoved>().Any(),
-                ItemSelectorFromResultFilterMulPropX => itemWrap.CtxList.OfType<ResultItemWrap.CtxMulPropX>().Any(),
-                ItemSelectorFromResultFilterRemoved => itemWrap.CtxList.OfType<ResultItemWrap.CtxRemoved>().Any(),
-                ItemSelectorFromResultFilterSpawned => itemWrap.CtxList.OfType<ResultItemWrap.CtxSpawned>().Any(),
-                ItemSelectorFromResultFilterSuccessMoved => itemWrap.CtxList.OfType<ResultItemWrap.CtxSuccessMoved>().Any(),
-                null => true,
-                _ => throw new InvalidOperationException(
-                    $"没有匹配穷尽{nameof(ItemSelectorFromResultFilterBase)}类型: {fromResultFilter.GetType()}.")
-            }
-            select itemWrap.Item;
-    }
+    static IEnumerable<GamePlaying.MyItem> ResolveItemSelectorFromResult(ItemSelectorFromResultFilterBase? fromResultFilter, ResultWrap? resultWrap) =>
+        from itemWrap in resultWrap?.ItemWraps ?? []
+        where fromResultFilter switch
+        {
+            ItemSelectorFromResultFilterAddPropX => itemWrap.CtxList.OfType<ResultItemWrap.CtxAddPropX>().Any(),
+            ItemSelectorFromResultFilterFailMoved => itemWrap.CtxList.OfType<ResultItemWrap.CtxFailMoved>().Any(),
+            ItemSelectorFromResultFilterMulPropX => itemWrap.CtxList.OfType<ResultItemWrap.CtxMulPropX>().Any(),
+            ItemSelectorFromResultFilterRemoved => itemWrap.CtxList.OfType<ResultItemWrap.CtxRemoved>().Any(),
+            ItemSelectorFromResultFilterSpawned => itemWrap.CtxList.OfType<ResultItemWrap.CtxSpawned>().Any(),
+            ItemSelectorFromResultFilterSuccessMoved => itemWrap.CtxList.OfType<ResultItemWrap.CtxSuccessMoved>().Any(),
+            null => true,
+            _ => throw new InvalidOperationException(
+                $"没有匹配穷尽{nameof(ItemSelectorFromResultFilterBase)}类型: {fromResultFilter.GetType()}.")
+        }
+        select itemWrap.Item;
     static IEnumerable<Vector2Int> ResolvePosSelectorFromResult(PosSelectorFromResultFilterBase? fromResultFilter,
-        ResultWrap? resultWrap)
-    {
-        if (resultWrap == null)
-            return [];
-        return
-            from posWrap in resultWrap.PosWraps
-            where fromResultFilter switch
-            {
-                PosSelectorFromResultFilterFalse => posWrap.CtxList.OfType<ResultPosWrap.CtxFalse>().Any(),
-                null => true,
-                _ => throw new InvalidOperationException(
-                    $"没有匹配穷尽{nameof(PosSelectorFromResultFilterBase)}类型: {fromResultFilter.GetType()}.")
-            }
-            select posWrap.Pos;
-    }
+        ResultWrap? resultWrap) =>
+        from posWrap in resultWrap?.PosWraps ?? []
+        where fromResultFilter switch
+        {
+            PosSelectorFromResultFilterFalse => posWrap.CtxList.OfType<ResultPosWrap.CtxFalse>().Any(),
+            null => true,
+            _ => throw new InvalidOperationException(
+                $"没有匹配穷尽{nameof(PosSelectorFromResultFilterBase)}类型: {fromResultFilter.GetType()}.")
+        }
+        select posWrap.Pos;
     IEnumerable<GamePlaying.MyItem> ResolveItemSelector(GamePlaying.MyItem selfItem, ICanSelectItem? iCanSelectItem, ResultWrap? resultWrap)
     {
         if (iCanSelectItem == null)

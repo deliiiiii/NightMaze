@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
-  m_Name: "Event_49001_\u51DD\u89C6"
+  m_Name: "Event_49002_\u51DD\u89C6"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -81,25 +81,19 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
-      Data: 5|NM.Config.ItemDesResultClearHostility, NM.Config
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 6|NM.Config.ItemDesResultUnlockAdjacentArea, NM.Config
+      Data: 5|NM.Config.ItemDesResultUnlockAdjacentArea, NM.Config
     - Name: Delta
       Entry: 7
       Data: GeneralPreview.Vector2Int, GeneralPreview
     - Name: X
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: Y
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -114,7 +108,7 @@ MonoBehaviour:
       Data: 
     - Name: BuildPropValueList
       Entry: 7
-      Data: 7|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+      Data: 6|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
@@ -153,7 +147,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   Name: "\u51DD\u89C6"
-  ID: 49001
+  ID: 49002
   FlavorDes: "\u4E0D\u65AD\u5411\u4E0A\u6500\u767B\uFF0C\u5411\u4E0A\u7D22\u53D6\uFF0C\u76F4\u5230\u6700\u7EC8\u89E6\u6012\u201C\u4ED6\u4EEC\u201D\u7684\u5B58\u5728\uFF0C\u6216\u8005\u5F97\u5230\u771F\u6B63\u7684\u89E3\u8131"
   BriefDes: "\u8BF7\u8F93\u5165\u7B80\u7565\u63CF\u8FF0"
   Rarity: 0
@@ -166,7 +160,7 @@ MonoBehaviour:
   ResourceTagList: 
   EventTagList: 
   DesList:
-  - DesToPlayer: "\u4E8B\u4EF6\u89E6\u53D1\u8FC7\u7A0B\u4E2D\uFF0C\u654C\u610F\u503C\u6BCF\u56DE\u5408+10\u3002\u4E8B\u4EF6\u5B8C\u6210\u540E\uFF0C\u6E05\u7A7A\u654C\u610F\u503C\uFF0C\u89E3\u9501\u4E0B\u4E00\u5C42\u3002"
+  - DesToPlayer: "\u4E8B\u4EF6\u89E6\u53D1\u8FC7\u7A0B\u4E2D\uFF0C\u654C\u610F\u503C\u6BCF\u56DE\u5408+10\u3002\u4E8B\u4EF6\u5B8C\u6210\u540E\uFF0C\u89E3\u9501\u53F3\u4FA7\u533A\u57DF\u3002"
     Trigger:
       rid: 6212121295173713920
     Result:

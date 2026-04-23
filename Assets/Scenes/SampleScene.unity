@@ -3283,6 +3283,7 @@ MonoBehaviour:
   BtnExit: {fileID: 1730101043}
   BtnSetting: {fileID: 1522634754}
   gridTrs: {fileID: 311023196}
+  colliderConfiner: {fileID: 1528312877}
   TrsToBuild: {fileID: 215970029}
   PfbItemView: {fileID: 6198069133924752550, guid: d67e1d9f5f576d74ea63bcbaa5c11ebc, type: 3}
   lr: {fileID: 710619747}
@@ -4605,7 +4606,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &311023196
 Transform:
@@ -4686,7 +4687,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 173.94, y: 179}
+  m_Size: {x: 1000, y: 1000}
   m_EdgeRadius: 0
 --- !u!114 &311023199
 MonoBehaviour:

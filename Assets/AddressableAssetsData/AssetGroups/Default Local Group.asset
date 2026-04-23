@@ -77,6 +77,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMItemSprite
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 341a029f27873b8408c736c554731d53
+    m_Address: "Event_49002_\u51DD\u89C6"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 368e74b88af6a3f44ba24ecc711f7dfb
     m_Address: "Resource_30001_A\u7EA7\u86CB\u767D\u8D28\u5757"
     m_ReadOnly: 0
@@ -88,6 +94,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f168e625c5eb3c4089812d045977208
+    m_Address: function_icon_spiderweb
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMItemSprite
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 40f8bd5cba016b245aa789f434044b6f
     m_Address: "Symbol_10001_\u62FE\u8352\u8005"

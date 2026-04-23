@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using GeneralPreview;
+using Newtonsoft.Json;
 using Sirenix.OdinInspector;
-using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 
 namespace NM.Config;

@@ -183,7 +183,7 @@ public abstract record EvtBase<THasCt>(THasCt WhoHasCt)
     [HideInInspector] public THasCt WhoHasCt = WhoHasCt;
     [ShowInInspector] string EvtDes => ToString();
     public UniTask.Awaiter GetAwaiter() 
-        => WhoHasCt.CurCt.IsCancellationRequested ? UniTask.CompletedTask.GetAwaiter() : Bus.FireAsync(this, WhoHasCt.CurCt, debug).GetAwaiter();
+        => WhoHasCt.CurCt.IsCancellationRequested ? UniTask.FromCanceled(WhoHasCt.CurCt).GetAwaiter() : Bus.FireAsync(this, WhoHasCt.CurCt, debug).GetAwaiter();
 }
 [DebuggerStepThrough]
 public abstract record EvtForgetBase : IEvtBase

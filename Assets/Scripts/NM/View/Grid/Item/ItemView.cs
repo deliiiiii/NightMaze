@@ -21,6 +21,8 @@ public class ItemView : ViewBase<GamePlaying.MyItem>
     [SerializeField]SpriteRenderer gridSr;
     [SerializeField]SpriteRenderer onGridSr;
     [SerializeField]DOTweenSequence onSpinTween;
+
+    [SerializeField] SpriteRenderer sprFog;
     public void OnCreateView(GamePlaying.MyItem item)
     {
         Data = item;
@@ -73,6 +75,8 @@ public class ItemView : ViewBase<GamePlaying.MyItem>
         {
             trsBuildingSlot.gameObject.SetActive(false);
         }
+
+        RefreshFog();
     }
     
     UniEvt<PlaySpin.EvtBeforeCheckSymbolTween> OnBeforeCheckSymbol => new()
@@ -87,4 +91,9 @@ public class ItemView : ViewBase<GamePlaying.MyItem>
         },
         Des = "符号结算前播放动画.",
     };
+
+    public void RefreshFog()
+    {
+        sprFog.gameObject.SetActive(!Data.GridRevealed);
+    }
 }

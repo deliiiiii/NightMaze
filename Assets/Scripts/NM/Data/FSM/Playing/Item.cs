@@ -46,6 +46,7 @@ public partial class GamePlaying
         public int ID { get; private set; }
         public bool Dragging;
         public bool Spawning;
+        public bool GridRevealed;
         public bool ReallyInWorld => !Dragging && !Spawning;
 
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
