@@ -24,6 +24,7 @@ public partial class GamePlaying
     UniTask StartSpinAsync(CancellationToken ct)
     {
         InSpin = new PlaySpin(this);
+        Items.ForEach(item => item.DestroyInSpin());
         return UniTask.CompletedTask;
     }
     [Obsolete("等待回合.."), MuteActEvt]
@@ -34,8 +35,6 @@ public partial class GamePlaying
     UniTask EndSpinAsync(CancellationToken ct)
     {
         TurnCount++;
-        Items.ForEach(item => item.DestroyInSpin());
-        InSpin = null;
         InsertAfter(new ActWaitForClickStartTurn(this), act => act is ActEndSpin);
         return UniTask.CompletedTask;
     }
