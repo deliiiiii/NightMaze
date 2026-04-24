@@ -151,6 +151,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     public bool TrySetItem(MyItem item) =>
         item switch
         {
+            _ when !IsRevealed(item.PivotPos) => false,
             _ when item.Config.IsGrid => item.CoveredPosList.All(pos => !GridPoses.Contains(pos)),
             _ when item.Config.IsBuildingOrEvent => 
                 item.CoveredPosList.All(pos => GridPoses.Contains(pos)) &&
@@ -224,7 +225,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
             {
                 await first;
             }
-            catch (OperationCanceledException e)
+            catch (OperationCanceledException)
             {
                 if (!first.IsCancelledSelfly)
                     throw;
