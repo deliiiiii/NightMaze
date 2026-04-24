@@ -1,0 +1,6662 @@
+{
+  "$id": "1",
+  "savedVersion": 20260402.0,
+  "BelongNode": {
+    "$id": "2",
+    "savedVersion": 20260402.0,
+    "SettingData": {
+      "$id": "3",
+      "MouseScrollMapSpeed": 0.2,
+      "SpinTweenSpeed": {
+        "$type": "NM.Data.SettingData+SpinTweenSpeedImmediate, NM.Data"
+      }
+    },
+    "state": { "$ref": "1" }
+  },
+  "RevealedAreaSet": {
+    "$id": "4",
+    "$values": [
+      {
+        "$id": "5",
+        "X": 2,
+        "Y": 1
+      }
+    ]
+  },
+  "TechTreeData": {
+    "$id": "6",
+    "NodeList": [
+      {
+        "ID": 20,
+        "CarValueDic": {
+          "Prop1": 0,
+          "Prop2": 0,
+          "Prop3": 0,
+          "PropA1": 0,
+          "PropA2": 0
+        }
+      },
+      {
+        "ID": 110,
+        "CarValueDic": {
+          "Prop1": 0,
+          "Prop2": 0,
+          "Prop3": 0,
+          "PropA1": 0,
+          "PropA2": 0
+        }
+      },
+      {
+        "ID": 120,
+        "CarValueDic": {
+          "Prop1": 0,
+          "Prop2": 0,
+          "Prop3": 0,
+          "PropA1": 0,
+          "PropA2": 0
+        }
+      },
+      {
+        "ID": 10,
+        "CarValueDic": {
+          "Prop1": 0,
+          "Prop2": 0,
+          "Prop3": 0,
+          "PropA1": 0,
+          "PropA2": 0
+        }
+      },
+      {
+        "ID": 210,
+        "CarValueDic": {
+          "Prop1": 0,
+          "Prop2": 0,
+          "Prop3": 0,
+          "PropA1": 0,
+          "PropA2": 0
+        }
+      },
+      {
+        "ID": 220,
+        "CarValueDic": {
+          "Prop1": 0,
+          "Prop2": 0,
+          "Prop3": 0,
+          "PropA1": 0,
+          "PropA2": 0
+        }
+      }
+    ],
+    "CurID": null
+  },
+  "PlayerName": "11",
+  "PlayTime": 38.988161885179579,
+  "TurnCount": 4,
+  "CurLayer": 1,
+  "PropBody": 0,
+  "PropSans": 960,
+  "PropLore": 0,
+  "PropLoyalty": 0,
+  "PropLoyaltyMax": 1000,
+  "PropHostility": 103,
+  "PropHostilityMax": 1000,
+  "itemList": [
+    {
+      "$id": "7",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":10,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "8",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "9"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "10",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":10,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "11",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "12"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "13",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":10,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "14",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "15"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "16",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":10,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "17",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "18"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "19",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":10,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "20",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "21"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "22",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":10,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "23",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "24"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "25",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":10,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "26",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "27"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "28",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":10,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "29",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "30"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "31",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":11,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "32",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "33"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "34",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":11,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "35",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "36"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "37",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":11,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "38",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "39"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "40",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":11,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "41",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "42"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "43",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":11,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "44",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "45"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "46",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":11,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "47",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "48"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "49",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":11,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "50",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "51"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "52",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":11,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "53",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "54"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "55",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":12,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "56",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "57"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "58",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":12,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "59",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "60"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "61",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":12,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "62",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "63"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "64",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":12,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "65",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "66"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "67",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":12,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "68",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "69"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "70",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":12,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "71",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "72"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "73",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":12,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "74",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "75"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "76",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":12,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "77",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "78"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "79",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":13,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "80",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "81"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "82",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":13,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "83",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "84"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "85",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":13,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "86",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "87"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "88",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":13,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "89",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "90"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "91",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":13,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "92",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "93"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "94",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":13,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "95",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "96"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "97",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":13,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "98",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "99"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "100",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":13,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "101",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "102"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "103",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":14,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "104",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "105"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "106",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":14,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "107",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "108"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "109",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":14,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "110",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "111"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "112",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":14,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "113",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "114"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "115",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":14,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "116",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "117"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "118",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":14,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "119",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "120"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "121",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":14,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "122",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "123"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "124",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":14,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "125",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "126"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "127",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":15,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "128",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "129"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "130",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":15,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "131",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "132"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "133",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":15,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "134",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "135"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "136",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":15,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "137",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "138"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "139",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":15,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "140",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "141"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "142",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":15,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "143",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "144"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "145",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":15,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "146",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "147"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "148",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":15,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "149",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "150"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "151",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":16,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "152",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "153"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "154",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":16,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "155",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "156"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "157",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":16,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "158",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "159"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "160",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":16,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "161",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "162"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "163",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":16,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "164",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "165"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "166",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":16,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "167",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "168"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "169",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":16,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "170",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "171"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "172",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":16,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "173",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "174"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "175",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":17,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "176",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "177"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "178",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":17,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "179",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "180"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "181",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":17,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "182",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "183"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "184",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":17,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "185",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "186"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "187",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":17,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "188",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "189"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "190",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":17,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "191",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "192"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "193",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":17,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "194",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "195"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "196",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": true,
+      "PivotPos":{"X":17,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "197",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "198"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "199",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "200",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "201"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "202",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "203",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "204"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "205",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "206",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "207"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "208",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "209",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "210"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "211",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "212",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "213"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "214",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "215",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "216"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "217",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "218",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "219"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "220",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "221",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "222"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "223",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "224",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "225"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "226",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "227",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "228"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "229",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "230",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "231"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "232",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "233",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "234"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "235",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "236",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "237"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "238",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "239",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "240"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "241",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "242",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "243"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "244",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "245",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "246"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "247",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "248",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "249"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "250",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "251",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "252"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "253",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "254",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "255"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "256",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "257",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "258"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "259",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "260",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "261"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "262",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "263",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "264"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "265",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "266",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "267"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "268",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "269",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "270"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "271",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "272",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "273"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "274",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "275",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "276"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "277",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "278",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "279"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "280",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "281",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "282"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "283",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "284",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "285"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "286",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "287",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "288"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "289",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "290",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "291"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "292",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "293",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "294"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "295",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "296",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "297"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "298",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "299",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "300"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "301",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "302",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "303"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "304",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "305",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "306"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "307",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "308",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "309"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "310",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "311",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "312"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "313",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "314",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "315"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "316",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "317",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "318"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "319",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "320",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "321"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "322",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "323",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "324"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "325",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "326",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "327"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "328",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "329",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "330"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "331",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "332",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "333"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "334",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "335",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "336"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "337",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "338",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "339"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "340",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "341",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "342"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "343",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "344",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "345"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "346",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "347",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "348"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "349",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "350",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "351"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "352",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "353",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "354"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "355",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "356",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "357"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "358",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "359",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "360"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "361",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "362",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "363"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "364",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "365",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "366"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "367",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "368",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "369"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "370",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "371",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "372"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "373",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "374",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "375"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "376",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "377",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "378"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "379",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "380",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "381"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "382",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "383",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "384"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "385",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "386",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "387"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "388",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "389",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "390"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "391",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "392",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "393"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "394",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "395",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "396"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "397",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "398",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "399"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "400",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "401",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "402"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "403",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "404",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "405"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "406",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "407",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "408"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "409",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "410",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "411"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "412",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":19,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "413",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "414"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "415",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "416",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "417"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "418",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "419",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "420"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "421",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "422",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "423"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "424",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "425",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "426"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "427",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "428",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "429"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "430",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "431",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "432"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "433",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "434",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "435"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "436",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":20,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "437",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "438"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "439",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "440",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "441"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "442",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "443",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "444"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "445",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "446",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "447"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "448",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "449",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "450"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "451",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "452",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "453"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "454",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "455",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "456"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "457",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "458",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "459"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "460",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":21,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "461",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "462"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "463",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "464",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "465"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "466",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "467",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "468"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "469",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "470",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "471"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "472",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "473",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "474"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "475",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "476",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "477"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "478",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "479",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "480"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "481",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "482",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "483"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "484",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":22,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "485",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "486"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "487",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "488",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "489"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "490",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "491",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "492"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "493",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "494",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "495"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "496",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "497",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "498"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "499",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "500",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "501"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "502",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "503",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "504"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "505",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "506",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "507"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "508",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":23,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "509",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "510"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "511",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "512",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "513"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "514",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "515",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "516"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "517",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "518",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "519"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "520",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "521",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "522"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "523",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "524",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "525"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "526",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "527",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "528"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "529",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "530",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "531"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "532",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":24,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "533",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "534"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "535",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "536",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "537"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "538",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "539",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "540"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "541",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "542",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "543"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "544",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "545",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "546"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "547",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "548",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "549"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "550",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "551",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "552"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "553",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "554",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "555"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "556",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":25,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "557",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "558"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "559",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "560",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "561"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "562",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "563",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "564"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "565",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "566",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "567"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "568",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "569",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "570"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "571",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "572",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "573"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "574",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "575",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "576"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "577",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "578",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "579"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "580",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":26,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "581",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "582"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "583",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":10,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "584",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "585"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "586",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":10,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "587",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "588"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "589",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":10,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "590",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "591"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "592",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":10,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "593",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "594"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "595",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":10,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "596",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "597"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "598",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":10,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "599",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "600"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "601",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":10,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "602",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "603"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "604",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":10,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "605",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "606"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "607",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":11,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "608",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "609"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "610",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":11,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "611",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "612"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "613",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":11,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "614",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "615"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "616",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":11,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "617",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "618"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "619",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":11,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "620",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "621"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "622",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":11,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "623",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "624"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "625",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":11,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "626",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "627"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "628",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":11,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "629",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "630"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "631",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":12,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "632",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "633"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "634",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":12,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "635",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "636"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "637",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":12,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "638",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "639"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "640",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":12,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "641",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "642"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "643",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":12,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "644",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "645"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "646",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":12,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "647",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "648"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "649",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":12,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "650",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "651"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "652",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":12,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "653",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "654"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "655",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":13,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "656",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "657"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "658",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":13,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "659",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "660"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "661",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":13,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "662",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "663"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "664",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":13,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "665",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "666"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "667",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":13,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "668",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "669"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "670",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":13,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "671",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "672"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "673",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":13,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "674",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "675"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "676",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":13,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "677",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "678"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "679",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":14,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "680",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "681"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "682",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":14,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "683",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "684"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "685",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":14,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "686",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "687"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "688",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":14,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "689",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "690"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "691",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":14,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "692",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "693"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "694",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":14,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "695",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "696"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "697",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":14,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "698",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "699"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "700",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":14,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "701",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "702"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "703",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":15,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "704",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "705"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "706",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":15,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "707",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "708"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "709",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":15,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "710",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "711"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "712",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":15,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "713",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "714"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "715",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":15,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "716",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "717"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "718",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":15,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "719",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "720"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "721",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":15,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "722",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "723"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "724",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":15,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "725",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "726"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "727",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":16,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "728",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "729"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "730",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":16,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "731",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "732"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "733",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":16,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "734",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "735"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "736",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":16,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "737",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "738"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "739",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":16,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "740",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "741"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "742",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":16,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "743",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "744"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "745",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":16,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "746",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "747"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "748",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":16,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "749",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "750"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "751",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":17,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "752",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "753"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "754",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":17,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "755",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "756"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "757",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":17,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "758",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "759"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "760",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":17,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "761",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "762"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "763",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":17,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "764",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "765"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "766",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":17,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "767",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "768"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "769",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":17,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "770",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "771"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "772",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":17,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "773",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "774"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "775",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "776",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "777"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "778",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "779",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "780"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "781",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "782",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "783"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "784",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "785",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "786"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "787",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "788",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "789"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "790",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "791",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "792"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "793",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "794",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "795"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "796",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "797",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "798"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "799",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "800",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "801"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "802",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "803",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "804"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "805",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "806",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "807"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "808",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "809",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "810"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "811",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "812",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "813"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "814",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "815",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "816"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "817",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "818",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "819"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "820",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "821",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "822"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "823",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "824",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "825"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "826",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "827",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "828"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "829",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "830",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "831"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "832",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "833",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "834"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "835",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "836",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "837"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "838",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "839",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "840"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "841",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "842",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "843"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "844",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "845",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "846"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "847",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "848",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "849"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "850",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "851",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "852"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "853",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "854",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "855"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "856",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "857",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "858"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "859",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "860",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "861"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "862",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "863",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "864"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "865",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "866",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "867"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "868",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "869",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "870"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "871",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "872",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "873"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "874",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "875",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "876"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "877",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "878",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "879"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "880",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "881",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "882"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "883",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "884",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "885"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "886",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "887",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "888"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "889",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "890",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "891"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "892",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "893",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "894"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "895",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "896",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "897"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "898",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "899",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "900"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "901",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "902",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "903"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "904",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "905",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "906"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "907",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "908",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "909"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "910",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "911",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "912"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "913",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "914",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "915"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "916",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "917",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "918"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "919",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "920",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "921"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "922",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "923",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "924"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "925",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "926",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "927"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "928",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "929",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "930"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "931",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "932",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "933"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "934",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "935",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "936"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "937",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "938",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "939"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "940",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "941",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "942"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "943",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":10},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "944",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "945"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "946",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":11},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "947",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "948"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "949",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":12},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "950",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "951"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "952",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":13},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "953",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "954"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "955",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":14},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "956",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "957"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "958",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":15},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "959",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "960"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "961",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":16},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "962",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "963"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "964",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":17},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "965",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "966"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "967",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "968",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "969"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "970",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "971",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "972"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "973",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "974",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "975"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "976",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "977",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "978"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "979",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "980",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "981"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "982",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "983",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "984"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "985",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "986",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "987"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "988",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":1,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "989",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "990"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "991",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "992",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "993"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "994",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "995",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "996"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "997",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "998",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "999"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1000",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1001",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1002"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1003",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1004",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1005"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1006",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1007",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1008"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1009",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1010",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1011"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1012",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":2,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1013",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1014"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1015",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1016",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1017"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1018",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1019",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1020"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1021",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1022",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1023"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1024",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1025",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1026"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1027",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1028",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1029"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1030",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1031",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1032"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1033",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1034",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1035"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1036",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":3,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1037",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1038"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1039",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1040",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1041"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1042",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1043",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1044"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1045",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1046",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1047"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1048",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1049",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1050"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1051",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1052",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1053"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1054",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1055",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1056"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1057",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1058",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1059"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1060",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":4,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1061",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1062"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1063",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1064",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1065"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1066",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1067",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1068"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1069",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1070",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1071"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1072",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1073",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1074"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1075",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1076",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1077"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1078",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1079",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1080"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1081",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1082",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1083"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1084",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":5,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1085",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1086"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1087",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1088",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1089"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1090",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1091",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1092"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1093",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1094",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1095"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1096",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1097",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1098"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1099",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1100",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1101"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1102",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1103",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1104"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1105",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1106",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1107"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1108",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":6,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1109",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1110"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1111",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1112",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1113"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1114",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1115",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1116"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1117",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1118",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1119"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1120",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1121",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1122"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1123",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1124",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1125"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1126",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1127",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1128"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1129",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1130",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1131"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1132",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":7,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1133",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1134"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1135",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":1},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1136",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1137"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1138",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1139",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1140"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1141",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1142",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1143"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1144",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":4},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1145",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1146"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1147",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":5},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1148",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1149"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1150",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":6},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1151",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1152"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1153",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":7},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1154",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1155"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1156",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":8,"Y":8},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1157",
+        "$values": []
+      },
+      "ID": 50001,
+      "BuildingOrEventProgress": {
+        "$id": "1158"
+      },
+      "inSpin": null
+    },
+    {
+      "$id": "1159",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":12,"Y":2},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "1160",
+        "$values": []
+      },
+      "ID": 20002,
+      "BuildingOrEventProgress": {
+        "$id": "1161",
+        "Prop1": 0
+      },
+      "inSpin": null
+    }
+  ],
+  "toDoList": {
+    "$id": "1162",
+    "$values": [
+      {
+        "$id": "1163",
+        "$type": "NM.Data.GamePlaying+ActWaitForClickStartTurn, NM.Data",
+        "Self": { "$ref": "1" }
+      }
+    ]
+  },
+  "InSpin": null
+}

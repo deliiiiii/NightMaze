@@ -17,7 +17,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     {
         PlayerName = playerName;
         toDoList = [..
-            from pos in InAreaPoses(new(2, 1))
+            from pos in InAreaPoses(new Vector2Int(2, 1))
             select new ActSpawnItemAtPos(this)
             {
                 Id = 50001,
@@ -151,7 +151,7 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     public bool TrySetItem(MyItem item) =>
         item switch
         {
-            _ when !IsRevealed(item.PivotPos) => false,
+            _ when !item.Config.IsGrid && !IsRevealed(item.PivotPos) => false,
             _ when item.Config.IsGrid => item.CoveredPosList.All(pos => !GridPoses.Contains(pos)),
             _ when item.Config.IsBuildingOrEvent => 
                 item.CoveredPosList.All(pos => GridPoses.Contains(pos)) &&
