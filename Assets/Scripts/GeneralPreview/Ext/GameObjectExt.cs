@@ -13,6 +13,7 @@ public static class GameObjectExt
     {
         public void SetActiveTrue() => self.SetActive(true);
         public void SetActiveFalse() => self.SetActive(false);
+        public void SetActiveReverse() => self.SetActive(!self.activeSelf);
         public MyOption<T> MyGetCom<T>() where T : Component
         {
             var com = self.GetComponent<T>();

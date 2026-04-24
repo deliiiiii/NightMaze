@@ -43,6 +43,8 @@ public class ConfigLoader
         configList.OfType<T>().FirstOrDefault(c => c.ID == id)
         ?? configList.OfType<T>().FirstOrDefault()
         ?? throw new Exception($"没有任何{typeof(T)}的配置.");
+    public static IEnumerable<T> AcquireSome<T>(Func<T, bool> predicate) where T : ConfigMulti<T> =>
+        configList.OfType<T>().Where(predicate);
     public static MyOption<T> AcquireOptional<T>() where T : ConfigSingle<T>
     {
         var ret = configList.OfType<T>().FirstOrDefault();

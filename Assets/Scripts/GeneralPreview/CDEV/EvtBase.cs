@@ -99,14 +99,16 @@ public static class Bus
         }
     }
 
-    public static async UniTask WaitForAsync<TEvt>(string des, CancellationToken ct) 
+    public static async UniTask<TEvt> WaitForAsync<TEvt>(string des, CancellationToken ct)
         where TEvt : EvtForgetBase
     {
         var tcs = new UniTaskCompletionSource<TEvt>();
+        TEvt? ret = null;
         UniEvt<TEvt> t = new()
         {
             Invoke = (evt, _) =>
             {
+                ret = evt;
                 tcs.TrySetResult(evt);
                 return UniTask.CompletedTask;
             },
@@ -120,6 +122,7 @@ public static class Bus
         {
             UnRegister(t);
         }
+        return ret!;
     }
 
     // ReSharper disable once Unity.RedundantAttributeOnTarget
