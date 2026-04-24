@@ -91,7 +91,7 @@
     "CurID": null
   },
   "PlayerName": "11",
-  "PlayTime": 34.8561571277678,
+  "PlayTime": 51.595122133381665,
   "TurnCount": 2,
   "CurLayer": 1,
   "PropBody": 0,
@@ -99,7 +99,7 @@
   "PropLore": 0,
   "PropLoyalty": 0,
   "PropLoyaltyMax": 1000,
-  "PropHostility": 101,
+  "PropHostility": 102,
   "PropHostilityMax": 1000,
   "itemList": [
     {
@@ -10860,19 +10860,32 @@
     "$values": [
       {
         "$id": "2312",
-        "$type": "NM.Data.GamePlaying+ActWaitForClickStartTurn, NM.Data",
+        "$type": "NM.Data.GamePlaying+ActWaitForSelectSymbol, NM.Data",
+        "Self": { "$ref": "1" },
+        "ToSelectConfigs": {
+          "$id": "2313",
+          "$values": [
+            19005,
+            10006,
+            10001
+          ]
+        }
+      },
+      {
+        "$id": "2314",
+        "$type": "NM.Data.GamePlaying+ActEndSpin, NM.Data",
         "Self": { "$ref": "1" }
       }
     ]
   },
   "InSpin": {
-    "$id": "2313",
+    "$id": "2315",
     "BelongNode": { "$ref": "1" },
     "noSourceDistributePropList": {
-      "$id": "2314",
+      "$id": "2316",
       "$values": [
         {
-          "$id": "2315",
+          "$id": "2317",
           "PropType": 11,
           "Value": 1,
           "ToTech": false,
@@ -10881,7 +10894,7 @@
       ]
     },
     "toDoList": {
-      "$id": "2316",
+      "$id": "2318",
       "$values": []
     }
   }
