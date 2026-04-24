@@ -5,6 +5,7 @@ using GeneralPreview;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace NM.Config;
 public interface ICanSelect

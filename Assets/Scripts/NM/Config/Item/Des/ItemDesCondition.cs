@@ -16,7 +16,9 @@ public record ItemDesConditionCollectXItem : ItemDesConditionBase
     
     void OnChanged()
     {
+        // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
         ItemSelector ??= new ItemSelectorFromConfigCustom();
+        // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
         MinValueSelector ??= new IntSelectorConst { Value = 1 };
     }
 }

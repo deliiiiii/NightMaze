@@ -5,7 +5,7 @@ using Sirenix.Utilities;
 
 namespace NM.Data;
 
-public class MGamePlaying_20260308 : IMigrateStepJson<GamePlaying>
+public class MGamePlaying_20260308 : IMigrateStepJson
 {
     public double FromVersion => 20260308;
     public double ToVersion => 20260308.1;
@@ -16,7 +16,7 @@ public class MGamePlaying_20260308 : IMigrateStepJson<GamePlaying>
     }
 }
 
-public class MGamePlaying_20260308d1 : IMigrateStepJson<GamePlaying>
+public class MGamePlaying_20260308d1 : IMigrateStepJson
 {
     public double FromVersion => 20260308.1;
     public double ToVersion => 20260308.2;
@@ -28,7 +28,7 @@ public class MGamePlaying_20260308d1 : IMigrateStepJson<GamePlaying>
     }
 }
 
-public class MGamePlaying_20260308d2 : IMigrateStepJson<GamePlaying>
+public class MGamePlaying_20260308d2 : IMigrateStepJson
 {
     public double FromVersion => 20260308.2;
     public double ToVersion => 20260309;

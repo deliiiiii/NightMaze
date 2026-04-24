@@ -10,25 +10,20 @@ namespace General
         // ReSharper disable once InconsistentNaming
         double savedVersion { get; set; }
     }
-    public interface IMigrateStep<TDiskData, TRuntimeData>
-        where TRuntimeData : IHasVersion
+    public interface IMigrateStep<TDiskData>
     {
         double FromVersion { get; }
         double ToVersion { get; }
         TDiskData Migrate(TDiskData data);
     }
-
-    public interface IMigrateStepJson<TRuntimeData> : IMigrateStep<JObject, TRuntimeData>
-        where TRuntimeData : IHasVersion
-    {}
-
-    public class MigrateStepFactory<TDiskData, TRuntimeData>
+    public interface IMigrateStepJson : IMigrateStep<JObject>{}
+    public static class MigrateStepFactory<TDiskData, TRuntimeData>
         where TDiskData : class
         where TRuntimeData : IHasVersion
     {
-        static readonly Dictionary<double, IMigrateStep<TDiskData, TRuntimeData>> stepDic = new();
+        static readonly Dictionary<double, IMigrateStep<TDiskData>> stepDic = new();
         public static void Clear() => stepDic.Clear();
-        public static void Add(IMigrateStep<TDiskData, TRuntimeData> step)
+        public static void Add(IMigrateStep<TDiskData> step)
         {
             if (!stepDic.TryAdd(step.FromVersion, step))
             {

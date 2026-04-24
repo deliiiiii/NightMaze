@@ -33,13 +33,13 @@ namespace General.Dictionary
         [CanBeNull] public Action<TValue> OnAdd;
         [CanBeNull] public Action<TValue> OnRemove;
 
-        [JsonIgnore] Dictionary<TKey, int> KeyPositions => _keyPositions.Value;
-        [JsonIgnore] Lazy<Dictionary<TKey, int>> _keyPositions;
+        [JsonIgnore] Dictionary<TKey, int> KeyPositions => keyPositions.Value;
+        [JsonIgnore] Lazy<Dictionary<TKey, int>> keyPositions;
         [JsonConstructor]
-        public SerializableDictionary(){_keyPositions = new Lazy<Dictionary<TKey, int>>(MakeKeyPositions);}
+        public SerializableDictionary(){keyPositions = new Lazy<Dictionary<TKey, int>>(MakeKeyPositions);}
         public SerializableDictionary([CanBeNull] Action<TValue> onAdd = null, [CanBeNull] Action<TValue> onRemove = null)
         {
-            _keyPositions = new Lazy<Dictionary<TKey, int>>(MakeKeyPositions);
+            keyPositions = new Lazy<Dictionary<TKey, int>>(MakeKeyPositions);
             OnAdd = onAdd;
             OnRemove = onRemove;
         }

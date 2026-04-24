@@ -12,7 +12,7 @@ public record UniEvt<TEvt> : IUniEvt
     where TEvt : IEvtBase
 {
     [ReadOnly, ShowInInspector] public required string Des { get; init; } = "None ...";
-    [HideInInspector]public required Func<TEvt, CancellationToken, UniTask> Invoke { get; init; }
+    public required Func<TEvt, CancellationToken, UniTask> Invoke { get; init; }
     public UniEvt()
     {
         Bus.Register(this);

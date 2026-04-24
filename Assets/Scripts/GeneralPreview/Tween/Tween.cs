@@ -53,8 +53,8 @@ public static class Tween
     
     public delegate T EaseFunc<T>(T start, T end, float percent);
     public static EaseFunc<float> Linear = (s, e, t) => float.Lerp(s, e, linearCurve(t));
-    public static EaseFunc<float> QuadIn = (float s, float e, float t) => float.Lerp(s, e, quadInCurve(t));
-    public static EaseFunc<float> QuadOut = (float s, float e, float t) => float.Lerp(s, e, quadOutCurve(t));
-    public static EaseFunc<float> ExpoOut = (float s, float e, float t) => float.Lerp(s, e, expoOutCurve(t));
-    public static EaseFunc<float> CubicOut = (float s, float e, float t) => float.Lerp(s, e, cubicOutCurve(t));
+    public static EaseFunc<float> QuadIn = (s, e, t) => float.Lerp(s, e, quadInCurve(t));
+    public static EaseFunc<float> QuadOut = (s, e, t) => float.Lerp(s, e, quadOutCurve(t));
+    public static EaseFunc<float> ExpoOut = (s, e, t) => float.Lerp(s, e, expoOutCurve(t));
+    public static EaseFunc<float> CubicOut = (s, e, t) => float.Lerp(s, e, cubicOutCurve(t));
 }

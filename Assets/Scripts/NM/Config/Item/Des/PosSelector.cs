@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 using Vector2Int = GeneralPreview.Vector2Int;
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace NM.Config;
 

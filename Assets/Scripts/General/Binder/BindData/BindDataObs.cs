@@ -5,8 +5,8 @@ namespace General
     public class BindDataObs<T> : BindDataBase
         where T : struct
     {
-        protected MyProperty<T> osv;
-        protected UnityAction<T> act;
+        MyProperty<T> osv;
+        UnityAction<T> act;
         // bool isImmediate = true;
 
         public BindDataObs<T> To(UnityAction<T> fAct)

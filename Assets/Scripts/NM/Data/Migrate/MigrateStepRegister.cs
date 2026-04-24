@@ -11,9 +11,9 @@ public static class MigrateStepRegister
     public static void Init()
     {
         MigrateStepFactory<JObject, GamePlaying>.Clear();
-        typeof(IMigrateStepJson<GamePlaying>).SubTypes().ForEach(type =>
+        typeof(IMigrateStepJson).SubTypes().ForEach(type =>
         {
-            MigrateStepFactory<JObject, GamePlaying>.Add((IMigrateStepJson<GamePlaying>)Activator.CreateInstance(type));
+            MigrateStepFactory<JObject, GamePlaying>.Add((IMigrateStepJson)Activator.CreateInstance(type));
         });
     }
 }

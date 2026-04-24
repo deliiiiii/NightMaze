@@ -12,6 +12,7 @@ using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+// ReSharper disable InconsistentNaming
 
 namespace General
 {
@@ -70,7 +71,7 @@ namespace General
     
     internal class PrivateFieldsContractResolver : DefaultContractResolver
     {
-        public static readonly PrivateFieldsContractResolver Instance = new PrivateFieldsContractResolver();
+        public static readonly PrivateFieldsContractResolver Instance = new();
 
         protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
@@ -243,16 +244,12 @@ namespace General
             File.Delete(path);
         }
         //加密
-        public static string StringToByteString(string str)
-        {
-            return EncryptDES(Convert.ToBase64String(Encoding.UTF8.GetBytes(str)));
-        }
+        public static string StringToByteString(string str) => 
+            EncryptDES(Convert.ToBase64String(Encoding.UTF8.GetBytes(str)));
 
         //解密
-        public static string ByteStringToString(string str)
-        {
-            return Encoding.UTF8.GetString(Convert.FromBase64String(DecryptDES(str)));
-        }
+        public static string ByteStringToString(string str) => 
+            Encoding.UTF8.GetString(Convert.FromBase64String(DecryptDES(str)));
 
         #region  字符串加密解密
         static readonly byte[] keys = { 0x20, 0x05, 0x85, 0x74, 0x96, 0xA1, 0xB2, 0xC3 };
@@ -266,7 +263,7 @@ namespace General
         {
             try
             {
-                byte[] rgbKey = Encoding.UTF8.GetBytes(key.Substring(0, 8));
+                byte[] rgbKey = Encoding.UTF8.GetBytes(key[..8]);
                 byte[] rgbIV = keys;
                 byte[] inputByteArray = Encoding.UTF8.GetBytes(encryptString);
                 DESCryptoServiceProvider dCSP = new DESCryptoServiceProvider();

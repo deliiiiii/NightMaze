@@ -1,4 +1,4 @@
- namespace General.PriorityQueue
+ namespace General
  {
      public class GenericPriorityQueueNode<TPriority>
      {
