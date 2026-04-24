@@ -95,7 +95,7 @@ public class PlayView : ViewBase<GamePlaying>
             {
                 await SpawnItemAsync(item, ct);
                 curCount++;
-                if(spawnC++ % 3 == 0)
+                if(spawnC++ % Const.Await.OneFramePerSpawn == 0)
                     await UniTask.Yield(cancellationToken: ct);
             });
             RefreshTurnAndSoOn();
@@ -183,7 +183,7 @@ public class PlayView : ViewBase<GamePlaying>
         Invoke = async (evt, ct) =>
         {
             await SpawnItemAsync(evt.Item, ct);
-            if(spawnC++ % 3 == 0)
+            if(spawnC++ % Const.Await.OneFramePerSpawn == 0)
                 await UniTask.Yield(cancellationToken: ct);
         },
         Des = "生成物体",

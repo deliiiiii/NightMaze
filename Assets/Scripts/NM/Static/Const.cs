@@ -2,6 +2,10 @@
 
 public static class Const
 {
+    public static class Await
+    {
+        public const int OneFramePerSpawn = 10;
+    }
     public static class Res
     {
         public static class Config

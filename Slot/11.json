@@ -8,7 +8,8 @@
       "$id": "3",
       "MouseScrollMapSpeed": 0.2,
       "SpinTweenSpeed": {
-        "$type": "NM.Data.SettingData+SpinTweenSpeedImmediate, NM.Data"
+        "$type": "NM.Data.SettingData+SpinTweenSpeedNormal, NM.Data",
+        "Value": 1
       }
     },
     "state": { "$ref": "1" }
@@ -90,7 +91,7 @@
     "CurID": null
   },
   "PlayerName": "11",
-  "PlayTime": 38.988161885179579,
+  "PlayTime": 43.419176480732858,
   "TurnCount": 4,
   "CurLayer": 1,
   "PropBody": 0,
