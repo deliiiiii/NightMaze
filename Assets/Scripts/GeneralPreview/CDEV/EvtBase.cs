@@ -14,9 +14,10 @@ namespace GeneralPreview;
 [DebuggerStepThrough]
 public static class Bus
 {
-    [field: HideInInspector]
+    [HideInInspector]
     public static bool TryClear
     {
+        get => field;
         set
         {
             field = value;
@@ -29,7 +30,6 @@ public static class Bus
     }
     [HideInInspector]
     static readonly Dictionary<Type, List<IUniEvt>> evtDic = [];
-
     [ShowInInspector]
     static Dictionary<string, List<string>> NonViewDic
         => evtDic
@@ -38,7 +38,6 @@ public static class Bus
                 pair => pair.Key.GetNiceName(),
                 pair => pair.Value.Select(dele => dele.Des).ToList()
             );
-
     internal static void FireAndForget<T>(T evt, bool debug = true) where T : IEvtBase
         => FireAsync(evt, CancellationToken.None, debug).Forget();
     [DebuggerStepThrough]
@@ -121,6 +120,8 @@ public static class Bus
         }
     }
 
+    [HideInInspector] static bool False => false;
+    [ShowIf(nameof(False))]
     public static string FormatRecordDetails(string text)
     {                                       
         var sb = new StringBuilder();

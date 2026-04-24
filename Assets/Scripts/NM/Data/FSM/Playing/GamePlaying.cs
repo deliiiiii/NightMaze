@@ -59,6 +59,10 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         // 未找到返回-1, 代表头插
         return beforeId;
     }
+    void InsertBefore(IUniAction act, Func<IUniAction, bool>? beforeWho = null) => 
+        toDoList.Insert(FindAfterId(beforeWho), act);
+    void InsertBefore(IEnumerable<IUniAction> act, Func<IUniAction, bool>? beforeWho = null) => 
+        toDoList.InsertRange(FindAfterId(beforeWho), act);
     void InsertAfter(IUniAction act, Func<IUniAction, bool>? afterWho = null) => 
         toDoList.Insert(FindAfterId(afterWho) + 1, act);
     void InsertAfter(IEnumerable<IUniAction> actList, Func<IUniAction, bool>? afterWho = null) =>
@@ -67,12 +71,13 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
     void InsertButCancelClickStartTurn(IEnumerable<IUniAction> actList)
     {
         var first = toDoList.First();
-        // 拷贝原来的等待按钮.
-        IUniAction newFirst = first switch
+        if (first is not ActWaitForClickStartTurn)
         {
-            ActWaitForClickStartTurn => new ActWaitForClickStartTurn(this),
-            _ => new ActDoNothing(this)
-        };
+            InsertBefore(actList, a => a is ActWaitForClickStartTurn);
+            return;
+        }
+        // 拷贝原来的等待按钮指令.
+        IUniAction newFirst = new ActWaitForClickStartTurn(this);
         first.CancelSelfly();
         InsertAfter([..actList, newFirst]);
     }
@@ -133,14 +138,12 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         int areaY = (pivotPos.Y - 1) / (AreaHeight + CorridorWidth) + 1;
         return new Vector2Int(areaX, areaY);
     }
-
     IEnumerable<Vector2Int> InAreaPoses(Vector2Int areaPos)
         => from x in Range(1, AreaWidth)
             from y in Range(1, AreaHeight)
             select new Vector2Int(
                 1 + (areaPos.X - 1) * (AreaWidth + CorridorWidth) + x - 1,
                 1 + (areaPos.Y - 1) * (AreaHeight + CorridorWidth) + y - 1);
-
     bool InAreaMaxRange(Vector2Int areaPos) =>
         areaPos is 
         { 

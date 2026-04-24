@@ -149,6 +149,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 660e695a40fbec2408e811e0f127e137
+    m_Address: "Symbol_19005_\u6D4B\u8BD5\u52A0\u7406\u667A"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 77b7a6a82581e2244a26e5642237167e
     m_Address: 20001
     m_ReadOnly: 0

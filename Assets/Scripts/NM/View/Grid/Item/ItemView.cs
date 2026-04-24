@@ -85,6 +85,8 @@ public class ItemView : ViewBase<GamePlaying.MyItem>
         {
             if (evt.Item != Data)
                 return;
+            if (!Data.Config.DesList.Any())
+                return;
             if (GameRoot.Setting.SpinTweenSpeed is SettingData.SpinTweenSpeedImmediate)
                 return;
             await onSpinTween.PlayAsync(ct);

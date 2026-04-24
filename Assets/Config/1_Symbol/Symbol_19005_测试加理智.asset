@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0c3e8d700634ffabd4cd7d1113a0641, type: 3}
-  m_Name: "Grid_50001_\u666E\u901A"
+  m_Name: "Symbol_19005_\u6D4B\u8BD5\u52A0\u7406\u667A"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -52,7 +52,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -62,45 +74,6 @@ MonoBehaviour:
     - Name: RunPropValueList
       Entry: 7
       Data: 3|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 4|System.Collections.Generic.EnumEqualityComparer`1[[NM.Config.EPropType,
-        NM.Config]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: EvtDesResultList
-      Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[NM.Config.EvtDesResultBase, NM.Config]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: BuildPropValueList
-      Entry: 7
-      Data: 6|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
@@ -114,16 +87,45 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  Name: "\u666E\u901A"
-  ID: 50001
+    - Name: EvtDesResultList
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[NM.Config.EvtDesResultBase, NM.Config]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: BuildPropValueList
+      Entry: 7
+      Data: 5|System.Collections.Generic.Dictionary`2[[NM.Config.EPropType, NM.Config],[System.Int64,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 2
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  Name: "\u6D4B\u8BD5\u52A0\u7406\u667A"
+  ID: 19005
   FlavorDes: 
   BriefDes: "\u8BF7\u8F93\u5165\u7B80\u7565\u63CF\u8FF0"
   Rarity: 0
   TagList: 
-  CanDrag: 0
-  ItemType: 5
-  GridTagList: 00000000
-  SymbolTagList: 
+  CanDrag: 1
+  ItemType: 1
+  GridTagList: 
+  SymbolTagList: 00000000
   BuildingTagList: 
   ResourceTagList: 
   EventTagList: 

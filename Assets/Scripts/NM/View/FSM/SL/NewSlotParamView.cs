@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using General;
 using GeneralPreview;
@@ -23,5 +24,10 @@ public class NewSlotParamView : ViewBase
             var data = new GamePlaying(playerName: iptName.text);
             GameRoot.ChangeStateAsync(data, false).Forget();
         });
+    }
+
+    void OnEnable()
+    {
+        iptName.text = string.Empty;
     }
 }

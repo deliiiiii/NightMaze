@@ -25,12 +25,12 @@ public partial class GamePlaying
     {
         if (!item.Config.IsEvent || !item.IsBuildingOrEventKanSei)
             return UniTask.CompletedTask;
+        new ActRemoveItem(this)
+        {
+            ToRemove = item,
+            ResultWrap = null
+        }.Forget();
         InsertButCancelClickStartTurn([
-            new ActRemoveItem(this)
-            {
-                ToRemove = item,
-                ResultWrap = null
-            },
             ..item.Config.EvtDesResultList.Select<EvtDesResultBase, IUniAction>(des => des switch
             {
                 ItemDesResultClearHostility => new ActClearProp(this) { PropType = EPropType.PropA2 },
