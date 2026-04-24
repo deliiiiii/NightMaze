@@ -3,23 +3,45 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
-using UnityEditor;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace NM.View;
+
+
+
 
 public class ItemResLoader
 {
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 #if UNITY_EDITOR
-    [InitializeOnLoadMethod]
+    [UnityEditor.InitializeOnLoadMethod]
 #endif
     static void Bind()
     {
         async UniTask Func(CancellationToken ct)
         {
             var spriteList = await Resourcer.LoadAssetsAsyncByLabel<Sprite>(Const.Res.AddrTag.ItemSpriteTag, ct);
-            spriteDic = (from sprite in spriteList where int.TryParse(sprite.name, out _) orderby int.Parse(sprite.name) select sprite).ToDictionary(sprite => int.Parse(sprite.name), sprite => sprite);
+            
+            #if UNITY_EDITOR
+            // spriteList
+            //     .Where(sprite => int.TryParse(sprite.name, out _))
+            //     .Select(UnityEditor.AssetDatabase.GetAssetPath)
+            //     .Select(UnityEditor.AssetImporter.GetAtPath)
+            //     .OfType<UnityEditor.TextureImporter>().ForEach(importer =>
+            //     {
+            //         importer.spritePixelsPerUnit = 256;
+            //         importer.filterMode = FilterMode.Point;
+            //         importer.textureCompression = UnityEditor.TextureImporterCompression.Uncompressed;
+            //         importer.SaveAndReimport();
+            //     });
+            #endif
+            spriteDic = (
+                    from sprite in spriteList 
+                    where int.TryParse(sprite.name, out _) 
+                    orderby int.Parse(sprite.name) 
+                    select sprite)
+                .ToDictionary(sprite => int.Parse(sprite.name), sprite => sprite);
         }
 
         Loader.OnLoad += Func;

@@ -14,6 +14,7 @@ namespace GeneralPreview;
 [DebuggerStepThrough]
 public static class Bus
 {
+    // ReSharper disable once Unity.RedundantAttributeOnTarget
     [HideInInspector]
     public static bool TryClear
     {
@@ -28,6 +29,7 @@ public static class Bus
             }
         }
     }
+    // ReSharper disable once Unity.RedundantHideInInspectorAttribute
     [HideInInspector]
     static readonly Dictionary<Type, List<IUniEvt>> evtDic = [];
     [ShowInInspector]
@@ -120,6 +122,7 @@ public static class Bus
         }
     }
 
+    // ReSharper disable once Unity.RedundantAttributeOnTarget
     [HideInInspector] static bool False => false;
     [ShowIf(nameof(False))]
     public static string FormatRecordDetails(string text)

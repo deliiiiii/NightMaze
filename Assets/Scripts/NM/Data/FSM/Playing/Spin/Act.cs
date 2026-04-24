@@ -30,7 +30,6 @@ public partial class PlaySpin : IHasCt
                 });
             });
         }
-        
         InsertAfter([..
             from itemDes in item.AllConfigList
             where itemDes.Result != null && 

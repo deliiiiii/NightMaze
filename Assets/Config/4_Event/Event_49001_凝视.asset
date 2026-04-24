@@ -130,7 +130,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 10
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -142,7 +142,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 3
-      Data: 20
+      Data: 4
     - Name: 
       Entry: 8
       Data: 

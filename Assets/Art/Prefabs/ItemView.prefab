@@ -143,8 +143,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583285764550378557}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -194,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: -1460583657
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a66df30a27f98b3439df8410cd98d207, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6937849826c7774e9a3072f9afccc7f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -237,10 +237,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0009379387, y: 0.04126987}
+  m_Offset: {x: 0.5, y: -0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 1}
     oldSize: {x: 1, y: 1.07}
     newSize: {x: 1, y: 1.07}
     adaptiveTilingThreshold: 0.5
@@ -248,7 +248,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0581529, y: 1.0624964}
+  m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
 --- !u!114 &8530728836141067079
 MonoBehaviour:
@@ -649,7 +649,7 @@ MonoBehaviour:
   - AddType: 0
     AnimationType: 6
     Target: {fileID: 4729715011672502026}
-    ToValue: {x: 0.6, y: 0.1, z: 0, w: 0}
+    ToValue: {x: 1.1, y: 0.1, z: 0, w: 0}
     UseToTarget: 0
     ToTarget: {fileID: 0}
     UseFromValue: 0
@@ -721,7 +721,7 @@ Transform:
   m_GameObject: {fileID: 5459400642448422765}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.474, y: -0.533, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -773,7 +773,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1.22, y: 1.21}
+  m_Size: {x: 1.0408959, y: 1.0398513}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -833,7 +833,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -855,7 +855,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9252a2f704c8e0e42b8bb8559334ef98, type: 3}
-  m_Color: {r: 0.5018867, g: 0.5018867, b: 0.5018867, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1201,7 +1201,7 @@ MonoBehaviour:
   - AddType: 0
     AnimationType: 6
     Target: {fileID: 4729715011672502026}
-    ToValue: {x: 0.5, y: 0, z: 0, w: 0}
+    ToValue: {x: 1, y: 0, z: 0, w: 0}
     UseToTarget: 0
     ToTarget: {fileID: 0}
     UseFromValue: 0
