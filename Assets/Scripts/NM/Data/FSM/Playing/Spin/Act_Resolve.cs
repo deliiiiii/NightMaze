@@ -38,8 +38,7 @@ public partial class PlaySpin
                 $"没有匹配穷尽{nameof(ItemSelectorFromResultFilterBase)}类型: {fromResultFilter.GetType()}.")
         }
         select itemWrap.Item;
-    static IEnumerable<Vector2Int> ResolvePosSelectorFromResult(PosSelectorFromResultFilterBase? fromResultFilter,
-        ResultWrap? resultWrap) =>
+    static IEnumerable<Vector2Int> ResolvePosSelectorFromResult(PosSelectorFromResultFilterBase? fromResultFilter, ResultWrap? resultWrap) =>
         from posWrap in resultWrap?.PosWraps ?? []
         where fromResultFilter switch
         {

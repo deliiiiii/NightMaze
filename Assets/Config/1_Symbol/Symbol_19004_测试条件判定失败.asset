@@ -107,6 +107,7 @@ MonoBehaviour:
   Name: "\u6D4B\u8BD5\u6761\u4EF6\u5224\u5B9A\u5931\u8D25"
   ID: 19004
   FlavorDes: TT
+  BriefDes: "\u8BF7\u8F93\u5165\u7B80\u7565\u63CF\u8FF0"
   Rarity: 0
   TagList: 
   CanDrag: 1
@@ -117,7 +118,7 @@ MonoBehaviour:
   ResourceTagList: 
   EventTagList: 
   DesList:
-  - DesToPlayer: "null\u4F53\u9B44+8\uFF0C\u6267\u884C\u5931\u8D25\u540E\u4F53\u9B44-8\uFF0C\u5426\u5219-5"
+  - DesToPlayer: "\u9009\u62E9\u4E00\u4E2A\u6EE1\u8DB3\u6761\u4EF6\u7684\u7269\u4F53\uFF0C\u5C1D\u8BD5\u4F7F\u5176\u4F53\u9B44+8\uFF1B\u82E5\u6267\u884C\u5931\u8D25\uFF0C\u81EA\u8EAB\u4F53\u9B44-8\uFF1B\u82E5\u6CA1\u6709\u6EE1\u8DB3\u6761\u4EF6\u7684\u7269\u4F53\uFF0C\u81EA\u8EAB\u4F53\u9B44-5"
     Trigger:
       rid: 6212121287067435039
     Result:
@@ -135,10 +136,10 @@ MonoBehaviour:
       data:
         Condition:
           rid: -2
-        Next:
-          rid: -2
         ConditionFail:
           rid: 6212121287067435090
+        Next:
+          rid: -2
         NextFail:
           rid: 6212121287067435093
         ItemSelector:
@@ -170,9 +171,9 @@ MonoBehaviour:
       data:
         Condition:
           rid: -2
-        Next:
-          rid: -2
         ConditionFail:
+          rid: -2
+        Next:
           rid: -2
         NextFail:
           rid: -2
@@ -202,9 +203,9 @@ MonoBehaviour:
       data:
         Condition:
           rid: -2
-        Next:
-          rid: -2
         ConditionFail:
+          rid: -2
+        Next:
           rid: -2
         NextFail:
           rid: -2

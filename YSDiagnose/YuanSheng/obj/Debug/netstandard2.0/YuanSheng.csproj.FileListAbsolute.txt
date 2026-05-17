@@ -1,0 +1,15 @@
+C:\Users\Deli\Desktop\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.csproj.AssemblyReference.cache
+C:\Users\Deli\Desktop\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Deli\Desktop\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.AssemblyInfoInputs.cache
+C:\Users\Deli\Desktop\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.AssemblyInfo.cs
+C:\Users\Deli\Desktop\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.csproj.CoreCompileInputs.cache
+C:\Users\Deli\Desktop\YSDiagnose\YuanSheng\bin\Debug\netstandard2.0\YuanSheng.deps.json
+C:\Users\Deli\Desktop\YSDiagnose\YuanSheng\bin\Debug\netstandard2.0\YuanSheng.dll
+C:\Users\Deli\Desktop\YSDiagnose\YuanSheng\bin\Debug\netstandard2.0\YuanSheng.pdb
+C:\Users\Deli\Desktop\YSDiagnose\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.csproj.AssemblyReference.cache
+C:\Users\Deli\Desktop\YSDiagnose\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Deli\Desktop\YSDiagnose\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.AssemblyInfoInputs.cache
+C:\Users\Deli\Desktop\YSDiagnose\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.AssemblyInfo.cs
+C:\Users\Deli\Desktop\YSDiagnose\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.csproj.CoreCompileInputs.cache
+C:\Users\Deli\Desktop\YSDiagnose\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.dll
+C:\Users\Deli\Desktop\YSDiagnose\YuanSheng\obj\Debug\netstandard2.0\YuanSheng.pdb

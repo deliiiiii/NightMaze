@@ -1,0 +1,10 @@
+C:\Users\Deli\Desktop\YSDiagnose\YSDiagnose\bin\Release\netstandard2.0\YSDiagnose.deps.json
+C:\Users\Deli\Desktop\YSDiagnose\YSDiagnose\bin\Release\netstandard2.0\YSDiagnose.dll
+C:\Users\Deli\Desktop\YSDiagnose\YSDiagnose\bin\Release\netstandard2.0\YSDiagnose.pdb
+C:\Users\Deli\Desktop\YSDiagnose\YSDiagnose\obj\Release\netstandard2.0\YSDiagnose.csproj.AssemblyReference.cache
+C:\Users\Deli\Desktop\YSDiagnose\YSDiagnose\obj\Release\netstandard2.0\YSDiagnose.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Deli\Desktop\YSDiagnose\YSDiagnose\obj\Release\netstandard2.0\YSDiagnose.AssemblyInfoInputs.cache
+C:\Users\Deli\Desktop\YSDiagnose\YSDiagnose\obj\Release\netstandard2.0\YSDiagnose.AssemblyInfo.cs
+C:\Users\Deli\Desktop\YSDiagnose\YSDiagnose\obj\Release\netstandard2.0\YSDiagnose.csproj.CoreCompileInputs.cache
+C:\Users\Deli\Desktop\YSDiagnose\YSDiagnose\obj\Release\netstandard2.0\YSDiagnose.dll
+C:\Users\Deli\Desktop\YSDiagnose\YSDiagnose\obj\Release\netstandard2.0\YSDiagnose.pdb
