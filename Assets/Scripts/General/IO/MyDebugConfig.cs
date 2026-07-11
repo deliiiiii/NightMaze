@@ -8,13 +8,12 @@ namespace General
     [ReadOnly]
     public class MyDebugConfig : SerializedScriptableObject
     {
-        [InfoBox("请到 Tools/General/MyDebugWindow 里修改日志设置")]
+        [InfoBox("请到 Tools/General/MyDebug Settings 里修改日志设置")]
         [ReadOnly] public bool CanLogAll = true;
         [ReadOnly] public bool CanLog = true;
         [ReadOnly] public bool CanLogWarning = true;
         [ReadOnly] public bool CanLogError = true;
-        
-        public HashSet<ELogType> ActiveLogTypes = new() { ELogType.Default };
+        [ReadOnly] public HashSet<ELogType> ActiveLogTypes = new() { ELogType.Default };
 
         void OnValidate()
         {

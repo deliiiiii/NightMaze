@@ -1,201 +1,108 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading;
 using General;
-using General.Editor;
-using GeneralPreview;
-using NM.Config;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 
 namespace NM.Editor;
-internal class AddressableBatchProcessor : EditorWindow
+
+internal sealed class AddressableBatchProcessor : EditorWindow
 {
-    AddressableBatchConfig? config;
+    const string ManagedLabel = "NM.AddressableFolderRule";
+    readonly List<AddressableFolderRule> rules = [];
     Vector2 scrollPosition;
-    string[] fieldNames = [];
-    string[] fieldValues = [];
-        
+
     [MenuItem("Tools/" + Const.Name.Proj + "/" + nameof(AddressableBatchProcessor))]
     public static void ShowWindow()
     {
-        GetWindow<AddressableBatchProcessor>("Addressable Tool");
+        GetWindow<AddressableBatchProcessor>("Addressable Folder Rules");
     }
-    void OnEnable()
-    {
-        IUniEvt.BindAll(this, CancellationToken.None);
-        if (config == null)
-        {
-            MyAsset.TryLoadFirstAsset(out config);
-        }
 
-        var fieldInfoList = typeof(Const.Res.AddrTag)
-            .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
-            .Where(f => f.IsLiteral && !f.IsInitOnly && f.Name.EndsWith("Tag"))
-            .ToList();
-        fieldNames = fieldInfoList.Select(f => $"{f.Name} (= \"{f.GetValue(null)}\")").ToArray();
-        fieldValues = fieldInfoList.Select(f => (string)f.GetValue(null)).ToArray();
-    }
+    void OnEnable() => RefreshRules();
 
     void OnGUI()
     {
-        GUILayout.Space(10);
-        EditorGUILayout.BeginHorizontal();
-        config = (AddressableBatchConfig)EditorGUILayout.ObjectField("Configuration Asset", config,
-            typeof(AddressableBatchConfig), false);
+        EditorGUILayout.HelpBox(
+            "每个规则资产管理一个 Addressable 文件夹。目录内增删资源不需要新增规则。",
+            MessageType.Info);
 
-        if (config is null)
+        using var scroll = new EditorGUILayout.ScrollViewScope(scrollPosition);
+        scrollPosition = scroll.scrollPosition;
+
+        foreach (var rule in rules.Where(rule => rule != null))
+            DrawRule(rule);
+
+        GUILayout.Space(8);
+        using (new EditorGUILayout.HorizontalScope())
         {
-            if (GUILayout.Button("Create New Config", GUILayout.Width(130)))
-            {
-                CreateConfigAsset();
-            }
-        }
-        EditorGUILayout.EndHorizontal();
-
-        if (config is null)
-        {
-            EditorGUILayout.HelpBox("Please select or create a Configuration Asset to continue.", MessageType.Info);
-            return;
-        }
-
-        GUILayout.Space(10);
-
-        SerializedObject so = new SerializedObject(config);
-        so.Update();
-        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
-            
-        EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
-        GUILayout.Label("", GUILayout.Width(20)); // Toggle 占位
-        GUILayout.Label("Folder Path", GUILayout.MinWidth(150));
-        GUILayout.Label("TagName", GUILayout.Width(150));
-        EditorGUILayout.EndHorizontal();
-            
-        for (int i = 0; i < config.RuleList.Count; i++)
-        {
-            DrawRuleItem(i);
+            if (GUILayout.Button("Create Folder Rule", GUILayout.Height(28)))
+                CreateRuleAsset();
+            if (GUILayout.Button("Refresh", GUILayout.Width(90), GUILayout.Height(28)))
+                RefreshRules();
         }
 
-        if (GUILayout.Button("+ Add New Rule", GUILayout.Height(25)))
-        {
-            config.RuleList.Add(new BatchRule());
-            EditorUtility.SetDirty(config);
-        }
-
-        EditorGUILayout.EndScrollView();
-        so.ApplyModifiedProperties();
-
-        GUILayout.Space(10);
-        GUILayout.Label($"Total Rules: {config.RuleList.Count}", EditorStyles.miniLabel);
-
+        GUILayout.Label($"Total Rules: {rules.Count}", EditorStyles.miniLabel);
     }
 
-    void DrawRuleItem(int index)
+    static void DrawRule(AddressableFolderRule rule)
     {
-        var rule = config!.RuleList[index];
+        var serializedRule = new SerializedObject(rule);
+        serializedRule.Update();
 
-        EditorGUILayout.BeginHorizontal("box");
-
-        bool newEnable = EditorGUILayout.Toggle(rule.Enable, GUILayout.Width(20));
-        if (newEnable != rule.Enable)
+        using (new EditorGUILayout.VerticalScope("box"))
         {
-            rule.Enable = newEnable;
-            EditorUtility.SetDirty(config);
-        }
-
-        // 文件夹路径选择
-        EditorGUILayout.BeginVertical();
-        EditorGUILayout.BeginHorizontal();
-        // 如果未启用，禁用GUI显示（变灰）
-        EditorGUI.BeginDisabledGroup(!rule.Enable); 
-            
-        EditorGUI.BeginDisabledGroup(true);
-        EditorGUILayout.TextField(rule.FolderPath);
-        EditorGUI.EndDisabledGroup();
-
-        if (GUILayout.Button("Browse", GUILayout.Width(60)))
-        {
-            string path = EditorUtility.OpenFolderPanel("Select Folder", "Assets", "");
-            if (!string.IsNullOrEmpty(path))
+            using (new EditorGUILayout.HorizontalScope())
             {
-                if (path.StartsWith(Application.dataPath))
-                {
-                    path = "Assets" + path[Application.dataPath.Length..];
-                }
-                rule.FolderPath = path;
-                EditorUtility.SetDirty(config);
+                EditorGUILayout.PropertyField(serializedRule.FindProperty(nameof(AddressableFolderRule.Enable)),
+                    GUIContent.none, GUILayout.Width(18));
+                EditorGUILayout.ObjectField(rule, typeof(AddressableFolderRule), false);
             }
-        }
-        EditorGUILayout.EndHorizontal();
-        EditorGUILayout.EndVertical();
-
-        // Tag 下拉选择
-        if (fieldNames is { Length: > 0 })
-        {
-            int currentIndex = Array.IndexOf(fieldValues, rule.TagName);
-            if (currentIndex == -1) currentIndex = 0;
-
-            int newIndex = EditorGUILayout.Popup(currentIndex, fieldNames, GUILayout.Width(150));
-            string newValue = fieldValues[newIndex];
-            if (newValue != rule.TagName)
-            {
-                rule.TagName = newValue;
-                EditorUtility.SetDirty(config);
-            }
-        }
-        else
-        {
-            string newTag = EditorGUILayout.TextField(rule.TagName, GUILayout.Width(150));
-            if (newTag != rule.TagName)
-            {
-                rule.TagName = newTag;
-                EditorUtility.SetDirty(config);
-            }
-        }
-            
-        EditorGUI.EndDisabledGroup();
-
-        // 删除按钮
-        if (GUILayout.Button("X", GUILayout.Width(25)))
-        {
-            config.RuleList.RemoveAt(index);
-            EditorUtility.SetDirty(config);
-            GUIUtility.ExitGUI();
+            EditorGUILayout.PropertyField(serializedRule.FindProperty(nameof(AddressableFolderRule.Folder)));
+            EditorGUILayout.PropertyField(serializedRule.FindProperty(nameof(AddressableFolderRule.Tag)));
         }
 
-        EditorGUILayout.EndHorizontal();
+        serializedRule.ApplyModifiedProperties();
     }
 
-    void CreateConfigAsset()
+    void CreateRuleAsset()
     {
-        string path = EditorUtility.SaveFilePanelInProject("Create Config", "AddressableBatchConfig", "asset", "Save Configuration");
+        string path = EditorUtility.SaveFilePanelInProject(
+            "Create Addressable Folder Rule",
+            "AddressableFolderRule",
+            "asset",
+            "每个资源类别创建一个独立规则资产", path: "Assets/Config/Tags");
         if (string.IsNullOrEmpty(path)) return;
-        var newConfig = CreateInstance<AddressableBatchConfig>();
-        AssetDatabase.CreateAsset(newConfig, path);
+
+        var rule = CreateInstance<AddressableFolderRule>();
+        AssetDatabase.CreateAsset(rule, path);
         AssetDatabase.SaveAssets();
-        config = newConfig;
+        Selection.activeObject = rule;
+        RefreshRules();
     }
-    
+
+    void RefreshRules()
+    {
+        rules.Clear();
+        rules.AddRange(LoadRules());
+        Repaint();
+    }
+
+    static List<AddressableFolderRule> LoadRules() => AssetDatabase
+        .FindAssets($"t:{nameof(AddressableFolderRule)}")
+        .Select(AssetDatabase.GUIDToAssetPath)
+        .Select(AssetDatabase.LoadAssetAtPath<AddressableFolderRule>)
+        .Where(rule => rule != null)
+        .OrderBy(AssetDatabase.GetAssetPath, StringComparer.Ordinal)
+        .ToList();
+
     [InitializeOnEnterPlayMode]
-    static void SyncOnEnterPlayMode()
+    static void SyncOnEnterPlayMode() => ProcessRules(LoadRules());
+
+    static void ProcessRules(IReadOnlyCollection<AddressableFolderRule> allRules)
     {
-        SyncConfig();
-    }
-    
-    static void SyncConfig()
-    {
-        if(MyAsset.TryLoadFirstAsset<AddressableBatchConfig>(out var cfg))
-            ProcessConfig(cfg);
-    }
-    
-    static void ProcessConfig(AddressableBatchConfig configToProcess)
-    {
-        if (configToProcess == null || configToProcess.RuleList.Count == 0) 
-            return;
         AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
         if (settings == null)
         {
@@ -203,28 +110,27 @@ internal class AddressableBatchProcessor : EditorWindow
             return;
         }
 
-        var enabledRules = configToProcess.RuleList
-            .Where(rule => rule.Enable)
-            .ToList();
-        var managedLabels = configToProcess.RuleList
-            .Where(rule => !string.IsNullOrEmpty(rule.TagName))
-            .Select(rule => rule.TagName)
+        var enabledRules = allRules.Where(rule => rule.Enable).ToList();
+        var categoryLabels = allRules
+            .Where(rule => !string.IsNullOrWhiteSpace(rule.Tag))
+            .Select(rule => rule.Tag.Trim())
             .ToHashSet();
         var desiredEntries = new Dictionary<string, DesiredEntry>();
         var addressOwners = new Dictionary<string, string>();
 
-        // 先完整扫描并校验，出错时不修改任何 Addressables 配置。
+        // 先完整校验，避免错误时只修改一部分 Addressables 配置。
         foreach (var rule in enabledRules)
         {
-            if (string.IsNullOrEmpty(rule.FolderPath) || string.IsNullOrEmpty(rule.TagName))
+            string folderPath = rule.FolderPath;
+            string label = rule.Tag.Trim();
+            if (string.IsNullOrEmpty(folderPath) || string.IsNullOrEmpty(label))
             {
-                MyDebug.LogError("Addressable 规则无效：路径或 Tag 为空");
+                MyDebug.LogError($"Addressable 文件夹规则无效: {AssetDatabase.GetAssetPath(rule)}");
                 return;
             }
-            string folderPath = rule.FolderPath.Replace("\\", "/").TrimEnd('/');
             if (!AssetDatabase.IsValidFolder(folderPath))
             {
-                MyDebug.LogError($"文件夹不存在或不是有效的 Unity 资产目录: {folderPath}");
+                MyDebug.LogError($"不是有效的 Unity 资产目录: {folderPath}");
                 return;
             }
 
@@ -234,36 +140,31 @@ internal class AddressableBatchProcessor : EditorWindow
                 MyDebug.LogError($"无法取得文件夹 GUID: {folderPath}");
                 return;
             }
-
-            // 文件夹 Address 使用唯一的 Tag；子资源由 Addressables 按相对路径生成隐式 Address。
-            string address = rule.TagName;
-            if (desiredEntries.TryGetValue(guid, out var previous) && previous.Label != rule.TagName)
+            if (desiredEntries.TryGetValue(guid, out var previous) && previous.Label != label)
             {
                 MyDebug.LogError($"文件夹同时命中多个 Addressable 规则: {folderPath}");
                 return;
             }
-            if (addressOwners.TryGetValue(address, out var ownerGuid) && ownerGuid != guid)
+            if (addressOwners.TryGetValue(label, out var ownerGuid) && ownerGuid != guid)
             {
-                MyDebug.LogError($"Addressable 文件夹地址重复: {address}\n" +
+                MyDebug.LogError($"Addressable 文件夹地址重复: {label}\n" +
                                  $"{AssetDatabase.GUIDToAssetPath(ownerGuid)}\n{folderPath}");
                 return;
             }
 
-            desiredEntries[guid] = new DesiredEntry(address, rule.TagName);
-            addressOwners[address] = guid;
+            desiredEntries[guid] = new DesiredEntry(label, label);
+            addressOwners[label] = guid;
         }
 
         int added = 0;
         int changed = 0;
         int removed = 0;
 
-        foreach (string label in managedLabels)
+        foreach (string label in categoryLabels.Append(ManagedLabel))
         {
-            if (!settings.GetLabels().Contains(label))
-            {
-                settings.AddLabel(label);
-                changed++;
-            }
+            if (settings.GetLabels().Contains(label)) continue;
+            settings.AddLabel(label);
+            changed++;
         }
 
         foreach (var pair in desiredEntries)
@@ -277,6 +178,7 @@ internal class AddressableBatchProcessor : EditorWindow
                 entry.address = desired.Address;
                 entry.labels.Clear();
                 entry.labels.Add(desired.Label);
+                entry.labels.Add(ManagedLabel);
                 added++;
                 continue;
             }
@@ -292,10 +194,13 @@ internal class AddressableBatchProcessor : EditorWindow
                 entry.address = desired.Address;
                 entryChanged = true;
             }
-            if (entry.labels.Count != 1 || !entry.labels.Contains(desired.Label))
+            if (entry.labels.Count != 2 ||
+                !entry.labels.Contains(desired.Label) ||
+                !entry.labels.Contains(ManagedLabel))
             {
                 entry.labels.Clear();
                 entry.labels.Add(desired.Label);
+                entry.labels.Add(ManagedLabel);
                 entryChanged = true;
             }
             if (entryChanged) changed++;
@@ -305,7 +210,8 @@ internal class AddressableBatchProcessor : EditorWindow
             .Where(group => group != null)
             .SelectMany(group => group.entries)
             .Where(entry => entry != null &&
-                            entry.labels.Any(managedLabels.Contains) &&
+                            (entry.labels.Contains(ManagedLabel) ||
+                             entry.labels.Any(categoryLabels.Contains)) &&
                             !desiredEntries.ContainsKey(entry.guid))
             .Select(entry => entry.guid)
             .Distinct()

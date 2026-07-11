@@ -23,7 +23,8 @@ MonoBehaviour:
     SerializationNodes:
     - Name: ActiveLogTypes
       Entry: 7
-      Data: 0|System.Collections.Generic.HashSet`1[[General.LogType, General]], System.Core
+      Data: 0|System.Collections.Generic.HashSet`1[[General.ELogType, General]],
+        System.Core
     - Name: 
       Entry: 12
       Data: 1

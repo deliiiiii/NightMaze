@@ -55,6 +55,7 @@ namespace General.Editor
             SerializedObject so = new SerializedObject(config);
             so.Update();
 
+            EditorGUILayout.TextArea("根据输出级别勾选", EditorStyles.wordWrappedLabel);
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             showGlobalSwitches = EditorGUILayout.Foldout(showGlobalSwitches, "Global Switches", true);
             if (showGlobalSwitches)
@@ -67,10 +68,11 @@ namespace General.Editor
             EditorGUILayout.EndVertical();
 
             GUILayout.Space(10);
+            EditorGUILayout.TextArea("根据输出类型勾选", EditorStyles.wordWrappedLabel);
             EditorGUILayout.LabelField($"已勾选{config.ActiveLogTypes.Count}个", EditorStyles.boldLabel);
 
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, "box");
-            
+
             foreach (var type in (ELogType[])Enum.GetValues(typeof(ELogType)))
             {
                 bool isIncluded = config.ActiveLogTypes.Contains(type);
