@@ -1,0 +1,57 @@
+<linker>
+  <assembly fullname="NM.Config, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="NM.Config.ItemConfig" preserve="all" />
+    <type fullname="NM.Config.ItemConfigSet" preserve="all" />
+    <type fullname="NM.Config.ItemTypeResourceMgr" preserve="all" />
+    <type fullname="NM.Config.TagMgr" preserve="all" />
+    <type fullname="NM.Config.TechTreeConfig" preserve="all" />
+    <type fullname="NM.Config.IntSelectorConst" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.IntSelectorSumBy" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemDesConfig" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemDesResultAddItemDesToSelf" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemDesResultAddXPropX" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemDesResultRemoveItem" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemDesResultSpawnXAtX" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemDesResultToTech" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemDesTriggerBuildingRun" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemDesTriggerEnterSpin" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemDesTriggerEventMiKanSei" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemFilterIsItemCustom" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemFilterNotSelf" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemFilterTag" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemSelectorAtPresentAll" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemSelectorAtPresentSelf" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemSelectorFromConfigCustom" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemSelectorFromResult" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.ItemSelectorFromResultFilterRemoved" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.PosFilterIn3X3" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.PosFilterInManDis" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.PosFilterIsEmpty" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.PosSelector3X3" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.PosSelectorFromResultItem" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.TagEntry" preserve="nothing" serialized="true" />
+    <type fullname="NM.Config.TechNodeConfig" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+  </assembly>
+  <assembly fullname="General">
+    <type fullname="General.Dictionary.SerializableDictionary`2/SerializableKeyValuePair[NM.Config.EPropType,System.Int64]" preserve="nothing" serialized="true" />
+    <type fullname="General.Dictionary.SerializableDictionary`2[NM.Config.EPropType,System.Int64]" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Sirenix.Serialization">
+    <type fullname="Sirenix.Serialization.SerializationData" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>
