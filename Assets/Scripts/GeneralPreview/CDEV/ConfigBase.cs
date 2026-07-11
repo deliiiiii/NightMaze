@@ -36,7 +36,7 @@ namespace GeneralPreview;
 
         [OnValueChanged(nameof(OnNameAndIdChanged))]
         [ValidateInput(nameof(CheckNameAndIdIdentical), "名称格式有误，或ID在当前文件夹(配置类相同)有重复")]
-        public int ID;
+        public long ID;
 
         public abstract string PrefixName { get; }
 

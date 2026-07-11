@@ -20,7 +20,7 @@ public partial class GamePlaying
             EatConfigList = [];
             BuildingOrEventProgress = [];
         }
-        public MyItem(int id, Vector2Int pivotPos)
+        public MyItem(long id, Vector2Int pivotPos)
         {
             ID = id;
             PivotPos = pivotPos;
@@ -43,7 +43,7 @@ public partial class GamePlaying
         public ItemConfig Config => field ??= ConfigLoader.Acquire<ItemConfig>(ID); 
         public EItemType ItemType => Config.ItemType;
 
-        public int ID { get; private set; }
+        public long ID { get; private set; }
         public bool Dragging;
         public bool Spawning;
         public bool GridRevealed;

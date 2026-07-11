@@ -23,7 +23,7 @@ public record ItemFilterIsItemCustom : ItemFilterBase
 {
     [LabelText("物体列表"), Required][JsonIgnore] public List<ItemConfig?> ItemList = [];
 
-    [JsonProperty] List<int> ItemIds => ItemList.Where(i => i != null).Select(x => x!.ID).ToList();
+    [JsonProperty] List<long> ItemIds => ItemList.Where(i => i != null).Select(x => x!.ID).ToList();
     public ItemFilterIsItemCustom(){}
     [JsonConstructor]
     public ItemFilterIsItemCustom(int xx)
@@ -48,11 +48,11 @@ public record ItemFilterIsItemSet : ItemFilterBase
 {
     [Required("物体组Config不能为空"), LabelText("物体组")]
     public ItemConfigSet? Set;
-    [JsonProperty] int ConfigSetId => Set?.ID ?? 0;
+    [JsonProperty] long ConfigSetId => Set?.ID ?? 0;
 
     public ItemFilterIsItemSet() { }
     [JsonConstructor]
-    public ItemFilterIsItemSet(int xx)
+    public ItemFilterIsItemSet(long xx)
     {
         Set = ConfigLoader.Acquire<ItemConfigSet>(ConfigSetId);
     }

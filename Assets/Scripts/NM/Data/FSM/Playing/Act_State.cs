@@ -42,7 +42,7 @@ public partial class GamePlaying
     UniTask WaitForSpinAsync(CancellationToken ct) => 
         inSpin!.WaitForTodoAsync();
     [Obsolete("等待选择棋子")]
-    async UniTask WaitForSelectSymbolAsync(List<int> toSelectConfigs, CancellationToken ct)
+    async UniTask WaitForSelectSymbolAsync(List<long> toSelectConfigs, CancellationToken ct)
     {
         new EvtStartSelectSymbol(toSelectConfigs).Forget();
         var evt = await Bus.WaitForAsync<EvtClickSelectSymbol>("等待选择棋子", ct);
@@ -52,8 +52,8 @@ public partial class GamePlaying
         }
     }
 
-    public record EvtStartSelectSymbol(List<int> ToSelectIDs) : EvtForgetBase;
-    public record EvtClickSelectSymbol(int? SelectedID) : EvtForgetBase;
+    public record EvtStartSelectSymbol(List<long> ToSelectIDs) : EvtForgetBase;
+    public record EvtClickSelectSymbol(long? SelectedID) : EvtForgetBase;
     [Obsolete("回合结束")]
     UniTask EndSpinAsync(CancellationToken ct)
     {

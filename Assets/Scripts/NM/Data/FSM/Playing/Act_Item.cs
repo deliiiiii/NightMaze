@@ -38,7 +38,7 @@ public partial class GamePlaying
 
     [Obsolete("尝试在某位置生成某物体")]
     [MuteActEvt]
-    async UniTask SpawnItemAtPosAsync(int id, Vector2Int pos, ResultWrap? resultWrap, CancellationToken ct)
+    async UniTask SpawnItemAtPosAsync(long id, Vector2Int pos, ResultWrap? resultWrap, CancellationToken ct)
     {
         MyItem item = new MyItem(id, pos)
         {

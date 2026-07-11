@@ -76,7 +76,7 @@ public record ItemSelectorFromConfigCustom : ItemSelectorFromConfigBase
 {
     [LabelText("物体列表")][JsonIgnore] public List<ItemConfig?> ItemList = [];
 
-    [JsonProperty] List<int> ItemIds => ItemList.Where(i => i != null).Select(x => x!.ID).ToList();
+    [JsonProperty] List<long> ItemIds => ItemList.Where(i => i != null).Select(x => x!.ID).ToList();
     public ItemSelectorFromConfigCustom(){}
     [JsonConstructor]
     public ItemSelectorFromConfigCustom(int xx)
@@ -101,7 +101,7 @@ public record ItemSelectorItemFromConfigSet : ItemSelectorFromConfigBase
 {
     [Required("物体组Config不能为空"), LabelText("物体组")]
     public ItemConfigSet? Set;
-    [JsonProperty] int ConfigSetId => Set?.ID ?? 0;
+    [JsonProperty] long ConfigSetId => Set?.ID ?? 0;
 
     public ItemSelectorItemFromConfigSet() { }
     [JsonConstructor]

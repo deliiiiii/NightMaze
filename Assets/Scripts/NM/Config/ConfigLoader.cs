@@ -44,7 +44,7 @@ public static class ConfigLoader
                ?? throw new Exception($"没有任何{typeof(T)}的配置.");
     }
 
-    public static T Acquire<T>(int id) where T : ConfigMulti<T> =>
+    public static T Acquire<T>(long id) where T : ConfigMulti<T> =>
         configList.OfType<T>().FirstOrDefault(c => c.ID == id)
         ?? configList.OfType<T>().FirstOrDefault()
         ?? throw new Exception($"没有任何{typeof(T)}的配置.");
@@ -55,7 +55,7 @@ public static class ConfigLoader
         var ret = configList.OfType<T>().FirstOrDefault();
         return ret != null ? ret : MyOption<T>.None;
     }
-    public static MyOption<T> AcquireOptional<T>(int id) where T : ConfigMulti<T>
+    public static MyOption<T> AcquireOptional<T>(long id) where T : ConfigMulti<T>
     {
         var ret = configList.OfType<T>().FirstOrDefault(c => c.ID == id);
         return ret != null ? ret : MyOption<T>.None;
