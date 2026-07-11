@@ -34,13 +34,13 @@ public partial class GamePlaying
     [Obsolete("开始回合")]
     UniTask StartSpinAsync(CancellationToken ct)
     {
-        InSpin = new PlaySpin(this);
+        inSpin = new PlaySpin(this);
         Items.ForEach(item => item.DestroyInSpin());
         return UniTask.CompletedTask;
     }
     [Obsolete("等待回合.."), MuteActEvt]
     UniTask WaitForSpinAsync(CancellationToken ct) => 
-        InSpin!.WaitForTodoAsync();
+        inSpin!.WaitForTodoAsync();
     [Obsolete("等待选择棋子")]
     async UniTask WaitForSelectSymbolAsync(List<int> toSelectConfigs, CancellationToken ct)
     {

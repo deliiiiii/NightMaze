@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace General
 {
@@ -8,10 +9,10 @@ namespace General
     public class MyDebugConfig : SerializedScriptableObject
     {
         [InfoBox("请到 Tools/General/MyDebugWindow 里修改日志设置")]
-        public bool CanLogAll = true;
-        public bool CanLog = true;
-        public bool CanLogWarning = true;
-        public bool CanLogError = true;
+        [ReadOnly] public bool CanLogAll = true;
+        [ReadOnly] public bool CanLog = true;
+        [ReadOnly] public bool CanLogWarning = true;
+        [ReadOnly] public bool CanLogError = true;
         
         public HashSet<LogType> ActiveLogTypes = new() { LogType.Default };
 

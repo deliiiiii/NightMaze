@@ -241,8 +241,8 @@ public partial class GamePlaying : RootStateBase<GamePlaying>
         base.OnSelfTick(dt);
         PlayTime += dt;
     }
-    [JsonProperty(Order = 10000)] public PlaySpin? InSpin;
-    public MyOption<PlaySpin> GetSpinOptional() => InSpin != null ? InSpin : None;
+    [JsonProperty(Order = 10000)] PlaySpin? inSpin;
+    public MyOption<PlaySpin> GetSpinOptional() => inSpin != null ? inSpin : None;
     public TechTreeData TechTreeData = new();
 }
 

@@ -420,10 +420,8 @@ public class PlayView : ViewBase<GamePlaying>
     void RefreshItemEvt()
     {
         ClearAllItemEvt();
-        if (Data.InSpin is { IsWaitClickNextTurn: true })
-        {
+        if (Data.GetSpinOptional() is MySome<PlaySpin> { Value.IsWaitClickNextTurn: true })
             return;
-        }
         itemViewList
             .Where(itemView => itemView.Data.Config.IsEvent && itemView.Data.IsBuildingOrEventKanSei)
             .ForEach(SpawnItemEvt);

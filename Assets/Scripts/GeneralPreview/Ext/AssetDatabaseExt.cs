@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace NM.Config.Editor;
+namespace GeneralPreview;
 #if UNITY_EDITOR
 public static class AssetDatabaseExt
 {
