@@ -10,7 +10,7 @@ namespace NM.View;
 
 public class ItemInSelectView : ViewBase
 {
-    public int ConfigID { get; private set; }
+    public long ConfigID { get; private set; }
     // [ShowInInspector, ReadOnly]public ItemConfig Config { get; private set; }
     [SerializeField] Btn btn;
     [SerializeField] GO goSelected;
@@ -23,7 +23,7 @@ public class ItemInSelectView : ViewBase
         yield return btn.onClick.EvtBindTo(() => OnClick?.Invoke());
     }
 
-    public void OnCreateView(int id)
+    public void OnCreateView(long id)
     {
         ConfigID = id;
         txtID.text = id.ToString();

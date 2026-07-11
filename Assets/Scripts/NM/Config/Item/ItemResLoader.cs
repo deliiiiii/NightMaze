@@ -39,10 +39,10 @@ public static class ItemResLoader
             #endif
             spriteDic = (
                     from sprite in tempList 
-                    where int.TryParse(sprite.name, out _) 
-                    orderby int.Parse(sprite.name) 
+                    where long.TryParse(sprite.name, out _) 
+                    orderby long.Parse(sprite.name) 
                     select sprite)
-                .ToDictionary(sprite => int.Parse(sprite.name), sprite => sprite);
+                .ToDictionary(sprite => long.Parse(sprite.name), sprite => sprite);
             return (eLogLevel, item3);
         }
 
@@ -51,8 +51,8 @@ public static class ItemResLoader
         Resourcer.OnReloadEditorResource += ct => Func(ct);
 #endif
     }
-    static Dictionary<int, Sprite> spriteDic = [];
-    public static Sprite Acquire(int id)
+    static Dictionary<long, Sprite> spriteDic = [];
+    public static Sprite Acquire(long id)
     {
         return spriteDic.FirstOrDefault(p => p.Key == id).Value
                ?? spriteDic.FirstOrDefault().Value
