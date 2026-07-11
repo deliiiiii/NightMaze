@@ -52,8 +52,8 @@ public partial class GamePlaying
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
         public Vector2Int PivotPos;
         [JsonConverter(typeof(CompactFormatNoRefConverter))]
-        public readonly List<Vector2Int> DeltaPosList;
-        public readonly List<ItemDesConfig> EatConfigList;
+        public List<Vector2Int> DeltaPosList;
+        public List<ItemDesConfig> EatConfigList;
         public List<ItemDesConfig> AllConfigList => [..Config.DesList, ..EatConfigList];
 
         public Dictionary<EPropType, long> BuildingOrEventProgress

@@ -9,7 +9,7 @@
       "MouseScrollMapSpeed": 0.2,
       "SpinTweenSpeed": {
         "$type": "NM.Data.SettingData+SpinTweenSpeedNormal, NM.Data",
-        "Value": 1
+        "Value": 3
       }
     },
     "state": { "$ref": "1" }
@@ -90,8 +90,8 @@
     ],
     "CurID": null
   },
-  "PlayerName": "11",
-  "PlayTime": 51.595122133381665,
+  "PlayerName": "66",
+  "PlayTime": 28.595662065781653,
   "TurnCount": 2,
   "CurLayer": 1,
   "PropBody": 0,
@@ -99,7 +99,7 @@
   "PropLore": 0,
   "PropLoyalty": 0,
   "PropLoyaltyMax": 1000,
-  "PropHostility": 102,
+  "PropHostility": 101,
   "PropHostilityMax": 1000,
   "itemList": [
     {
@@ -10853,39 +10853,55 @@
           "$values": []
         }
       }
+    },
+    {
+      "$id": "2311",
+      "Dragging": false,
+      "Spawning": false,
+      "GridRevealed": false,
+      "PivotPos":{"X":13,"Y":3},
+      "DeltaPosList":[{"X":0,"Y":0}],
+      "EatConfigList": {
+        "$id": "2312",
+        "$values": []
+      },
+      "ID": 20002,
+      "BuildingOrEventProgress": {
+        "$id": "2313",
+        "Prop1": 0
+      },
+      "inSpin": {
+        "$id": "2314",
+        "HasGivenBuildingRunCost": false,
+        "ModifyPropList": {
+          "$id": "2315",
+          "$values": []
+        },
+        "DistributePropList": {
+          "$id": "2316",
+          "$values": []
+        }
+      }
     }
   ],
   "toDoList": {
-    "$id": "2311",
+    "$id": "2317",
     "$values": [
       {
-        "$id": "2312",
-        "$type": "NM.Data.GamePlaying+ActWaitForSelectSymbol, NM.Data",
-        "Self": { "$ref": "1" },
-        "ToSelectConfigs": {
-          "$id": "2313",
-          "$values": [
-            19005,
-            10006,
-            10001
-          ]
-        }
-      },
-      {
-        "$id": "2314",
-        "$type": "NM.Data.GamePlaying+ActEndSpin, NM.Data",
+        "$id": "2318",
+        "$type": "NM.Data.GamePlaying+ActWaitForClickStartTurn, NM.Data",
         "Self": { "$ref": "1" }
       }
     ]
   },
-  "InSpin": {
-    "$id": "2315",
+  "inSpin": {
+    "$id": "2319",
     "BelongNode": { "$ref": "1" },
     "noSourceDistributePropList": {
-      "$id": "2316",
+      "$id": "2320",
       "$values": [
         {
-          "$id": "2317",
+          "$id": "2321",
           "PropType": 11,
           "Value": 1,
           "ToTech": false,
@@ -10894,7 +10910,7 @@
       ]
     },
     "toDoList": {
-      "$id": "2318",
+      "$id": "2322",
       "$values": []
     }
   }

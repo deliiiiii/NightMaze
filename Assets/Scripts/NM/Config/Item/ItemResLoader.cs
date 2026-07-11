@@ -13,7 +13,7 @@ namespace NM.Config;
 public static class ItemResLoader
 {
     // 进入 Play Mode
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 // #if UNITY_EDITOR
     // 打开项目或代码重新编译
     // [UnityEditor.InitializeOnLoadMethod]

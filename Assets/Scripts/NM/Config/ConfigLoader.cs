@@ -12,29 +12,30 @@ namespace NM.Config;
 [DebuggerStepThrough]
 public static class ConfigLoader
 {
+    static async UniTask<(ELogLevel, string)> LoadToRuntimeAsync(CancellationToken ct)
+    {
+        var (tempList, logLevel, info) = await Resourcer.LoadAssetsByTagAsync<ConfigBase>(Const.Res.AddrTag.ConfigTag, ct: ct);
+        configList = tempList;
+        foreach (var config in configList)
+        {
+            // config.OnLoad();
+            config.AddTo(ct);
+        }
+        return (logLevel, info);
+    }
+    
     // 进入 Play Mode
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 // #if UNITY_EDITOR
     // 打开项目或代码重新编译
     // [UnityEditor.InitializeOnLoadMethod]
 // #endif
     static void Bind()
     {
-        async UniTask<(ELogLevel, string)> Func(CancellationToken ct)
-        {
-            var (tempList, logLevel, info) = await Resourcer.LoadAssetsByTagAsync<ConfigBase>(Const.Res.AddrTag.ConfigTag, ct: ct);
-            configList = tempList;
-            foreach (var config in configList)
-            {
-                // config.OnLoad();
-                config.AddTo(ct);
-            }
-            return (logLevel, info);
-        }
-        Loader.OnLoad -= Func;
-        Loader.OnLoad += Func;
+        Loader.OnLoad -= LoadToRuntimeAsync;
+        Loader.OnLoad += LoadToRuntimeAsync;
 #if UNITY_EDITOR
-        Resourcer.OnReloadEditorResource += ct => Func(ct);
+        Resourcer.OnReloadEditorResource += ct => LoadToRuntimeAsync(ct);
 #endif
     }
     static List<ConfigBase> configList = [];

@@ -11,7 +11,6 @@ namespace NM.Editor;
 
 internal sealed class AddressableBatchProcessor : EditorWindow
 {
-    const string ManagedLabel = "NM.AddressableFolderRule";
     readonly List<AddressableFolderRule> rules = [];
     Vector2 scrollPosition;
 
@@ -155,22 +154,11 @@ internal sealed class AddressableBatchProcessor : EditorWindow
             desiredEntries[guid] = new DesiredEntry(label, label);
             addressOwners[label] = guid;
         }
-
         int added = 0;
         int changed = 0;
         int removed = 0;
-
-        foreach (string label in categoryLabels.Append(ManagedLabel))
+        foreach (var (guid, desired) in desiredEntries)
         {
-            if (settings.GetLabels().Contains(label)) continue;
-            settings.AddLabel(label);
-            changed++;
-        }
-
-        foreach (var pair in desiredEntries)
-        {
-            string guid = pair.Key;
-            DesiredEntry desired = pair.Value;
             AddressableAssetEntry entry = settings.FindAssetEntry(guid);
             if (entry == null)
             {
@@ -178,7 +166,6 @@ internal sealed class AddressableBatchProcessor : EditorWindow
                 entry.address = desired.Address;
                 entry.labels.Clear();
                 entry.labels.Add(desired.Label);
-                entry.labels.Add(ManagedLabel);
                 added++;
                 continue;
             }
@@ -194,13 +181,11 @@ internal sealed class AddressableBatchProcessor : EditorWindow
                 entry.address = desired.Address;
                 entryChanged = true;
             }
-            if (entry.labels.Count != 2 ||
-                !entry.labels.Contains(desired.Label) ||
-                !entry.labels.Contains(ManagedLabel))
+            if (entry.labels.Count != 1 ||
+                !entry.labels.Contains(desired.Label))
             {
                 entry.labels.Clear();
                 entry.labels.Add(desired.Label);
-                entry.labels.Add(ManagedLabel);
                 entryChanged = true;
             }
             if (entryChanged) changed++;
@@ -210,8 +195,7 @@ internal sealed class AddressableBatchProcessor : EditorWindow
             .Where(group => group != null)
             .SelectMany(group => group.entries)
             .Where(entry => entry != null &&
-                            (entry.labels.Contains(ManagedLabel) ||
-                             entry.labels.Any(categoryLabels.Contains)) &&
+                             entry.labels.Any(categoryLabels.Contains) &&
                             !desiredEntries.ContainsKey(entry.guid))
             .Select(entry => entry.guid)
             .Distinct()
