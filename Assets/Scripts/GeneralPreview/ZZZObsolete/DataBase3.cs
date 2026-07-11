@@ -38,7 +38,7 @@
 //     {
 //         IUniEvt.BindAll(this, CurCt);
 //         var tick = OnUpdate;
-//         tick.ToBinder().Bind(CurCt);
+//         tick.ActBindTo().Bind(CurCt);
 //         await OnInitData(isThisFromLoad);
 //         await new EvtOnEnter((TThis)this);
 //         await OnLaunchCom(isThisFromLoad);

@@ -12,25 +12,24 @@ namespace GeneralPreview;
 [JsonConverter(typeof(MyOptionJsonConverter))]
 public abstract record MyOption<T1>
 {
-    public static implicit operator MyOption<T1>(T1 some)
-    {
-        if(some is null)
-            return new MyNone<T1>();
-        return new MySome<T1>(some);
-    }
+    public static implicit operator MyOption<T1>(T1 some) 
+        => some is null ? new MyNone<T1>() : new MySome<T1>(some);
     public static readonly MyNone<T1> None = new();
     
     public static implicit operator MyOption<T1>(Unit _) => None;
     public bool HasValue => this is MySome<T1>;
-    public static MyOption<T1> operator !(MyOption<T1> @this) => @this.Reverse();
+    public static MyOption<T1> operator !(MyOption<T1> @this) 
+        => @this.Reverse();
     public static T1 operator |(MyOption<T1> @this, T1 elseValue) 
         => @this.Else(elseValue);
     public static UniTask operator |(MyOption<T1> @this, UniTask elseValue) 
         => @this.ElseAsync(elseValue);
     public static UniTask<T1> operator |(MyOption<T1> @this, UniTask<T1> elseValue) 
         => @this.ElseAsync(elseValue);
-    public static bool operator true(MyOption<T1> @this) => @this.HasValue;
-    public static bool operator false(MyOption<T1> @this) => !@this.HasValue;
+    public static bool operator true(MyOption<T1> @this) 
+        => @this.HasValue;
+    public static bool operator false(MyOption<T1> @this) 
+        => !@this.HasValue;
     public void MatchA(Action<T1>? some = null, Action? none = null)
     {
         switch (this)

@@ -9,6 +9,7 @@ using General;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
+using ZLinq;
 
 namespace GeneralPreview;
 [DebuggerStepThrough]
@@ -52,7 +53,7 @@ public static class Bus
             Debug(evt);
         if (!evtDic.TryGetValue(evtType, out var list)) 
             return;
-        foreach (var dele in list.Where(_ => !ct.IsCancellationRequested).ToList())
+        foreach (var dele in list.AsValueEnumerable().Where(_ => !ct.IsCancellationRequested).ToList())
         {
             await dele.InvokeAsync(evt, ct);
         }
@@ -89,7 +90,7 @@ public static class Bus
     {
         if (!evtDic.TryGetValue(typeof(T), out var list))
             return;
-        var index = list.FindIndex(h => (UniEvt<T>)h == func);
+        var index = list.FindIndex(h => ReferenceEquals(h, func));
         if (index == -1) 
             return;
         list.RemoveAt(index);

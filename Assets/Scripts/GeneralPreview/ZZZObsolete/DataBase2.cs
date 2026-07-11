@@ -25,7 +25,7 @@
 //     async UniTask DataRoot.ICom.OnAddAsync(DataRoot _, bool isThisFromLoad)
 //     {
 //         IUniEvt.BindAll(this, CurCt);
-//         Tick.ToBinder().Bind(CurCt);
+//         Tick.ActBindTo().Bind(CurCt);
 //         if (isThisFromLoad)
 //         {
 //             await comDic.Values.ForEachAsync(async c => await c.OnAddAsync((TThis)this, isThisFromLoad));

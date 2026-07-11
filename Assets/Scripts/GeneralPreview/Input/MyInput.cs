@@ -23,7 +23,7 @@ public static class MyInput
     {
         var f = Action;
         
-        f.ToBinder().Bind(ct);
+        f.ActBindTo().Bind(ct);
         return;
         
         void Action(float dt)

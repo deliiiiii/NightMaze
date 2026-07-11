@@ -47,7 +47,7 @@
 //         }
 //         MyDebug.Log($"{GetType().GetNiceName()} Launching...");
 //         await EnterStateAsync(initState, isNewStateFromLoad);
-//         Tick.ToBinder().Bind(CurCt);
+//         Tick.ActBindTo().Bind(CurCt);
 //     }
 //     protected void Release()
 //     {

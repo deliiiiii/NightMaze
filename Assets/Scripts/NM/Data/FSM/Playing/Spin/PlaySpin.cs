@@ -53,7 +53,7 @@ public partial class PlaySpin
     public override string ToString() => "Spin";
     List<DistributePropInfo> noSourceDistributePropList = [];
     #region toDoList
-    [JsonProperty(Order = 9999)]readonly List<IUniAction> toDoList = [];
+    [JsonProperty(Order = 9999)] List<IUniAction> toDoList = [];
     int FindAfterId(Func<IUniAction, bool>? beforeWho = null)
     {
         beforeWho ??= RFalse1;

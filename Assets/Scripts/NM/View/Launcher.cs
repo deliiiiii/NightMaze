@@ -33,7 +33,7 @@ public class Launcher : Singleton<Launcher>
     {
 #if UNITY_EDITOR
         var act = (float _) => Sirenix.Utilities.Editor.GUIHelper.RequestRepaint();
-        act.ToBinder().Bind(destroyCancellationToken);
+        act.ActBindTo().Bind(destroyCancellationToken);
 #endif
         try
         {

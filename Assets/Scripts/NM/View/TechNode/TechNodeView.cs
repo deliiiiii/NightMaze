@@ -32,10 +32,9 @@ public class TechNodeView : ViewBase, ITechObj
     public UICircle? UICircle;
     public Txt? TxtID;
 
-    protected override IEnumerable<BindDataBase> BindList()
-    {
-        yield return btnCur.onClick.EvtBindTo(() => PlayViewIns.Data.TechTreeData.CurID = Data.ID);
-    }
+    protected override IEnumerable<BindDataBase> BindList() 
+        => [btnCur.onClick.EvtBindTo(() => PlayViewIns.Data.TechTreeData.CurID = Data.ID)];
+
     UniEvt<TechTreeData.EvtCurIDChanged> OnCurIdChanged => new()
     {
         Invoke = (evt, ct) =>

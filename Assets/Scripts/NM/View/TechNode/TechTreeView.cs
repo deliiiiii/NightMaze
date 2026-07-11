@@ -30,7 +30,7 @@ public class TechTreeView : ViewBase
     {
         Invoke = (evt, ct) =>
         {
-            techNodeList.ForEach(node => node.OnCreateView(node.Data, curId: PlayViewIns.Data.TechTreeData.CurID));
+            techNodeList.ForEach(node => node.OnCreateView(node.Data, curId: evt.WhoHasCt.TechTreeData.CurID));
             return UniTask.CompletedTask;
         },
         Des = "结束转动后刷新科技树显示",

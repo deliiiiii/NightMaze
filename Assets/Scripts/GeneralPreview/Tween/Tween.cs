@@ -18,7 +18,7 @@ public static class Tween
         var curCur = curGetter();
         var curTar = tarGetter();
         var f = Action;
-        f.ToBinder().Bind(ct);
+        f.ActBindTo().Bind(ct);
         return;
         void Action(float dt)
         {

@@ -38,7 +38,7 @@ public abstract class DataBase<TThis> : DataBase, IDisposable, IHasCt, IHasVersi
     {
         IUniEvt.BindAll(this, CurCt);
         var tick = OnSelfTick;
-        tick.ToBinder().Bind(CurCt);
+        tick.ActBindTo().Bind(CurCt);
         if (!isThisFromLoad)
         {
             OnCreateFreshData();

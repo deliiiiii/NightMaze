@@ -54,17 +54,16 @@ public class PlayView : ViewBase<GamePlaying>
     public TechTreeView TechTreeView;
     
     
-    protected override IEnumerable<BindDataBase> BindList()
-    {
-        yield return BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.Name.Save.SlotFolder, Data.PlayerName, Data));
-        yield return BtnExit.onClick.EvtBindTo(() => new GamePlaying.EvtClickExit().Forget());
-        yield return BtnSetting.onClick.EvtBindTo(() => SettingViewIns.SetActiveTrue());
-        
-        yield return BtnSpin.onClick.EvtBindTo(() => new GamePlaying.EvtClickStartTurn().Forget());
-        yield return BtnNextTurn.onClick.EvtBindTo(() => new GamePlaying.EvtClickNextTurn().Forget());
-        
-        yield return BtnTechTree.onClick.EvtBindTo(() => TechTreeView.LoadFromConfigRT());
-    }
+    protected override IEnumerable<BindDataBase> BindList() =>
+    [
+        BtnSave.onClick.EvtBindTo(() => Saver.SaveAsync(Const.Name.Save.SlotFolder, Data.PlayerName, Data)),
+        BtnExit.onClick.EvtBindTo(() => new GamePlaying.EvtClickExit().Forget()),
+        BtnSetting.onClick.EvtBindTo(() => SettingViewIns.SetActiveTrue()),
+        BtnSpin.onClick.EvtBindTo(() => new GamePlaying.EvtClickStartTurn().Forget()),
+        BtnNextTurn.onClick.EvtBindTo(() => new GamePlaying.EvtClickNextTurn().Forget()),
+        BtnTechTree.onClick.EvtBindTo(() => TechTreeView.LoadFromConfigRT())
+    ];
+
     void Update()
     {
         if (LockedPosDetail != null) 
