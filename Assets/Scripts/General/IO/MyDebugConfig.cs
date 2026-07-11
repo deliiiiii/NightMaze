@@ -14,7 +14,7 @@ namespace General
         [ReadOnly] public bool CanLogWarning = true;
         [ReadOnly] public bool CanLogError = true;
         
-        public HashSet<LogType> ActiveLogTypes = new() { LogType.Default };
+        public HashSet<ELogType> ActiveLogTypes = new() { ELogType.Default };
 
         void OnValidate()
         {

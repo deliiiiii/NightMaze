@@ -71,7 +71,7 @@ namespace General.Editor
 
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, "box");
             
-            foreach (var type in (LogType[])Enum.GetValues(typeof(LogType)))
+            foreach (var type in (ELogType[])Enum.GetValues(typeof(ELogType)))
             {
                 bool isIncluded = config.ActiveLogTypes.Contains(type);
                 
@@ -109,7 +109,7 @@ namespace General.Editor
 
             var newConfig = CreateInstance<MyDebugConfig>();
             
-            newConfig.ActiveLogTypes = ((LogType[])Enum.GetValues(typeof(LogType))).ToHashSet();
+            newConfig.ActiveLogTypes = ((ELogType[])Enum.GetValues(typeof(ELogType))).ToHashSet();
 
             AssetDatabase.CreateAsset(newConfig, path);
             AssetDatabase.SaveAssets();

@@ -1,14 +1,14 @@
 ﻿namespace NM;
 
-public static class Const
+public struct Const
 {
-    public static class Await
+    public struct Await
     {
         public const int OneFramePerSpawn = 10;
     }
-    public static class Res
+    public struct Res
     {
-        public static class Config
+        public struct Config
         {
             public const string Path = "Assets/Config";
             public const string EnumPre = "Assets/Config/Mgr/";
@@ -20,21 +20,21 @@ public static class Const
             public const string GridTag = "5_地块Tag";
         }
 
-        public static class Item
+        public struct Item
         {
             public const string SpritePath = "Assets/Art/Sprite/Item";
         }
         // 字段名必须以Tag结尾!
-        public static class AddrTag
+        public struct AddrTag
         {
             public const string ConfigTag = "NMConfig";
             public const string ItemSpriteTag = "NMItemSprite";
         }
-        public static class TMP
+        public struct TMP
         {
         }
     }
-    public static class Name
+    public struct Name
     {
         public const string Proj = "NM";
         public const string Name1 = "体魄";
@@ -43,7 +43,7 @@ public static class Const
         public const string NameA1 = "忠诚度";
         public const string NameA2 = "敌意值";
         
-        public static class Save
+        public struct Save
         {
             public const string SlotFolder = "Slot";
             public const string SettingFolder = "Setting";
@@ -53,12 +53,12 @@ public static class Const
         }
     }
 
-    public static class World
+    public struct World
     {
         public const int GridSize = 1;
     }
     
-    public static class SortingLayer
+    public struct SortingLayer
     {
         public const string GridBack = "Grid Back";
         public const string GridBuilding = "Grid Building";
@@ -66,7 +66,7 @@ public static class Const
         public const string GridSymbol = "Grid Symbol";
         public const string GridResource = "Grid Resource";
     }
-    public static class Layer
+    public struct Layer
     {
         public const string TechUI = "TechUI";
         public const string TechUIHandle = "TechUIHandle";

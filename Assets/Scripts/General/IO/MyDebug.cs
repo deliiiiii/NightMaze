@@ -7,10 +7,16 @@ using Debug = UnityEngine.Debug;
 
 namespace General
 {
-    public enum LogType
+    public enum ELogType
     {
         [LabelText("默认")]
         Default,
+    }
+    public enum ELogLevel
+    {
+        Info,
+        Warning,
+        Error,
     }
     [DebuggerStepThrough]
     public static class MyDebug
@@ -19,45 +25,39 @@ namespace General
         static bool canLog = true;
         static bool canLogWarning = true;
         static bool canLogError = true;
-        static HashSet<LogType> logTypes = ((LogType[])Enum.GetValues(typeof(LogType))).ToHashSet();
+        static HashSet<ELogType> logTypes = ((ELogType[])Enum.GetValues(typeof(ELogType))).ToHashSet();
 
         [UnityEngine.HideInCallstack]
-        public static void Log(object message, LogType logType = LogType.Default)
+        public static void Log(object message, ELogType eLogType = ELogType.Default)
         {
-            if (!canLog || !CheckLog(logType))
+            if (!canLog || !CheckLog(eLogType))
             {
                 return;
             }
             Debug.Log(message);
-        
         }
         [UnityEngine.HideInCallstack]
-        public static void LogWarning(object message, LogType logType = LogType.Default, int threshold = 0)
+        public static void LogWarning(object message, ELogType eLogType = ELogType.Default, int threshold = 0)
         {
-            if (!canLogWarning || !CheckLog(logType))
+            if (!canLogWarning || !CheckLog(eLogType))
             {
                 return;
             }
             Debug.LogWarning(message);
-
         }
         [UnityEngine.HideInCallstack]
-        public static void LogError(object message, LogType logType = LogType.Default, int threshold = 0)
+        public static void LogError(object message, ELogType eLogType = ELogType.Default, int threshold = 0)
         {
-            if (!canLogError || !CheckLog(logType))
+            if (!canLogError || !CheckLog(eLogType))
             {
                 return;
             }
             Debug.LogError(message);
-
         }
         [UnityEngine.HideInCallstack]
-        static bool CheckLog(LogType logType)
-        {
-            return canLogAll && logTypes.Contains(logType);
-        }
-        
-        public static void ApplySettings(bool all, bool log, bool warning, bool error, HashSet<LogType> activeTypes)
+        static bool CheckLog(ELogType eLogType) => canLogAll && logTypes.Contains(eLogType);
+
+        public static void ApplySettings(bool all, bool log, bool warning, bool error, HashSet<ELogType> activeTypes)
         {
             canLogAll = all;
             canLog = log;

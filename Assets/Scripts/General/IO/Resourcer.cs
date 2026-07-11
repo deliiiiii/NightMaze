@@ -24,7 +24,7 @@ namespace General
                 if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
                 {
                     assetHandleCache.Clear();
-                    labelLocationsCache.Clear();
+                    tagLocationsCache.Clear();
                 }
             };
             #endif
@@ -38,7 +38,7 @@ namespace General
 #endif
         
         static readonly Dictionary<string, AsyncOperationHandle> assetHandleCache = new();
-        static readonly Dictionary<string, IList<IResourceLocation>> labelLocationsCache = new();
+        static readonly Dictionary<string, IList<IResourceLocation>> tagLocationsCache = new();
 
 #if UNITY_EDITOR
         /// <summary>
@@ -52,12 +52,10 @@ namespace General
                          .Where(kvp => kvp.Value.IsValid())) 
                 Addressables.Release(kvp.Value);
             assetHandleCache.Clear();
-            labelLocationsCache.Clear();
-            OnBeforeReloadEditorResource?.Invoke(CancellationToken.None).Forget();
+            tagLocationsCache.Clear();
             OnReloadEditorResource?.Invoke(CancellationToken.None).Forget();
             MyDebug.Log("<color=green>[Resourcer] 缓存已清空并重载目录，下次读取将拿取最新资源。</color>");
         }
-        public static event Func<CancellationToken, UniTask>? OnBeforeReloadEditorResource;
         public static event Func<CancellationToken, UniTask>? OnReloadEditorResource;
 #endif
             
@@ -104,24 +102,24 @@ namespace General
             // MyDebug.LogInfo($"加载资源{address}用时:{st.Elapsed.TotalMilliseconds}ms");
             return assetHandle.Result ?? null;
         }
-        
+
         /// <summary>
-        /// 通过Label异步加载一组资源，并返回资源列表
+        /// 通过tag异步加载一组资源，并返回资源列表
         /// </summary>
-        /// <param name="label">资源标签</param>
+        /// <param name="tag">资源标签</param>
         /// <param name="ct">token</param>
         /// <typeparam name="T">资源类型</typeparam>
         /// <returns>加载的资源列表</returns>
-        public static async UniTask<List<T>> LoadAssetsAsyncByLabel<T>(string label, CancellationToken? ct = null) where T : Object
+        public static async UniTask<(List<T>, ELogLevel, string)> LoadAssetsByTagAsync<T>(string tag,
+            CancellationToken? ct = null) where T : Object
         {
             // 先试图从缓存中获取Locations
-            var resourceLocations = labelLocationsCache.TryGetValue(label, out var value) 
+            var resourceLocations = tagLocationsCache.TryGetValue(tag, out var value) 
                 ? value 
-                : await LoadResourceLocationsAsync(label, ct);
+                : await LoadResourceLocationsAsync(tag, ct);
             if (!resourceLocations.Any())
             {
-                MyDebug.LogWarning($"标签[{label}]定位到的资源地址数量为0");
-                return new List<T>();
+                return (new List<T>(), ELogLevel.Warning, $"标签[{tag}]定位到的资源地址数量为0");
             }
             Stopwatch st = new Stopwatch();
             st.Start();
@@ -131,8 +129,8 @@ namespace General
                 .Select(x=> x!)
                 .ToList();
             st.Stop();
-            MyDebug.Log($"加载标签组{label}资源用时:{st.Elapsed.TotalMilliseconds}ms");
-            return results;
+            return (results, ELogLevel.Info, 
+                $"加载标签[{tag}]定位到的资源数量为{results.Count}，耗时:{st.Elapsed.TotalMilliseconds}ms");
         }
         
 
@@ -147,7 +145,7 @@ namespace General
         {
             if (assetHandleCache.TryGetValue(address, out var handle))
             {
-                if (handle.IsValid() && handle.Status == AsyncOperationStatus.Succeeded && handle.Result is T ret)
+                if (handle.IsValid() && handle is { Status: AsyncOperationStatus.Succeeded, Result: T ret })
                 {
                     asset = ret;
                     return true;
@@ -176,11 +174,11 @@ namespace General
         /// <summary>
         /// 释放已经加载的含有指定标签的资源
         /// </summary>
-        /// <param name="label">标签</param>
-        public static void ReleaseLabel(string label)
+        /// <param name="tag">标签</param>
+        public static void ReleaseTag(string tag)
         {
             // 先试图从缓存中获取Locations
-            var resourceLocations = labelLocationsCache.TryGetValue(label, out var value) ? value : LoadResourceLocations(label);
+            var resourceLocations = tagLocationsCache.TryGetValue(tag, out var value) ? value : LoadResourceLocations(tag);
             foreach (var location in resourceLocations)
             {
                 if (assetHandleCache.ContainsKey(location.PrimaryKey))
@@ -190,29 +188,29 @@ namespace General
             }
         }
 
-        static async UniTask<IList<IResourceLocation>> LoadResourceLocationsAsync(string label, CancellationToken? ct = null)
+        static async UniTask<IList<IResourceLocation>> LoadResourceLocationsAsync(string tag, CancellationToken? ct = null)
         {
-            if (labelLocationsCache.TryGetValue(label, out var value))
+            if (tagLocationsCache.TryGetValue(tag, out var value))
                 return value;
             // 通过标签获取所有资源的位置
-            var locatorsHandle = Addressables.LoadResourceLocationsAsync(label, typeof(object));
+            var locatorsHandle = Addressables.LoadResourceLocationsAsync(tag, typeof(object));
             await locatorsHandle.ToUniTask(cancellationToken: ct ?? CancellationToken.None);
             if (locatorsHandle.Status != AsyncOperationStatus.Succeeded)
-                throw new Exception($"使用标签[{label}]定位资源地址失败");
-            labelLocationsCache[label] = locatorsHandle.Result.DistinctBy(x => x.PrimaryKey).ToList();
-            return labelLocationsCache[label];
+                throw new Exception($"使用标签[{tag}]定位资源地址失败");
+            tagLocationsCache[tag] = locatorsHandle.Result.DistinctBy(x => x.PrimaryKey).ToList();
+            return tagLocationsCache[tag];
         }
 
-        static IList<IResourceLocation> LoadResourceLocations(string label)
+        static IList<IResourceLocation> LoadResourceLocations(string tag)
         {
-            if (labelLocationsCache.TryGetValue(label, out var value))
+            if (tagLocationsCache.TryGetValue(tag, out var value))
                 return value;
             // 通过标签获取所有资源的位置
-            var locatorsHandle = Addressables.LoadResourceLocationsAsync(label, typeof(object));
+            var locatorsHandle = Addressables.LoadResourceLocationsAsync(tag, typeof(object));
             locatorsHandle.WaitForCompletion();
             if (locatorsHandle.Status != AsyncOperationStatus.Succeeded)
-                throw new Exception($"使用标签[{label}]定位资源地址失败");
-            labelLocationsCache[label] = locatorsHandle.Result;
+                throw new Exception($"使用标签[{tag}]定位资源地址失败");
+            tagLocationsCache[tag] = locatorsHandle.Result;
             return locatorsHandle.Result;
         }
     }

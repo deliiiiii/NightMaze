@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -92,12 +92,6 @@ internal class AddressableBatchProcessor : EditorWindow
         GUILayout.Space(10);
         GUILayout.Label($"Total Rules: {config.RuleList.Count}", EditorStyles.miniLabel);
 
-        GUI.backgroundColor = Color.green;
-        if (GUILayout.Button("Process All Rules", GUILayout.Height(40)))
-        {
-            ProcessConfig(config);
-        }
-        GUI.backgroundColor = Color.white;
     }
 
     void DrawRuleItem(int index)
@@ -187,22 +181,12 @@ internal class AddressableBatchProcessor : EditorWindow
     }
     
     [InitializeOnEnterPlayMode]
-    static void RegisterPlayModeStateChanged()
+    static void SyncOnEnterPlayMode()
     {
-        AutoApplyConfig();
-    }
-
-    [InitializeOnLoadMethod]
-    static void SubscribeToResourcer()
-    {
-        Resourcer.OnReloadEditorResource += _ =>
-        {
-            AutoApplyConfig();
-            return Cysharp.Threading.Tasks.UniTask.CompletedTask;
-        };
+        SyncConfig();
     }
     
-    static void AutoApplyConfig()
+    static void SyncConfig()
     {
         if(MyAsset.TryLoadFirstAsset<AddressableBatchConfig>(out var cfg))
             ProcessConfig(cfg);
@@ -219,75 +203,129 @@ internal class AddressableBatchProcessor : EditorWindow
             return;
         }
 
-        foreach (var rule in configToProcess.RuleList.Where(rule => rule.Enable))
-        {
-            if (!string.IsNullOrEmpty(rule.TagName) && !settings.GetLabels().Contains(rule.TagName))
-            {
-                settings.AddLabel(rule.TagName);
-            }
-        }
+        var enabledRules = configToProcess.RuleList
+            .Where(rule => rule.Enable)
+            .ToList();
+        var managedLabels = configToProcess.RuleList
+            .Where(rule => !string.IsNullOrEmpty(rule.TagName))
+            .Select(rule => rule.TagName)
+            .ToHashSet();
+        var desiredEntries = new Dictionary<string, DesiredEntry>();
+        var addressOwners = new Dictionary<string, string>();
 
-        int totalProcessed = 0;
-
-        foreach (var rule in configToProcess.RuleList.Where(rule => rule.Enable))
+        // 先完整扫描并校验，出错时不修改任何 Addressables 配置。
+        foreach (var rule in enabledRules)
         {
             if (string.IsNullOrEmpty(rule.FolderPath) || string.IsNullOrEmpty(rule.TagName))
             {
-                MyDebug.LogWarning($"跳过无效规则: 路径或 Tag 为空");
+                MyDebug.LogError("Addressable 规则无效：路径或 Tag 为空");
+                return;
+            }
+            string folderPath = rule.FolderPath.Replace("\\", "/").TrimEnd('/');
+            if (!AssetDatabase.IsValidFolder(folderPath))
+            {
+                MyDebug.LogError($"文件夹不存在或不是有效的 Unity 资产目录: {folderPath}");
+                return;
+            }
+
+            string guid = AssetDatabase.AssetPathToGUID(folderPath);
+            if (string.IsNullOrEmpty(guid))
+            {
+                MyDebug.LogError($"无法取得文件夹 GUID: {folderPath}");
+                return;
+            }
+
+            // 文件夹 Address 使用唯一的 Tag；子资源由 Addressables 按相对路径生成隐式 Address。
+            string address = rule.TagName;
+            if (desiredEntries.TryGetValue(guid, out var previous) && previous.Label != rule.TagName)
+            {
+                MyDebug.LogError($"文件夹同时命中多个 Addressable 规则: {folderPath}");
+                return;
+            }
+            if (addressOwners.TryGetValue(address, out var ownerGuid) && ownerGuid != guid)
+            {
+                MyDebug.LogError($"Addressable 文件夹地址重复: {address}\n" +
+                                 $"{AssetDatabase.GUIDToAssetPath(ownerGuid)}\n{folderPath}");
+                return;
+            }
+
+            desiredEntries[guid] = new DesiredEntry(address, rule.TagName);
+            addressOwners[address] = guid;
+        }
+
+        int added = 0;
+        int changed = 0;
+        int removed = 0;
+
+        foreach (string label in managedLabels)
+        {
+            if (!settings.GetLabels().Contains(label))
+            {
+                settings.AddLabel(label);
+                changed++;
+            }
+        }
+
+        foreach (var pair in desiredEntries)
+        {
+            string guid = pair.Key;
+            DesiredEntry desired = pair.Value;
+            AddressableAssetEntry entry = settings.FindAssetEntry(guid);
+            if (entry == null)
+            {
+                entry = settings.CreateOrMoveEntry(guid, settings.DefaultGroup);
+                entry.address = desired.Address;
+                entry.labels.Clear();
+                entry.labels.Add(desired.Label);
+                added++;
                 continue;
             }
 
-            totalProcessed += MarkFolderAsAddressable(rule.FolderPath, rule.TagName, settings);
-        }
-
-        if (totalProcessed > 0)
-        {
-            settings.SetDirty(AddressableAssetSettings.ModificationEvent.BatchModification, null, true, true);
-            AssetDatabase.SaveAssets();
-            MyDebug.Log($"AddressableBatchProcessor: (Auto) Processed {totalProcessed} files.");
-        }
-    }
-
-    static int MarkFolderAsAddressable(string targetFolderPath, string labelName, AddressableAssetSettings settings)
-    {
-        if (!Directory.Exists(targetFolderPath))
-        {
-            MyDebug.LogError($"文件夹不存在: {targetFolderPath}");
-            return 0;
-        }
-        string[] allFiles = Directory.GetFiles(targetFolderPath, "*.*", SearchOption.AllDirectories);
-        int count = 0;
-        foreach (string file in allFiles)
-        {
-            if (file.EndsWith(".meta")) continue;
-            string assetPath = file.Replace("\\", "/");
-            if (assetPath.StartsWith(Application.dataPath))
-                assetPath = "Assets" + assetPath.Substring(Application.dataPath.Length);
-            if (MarkSingleAssetAsAddressable(assetPath, settings, labelName))
-                count++;
-        }
-        return count;
-    }
-    static bool MarkSingleAssetAsAddressable(string assetPath, AddressableAssetSettings settings, string labelName)
-    {
-        try
-        {
-            string guid = AssetDatabase.AssetPathToGUID(assetPath);
-            if (string.IsNullOrEmpty(guid)) return false;
-            AddressableAssetEntry entry = settings.FindAssetEntry(guid) ?? settings.CreateOrMoveEntry(guid, settings.DefaultGroup);
-            if (entry != null)
+            bool entryChanged = false;
+            if (entry.parentGroup != settings.DefaultGroup)
             {
-                string address = Path.GetFileNameWithoutExtension(assetPath);
-                entry.address = address;
-                entry.labels.Clear();
-                entry.labels.Add(labelName);
-                return true;
+                entry = settings.CreateOrMoveEntry(guid, settings.DefaultGroup);
+                entryChanged = true;
             }
+            if (entry.address != desired.Address)
+            {
+                entry.address = desired.Address;
+                entryChanged = true;
+            }
+            if (entry.labels.Count != 1 || !entry.labels.Contains(desired.Label))
+            {
+                entry.labels.Clear();
+                entry.labels.Add(desired.Label);
+                entryChanged = true;
+            }
+            if (entryChanged) changed++;
         }
-        catch (Exception e)
+
+        var staleEntryGuids = settings.groups
+            .Where(group => group != null)
+            .SelectMany(group => group.entries)
+            .Where(entry => entry != null &&
+                            entry.labels.Any(managedLabels.Contains) &&
+                            !desiredEntries.ContainsKey(entry.guid))
+            .Select(entry => entry.guid)
+            .Distinct()
+            .ToList();
+        foreach (string guid in staleEntryGuids)
         {
-            MyDebug.LogError($"处理资源时出错 {assetPath}: {e.Message}");
+            if (settings.RemoveAssetEntry(guid)) removed++;
         }
-        return false;
+
+        int totalChanges = added + changed + removed;
+        if (totalChanges == 0)
+        {
+            MyDebug.Log($"Addressable 检查完成：{desiredEntries.Count} 个文件夹，无变化");
+            return;
+        }
+
+        settings.SetDirty(AddressableAssetSettings.ModificationEvent.BatchModification, null, true, true);
+        AssetDatabase.SaveAssets();
+        MyDebug.Log($"Addressable 文件夹自动同步完成：新增 {added}，修改 {changed}，移除 {removed}");
     }
+
+    readonly record struct DesiredEntry(string Address, string Label);
 }

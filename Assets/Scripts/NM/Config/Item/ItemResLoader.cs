@@ -3,26 +3,27 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
-using Sirenix.Utilities;
 using UnityEngine;
 
-namespace NM.View;
+namespace NM.Config;
 
 
 
 
-public class ItemResLoader
+public static class ItemResLoader
 {
+    // 进入 Play Mode
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-#if UNITY_EDITOR
-    [UnityEditor.InitializeOnLoadMethod]
-#endif
+// #if UNITY_EDITOR
+    // 打开项目或代码重新编译
+    // [UnityEditor.InitializeOnLoadMethod]
+// #endif
     static void Bind()
     {
-        async UniTask Func(CancellationToken ct)
+        async UniTask<(ELogLevel, string)> Func(CancellationToken ct)
         {
-            var spriteList = await Resourcer.LoadAssetsAsyncByLabel<Sprite>(Const.Res.AddrTag.ItemSpriteTag, ct);
-            
+            var (tempList, eLogLevel, item3) = 
+                await Resourcer.LoadAssetsByTagAsync<Sprite>(Const.Res.AddrTag.ItemSpriteTag, ct);
             #if UNITY_EDITOR
             // spriteList
             //     .Where(sprite => int.TryParse(sprite.name, out _))
@@ -37,16 +38,17 @@ public class ItemResLoader
             //     });
             #endif
             spriteDic = (
-                    from sprite in spriteList 
+                    from sprite in tempList 
                     where int.TryParse(sprite.name, out _) 
                     orderby int.Parse(sprite.name) 
                     select sprite)
                 .ToDictionary(sprite => int.Parse(sprite.name), sprite => sprite);
+            return (eLogLevel, item3);
         }
 
         Loader.OnLoad += Func;
 #if UNITY_EDITOR
-        Resourcer.OnReloadEditorResource += Func;
+        Resourcer.OnReloadEditorResource += ct => Func(ct);
 #endif
     }
     static Dictionary<int, Sprite> spriteDic = [];

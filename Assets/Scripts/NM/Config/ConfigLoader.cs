@@ -10,26 +10,31 @@ using UnityEngine;
 
 namespace NM.Config;
 [DebuggerStepThrough]
-public class ConfigLoader
+public static class ConfigLoader
 {
+    // 进入 Play Mode
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-#if UNITY_EDITOR
-    [UnityEditor.InitializeOnLoadMethod]
-#endif
+// #if UNITY_EDITOR
+    // 打开项目或代码重新编译
+    // [UnityEditor.InitializeOnLoadMethod]
+// #endif
     static void Bind()
     {
-        async UniTask Func(CancellationToken ct)
+        async UniTask<(ELogLevel, string)> Func(CancellationToken ct)
         {
-            configList = await Resourcer.LoadAssetsAsyncByLabel<ConfigBase>(Const.Res.AddrTag.ConfigTag, ct: ct);
+            var (tempList, logLevel, info) = await Resourcer.LoadAssetsByTagAsync<ConfigBase>(Const.Res.AddrTag.ConfigTag, ct: ct);
+            configList = tempList;
             foreach (var config in configList)
             {
                 // config.OnLoad();
                 config.AddTo(ct);
             }
+            return (logLevel, info);
         }
+        Loader.OnLoad -= Func;
         Loader.OnLoad += Func;
 #if UNITY_EDITOR
-        Resourcer.OnReloadEditorResource += Func;
+        Resourcer.OnReloadEditorResource += ct => Func(ct);
 #endif
     }
     static List<ConfigBase> configList = [];

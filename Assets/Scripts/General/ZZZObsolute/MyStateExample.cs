@@ -5,12 +5,12 @@
 // {
 //     protected override void OnEnter()
 //     {
-//         MyDebug.Log("MyStateExample OnEnter", LogType.State);
+//         MyDebug.Log("MyStateExample OnEnter", ELogType.State);
 //     }
 //
 //     protected override void OnExit()
 //     {
-//         MyDebug.Log("MyStateExample OnExit", LogType.State);
+//         MyDebug.Log("MyStateExample OnExit", ELogType.State);
 //     }
 //
 //     protected override void OnUpdate()
@@ -26,12 +26,12 @@
 // {
 //     protected override void OnEnter()
 //     {
-//         MyDebug.Log("MyStateExample2 OnEnter", LogType.State);
+//         MyDebug.Log("MyStateExample2 OnEnter", ELogType.State);
 //     }
 //
 //     protected override void OnExit()
 //     {
-//         MyDebug.Log("MyStateExample2 OnExit", LogType.State);
+//         MyDebug.Log("MyStateExample2 OnExit", ELogType.State);
 //     }
 //
 //     protected override void OnUpdate()
@@ -51,12 +51,12 @@
 // {
 //     protected override void OnEnter()
 //     {
-//         MyDebug.Log("MyStateExample3 OnEnter", LogType.State);
+//         MyDebug.Log("MyStateExample3 OnEnter", ELogType.State);
 //     }
 //
 //     protected override void OnExit()
 //     {
-//         MyDebug.Log("MyStateExample3 OnExit", LogType.State);
+//         MyDebug.Log("MyStateExample3 OnExit", ELogType.State);
 //     }
 //
 //     protected override void OnUpdate()

@@ -233,6 +233,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - NMConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d67a9479a13309e44baa8e7fa4b8dc27
+    m_Address: "Symbol_114514_\u6D4B\u6D4B\u6D4B"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NMConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d71e75c86433f2b4f810f91126a55a67
     m_Address: "5_\u5730\u5757Tag"
     m_ReadOnly: 0
